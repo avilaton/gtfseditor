@@ -163,7 +163,7 @@ define(["OpenLayers",
           strategies: [new OpenLayers.Strategy.BBOX({resFactor: 2.0})],
           protocol: new OpenLayers.Protocol.HTTP({
             format: new OpenLayers.Format.GeoJSON(),
-            url: config.vectorLayerUrl,
+            url: config.vectorLayerUrl+'bbox',
             params: {
               database: 'dbRecorridos',
               action: 'bbox'}
