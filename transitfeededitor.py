@@ -84,7 +84,7 @@ def getBBOX():
     w,s,e,n = map(float,bbox.split(','))
     q = """SELECT * 
         FROM stops s INNER JOIN stop_seq sq ON s.stop_id=sq.stop_id
-        WHERE 
+        WHERE
             (stop_lat BETWEEN {s} AND {n})
             AND 
             (stop_lon BETWEEN {w} AND {e})
@@ -98,7 +98,6 @@ def getBBOX():
         stop = dict(r)
         linea = stop.pop('trip_id')
         stop_id = stop.pop('stop_id')
-        print stop
         if stop_id in d:
             d[stop_id]['lineas'].append(linea)
         else:
