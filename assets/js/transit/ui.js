@@ -286,7 +286,7 @@ define(["jquery",
         var stopInfoDiv = $('#stopData');
         stopInfoDiv.empty();
         if (selectedFeature) {
-            stopInfoDiv.append(templates.stops(selectedFeature));
+            stopInfoDiv.append(templates.stop(selectedFeature));
         };
     };
     
@@ -297,9 +297,9 @@ define(["jquery",
         multipleDiv = $('#multipleStops');
         multipleDiv.empty();
         if (selected.length == 1) {
-            multipleDiv.append(stopTemplate(selected[0]));
+            multipleDiv.append(templates.stop(selected[0]));
         } else {
-            multipleDiv.append(multipleTemplate({features:selected}));
+            multipleDiv.append(templates.multiple({features:selected}));
         };
         $('#multipleStops table tr button').on('click',function(e){
             var merge = [],

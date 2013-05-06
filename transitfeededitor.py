@@ -49,31 +49,40 @@ def responderpost():
     print 'post received'
     return {'success':True}
 
-@route('/api/bboxold')
-def bbox():
-    bbox = request.query['bbox']
-    w,s,e,n = map(float,bbox.split(','))
-    q = """SELECT * FROM stops
-            WHERE 
-            stop_id IN (SELECT DISTINCT stop_id FROM stop_seq)
-            AND (stop_lat BETWEEN {s} AND {n})
-            AND (stop_lon BETWEEN {w} AND {e})
-            LIMIT 300
-            """.format(s=s,n=n,w=w,e=e)
-    db.query(q)
+@route('/api/shape/<shape_id>')
+def geoShape(shape_id):
+    result = db.select('shapes',shape_id=shape_id)
+    coordList = [[p['shape_pt_lon'],p['shape_pt_lat']] for p in result]
+    feature = geojson.geoJsonLineString(shape_id,coordList,{'type':'Line'})
+    resultGeoJson = geojson.geoJsonFeatCollection([feature])
+    return resultGeoJson
+
+@route('/api/trip/<trip_id>/stops')
+def tripStops(trip_id):
     features = []
-    for stop in db.cursor.fetchall():
-        l = db.select('stop_seq',stop_id=stop['stop_id'])
-        lineas = [{'trip_id':t['trip_id']} for t in l]
-        f = geojson.geoJsonFeature(stop['stop_id'],
-            stop['stop_lon'],
-            stop['stop_lat'],
-            {'stop_id':stop['stop_id'],
+    stopCodes = []
+    q = """SELECT stop_id,is_timepoint 
+        FROM stop_seq WHERE trip_id="{0}"
+        ORDER BY stop_sequence""".format(trip_id)
+    db.query(q)
+    for i,row in enumerate(db.cursor.fetchall()):
+        stopCodes.append([i,row['stop_id'],row['is_timepoint']])
+
+    for i,stop_id,is_timepoint in stopCodes:
+        d = db.select('stops',stop_id=stop_id)[0]
+        l = db.select('stop_seq',stop_id=stop_id)
+        lineas = [t['trip_id'] for t in l]
+        f = geojson.geoJsonFeature(stop_id,
+            d['stop_lon'],
+            d['stop_lat'],
+            {'stop_id':d['stop_id'],
+            'stop_seq':i+1,
+            'is_timepoint':bool(is_timepoint),
             'stop_lineas':lineas,
-            'stop_calle':stop['stop_calle'],
-            'stop_numero':stop['stop_numero'],
-            'stop_esquina':stop['stop_esquina'],
-            'stop_entre':stop['stop_entre']})
+            'stop_calle':d['stop_calle'],
+            'stop_numero':d['stop_numero'],
+            'stop_esquina':d['stop_esquina'],
+            'stop_entre':d['stop_entre']})
         features.append(f)
     resultGeoJson = geojson.geoJsonFeatCollection(features)
     return resultGeoJson
@@ -92,9 +101,8 @@ def getBBOX():
         """.format(s=s,n=n,w=w,e=e)
     db.query(q)
     features = []
-    rows = db.cursor.fetchall()
     d = {}
-    for r in rows:
+    for r in db.cursor.fetchall():
         stop = dict(r)
         linea = stop.pop('trip_id')
         stop_id = stop.pop('stop_id')

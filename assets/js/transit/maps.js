@@ -122,10 +122,7 @@ define(["OpenLayers",
             strategies: [new OpenLayers.Strategy.Fixed()],
             protocol: new OpenLayers.Protocol.HTTP({
                 format: new OpenLayers.Format.GeoJSON(),
-                url: config.vectorLayerUrl,
-                params: {
-                    database: 'dbRecorridos',
-                    action: 'getShape'}
+                url: config.vectorLayerUrl+'shape/'
                 })
             });
 
@@ -144,10 +141,7 @@ define(["OpenLayers",
             strategies: [new OpenLayers.Strategy.Fixed()],
             protocol: new OpenLayers.Protocol.HTTP({
             format: new OpenLayers.Format.GeoJSON(),
-            url: config.vectorLayerUrl,
-            params: {
-                database: 'dbRecorridos',
-                action: 'getTripStops'}
+            url: config.vectorLayerUrl+'trip/'
             })
         });
         stopsLayer.id = 'stops';
@@ -163,10 +157,7 @@ define(["OpenLayers",
           strategies: [new OpenLayers.Strategy.BBOX({resFactor: 2.0})],
           protocol: new OpenLayers.Protocol.HTTP({
             format: new OpenLayers.Format.GeoJSON(),
-            url: config.vectorLayerUrl+'bbox',
-            params: {
-              database: 'dbRecorridos',
-              action: 'bbox'}
+            url: config.vectorLayerUrl+'bbox'
           })
         });
         bboxLayer.id = 'bbox';
@@ -318,16 +309,22 @@ define(["OpenLayers",
         var spec = spec || {};
         
         if (spec.hasOwnProperty('shape_id')) {
-            routesLayer.protocol.params.shape_id = spec.shape_id;
-            routesLayer.refresh();
+            //routesLayer.refresh({url:'shape/'+spec.shape_id});
+            routesLayer.refresh({url: routesLayer.protocol.url+spec.shape_id})
+            //routesLayer.protocol.params.shape_id = spec.shape_id;
+            //routesLayer.refresh();
         } else {
             routesLayer.refresh();
         }
         if (spec.hasOwnProperty('trip_id')) {
             controls.selectStops.deactivate();
-            stopsLayer.protocol.params.trip_id = spec.trip_id;
-            stopsLayer.refresh();
+            stopsLayer.refresh({url: stopsLayer.protocol.url+spec.trip_id+'/stops'});
             controls.selectStops.activate();
+
+            //controls.selectStops.deactivate();
+            //stopsLayer.protocol.params.trip_id = spec.trip_id;
+            //stopsLayer.refresh();
+            //controls.selectStops.activate();
         } else {
             stopsLayer.refresh();
         }

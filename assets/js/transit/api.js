@@ -9,7 +9,8 @@ define(["jquery", "transit/config"], function ($, config) {
         var params = spec.params || {};
         var successHandler = spec.successHandler || undefined;
         
-        $.extend(params, {'database': config.database});
+        //$.extend(params, {'database': config.database});
+        //$.extend(params, {});
         $.ajax({
             type: type,
             dataType: 'json',
