@@ -1,154 +1,165 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="GTFS Transit Feed Editor">
-        <meta name="author" content="Gastón Avila">
-        <title>GTFS Transit Feed Editor</title>
-        <!-- This is a special version of jQuery with RequireJS built-in -->
-        <script data-main="assets/js/transit" src="assets/js/require.js"></script>
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    </head>
-    <body>
-        <div id="header_container">
-            <div id="header">
-                GTFS Transit Feed Editor
-            </div>
-        </div>
-        
-        <div id="container">
-            <div id="leftbar">
-                <label for="routes">Routes</label>
-                <select id="routes"></select>
-                <br/>
-                <label for="trips">Trips</label>
-                <select id="trips"></select>
-                <div id="stopData"></div>
-            </div>
-            <div id="map">
-            </div>
-        </div>
-        
-        <div id="footer_container">
-                beta
-        </div>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GTFS Transit Feed Editor">
+    <meta name="author" content="Gastón Avila">
+    <title>GTFS Transit Feed Editor</title>
+    <script data-main="assets/js/transit" src="assets/js/require.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  </head>
+  <body>
+    <div id="header_container">
+      <div id="header">
+        GTFS Transit Feed Editor
+      </div>
+    </div>
+
+    <div id="container">
+      <div id="leftbar">
+        <h5>Routes</h5>
+        <label for="routes">Route
+          <select id="routes"></select>
+        </label>
+        <br/>
+        <label for="trips">Trips
+          <select id="trips"></select>
+        </label>
+        <h5>Stops</h5>
+        <label>Find
+          <input type="text" />
+        </label>
+          <div class="btn-group">
+            <button class="btn btn-small" id="prevStop"><i class="icon-backward">&lt;</i></button>
+            <button class="btn btn-small" id="nextStop"><i class="icon-forward">&gt;</i></button>
+            <button class="btn btn-small" id="toggleTimepoint"><i class="icon-time">Time-point</i></button>
+          </div>
+        <div id="stopData"></div>
+      </div>
+      <div id="map">
+      </div>
+    </div>
+    
+    <div id="footer_container">
+        beta
+    </div>
 
   <!-- Templates -->
   <script id="stopInfoTemplate" type="text/x-handlebars">
-    <h5>Attributes</h5>
-    <div class="well">
-      <table class="table table-hover table-condensed">
-        <tbody>
-          <tr data-id="stop_id">    
-              <td>Id</td>
-              <td>{{attributes.stop_id}}</td>
-          </tr>
-          <tr data-id="stop_seq">    
-            <td>Ordinal</td>
-            <td>{{attributes.stop_seq}}</td>
-          </tr>
-          <tr data-id="is_timepoint_code">    
-            <td>Tiempo Fijo</td>
-            <td>{{#boolCompare attributes.is_timepoint}}this{{/boolCompare}}</td>
-          </tr>
-          <tr data-id="stop_calle">    
-            <td>Calle</td>
-            <td>{{attributes.stop_calle}}</td>
-          </tr>
-          <tr data-id="stop_numero">    
-            <td>Número</td>
-            <td>{{attributes.stop_numero}}</td>
-          </tr>
-          <tr data-id="stop_entre">    
-            <td>Entre</td>
-            <td>{{attributes.stop_entre}}</td>
-          </tr>
-          <tr data-id="stop_esquina">    
-            <td>Esquina</td>
-            <td>{{attributes.stop_esquina}}</td>
-          <tr data-id="stop_lineas">
-            <td>Lineas</td>
-            <td>
-              {{#each attributes.stop_lineas}}
-                <span>{{this}}, </span>{{/each}}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <h5>Attributes</h5>
+  <div class="well">
+    <table class="table table-hover table-condensed">
+    <tbody>
+      <tr data-id="stop_id">  
+        <td>Id</td>
+        <td>{{attributes.stop_id}}</td>
+      </tr>
+      <tr data-id="stop_seq">  
+      <td>Ordinal</td>
+      <td>{{attributes.stop_seq}}</td>
+      </tr>
+      <tr data-id="is_timepoint_code">  
+      <td>Tiempo Fijo</td>
+      <td>{{#boolCompare attributes.is_timepoint}}this{{/boolCompare}}</td>
+      </tr>
+      <tr data-id="stop_calle">  
+      <td>Calle</td>
+      <td>{{attributes.stop_calle}}</td>
+      </tr>
+      <tr data-id="stop_numero">  
+      <td>Número</td>
+      <td>{{attributes.stop_numero}}</td>
+      </tr>
+      <tr data-id="stop_entre">  
+      <td>Entre</td>
+      <td>{{attributes.stop_entre}}</td>
+      </tr>
+      <tr data-id="stop_esquina">  
+      <td>Esquina</td>
+      <td>{{attributes.stop_esquina}}</td>
+      <tr data-id="stop_lineas">
+      <td>Lineas</td>
+      <td>
+        {{#each attributes.stop_lineas}}
+        <span>{{this}}, </span>{{/each}}
+      </td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
   </script>
   <script id="multipleTemplate" type="text/x-handlebars">
-    <h4>Selected Stops</h4>
-    <table class="table table-hover table-condensed">
-      <thead>
-        <tr>
-          <th>Stop-id</th>
-          <th>lineas</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each features}}
-          <tr data-stop_id={{fid}}>
-              <td><button class="btn btn-mini" id="{{fid}}"><i class="icon-forward"></i></button>{{fid}}</td>
-              <td>
-              {{#each attributes.stop_lineas}}
-              <span>{{trip_id}}, </span>{{/each}}
-              </td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
+  <h4>Selected Stops</h4>
+  <table class="table table-hover table-condensed">
+    <thead>
+    <tr>
+      <th>Stop-id</th>
+      <th>lineas</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each features}}
+      <tr data-stop_id={{fid}}>
+        <td><button class="btn btn-mini" id="{{fid}}"><i class="icon-forward"></i></button>{{fid}}</td>
+        <td>
+        {{#each attributes.stop_lineas}}
+        <span>{{trip_id}}, </span>{{/each}}
+        </td>
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>
   </script>
 
   <script id="scheduleTemplate" type="text/x-handlebars">
-    <div class="tabbable tabs-left">
-      <ul class="nav nav-tabs">
-        <li class="active"><a href="#lav" data-toggle="tab">Lunes a Viernes</a></li>
-        <li><a href="#sabado" data-toggle="tab">Sábados</a></li>
-        <li><a href="#domingo" data-toggle="tab">Domingos y Feriados</a></li>
-      </ul>
-      <div class="tab-content">
-        <div class="tab-pane active" id="lav">
-          {{#each lav}}
-          <p>Desde: {{desde}} hasta: {{hasta}} cada {{frecuencia}} minutos</p>
-          {{/each}}
-        </div>
-        <div class="tab-pane" id="sabado">
-          {{#each sabado}}
-          <p>Desde: {{desde}} hasta: {{hasta}} cada {{frecuencia}} minutos</p>
-          {{/each}}
-        </div>
-        <div class="tab-pane" id="domingo">
-          {{#each domingo}}
-          <p>Desde: {{desde}} hasta: {{hasta}} cada {{frecuencia}} minutos</p>
-          {{/each}}
-        </div>
-      </div>
+  <div class="tabbable tabs-left">
+    <ul class="nav nav-tabs">
+    <li class="active"><a href="#lav" data-toggle="tab">Lunes a Viernes</a></li>
+    <li><a href="#sabado" data-toggle="tab">Sábados</a></li>
+    <li><a href="#domingo" data-toggle="tab">Domingos y Feriados</a></li>
+    </ul>
+    <div class="tab-content">
+    <div class="tab-pane active" id="lav">
+      {{#each lav}}
+      <p>Desde: {{desde}} hasta: {{hasta}} cada {{frecuencia}} minutos</p>
+      {{/each}}
     </div>
+    <div class="tab-pane" id="sabado">
+      {{#each sabado}}
+      <p>Desde: {{desde}} hasta: {{hasta}} cada {{frecuencia}} minutos</p>
+      {{/each}}
+    </div>
+    <div class="tab-pane" id="domingo">
+      {{#each domingo}}
+      <p>Desde: {{desde}} hasta: {{hasta}} cada {{frecuencia}} minutos</p>
+      {{/each}}
+    </div>
+    </div>
+  </div>
   </script>
 
   <script id="stopsTableTemplate" type="text/x-handlebars">
-    <table class="table table-hover table-condensed">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Latitud</th>
-          <th>Longitud</th>
-        </tr>
-      </head>
-      <tbody>
-        {{#each stops}}
-            <tr data-id={{stop_id}}>    
-                <td>{{stop_id}}</td>
-                <td>{{stop_lat}}</td>
-                <td>{{stop_lon}}</td>
-            </tr>
-        {{/each}}
-      </tbody>
-    </table>
+  <table class="table table-hover table-condensed">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Latitud</th>
+      <th>Longitud</th>
+    </tr>
+    </head>
+    <tbody>
+    {{#each stops}}
+      <tr data-id={{stop_id}}>  
+        <td>{{stop_id}}</td>
+        <td>{{stop_lat}}</td>
+        <td>{{stop_lon}}</td>
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>
   </script>
 
 
-    </body>
+  </body>
 </html>

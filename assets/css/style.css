@@ -4,8 +4,19 @@
     margin:0;
     padding:0;
     background-color: red;
+    font-size: 100%;
 }
-
+body {
+  background: white;
+  color: #222222;
+  padding: 0;
+  margin: 0;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  position: relative; }
+  
 #header_container, #footer_container{
 	background-color: #f1f1f1;
     height:20px;
@@ -30,6 +41,10 @@
     background:#fff;
     width:25%;
 }
+#leftbar select {
+    width: 100%;
+}
+
 #map {
 	display: table-cell;
 	background-color: #eee;

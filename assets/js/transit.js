@@ -13,9 +13,10 @@ require.config({
     }
 });
 
-require(["transit/maps",
+require(["transit/model",
+        "transit/maps",
         "transit/ui", 
-        "transit/config"], function (maps, ui, config) {
+        "transit/config"], function (model, maps, ui, config) {
     'use strict';
 
     maps.init({
