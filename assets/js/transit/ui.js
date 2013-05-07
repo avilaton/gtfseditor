@@ -219,14 +219,17 @@ define(["jquery",
     // buttons on the Stops tab
     $('#findStop').on('click', function (event){
       var stop_id = $('#stop_id').val();
-      api.findStop(stop_id, function(response) {
+      api.get({route: 'stop/'+stop_id}).done(function (response) {
         console.log(response);
-        maps.utiles.setCenter({
-          lon: response.lon,
-          lat: response.lat,
-          zoom: 18
-        });
       });
+      // api.findStop(stop_id, function(response) {
+      //   console.log(response);
+      //   maps.utiles.setCenter({
+      //     lon: response.lon,
+      //     lat: response.lat,
+      //     zoom: 18
+      //   });
+      // });
     });
     $("#stop_id").keyup(function(event){
       if(event.keyCode == 13){
