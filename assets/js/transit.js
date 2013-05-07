@@ -14,18 +14,24 @@ require.config({
 });
 
 require(["transit/model",
-        "transit/maps",
         "transit/ui", 
-        "transit/config"], function (model, maps, ui, config) {
+        "transit/config",
+        "jquery"], function (model, ui, config, $) {
     'use strict';
 
-    maps.init({
-            layers:['bbox','notes','routes','gpx','stops'],
-            controls: 'editor'
-        })
-        .setCenter(config.initCenter);
-    
-    ui.init({controls: 'editor'});
+    var dataModel;
+
+    dataModel = model.init();
+
+    dataModel.done(function(response) {
+        window.dataModel = dataModel;
+    })
+    //console.log(dataModel);
+
+    ui.init({
+        dataModel: dataModel,
+        controls: 'editor'
+    });
 
 
 });

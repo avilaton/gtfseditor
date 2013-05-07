@@ -1,9 +1,12 @@
 define(["jquery",
+    "transit/model",
     "transit/templates",
     "transit/api",
     "transit/maps",
-    "transit/config"],
-    function ($, templates, api, maps, config) {
+    "transit/config",
+    "transit/utils"],
+    function ($, model, templates, api, maps, config, utils) {
+
   'use strict';
 
   var ui = {};
@@ -24,49 +27,34 @@ define(["jquery",
       route: 'tracks/',
       success: fillValues
     });
+
     return this;
   };
 
-  function populateSelect(selectDiv, values) {
-    var options = $('select#' + selectDiv);
+  function populateSelect(div, values, textSetter, valSetter) {
+    var options = $('select#' + div);
     options
       .empty()
-      .append($('<option />').val('none').text(' -- '));
+      .append($('<option />').val(null).text(' -- '));
     $.each(values, function() {
-      options.append($('<option />')
-        .val(this.route_id)
-        .text(this.route_id));
+      options.append(
+        $('<option />')
+        .val(valSetter(this))
+        .text(textSetter(this))
+      );
     });
   };
 
-  function populateRoutes() {
-    api.get({
-      route: 'routes/', 
-      success: function (values) {
-        populateSelect(config.ui.routesDiv, values.routes);
-      }
-    });
-    return this;
+  function populateRoutes () {
+    populateSelect(config.ui.routesDiv, model.routes, 
+      function text(d) {return 'Ruta '+d.route_id;},
+      function value(d) {return d.route_id;});
   };
 
-  function populateTrips(route_id) {
-    var options = $('select#' + config.ui.tripsDiv);
-    function fillValues(values) {
-      options
-        .empty()
-        .append($('<option />').val('none').text('Select an option'));
-      $.each(values.trips, function() {
-        options.append($('<option />')
-          .val(this.trip_id)
-          .text('Hacia ' + this.trip_headsign)
-          .attr('trip_id', this.trip_id));
-      });
-    };
-    api.get({
-      route: 'route/'+route_id+'/trips',
-      success: fillValues
-    });
-    return this;
+  function populateTrips () {
+    populateSelect(config.ui.tripsDiv, model.trips, 
+      function text(data) {return 'Viaje hacia '+data.trip_headsign;},
+      function value(d) {return d.trip_id;});
   };
 
   function setupTabs() {
@@ -85,16 +73,21 @@ define(["jquery",
   function setupButtons() {
     $('select#' + config.ui.routesDiv).change(function () {
       var route_id = $(this).find(':selected')[0].value;
-      maps.update({route_id:route_id,shape_id:'',trip_id:''});
-      populateTrips(route_id);
+      console.log(route_id);
+      model.selected.route_id = route_id;
+      model.selected.trip_id = null;
+      model.selected.shape_id = null;
+      model.fetchTrips().done(populateTrips);
+      maps.update();
       renderServices(route_id);
       renderStopInfo(null);
     });
-    
+
     $('select#' + config.ui.tripsDiv).change(function () {
-      var selected = $(this).find(':selected')[0];
-      var trip_id = $(selected).attr('trip_id');
-      maps.update({shape_id:trip_id, trip_id:trip_id});
+      var trip_id = $(this).find(':selected')[0].value;
+      model.selected.trip_id = trip_id;
+      model.getTripShape(trip_id);
+      maps.update();
       renderStopInfo(null);
     });
 
@@ -114,7 +107,6 @@ define(["jquery",
         }
       );
     };
-    
 
     $('#prevStop').click(maps.skipHandler(-1));
     $('#nextStop').click(maps.skipHandler(1));
@@ -256,7 +248,6 @@ define(["jquery",
       }
     );
 
-    
     return this;
   };
 
@@ -318,37 +309,25 @@ define(["jquery",
     });
   };
 
-  function bindLayerControls() {
-    $('#' + config.layersDiv + ' :checkbox').click(function() {
-        var layerId = $(this)[0].value;
-        if ($(this).is(':checked')) {
-          maps.map.getLayer(layerId).setVisibility(true);
-        } else {
-          maps.map.getLayer(layerId).setVisibility(false);
-        }
-      }
-    );
-  };
 
   ui.init = function (spec) {
 
-    if (spec.controls == 'editor') {
-      //templates.multiple;
-    }
-
-    // populate selection controls
-    populateRoutes();
-
-    // setup button actions
-    setupButtons();
-    setupTabs();
-    //~ bindLayerControls();
-    //
+    maps.init({
+        layers:['bbox','notes','routes','gpx','stops'],
+        controls: 'editor'
+    })
+    .setCenter(config.initCenter);
 
     maps.setEventHandlers({
-      renderStopInfo:renderStopInfo,
-      renderMultipleStops:renderMultipleStops
+      renderStopInfo: renderStopInfo,
+      renderMultipleStops: renderMultipleStops
     });
+
+    model.fetchRoutes().done(populateRoutes);
+
+    setupButtons();
+    setupTabs();
+
   };
   
   return ui;

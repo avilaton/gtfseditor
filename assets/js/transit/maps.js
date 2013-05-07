@@ -1,8 +1,9 @@
 define(["OpenLayers",
   "jquery",
+  "transit/model",
   "transit/styles",
   "transit/utils",
-  "transit/config"], function (OpenLayers, $, styles, utils, config) {
+  "transit/config"], function (OpenLayers, $, model, styles, utils, config) {
 
   'use strict';
 
@@ -122,7 +123,7 @@ define(["OpenLayers",
       strategies: [new OpenLayers.Strategy.Fixed()],
       protocol: new OpenLayers.Protocol.HTTP({
         format: new OpenLayers.Format.GeoJSON(),
-        url: config.vectorLayerUrl+'shape/'
+        url: config.vectorLayerUrl
         })
       });
 
@@ -139,8 +140,8 @@ define(["OpenLayers",
       projection: new OpenLayers.Projection('EPSG:4326'),
       strategies: [new OpenLayers.Strategy.Fixed()],
       protocol: new OpenLayers.Protocol.HTTP({
-      format: new OpenLayers.Format.GeoJSON(),
-      url: config.vectorLayerUrl+'trip/'
+        format: new OpenLayers.Format.GeoJSON(),
+        url: config.vectorLayerUrl
       })
     });
     stopsLayer.id = 'stops';
@@ -301,32 +302,17 @@ define(["OpenLayers",
       utils.endsRenderer);
   };
 
-  maps.toggleLayer = function (layerid,state) {
-    map.getLayer(layerid).setVisibility(state);
-  };
-
   maps.bboxGetSelected = function () {
     return bboxLayer.selectedFeatures
   };
 
-  maps.update = function (spec) {
-    var spec = spec || {};
-    
-    if (spec.hasOwnProperty('shape_id')) {
-      routesLayer.refresh({url: routesLayer.protocol.url+spec.shape_id})
-    } else {
-      routesLayer.refresh();
-    }
-    if (spec.hasOwnProperty('trip_id')) {
-      controls.selectStops.deactivate();
-      stopsLayer.refresh({url: stopsLayer.protocol.url+spec.trip_id+'/stops'});
-      controls.selectStops.activate();
-    } else {
-      stopsLayer.refresh();
-    }
-    if (spec.hasOwnProperty('track')) {
-      gpxLayer.refresh({url:'gpx/'+spec.track});
-    }
+  maps.update = function () {
+    routesLayer.refresh({url: routesLayer.protocol.url+'shape/'+model.selected.shape_id})
+    controls.selectStops.deactivate();
+    stopsLayer.refresh({url: stopsLayer.protocol.url+'trip/'+model.selected.trip_id+'/stops'});
+    controls.selectStops.activate();
+    notesLayer.refresh();
+    //gpxLayer.refresh({url:'gpx/'+spec.track});
   };
 
   maps.readShape = function () {
@@ -353,13 +339,11 @@ define(["OpenLayers",
   };
 
   maps.getSelectedStop = function () {
-    var selectedStop = stopsLayer.selectedFeatures[0];
-    return selectedStop;
+    return stopsLayer.selectedFeatures[0];
   };
 
   maps.appendSelected = function () {
-    var s = bboxLayer.selectedFeatures;
-    stopsLayer.addFeatures(s);
+    stopsLayer.addFeatures(bboxLayer.selectedFeatures);
     return;
   };
   

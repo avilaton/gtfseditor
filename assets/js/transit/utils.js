@@ -6,6 +6,9 @@ define(["OpenLayers"], function (OpenLayers) {
 
   var utils = {};
 
+  utils.selectPopulator = function () {
+    
+  };
 
   utils.endsRenderer = function () {
     var notesLayer = this.notesLayer,

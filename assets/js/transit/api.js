@@ -9,7 +9,7 @@ define(["jquery", "transit/config"], function ($, config) {
     var params = spec.params || {};
     var success = spec.success || undefined;
 
-    $.ajax({
+    return $.ajax({
       type: type,
       dataType: 'json',
       data: params,
@@ -33,18 +33,17 @@ define(["jquery", "transit/config"], function ($, config) {
   /**
    * RESTful thinking... trying to implement 4 verbs
    */
-
   api.get = function(spec) {
     spec = $.extend(spec, {type: 'GET'});
-    ajax(spec);
+    return ajax(spec);
   };
   api.post = function(spec) {
     spec = $.extend(spec, {type: 'POST'});
-    ajax(spec);
+    return ajax(spec);
   };
   api.put = function(spec) {
     spec = $.extend(spec, {type: 'PUT'});
-    ajax(spec);
+    return ajax(spec);
   };
 
   api.getSchedule = function (route_id, success) {
