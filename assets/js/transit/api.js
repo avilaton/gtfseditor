@@ -94,12 +94,6 @@ define(["jquery", "transit/config"], function ($, config) {
     return this;
   };
 
-  api.findStop = function (stop_id, success) {
-    ajax({action: 'findStop', stop_id: stop_id},
-      success);
-    return this;
-  };
-
   return api;
 
 });

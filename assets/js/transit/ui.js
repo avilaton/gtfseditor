@@ -73,7 +73,6 @@ define(["jquery",
   function setupButtons() {
     $('select#' + config.ui.routesDiv).change(function () {
       var route_id = $(this).find(':selected')[0].value;
-      console.log(route_id);
       model.selected.route_id = route_id;
       model.selected.trip_id = null;
       model.selected.shape_id = null;
@@ -220,16 +219,14 @@ define(["jquery",
     $('#findStop').on('click', function (event){
       var stop_id = $('#stop_id').val();
       api.get({route: 'stop/'+stop_id}).done(function (response) {
-        console.log(response);
+        if (response.hasOwnProperty('features')) {
+          var coord = response.features[0].geometry.coordinates;
+          maps.setCenter({
+            lon: coord[0], lat: coord[1], zoom: 18
+          });
+        }
       });
-      // api.findStop(stop_id, function(response) {
-      //   console.log(response);
-      //   maps.utiles.setCenter({
-      //     lon: response.lon,
-      //     lat: response.lat,
-      //     zoom: 18
-      //   });
-      // });
+
     });
     $("#stop_id").keyup(function(event){
       if(event.keyCode == 13){

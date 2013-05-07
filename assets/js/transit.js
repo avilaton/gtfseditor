@@ -15,21 +15,14 @@ require.config({
 
 require(["transit/model",
         "transit/ui", 
-        "transit/config",
-        "jquery"], function (model, ui, config, $) {
+        "transit/config"], function (model, ui, config) {
     'use strict';
 
     var dataModel;
 
     dataModel = model.init();
 
-    dataModel.done(function(response) {
-        window.dataModel = dataModel;
-    })
-    //console.log(dataModel);
-
     ui.init({
-        dataModel: dataModel,
         controls: 'editor'
     });
 
