@@ -7,6 +7,8 @@ define(["transit/config",
 
   var model = {};
 
+  model.unsavedChanges = False;
+
   model.selected = {
     route_id: null,
     trip_id: null,

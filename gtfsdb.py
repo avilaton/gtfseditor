@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import gtfstools
 import geojson
 from collections import defaultdict
 
@@ -169,9 +170,27 @@ class toolbox(object):
 
     return {'success':True,'trip_id':trip_id, 'stops':self.tripStops(trip_id)}
 
+  def saveShape(self, shape_id, data):
+    for feature in data:
+      if feature['geometry']['type'] == 'LineString':
+        coordList = feature['geometry']['coordinates']
+        shape_id = feature['id']
+        self.db.remove('shapes',shape_id=shape_id)
+        for i,pt in enumerate(coordList):
+          self.db.insert('shapes',shape_id=shape_id,
+            shape_pt_lat=pt[1],
+            shape_pt_lon=pt[0],
+            shape_pt_sequence=i+1)
+        response = {'success': True,'shape_id': shape_id, 
+          'shape': self.shape(shape_id)}
+      else:
+        response = {'success': False}
+
+    return response
 
 if __name__ == '__main__':
   import ormgeneric as o
   db = o.dbInterface('dbRecorridos.sqlite')
   tb = toolbox(db)
+  print tb.shape('A0.ida')
   print tb.findStop('C0004')

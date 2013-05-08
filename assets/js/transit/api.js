@@ -51,6 +51,10 @@ define(["jquery", "transit/config"], function ($, config) {
     return ajax(spec);
   };
 
+
+
+
+
   api.getSchedule = function (route_id, success) {
     ajax({action: 'getRouteSchedule', route_id: route_id},
       success);
@@ -77,12 +81,6 @@ define(["jquery", "transit/config"], function ($, config) {
 
   api.revShape = function (trip_id, success) {
     ajax({action: 'revShape', trip_id: trip_id},
-      success);
-    return this;
-  };
-
-  api.saveStops = function (trip_id, stops, success) {
-    ajax({action: 'saveStops', trip_id: trip_id, stops: stops},
       success);
     return this;
   };
