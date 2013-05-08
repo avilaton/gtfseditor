@@ -11,6 +11,7 @@ define(["jquery", "transit/config"], function ($, config) {
 
     return $.ajax({
       type: type,
+      contentType: 'application/json',
       dataType: 'json',
       data: params,
       url: config.cgiUrl+route,
@@ -43,6 +44,10 @@ define(["jquery", "transit/config"], function ($, config) {
   };
   api.put = function(spec) {
     spec = $.extend(spec, {type: 'PUT'});
+    return ajax(spec);
+  };
+  api.delete = function(spec) {
+    spec = $.extend(spec, {type: 'DELETE'});
     return ajax(spec);
   };
 

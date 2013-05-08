@@ -19,23 +19,36 @@
 
     <div id="container">
       <div id="leftbar">
-        <h5>Routes</h5>
+        <h5>Routes tools</h5>
         <label for="routes">Route
           <select id="routes"></select>
         </label>
-        <br/>
-        <label for="trips">Trips
+        <label for="trips">Trip
           <select id="trips"></select>
         </label>
+        <div class="control-group">
+          <div class="btn-group">
+            <button class="btn btn-small" id="editShape"><i class="icon-pencil"></i> Edit</button>
+            <button class="btn btn-small" id="revShape">Reverse</button>
+            <button class="btn btn-small" id="sortStops">Sort</button>
+            <button class="btn btn-small" id="offsetStops">Align</button>
+          </div>
+        </div>
         <hr>
         <h5>Stops</h5>
-        <label>Find
-          <input id="stop_id" type="text" />
-        </label><button id="findStop">Find</button>
+           <div class="input-append">
+            <input id="stop_id" type="text" /><button class="btn" id="findStop"><i class="icon-search"></i> Find</button>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-small" id="editStops"><i class="icon-move"></i></button>
+            <button type="button" class="btn btn-small" id="drawStops"><i class="icon-plus"></i></button>
+            <button type="button" class="btn btn-small" id="removeStop"><i class="icon-remove"></i></button>
+            <button type="button" class="btn btn-small" id="appendStop"><i class="icon-ok"></i></button>
+            <button class="btn btn-small" id="toggleTimepoint"><i class="icon-time"></i></button>
+          </div>
           <div class="btn-group">
             <button class="btn btn-small" id="prevStop"><i class="icon-backward"></i></button>
             <button class="btn btn-small" id="nextStop"><i class="icon-forward"></i></button>
-            <button class="btn btn-small" id="toggleTimepoint"><i class="icon-time"></i></button>
           </div>
           <hr>
           <div id="stopData"></div>

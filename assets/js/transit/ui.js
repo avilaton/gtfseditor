@@ -99,12 +99,10 @@ define(["jquery",
     function saveStops() {
       var readStops = maps.readStops();
       // TODO trip_id <> shape_id in general
-      api.saveStops(readStops.trip_id, 
-        readStops.stops, 
-        function(response){
-          maps.update();
-        }
-      );
+      api.put({
+        route: 'trip/'+model.selected.trip_id+'/stops',
+        params: readStops.stops
+      }).done(maps.update());
     };
 
     $('#prevStop').click(maps.skipHandler(-1));

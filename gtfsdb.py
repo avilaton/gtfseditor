@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import geojson
+from collections import defaultdict
 
 class toolbox(object):
   def __init__(self, db):
@@ -127,6 +128,47 @@ class toolbox(object):
         is_timepoint=is_timepoint)
     self.db.query(q)
     return {'is_timepoint': is_timepoint}
+
+  def getNewStopId(self):
+    self.db.query("""SELECT stop_id FROM stops""")
+    ids = [int(row['stop_id'][1:]) for row in self.db.cursor.fetchall()]
+    newId = 'C'+str(max(ids)+1)
+    return newId
+
+  def saveTripStops(self, trip_id, data):
+    stops = data
+    self.db.remove('stop_seq',trip_id=trip_id)
+    featureList = stops['features']
+    
+    # create new ids for new stops
+    for i,f in enumerate(featureList):
+      p = defaultdict(str)
+      for k,v in f['properties'].items():
+        p[k] = v
+
+      if 'id' in f:
+        stop_id = f['id']
+        stop_seq = p['stop_seq']
+      else:
+        stop_id = self.getNewStopId()
+        stop_seq = 1000+i
+
+      self.db.insert('stop_seq',trip_id=trip_id,stop_id=stop_id,stop_sequence=stop_seq)
+      
+      stop_lon,stop_lat = f['geometry']['coordinates']
+
+      self.db.insert('stops',stop_id=stop_id,
+        stop_lat=stop_lat,
+        stop_lon=stop_lon,
+        stop_calle = p['stop_calle'],
+        stop_entre = p['stop_entre'],
+        stop_numero = p['stop_numero']
+        )
+
+    self.tripStops(trip_id)
+
+    return {'success':True,'trip_id':trip_id, 'stops':self.tripStops(trip_id)}
+
 
 if __name__ == '__main__':
   import ormgeneric as o

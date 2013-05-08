@@ -40,6 +40,11 @@ def shape(shape_id):
 def tripStops(trip_id):
   return tb.tripStops(trip_id)
 
+@put('/api/trip/<trip_id>/stops')
+def saveTripStops(trip_id):
+  geojsonTrip = request.json
+  return tb.saveTripStops(trip_id, geojsonTrip)
+
 @get('/api/trip/<trip_id>/stop/<stop_id>/timepoint')
 def is_timepoint(trip_id,stop_id):
   state = db.select('stop_seq', trip_id=trip_id,stop_id=stop_id)[0]
