@@ -8,7 +8,7 @@
     <title>GTFS Transit Feed Editor</title>
     <script data-main="assets/js/transit" src="assets/js/require.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link href="assets/css/bootstrap/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/bootstrap/bootstrap.css" rel="stylesheet">
   </head>
   <body>
     <div id="header_container">
@@ -27,16 +27,18 @@
         <label for="trips">Trips
           <select id="trips"></select>
         </label>
+        <hr>
         <h5>Stops</h5>
         <label>Find
           <input id="stop_id" type="text" />
         </label><button id="findStop">Find</button>
           <div class="btn-group">
-            <button class="btn btn-small" id="prevStop"><i class="icon-backward">&lt;</i></button>
-            <button class="btn btn-small" id="nextStop"><i class="icon-forward">&gt;</i></button>
-            <button class="btn btn-small" id="toggleTimepoint"><i class="icon-time">Time-point</i></button>
+            <button class="btn btn-small" id="prevStop"><i class="icon-backward"></i></button>
+            <button class="btn btn-small" id="nextStop"><i class="icon-forward"></i></button>
+            <button class="btn btn-small" id="toggleTimepoint"><i class="icon-time"></i></button>
           </div>
-        <div id="stopData"></div>
+          <hr>
+          <div id="stopData"></div>
       </div>
       <div id="map">
       </div>
@@ -49,7 +51,7 @@
   <!-- Templates -->
   <script id="stopInfoTemplate" type="text/x-handlebars">
   <h5>Attributes</h5>
-  <div class="well">
+  <div class="">
     <table class="table table-hover table-condensed">
     <tbody>
       <tr data-id="stop_id">  
@@ -61,7 +63,7 @@
       <td>{{attributes.stop_seq}}</td>
       </tr>
       <tr data-id="is_timepoint_code">  
-      <td>Tiempo Fijo</td>
+      <td>Control Tiempo</td>
       <td>{{#boolCompare attributes.is_timepoint}}this{{/boolCompare}}</td>
       </tr>
       <tr data-id="stop_calle">  

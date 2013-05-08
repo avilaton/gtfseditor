@@ -15,10 +15,11 @@ body {
   font-weight: normal;
   font-style: normal;
   line-height: 1;
-  position: relative; }
+  position: relative; 
+}
   
 #header_container, #footer_container{
-	background-color: #f1f1f1;
+	background-color: #f0f0f0;
     height:20px;
     padding:5px;
     position:relative;
@@ -38,7 +39,8 @@ body {
 
 #leftbar {
     display:table-cell;
-    background:#fff;
+    background:#f0f0f0;
+    padding: 10px;
     width:25%;
 }
 #leftbar select {
@@ -48,9 +50,18 @@ body {
 #map {
 	display: table-cell;
 	background-color: #eee;
-    width: 100%;
-    /* FIXME */
-    height: 60px;
-    border: 1px solid #aaa;
+  width: 100%;
+  /* FIXME */
+  height: 60px;
+  border: 1px solid #aaa;
+}
+/*
+Reset stuff from bootstrap
+ */
+#map img {
+  max-width: none;
+}
+#map label {
+  display: inline;
 }
 
