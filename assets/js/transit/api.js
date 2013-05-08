@@ -79,18 +79,6 @@ define(["jquery", "transit/config"], function ($, config) {
     return this;
   };
 
-  api.revShape = function (trip_id, success) {
-    ajax({action: 'revShape', trip_id: trip_id},
-      success);
-    return this;
-  };
-
-  api.saveShape = function (shape, success) {
-    ajax({action: 'saveShape', shape: shape},
-      success);
-    return this;
-  };
-
   api.mergeStops = function (keep, merge, success) {
     ajax({action: 'mergeStops', keep: keep, merge: merge},
       success);

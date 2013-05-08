@@ -95,14 +95,15 @@ define(["jquery",
       var track = $(selected).val();
       maps.update({track:track});
     });
-    
+
     function saveStops() {
-      var readStops = maps.readStops();
-      // TODO trip_id <> shape_id in general
-      api.put({
-        route: 'trip/'+model.selected.trip_id+'/stops',
-        params: readStops.stops
-      }).done(maps.update());
+      var stops = maps.readStops().stops;
+      model.saveStops(stops).done(maps.update());
+    };
+
+    function saveShape() {
+      var shape = maps.readShape().shape;
+      model.saveShape(shape).done(maps.update());
     };
 
     $('#prevStop').click(maps.skipHandler(-1));
@@ -118,21 +119,14 @@ define(["jquery",
         $(this).removeClass('btn-primary');
         maps.controls.modifyShape.deactivate();
         maps.controls.selectStops.activate();
-        var readShape = maps.readShape();
-        api.saveShape(readShape.shape, function(response) {
-          console.log(response);
-        });
+        saveShape();
       }
     );
 
     $('#revShape').click(function (e){
-      var selected = $('#tripsSelect').find(':selected')[0],
-        trip_id;
-      trip_id = $(selected).val();
       e.preventDefault();
-      api.revShape(trip_id, function(response) {
-        maps.update();
-      });
+      maps.reverseShape()
+      saveShape()
     });
 
     $('#sortStops').click(function (e){
@@ -140,9 +134,9 @@ define(["jquery",
         trip_id;
       trip_id = $(selected).val();
       e.preventDefault();
-      api.sortStops(trip_id, function(response) {
-        maps.update();
-      });
+      var stops = maps.readStops().stops;
+
+      model.sortStops(stops);
     });
 
     $('#offsetStops').click(function (e){

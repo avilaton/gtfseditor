@@ -1,4 +1,5 @@
-define(["transit/config",
+define([
+  "transit/config",
   "transit/api"], function (config, api) {
   /**
    * Currently selected objects model
@@ -7,7 +8,7 @@ define(["transit/config",
 
   var model = {};
 
-  model.unsavedChanges = False;
+  model.unsavedChanges = false;
 
   model.selected = {
     route_id: null,
@@ -36,6 +37,30 @@ define(["transit/config",
       .done(function (trips) {model.trips = trips;});
   };
 
+  model.fetchStops = function() {
+    return api.get({route: 'trip/'+model.selected.trip_id+'/stops'})
+      .done(function (stops) {model.stops = stops;});
+  };
+
+  model.fetchShape = function() {
+    return api.get({route: 'shape/'+model.selected.shape_id})
+      .done(function (data) {model.shape = data;});
+  };
+
+  model.saveStops = function (stops) {
+    return api.put({
+        route: 'trip/'+model.selected.trip_id+'/stops',
+        params: stops
+      });
+  };
+
+  model.saveShape = function (shape) {
+    return api.put({
+        route: 'shape/'+model.selected.shape_id,
+        params: shape
+      });
+  };
+
   model.getTripShape = function (trip_id) {
     model.selected.shape_id = null;
     for (var i = 0; i < model.trips.length; i++) {
@@ -45,6 +70,15 @@ define(["transit/config",
     };
     return model.selected.shape_id;
   }
+
+  model.sortStops = function (stops) {
+    return api.put({
+        route: 'trip/'+model.selected.trip_id+'/stops',
+        params: {'action': 'sort', 'stops': stops}
+      });
+  }
+
+
 
   return model;
 });

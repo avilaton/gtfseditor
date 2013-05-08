@@ -346,7 +346,12 @@ define(["OpenLayers",
     stopsLayer.addFeatures(bboxLayer.selectedFeatures);
     return;
   };
-  
+
+  maps.reverseShape = function () {
+    var shape = routesLayer.features[0];
+    shape.geometry.components.reverse();
+  };
+
   maps.skipHandler = function (i) {
     function skipper() {
       var selectedFeature = stopsLayer.selectedFeatures[0];

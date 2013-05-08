@@ -7,7 +7,6 @@ import ormgeneric as o
 import gtfsdb
 
 db = o.dbInterface('dbRecorridos.sqlite')
-
 tb = gtfsdb.toolbox(db)
 
 @route('/')
@@ -36,6 +35,11 @@ def routeTrips(route_id):
 def shape(shape_id):
   return tb.shape(shape_id)
 
+@put('/api/shape/<shape_id>')
+def shape(shape_id):
+  geojsonShape = request.json
+  return tb.saveShape(shape_id, geojsonShape)
+
 @route('/api/trip/<trip_id>/stops')
 def tripStops(trip_id):
   return tb.tripStops(trip_id)
@@ -43,6 +47,7 @@ def tripStops(trip_id):
 @put('/api/trip/<trip_id>/stops')
 def saveTripStops(trip_id):
   geojsonTrip = request.json
+  print request.params
   return tb.saveTripStops(trip_id, geojsonTrip)
 
 @get('/api/trip/<trip_id>/stop/<stop_id>/timepoint')
