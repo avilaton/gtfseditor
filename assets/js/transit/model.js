@@ -71,14 +71,17 @@ define([
     return model.selected.shape_id;
   }
 
-  model.sortStops = function (stops) {
+  model.sortTripStops = function () {
     return api.put({
-        route: 'trip/'+model.selected.trip_id+'/stops',
-        params: {'action': 'sort', 'stops': stops}
+        route: 'trip/'+model.selected.trip_id+'/stops'+'?q=sort'
       });
   }
 
-
+  model.alignTripStops = function () {
+    return api.put({
+        route: 'trip/'+model.selected.trip_id+'/stops'+'?q=align'
+      });
+  }
 
   return model;
 });

@@ -67,7 +67,7 @@ class dbInterface:
 			return
 		return self.cursor.lastrowid
 		
-	def update(self,table,columns,**kw):
+	def updateOld(self,table,columns,**kw):
 		"""generates a UPDATE sql statement"""
 		c1 = ' AND '.join([k+'=:'+k for k,v in kw.items()])
 		c2 = ','.join([k+'=:'+k for k in columns])
@@ -82,6 +82,23 @@ class dbInterface:
 			return
 		return self.cursor.lastrowid
 		
+	def update(self,table,where,data):
+		""" 
+		Generates a UPDATE sql statement. Arguments SELECTED and UPDATED 
+		are dictionaries which specify columns to be updated and values to 
+		be updated respectively
+		"""
+		whereQuery = ' AND '.join([str(k)+'="'+str(v)+"\"" for k,v in where.items()])
+		setQuery = ','.join([str(k)+'="'+str(v)+"\"" for k,v in data.items()])
+		q = """UPDATE """+table+' SET '+setQuery+" WHERE "+whereQuery
+		try:
+			self.cursor.execute(q)
+		except Exception as err:
+			print 'error', '\n'
+			print err
+			return
+		return self.cursor.lastrowid
+
 	def select(self,table,**kw):
 		"""generates a SELECT sql statement. If no kw arguments are given, 
 		defaults to all elements"""

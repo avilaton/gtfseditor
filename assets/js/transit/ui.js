@@ -96,15 +96,20 @@ define(["jquery",
       maps.update({track:track});
     });
 
+    /*
+    Both of these should be moved to the model when the data is 
+    hosted there.
+     */
     function saveStops() {
       var stops = maps.readStops().stops;
       model.saveStops(stops).done(maps.update());
     };
-
     function saveShape() {
       var shape = maps.readShape().shape;
       model.saveShape(shape).done(maps.update());
     };
+
+
 
     $('#prevStop').click(maps.skipHandler(-1));
     $('#nextStop').click(maps.skipHandler(1));
@@ -119,34 +124,34 @@ define(["jquery",
         $(this).removeClass('btn-primary');
         maps.controls.modifyShape.deactivate();
         maps.controls.selectStops.activate();
-        saveShape();
       }
     );
 
-    $('#revShape').click(function (e){
+    $('#saveShape').click(function (e){
       e.preventDefault();
-      maps.reverseShape()
       saveShape()
     });
 
-    $('#sortStops').click(function (e){
-      var selected = $('#tripsSelect').find(':selected')[0],
-        trip_id;
-      trip_id = $(selected).val();
+    $('#saveStops').click(function (e){
       e.preventDefault();
-      var stops = maps.readStops().stops;
+      saveStops()
+    });
 
-      model.sortStops(stops);
+    $('#revShape').click(function (e){
+      e.preventDefault();
+      /* Should be model.reverseShape when all has been moved */
+      maps.reverseShape()
+      saveShape();
+    });
+
+    $('#sortStops').click(function (e){
+      e.preventDefault();
+      model.sortTripStops().done(maps.update());
     });
 
     $('#offsetStops').click(function (e){
-      var selected = $('#tripsSelect').find(':selected')[0],
-        trip_id;
-      trip_id = $(selected).val();
       e.preventDefault();
-      api.offsetStops(trip_id, function(response) {
-        maps.update();
-      });
+      model.alignTripStops().done(maps.update());
     });
 
     $('#editStops').toggle(
@@ -159,7 +164,6 @@ define(["jquery",
         $(this).removeClass('btn-primary');
         maps.controls.modifyStops.deactivate();
         maps.controls.selectStops.activate();
-        saveStops();
       }
     );
 
@@ -173,20 +177,17 @@ define(["jquery",
         $(this).removeClass('btn-primary');
         maps.controls.drawStops.deactivate();
         maps.controls.selectStops.activate();
-        saveStops();
       }
     );
     
     $('#removeStop').click(function (e) {
       e.preventDefault();
       maps.destroySelected();
-      saveStops();
     });
 
     $('#toggleTimepoint').click(function (e) {
       e.preventDefault();
-      var tripsSelected = $('#trips').find(':selected')[0],
-        trip_id = $(tripsSelected).val(),
+      var trip_id = model.selected.trip_id,
         stopFeature = maps.getSelectedStop(),
         is_timepoint = stopFeature.data['is_timepoint'] ? 0 : 1;
 
@@ -196,15 +197,13 @@ define(["jquery",
         success: function(response) {
           console.log(response);
         }
-      });
+      }).done(maps.update());
 
-      //maps.update();
     });
 
     $('#appendStop').click(function (e){
       e.preventDefault();
       maps.appendSelected();
-      saveStops();
     });
 
     // buttons on the Stops tab
@@ -236,7 +235,6 @@ define(["jquery",
         $(this).removeClass('btn-primary');
         maps.controls.modifyBbox.deactivate();
         maps.controls.selectMultiple.activate();
-        //saveStops();
       }
     );
 

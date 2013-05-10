@@ -189,6 +189,16 @@ class toolbox(object):
 
     return response
 
+  def sortTripStops(self, trip_id):
+    trip = gtfstools.Trip(self.db, trip_id)
+    trip.sortStops().saveStopsToDb()
+    return {'success': True}
+
+  def alignTripStops(self, trip_id):
+    trip = gtfstools.Trip(self.db, trip_id)
+    trip.offsetStops().saveStopsToDb()
+    return {'success': True}
+
 if __name__ == '__main__':
   import ormgeneric as o
   db = o.dbInterface('dbRecorridos.sqlite')
