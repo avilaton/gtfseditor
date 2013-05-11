@@ -15,7 +15,8 @@ define({
         tracksDiv: 'tracksSelect',
         scheduleDiv: 'schedule',
         layersDiv: 'capas'
-    }
+    },
+    localOsm: true
 })
 
 // config = {

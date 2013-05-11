@@ -127,6 +127,20 @@ define(["jquery",
       }
     );
 
+    $('#multipleSelect').toggle(
+      function () {
+        $(this).addClass('btn-primary');
+        //maps.toggleLayer('bbox',true);
+        maps.controls.selectStops.deactivate();
+        maps.controls.selectMultiple.activate();
+      },
+      function () {
+        $(this).removeClass('btn-primary');
+        maps.controls.selectMultiple.deactivate();
+        maps.controls.selectStops.activate();
+      }
+    );
+
     $('#saveShape').click(function (e){
       e.preventDefault();
       saveShape()
