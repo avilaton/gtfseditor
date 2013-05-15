@@ -83,5 +83,9 @@ define([
       });
   }
 
+  model.mergeStops = function () {
+    return
+  };
+
   return model;
 });
