@@ -287,10 +287,6 @@ define(["OpenLayers",
     stopsLayer.events.register('featureunselected',stopsLayer,
       handlers.renderStopInfo);
     bboxLayer.events.register('featureselected',bboxLayer,
-      handlers.renderMultipleStops);
-    bboxLayer.events.register('featureunselected',bboxLayer,
-      handlers.renderMultipleStops);
-    bboxLayer.events.register('featureselected',bboxLayer,
       handlers.renderStopInfo);
     bboxLayer.events.register('featureunselected',bboxLayer,
       handlers.renderStopInfo);

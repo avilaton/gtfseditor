@@ -11,12 +11,13 @@ define({
         mapDiv: 'map',
         routesDiv: 'routes',
         tripsDiv: 'trips',
-        stopsDiv: 'stopsTable',
+        stopAttr: '#stopAttr',
+        stopList: '#stopList',
         tracksDiv: 'tracksSelect',
         scheduleDiv: 'schedule',
         layersDiv: 'capas'
     },
-    localOsm: true
+    localOsm: false
 })
 
 // config = {

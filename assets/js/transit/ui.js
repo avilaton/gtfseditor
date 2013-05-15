@@ -57,19 +57,6 @@ define(["jquery",
       function value(d) {return d.trip_id;});
   };
 
-  function setupTabs() {
-    $('a[data-toggle="tab"]').on('shown', function (e) {
-      if (e.target.hash == '#stopsTab') {
-        maps.toggleLayer('bbox',true);
-        maps.controls.selectStops.deactivate();
-        maps.controls.selectMultiple.activate();
-      } else if (e.target.hash == '#tripsTab') {
-        maps.controls.selectMultiple.deactivate();
-        maps.controls.selectStops.activate();
-      };
-    });
-  };
-
   function setupButtons() {
     $('select#' + config.ui.routesDiv).change(function () {
       var route_id = $(this).find(':selected')[0].value;
@@ -109,8 +96,6 @@ define(["jquery",
       model.saveShape(shape).done(maps.update());
     };
 
-
-
     $('#prevStop').click(maps.skipHandler(-1));
     $('#nextStop').click(maps.skipHandler(1));
 
@@ -130,7 +115,6 @@ define(["jquery",
     $('#multipleSelect').toggle(
       function () {
         $(this).addClass('btn-primary');
-        //maps.toggleLayer('bbox',true);
         maps.controls.selectStops.deactivate();
         maps.controls.selectMultiple.activate();
       },
@@ -141,6 +125,45 @@ define(["jquery",
       }
     );
 
+    $('#editStops').toggle(
+      function () {
+        $(this).addClass('btn-primary');
+        maps.controls.selectStops.deactivate();
+        maps.controls.modifyStops.activate();
+      }, 
+      function () {
+        $(this).removeClass('btn-primary');
+        maps.controls.modifyStops.deactivate();
+        maps.controls.selectStops.activate();
+      }
+    );
+
+    $('#moveStops').toggle(
+      function () {
+        $(this).addClass('btn-primary');
+        maps.controls.selectMultiple.deactivate();
+        maps.controls.modifyBbox.activate();
+      }, 
+      function () {
+        $(this).removeClass('btn-primary');
+        maps.controls.modifyBbox.deactivate();
+        maps.controls.selectMultiple.activate();
+      }
+    );
+
+    $('#drawStops').toggle(
+      function () {
+        $(this).addClass('btn-primary');
+        maps.controls.selectStops.deactivate();
+        maps.controls.drawStops.activate();
+      },
+      function () {
+        $(this).removeClass('btn-primary');
+        maps.controls.drawStops.deactivate();
+        maps.controls.selectStops.activate();
+      }
+    );
+    
     $('#saveShape').click(function (e){
       e.preventDefault();
       saveShape()
@@ -168,32 +191,6 @@ define(["jquery",
       model.alignTripStops().done(maps.update());
     });
 
-    $('#editStops').toggle(
-      function () {
-        $(this).addClass('btn-primary');
-        maps.controls.selectStops.deactivate();
-        maps.controls.modifyStops.activate();
-      }, 
-      function () {
-        $(this).removeClass('btn-primary');
-        maps.controls.modifyStops.deactivate();
-        maps.controls.selectStops.activate();
-      }
-    );
-
-    $('#drawStops').toggle(
-      function () {
-        $(this).addClass('btn-primary');
-        maps.controls.selectStops.deactivate();
-        maps.controls.drawStops.activate();
-      },
-      function () {
-        $(this).removeClass('btn-primary');
-        maps.controls.drawStops.deactivate();
-        maps.controls.selectStops.activate();
-      }
-    );
-    
     $('#removeStop').click(function (e) {
       e.preventDefault();
       maps.destroySelected();
@@ -212,7 +209,6 @@ define(["jquery",
           console.log(response);
         }
       }).done(maps.update());
-
     });
 
     $('#appendStop').click(function (e){
@@ -220,7 +216,6 @@ define(["jquery",
       maps.appendSelected();
     });
 
-    // buttons on the Stops tab
     $('#findStop').on('click', function (event){
       var stop_id = $('#stop_id').val();
       api.get({route: 'stop/'+stop_id}).done(function (response) {
@@ -238,19 +233,6 @@ define(["jquery",
         $("#findStop").click();
       }
     });
-
-    $('#moveStops').toggle(
-      function () {
-        $(this).addClass('btn-primary');
-        maps.controls.selectMultiple.deactivate();
-        maps.controls.modifyBbox.activate();
-      }, 
-      function () {
-        $(this).removeClass('btn-primary');
-        maps.controls.modifyBbox.deactivate();
-        maps.controls.selectMultiple.activate();
-      }
-    );
 
     return this;
   };
@@ -274,45 +256,34 @@ define(["jquery",
   };
 
   function renderStopInfo(evt) {
-    var selectedFeature;
+    var stopAttrDiv = $(config.ui.stopAttr);
+    var stopListDiv = $(config.ui.stopList);
+    var selectedFeatures = evt.object.selectedFeatures;
+    stopAttrDiv.empty();
+    stopListDiv.empty();
     if (evt && (evt.type == 'featureselected')) {
-      selectedFeature = evt.feature;
-    } else {
-      selectedFeature = null;
-    };
-    var stopInfoDiv = $('#stopData');
-    stopInfoDiv.empty();
-    if (selectedFeature) {
-      stopInfoDiv.append(templates.stop(selectedFeature));
-    };
-  };
-  
-  function renderMultipleStops(evt) {
-    var selected,
-      multipleDiv;
-    selected = maps.bboxGetSelected();
-    multipleDiv = $('#multipleStops');
-    multipleDiv.empty();
-    if (selected.length == 1) {
-      multipleDiv.append(templates.stop(selected[0]));
-    } else {
-      multipleDiv.append(templates.multiple({features:selected}));
-    };
-    $('#multipleStops table tr button').on('click',function(e){
-      var merge = [],
-        keep = e.currentTarget.id;
+      if (selectedFeatures.length == 1) {
+        stopAttrDiv.append(templates.stop(selectedFeatures[0]));
+      } else {
+        stopListDiv.append(templates.multiple({features: selectedFeatures}));
+        $('#stopList table tr button').on('click',function(e){
+          var merge = [],
+            keep = e.currentTarget.id;
 
-      for (var i = 0; i < selected.length; i++) {
-        merge.push(selected[i]['fid']);
+          for (var i = 0; i < selectedFeatures.length; i++) {
+            merge.push(selectedFeatures[i]['fid']);
+          };
+          handleMerger({
+            keep: keep,
+            merge: merge
+          });
+          maps.update();
+        });
       };
-      handleMerger({
-        keep: keep,
-        merge: merge
-      });
-      maps.update();
-    });
+    } else {
+      selectedFeatures = null;
+    };
   };
-
 
   ui.init = function (spec) {
 
@@ -324,13 +295,11 @@ define(["jquery",
 
     maps.setEventHandlers({
       renderStopInfo: renderStopInfo,
-      renderMultipleStops: renderMultipleStops
     });
 
     model.fetchRoutes().done(populateRoutes);
 
     setupButtons();
-    setupTabs();
 
   };
   
