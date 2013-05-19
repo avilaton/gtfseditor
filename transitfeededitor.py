@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-import bottle
+DEBUG = False
+
 from bottle import route, static_file, get, post, put, request
 
 import ormgeneric as o
@@ -71,9 +72,14 @@ def getBBOX():
   bbox = request.query['bbox']
   return tb.bbox(bbox)
 
-bottle.debug(True)
+import bottle
+
+if DEBUG == True:
+  bottle.debug(True)
+
 app = bottle.app()
 
 if __name__ == '__main__':
-  from bottle import run
-  run(app,reloader=True)
+  app.run(server='cgi')
+  #from bottle import run
+  #run(app,reloader=True)
