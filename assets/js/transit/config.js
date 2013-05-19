@@ -1,8 +1,8 @@
 // configuration module
 define({
 	database: 'dbRecorridos',
-    cgiUrl: 'http://localhost:8080/api/',
-    vectorLayerUrl: 'http://localhost:8080/api/',
+    cgiUrl: './api/',
+    vectorLayerUrl: './api/',
     initCenter: {
         lon: -64.1857371,
         lat: -31.4128832,
