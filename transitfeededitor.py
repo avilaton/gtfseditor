@@ -2,7 +2,7 @@
 
 DEBUG = False
 
-from bottle import route, static_file, get, post, put, request
+from bottle import route, static_file, get, post, put, request, redirect
 
 import ormgeneric as o
 import gtfsdb
@@ -13,6 +13,11 @@ tb = gtfsdb.toolbox(db)
 @route('/')
 def index():
   return static_file('index.html',root='./')
+
+@route('/stops')
+def editor():
+  #redirect("/")
+  return static_file('stops.html',root='./')
 
 @route('/assets/<filepath:path>')
 def server_files(filepath):
