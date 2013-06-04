@@ -27,6 +27,11 @@ def server_files(filepath):
 def findStop(stop_id):
   return tb.findStop(stop_id)
 
+@put('/api/stop/<stop_id>')
+def updateStop(stop_id):
+  print request.json
+  return request.json
+
 @route('/api/routes/')
 @route('/api/routes')
 def routes():

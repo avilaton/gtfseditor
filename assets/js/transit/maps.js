@@ -281,6 +281,12 @@ define(["OpenLayers",
     return maps;
   };
 
+  function selectFeatures (context) {
+    var selectedFeatures = context.object.selectedFeatures;
+    var formatedFeatures = vectorFormat.write(selectedFeatures);
+    model.select(formatedFeatures);
+  };
+
   maps.setEventHandlers = function (handlers) {
     stopsLayer.events.register('featureselected', stopsLayer,
       handlers.renderStopInfo);
@@ -290,6 +296,11 @@ define(["OpenLayers",
       handlers.renderStopInfo);
     bboxLayer.events.register('featureunselected',bboxLayer,
       handlers.renderStopInfo);
+    bboxLayer.events.on({
+      'featureselected': selectFeatures,
+      'featureunselected': selectFeatures,
+      scope: bboxLayer
+    });
     routesLayer.events.register('loadend',
       {
         'routesLayer':routesLayer,

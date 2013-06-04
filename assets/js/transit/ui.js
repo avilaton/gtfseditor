@@ -99,6 +99,10 @@ define(["jquery",
     $('#prevStop').click(maps.skipHandler(-1));
     $('#nextStop').click(maps.skipHandler(1));
 
+    $('#routesPane').on('click', function() {
+      $('#leftbar, #leftbarStops').toggle();
+    });
+
     $('#editShape').toggle(
       function () {
         $(this).addClass('btn-primary');
@@ -264,6 +268,10 @@ define(["jquery",
     if (evt && (evt.type == 'featureselected')) {
       if (selectedFeatures.length == 1) {
         stopAttrDiv.append(templates.stop(selectedFeatures[0]));
+        $('#saveStopData').on('click', function(){
+          console.log('save clicked');
+          model.updateStop();
+        });
       } else {
         stopListDiv.append(templates.multiple({features: selectedFeatures}));
         $('#stopList table tr button').on('click',function(e){

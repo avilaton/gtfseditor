@@ -27,6 +27,9 @@ class toolbox(object):
       response = {'success': False}
     return response
 
+  def updateStop(self, stop_id, data):
+    print stop_id, data
+
   def routes(self):
     routes = []
     for row in self.db.select('routes'):

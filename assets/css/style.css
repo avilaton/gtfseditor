@@ -19,14 +19,14 @@ body {
 }
   
 #header_container, #footer_container{
-	background-color: #f0f0f0;
+	background-color: #fafafa;
     height:20px;
     padding:5px;
     position:relative;
     z-index:1;
 }
 #footer_container {
-	background-color: yellow;
+	background-color: #f0f0f0;
 	text-align: right;
 }
 #container {
@@ -43,7 +43,17 @@ body {
     padding: 10px;
     width:25%;
 }
-#leftbar select {
+#leftbar select,  {
+    width: 100%;
+}
+
+#leftbarStops {
+    display:table-cell;
+    background:#f0f0f0;
+    padding: 10px;
+    width:25%;
+}
+#leftbarStops select,  {
     width: 100%;
 }
 

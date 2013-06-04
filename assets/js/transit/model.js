@@ -18,12 +18,28 @@ define([
   };
   model.routes = [];
   model.trips = {};
+  model.stop = {};
 
   model.init = function () {
     return api.get({
       route: 'routes/'
     });
   };
+
+  model.select = function (features) {
+    var selectedFeatures = JSON.parse(features).features;
+    console.log(selectedFeatures[0]);
+    if (selectedFeatures.length == 1){
+      model.stop = selectedFeatures[0];
+    }  
+  };
+
+  model.updateStop = function () {
+    return api.put({
+        route: 'stop/'+model.stop.id, 
+        params: JSON.stringify(model.stop)})
+      .done(function (response){console.log(response)});
+  }
 
   model.fetchRoutes = function () {
     return api.get({route: 'routes/'})
