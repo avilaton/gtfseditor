@@ -28,7 +28,14 @@ class toolbox(object):
     return response
 
   def updateStop(self, stop_id, data):
-    print stop_id, data
+    """ 
+    Stub - should carry out a full update, only updates stop_calle
+    """
+    stop_calle = data['properties']['stop_calle']
+    self.db.query("""UPDATE stops SET stop_calle='{stop_calle}' 
+      WHERE stop_id='{stop_id}'"""
+      .format(stop_id=stop_id,stop_calle=stop_calle))
+    return {'success': True}
 
   def routes(self):
     routes = []

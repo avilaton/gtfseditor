@@ -29,7 +29,7 @@ def findStop(stop_id):
 
 @put('/api/stop/<stop_id>')
 def updateStop(stop_id):
-  print request.json
+  tb.updateStop(stop_id, request.json)
   return request.json
 
 @route('/api/routes/')

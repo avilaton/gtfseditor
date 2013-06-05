@@ -269,7 +269,10 @@ define(["jquery",
       if (selectedFeatures.length == 1) {
         stopAttrDiv.append(templates.stop(selectedFeatures[0]));
         $('#saveStopData').on('click', function(){
-          console.log('save clicked');
+          var stop_calle = $('#stop_calle').val();
+          model.stop.properties['stop_calle'] = stop_calle;
+          console.log(stop_calle);
+          console.log('save clicked', model.stop);
           model.updateStop();
         });
       } else {

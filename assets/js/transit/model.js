@@ -28,7 +28,6 @@ define([
 
   model.select = function (features) {
     var selectedFeatures = JSON.parse(features).features;
-    console.log(selectedFeatures[0]);
     if (selectedFeatures.length == 1){
       model.stop = selectedFeatures[0];
     }  
