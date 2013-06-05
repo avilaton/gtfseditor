@@ -27,6 +27,14 @@ class toolbox(object):
       response = {'success': False}
     return response
 
+  def unnamedStops(self):
+    self.db.query("""SELECT stop_id FROM stops 
+      WHERE 
+        stop_id IN (SELECT DISTINCT stop_id FROM stop_seq) 
+      AND stop_calle=''""")
+    stops = [r['stop_id'] for r in self.db.cursor.fetchall()]
+    return stops
+
   def updateStop(self, stop_id, data):
     """ 
     Stub - should carry out a full update, only updates stop_calle

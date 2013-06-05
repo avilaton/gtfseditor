@@ -2,7 +2,7 @@
 
 DEBUG = False
 
-from bottle import route, static_file, get, post, put, request, redirect, hook
+from bottle import route, static_file, get, post, put, request, redirect, hook, response
 
 import ormgeneric as o
 import gtfsdb
@@ -23,6 +23,14 @@ def before_request():
 @route('/')
 def index():
   return static_file('index.html',root='./')
+
+@route('/api/reports/unnamed')
+def unnamed():
+  response.content_type = 'text/plain'
+  unnamed = tb.unnamedStops()
+  result = 'There are '+str(len(unnamed))+' unnamed stops.\n'
+  result += '\n'.join(unnamed)
+  return result
 
 @route('/stops')
 def editor():
