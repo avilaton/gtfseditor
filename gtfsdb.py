@@ -41,7 +41,7 @@ class toolbox(object):
     SQL to find unnamed stops is
     SELECT stop_id FROM stops WHERE stop_id IN (SELECT DISTINCT stop_id FROM stop_seq) AND stop_calle=''
     """
-    stop_calle = data['properties']['stop_calle']
+    stop_calle = data['properties']['stop_calle'].encode('utf-8')
     result = self.db.query("""UPDATE stops SET stop_calle='{stop_calle}' 
       WHERE stop_id='{stop_id}'"""
       .format(stop_id=stop_id,stop_calle=stop_calle))
