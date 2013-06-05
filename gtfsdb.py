@@ -32,10 +32,13 @@ class toolbox(object):
     Stub - should carry out a full update, only updates stop_calle
     """
     stop_calle = data['properties']['stop_calle']
-    self.db.query("""UPDATE stops SET stop_calle='{stop_calle}' 
+    result = self.db.query("""UPDATE stops SET stop_calle='{stop_calle}' 
       WHERE stop_id='{stop_id}'"""
       .format(stop_id=stop_id,stop_calle=stop_calle))
-    return {'success': True}
+    #self.db.query("COMMIT;")
+    #print self.db.cursor.fetchall()
+    #print self.db.select('stops', stop_id=stop_id)
+    return {'success': True, 'result': result}
 
   def routes(self):
     routes = []

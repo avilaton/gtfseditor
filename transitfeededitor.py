@@ -2,13 +2,23 @@
 
 DEBUG = False
 
-from bottle import route, static_file, get, post, put, request, redirect
+from bottle import route, static_file, get, post, put, request, redirect, hook
 
 import ormgeneric as o
 import gtfsdb
 
 db = o.dbInterface('dbRecorridos.sqlite')
 tb = gtfsdb.toolbox(db)
+
+
+@hook('after_request')
+def after_request():
+  db.connection.commit()
+
+@hook('before_request')
+def before_request():
+  #db.open()
+  return
 
 @route('/')
 def index():
@@ -29,8 +39,7 @@ def findStop(stop_id):
 
 @put('/api/stop/<stop_id>')
 def updateStop(stop_id):
-  tb.updateStop(stop_id, request.json)
-  return request.json
+  return tb.updateStop(stop_id, request.json)
 
 @route('/api/routes/')
 @route('/api/routes')
