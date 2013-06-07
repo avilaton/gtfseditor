@@ -101,6 +101,8 @@ def getBBOX():
 
 import bottle
 
+bottle.BaseRequest.MEMFILE_MAX = 1024 * 1024
+
 if DEBUG == True:
   bottle.debug(True)
 
