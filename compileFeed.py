@@ -111,7 +111,10 @@ def addRoutes(db,schedule,debug=False):
 			long_name='', 
 			route_id=route_id,
 			route_type='Bus')
-		# r.agency_id = 
+
+		r.agency_id = route['agency_id']
+		#r.route_color = route['route_color']
+		#r.route_text_color = route['route_text_color']
 
 def addTrips(db,schedule,debug=False):
 	# get servicePeriods
