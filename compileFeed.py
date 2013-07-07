@@ -12,10 +12,15 @@ FEED_END_DATE = '20131231'
 
 def addAgencies(db,schedule,debug=False):
 	tz = 'America/Argentina/Cordoba'
-	agencyTamse = schedule.AddAgency('Tamse','http://www.tam-se.com.ar',tz,agency_id='tamse')
-	agencyConiferal = schedule.AddAgency('Coniferal','http://www.coniferal.com.ar',tz,agency_id='coniferal')
-	agencyCcba = schedule.AddAgency(u"Ciudad de Córdoba",'http://www.ccbasacif.com.ar',tz,agency_id='ccba')
-	schedule.SetDefaultAgency(agencyTamse)
+	# agencyTamse = schedule.AddAgency('Tamse','http://www.tam-se.com.ar',tz,agency_id='tamse')
+	# agencyConiferal = schedule.AddAgency('Coniferal','http://www.coniferalsacif.com.ar',tz,agency_id='coniferal')
+	# agencyCcba = schedule.AddAgency(u"Ciudad de Córdoba",'http://www.ccbasacif.com.ar',tz,agency_id='ccba')
+	for r in db.select('agency'):
+		agency = schedule.AddAgency(r['agency_name'],r['agency_url'],r['agency_timezone'],agency_id=r['agency_id'])
+		agency.agency_telephone = r['agency_phone']
+		agency.agency_lang = r['agency_lang']
+	defaultAgency = schedule.GetAgency('tamse')
+	schedule.SetDefaultAgency(defaultAgency)
 
 def addServicePeriods(db,schedule,debug=False):
 	#service_period = schedule.GetDefaultServicePeriod()
@@ -83,8 +88,10 @@ def addStops(db,schedule,debug=False):
 		stop = db.select('stops',stop_id=s['stop_id'])[0]
 		lat = stop['stop_lat']
 		lng = stop['stop_lon']
-		if stop['stop_calle']:
-			name = stop['stop_calle'] + str(stop['stop_numero'])
+		if stop['stop_calle'] and not stop['stop_numero']:
+			name = stop['stop_calle']
+		elif stop['stop_calle'] and stop['stop_numero']:
+			name = stop['stop_calle'] + ' ' + str(stop['stop_numero'])
 		else:
 			name = stop['stop_id']
 		stop_id = stop['stop_id']
@@ -111,10 +118,9 @@ def addRoutes(db,schedule,debug=False):
 			long_name='', 
 			route_id=route_id,
 			route_type='Bus')
-
 		r.agency_id = route['agency_id']
-		#r.route_color = route['route_color']
-		#r.route_text_color = route['route_text_color']
+		r.route_color = route['route_color']
+		r.route_text_color = route['route_text_color']
 
 def addTrips(db,schedule,debug=False):
 	# get servicePeriods
@@ -132,7 +138,6 @@ def addTrips(db,schedule,debug=False):
 				trip_id = t['trip_id'] + '.' + s
 				trip = r.AddTrip(trip_id = trip_id,headsign=t['trip_headsign'])
 				trip.service_id = s
-				print trip
 				trip.shape_id = t['trip_id']
 				if 'ida' in trip_id:
 					trip.direction_id = 0
@@ -192,10 +197,12 @@ def addFrequencies(db,schedule,debug=False):
 	#f = transitfeed.Frequency({'trip_id':'C0.ida.H__','start_time':'00:00:00', 'end_time':'00:00:30', 'headway_secs':'345'})
 	for t in schedule.GetTripList():
 		trip_id = t.trip_id
-		route_id = trip_id.split('.')[0]
-		service = trip_id.split('.')[-1]
+		route_id = t.route_id
+		# route_id = trip_id.split('.')[0]
+		# service = trip_id.split('.')[-1]
+		service_id = t.service_id
 		diaLookup = {'H':'lav','S':'sabado','D':'domingo'}
-		dia = diaLookup[service]
+		dia = diaLookup[service_id]
 		for frec in db.select('servicios',route_id=route_id,dia=dia):
 			start_time, end_time = fixTimes(frec['desde'],frec['hasta'])
 			headway_secs = frec['frecuencia']*60
@@ -205,6 +212,15 @@ def addFrequencies(db,schedule,debug=False):
 				'end_time':end_time, 
 				'headway_secs':headway_secs})
 			f.AddToSchedule(schedule)
+
+def addFeedInfo(schedule):
+	feedInfo = transitfeed.FeedInfo()
+	feedInfo.feed_publisher_url = 'http://www.cordoba.gov.ar/'
+	feedInfo.feed_publisher_name = u'Municipalidad de Córdoba'
+	feedInfo.feed_lang = 'es'
+	feedInfo.feed_version = '0.2'
+
+	schedule.AddFeedInfoObject(feedInfo)
 
 def main():
 	schedule = transitfeed.Schedule()
@@ -220,6 +236,7 @@ def main():
 	addTrips(db, schedule, debug=debug)
 	addStopTimes(db, schedule, debug=debug)
 	addFrequencies(db, schedule, debug=debug)
+	addFeedInfo(schedule)
 	#accumulator = transitfeed.ProblemAccumulatorInterface()
 	#reporter = transitfeed.ProblemReporter(accumulator)
 	#schedule.Validate(reporter)
