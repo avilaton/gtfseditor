@@ -11,10 +11,6 @@ FEED_START_DATE = '20130401'
 FEED_END_DATE = '20131231'
 
 def addAgencies(db,schedule,debug=False):
-	tz = 'America/Argentina/Cordoba'
-	# agencyTamse = schedule.AddAgency('Tamse','http://www.tam-se.com.ar',tz,agency_id='tamse')
-	# agencyConiferal = schedule.AddAgency('Coniferal','http://www.coniferalsacif.com.ar',tz,agency_id='coniferal')
-	# agencyCcba = schedule.AddAgency(u"Ciudad de Córdoba",'http://www.ccbasacif.com.ar',tz,agency_id='ccba')
 	for r in db.select('agency'):
 		agency = schedule.AddAgency(r['agency_name'],r['agency_url'],r['agency_timezone'],agency_id=r['agency_id'])
 		agency.agency_telephone = r['agency_phone']
@@ -22,32 +18,20 @@ def addAgencies(db,schedule,debug=False):
 	defaultAgency = schedule.GetAgency('tamse')
 	schedule.SetDefaultAgency(defaultAgency)
 
-def addServicePeriods(db,schedule,debug=False):
-	#service_period = schedule.GetDefaultServicePeriod()
-	
-	# Lunes a viernes
-	service_H = transitfeed.ServicePeriod()
-	service_H.SetServiceId('H')
-	service_H.SetWeekdayService(True)
-	service_H.SetStartDate(FEED_START_DATE)
-	service_H.SetEndDate(FEED_END_DATE)
-	schedule.AddServicePeriodObject(service_H)
-
-	# Sabados
-	service_S = transitfeed.ServicePeriod()
-	service_S.SetServiceId('S')
-	service_S.SetDayOfWeekHasService(5)
-	service_S.SetStartDate(FEED_START_DATE)
-	service_S.SetEndDate(FEED_END_DATE)
-	schedule.AddServicePeriodObject(service_S)
-
-	# Domingos y Feriados
-	service_D = transitfeed.ServicePeriod()
-	service_D.SetServiceId('D')
-	service_D.SetDayOfWeekHasService(6)
-	service_D.SetStartDate(FEED_START_DATE)
-	service_D.SetEndDate(FEED_END_DATE)
-	schedule.AddServicePeriodObject(service_D)
+def addCalendar(db,schedule,debug=False):	
+	for s in db.select('calendar'):
+		service = transitfeed.ServicePeriod()
+		service.SetServiceId(s['service_id'])
+		service.SetStartDate(s['start_date'])
+		service.SetEndDate(s['end_date'])
+		service.SetDayOfWeekHasService(0, bool(s['monday']) )
+		service.SetDayOfWeekHasService(1, bool(s['tuesday']) )
+		service.SetDayOfWeekHasService(2, bool(s['wednesday']) )
+		service.SetDayOfWeekHasService(3, bool(s['thursday']) )
+		service.SetDayOfWeekHasService(4, bool(s['friday']) )
+		service.SetDayOfWeekHasService(5, bool(s['saturday']) )
+		service.SetDayOfWeekHasService(6, bool(s['sunday']) )
+		schedule.AddServicePeriodObject(service)
 
 def addCalendarDates(db, schedule, debug=False):
 	service_H = schedule.GetServicePeriod('H')
@@ -114,35 +98,26 @@ def addRoutes(db,schedule,debug=False):
 		route_id = route['route_id']
 		if route_id not in ['C0'] and debug:
 			continue
-		r = schedule.AddRoute(short_name=route_id, 
-			long_name='', 
-			route_id=route_id,
-			route_type='Bus')
+		r = schedule.AddRoute(short_name=route['route_short_name'], 
+			long_name=route['route_long_name'], 
+			route_id=route['route_id'],
+			route_type=route['route_type'])
 		r.agency_id = route['agency_id']
 		r.route_color = route['route_color']
 		r.route_text_color = route['route_text_color']
 
 def addTrips(db,schedule,debug=False):
-	# get servicePeriods
-	services = []
-	for s in schedule.GetServicePeriodList():
-		services.append(s.service_id)
-	print 'Service Periods IDs: \n', services
-
 	for r in schedule.GetRouteList():
 		route_id = r['route_id']
 		for t in db.select('trips', route_id=route_id):
 			if t['trip_id'] != 'C0.ida' and debug:
 				continue
-			for s in services:
-				trip_id = t['trip_id'] + '.' + s
+			for service in schedule.GetServicePeriodList():
+				trip_id = t['trip_id'] + '.' + service.service_id
 				trip = r.AddTrip(trip_id = trip_id,headsign=t['trip_headsign'])
-				trip.service_id = s
+				trip.service_id = service.service_id
 				trip.shape_id = t['trip_id']
-				if 'ida' in trip_id:
-					trip.direction_id = 0
-				elif 'vuelta' in trip_id:
-					trip.direction_id = 1
+				trip.direction_id = t['direction_id']
 
 def addStopTimes(db,schedule,debug=False):
 	"""Adding Stop Times"""
@@ -228,7 +203,7 @@ def main():
 
 	debug = False
 	addAgencies(db, schedule, debug=debug)
-	addServicePeriods(db, schedule, debug=debug)
+	addCalendar(db, schedule, debug=debug)
 	addCalendarDates(db, schedule, debug=debug)
 	addStops(db, schedule, debug=debug)
 	addShapes(db, schedule, debug=debug)

@@ -14,24 +14,27 @@
     <div id="header_container">
       <div id="header">
         GTFS Transit Feed Editor
-      <span id="routesPane">Routes</span>
       </div>
+    </div>
+    <div id="actions_container">
+      <form class="form-inline">
+        <span id="routesPane">Routes</span>
+          <label for="routes">Route
+            <select id="routes"></select>
+          </label>
+          <label for="trips">Trip
+            <select id="trips"></select>
+          </label>
+          <label>Stops
+            <div class="input-append">
+              <input id="stop_id" type="text" /><button class="btn" id="findStop"><i class="icon-search"></i> Find</button>
+            </div>
+          </label>
+        </form>
     </div>
 
     <div id="container">
       <div id="leftbar">
-        <label for="routes">Route
-          <select id="routes"></select>
-        </label>
-        <label for="trips">Trip
-          <select id="trips"></select>
-        </label>
-        <label>Stops
-          <div class="input-append">
-            <input id="stop_id" type="text" /><button class="btn" id="findStop"><i class="icon-search"></i> Find</button>
-          </div>
-        </label>
-        <hr>
         <div class="control-group">
           <label>Shape</label>
             <div class="btn-group">
