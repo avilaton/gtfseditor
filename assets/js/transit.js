@@ -1,5 +1,5 @@
 require.config({
-	baseUrl: 'assets/js/lib',
+  baseUrl: 'assets/js/lib',
     shim: {
         OpenLayers: {
             exports: 'OpenLayers'
@@ -9,17 +9,26 @@ require.config({
         }
     },
     paths: {
-        transit: '../transit'
+      "transit": "../transit",
+      "backbone": "backbone-amd/backbone",
+      //"jquery": "jquery/jquery",
+      "openlayers": "/openlayers/",
+      "requirejs": "/requirejs/",
+      "underscore": "underscore-amd/underscore"
     }
 });
 
-require(["transit/model",
+require(["jquery",
+        "backbone",
+        "underscore",
+        "transit/model",
         "transit/ui", 
-        "transit/config"], function (model, ui, config) {
+        "transit/config"], function ($, Backbone, _, model, ui, config) {
     'use strict';
 
     var dataModel;
 
+    console.log($(), Backbone);
     dataModel = model.init();
 
     ui.init({
