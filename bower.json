@@ -1,0 +1,12 @@
+{
+  "name": "gtfseditor",
+  "directory": "assets/lib",
+  "version": "0.0.0",
+	"dependencies": {
+		"jquery": "",
+		"backbone-amd": "*",
+		"underscore-amd": "*",
+		"requirejs": "*",
+		"openlayers": ""
+	}
+}
