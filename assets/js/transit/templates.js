@@ -1,7 +1,6 @@
 define(["handlebars"], function(Handlebars) {
   var templates = {};
 
-
   Handlebars.registerHelper('boolCompare', function (is_timepoint) {
     if (is_timepoint) {
       return "Si"
