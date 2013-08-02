@@ -1,4 +1,5 @@
 *.pyc
+gtfstools/*.pyc
 *.pyo
 node_modules/
-gtfstools/*.pyc
+assets/js/lib/
