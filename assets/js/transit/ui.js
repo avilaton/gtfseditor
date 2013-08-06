@@ -4,8 +4,9 @@ define(["jquery",
     "transit/api",
     "transit/maps",
     "transit/config",
-    "transit/utils"],
-    function ($, model, templates, api, maps, config, utils) {
+    "transit/utils",
+    "transit/views/routebar"],
+    function ($, model, templates, api, maps, config, utils, RouteBarView) {
 
   'use strict';
 
@@ -46,9 +47,13 @@ define(["jquery",
   };
 
   function populateRoutes () {
+    var routeBar;
+
     populateSelect(config.ui.routesDiv, model.routes, 
       function text(d) {return 'Ruta '+d.route_id;},
       function value(d) {return d.route_id;});
+    
+    routeBar = new RouteBarView({model: {routes: model.routes} });
   };
 
   function populateTrips () {
