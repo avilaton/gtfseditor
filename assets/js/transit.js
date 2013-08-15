@@ -14,13 +14,17 @@ require.config({
         "OpenLayers": "lib/OpenLayers",
         // "OpenLayers": "lib/openlayers/lib/OpenLayers",
         "underscore": "lib/underscore-amd/underscore",
-        "handlebars": "lib/handlebars/handlebars"
+        "handlebars": "lib/handlebars/handlebars",
+        "text": "lib/requirejs-text/text"
     }
 });
 
-require(["transit/model",
-        "transit/ui", 
-        "transit/config"], function (model, ui, config) {
+require([
+    "transit/model",
+    "transit/ui", 
+    "transit/config"
+    ],
+    function (model, ui, config) {
     'use strict';
 
     var dataModel;

@@ -1,0 +1,7 @@
+<label for="route">Routes</label>
+<select id="route">
+  <option value=""> -- </option>
+  {{#each routes}}
+    <option value={{route_id}}>{{route_type}} {{route_short_name}}</option>
+  {{/each}}
+</select>

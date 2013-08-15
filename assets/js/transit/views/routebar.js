@@ -1,14 +1,16 @@
 define([
 	"underscore",
 	"backbone",
-	"transit/templates"
-], function (_, Backbone, templates) {
+	"handlebars",
+	"transit/templates",
+	"text!transit/templates/routebar.handlebars"
+], function (_, Backbone, Handlebars, templates, tmpl) {
 	var RouteBar;
 
 	RouteBar = Backbone.View.extend({
 		el: $("#routeBar"),
 
-		template: templates.routes,
+		template: Handlebars.compile(tmpl),
 
 		events: {
 			"change select": "selectRoute"
@@ -21,7 +23,6 @@ define([
 
         render: function () {
         	this.$el.html(this.template(this.model));
-        	//this.$el.html(this.template(this.model.attributes));
         },
 
         selectRoute: function (event) {

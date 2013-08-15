@@ -10,7 +10,7 @@ define(["handlebars"], function(Handlebars) {
     return statusClass[status];
   });
   
-  templates.routes = Handlebars.compile($('#routesTemplate').html());
+  // templates.routes = Handlebars.compile($('#routesTemplate').html());
 
   templates.stop = Handlebars.compile($('#stopInfoTemplate').html());
 
