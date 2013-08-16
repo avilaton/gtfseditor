@@ -254,7 +254,7 @@ def main():
     debug = False
 
     schedule = transitfeed.Schedule()
-    db = o.dbInterface('dbRecorridos.sqlite')
+    db = o.dbInterface('database/dbRecorridos.sqlite')
 
     myFeed = Schedule(db, debug=debug)
 
@@ -277,7 +277,7 @@ def main():
     #reporter = transitfeed.ProblemReporter(accumulator)
     #schedule.Validate(reporter)
     schedule.Validate()
-    schedule.WriteGoogleTransitFeed('google_transit.zip')
+    schedule.WriteGoogleTransitFeed('compiled/google_transit.zip')
     db.close()
 
 if __name__ == "__main__":

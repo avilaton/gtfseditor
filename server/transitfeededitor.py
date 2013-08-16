@@ -7,7 +7,7 @@ from bottle import route, static_file, get, post, put, request, redirect, hook, 
 import ormgeneric as o
 import gtfsdb
 
-db = o.dbInterface('dbRecorridos.sqlite')
+db = o.dbInterface('database/dbRecorridos.sqlite')
 tb = gtfsdb.toolbox(db)
 
 
