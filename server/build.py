@@ -3,6 +3,8 @@
 
 from __future__ import division
 
+import zipfile
+
 import transitfeed
 import datetime
 import ormgeneric.ormgeneric as o
@@ -24,7 +26,7 @@ class Schedule(object):
         for r in self.db.select('agency'):
             agency = self.schedule.AddAgency(r['agency_name'],r['agency_url'], 
                 r['agency_timezone'],agency_id=r['agency_id'])
-            agency.agency_telephone = r['agency_phone']
+            agency.agency_phone = r['agency_phone']
             agency.agency_lang = r['agency_lang']
         self.schedule.SetDefaultAgency(self.schedule.GetAgencyList()[0])
 
@@ -32,7 +34,7 @@ class Schedule(object):
 def addAgencies(db,schedule,debug=False):
     for r in db.select('agency'):
         agency = schedule.AddAgency(r['agency_name'],r['agency_url'],r['agency_timezone'],agency_id=r['agency_id'])
-        agency.agency_telephone = r['agency_phone']
+        agency.agency_phone = r['agency_phone']
         agency.agency_lang = r['agency_lang']
     schedule.SetDefaultAgency(schedule.GetAgencyList()[0])
 
@@ -52,27 +54,15 @@ def addCalendar(db,schedule,debug=False):
         schedule.AddServicePeriodObject(service)
 
 def addCalendarDates(db, schedule, debug=False):
-    service_H = schedule.GetServicePeriod('H')
-    service_S = schedule.GetServicePeriod('S')
-    service_D = schedule.GetServicePeriod('D')
+    """Inserts calendar date exceptions from calendar_dates table"""
 
-    feriados = ['20130101','20130131','20130211','20130212','20130220',
-        '20130324','20130329','20130401','20130402','20130501','20130525',
-        '20130620','20130621','20130709','20131208','20131225']
-    for feriado in feriados:
-        wd = datetime.datetime.strptime(feriado,'%Y%m%d').weekday()
-        if wd in [0,1,2,3,4]:
-            #print feriado,'día habil'
-            service_D.SetDateHasService(feriado)
-            service_H.SetDateHasService(feriado, has_service=False)
-        elif wd == 5:
-            #print feriado,'sabado'
-            service_D.SetDateHasService(feriado)
-            service_S.SetDateHasService(feriado, has_service=False)
-        elif wd == 6:
-            #print feriado,'domingo'
-            service_D.SetDateHasService(feriado)
-
+    for feriado in db.select("calendar_dates"):
+        service_period = schedule.GetServicePeriod(feriado['service_id'])
+        if feriado['exception_type'] == "1":
+            service_period.SetDateHasService(feriado['date'], has_service=True)
+        elif feriado['exception_type'] == "2":
+            service_period.SetDateHasService(feriado['date'], has_service=False)
+            
 def addStops(db,schedule,debug=False):
     # q = """SELECT DISTINCT stop_id FROM stop_seq 
     #   WHERE trip_id="{0}" OR trip_id="{1}" """.format('C0.ida','C0.vuelta')
@@ -165,7 +155,7 @@ def addStopTimes(db,schedule,interpolate=True, debug=False):
             # stop_seq = s['stop_sequence']
             if interpolate:
                 t = int(total_time*traveled/(total_distance))
-                print t, sec2hhmmss(t)
+                # print t, sec2hhmmss(t)
                 trip.AddStopTime(stop,stop_time=sec2hhmmss(t))
             else:
                 if i == 0:
@@ -278,7 +268,18 @@ def main():
     #schedule.Validate(reporter)
     schedule.Validate()
     schedule.WriteGoogleTransitFeed('compiled/google_transit.zip')
+    #add feed info
+    with zipfile.ZipFile('compiled/google_transit.zip', "a") as z:
+        z.write('compiled/feed_info.txt', 'feed_info.txt')
+
     db.close()
+    
+    #extract for debuging
+
+    with zipfile.ZipFile('compiled/google_transit.zip', "r") as z:
+        for filename in z.namelist():
+            with file('extracted/'+filename, "w") as outfile:
+                outfile.write(z.read(filename))
 
 if __name__ == "__main__":
 
