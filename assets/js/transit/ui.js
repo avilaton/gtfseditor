@@ -1,97 +1,99 @@
 define(["jquery",
-    "transit/model",
-    "transit/templates",
-    "transit/api",
-    "transit/maps",
-    "transit/config",
-    "transit/utils",
-    "transit/views/routebar"],
-    function ($, model, templates, api, maps, config, utils, RouteBarView) {
+  "transit/model",
+  "transit/templates",
+  "transit/api",
+  "transit/maps",
+  "transit/config",
+  "transit/utils",
+  "transit/collections/routes",
+  "transit/views/routesSelect",
+  "transit/views/topBar"
+  ],
+  function ($, model, templates, api, maps, config, utils, routesCollection, 
+    RoutesSelectView, TopBarView) {
 
-  'use strict';
+    'use strict';
 
-  var ui = {};
+    var ui = {};
 
-  function populateTracks() {
-    var options = $('select#' + config.ui.tracksDiv);
-    function fillValues(values) {
-      options
+    function populateTracks() {
+      var options = $('select#' + config.ui.tracksDiv);
+      function fillValues(values) {
+        options
         .empty()
         .append($('<option />').val('').text('Select an option'));
-      $.each(values, function () {
-        options.append($('<option />')
-          .val(this.filename)
-          .text(this.name));
+        $.each(values, function () {
+          options.append($('<option />')
+            .val(this.filename)
+            .text(this.name));
+        });
+      };
+      api.get({
+        route: 'tracks/',
+        success: fillValues
       });
+
+      return this;
     };
-    api.get({
-      route: 'tracks/',
-      success: fillValues
-    });
 
-    return this;
-  };
-
-  function populateSelect(div, values, textSetter, valSetter) {
-    var options = $('select#' + div);
-    options
+    function populateSelect(div, values, textSetter, valSetter) {
+      var options = $('select#' + div);
+      options
       .empty()
       .append($('<option />').val(null).text(' -- '));
-    $.each(values, function() {
-      options.append(
-        $('<option />')
-        .val(valSetter(this))
-        .text(textSetter(this))
-      );
-    });
-  };
+      $.each(values, function() {
+        options.append(
+          $('<option />')
+          .val(valSetter(this))
+          .text(textSetter(this))
+          );
+      });
+    };
 
-  function populateRoutes () {
-    var routeBar;
+    function populateRoutes () {
+      var routeBar;
 
-    populateSelect(config.ui.routesDiv, model.routes, 
-      function text(d) {return 'Ruta '+d.route_id;},
-      function value(d) {return d.route_id;});
-    
-    routeBar = new RouteBarView({model: {routes: model.routes} });
-  };
+      populateSelect(config.ui.routesDiv, model.routes, 
+        function text(d) {return 'Ruta '+d.route_id;},
+        function value(d) {return d.route_id;});
+    };
 
-  function populateTrips () {
-    populateSelect(config.ui.tripsDiv, model.trips, 
-      function text(data) {return 'Viaje hacia '+data.trip_headsign;},
-      function value(d) {return d.trip_id;});
-  };
+    function populateTrips () {
+      populateSelect(config.ui.tripsDiv, model.trips, 
+        function text(data) {return 'Viaje hacia '+data.trip_headsign;},
+        function value(d) {return d.trip_id;});
+    };
 
-  function setupButtons() {
-    $('select#' + config.ui.routesDiv).change(function () {
-      var route_id = $(this).find(':selected')[0].value;
-      model.selected.route_id = route_id;
-      model.selected.trip_id = null;
-      model.selected.shape_id = null;
-      model.fetchTrips().done(populateTrips);
-      maps.update();
-      renderServices(route_id);
-      renderStopInfo(null);
-    });
+    function setupButtons() {
+      $('select#' + config.ui.routesDiv).change(function () {
+        var route_id = $(this).find(':selected')[0].value;
+        model.selected.route_id = route_id;
+        model.selected.trip_id = null;
+        model.selected.shape_id = null;
+        model.fetchTrips().done(populateTrips);
+        maps.update();
+        renderServices(route_id);
+        renderStopInfo(null);
+      });
 
-    $('select#' + config.ui.tripsDiv).change(function () {
-      var trip_id = $(this).find(':selected')[0].value;
-      model.selected.trip_id = trip_id;
-      model.getTripShape(trip_id);
-      maps.update();
-      renderStopInfo(null);
-    });
+      $('select#' + config.ui.tripsDiv).change(function () {
+        var trip_id = $(this).find(':selected')[0].value;
+        model.selected.trip_id = trip_id;
+        model.getTripShape(trip_id);
+        maps.update();
+        renderStopInfo(null);
+      });
 
-    $('select#' + config.ui.tracksDiv).change(function () {
-      var selected = $(this).find(':selected')[0];
-      var track = $(selected).val();
-      maps.update({track:track});
-    });
+      $('select#' + config.ui.tracksDiv).change(function () {
+        var selected = $(this).find(':selected')[0];
+        var track = $(selected).val();
+        maps.update({track:track});
+      });
 
     /*
     Both of these should be moved to the model when the data is 
     hosted there.
-     */
+    */
     function saveStops() {
       var stops = maps.readStops().stops;
       model.saveStops(stops).done(maps.update());
@@ -119,7 +121,7 @@ define(["jquery",
         maps.controls.modifyShape.deactivate();
         maps.controls.selectStops.activate();
       }
-    );
+      );
 
     $('#multipleSelect').toggle(
       function () {
@@ -132,7 +134,7 @@ define(["jquery",
         maps.controls.selectMultiple.deactivate();
         maps.controls.selectStops.activate();
       }
-    );
+      );
 
     $('#editStops').toggle(
       function () {
@@ -145,7 +147,7 @@ define(["jquery",
         maps.controls.modifyStops.deactivate();
         maps.controls.selectStops.activate();
       }
-    );
+      );
 
     $('#moveStops').toggle(
       function () {
@@ -158,7 +160,7 @@ define(["jquery",
         maps.controls.modifyBbox.deactivate();
         maps.controls.selectMultiple.activate();
       }
-    );
+      );
 
     $('#drawStops').toggle(
       function () {
@@ -171,7 +173,7 @@ define(["jquery",
         maps.controls.drawStops.deactivate();
         maps.controls.selectStops.activate();
       }
-    );
+      );
     
     $('#saveShape').click(function (e){
       e.preventDefault();
@@ -208,8 +210,8 @@ define(["jquery",
     $('#toggleTimepoint').click(function (e) {
       e.preventDefault();
       var trip_id = model.selected.trip_id,
-        stopFeature = maps.getSelectedStop(),
-        is_timepoint = stopFeature.data['is_timepoint'] ? 0 : 1;
+      stopFeature = maps.getSelectedStop(),
+      is_timepoint = stopFeature.data['is_timepoint'] ? 0 : 1;
 
       api.put({
         route: 'trip/'+trip_id+'/stop/'+stopFeature['fid']+'/timepoint',
@@ -261,7 +263,7 @@ define(["jquery",
     api.mergeStops(spec.keep,merge,
       function (response) {
         console.log(response);
-    });
+      });
   };
 
   function renderStopInfo(evt) {
@@ -284,7 +286,7 @@ define(["jquery",
         stopListDiv.append(templates.multiple({features: selectedFeatures}));
         $('#stopList table tr button').on('click',function(e){
           var merge = [],
-            keep = e.currentTarget.id;
+          keep = e.currentTarget.id;
 
           for (var i = 0; i < selectedFeatures.length; i++) {
             merge.push(selectedFeatures[i]['fid']);
@@ -304,8 +306,8 @@ define(["jquery",
   ui.init = function (spec) {
 
     maps.init({
-        layers:['bbox','notes','routes','gpx','stops'],
-        controls: 'editor'
+      layers:['bbox','notes','routes','gpx','stops'],
+      controls: 'editor'
     })
     .setCenter(config.initCenter);
 
@@ -314,6 +316,14 @@ define(["jquery",
     });
 
     model.fetchRoutes().done(populateRoutes);
+
+
+    // porting to backbone
+    var myRoutes = new routesCollection();
+    myRoutes.fetch();
+
+    // var routeBar = new RoutesSelectView({collection: myRoutes});
+    // var topBar = new TopBarView();
 
     setupButtons();
 

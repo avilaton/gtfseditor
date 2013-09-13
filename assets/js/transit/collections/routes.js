@@ -8,8 +8,24 @@ define([
 	RouteCollection = Backbone.Collection.extend({
 		model: RouteModel,
 
+		url: 'api/routes/',
+
 	    initialize: function(){
-            console.log("Welcome to this world", this);
+
+        },
+
+        parse: function (response) {
+        	return response.routes;
+        },
+
+        select: function (route_id) {
+        	var self = this;
+
+        	var selectedModel = _.find(self.models, function (model) {
+        		return model.get("route_id") == route_id;
+        	});
+
+        	this.selected = selectedModel;
         }
  	});
 

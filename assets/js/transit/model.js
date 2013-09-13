@@ -3,7 +3,7 @@ define([
   "transit/api",
   "transit/models/route",
   "transit/collections/routes"
-], function (config, api, route, routes) {
+], function (config, api, routeModel, routesCollection) {
   /**
    * Currently selected objects model
    */
@@ -12,12 +12,9 @@ define([
   var model = {},
     myroute, myroutes;
 
-  myroute = new route({name: "first route"});
-  myroutes = new routes({name: "new route!!"});
-  myroutes.add(myroute);
+  // myroutes = new routesCollection();
 
-  console.log(myroute);
-  console.log(myroutes);
+  // console.log(myroutes);
   model.unsavedChanges = false;
 
   model.selected = {

@@ -1,0 +1,7 @@
+<label for="trip">Trips</label>
+<select id="trip">
+  <option value=""> -- </option>
+  {{#each trips}}
+    <option value={{trip_id}}>{{trip_type}} {{trip_short_name}}</option>
+  {{/each}}
+</select>
