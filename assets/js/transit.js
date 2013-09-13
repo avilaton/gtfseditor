@@ -9,13 +9,13 @@ require.config({
         }
     },
     paths: {
-        "backbone": "lib/backbone-amd/backbone",
-        "jquery": "lib/jquery/jquery",
+        "backbone": "../../bower_components/backbone-amd/backbone",
+        "jquery": "../../bower_components/jquery/jquery",
         "OpenLayers": "lib/OpenLayers",
-        // "OpenLayers": "lib/openlayers/lib/OpenLayers",
-        "underscore": "lib/underscore-amd/underscore",
-        "handlebars": "lib/handlebars/handlebars",
-        "text": "lib/requirejs-text/text"
+        // "OpenLayers": "../../bower_components/openlayers/lib/OpenLayers",
+        "underscore": "../../bower_components/underscore-amd/underscore",
+        "handlebars": "../../bower_components/handlebars/handlebars",
+        "text": "../../bower_components/requirejs-text/text"
     }
 });
 

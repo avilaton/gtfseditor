@@ -41,6 +41,10 @@ def editor():
 def server_files(filepath):
   return static_file(filepath, root='./assets/')
 
+@route('/bower_components/<filepath:path>')
+def server_files(filepath):
+  return static_file(filepath, root='./bower_components/')
+
 @route('/api/stop/<stop_id>')
 def findStop(stop_id):
   return tb.findStop(stop_id)
