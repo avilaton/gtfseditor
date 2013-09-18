@@ -20,11 +20,12 @@ require.config({
 });
 
 require([
+    "transit/init",
     "transit/model",
     "transit/ui", 
     "transit/config"
     ],
-    function (model, ui, config) {
+    function (init, model, ui, config) {
     'use strict';
 
     var dataModel;
@@ -35,5 +36,6 @@ require([
         controls: 'editor'
     });
 
+    init.createControls();
 
 });

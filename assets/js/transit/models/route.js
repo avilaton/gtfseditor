@@ -2,9 +2,9 @@ define([
 	"underscore",
 	"backbone"
 ], function (_, Backbone) {
-	var RouteModel;
+	var Model;
 
-	RouteModel = Backbone.Model.extend({
+	Model = Backbone.Model.extend({
 		idAttribute: "route_id",
 
 	    initialize: function(){
@@ -12,5 +12,5 @@ define([
         }
  	});
 
-	return RouteModel;
+	return Model;
 })

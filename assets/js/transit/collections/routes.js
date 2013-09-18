@@ -26,6 +26,8 @@ define([
         	});
 
         	this.selected = selectedModel;
+
+            self.trigger('route_selected', selectedModel);
         }
  	});
 

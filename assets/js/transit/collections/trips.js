@@ -7,13 +7,15 @@ define([
 
     TripsCollection = Backbone.Collection.extend({
         model: TripModel,
+        
+        route_id: '',
 
         url: function() {
             return 'api/route/' + this.route_id + '/trips';
         },
 
-        initialize: function(routeModel){
-            this.route_id = routeModel.id;
+        initialize: function(){
+
         },
 
         parse: function (response) {
@@ -28,6 +30,8 @@ define([
             });
 
             this.selected = selectedModel;
+
+            self.trigger('trip_selected', selectedModel);
         }
     });
 

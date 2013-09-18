@@ -5,10 +5,8 @@ define([
 	var Model;
 
 	Model = Backbone.Model.extend({
-		idAttribute: "trip_id",
-
 	    initialize: function(){
-            
+
         }
  	});
 

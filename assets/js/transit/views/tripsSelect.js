@@ -8,6 +8,7 @@ define([
     var tripsSelect;
 
     tripsSelect = Backbone.View.extend({
+        el: $("#tripsSelect"),
 
         template: Handlebars.compile(tmpl),
 
@@ -15,40 +16,36 @@ define([
             "change select": "selectTrip"
         },
 
-        initialize: function(){
+        initialize: function(options){
             var self = this;
-            
+
+            self.routesCollection = options.routesCollection;
+
+            self.routesCollection.on('route_selected', self.routeChanged, self);
+
             this.render();
             
             this.collection.on("change add remove reset", self.render, self);
+        },
 
-            this.collection.on("trip_selected", self.yamon, self);
+        routeChanged: function (event) {
+            this.collection.route_id = event.get("route_id");
+            this.collection.fetch();
         },
 
         render: function () {
             var self = this;
 
             this.$el.html(this.template({
-                routes: self.collection.toJSON()
+                trips: self.collection.toJSON()
             }));
         },
 
-        selectRoute: function (event) {
+        selectTrip: function (event) {
             var self = this;
             var selectedValue = event.currentTarget.value;
 
             self.collection.select(selectedValue);
-
-            self.collection.trigger("route_selected");
-
-        },
-
-        yamon: function (event) {
-            var routeModel = this.collection.selected;
-            var trips = new TripsCollection(routeModel);
-            trips.fetch();
-            this.trips = trips.toJSON();
-            console.log(this);
         }
     });
 

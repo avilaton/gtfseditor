@@ -4,92 +4,15 @@ define(["jquery",
   "transit/api",
   "transit/maps",
   "transit/config",
-  "transit/utils",
-  "transit/collections/routes",
-  "transit/views/routesSelect",
-  "transit/views/topBar"
+  "transit/utils"
   ],
-  function ($, model, templates, api, maps, config, utils, routesCollection, 
-    RoutesSelectView, TopBarView) {
+  function ($, model, templates, api, maps, config, utils) {
 
     'use strict';
 
     var ui = {};
 
-    function populateTracks() {
-      var options = $('select#' + config.ui.tracksDiv);
-      function fillValues(values) {
-        options
-        .empty()
-        .append($('<option />').val('').text('Select an option'));
-        $.each(values, function () {
-          options.append($('<option />')
-            .val(this.filename)
-            .text(this.name));
-        });
-      };
-      api.get({
-        route: 'tracks/',
-        success: fillValues
-      });
-
-      return this;
-    };
-
-    function populateSelect(div, values, textSetter, valSetter) {
-      var options = $('select#' + div);
-      options
-      .empty()
-      .append($('<option />').val(null).text(' -- '));
-      $.each(values, function() {
-        options.append(
-          $('<option />')
-          .val(valSetter(this))
-          .text(textSetter(this))
-          );
-      });
-    };
-
-    function populateRoutes () {
-      var routeBar;
-
-      populateSelect(config.ui.routesDiv, model.routes, 
-        function text(d) {return 'Ruta '+d.route_id;},
-        function value(d) {return d.route_id;});
-    };
-
-    function populateTrips () {
-      populateSelect(config.ui.tripsDiv, model.trips, 
-        function text(data) {return 'Viaje hacia '+data.trip_headsign;},
-        function value(d) {return d.trip_id;});
-    };
-
     function setupButtons() {
-      $('select#' + config.ui.routesDiv).change(function () {
-        var route_id = $(this).find(':selected')[0].value;
-        model.selected.route_id = route_id;
-        model.selected.trip_id = null;
-        model.selected.shape_id = null;
-        model.fetchTrips().done(populateTrips);
-        maps.update();
-        renderServices(route_id);
-        renderStopInfo(null);
-      });
-
-      $('select#' + config.ui.tripsDiv).change(function () {
-        var trip_id = $(this).find(':selected')[0].value;
-        model.selected.trip_id = trip_id;
-        model.getTripShape(trip_id);
-        maps.update();
-        renderStopInfo(null);
-      });
-
-      $('select#' + config.ui.tracksDiv).change(function () {
-        var selected = $(this).find(':selected')[0];
-        var track = $(selected).val();
-        maps.update({track:track});
-      });
-
     /*
     Both of these should be moved to the model when the data is 
     hosted there.
@@ -248,14 +171,6 @@ define(["jquery",
     return this;
   };
 
-  function renderServices(route_id) {
-    var fillSchedule = function (data) {
-      var scheduleDiv = $('#schedule');
-      scheduleDiv.empty();
-      scheduleDiv.append(templates.schedule(data));
-    };
-    api.getServices(route_id, fillSchedule);
-  };
 
   function handleMerger(spec) {
     var merge;
@@ -314,16 +229,6 @@ define(["jquery",
     maps.setEventHandlers({
       renderStopInfo: renderStopInfo,
     });
-
-    model.fetchRoutes().done(populateRoutes);
-
-
-    // porting to backbone
-    var myRoutes = new routesCollection();
-    myRoutes.fetch();
-
-    // var routeBar = new RoutesSelectView({collection: myRoutes});
-    // var topBar = new TopBarView();
 
     setupButtons();
 

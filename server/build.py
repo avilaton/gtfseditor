@@ -107,7 +107,8 @@ def addRoutes(db,schedule,debug=False):
         if route_id not in ['C0'] and debug:
             continue
         r = schedule.AddRoute(short_name=route['route_short_name'], 
-            long_name=route['route_long_name'], 
+            #long_name=route['route_long_name'], 
+            long_name='', 
             route_id=route['route_id'],
             route_type=route['route_type'])
         r.agency_id = route['agency_id']
@@ -270,7 +271,7 @@ def main():
     schedule.WriteGoogleTransitFeed('compiled/google_transit.zip')
     #add feed info
     with zipfile.ZipFile('compiled/google_transit.zip', "a") as z:
-        z.write('compiled/feed_info.txt', 'feed_info.txt')
+        z.write('database/feed_info.txt', 'feed_info.txt')
 
     db.close()
     

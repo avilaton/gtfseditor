@@ -94,3 +94,6 @@ Reset stuff from bootstrap
   display: inline;
 }
 
+form.form-inline > div {
+  float:left;
+}
