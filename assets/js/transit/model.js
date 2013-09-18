@@ -2,19 +2,16 @@ define([
   "transit/config",
   "transit/api",
   "transit/models/route",
-  "transit/collections/routes"
-], function (config, api, routeModel, routesCollection) {
+  "transit/collections/routes",
+  "transit/models/shape"
+], function (config, api, routeModel, routesCollection, ShapeModel) {
   /**
    * Currently selected objects model
    */
   'use strict';
 
-  var model = {},
-    myroute, myroutes;
+  var model = {}, myroute, myroutes;
 
-  // myroutes = new routesCollection();
-
-  // console.log(myroutes);
   model.unsavedChanges = false;
 
   model.selected = {
@@ -26,12 +23,6 @@ define([
   model.routes = [];
   model.trips = {};
   model.stop = {};
-
-  model.init = function () {
-    return api.get({
-      route: 'routes/'
-    });
-  };
 
   model.select = function (features) {
     var selectedFeatures = JSON.parse(features).features;

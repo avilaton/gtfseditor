@@ -3,45 +3,58 @@ define([
 	"transit/views/routesSelect",
 	"transit/collections/trips",
 	"transit/views/tripsSelect",
+	"transit/views/shapesToolbox",
+	"transit/models/shape",
 	"transit/model",
-	"transit/maps"
-	], function (RoutesCollection, RoutesSelectView, TripsCollection, TripsSelectView, StateModel, Maps) {
+	"transit/maps",
+	"transit/models/state"
+	], function (RoutesCollection, RoutesSelectView, TripsCollection, 
+		TripsSelectView, ShapesToolboxView, ShapeModel,
+		oldModel, Maps, StateModel) {
 
 		function createControls () {
+			var state = window.app.state;
+			
 			console.log("create controls");
 
-	    // porting to backbone
-	    var myRoutes = new RoutesCollection();
-	    myRoutes.fetch();
-	    
-	    var myTrips = new TripsCollection();
- 
-	    var routeSelector = new RoutesSelectView({
-	    	collection: myRoutes
-	    });
+			state.routes = new RoutesCollection();
+			state.routes.fetch();
+			state.trips = new TripsCollection();
+		  	state.shape = new ShapeModel();
 
-	    var tripsSelector = new TripsSelectView({
-	    	routesCollection: myRoutes,
-	    	collection: myTrips
-	    });
-	    
-	    myRoutes.on("route_selected", function (selectedModel) {
-	    	StateModel.selected.route_id = selectedModel.get("route_id");
-	    	StateModel.selected.trip_id = '';
-	    	StateModel.selected.shape_id = '';
-	    	Maps.update();
-	    });
+			var routeSelector = new RoutesSelectView({
+				collection: state.routes
+			});
 
-	    myTrips.on("trip_selected", function (selectedModel) {
-	    	StateModel.selected.trip_id = selectedModel.get("trip_id");
-	    	StateModel.selected.shape_id = selectedModel.get("shape_id");
-	    	Maps.update();
-	    });
+			var tripsSelector = new TripsSelectView({
+				routesCollection: state.routes,
+				collection: state.trips
+			});
 
-	    // var topBar = new TopBarView();
-	};
+			state.routes.on("route_selected", function (selectedModel) {
+				oldModel.selected.route_id = selectedModel.get("route_id");
+				oldModel.selected.trip_id = '';
+				oldModel.selected.shape_id = '';
+				Maps.update();
+			});
 
-	return {
-		createControls: createControls
-	};
-});
+			state.trips.on("trip_selected", function (selectedModel) {
+				var shape_id = selectedModel.get("shape_id");
+				oldModel.selected.trip_id = selectedModel.get("trip_id");
+				oldModel.selected.shape_id = selectedModel.get("shape_id");
+				state.shape.set("shape_id", shape_id);
+				state.shape.fetch().done(function () {
+          Maps.update();
+        });
+			});
+
+
+			var myShapesToolbox = new ShapesToolboxView({
+				model: state.shape
+			});
+		};
+
+		return {
+			createControls: createControls
+		};
+	});

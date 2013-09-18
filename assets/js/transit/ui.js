@@ -21,10 +21,6 @@ define(["jquery",
       var stops = maps.readStops().stops;
       model.saveStops(stops).done(maps.update());
     };
-    function saveShape() {
-      var shape = maps.readShape().shape;
-      model.saveShape(shape).done(maps.update());
-    };
 
     $('#prevStop').click(maps.skipHandler(-1));
     $('#nextStop').click(maps.skipHandler(1));
@@ -97,22 +93,10 @@ define(["jquery",
         maps.controls.selectStops.activate();
       }
       );
-    
-    $('#saveShape').click(function (e){
-      e.preventDefault();
-      saveShape()
-    });
 
     $('#saveStops').click(function (e){
       e.preventDefault();
       saveStops()
-    });
-
-    $('#revShape').click(function (e){
-      e.preventDefault();
-      /* Should be model.reverseShape when all has been moved */
-      maps.reverseShape()
-      saveShape();
     });
 
     $('#sortStops').click(function (e){
@@ -218,10 +202,10 @@ define(["jquery",
     };
   };
 
-  ui.init = function (spec) {
+  ui.init = function () {
 
     maps.init({
-      layers:['bbox','notes','routes','gpx','stops'],
+      layers:['bbox','notes','routes','gpx','stops', 'shapes'],
       controls: 'editor'
     })
     .setCenter(config.initCenter);

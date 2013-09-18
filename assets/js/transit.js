@@ -21,20 +21,18 @@ require.config({
 
 require([
     "transit/init",
-    "transit/model",
     "transit/ui", 
-    "transit/config"
+    "transit/config",
+    "transit/models/state"
     ],
-    function (init, model, ui, config) {
+    function (init, ui, config, StateModel) {
     'use strict';
 
-    var dataModel;
+    var app = window.app = {};
 
-    dataModel = model.init();
+    app.state = new StateModel();
 
-    ui.init({
-        controls: 'editor'
-    });
+    ui.init();
 
     init.createControls();
 

@@ -3,66 +3,69 @@ define(["OpenLayers",
   "transit/model",
   "transit/styles",
   "transit/utils",
-  "transit/config"], function (OpenLayers, $, model, styles, utils, config) {
+  "transit/config",
+  "transit/models/state"
+  ], function (OpenLayers, $, model, styles, utils, config, StateModel) {
 
-  'use strict';
+    'use strict';
 
-  var maps = {},
+    var maps = {},
     map = {},
     vectorFormat = {},
     layerAdder = {},
     routesLayer,
+    shapesLayer,
     stopsLayer,
     bboxLayer,
     notesLayer,
     gpxLayer,
     controls = {};
 
-  maps.init = function (spec) {
-    var layers = spec.layers, l,
+    maps.init = function (spec) {
+      var layers = spec.layers, l,
       baselayer, gmap, gsat, osmLayer;
 
-    map = new OpenLayers.Map(config.ui.mapDiv, {
-      controls: [
+      map = new OpenLayers.Map(config.ui.mapDiv, {
+        controls: [
         new OpenLayers.Control.LayerSwitcher(),
         new OpenLayers.Control.Navigation(),
         new OpenLayers.Control.PanZoomBar()
-      ]
-    });
-
-    maps.map = map;
-
-    if (config.localOsm) {
-      baselayer = new OpenLayers.Layer.OSM('Mosaico Local',
-        'http://localhost:8005/${z}/${x}/${y}.png',
-        {numZoomLevels: 22, alpha: true, isBaseLayer: true});
-      map.addLayer(baselayer);
-      osmLayer = new OpenLayers.Layer.OSM('OSM Map');
-      map.addLayer(osmLayer);
-    } else {
-      baselayer = new OpenLayers.Layer.OSM('OSM Map');
-      map.addLayer(baselayer);
-    }
-
-    if (typeof (google) === 'object') {
-      gmap = new OpenLayers.Layer.Google('Google Streets', {
-        numZoomLevels: 22,
-        animationEnabled: false
+        ]
       });
-      map.addLayer(gmap);
-      gsat = new OpenLayers.Layer.Google('Google Satellite', {
-        type: google.maps.MapTypeId.SATELLITE,
-        numZoomLevels: 22,
-        animationEnabled: false
-      });
-      map.addLayer(gsat);
-      gsat.mapObject.setTilt(0);
-    };
 
-    vectorFormat = new OpenLayers.Format.GeoJSON({
-      'internalProjection': map.baseLayer.projection,
-      'externalProjection': new OpenLayers.Projection("EPSG:4326")
-    });
+      maps.map = map;
+
+      if (config.localOsm) {
+        baselayer = new OpenLayers.Layer.OSM('Mosaico Local',
+          'http://localhost:8005/${z}/${x}/${y}.png',
+          {numZoomLevels: 22, alpha: true, isBaseLayer: true});
+        map.addLayer(baselayer);
+        osmLayer = new OpenLayers.Layer.OSM('OSM Map');
+        map.addLayer(osmLayer);
+      } else {
+        baselayer = new OpenLayers.Layer.OSM('OSM Map');
+        map.addLayer(baselayer);
+      }
+
+      if (typeof (google) === 'object') {
+        gmap = new OpenLayers.Layer.Google('Google Streets', {
+          numZoomLevels: 22,
+          animationEnabled: false
+        });
+        map.addLayer(gmap);
+        gsat = new OpenLayers.Layer.Google('Google Satellite', {
+          type: google.maps.MapTypeId.SATELLITE,
+          numZoomLevels: 22,
+          animationEnabled: false
+        });
+        map.addLayer(gsat);
+        gsat.mapObject.setTilt(0);
+      };
+
+      vectorFormat = new OpenLayers.Format.GeoJSON({
+        'internalProjection': map.baseLayer.projection,
+        'externalProjection': new OpenLayers.Projection("EPSG:4326")
+      });
 
 
     // Add Layers
@@ -81,12 +84,12 @@ define(["OpenLayers",
   maps.setCenter = function (spec) {
     map.setCenter(
       new OpenLayers.LonLat(spec.lon, spec.lat)
-        .transform(
-          new OpenLayers.Projection('EPSG:4326'),
-          map.getProjectionObject()
+      .transform(
+        new OpenLayers.Projection('EPSG:4326'),
+        map.getProjectionObject()
         ),
       spec.zoom
-    );
+      );
   };
 
   layerAdder.notes = function () {
@@ -96,6 +99,17 @@ define(["OpenLayers",
     notesLayer.id = 'notes';
 
     map.addLayer(notesLayer);
+
+    return maps;
+  };
+
+  layerAdder.shapes = function () {
+    shapesLayer = new OpenLayers.Layer.Vector('Shapes', {
+      styleMap: styles.routesStyleMap
+    });
+    notesLayer.id = 'shapes';
+
+    map.addLayer(shapesLayer);
 
     return maps;
   };
@@ -124,8 +138,8 @@ define(["OpenLayers",
       protocol: new OpenLayers.Protocol.HTTP({
         format: new OpenLayers.Format.GeoJSON(),
         url: config.vectorLayerUrl
-        })
-      });
+      })
+    });
 
     routesLayer.id = 'routes';
 
@@ -156,8 +170,8 @@ define(["OpenLayers",
       visibility: true,
       strategies: [new OpenLayers.Strategy.BBOX({resFactor: 2.0})],
       protocol: new OpenLayers.Protocol.HTTP({
-      format: new OpenLayers.Format.GeoJSON(),
-      url: config.vectorLayerUrl+'bbox'
+        format: new OpenLayers.Format.GeoJSON(),
+        url: config.vectorLayerUrl+'bbox'
       })
     });
     bboxLayer.id = 'bbox';
@@ -207,7 +221,7 @@ define(["OpenLayers",
     map.addControl(controls.modifyShape);
     
     controls.drawStops = new OpenLayers.Control.DrawFeature(stopsLayer,
-                OpenLayers.Handler.Point);
+      OpenLayers.Handler.Point);
     map.addControl(controls.drawStops);
     
     controls.geolocate = new OpenLayers.Control.Geolocate({
@@ -237,14 +251,14 @@ define(["OpenLayers",
           e.position.coords.accuracy/2,
           40,
           0
-        ),
+          ),
         {},
         {
           fillColor: '#000',
           fillOpacity: 0.1,
           strokeWidth: 0
         }
-      );
+        );
       circle.id = 'userAccuracy';
       
       cross = new OpenLayers.Feature.Vector(
@@ -257,7 +271,7 @@ define(["OpenLayers",
           fillOpacity: 0,
           pointRadius: 10
         }
-      );
+        );
       cross.id = 'userCross';
       
       notesLayer.addFeatures([cross,circle]);
@@ -268,57 +282,62 @@ define(["OpenLayers",
         //~ this.bind = true; 
       }
     });
-    controls.geolocate.events.register("locationfailed", this, function() {
-      console.log('Location detection failed');
-    });
-    controls.geolocate.watch = true;
-    firstGeolocation = true;
-    controls.geolocate.activate();
+controls.geolocate.events.register("locationfailed", this, function() {
+  console.log('Location detection failed');
+});
+controls.geolocate.watch = true;
+firstGeolocation = true;
+controls.geolocate.activate();
 
-    controls.selectStops.activate();
+controls.selectStops.activate();
 
-    maps.controls = controls;
-    return maps;
-  };
+maps.controls = controls;
+return maps;
+};
 
-  function selectFeatures (context) {
-    var selectedFeatures = context.object.selectedFeatures;
-    var formatedFeatures = vectorFormat.write(selectedFeatures);
-    model.select(formatedFeatures);
-  };
+function selectFeatures (context) {
+  var selectedFeatures = context.object.selectedFeatures;
+  var formatedFeatures = vectorFormat.write(selectedFeatures);
+  model.select(formatedFeatures);
+};
 
-  maps.setEventHandlers = function (handlers) {
-    stopsLayer.events.register('featureselected', stopsLayer,
-      handlers.renderStopInfo);
-    stopsLayer.events.register('featureunselected',stopsLayer,
-      handlers.renderStopInfo);
-    bboxLayer.events.register('featureselected',bboxLayer,
-      handlers.renderStopInfo);
-    bboxLayer.events.register('featureunselected',bboxLayer,
-      handlers.renderStopInfo);
-    bboxLayer.events.on({
-      'featureselected': selectFeatures,
-      'featureunselected': selectFeatures,
-      scope: bboxLayer
-    });
-    routesLayer.events.register('loadend',
-      {
-        'routesLayer':routesLayer,
-        'notesLayer':notesLayer
-      },
-      utils.endsRenderer);
-  };
+maps.setEventHandlers = function (handlers) {
+  stopsLayer.events.register('featureselected', stopsLayer,
+    handlers.renderStopInfo);
+  stopsLayer.events.register('featureunselected',stopsLayer,
+    handlers.renderStopInfo);
+  bboxLayer.events.register('featureselected',bboxLayer,
+    handlers.renderStopInfo);
+  bboxLayer.events.register('featureunselected',bboxLayer,
+    handlers.renderStopInfo);
+  bboxLayer.events.on({
+    'featureselected': selectFeatures,
+    'featureunselected': selectFeatures,
+    scope: bboxLayer
+  });
+  routesLayer.events.register('loadend',
+  {
+    'routesLayer':routesLayer,
+    'notesLayer':notesLayer
+  },
+  utils.endsRenderer);
+};
 
-  maps.bboxGetSelected = function () {
-    return bboxLayer.selectedFeatures
-  };
+maps.bboxGetSelected = function () {
+  return bboxLayer.selectedFeatures
+};
 
-  maps.update = function () {
-    routesLayer.refresh({url: routesLayer.protocol.url+'shape/'+model.selected.shape_id})
-    controls.selectStops.deactivate();
-    stopsLayer.refresh({url: stopsLayer.protocol.url+'trip/'+model.selected.trip_id+'/stops'});
-    controls.selectStops.activate();
-    notesLayer.refresh();
+maps.update = function () {
+  console.log(app.state.shape);
+  var ft = vectorFormat.read(app.state.shape.toJSON());
+  shapesLayer.removeAllFeatures();
+  shapesLayer.addFeatures(ft);
+  shapesLayer.refresh();
+  routesLayer.refresh({url: routesLayer.protocol.url+'shape/'+model.selected.shape_id})
+  controls.selectStops.deactivate();
+  stopsLayer.refresh({url: stopsLayer.protocol.url+'trip/'+model.selected.trip_id+'/stops'});
+  controls.selectStops.activate();
+  notesLayer.refresh();
     //gpxLayer.refresh({url:'gpx/'+spec.track});
   };
 
@@ -332,65 +351,65 @@ define(["OpenLayers",
     var stops = vectorFormat.write(stopsLayer.features, true);
     return {trip_id: trip_id,
       stops: stops};
-  };
-
-  maps.readBbox = function () {
-    var stops = vectorFormat.write(bboxLayer.features);
-    console.log(stops);
-    return {stops: stops};
-  };
-
-  maps.destroySelected = function () {
-    stopsLayer.selectedFeatures[0].destroy();
-    return;
-  };
-
-  maps.getSelectedStop = function () {
-    return stopsLayer.selectedFeatures[0];
-  };
-
-  maps.appendSelected = function () {
-    stopsLayer.addFeatures(bboxLayer.selectedFeatures);
-    return;
-  };
-
-  maps.reverseShape = function () {
-    var shape = routesLayer.features[0];
-    shape.geometry.components.reverse();
-  };
-
-  maps.skipHandler = function (i) {
-    function skipper() {
-      var selectedFeature = stopsLayer.selectedFeatures[0];
-      var ordinal = selectedFeature.data.stop_seq;    
-      var nextSelected = stopsLayer.getFeaturesByAttribute('stop_seq',ordinal+i)[0];
-      
-      var current;
-      if (controls.selectStops.active) {
-        current = controls.selectStops;
-      } else if (controls.modifyStops.active) {
-        current = controls.modifyStops.selectControl;
-      };
-      if (nextSelected) {
-        current.unselectAll();
-        current.select(nextSelected);
-        map.setCenter(
-          new OpenLayers.LonLat(nextSelected.geometry.x,
-            nextSelected.geometry.y));
-      };
-      return false;
     };
 
-    return skipper;
-  };
+    maps.readBbox = function () {
+      var stops = vectorFormat.write(bboxLayer.features);
+      console.log(stops);
+      return {stops: stops};
+    };
 
-  maps.showUserLocation = function (position) {
+    maps.destroySelected = function () {
+      stopsLayer.selectedFeatures[0].destroy();
+      return;
+    };
 
-  };
+    maps.getSelectedStop = function () {
+      return stopsLayer.selectedFeatures[0];
+    };
 
-  maps.center = function () {
-    transit.maps.utils.logmap(map);
-  }
-  return maps;
+    maps.appendSelected = function () {
+      stopsLayer.addFeatures(bboxLayer.selectedFeatures);
+      return;
+    };
 
-});
+    maps.reverseShape = function () {
+      var shape = routesLayer.features[0];
+      shape.geometry.components.reverse();
+    };
+
+    maps.skipHandler = function (i) {
+      function skipper() {
+        var selectedFeature = stopsLayer.selectedFeatures[0];
+        var ordinal = selectedFeature.data.stop_seq;    
+        var nextSelected = stopsLayer.getFeaturesByAttribute('stop_seq',ordinal+i)[0];
+
+        var current;
+        if (controls.selectStops.active) {
+          current = controls.selectStops;
+        } else if (controls.modifyStops.active) {
+          current = controls.modifyStops.selectControl;
+        };
+        if (nextSelected) {
+          current.unselectAll();
+          current.select(nextSelected);
+          map.setCenter(
+            new OpenLayers.LonLat(nextSelected.geometry.x,
+              nextSelected.geometry.y));
+        };
+        return false;
+      };
+
+      return skipper;
+    };
+
+    maps.showUserLocation = function (position) {
+
+    };
+
+    maps.center = function () {
+      transit.maps.utils.logmap(map);
+    }
+    return maps;
+
+  });
