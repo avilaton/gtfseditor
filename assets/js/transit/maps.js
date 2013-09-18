@@ -282,62 +282,58 @@ define(["OpenLayers",
         //~ this.bind = true; 
       }
     });
-controls.geolocate.events.register("locationfailed", this, function() {
-  console.log('Location detection failed');
-});
-controls.geolocate.watch = true;
-firstGeolocation = true;
-controls.geolocate.activate();
 
-controls.selectStops.activate();
-
-maps.controls = controls;
-return maps;
-};
-
-function selectFeatures (context) {
-  var selectedFeatures = context.object.selectedFeatures;
-  var formatedFeatures = vectorFormat.write(selectedFeatures);
-  model.select(formatedFeatures);
-};
-
-maps.setEventHandlers = function (handlers) {
-  stopsLayer.events.register('featureselected', stopsLayer,
-    handlers.renderStopInfo);
-  stopsLayer.events.register('featureunselected',stopsLayer,
-    handlers.renderStopInfo);
-  bboxLayer.events.register('featureselected',bboxLayer,
-    handlers.renderStopInfo);
-  bboxLayer.events.register('featureunselected',bboxLayer,
-    handlers.renderStopInfo);
-  bboxLayer.events.on({
-    'featureselected': selectFeatures,
-    'featureunselected': selectFeatures,
-    scope: bboxLayer
+  controls.geolocate.events.register("locationfailed", this, function() {
+    console.log('Location detection failed');
   });
-  routesLayer.events.register('loadend',
-  {
-    'routesLayer':routesLayer,
-    'notesLayer':notesLayer
-  },
-  utils.endsRenderer);
-};
+  controls.geolocate.watch = true;
+  firstGeolocation = true;
+  controls.geolocate.activate();
 
-maps.bboxGetSelected = function () {
-  return bboxLayer.selectedFeatures
-};
-
-maps.update = function () {
-  console.log(app.state.shape);
-  var ft = vectorFormat.read(app.state.shape.toJSON());
-  shapesLayer.removeAllFeatures();
-  shapesLayer.addFeatures(ft);
-  shapesLayer.refresh();
-  routesLayer.refresh({url: routesLayer.protocol.url+'shape/'+model.selected.shape_id})
-  controls.selectStops.deactivate();
-  stopsLayer.refresh({url: stopsLayer.protocol.url+'trip/'+model.selected.trip_id+'/stops'});
   controls.selectStops.activate();
-  notesLayer.refresh();
+
+  maps.controls = controls;
+  return maps;
+  };
+
+  function selectFeatures (context) {
+    var selectedFeatures = context.object.selectedFeatures;
+    var formatedFeatures = vectorFormat.write(selectedFeatures);
+    model.select(formatedFeatures);
+  };
+
+  maps.setEventHandlers = function (handlers) {
+    stopsLayer.events.register('featureselected', stopsLayer,
+      handlers.renderStopInfo);
+    stopsLayer.events.register('featureunselected',stopsLayer,
+      handlers.renderStopInfo);
+    bboxLayer.events.register('featureselected',bboxLayer,
+      handlers.renderStopInfo);
+    bboxLayer.events.register('featureunselected',bboxLayer,
+      handlers.renderStopInfo);
+    bboxLayer.events.on({
+      'featureselected': selectFeatures,
+      'featureunselected': selectFeatures,
+      scope: bboxLayer
+    });
+    routesLayer.events.register('loadend',
+    {
+      'routesLayer':routesLayer,
+      'notesLayer':notesLayer
+    },
+    utils.endsRenderer);
+  };
+
+  maps.bboxGetSelected = function () {
+    return bboxLayer.selectedFeatures
+  };
+
+  maps.update = function () {
+    routesLayer.refresh({url: routesLayer.protocol.url+'shape/'+model.selected.shape_id})
+    controls.selectStops.deactivate();
+    stopsLayer.refresh({url: stopsLayer.protocol.url+'trip/'+model.selected.trip_id+'/stops'});
+    controls.selectStops.activate();
+    notesLayer.refresh();
     //gpxLayer.refresh({url:'gpx/'+spec.track});
   };
 

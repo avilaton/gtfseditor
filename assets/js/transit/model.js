@@ -55,11 +55,6 @@ define([
       .done(function (stops) {model.stops = stops;});
   };
 
-  model.fetchShape = function() {
-    return api.get({route: 'shape/'+model.selected.shape_id})
-      .done(function (data) {model.shape = data;});
-  };
-
   model.saveStops = function (stops) {
     return api.put({
         route: 'trip/'+model.selected.trip_id+'/stops',

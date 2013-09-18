@@ -204,15 +204,15 @@ define(["jquery",
 
   ui.init = function () {
 
-    maps.init({
-      layers:['bbox','notes','routes','gpx','stops', 'shapes'],
-      controls: 'editor'
-    })
-    .setCenter(config.initCenter);
+    // maps.init({
+    //   layers:['bbox','notes','routes','gpx','stops', 'shapes'],
+    //   controls: 'editor'
+    // })
+    // .setCenter(config.initCenter);
 
-    maps.setEventHandlers({
-      renderStopInfo: renderStopInfo,
-    });
+    // maps.setEventHandlers({
+    //   renderStopInfo: renderStopInfo,
+    // });
 
     setupButtons();
 

@@ -7,10 +7,11 @@ define([
 	"transit/models/shape",
 	"transit/model",
 	"transit/maps",
+  "transit/views/map",
 	"transit/models/state"
 	], function (RoutesCollection, RoutesSelectView, TripsCollection, 
 		TripsSelectView, ShapesToolboxView, ShapeModel,
-		oldModel, Maps, StateModel) {
+		oldModel, Maps, MapView, StateModel) {
 
 		function createControls () {
 			var state = window.app.state;
@@ -20,7 +21,7 @@ define([
 			state.routes = new RoutesCollection();
 			state.routes.fetch();
 			state.trips = new TripsCollection();
-		  	state.shape = new ShapeModel();
+		  state.shape = new ShapeModel();
 
 			var routeSelector = new RoutesSelectView({
 				collection: state.routes
@@ -31,27 +32,29 @@ define([
 				collection: state.trips
 			});
 
-			state.routes.on("route_selected", function (selectedModel) {
-				oldModel.selected.route_id = selectedModel.get("route_id");
-				oldModel.selected.trip_id = '';
-				oldModel.selected.shape_id = '';
-				Maps.update();
-			});
+      var myMap = new MapView({
+        shape: state.shape
+      });
 
-			state.trips.on("trip_selected", function (selectedModel) {
-				var shape_id = selectedModel.get("shape_id");
-				oldModel.selected.trip_id = selectedModel.get("trip_id");
-				oldModel.selected.shape_id = selectedModel.get("shape_id");
-				state.shape.set("shape_id", shape_id);
-				state.shape.fetch().done(function () {
-          Maps.update();
+      myMap.panAndZoom();
+
+      myMap.addShapesLayer();
+      myMap.addBboxLayer();
+
+      state.trips.on("trip_selected", function (selectedModel) {
+        var shape_id = selectedModel.get("shape_id");
+
+        state.shape.set("shape_id", shape_id);
+        state.shape.fetch().done(function () {
+          // Maps.update();
+          myMap.updateShapesLayer();
         });
-			});
+      });
 
+      var myShapesToolbox = new ShapesToolboxView({
+        model: state.shape
+      });
 
-			var myShapesToolbox = new ShapesToolboxView({
-				model: state.shape
-			});
 		};
 
 		return {
