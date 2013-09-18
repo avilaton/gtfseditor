@@ -1,27 +1,28 @@
 define([
-	"transit/collections/routes",
-	"transit/views/routesSelect",
-	"transit/collections/trips",
-	"transit/views/tripsSelect",
-	"transit/views/shapesToolbox",
 	"transit/models/shape",
-	"transit/model",
-	"transit/maps",
-  "transit/views/map",
-	"transit/models/state"
-	], function (RoutesCollection, RoutesSelectView, TripsCollection, 
-		TripsSelectView, ShapesToolboxView, ShapeModel,
-		oldModel, Maps, MapView, StateModel) {
+  "transit/collections/routes",
+  "transit/collections/trips",
+  "transit/collections/stops",
+  "transit/views/routesSelect",
+  "transit/views/tripsSelect",
+  "transit/views/shapesToolbox",
+  "transit/views/map"
+	], 
+  function (ShapeModel, RoutesCollection, TripsCollection, StopsCollection,
+    RoutesSelectView, TripsSelectView, ShapesToolboxView, MapView) {
 
 		function createControls () {
 			var state = window.app.state;
 			
 			console.log("create controls");
 
-			state.routes = new RoutesCollection();
+      state.routes = new RoutesCollection();
+			state.stops = new StopsCollection();
+
+      state.trips = new TripsCollection();
+      state.shape = new ShapeModel();
+
 			state.routes.fetch();
-			state.trips = new TripsCollection();
-		  state.shape = new ShapeModel();
 
 			var routeSelector = new RoutesSelectView({
 				collection: state.routes
@@ -33,21 +34,29 @@ define([
 			});
 
       var myMap = new MapView({
-        shape: state.shape
+        shape: state.shape,
+        stops: state.stops
       });
 
       myMap.panAndZoom();
 
-      myMap.addShapesLayer();
       myMap.addBboxLayer();
+      myMap.addShapesLayer();
+      myMap.addStopsLayer();
+      myMap.addOldControls();
 
       state.trips.on("trip_selected", function (selectedModel) {
+        var trip_id = selectedModel.get("trip_id");
         var shape_id = selectedModel.get("shape_id");
 
         state.shape.set("shape_id", shape_id);
         state.shape.fetch().done(function () {
-          // Maps.update();
           myMap.updateShapesLayer();
+        });
+
+        state.stops.trip_id = trip_id;
+        state.stops.fetch().done(function () {
+          myMap.updateStopsLayer();
         });
       });
 

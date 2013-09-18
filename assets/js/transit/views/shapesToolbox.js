@@ -1,46 +1,44 @@
 define([
-    "underscore",
-    "backbone",
-    "handlebars",
-    "text!transit/templates/shapesToolbox.handlebars"
-], function (_, Backbone, Handlebars, tmpl) {
+  "underscore",
+  "backbone",
+  "handlebars",
+  "text!transit/templates/shapesToolbox.handlebars"
+  ], function (_, Backbone, Handlebars, tmpl) {
     var View;
 
     View = Backbone.View.extend({
-        el: $("#shapesToolbox"),
-        
-        template: Handlebars.compile(tmpl),
+      el: $("#shapesToolbox"),
 
-        events: {
-            "click button.revertShape": "revertShape",
-            "click button.editShape": "editShape",
-            "click button.saveShape": "saveShape"
-        },
+      template: Handlebars.compile(tmpl),
 
-        initialize: function(options){
-            var self = this;
-            
-            this.render();
-            
-            this.model.on("change reset", self.render, self);
-        },
+      events: {
+        "click button.revertShape": "revertShape",
+        "click button.editShape": "editShape",
+        "click button.saveShape": "saveShape"
+      },
 
-        render: function () {
-            var self = this;
+      initialize: function(options){
+        var self = this;
 
-            this.$el.html(this.template({
-                // routes: self.collection.toJSON()
-            }));
-        },
+        this.render();
 
-        revertShape: function (event) {
-            this.model.reverse();
-        },
+        this.model.on("change reset", self.render, self);
+      },
 
-        saveShape: function (event) {
-            this.model.save();
-        }
+      render: function () {
+        var self = this;
+
+        this.$el.html(this.template());
+      },
+
+      revertShape: function (event) {
+        this.model.reverse();
+      },
+
+      saveShape: function (event) {
+        this.model.save();
+      }
     });
 
     return View;
-})
+  })

@@ -21,18 +21,15 @@ require.config({
 
 require([
     "transit/init",
-    "transit/ui", 
     "transit/config",
     "transit/models/state"
     ],
-    function (init, ui, config, StateModel) {
+    function (init, config, StateModel) {
     'use strict';
 
     var app = window.app = {};
 
     app.state = new StateModel();
-
-    ui.init();
 
     init.createControls();
 

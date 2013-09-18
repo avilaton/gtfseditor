@@ -13,6 +13,7 @@ define([
         var self = this;
 
         self.shape = options.shape;
+        self.stops = options.stops;
 
         this.map = new OpenLayers.Map('map', {
           controls : [
@@ -46,6 +47,14 @@ define([
         this.shapesLayer.removeAllFeatures();
         this.shapesLayer.addFeatures(ft);
         self.shapesLayer.refresh();
+      },
+
+      updateStopsLayer: function () {
+        var self = this;
+        var ft = this.format.read(self.stops.geoJSON);
+        this.stopsLayer.removeAllFeatures();
+        this.stopsLayer.addFeatures(ft);
+        this.stopsLayer.refresh();
       },
 
       addGoogleMapsLayers: function () {
@@ -124,13 +133,7 @@ define([
       addStopsLayer: function () {
         var self = this;
         this.stopsLayer = new OpenLayers.Layer.Vector('Selected route stops', {
-          styleMap: Styles.stopsStyleMap,
-          projection: new OpenLayers.Projection('EPSG:4326'),
-          strategies: [new OpenLayers.Strategy.Fixed()],
-          protocol: new OpenLayers.Protocol.HTTP({
-            format: new OpenLayers.Format.GeoJSON(),
-            url: config.vectorLayerUrl
-          })
+          styleMap: Styles.stopsStyleMap
         });
         this.stopsLayer.id = 'stops';
         
@@ -153,6 +156,29 @@ define([
         this.map.addLayer(self.bboxLayer);
       },
 
+      attachEventHandlers: function () {
+        var self = this;
+        this.stopsLayer.events.register('featureselected', self.stopsLayer,
+          handlers.renderStopInfo);
+        this.stopsLayer.events.register('featureunselected', self.stopsLayer,
+          handlers.renderStopInfo);
+        this.bboxLayer.events.register('featureselected', self.bboxLayer,
+          handlers.renderStopInfo);
+        this.bboxLayer.events.register('featureunselected', self.bboxLayer,
+          handlers.renderStopInfo);
+        this.bboxLayer.events.on({
+          'featureselected': selectFeatures,
+          'featureunselected': selectFeatures,
+          scope: bboxLayer
+        });
+        this.shapesLayer.events.register('loadend',
+        {
+          'routesLayer':routesLayer,
+          'notesLayer':notesLayer
+        },
+        utils.endsRenderer);
+      },
+
       panAndZoom: function (lon, lat, zoom) {
         var lon = lon || -64.1857371;
         var lat = lat || -31.4128832;
@@ -165,8 +191,6 @@ define([
             ), zoom
           );
       },
-
-
 
       addSelectControl: function (layerIds) {
         var self = this,
@@ -200,45 +224,130 @@ define([
         control.activate();
       },
 
-      addLayer: function (spec) {
-        var layer;
-
-        layer = new OpenLayers.Layer.GML(spec.filename, "./data/" + spec.filename, {
-          format: OpenLayers.Format.GeoJSON,
-          styleMap: Styles["select"],
-          visibility: false
-        });
-        layer.id = spec.filename;
-
-        this.map.addLayer(layer);
-      },
-
-      setVisibility: function (layerId,visibility) {
-        this.map.getLayer(layerId).setVisibility(visibility);
-      },
-
-      setSelectable: function (layerId) {
-        var layer = this.map.getLayer(layerId),
-        control = this.map.getControl("selectControl");
-
-        control.setLayer(layer);
-      },
-
-      setCurrent: function (layerId) {
+      addOldControls: function () {
         var self = this;
+        var controls = {};
 
-        _.each(self.layers.models, function (model) {
-          self.mapView.setVisibility(model.attributes.filename, false)
+        controls.selectStops = new OpenLayers.Control.SelectFeature(
+          [self.stopsLayer,self.bboxLayer],
+          {
+            id: 'selectStops',
+            clickout: true, toggle: false,
+            multiple: false, hover: false
+          });
+        this.map.addControl(controls.selectStops);
+
+
+        controls.selectMultiple = new OpenLayers.Control.SelectFeature(
+          self.bboxLayer,
+          {
+            id: 'selectMultiple',
+            multiple: true, multipleKey: 'shiftKey', 
+            box: true,
+            clickout: true, toggle: true,
+            hover: false
+          });
+        this.map.addControl(controls.selectMultiple);
+
+        controls.modifyStops = new OpenLayers.Control.ModifyFeature(
+          self.stopsLayer,{id: 'modifyStops'});
+        self.map.addControl(controls.modifyStops);
+
+        controls.modifyBbox = new OpenLayers.Control.ModifyFeature(
+          self.bboxLayer,{id: 'modifyBbox'});
+        self.map.addControl(controls.modifyBbox);
+
+        controls.modifyShape = new OpenLayers.Control.ModifyFeature(
+          self.shapesLayer,{
+            id: 'modifyShape',
+            vertexRenderIntent: 'vertex'
+          });
+        this.map.addControl(controls.modifyShape);
+        
+        controls.drawStops = new OpenLayers.Control.DrawFeature(self.stopsLayer,
+          OpenLayers.Handler.Point);
+        this.map.addControl(controls.drawStops);
+        
+        controls.selectStops.activate();
+      },
+
+      addGeolocationControl: function () {
+        var firstGeolocation;
+
+        controls.geolocate = new OpenLayers.Control.Geolocate({
+          bind: false,
+          geolocationOptions: {
+            enableHighAccuracy: false,
+            maximumAge: 0,
+            timeout: 7000
+          }
+        });
+        map.addControl(controls.geolocate);
+        
+        controls.geolocate.events.register("locationupdated",controls.geolocate,function(e) {
+          console.log('location updated');
+          var cross = notesLayer.getFeatureById('userCross');
+          var circle = notesLayer.getFeatureById('userAccuracy');
+          if (cross) {
+            notesLayer.removeFeatures(cross);
+          }
+          if (circle) {
+            notesLayer.removeFeatures(circle);
+          }
+          
+          circle = new OpenLayers.Feature.Vector(
+            OpenLayers.Geometry.Polygon.createRegularPolygon(
+              new OpenLayers.Geometry.Point(e.point.x, e.point.y),
+              e.position.coords.accuracy/2,
+              40,
+              0
+              ),
+            {},
+            {
+              fillColor: '#000',
+              fillOpacity: 0.1,
+              strokeWidth: 0
+            }
+            );
+          circle.id = 'userAccuracy';
+          
+          cross = new OpenLayers.Feature.Vector(
+            e.point,
+            {},
+            {
+              graphicName: 'cross',
+              strokeColor: '#f00',
+              strokeWidth: 2,
+              fillOpacity: 0,
+              pointRadius: 10
+            }
+            );
+          cross.id = 'userCross';
+          
+          notesLayer.addFeatures([cross,circle]);
+          
+          if (firstGeolocation) {
+            firstGeolocation = false;
+            // the following will center the map to the user's location
+            //~ this.bind = true; 
+          }
         });
 
-        this.mapView.setVisibility(layerId, true);
+        controls.geolocate.events.register("locationfailed", this, function() {
+          console.log('Location detection failed');
+        });
+        controls.geolocate.watch = true;
+        firstGeolocation = true;
+        controls.geolocate.activate();
+
+        controls.selectStops.activate();
+
+        maps.controls = controls;
       },
 
       toJSON: function (features) {
         var result = this.format.write(features);
         console.log("feature to json", result);
-        $('#result').text(result);
-        // this.trigger("featureselected");
       },
 
       selectedFeature: function (event) {
