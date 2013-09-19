@@ -1,26 +1,30 @@
 define([
-	"transit/models/shape",
+  "transit/models/shape",
+	"transit/models/stop",
   "transit/collections/routes",
   "transit/collections/trips",
   "transit/collections/stops",
   "transit/views/routesSelect",
   "transit/views/tripsSelect",
   "transit/views/shapesToolbox",
+  "transit/views/sequenceToolbox",
+  "transit/views/stopData",
   "transit/views/map"
 	], 
-  function (ShapeModel, RoutesCollection, TripsCollection, StopsCollection,
-    RoutesSelectView, TripsSelectView, ShapesToolboxView, MapView) {
+  function (ShapeModel, StopModel, RoutesCollection, TripsCollection, 
+    StopsCollection, RoutesSelectView, TripsSelectView, ShapesToolboxView, 
+    SequenceToolboxView, StopDataView, MapView) {
 
 		function createControls () {
 			var state = window.app.state;
 			
-			console.log("create controls");
+			// console.log("create controls");
 
       state.routes = new RoutesCollection();
-			state.stops = new StopsCollection();
-
       state.trips = new TripsCollection();
       state.shape = new ShapeModel();
+      state.stops = new StopsCollection();
+      state.stop = new StopModel();
 
 			state.routes.fetch();
 
@@ -33,9 +37,22 @@ define([
 				collection: state.trips
 			});
 
+      var myShapesToolbox = new ShapesToolboxView({
+        model: state.shape
+      });
+
+      var mySequenceToolbox = new SequenceToolboxView({
+        collection: state.stops
+      });
+
+      var myStopData = new StopDataView({
+        model: state.stop
+      });
+
       var myMap = new MapView({
         shape: state.shape,
-        stops: state.stops
+        stops: state.stops,
+        stop: state.stop
       });
 
       myMap.panAndZoom();
@@ -44,6 +61,7 @@ define([
       myMap.addShapesLayer();
       myMap.addStopsLayer();
       myMap.addOldControls();
+      myMap.attachEventHandlers();
 
       state.trips.on("trip_selected", function (selectedModel) {
         var trip_id = selectedModel.get("trip_id");
@@ -58,10 +76,6 @@ define([
         state.stops.fetch().done(function () {
           myMap.updateStopsLayer();
         });
-      });
-
-      var myShapesToolbox = new ShapesToolboxView({
-        model: state.shape
       });
 
 		};

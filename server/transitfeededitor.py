@@ -32,11 +32,6 @@ def unnamed():
   result += '\n'.join(unnamed)
   return result
 
-@route('/stops')
-def editor():
-  #redirect("/")
-  return static_file('stops.html',root='./')
-
 @route('/assets/<filepath:path>')
 def server_files(filepath):
   return static_file(filepath, root='./assets/')

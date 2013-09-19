@@ -74,14 +74,14 @@ define([
 
    Styles.stopsStyleMap = new OpenLayers.StyleMap({
     'default': new OpenLayers.Style({
-      strokeColor: 'black', strokeWidth: 3, strokeOpacity: 1, 
-      pointRadius: 6, fillColor: 'yellow', fill: true, 
+      strokeColor: 'black', strokeWidth: 2, strokeOpacity: 1, 
+      pointRadius: 5, fillColor: 'white', fill: true, 
       fillOpacity: 1
     })
     ,
     'select': new OpenLayers.Style({
-      strokeColor: 'black', strokeWidth: 3, strokeOpacity: 1, 
-      pointRadius: 8, fillColor: 'red', fill: true, fillOpacity: 1,
+      strokeColor: 'black', strokeWidth: 2, strokeOpacity: 1, 
+      pointRadius: 8, fillColor: 'red', fill: true, fillOpacity: .6,
       label: '${stop_id}',
       fontColor: "black", fontSize: "16px", 
       fontFamily: "Courier New, monospace", fontWeight: "bold",

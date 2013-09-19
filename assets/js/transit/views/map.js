@@ -14,6 +14,7 @@ define([
 
         self.shape = options.shape;
         self.stops = options.stops;
+        self.stop = options.stop;
 
         this.map = new OpenLayers.Map('map', {
           controls : [
@@ -39,6 +40,7 @@ define([
           'externalProjection': new OpenLayers.Projection("EPSG:4326")
         });
 
+        self.stops.on("trip_stop_selected", self.selectTripStop, self);
       },
 
       updateShapesLayer: function () {
@@ -133,6 +135,7 @@ define([
       addStopsLayer: function () {
         var self = this;
         this.stopsLayer = new OpenLayers.Layer.Vector('Selected route stops', {
+          projection: new OpenLayers.Projection('EPSG:4326'),
           styleMap: Styles.stopsStyleMap
         });
         this.stopsLayer.id = 'stops';
@@ -156,40 +159,56 @@ define([
         this.map.addLayer(self.bboxLayer);
       },
 
-      attachEventHandlers: function () {
-        var self = this;
-        this.stopsLayer.events.register('featureselected', self.stopsLayer,
-          handlers.renderStopInfo);
-        this.stopsLayer.events.register('featureunselected', self.stopsLayer,
-          handlers.renderStopInfo);
-        this.bboxLayer.events.register('featureselected', self.bboxLayer,
-          handlers.renderStopInfo);
-        this.bboxLayer.events.register('featureunselected', self.bboxLayer,
-          handlers.renderStopInfo);
-        this.bboxLayer.events.on({
-          'featureselected': selectFeatures,
-          'featureunselected': selectFeatures,
-          scope: bboxLayer
-        });
-        this.shapesLayer.events.register('loadend',
-        {
-          'routesLayer':routesLayer,
-          'notesLayer':notesLayer
-        },
-        utils.endsRenderer);
+      selectTripStop: function (selectedModel) {
+        var stop_id = selectedModel.get("id");
+
+        var newSelection = this.stopsLayer.getFeaturesByAttribute("stop_id", stop_id)[0];
+
+        if (newSelection) {
+          this.controls.selectStops.unselectAll();
+          this.controls.selectStops.select(newSelection);
+          // console.log(newSelection.geometry.getBounds().getCenterLonLat());
+        };
       },
 
-      panAndZoom: function (lon, lat, zoom) {
-        var lon = lon || -64.1857371;
-        var lat = lat || -31.4128832;
-        var zoom = zoom || 12;
+      onSingleFeatureSelected: function (event) {
+        var feature = event.feature;
 
-        this.map.setCenter(
-          new OpenLayers.LonLat(lon, lat).transform(
-            new OpenLayers.Projection("EPSG:4326"),
-            this.map.getProjectionObject()
-            ), zoom
-          );
+        // this.format.extract.feature(feature) fails, check issue at openlayers
+        var geoJSON = this.format.write(feature);
+        this.stop.set(JSON.parse(geoJSON));
+
+        this.stops.select(feature.fid);
+      },
+
+      onMultipleFeatureSelected: function (event) {
+        console.log(event);
+      },
+
+      attachEventHandlers: function () {
+        var self = this;
+        this.stopsLayer.events.register('featureselected', self,
+          self.onSingleFeatureSelected);
+        // this.stopsLayer.events.register('featureunselected', self,
+        //   self.onSingleFeatureSelected);
+
+        this.bboxLayer.events.register('featureselected', self,
+          self.onSingleFeatureSelected);
+        this.bboxLayer.events.register('featureunselected', self,
+          self.onSingleFeatureSelected);
+
+        // this.bboxLayer.events.on({
+        //   'featureselected': self.onMultipleFeatureSelected,
+        //   'featureunselected': self.onMultipleFeatureSelected,
+        //   scope: self.bboxLayer
+        // });
+
+        // this.shapesLayer.events.register('loadend',
+        // {
+        //   'routesLayer':self.routesLayer,
+        //   'notesLayer':self.notesLayer
+        // },
+        // utils.endsRenderer);
       },
 
       addSelectControl: function (layerIds) {
@@ -228,6 +247,8 @@ define([
         var self = this;
         var controls = {};
 
+        this.controls = controls;
+
         controls.selectStops = new OpenLayers.Control.SelectFeature(
           [self.stopsLayer,self.bboxLayer],
           {
@@ -236,7 +257,6 @@ define([
             multiple: false, hover: false
           });
         this.map.addControl(controls.selectStops);
-
 
         controls.selectMultiple = new OpenLayers.Control.SelectFeature(
           self.bboxLayer,
@@ -345,13 +365,44 @@ define([
         maps.controls = controls;
       },
 
+      skip: function () {
+        var selectedFeature = this.stopsLayer.selectedFeatures[0];
+        var ordinal = selectedFeature.data.stop_seq;
+        console.log(selectedFeatures);
+        var nextSelected = stopsLayer.getFeaturesByAttribute('stop_seq',ordinal+i)[0];
+
+        var current;
+        if (controls.selectStops.active) {
+          current = controls.selectStops;
+        } else if (controls.modifyStops.active) {
+          current = controls.modifyStops.selectControl;
+        };
+        if (nextSelected) {
+          current.unselectAll();
+          current.select(nextSelected);
+          map.setCenter(
+            new OpenLayers.LonLat(nextSelected.geometry.x,
+              nextSelected.geometry.y));
+        };
+        return false;
+      },
+
+      panAndZoom: function (lon, lat, zoom) {
+        var lon = lon || -64.1857371;
+        var lat = lat || -31.4128832;
+        var zoom = zoom || 12;
+
+        this.map.setCenter(
+          new OpenLayers.LonLat(lon, lat).transform(
+            new OpenLayers.Projection("EPSG:4326"),
+            this.map.getProjectionObject()
+            ), zoom
+          );
+      },
+
       toJSON: function (features) {
         var result = this.format.write(features);
         console.log("feature to json", result);
-      },
-
-      selectedFeature: function (event) {
-        App.vent.trigger("featureselected", event);
       }
 
     }); 

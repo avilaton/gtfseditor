@@ -26,16 +26,6 @@
             </div>
           </label>
       </form>
-      <!--
-      <form class="form-inline">
-        <label for="routes">Route
-          <select id="routes"></select>
-        </label>
-        <label for="trips">Trip
-          <select id="trips"></select>
-        </label>
-      </form>
-      -->
     </div>
     <div id="topBar">
     </div>
@@ -44,7 +34,7 @@
       <div id="leftbar">
         <div id="shapesToolbox"></div>
         
-        <label>Trip Stops</label>
+        <label>Trip Tools</label>
           <div class="control-group">
             <div class="btn-group">
               <button class="btn btn-small" id="sortStops">Sort</button>
@@ -52,6 +42,7 @@
               <button class="btn btn-small" id="multipleSelect">Multiple</button>
             </div>
           </div>
+
           <div class="control-group">
             <div class="btn-group">
               <button type="button" class="btn btn-small" id="editStops"><i class="icon-move"></i></button>
@@ -63,11 +54,8 @@
             </div>
           </div>
           
-          <div class="btn-group">
-            <button class="btn btn-small" id="prevStop"><i class="icon-backward"></i></button>
-            <button class="btn btn-small" id="nextStop"><i class="icon-forward"></i></button>
-          </div>
-          <div id="stopAttr"></div>
+          <div id="sequenceToolbox"></div>
+          <div id="stopData"></div>
           <hr>
           <div id="stopList"></div>
       </div>      
@@ -98,52 +86,7 @@
     </div>
 
   <!-- Templates -->
-  <script id="stopInfoTemplate" type="text/x-handlebars">
-  <h5>Stop Attributes</h5>
-  <div class="">
-    <table class="table table-hover table-condensed">
-    <tbody>
-      <tr data-id="stop_id">  
-        <td>Id</td>
-        <td>{{attributes.stop_id}}</td>
-      </tr>
-      <tr data-id="stop_seq">  
-      <td>Ordinal</td>
-      <td>{{attributes.stop_seq}}</td>
-      </tr>
-      <tr data-id="is_timepoint_code">  
-      <td>Control Tiempo</td>
-      <td>{{#boolCompare attributes.is_timepoint}}this{{/boolCompare}}</td>
-      </tr>
-      <tr data-id="stop_calle">  
-        <td>Calle</td>
-        <td>
-          <input id="stop_calle" type="text"class="input-medium" value="{{attributes.stop_calle}}" placeholder="Calle">
-        </td>
-      </tr>
-      <tr data-id="stop_numero">  
-      <td>Número</td>
-      <td>{{attributes.stop_numero}}</td>
-      </tr>
-      <tr data-id="stop_entre">  
-      <td>Entre</td>
-      <td>{{attributes.stop_entre}}</td>
-      </tr>
-      <tr data-id="stop_esquina">  
-      <td>Esquina</td>
-      <td>{{attributes.stop_esquina}}</td>
-      <tr data-id="stop_lineas">
-      <td>Lineas</td>
-      <td>
-        {{#each attributes.stop_lineas}}
-        <span>{{this}}, </span>{{/each}}
-      </td>
-      </tr>
-    </tbody>
-    </table>
-    <button id="saveStopData" class="btn btn-primary">Save</button>
-  </div>
-  </script>
+
   <script id="multipleTemplate" type="text/x-handlebars">
   <h4>Selected Stops</h4>
   <table class="table table-hover table-condensed">

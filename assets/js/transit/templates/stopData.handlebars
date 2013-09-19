@@ -1,0 +1,44 @@
+<h5>Stop Attributes</h5>
+<div class="">        
+  <table class="table table-hover table-condensed">
+  <tbody>
+    <tr data-id="stop_id">  
+      <td>Id</td>
+      <td>{{stop.properties.stop_id}}</td>
+    </tr>
+    <tr data-id="stop_seq">  
+    <td>Ordinal</td>
+    <td>{{stop.properties.stop_seq}}</td>
+    </tr>
+    <tr data-id="is_timepoint_code">  
+    <td>Control Tiempo</td>
+    <td>{{stop.properties.is_timepoint}}</td>
+    </tr>
+    <tr data-id="stop_calle">  
+      <td>Calle</td>
+      <td>
+        <input id="stop_calle" type="text"class="input-medium" value="{{stop.properties.stop_calle}}" placeholder="Calle">
+      </td>
+    </tr>
+    <tr data-id="stop_numero">  
+    <td>Número</td>
+    <td>{{stop.properties.stop_numero}}</td>
+    </tr>
+    <tr data-id="stop_entre">  
+    <td>Entre</td>
+    <td>{{stop.properties.stop_entre}}</td>
+    </tr>
+    <tr data-id="stop_esquina">  
+    <td>Esquina</td>
+    <td>{{stop.properties.stop_esquina}}</td>
+    <tr data-id="stop_lineas">
+    <td>Lineas</td>
+    <td>
+      {{#each stop.properties.stop_lineas}}
+      <span>{{this}}, </span>{{/each}}
+    </td>
+    </tr>
+  </tbody>
+  </table>
+  <button id="saveStopData" class="btn btn-primary">Save</button>
+</div>
