@@ -20,18 +20,6 @@ def before_request():
   #db.open()
   return
 
-@route('/bower_components/<filepath:path>')
-def server_files(filepath):
-  return static_file(filepath, root='./bower_components/')
-
-@route('/<filepath:path>')
-def server_files(filepath):
-  return static_file(filepath, root='./public/')
-
-# @route('/')
-# def index():
-#   return static_file('index.html',root='./')
-
 @route('/api/reports/unnamed')
 def unnamed():
   response.content_type = 'text/plain'
@@ -102,6 +90,16 @@ def set_timepoint(trip_id,stop_id):
 def getBBOX():
   bbox = request.query['bbox']
   return tb.bbox(bbox)
+
+@route('/bower_components/<filepath:path>')
+def server_files(filepath):
+  return static_file(filepath, root='./bower_components/')
+
+@route('/<filepath:path>')
+def server_files(filepath):
+  return static_file(filepath, root='./public/')
+
+
 
 import bottle
 
