@@ -21,10 +21,9 @@ require.config({
 
 require([
     "transit/init",
-    "transit/config",
     "transit/models/state"
     ],
-    function (init, config, StateModel) {
+    function (init, StateModel) {
     'use strict';
 
     var app = window.app = {};
