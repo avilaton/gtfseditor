@@ -46,6 +46,10 @@ define([
             });
 
             this.select(newSelectedModel.get("id"));
+        },
+
+        save: function () {
+            throw "not implemented";
         }
     });
 
