@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GTFS Transit Feed Editor">
+  <meta name="author" content="Gastón Avila">
+  <title>GTFS Transit Feed Editor</title>
+  <script data-main="/js/main" src="/bower_components/requirejs/require.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link href="/css/bootstrap/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+  <div id="header_container">
+    <div id="header">
+      GTFS Transit Feed Editor
+    </div>
+  </div>
+  <div id="actions_container">
+    <form class="form-inline">
+      <div id="routesSelect"></div>
+      <div id="tripsSelect"></div>
+      <label>Stops
+        <div class="input-append">
+          <input id="stop_id" type="text" />
+          <button class="btn" id="findStop"><i class="icon-search"></i> Find</button>
+        </div>
+      </label>
+    </form>
+  </div>
+
+  <div id="container">
+    <div id="leftbar">
+      <div id="shapesToolbox"></div>
+
+      <div id="sequenceToolbox"></div>
+
+      <div id="stopData"></div>
+      <hr>
+      <div id="stopList"></div>
+    </div>
+
+    <div id="map"></div>
+
+  </div>
+
+  <div id="footer_container">
+    beta
+  </div>
+</body>
+</html>

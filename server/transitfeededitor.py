@@ -20,9 +20,17 @@ def before_request():
   #db.open()
   return
 
-@route('/')
-def index():
-  return static_file('index.html',root='./')
+@route('/bower_components/<filepath:path>')
+def server_files(filepath):
+  return static_file(filepath, root='./bower_components/')
+
+@route('/<filepath:path>')
+def server_files(filepath):
+  return static_file(filepath, root='./public/')
+
+# @route('/')
+# def index():
+#   return static_file('index.html',root='./')
 
 @route('/api/reports/unnamed')
 def unnamed():
@@ -36,9 +44,6 @@ def unnamed():
 def server_files(filepath):
   return static_file(filepath, root='./assets/')
 
-@route('/bower_components/<filepath:path>')
-def server_files(filepath):
-  return static_file(filepath, root='./bower_components/')
 
 @route('/api/stop/<stop_id>')
 def findStop(stop_id):
