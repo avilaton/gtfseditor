@@ -4,6 +4,7 @@ define([
   "transit/collections/routes",
   "transit/collections/trips",
   "transit/collections/stops",
+  "transit/views/filter",
   "transit/views/routesSelect",
   "transit/views/tripsSelect",
   "transit/views/shapesToolbox",
@@ -12,8 +13,8 @@ define([
   "transit/views/map"
 	], 
   function (ShapeModel, StopModel, RoutesCollection, TripsCollection, 
-    StopsCollection, RoutesSelectView, TripsSelectView, ShapesToolboxView, 
-    SequenceToolboxView, StopDataView, MapView) {
+    StopsCollection, FilterView, RoutesSelectView, TripsSelectView, 
+    ShapesToolboxView, SequenceToolboxView, StopDataView, MapView) {
 
 		function createControls () {
 			var state = window.app.state;
@@ -27,6 +28,8 @@ define([
       state.stop = new StopModel();
 
 			state.routes.fetch();
+
+      var filterBox = new FilterView();
 
 			var routeSelector = new RoutesSelectView({
 				collection: state.routes

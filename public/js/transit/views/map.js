@@ -151,7 +151,8 @@ define([
           strategies: [new OpenLayers.Strategy.BBOX({resFactor: 2.0})],
           protocol: new OpenLayers.Protocol.HTTP({
             format: new OpenLayers.Format.GeoJSON(),
-            url: 'api/bbox'
+            url: 'api/bbox',
+            params: {filter:'Colon y sarmiento'}
           })
         });
         this.bboxLayer.id = 'bbox';

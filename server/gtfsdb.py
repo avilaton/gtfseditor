@@ -108,7 +108,7 @@ class toolbox(object):
       features.append(f)
     return geojson.geoJsonFeatCollection(features)
 
-  def bbox(self, bbox):
+  def bbox(self, bbox, filterQuery):
     w,s,e,n = map(float,bbox.split(','))
     q = """SELECT * 
       FROM stops s INNER JOIN stop_seq sq ON s.stop_id=sq.stop_id

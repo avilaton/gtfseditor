@@ -89,7 +89,9 @@ def set_timepoint(trip_id,stop_id):
 @route('/api/bbox')
 def getBBOX():
   bbox = request.query['bbox']
-  return tb.bbox(bbox)
+  filterQuery = request.query['filter']
+  print filterQuery
+  return tb.bbox(bbox, filterQuery)
 
 @route('/bower_components/<filepath:path>')
 def server_files(filepath):
