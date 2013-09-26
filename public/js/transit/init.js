@@ -29,16 +29,15 @@ define([
 
 			state.routes.fetch();
 
-      var filterBox = new FilterView();
 
-			var routeSelector = new RoutesSelectView({
-				collection: state.routes
-			});
+      var routeSelector = new RoutesSelectView({
+        collection: state.routes
+      });
 
-			var tripsSelector = new TripsSelectView({
-				routesCollection: state.routes,
-				collection: state.trips
-			});
+      var tripsSelector = new TripsSelectView({
+        routesCollection: state.routes,
+        collection: state.trips
+      });
 
       var myShapesToolbox = new ShapesToolboxView({
         model: state.shape
@@ -58,6 +57,7 @@ define([
         stop: state.stop
       });
 
+
       myMap.panAndZoom();
 
       myMap.addBboxLayer();
@@ -66,6 +66,10 @@ define([
       myMap.addOldControls();
       myMap.attachEventHandlers();
 
+      var filterBox = new FilterView({
+        bboxLayer: myMap.bboxLayer
+      });
+      
       state.trips.on("trip_selected", function (selectedModel) {
         var trip_id = selectedModel.get("trip_id");
         var shape_id = selectedModel.get("shape_id");

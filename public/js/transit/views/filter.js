@@ -12,23 +12,26 @@ define([
         template: Handlebars.compile(tmpl),
 
         events: {
-            // "click .filter-button": "onClickFilter",
-            "submit .filter-form": "onSubmitFilter"
+            "click .filter-button": "onClickFilter",
+            // "submit form#filter": "onSubmitFilter",
+            'keyup input.filter-value': 'onChangeFilter'
         },
 
-        initialize: function(){
-            var self = this;
-            
+        initialize: function(options){
+            this.bboxLayer = options.bboxLayer;
             this.render();
-            
         },
 
         render: function () {
             var self = this;
 
-            this.$el.html(this.template({
-                // routes: self.collection.toJSON()
-            }));
+            this.$el.html(this.template({}));
+        },
+
+        onChangeFilter: function (event) {
+            var val = $(event.currentTarget).val();
+            this.bboxLayer.protocol.params.filter = val;
+            this.bboxLayer.refresh({force:true});
         },
 
         onClickFilter: function (event) {
@@ -37,6 +40,8 @@ define([
         },
 
         onSubmitFilter: function (event) {
+            // this is not working because this form is contained in another form 
+            // to get controls aligned. 
             event.preventDefault();
             console.log(event);
         }

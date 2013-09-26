@@ -110,14 +110,26 @@ class toolbox(object):
 
   def bbox(self, bbox, filterQuery):
     w,s,e,n = map(float,bbox.split(','))
-    q = """SELECT * 
-      FROM stops s INNER JOIN stop_seq sq ON s.stop_id=sq.stop_id
-      WHERE
-        (stop_lat BETWEEN {s} AND {n})
-        AND 
-        (stop_lon BETWEEN {w} AND {e})
-      LIMIT 300
-      """.format(s=s,n=n,w=w,e=e)
+    if filterQuery:
+      q = """SELECT * 
+        FROM stops s INNER JOIN stop_seq sq ON s.stop_id=sq.stop_id
+        WHERE
+          (stop_lat BETWEEN {s} AND {n})
+          AND 
+          (stop_lon BETWEEN {w} AND {e})
+          AND stop_calle LIKE '%{f}%'
+        LIMIT 300
+        """.format(s=s,n=n,w=w,e=e, f=filterQuery)
+    else:
+      q = """SELECT * 
+        FROM stops s INNER JOIN stop_seq sq ON s.stop_id=sq.stop_id
+        WHERE
+          (stop_lat BETWEEN {s} AND {n})
+          AND 
+          (stop_lon BETWEEN {w} AND {e})
+        LIMIT 300
+        """.format(s=s,n=n,w=w,e=e)
+
     self.db.query(q)
     features = []
     d = {}

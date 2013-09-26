@@ -27,7 +27,7 @@ define([
 
         render: function () {
             var self = this;
-            console.log("stop data view:", this);
+            // console.log("stop data view:", this);
 
             this.$el.html(this.template({
                 stop: self.model.toJSON()

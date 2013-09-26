@@ -145,10 +145,19 @@ define([
 
       addBboxLayer: function () {
         var self = this;
+
+        var refreshStrategy = new OpenLayers.Strategy.Refresh({
+          // interval: 1000, 
+          force: true
+        });
+
         this.bboxLayer = new OpenLayers.Layer.Vector('Existing stops', {
           projection: new OpenLayers.Projection('EPSG:4326'),
           visibility: true,
-          strategies: [new OpenLayers.Strategy.BBOX({resFactor: 2.0})],
+          strategies: [
+            new OpenLayers.Strategy.BBOX({resFactor: 2.0}),
+            refreshStrategy
+            ],
           protocol: new OpenLayers.Protocol.HTTP({
             format: new OpenLayers.Format.GeoJSON(),
             url: 'api/bbox',
@@ -156,6 +165,8 @@ define([
           })
         });
         this.bboxLayer.id = 'bbox';
+
+        refreshStrategy.activate();
 
         this.map.addLayer(self.bboxLayer);
       },
@@ -172,7 +183,7 @@ define([
         };
       },
 
-      onSingleFeatureSelected: function (event) {
+      onTripFeatureSelected: function (event) {
         var feature = event.feature;
 
         // this.format.extract.feature(feature) fails, check issue at openlayers
@@ -180,6 +191,23 @@ define([
         this.stop.set(JSON.parse(geoJSON));
 
         this.stops.select(feature.fid);
+
+        if (event.type == "featureselected") {
+          this.stop.set(JSON.parse(geoJSON));
+        } else if (event.type == "featureunselected") {
+          this.stop.clear();
+        };
+      },
+
+      onBboxFeatureSelected: function (event) {
+        var feature = event.feature;
+
+        var geoJSON = this.format.write(feature);
+        if (event.type == "featureselected") {
+          this.stop.set(JSON.parse(geoJSON));
+        } else if (event.type == "featureunselected") {
+          this.stop.clear();
+        };
       },
 
       onMultipleFeatureSelected: function (event) {
@@ -189,14 +217,14 @@ define([
       attachEventHandlers: function () {
         var self = this;
         this.stopsLayer.events.register('featureselected', self,
-          self.onSingleFeatureSelected);
+          self.onTripFeatureSelected);
         // this.stopsLayer.events.register('featureunselected', self,
-        //   self.onSingleFeatureSelected);
+        //   self.onTripFeatureSelected);
 
         this.bboxLayer.events.register('featureselected', self,
-          self.onSingleFeatureSelected);
+          self.onBboxFeatureSelected);
         this.bboxLayer.events.register('featureunselected', self,
-          self.onSingleFeatureSelected);
+          self.onBboxFeatureSelected);
 
         // this.bboxLayer.events.on({
         //   'featureselected': self.onMultipleFeatureSelected,
