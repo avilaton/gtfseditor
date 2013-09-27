@@ -65,10 +65,12 @@ define([
       myMap.addStopsLayer();
       myMap.addOldControls();
       myMap.attachEventHandlers();
+      // myMap.bboxLayer.refresh({force: true});
 
       var filterBox = new FilterView({
         bboxLayer: myMap.bboxLayer
       });
+
       
       state.trips.on("trip_selected", function (selectedModel) {
         var trip_id = selectedModel.get("trip_id");

@@ -161,7 +161,7 @@ define([
           protocol: new OpenLayers.Protocol.HTTP({
             format: new OpenLayers.Format.GeoJSON(),
             url: 'api/bbox',
-            params: {filter:'Colon y sarmiento'}
+            params: {filter:''}
           })
         });
         this.bboxLayer.id = 'bbox';
