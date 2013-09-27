@@ -3,7 +3,9 @@
 
 from __future__ import division
 
+import os
 import zipfile
+import codecs
 
 import transitfeed
 import datetime
@@ -75,20 +77,13 @@ def addStops(db,schedule,debug=False):
             (SELECT DISTINCT stop_id FROM stop_seq)"""
     
     db.query(q)
-    # for s in db.select('stops'):
+
     for s in db.cursor.fetchall():
-        stop = db.select('stops',stop_id=s['stop_id'])[0]
-        lat = stop['stop_lat']
-        lng = stop['stop_lon']
-        if stop['stop_calle'] and not stop['stop_numero']:
-            name = stop['stop_calle']
-        elif stop['stop_calle'] and stop['stop_numero']:
-            name = stop['stop_calle'] + ' ' + str(stop['stop_numero'])
-        else:
-            name = stop['stop_id']
-        stop_id = stop['stop_id']
-        stop = schedule.AddStop(lat=float(lat),lng=float(lng),name=name,stop_id=stop_id)
-        stop.stop_code = stop['stop_id']
+        lat = s['stop_lat']
+        lng = s['stop_lon']
+        stop_id = s['stop_id']
+        stop = schedule.AddStop(lat=float(lat),lng=float(lng),name=s['stop_name'],stop_id=stop_id)
+        stop.stop_code = s['stop_id']
 
 def addShapes(db,schedule,debug=False):
     db.query("""SELECT DISTINCT shape_id FROM shapes""")
@@ -147,7 +142,7 @@ def addStopTimes(db,schedule,interpolate=True, debug=False):
         trip_timepoints = gettimepoints(db, trip_id)
         # print trip_timepoints
         total_time = hhmmss2sec(trip_timepoints[-1])
-        print "total time for", trip_id, " is: ", sec2hhmmss(total_time), "distance: ", total_distance
+        # print "total time for", trip_id, " is: ", sec2hhmmss(total_time), "distance: ", total_distance
 
         for i,s in enumerate(trip_stops):
             stop_id = s['stop_id']
@@ -241,51 +236,107 @@ def updateDistTraveled(db):
                 AND stop_id='{stop_id}'""".format(d=d, trip_id=trip_id, stop_id=stop_id)
             db.query(q)
 
-def main():
-    debug = False
+def createFeedInfoFile(db, debug):
+    import csv
 
+    writer = csv.DictWriter(open('dict.csv', 'w'), fieldnames)
+    keys = ['feed_publisher_name', 'feed_start_date', 'feed_version', 
+        'feed_end_date', 'feed_lang', 'feed_publisher_url']
+    rows = []
+    rows = [dict(r) for r in db.select('feed_info')]
+    for r in rows:
+        print dict((k, v.encode('utf-8')) for k, v in r.iteritems())
+
+
+def constructStopNames(db):
+    db.query("""SELECT * FROM stops WHERE stop_id IN 
+        (SELECT DISTINCT stop_id FROM stop_seq)""")
+
+    for stop in db.cursor.fetchall():
+        lat = stop['stop_lat']
+        lng = stop['stop_lon']
+        if stop['stop_calle']:
+            if stop['stop_numero']:
+                name = stop['stop_calle'] + ' ' + str(stop['stop_numero'])
+            else:
+                if stop['stop_entre']:
+                    if ' y ' in stop['stop_entre']:
+                        name = stop['stop_calle'] + u' entre ' + stop['stop_entre']
+                    else:
+                        name = stop['stop_calle'] + u', ' + stop['stop_entre']
+                else:
+                    name = stop['stop_calle']
+        else:
+            name = stop['stop_id']
+        # print name
+        db.query("""UPDATE stops SET stop_name='{name}' 
+            WHERE stop_id='{stop_id}' """.format(name=name.encode('utf-8'), stop_id=stop['stop_id']))
+
+def buildSchedule(db, debug):
     schedule = transitfeed.Schedule()
-    db = o.dbInterface('database/dbRecorridos.sqlite')
-
-    myFeed = Schedule(db, debug=debug)
-
-    myFeed.loadAgencies()
-    #myFeed.loadCalendar()
-
-    # updateDistTraveled(db)
-
-    addAgencies(db, schedule, debug=debug)
-    addCalendar(db, schedule, debug=debug)
-    addCalendarDates(db, schedule, debug=debug)
-    addStops(db, schedule, debug=debug)
-    addShapes(db, schedule, debug=debug)
-    addRoutes(db, schedule, debug=debug)
-    addTrips(db, schedule, debug=debug)
+    
+    addAgencies(db, schedule, debug)
+    addCalendar(db, schedule, debug)
+    addCalendarDates(db, schedule, debug)
+    addStops(db, schedule, debug)
+    addShapes(db, schedule, debug)
+    addRoutes(db, schedule, debug)
+    addTrips(db, schedule, debug)
     addStopTimes(db, schedule, interpolate=True, debug=debug)
-    addFrequencies(db, schedule, debug=debug)
+    addFrequencies(db, schedule, debug)
     addFeedInfo(schedule)
+    return schedule
+
+
+def attachFeedInfo():
+    # createFeedInfoFile(db, debug=DEBUG)
+    # add feed info
+    with zipfile.ZipFile('compiled/google_transit.zip', "a") as z:
+        z.write('database/feed_info.txt', 'feed_info.txt')
+
+    
+    #extract for debuging
+
+    with zipfile.ZipFile('compiled/google_transit.zip', "r") as z:
+        if not os.path.exists('extracted/'):
+            os.makedirs('extracted/')
+        for filename in z.namelist():
+            with file('extracted/'+filename, "w") as outfile:
+                outfile.write(z.read(filename))
+
+def validateAndSaveSchedule(schedule):
     #accumulator = transitfeed.ProblemAccumulatorInterface()
     #reporter = transitfeed.ProblemReporter(accumulator)
     #schedule.Validate(reporter)
     schedule.Validate()
     schedule.WriteGoogleTransitFeed('compiled/google_transit.zip')
-    #add feed info
-    with zipfile.ZipFile('compiled/google_transit.zip', "a") as z:
-        z.write('database/feed_info.txt', 'feed_info.txt')
+
+    attachFeedInfo()
+
+def main():
+    DEBUG = False
+
+    db = o.dbInterface('database/dbRecorridos.sqlite')
+
+    # myFeed = Schedule(db, debug=DEBUG)
+    # myFeed.loadAgencies()
+    # myFeed.loadCalendar()
+    # updateDistTraveled(db)
+
+    constructStopNames(db)
+    
+    schedule = buildSchedule(db, DEBUG)
 
     db.close()
-    
-    #extract for debuging
 
-    with zipfile.ZipFile('compiled/google_transit.zip', "r") as z:
-        for filename in z.namelist():
-            with file('extracted/'+filename, "w") as outfile:
-                outfile.write(z.read(filename))
+    validateAndSaveSchedule(schedule)
+    
+
 
 if __name__ == "__main__":
+    main()
 
     #p = "/www/cartoar.com.ar/cgi-bin/virtual/lib/python2.7/site-packages/"
     #import sys
     #sys.path.append(p)
 
-    main()
