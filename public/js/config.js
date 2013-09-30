@@ -18,18 +18,3 @@ require.config({
         "text": "../../bower_components/requirejs-text/text"
     }
 });
-
-require([
-    "transit/init",
-    "transit/models/state"
-    ],
-    function (init, StateModel) {
-    'use strict';
-
-    var app = window.app = {};
-
-    app.state = new StateModel();
-
-    init.createControls();
-
-});
