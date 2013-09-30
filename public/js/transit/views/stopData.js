@@ -14,7 +14,7 @@ define([
         events: {
             "click button.save-stop": "onClickSave",
             "blur input.properties-stop-calle": "onCalleChange",
-            "blur span.edit-stop-calle": "onCalleChange"
+            "blur input.edit-stop-calle": "onCalleChange"
         },
 
         initialize: function(){
@@ -41,7 +41,7 @@ define([
 
         onCalleChange: function (event) {
             var $target = $(event.currentTarget);
-            var value = $target.text();
+            var value = $target.val();
             var properties = this.model.get("properties");
             properties.stop_calle = value;
             this.model.set("properties", properties);

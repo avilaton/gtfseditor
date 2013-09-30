@@ -1,32 +1,23 @@
 <div class="well well-small">
-  <h4>Stop Attributes</h4>
-  <dl>
-    <dt>Id</dt>
-    <dd><span class="edit-stop-id">{{stop.properties.stop_id}}</span></dd>
-    <dt>Ordinal</dt>
-    <dd><span class="edit-stop-seq">{{stop.properties.stop_seq}}</span></dd>
-    <dt>Control Tiempo</dt>
-    <dd><span contentEditable="true" class="edit-is-timepoint">{{#if stop.properties.is_timepoint}}si{{else}}no{{/if}}</span></dd>
-    <dt>Calle</dt>
-    <dd>
-      <span contentEditable="true" class="edit-stop-calle">
-        {{#unless stop.properties.stop_calle}}-{{/unless}}
-        {{stop.properties.stop_calle}}
-      </span>
-    </dd>
-    <dt>Numero</dt>
-    <dd>
-      <span contentEditable="true" class="edit-stop-numero">
-        {{#unless stop.properties.stop_numero}}&nbsp;{{/unless}}
-        {{stop.properties.stop_numero}}
-      </span>
-    </dd>
-    <dt>Esquina</dt>
-    <dd><span contentEditable="true" class="edit-stop-esquina">{{stop.properties.stop_esquina}}</span></dd>
-    <dt>Entre Calles</dt>
-    <dd><span contentEditable="true" class="edit-stop-entre">{{stop.properties.stop_entre}}</span></dd>
-    <dt>Lineas</dt>
-    <dd>{{#each stop.properties.stop_lineas}}<span>{{this}}, </span>{{/each}}</dd>
-  </dl>
+  <form>
+    <fieldset>
+    <legend>Stop Attributes</legend>
+    <p><strong>ID: </strong>{{stop.properties.stop_id}}</p>
+    <p><strong>Ordinal: </strong>{{stop.properties.stop_seq}}</p>
+    <label class="checkbox">
+      <input type="checkbox" {{#if stop.properties.is_timepoint}}checked{{/if}}> 
+      control tiempo
+    </label>
+    <label>Calle</label>
+    <input type="text" class="edit-stop-calle" value="{{stop.properties.stop_calle}}">
+    <label>Número</label>
+    <input type="text" class="edit-stop-numero" value="{{stop.properties.stop_numero}}">
+    <label>Esquina</label>
+    <input type="text" class="edit-stop-esquina" value="{{stop.properties.stop_esquina}}">
+    <label>Entre</label>
+    <input type="text" class="edit-stop-entre" value="{{stop.properties.stop_entre}}">
+    <p><strong>Lineas: </strong>{{#each stop.properties.stop_lineas}}{{this}}, {{/each}}</p>
+    </fieldset>
+  </form>
   <button class="btn btn-primary save-stop">Save</button>
 </div>
