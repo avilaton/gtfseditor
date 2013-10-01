@@ -1,10 +1,13 @@
 require([
-    "config"
+    "config",
+    "transit/views/login"
     ],
-    function (config) {
+    function (config, LoginView) {
     'use strict';
 
     var app = window.app = {};
+
+    var myLoginView = new LoginView();
 
     // app.state = new StateModel();
 

@@ -6,6 +6,7 @@ from bottle import route, static_file, get, post, put, request, redirect, hook, 
 
 import ormgeneric as o
 import gtfsdb
+from cork import Cork
 
 db = o.dbInterface('database/dbRecorridos.sqlite')
 tb = gtfsdb.toolbox(db)
@@ -92,6 +93,7 @@ def getBBOX():
   filterQuery = request.query['filter']
   return tb.bbox(bbox, filterQuery)
 
+# frontend routes
 @route('/bower_components/<filepath:path>')
 def server_files(filepath):
   return static_file(filepath, root='./bower_components/')
@@ -100,7 +102,13 @@ def server_files(filepath):
 def server_files(filepath):
   return static_file(filepath, root='./public/')
 
+@post('/login')
+def login():
+  print request.params.email
+  print request.params.password
+  print request.params.keep
 
+  return
 
 import bottle
 
