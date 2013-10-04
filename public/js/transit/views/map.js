@@ -28,6 +28,8 @@ define([
           new OpenLayers.Control.Attribution()
           ]
         });
+        
+        app.map = this.map;
 
         this.addGoogleMapsLayers();
 
@@ -153,6 +155,7 @@ define([
 
         this.bboxLayer = new OpenLayers.Layer.Vector('Existing stops', {
           projection: new OpenLayers.Projection('EPSG:4326'),
+          styleMap: Styles.bboxStyleMap,
           visibility: true,
           strategies: [
             new OpenLayers.Strategy.BBOX({resFactor: 2.0}),
@@ -185,7 +188,6 @@ define([
 
       onTripFeatureSelected: function (event) {
         var feature = event.feature;
-
         // this.format.extract.feature(feature) fails, check issue at openlayers
         var geoJSON = this.format.write(feature);
         this.stop.set(JSON.parse(geoJSON));
@@ -202,6 +204,7 @@ define([
       onBboxFeatureSelected: function (event) {
         var feature = event.feature;
 
+        console.log(this.bboxLayer);
         var geoJSON = this.format.write(feature);
         if (event.type == "featureselected") {
           this.stop.set(JSON.parse(geoJSON));
@@ -299,8 +302,11 @@ define([
         this.map.addControl(controls.selectMultiple);
 
         controls.modifyStops = new OpenLayers.Control.ModifyFeature(
-          self.stopsLayer,{id: 'modifyStops'});
-        self.map.addControl(controls.modifyStops);
+          self.bboxLayer,
+          {
+            id: 'modifyStops'
+          });
+        this.map.addControl(controls.modifyStops);
 
         controls.modifyBbox = new OpenLayers.Control.ModifyFeature(
           self.bboxLayer,{id: 'modifyBbox'});

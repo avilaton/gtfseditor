@@ -43,10 +43,6 @@ define([
         model: state.shape
       });
 
-      var mySequenceToolbox = new SequenceToolboxView({
-        collection: state.stops
-      });
-
       var myStopData = new StopDataView({
         model: state.stop
       });
@@ -69,6 +65,11 @@ define([
 
       var filterBox = new FilterView({
         bboxLayer: myMap.bboxLayer
+      });
+
+      var mySequenceToolbox = new SequenceToolboxView({
+        collection: state.stops,
+        controls: myMap.controls
       });
 
       

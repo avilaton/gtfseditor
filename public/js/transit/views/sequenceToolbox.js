@@ -29,6 +29,8 @@ define([
       initialize: function(options){
         var self = this;
 
+        this.controls = options.controls;
+
         this.render();
 
         this.collection.on("change reset", self.render, self);
@@ -58,24 +60,28 @@ define([
       
       toggleMultipleSelect: function (event) {
         var $target = $(event.currentTarget);
+
         $target.toggleClass('btn-primary');
           
-        // maps.controls.selectStops.deactivate();
-        // maps.controls.selectMultiple.activate();
+        // this.controls.selectStops.deactivate();
+        // this.controls.selectMultiple.activate();
       
-        // maps.controls.selectMultiple.deactivate();
-        // maps.controls.selectStops.activate();
+        // this.controls.selectMultiple.deactivate();
+        // this.controls.selectStops.activate();
       },
       
       editStops: function (event) {
         var $target = $(event.currentTarget);
-        $target.toggleClass('btn-primary');
-
-        // maps.controls.selectStops.deactivate();
-        // maps.controls.modifyStops.activate();
-
-        // maps.controls.modifyStops.deactivate();
-        // maps.controls.selectStops.activate();
+        if (this.controls.selectStops.active) {
+          $target.addClass('btn-primary');
+          this.controls.selectStops.unselectAll();
+          this.controls.selectStops.deactivate();
+          this.controls.modifyStops.activate();
+        } else {
+          $target.removeClass('btn-primary');
+          this.controls.modifyStops.deactivate();
+          this.controls.selectStops.activate();
+        }
       },
       
       drawStops: function (event) {

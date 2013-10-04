@@ -75,7 +75,26 @@ define([
    Styles.stopsStyleMap = new OpenLayers.StyleMap({
     'default': new OpenLayers.Style({
       strokeColor: 'black', strokeWidth: 2, strokeOpacity: 1, 
-      pointRadius: 5, fillColor: 'white', fill: true, 
+      pointRadius: 6, fillColor: 'white', fill: true, 
+      fillOpacity: 1
+    })
+    ,
+    'select': new OpenLayers.Style({
+      strokeColor: 'black', strokeWidth: 2, strokeOpacity: 1, 
+      pointRadius: 8, fillColor: 'red', fill: true, fillOpacity: .6,
+      label: '${stop_id}',
+      fontColor: "black", fontSize: "16px", 
+      fontFamily: "Courier New, monospace", fontWeight: "bold",
+      labelAlign: "left", labelXOffset: "8", labelYOffset: "12",
+      labelOutlineColor: "white", labelOutlineWidth: 3
+    })          
+  });
+
+   Styles.bboxStyleMap = new OpenLayers.StyleMap({
+    'default': new OpenLayers.Style({
+      strokeColor: 'black', strokeWidth: 1, strokeOpacity: 1, 
+      stroke: true,
+      pointRadius: 4, fillColor: 'yellow', fill: true, 
       fillOpacity: 1
     })
     ,
