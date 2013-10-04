@@ -102,6 +102,10 @@ def server_files(filepath):
 def server_files(filepath):
   return static_file(filepath, root='./public/')
 
+@route('/')
+def index():
+  return static_file('index.html', root='./public/')
+
 @post('/login')
 def login():
   print request.params.email
