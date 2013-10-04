@@ -22,7 +22,6 @@ define([
         "click button.removeStop": "removeStop",
         "click button.appendStop": "appendStop",
         "click button.toggleTimepoint": "toggleTimepoint",
-        "click button.saveStops": "saveStops",
         "click button.saveStops": "saveStops"
       },
 

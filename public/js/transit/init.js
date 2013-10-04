@@ -43,10 +43,6 @@ define([
         model: state.shape
       });
 
-      var myStopData = new StopDataView({
-        model: state.stop
-      });
-
       var myMap = new MapView({
         shape: state.shape,
         stops: state.stops,
@@ -69,6 +65,11 @@ define([
 
       var mySequenceToolbox = new SequenceToolboxView({
         collection: state.stops,
+        controls: myMap.controls
+      });
+
+      var myStopData = new StopDataView({
+        model: state.stop,
         controls: myMap.controls
       });
 

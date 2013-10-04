@@ -1,8 +1,19 @@
+<div class="control-group">
+<label>Stop Tools</label>
+  <div class="btn-group">
+    <button class="btn btn-small newStop"><i class="icon-plus"></i> New</button>
+    <button class="btn btn-small editStop"><i class="icon-move"></i> Edit</button>
+    <!--
+      <button class="btn btn-small toggleMultipleSelect" disabled="disabled">Multiple</button>
+    -->
+    <button class="btn btn-small saveStop"><i class="icon-ok"></i> Save</button>
+  </div>
+</div>
+
 <div class="well well-small">
   <form class="form-horizontal">
     <fieldset>
-    <legend>Stop Attributes</legend>
-    <p><strong>ID: </strong>{{stop.properties.stop_id}}</p>
+    <legend>Stop id: {{stop.properties.stop_id}}</legend>
     <p><strong>Ordinal: </strong>{{stop.properties.stop_seq}}</p>
     <label class="checkbox">
       <input type="checkbox" {{#if stop.properties.is_timepoint}}checked{{/if}}> 
