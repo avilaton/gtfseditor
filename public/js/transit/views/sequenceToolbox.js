@@ -18,7 +18,6 @@ define([
         "click button.offsetStops": "offsetStops",
         "click button.toggleMultipleSelect": "toggleMultipleSelect",
         "click button.editStops": "editStops",
-        "click button.drawStops": "drawStops",
         "click button.removeStop": "removeStop",
         "click button.appendStop": "appendStop",
         "click button.toggleTimepoint": "toggleTimepoint",
@@ -82,18 +81,7 @@ define([
           this.controls.selectStops.activate();
         }
       },
-      
-      drawStops: function (event) {
-        var $target = $(event.currentTarget);
-        $target.toggleClass('btn-primary');
 
-        // maps.controls.selectStops.deactivate();
-        // maps.controls.drawStops.activate();
-
-        // maps.controls.drawStops.deactivate();
-        // maps.controls.selectStops.activate();
-      },
-      
       removeStop: function (event) {
         this.collection.removeSelected();
       },

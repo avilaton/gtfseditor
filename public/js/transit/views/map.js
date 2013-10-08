@@ -204,10 +204,11 @@ define([
       onBboxFeatureSelected: function (event) {
         var feature = event.feature;
 
-        console.log(this.bboxLayer);
+        // console.log(this.bboxLayer);
         var geoJSON = this.format.write(feature);
         if (event.type == "featureselected") {
           this.stop.set(JSON.parse(geoJSON));
+          this.stop.set("feature", feature);
         } else if (event.type == "featureunselected") {
           this.stop.clear();
         };
@@ -324,6 +325,18 @@ define([
         this.map.addControl(controls.drawStops);
         
         controls.selectStops.activate();
+
+        controls.getSelectedFeature = function () {
+            var layers = self.controls.selectStops.layers;
+            var feature = null;
+            for (var i = 0; i < layers.length; i++) {
+              console.log(layers[i].selectedFeatures);
+              if (layers[i].selectedFeatures) {
+                feature = layers[i].selectedFeatures[0];
+              };
+            };
+            return feature;
+        };
       },
 
       addGeolocationControl: function () {

@@ -3,83 +3,93 @@ define([
     "backbone",
     "handlebars",
     "text!transit/templates/stopData.handlebars"
-], function (_, Backbone, Handlebars, tmpl) {
-    var View;
+    ], function (_, Backbone, Handlebars, tmpl) {
+        var View;
 
-    View = Backbone.View.extend({
-        el: $('#stopData'),
-        
-        template: Handlebars.compile(tmpl),
+        View = Backbone.View.extend({
+            el: $('#stopData'),
 
-        events: {
-            "click button.save-stop": "onClickSave",
-            "blur input.properties-stop-calle": "onCalleChange",
-            "blur input.edit-stop-calle": "onCalleChange",
-            "click button.toggleMultipleSelect": "toggleMultipleSelect",
-            "click button.newStop": "newStop",
-            "click button.editStop": "editStop",
-            "click button.saveStop": "saveStop"
-        },
+            template: Handlebars.compile(tmpl),
 
-        initialize: function(options){
-            var self = this;
-            
-            this.controls = options.controls;
+            events: {
+                "click button.save-stop": "onClickSave",
+                "blur input.properties-stop-calle": "onCalleChange",
+                "blur input.edit-stop-calle": "onCalleChange",
+                "click button.toggleMultipleSelect": "toggleMultipleSelect",
+                "click button.newStop": "newStop",
+                "click button.editStop": "editStop",
+                "click button.saveStop": "saveStop"
+            },
 
-            this.render();
-            
-            this.model.on("change", self.render, self);
-        },
+            initialize: function(options){
+                var self = this;
 
-        render: function () {
-            var self = this;
-            // console.log("stop data view:", this);
+                this.controls = options.controls;
 
-            this.$el.html(this.template({
-                stop: self.model.toJSON()
-            }));
-        },
+                this.render();
 
-        onClickSave: function (event) {
-            console.log("save stop clicked", event, this.model);
-            this.model.save();
-        },
+                this.model.on("change", self.render, self);
+            },
 
-        onCalleChange: function (event) {
-            var $target = $(event.currentTarget);
-            var value = $target.val();
-            var properties = this.model.get("properties");
-            properties.stop_calle = value;
-            this.model.set("properties", properties);
-            console.log("stop model after set", this.model);
-        },
+            render: function () {
+                var self = this;
+                console.log("stop model change fired:", this);
 
-        editStop: function (event) {
-          var $target = $(event.currentTarget);
-          if (this.controls.selectStops.active) {
-            $target.addClass('btn-primary');
-            this.controls.selectStops.unselectAll();
-            this.controls.selectStops.deactivate();
-            this.controls.modifyStops.activate();
-          } else {
-            $target.removeClass('btn-primary');
-            this.controls.modifyStops.deactivate();
-            this.controls.selectStops.activate();
-          }
-        },
-        
-        newStop: function (event) {
-          var $target = $(event.currentTarget);
-          $target.toggleClass('btn-primary');
+                this.$el.html(this.template({
+                    stop: self.model.toJSON()
+                }));
+            },
 
-          // maps.controls.selectStops.deactivate();
-          // maps.controls.drawStops.activate();
+            onClickSave: function (event) {
+                console.log("save stop clicked", event, this.model);
+                this.model.save();
+            },
 
-          // maps.controls.drawStops.deactivate();
-          // maps.controls.selectStops.activate();
+            onCalleChange: function (event) {
+                var $target = $(event.currentTarget);
+                var value = $target.val();
+                var properties = this.model.get("properties");
+                properties.stop_calle = value;
+                this.model.set("properties", properties);
+                console.log("stop model after set", this.model);
+            },
+
+            editStop: function (event) {
+                event.preventDefault();
+                var $target = $(event.currentTarget);
+                var feature = this.model.get("feature");
+                console.log(feature);
+                
+                if (this.controls.selectStops.active) {
+                    $target.addClass('btn-primary');
+                    this.controls.selectStops.unselectAll();
+                    this.controls.selectStops.deactivate();
+                    this.controls.modifyStops.activate();
+                    this.controls.modifyStops.selectFeature(feature);
+                } else {
+                    $target.removeClass('btn-primary');
+                    this.controls.modifyStops.deactivate();
+                    this.controls.selectStops.activate();
+                }
+            },
+
+            newStop: function (event) {
+              var $target = $(event.currentTarget);
+              $target.toggleClass('btn-primary');
+              if (this.controls.selectStops.active) {
+                $target.addClass('btn-primary');
+                this.controls.selectStops.unselectAll();
+                this.controls.selectStops.deactivate();
+                this.controls.drawStops.activate();
+            } else {
+                $target.removeClass('btn-primary');
+                this.controls.drawStops.deactivate();
+                this.controls.selectStops.activate();
+            }
+
         }
-        
+
     });
 
-    return View;
+return View;
 })

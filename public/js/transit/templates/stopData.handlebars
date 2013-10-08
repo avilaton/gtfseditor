@@ -2,33 +2,40 @@
 <label>Stop Tools</label>
   <div class="btn-group">
     <button class="btn btn-small newStop"><i class="icon-plus"></i> New</button>
-    <button class="btn btn-small editStop"><i class="icon-move"></i> Edit</button>
+    <button class="btn btn-small removeStop" disabled="disabled"><i class="icon-remove"></i> Remove</button>
     <!--
+    <button class="btn btn-small editStop"><i class="icon-move"></i> Edit</button>
       <button class="btn btn-small toggleMultipleSelect" disabled="disabled">Multiple</button>
     -->
-    <button class="btn btn-small saveStop"><i class="icon-ok"></i> Save</button>
   </div>
 </div>
 
 <div class="well well-small">
   <form class="form-horizontal">
     <fieldset>
-    <legend>Stop id: {{stop.properties.stop_id}}</legend>
-    <p><strong>Ordinal: </strong>{{stop.properties.stop_seq}}</p>
-    <label class="checkbox">
-      <input type="checkbox" {{#if stop.properties.is_timepoint}}checked{{/if}}> 
-      control tiempo
-    </label>
-    <label>Calle</label>
-    <input type="text" class="edit-stop-calle" value="{{stop.properties.stop_calle}}">
-    <label>Número</label>
-    <input type="text" class="edit-stop-numero" value="{{stop.properties.stop_numero}}">
-    <label>Esquina</label>
-    <input type="text" class="edit-stop-esquina" value="{{stop.properties.stop_esquina}}">
-    <label>Entre</label>
-    <input type="text" class="edit-stop-entre" value="{{stop.properties.stop_entre}}">
-    <p><strong>Lineas: </strong>{{#each stop.properties.stop_lineas}}{{this}}, {{/each}}</p>
+      <legend>Stop id: {{stop.properties.stop_id}}</legend>
+      <p><strong>Ordinal: </strong>{{stop.properties.stop_seq}}</p>
+      <!--
+      <label class="checkbox">
+        <input type="checkbox" {{#if stop.properties.is_timepoint}}checked{{/if}}> 
+        control tiempo
+      </label>
+      -->
+      <label>Calle</label>
+      <input type="text" class="edit-stop-calle" value="{{stop.properties.stop_calle}}">
+      <label>Número</label>
+      <input type="text" class="edit-stop-numero" value="{{stop.properties.stop_numero}}">
+      <label>Esquina</label>
+      <input type="text" class="edit-stop-esquina" value="{{stop.properties.stop_esquina}}">
+      <label>Entre</label>
+      <input type="text" class="edit-stop-entre" value="{{stop.properties.stop_entre}}">
+      <p><strong>Lineas: </strong>{{#each stop.properties.stop_lineas}}{{this}}, {{/each}}</p>
     </fieldset>
+    
+    <div class="btn-group">
+      <button class="btn editStop"><i class="icon-pencil"></i> Edit</button>
+      <button class="btn btn-primary saveStop"><i class="icon-ok"></i> Save</button>
+      <button class="btn cancelEditStop">Cancel</button>
+    </div>
   </form>
-  <button class="btn btn-primary save-stop">Save</button>
 </div>
