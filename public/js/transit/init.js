@@ -68,12 +68,16 @@ define([
         controls: myMap.controls
       });
 
-      var myStopData = new StopDataView({
+      var myStopView = new StopDataView({
         model: state.stop,
         controls: myMap.controls
       });
 
-      
+
+
+      /** 
+       * this should be inside map.js
+       */
       state.trips.on("trip_selected", function (selectedModel) {
         var trip_id = selectedModel.get("trip_id");
         var shape_id = selectedModel.get("shape_id");

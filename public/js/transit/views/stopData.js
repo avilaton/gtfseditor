@@ -26,6 +26,8 @@ define([
 
                 this.controls = options.controls;
 
+                this.editMode = false;
+
                 this.render();
 
                 this.model.on("change", self.render, self);
@@ -36,11 +38,13 @@ define([
                 console.log("stop model change fired:", this);
 
                 this.$el.html(this.template({
-                    stop: self.model.toJSON()
+                    stop: self.model.toJSON(),
+                    editMode: self.editMode
                 }));
             },
 
-            onClickSave: function (event) {
+            saveStop: function (event) {
+                event.preventDefault();
                 console.log("save stop clicked", event, this.model);
                 this.model.save();
             },
@@ -50,24 +54,28 @@ define([
                 var value = $target.val();
                 var properties = this.model.get("properties");
                 properties.stop_calle = value;
-                this.model.set("properties", properties);
+                this.model.set({"properties": properties, changed: true});
                 console.log("stop model after set", this.model);
             },
 
             editStop: function (event) {
+                var self = this;
                 event.preventDefault();
+
                 var $target = $(event.currentTarget);
-                var feature = this.model.get("feature");
+                var feature = this.model.feature;
                 console.log(feature);
                 
                 if (this.controls.selectStops.active) {
-                    $target.addClass('btn-primary');
-                    this.controls.selectStops.unselectAll();
+                    //$target.addClass('btn-primary');
+                    self.editMode = true;
+                    // this.controls.selectStops.unselectAll();
                     this.controls.selectStops.deactivate();
                     this.controls.modifyStops.activate();
                     this.controls.modifyStops.selectFeature(feature);
                 } else {
-                    $target.removeClass('btn-primary');
+                    // $target.removeClass('btn-primary');
+                    self.editMode = false;
                     this.controls.modifyStops.deactivate();
                     this.controls.selectStops.activate();
                 }

@@ -175,7 +175,9 @@ define([
       },
 
       selectTripStop: function (selectedModel) {
-        var stop_id = selectedModel.get("id");
+        if (selectedModel) {
+          var stop_id = selectedModel.get("id");
+        };
 
         var newSelection = this.stopsLayer.getFeaturesByAttribute("stop_id", stop_id)[0];
 
@@ -187,28 +189,31 @@ define([
       },
 
       onTripFeatureSelected: function (event) {
+        this.handleStopSelect(event);
+        
         var feature = event.feature;
-        // this.format.extract.feature(feature) fails, check issue at openlayers
-        var geoJSON = this.format.write(feature);
-        this.stop.set(JSON.parse(geoJSON));
-
-        this.stops.select(feature.fid);
 
         if (event.type == "featureselected") {
-          this.stop.set(JSON.parse(geoJSON));
+          this.stops.select(feature.fid);
         } else if (event.type == "featureunselected") {
-          this.stop.clear();
+          this.stops.select();
         };
+
       },
 
       onBboxFeatureSelected: function (event) {
-        var feature = event.feature;
+        this.handleStopSelect(event);
+      },
 
-        // console.log(this.bboxLayer);
+      handleStopSelect: function (event) {
+        var feature = event.feature;
         var geoJSON = this.format.write(feature);
+        var featureObject = JSON.parse(geoJSON);
+
+        // console.log("selected feature geojson", featureObject);
         if (event.type == "featureselected") {
-          this.stop.set(JSON.parse(geoJSON));
-          this.stop.set("feature", feature);
+          this.stop.feature = feature;
+          this.stop.set(featureObject);
         } else if (event.type == "featureunselected") {
           this.stop.clear();
         };
@@ -222,8 +227,8 @@ define([
         var self = this;
         this.stopsLayer.events.register('featureselected', self,
           self.onTripFeatureSelected);
-        // this.stopsLayer.events.register('featureunselected', self,
-        //   self.onTripFeatureSelected);
+        this.stopsLayer.events.register('featureunselected', self,
+          self.onTripFeatureSelected);
 
         this.bboxLayer.events.register('featureselected', self,
           self.onBboxFeatureSelected);
