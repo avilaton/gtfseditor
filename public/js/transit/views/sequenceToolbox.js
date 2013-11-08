@@ -87,7 +87,7 @@ define([
       },
       
       appendStop: function (event) {
-        this.collection.appendSelected();
+        this.collection.appendStop(this.model);
       },
       
       toggleTimepoint: function (event) {

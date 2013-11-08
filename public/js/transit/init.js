@@ -23,8 +23,8 @@ define([
 
       state.routes = new RoutesCollection();
       state.trips = new TripsCollection();
-      state.shape = new ShapeModel();
       state.stops = new StopsCollection();
+      state.shape = new ShapeModel();
       state.stop = new StopModel();
 
 			state.routes.fetch();
@@ -65,6 +65,7 @@ define([
 
       var mySequenceToolbox = new SequenceToolboxView({
         collection: state.stops,
+        model: state.stop,
         controls: myMap.controls
       });
 

@@ -49,7 +49,13 @@ define([
         },
 
         save: function () {
+            
             throw "not implemented";
+        },
+
+        appendStop: function (SelectedStop) {
+            var feature = SelectedStop.clone();
+            this.add(feature);
         }
     });
 
