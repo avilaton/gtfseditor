@@ -43,6 +43,13 @@ define([
         });
 
         this.bindEvents();
+
+        this.panAndZoom();
+        this.addBboxLayer();
+        this.addShapesLayer();
+        this.addStopsLayer();
+        this.addOldControls();
+        this.attachEventHandlers();
       },
 
       bindEvents: function () {
@@ -196,15 +203,6 @@ define([
 
       onTripFeatureSelected: function (event) {
         this.handleStopSelect(event);
-        
-        // var feature = event.feature;
-
-        // if (event.type == "featureselected") {
-        //   this.stops.select(feature.fid);
-        // } else if (event.type == "featureunselected") {
-        //   this.stops.select();
-        // };
-
       },
 
       onBboxFeatureSelected: function (event) {
@@ -216,7 +214,6 @@ define([
         var geoJSON = this.format.write(feature);
         var featureObject = JSON.parse(geoJSON);
 
-        // console.log("selected feature geojson", featureObject);
         if (event.type == "featureselected") {
           this.stop.feature = feature;
           this.stop.set(featureObject);

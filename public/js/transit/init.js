@@ -49,14 +49,6 @@ define([
         stop: state.stop
       });
 
-
-      myMap.panAndZoom();
-
-      myMap.addBboxLayer();
-      myMap.addShapesLayer();
-      myMap.addStopsLayer();
-      myMap.addOldControls();
-      myMap.attachEventHandlers();
       // myMap.bboxLayer.refresh({force: true});
 
       var filterBox = new FilterView({
@@ -73,8 +65,6 @@ define([
         model: state.stop,
         controls: myMap.controls
       });
-
-
 
       /** 
        * this should be inside map.js
