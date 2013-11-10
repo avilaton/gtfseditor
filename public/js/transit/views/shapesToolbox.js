@@ -20,6 +20,8 @@ define([
       initialize: function(options){
         var self = this;
 
+        this.controls = options.controls;
+
         this.render();
 
         this.model.on("change reset", self.render, self);
@@ -37,6 +39,20 @@ define([
 
       saveShape: function (event) {
         this.model.save();
+      },
+
+      editShape: function () {
+        var $target = $(event.currentTarget);
+        if (this.controls.selectStops.active) {
+          // $target.addClass('btn-primary');
+          //this.controls.selectStops.unselectAll();
+          //this.controls.selectStops.deactivate();
+          //this.controls.modifyStops.activate();
+        } else {
+          // $target.removeClass('btn-primary');
+          //this.controls.modifyStops.deactivate();
+          //this.controls.selectStops.activate();
+        }
       }
     });
 

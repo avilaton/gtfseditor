@@ -39,20 +39,21 @@ define([
         collection: state.trips
       });
 
-      var myShapesToolbox = new ShapesToolboxView({
-        model: state.shape
-      });
 
       var myMap = new MapView({
         shape: state.shape,
         stops: state.stops,
         stop: state.stop
       });
-
       // myMap.bboxLayer.refresh({force: true});
 
       var filterBox = new FilterView({
         bboxLayer: myMap.bboxLayer
+      });
+
+      var myShapesToolbox = new ShapesToolboxView({
+        model: state.shape,
+        controls: myMap.controls
       });
 
       var mySequenceToolbox = new SequenceToolboxView({
