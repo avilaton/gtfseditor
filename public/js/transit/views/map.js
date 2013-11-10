@@ -29,7 +29,7 @@ define([
           ]
         });
         
-        app.map = this.map;
+        app.map = this;
 
         this.addGoogleMapsLayers();
 
@@ -43,6 +43,7 @@ define([
         });
 
         self.stops.on("trip_stop_selected", self.selectTripStop, self);
+        self.stops.on("stop_added", self.updateStopsLayer, self);
       },
 
       updateShapesLayer: function () {

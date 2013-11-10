@@ -1,8 +1,9 @@
 define([
     "underscore",
     "backbone",
+    "transit/legacy/api",
     "transit/models/stop"
-], function (_, Backbone, StopModel) {
+], function (_, Backbone, api, StopModel) {
     var Collection;
 
     Collection = Backbone.Collection.extend({
@@ -18,6 +19,7 @@ define([
 
         parse: function (response) {
             this.geoJSON = response;
+            console.log(this.geoJSON);
             return response.features;
         },
 
@@ -48,14 +50,41 @@ define([
             this.select(newSelectedModel.get("id"));
         },
 
+        toGeoJSON: function () {
+            var self = this;
+            var obj = {
+                crs: {
+                    type: "name",
+                    properties: {
+                        name: "urn:ogc:def:crs:OGC:1.3:CRS84"
+                    }
+                },
+                features:[],
+                type: "FeatureCollection"
+            };
+
+            _.each(self.models, function (model) {
+                obj.features.push(model.toGeoJSON());
+            });
+            this.geoJSON = obj;
+            return JSON.stringify(this.geoJSON);
+        },
+        
         save: function () {
-            
-            throw "not implemented";
+            var self = this;
+            var req = api.put({
+                route: self.url(),
+                params: self.toGeoJSON()
+            });
+            return req;
         },
 
         appendStop: function (SelectedStop) {
+            var self = this;
             var feature = SelectedStop.clone();
             this.add(feature);
+            this.toGeoJSON();
+            this.trigger("stop_added", self)
         }
     });
 

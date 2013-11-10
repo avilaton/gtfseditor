@@ -10,6 +10,10 @@ define([
 		
 	    initialize: function(){
             
+        },
+
+        toGeoJSON: function () {
+        	return this.toJSON();
         }
  	});
 

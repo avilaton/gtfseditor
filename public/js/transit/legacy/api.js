@@ -1,7 +1,14 @@
-define(["jquery", "transit/config"], function ($, config) {
+define([
+  "jquery", 
+  //"transit/config"
+  ], 
+function ($) {
   'use strict';
 
   var api = {};
+
+  var config = {};
+  config.cgiUrl = '';
 
   function ajax(spec) {
     var type = spec.type || 'GET';
