@@ -28,6 +28,7 @@ define([
         var self = this;
 
         this.controls = options.controls;
+        this.selectedStop = options.stop;
 
         this.render();
 
@@ -41,11 +42,29 @@ define([
       },
 
       prevStop: function (event) {
-        this.collection.skipSelect(1);
+        var self = this;
+        var selMember = this.collection.findWhere({"id": self.model.get("id")});
+        if (selMember) {
+          var index = this.collection.indexOf(selMember);
+          var modelAbove = this.collection.at(index-1);
+          if (modelAbove) {
+            this.model.set(modelAbove.toJSON());
+            this.collection.trigger('trip_stop_selected');
+          };
+        };
       },
 
       nextStop: function (event) {
-        this.collection.skipSelect(-1);
+        var self = this;
+        var selMember = this.collection.findWhere({"id": self.model.get("id")});
+        if (selMember) {
+          var index = this.collection.indexOf(selMember);
+          var modelBelow = this.collection.at(index+1);
+          if (modelBelow) {
+            this.model.set(modelBelow.toJSON());
+            this.collection.trigger('trip_stop_selected');
+          };
+        };
       },
       
       sortStops: function (event) {

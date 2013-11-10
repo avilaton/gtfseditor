@@ -13,7 +13,7 @@ define([
             return 'api/trip/' + this.trip_id + '/stops';
         },
         
-        initialize: function(){
+        initialize: function (options) {
             this.selected = new this.model;
         },
 

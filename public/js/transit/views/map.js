@@ -42,14 +42,19 @@ define([
           'externalProjection': new OpenLayers.Projection("EPSG:4326")
         });
 
-        self.stops.on("trip_stop_selected", self.selectTripStop, self);
+        this.bindEvents();
+      },
+
+      bindEvents: function () {
+        var self = this;
         self.stops.on("reset stop_added stop_removed", self.updateStopsLayer, self);
         self.shape.on("reset", self.updateShapesLayer, self);
+        self.stops.on("trip_stop_selected", self.selectTripStop, self);
+        // self.stop.on("reset", self.selectTripStop, self);
       },
 
       updateShapesLayer: function () {
         var self = this;
-        console.info("update shape layer");
         var ft = this.format.read(self.shape.toJSON());
         this.shapesLayer.removeAllFeatures();
         this.shapesLayer.addFeatures(ft);
@@ -58,7 +63,6 @@ define([
 
       updateStopsLayer: function () {
         var self = this;
-        console.info("update stops layer");
         var ft = this.format.read(self.stops.geoJSON);
         this.stopsLayer.removeAllFeatures();
         this.stopsLayer.addFeatures(ft);
@@ -178,10 +182,8 @@ define([
         this.map.addLayer(self.bboxLayer);
       },
 
-      selectTripStop: function (selectedModel) {
-        if (selectedModel) {
-          var stop_id = selectedModel.get("id");
-        };
+      selectTripStop: function () {
+        var stop_id = this.stop.get("id");
 
         var newSelection = this.stopsLayer.getFeaturesByAttribute("stop_id", stop_id)[0];
 
