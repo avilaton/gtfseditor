@@ -84,14 +84,12 @@ define([
         var shape_id = selectedModel.get("shape_id");
 
         state.shape.set("shape_id", shape_id);
-        state.shape.fetch().done(function () {
+        state.shape.fetch({reset: true}).done(function () {
           myMap.updateShapesLayer();
         });
 
         state.stops.trip_id = trip_id;
-        state.stops.fetch().done(function () {
-          myMap.updateStopsLayer();
-        });
+        state.stops.fetch({reset: true});
       });
 
 		};

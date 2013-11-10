@@ -43,11 +43,13 @@ define([
         });
 
         self.stops.on("trip_stop_selected", self.selectTripStop, self);
-        self.stops.on("stop_added", self.updateStopsLayer, self);
+        self.stops.on("reset stop_added stop_removed", self.updateStopsLayer, self);
+        self.shape.on("reset", self.updateShapesLayer, self);
       },
 
       updateShapesLayer: function () {
         var self = this;
+        console.info("update shape layer");
         var ft = this.format.read(self.shape.toJSON());
         this.shapesLayer.removeAllFeatures();
         this.shapesLayer.addFeatures(ft);
@@ -56,6 +58,7 @@ define([
 
       updateStopsLayer: function () {
         var self = this;
+        console.info("update stops layer");
         var ft = this.format.read(self.stops.geoJSON);
         this.stopsLayer.removeAllFeatures();
         this.stopsLayer.addFeatures(ft);
@@ -192,13 +195,13 @@ define([
       onTripFeatureSelected: function (event) {
         this.handleStopSelect(event);
         
-        var feature = event.feature;
+        // var feature = event.feature;
 
-        if (event.type == "featureselected") {
-          this.stops.select(feature.fid);
-        } else if (event.type == "featureunselected") {
-          this.stops.select();
-        };
+        // if (event.type == "featureselected") {
+        //   this.stops.select(feature.fid);
+        // } else if (event.type == "featureunselected") {
+        //   this.stops.select();
+        // };
 
       },
 

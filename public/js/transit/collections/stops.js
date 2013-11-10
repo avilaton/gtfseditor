@@ -19,7 +19,6 @@ define([
 
         parse: function (response) {
             this.geoJSON = response;
-            console.log(this.geoJSON);
             return response.features;
         },
 
@@ -84,7 +83,15 @@ define([
             var feature = SelectedStop.clone();
             this.add(feature);
             this.toGeoJSON();
-            this.trigger("stop_added", self)
+            this.trigger("stop_added", self);
+        },
+
+        removeStop: function (SelectedStop) {
+            var self = this;
+            var feature = SelectedStop.clone();
+            this.remove(feature);
+            this.toGeoJSON();
+            this.trigger("stop_removed", self);
         }
     });
 

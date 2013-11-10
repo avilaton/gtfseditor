@@ -83,7 +83,7 @@ define([
       },
 
       removeStop: function (event) {
-        this.collection.removeSelected();
+        this.collection.removeStop(this.model);
       },
       
       appendStop: function (event) {
