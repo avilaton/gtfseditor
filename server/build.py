@@ -44,8 +44,8 @@ def addCalendar(db,schedule,debug=False):
     for s in db.select('calendar'):
         service = transitfeed.ServicePeriod()
         service.SetServiceId(s['service_id'])
-        service.SetStartDate(s['start_date'])
-        service.SetEndDate(s['end_date'])
+        service.SetStartDate(str(s['start_date']))
+        service.SetEndDate(str(s['end_date']))
         service.SetDayOfWeekHasService(0, bool(s['monday']) )
         service.SetDayOfWeekHasService(1, bool(s['tuesday']) )
         service.SetDayOfWeekHasService(2, bool(s['wednesday']) )
