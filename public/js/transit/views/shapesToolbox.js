@@ -21,6 +21,7 @@ define([
         var self = this;
 
         this.controls = options.controls;
+        this.map = options.map;
 
         this.render();
 
@@ -42,16 +43,14 @@ define([
       },
 
       editShape: function () {
-        var $target = $(event.currentTarget);
-        if (this.controls.selectStops.active) {
-          // $target.addClass('btn-primary');
-          //this.controls.selectStops.unselectAll();
-          //this.controls.selectStops.deactivate();
-          //this.controls.modifyStops.activate();
+        var $target = $(event.target);
+        console.log("controls status", this.controls.modifyShape);
+        if (!this.controls.modifyShape.active) {
+          this.map.activateControl("modifyShape");
+          $target.addClass('btn-primary');
         } else {
-          // $target.removeClass('btn-primary');
-          //this.controls.modifyStops.deactivate();
-          //this.controls.selectStops.activate();
+          this.map.activateControl("selectStops");
+          $target.removeClass('btn-primary');
         }
       }
     });

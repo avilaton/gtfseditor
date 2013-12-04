@@ -53,7 +53,8 @@ define([
 
       var myShapesToolbox = new ShapesToolboxView({
         model: state.shape,
-        controls: myMap.controls
+        controls: myMap.controls,
+        map: myMap
       });
 
       var mySequenceToolbox = new SequenceToolboxView({
