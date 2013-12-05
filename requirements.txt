@@ -1,0 +1,9 @@
+Beaker==1.6.4
+argparse==1.2.1
+bottle==0.11.6
+bottle-cork==0.10
+distribute==0.6.34
+gunicorn==18.0
+pycrypto==2.6.1
+transitfeed==1.2.12
+wsgiref==0.1.2

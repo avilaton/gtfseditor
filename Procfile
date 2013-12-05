@@ -1,1 +1,1 @@
-web: gunicorn server.transitfeededitor:app
+web: gunicorn server.transitfeededitor:app -w 3
