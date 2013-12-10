@@ -68,6 +68,13 @@ define([
         self.shapesLayer.refresh();
       },
 
+      updateShapeModel: function () {
+        var self = this;
+        var shapeJSON = this.format.write(self.shapesLayer.features, true);
+        this.shape.set(JSON.parse(shapeJSON));
+        return;
+      },
+
       updateStopsLayer: function () {
         var self = this;
         var ft = this.format.read(self.stops.geoJSON);

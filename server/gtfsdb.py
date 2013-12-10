@@ -206,7 +206,6 @@ class toolbox(object):
     return {'success':True,'trip_id':trip_id, 'stops':self.tripStops(trip_id)}
 
   def saveShape(self, shape_id, data):
-    print data
     for feature in data['features']:
       if feature['geometry']['type'] == 'LineString':
         coordList = feature['geometry']['coordinates']

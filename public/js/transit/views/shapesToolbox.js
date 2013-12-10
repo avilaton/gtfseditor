@@ -50,6 +50,7 @@ define([
           $target.addClass('btn-primary');
         } else {
           this.map.activateControl("selectStops");
+          this.map.updateShapeModel();
           $target.removeClass('btn-primary');
         }
       }
