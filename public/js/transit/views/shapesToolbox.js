@@ -12,7 +12,7 @@ define([
       template: Handlebars.compile(tmpl),
 
       events: {
-        "click button.revertShape": "revertShape",
+        "click button.reverseShape": "reverseShape",
         "click button.editShape": "editShape",
         "click button.saveShape": "saveShape"
       },
@@ -34,7 +34,7 @@ define([
         this.$el.html(this.template());
       },
 
-      revertShape: function (event) {
+      reverseShape: function (event) {
         this.model.reverse();
       },
 

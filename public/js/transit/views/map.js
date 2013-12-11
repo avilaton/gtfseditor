@@ -47,6 +47,7 @@ define([
         this.panAndZoom();
         this.addBboxLayer();
         this.addShapesLayer();
+        this.addNotesLayer();
         this.addStopsLayer();
         this.addOldControls();
         this.attachEventHandlers();
@@ -66,6 +67,7 @@ define([
         this.shapesLayer.removeAllFeatures();
         this.shapesLayer.addFeatures(ft);
         self.shapesLayer.refresh();
+        this.updateNotesLayer();
       },
 
       updateShapeModel: function () {
@@ -81,6 +83,30 @@ define([
         this.stopsLayer.removeAllFeatures();
         this.stopsLayer.addFeatures(ft);
         this.stopsLayer.refresh();
+      },
+
+      updateNotesLayer: function () {
+        var startFeature = this.notesLayer.getFeatureById('routeStart'),
+          endFeature = this.notesLayer.getFeatureById('routeEnd'),
+          route = this.shapesLayer.features[0],
+          startPoint = route.geometry.components[0],
+          endPoint = route.geometry.components[route.geometry.components.length - 1];
+        if (startFeature) {
+          this.notesLayer.removeFeatures(startFeature);
+        }
+        if (endFeature) {
+          this.notesLayer.removeFeatures(endFeature);
+        }
+
+        startFeature = new OpenLayers.Feature.Vector(startPoint);
+        startFeature.id = 'routeStart';
+        startFeature.attributes.type = 'Start';
+
+        endFeature = new OpenLayers.Feature.Vector(endPoint);
+        endFeature.id = 'routeEnd';
+        endFeature.attributes.type = 'End';
+
+        this.notesLayer.addFeatures([startFeature, endFeature]);  
       },
 
       addGoogleMapsLayers: function () {
@@ -103,14 +129,12 @@ define([
       },
 
       addNotesLayer: function () {
-        notesLayer = new OpenLayers.Layer.Vector('Notas', {
+        this.notesLayer = new OpenLayers.Layer.Vector('Notes', {
           styleMap: Styles.notesStyleMap
         });
-        notesLayer.id = 'notes';
+        this.notesLayer.id = 'notes';
 
-        map.addLayer(notesLayer);
-
-        return maps;
+        this.map.addLayer(this.notesLayer);
       },
 
       addShapesLayer: function () {
