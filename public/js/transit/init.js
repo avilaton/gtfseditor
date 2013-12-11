@@ -10,11 +10,13 @@ define([
   "transit/views/shapesToolbox",
   "transit/views/sequenceToolbox",
   "transit/views/stopData",
+  "transit/views/stopToolbar",
   "transit/views/map"
 	], 
   function (ShapeModel, StopModel, RoutesCollection, TripsCollection, 
     StopsCollection, FilterView, RoutesSelectView, TripsSelectView, 
-    ShapesToolboxView, SequenceToolboxView, StopDataView, MapView) {
+    ShapesToolboxView, SequenceToolboxView, StopDataView, StopToolbarView, 
+    MapView) {
 
 		function createControls () {
 			var state = window.app.state;
@@ -64,6 +66,11 @@ define([
       });
 
       var myStopView = new StopDataView({
+        model: state.stop,
+        controls: myMap.controls
+      });
+
+      var myStopToolbar = new StopToolbarView({
         model: state.stop,
         controls: myMap.controls
       });
