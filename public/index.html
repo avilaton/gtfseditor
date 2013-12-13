@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="GTFS Transit Feed Editor">
   <meta name="author" content="Gastón Avila">
-  <title>GTFS Transit Feed Editor</title>
+  <title>Transit Feed Editor</title>
   <script data-main="/js/init" src="/bower_components/requirejs/require.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -13,15 +13,14 @@
 <body>
   <div id="header_container">
     <div id="header">
-      GTFS Transit Feed Editor
+      Transit Feed Editor
     </div>
   </div>
   <div id="actions_container">
     <form class="form-inline">
-      <div id="routesSelect"></div>
-
-      <div id="tripsSelect"></div>
-      <div id="filterBox"></div>
+      <div class="topBar" id="routesSelect"></div>
+      <div class="topBar" id="tripsSelect"></div>
+      <div class="topBar" id="filterBox"></div>
       <!--
       <div class="btn-group">
         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">

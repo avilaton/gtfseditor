@@ -1,9 +1,10 @@
 define([
   "OpenLayers",
   "backbone",
+  "transit/views/map/drawStops",
   "transit/views/mapStyles"
   ],
-  function (OpenLayers, Backbone, Styles) {
+  function (OpenLayers, Backbone, DrawStopsView, Styles) {
     'use strict';
 
     var MapView = Backbone.View.extend({
@@ -44,13 +45,27 @@ define([
 
         this.bindEvents();
 
+        this.layers = {};
+
         this.panAndZoom();
         this.addBboxLayer();
         this.addShapesLayer();
         this.addNotesLayer();
         this.addStopsLayer();
+
+        this.initializeChildViews();
+        
         this.addOldControls();
         this.attachEventHandlers();
+      },
+
+      initializeChildViews: function () {
+        var self = this;
+        this.layers.marker = new DrawStopsView({
+          format: this.format,
+          map: this.map,
+          model: self.stop
+        });
       },
 
       bindEvents: function () {
@@ -322,7 +337,7 @@ define([
         this.controls = controls;
 
         controls.selectStops = new OpenLayers.Control.SelectFeature(
-          [self.stopsLayer,self.bboxLayer],
+          [self.stopsLayer,self.bboxLayer, self.layers.marker.layer],
           {
             id: 'selectStops',
             clickout: true, toggle: false,
@@ -359,7 +374,7 @@ define([
           });
         this.map.addControl(controls.modifyShape);
         
-        controls.drawStops = new OpenLayers.Control.DrawFeature(self.stopsLayer,
+        controls.drawStops = new OpenLayers.Control.DrawFeature(self.layers.marker.layer,
           OpenLayers.Handler.Point);
         this.map.addControl(controls.drawStops);
         
