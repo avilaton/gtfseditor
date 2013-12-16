@@ -40,6 +40,22 @@ def addAgencies(db,schedule,debug=False):
         agency.agency_lang = r['agency_lang']
     schedule.SetDefaultAgency(schedule.GetAgencyList()[0])
 
+def addRoutes(db,schedule,debug=False):
+    for route in db.select('routes'):
+        route_id = route['route_id']
+        if route_id not in ['C0'] and debug:
+            continue
+        if 'active' in route and not route['active']:
+            continue
+        r = schedule.AddRoute(short_name=route['route_short_name'], 
+            #long_name=route['route_long_name'], 
+            long_name='', 
+            route_id=route['route_id'],
+            route_type=route['route_type'])
+        r.agency_id = route['agency_id']
+        r.route_color = route['route_color']
+        r.route_text_color = route['route_text_color']
+
 def addCalendar(db,schedule,debug=False):   
     for s in db.select('calendar'):
         service = transitfeed.ServicePeriod()
@@ -95,20 +111,6 @@ def addShapes(db,schedule,debug=False):
         for pt in db.cursor.fetchall():
             shapeObject.AddPoint(lat=pt['shape_pt_lat'],lon=pt['shape_pt_lon'])
         schedule.AddShapeObject(shapeObject)
-
-def addRoutes(db,schedule,debug=False):
-    for route in db.select('routes'):
-        route_id = route['route_id']
-        if route_id not in ['C0'] and debug:
-            continue
-        r = schedule.AddRoute(short_name=route['route_short_name'], 
-            #long_name=route['route_long_name'], 
-            long_name='', 
-            route_id=route['route_id'],
-            route_type=route['route_type'])
-        r.agency_id = route['agency_id']
-        r.route_color = route['route_color']
-        r.route_text_color = route['route_text_color']
 
 def addTrips(db,schedule,debug=False):
     for r in schedule.GetRouteList():
@@ -278,9 +280,9 @@ def buildSchedule(db, debug):
     addAgencies(db, schedule, debug)
     addCalendar(db, schedule, debug)
     addCalendarDates(db, schedule, debug)
+    addRoutes(db, schedule, debug)
     addStops(db, schedule, debug)
     addShapes(db, schedule, debug)
-    addRoutes(db, schedule, debug)
     addTrips(db, schedule, debug)
     addStopTimes(db, schedule, interpolate=True, debug=debug)
     addFrequencies(db, schedule, debug)
