@@ -103,14 +103,17 @@ def addStops(db,schedule,debug=False):
 
 def addShapes(db,schedule,debug=False):
     db.query("""SELECT DISTINCT shape_id FROM shapes""")
-    for shape in db.cursor.fetchall():
-        shape_id = shape['shape_id']
+
+    usedShapes = set([trip['shape_id'] for trip in schedule.GetTripList()])
+
+    for shape_id in usedShapes:
         db.query("""SELECT * FROM shapes WHERE shape_id="{0}" ORDER BY shape_pt_sequence""".format(shape_id))
         l = {'shape_pt_lat':0,'shape_pt_lon':0}
         shapeObject = transitfeed.Shape(shape_id=shape_id)
         for pt in db.cursor.fetchall():
             shapeObject.AddPoint(lat=pt['shape_pt_lat'],lon=pt['shape_pt_lon'])
         schedule.AddShapeObject(shapeObject)
+
 
 def addTrips(db,schedule,debug=False):
     for r in schedule.GetRouteList():
@@ -282,8 +285,8 @@ def buildSchedule(db, debug):
     addCalendarDates(db, schedule, debug)
     addRoutes(db, schedule, debug)
     addStops(db, schedule, debug)
-    addShapes(db, schedule, debug)
     addTrips(db, schedule, debug)
+    addShapes(db, schedule, debug)
     addStopTimes(db, schedule, interpolate=True, debug=debug)
     addFrequencies(db, schedule, debug)
     addFeedInfo(schedule)
