@@ -52,7 +52,9 @@ class toolbox(object):
 
   def routes(self):
     routes = []
-    for row in self.db.select('routes'):
+    self.db.query("""SELECT * FROM routes ORDER BY route_short_name""")
+    # for row in self.db.select('routes'):
+    for row in self.db.cursor.fetchall():
       data = {}
       for k in ['route_id', 'agency_id', 'route_short_name', 
         'route_long_name', 'route_desc', 'route_type', 
@@ -129,9 +131,8 @@ class toolbox(object):
           (stop_lon BETWEEN {w} AND {e})
         LIMIT 300
         """.format(s=s,n=n,w=w,e=e)
-
     self.db.query(q)
-    features = []
+
     d = {}
     for r in self.db.cursor.fetchall():
       stop = dict(r)
@@ -142,6 +143,8 @@ class toolbox(object):
       else:
         d[stop_id] = stop
         d[stop_id]['lineas'] = [linea]
+    
+    features = []
     for stop_id,stop in d.items():
       f = geojson.geoJsonFeature(stop_id,
         stop['stop_lon'],
