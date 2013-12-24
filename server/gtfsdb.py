@@ -3,10 +3,19 @@
 import gtfstools
 import geojson
 from collections import defaultdict
+import xml
 
 class toolbox(object):
   def __init__(self, db):
     self.db = db
+
+  def stops(self):
+    stops = []
+    self.db.query("""SELECT * FROM stops WHERE stop_id IN 
+      (SELECT DISTINCT stop_id FROM stop_seq)""")
+    for r in self.db.cursor.fetchall():
+      stops.append(dict(r))
+    return stops
 
   def findStop(self, stop_id):
     data = self.db.select('stops',stop_id=stop_id)

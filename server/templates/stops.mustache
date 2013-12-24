@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">   
+  <Document>
+    <Style id="TPoint">
+      <IconStyle>
+        <Icon>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</Icon>
+        <scale>0.4</scale>
+        <color>ff5f36e1</color>
+      </IconStyle>
+    </Style>
+    <Style id="TPoint0">
+      <IconStyle>
+        <scale>0.9</scale>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/paddle/ltblu-blank.png</href>
+        </Icon>
+        <hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+      </IconStyle>
+      <ListStyle>
+        <ItemIcon>
+          <href>http://maps.google.com/mapfiles/kml/paddle/ltblu-blank-lv.png</href>
+        </ItemIcon>
+      </ListStyle>
+    </Style>
+    <Folder>
+      <name>Stops</name>
+      <open>1</open>
+      <Folder>
+        <name>Filename: stops.kml</name>
+        <open>1</open>
+        {{#stops}}
+        <Placemark id="{{stop_id}}">
+          <name>{{stop_id}}</name>
+          <description>
+            Nombre: {{stop_name}}, 
+            Calle: {{stop_calle}} 
+            Numero: {{stop_numero}}, 
+            Entre: {{stop_entre}}
+          </description>
+          <styleUrl>#TPoint0</styleUrl>
+          <Point>
+            <coordinates>{{stop_lon}},{{stop_lat}}</coordinates>
+          </Point>
+        </Placemark>
+        {{/stops}}
+      </Folder>
+    </Folder>
+  </Document>
+</kml>

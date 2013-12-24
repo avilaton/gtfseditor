@@ -40,6 +40,22 @@ def addAgencies(db,schedule,debug=False):
         agency.agency_lang = r['agency_lang']
     schedule.SetDefaultAgency(schedule.GetAgencyList()[0])
 
+def addRoutes(db,schedule,debug=False):
+    for route in db.select('routes'):
+        route_id = route['route_id']
+        if route_id not in ['C0'] and debug:
+            continue
+        if 'active' in route and not route['active']:
+            continue
+        r = schedule.AddRoute(short_name=route['route_short_name'], 
+            #long_name=route['route_long_name'], 
+            long_name='', 
+            route_id=route['route_id'],
+            route_type=route['route_type'])
+        r.agency_id = route['agency_id']
+        r.route_color = route['route_color']
+        r.route_text_color = route['route_text_color']
+
 def addCalendar(db,schedule,debug=False):   
     for s in db.select('calendar'):
         service = transitfeed.ServicePeriod()
@@ -87,8 +103,10 @@ def addStops(db,schedule,debug=False):
 
 def addShapes(db,schedule,debug=False):
     db.query("""SELECT DISTINCT shape_id FROM shapes""")
-    for shape in db.cursor.fetchall():
-        shape_id = shape['shape_id']
+
+    usedShapes = set([trip['shape_id'] for trip in schedule.GetTripList()])
+
+    for shape_id in usedShapes:
         db.query("""SELECT * FROM shapes WHERE shape_id="{0}" ORDER BY shape_pt_sequence""".format(shape_id))
         l = {'shape_pt_lat':0,'shape_pt_lon':0}
         shapeObject = transitfeed.Shape(shape_id=shape_id)
@@ -96,19 +114,6 @@ def addShapes(db,schedule,debug=False):
             shapeObject.AddPoint(lat=pt['shape_pt_lat'],lon=pt['shape_pt_lon'])
         schedule.AddShapeObject(shapeObject)
 
-def addRoutes(db,schedule,debug=False):
-    for route in db.select('routes'):
-        route_id = route['route_id']
-        if route_id not in ['C0'] and debug:
-            continue
-        r = schedule.AddRoute(short_name=route['route_short_name'], 
-            #long_name=route['route_long_name'], 
-            long_name='', 
-            route_id=route['route_id'],
-            route_type=route['route_type'])
-        r.agency_id = route['agency_id']
-        r.route_color = route['route_color']
-        r.route_text_color = route['route_text_color']
 
 def addTrips(db,schedule,debug=False):
     for r in schedule.GetRouteList():
@@ -278,10 +283,10 @@ def buildSchedule(db, debug):
     addAgencies(db, schedule, debug)
     addCalendar(db, schedule, debug)
     addCalendarDates(db, schedule, debug)
-    addStops(db, schedule, debug)
-    addShapes(db, schedule, debug)
     addRoutes(db, schedule, debug)
+    addStops(db, schedule, debug)
     addTrips(db, schedule, debug)
+    addShapes(db, schedule, debug)
     addStopTimes(db, schedule, interpolate=True, debug=debug)
     addFrequencies(db, schedule, debug)
     addFeedInfo(schedule)
