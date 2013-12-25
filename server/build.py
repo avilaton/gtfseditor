@@ -45,8 +45,9 @@ def addRoutes(db,schedule,debug=False):
         route_id = route['route_id']
         if route_id not in ['C0'] and debug:
             continue
-        if 'active' in route and not route['active']:
+        if 'active' in dict(route) and not bool(route['active']):
             continue
+        print('adding route: ' + route_id)
         r = schedule.AddRoute(short_name=route['route_short_name'], 
             #long_name=route['route_long_name'], 
             long_name='', 
@@ -81,6 +82,26 @@ def addCalendarDates(db, schedule, debug=False):
         elif feriado['exception_type'] == "2":
             service_period.SetDateHasService(feriado['date'], has_service=False)
             
+def addUsedStops(db, schedule, debug=False):
+    tripIds = set([])
+    for r in schedule.GetRouteList():
+        route_id = r['route_id']
+        for trip in db.select('trips', route_id=route_id):
+            tripIds.add(trip['trip_id'])
+
+    usedStopIds = set([])
+    for trip_id in tripIds:
+        for stop in db.select('stop_seq', trip_id=trip_id):
+            usedStopIds.add(stop['stop_id'])
+    
+    for stop_id in usedStopIds:
+        s = db.select('stops', stop_id=stop_id)[0]
+        lat = s['stop_lat']
+        lng = s['stop_lon']
+        stop_id = s['stop_id']
+        stop = schedule.AddStop(lat=float(lat),lng=float(lng),name=s['stop_name'],stop_id=stop_id)
+        stop.stop_code = s['stop_id']
+
 def addStops(db,schedule,debug=False):
     # q = """SELECT DISTINCT stop_id FROM stop_seq 
     #   WHERE trip_id="{0}" OR trip_id="{1}" """.format('C0.ida','C0.vuelta')
@@ -244,13 +265,16 @@ def updateDistTraveled(db):
 def createFeedInfoFile(db, debug):
     import csv
 
-    writer = csv.DictWriter(open('dict.csv', 'w'), fieldnames)
     keys = ['feed_publisher_name', 'feed_start_date', 'feed_version', 
         'feed_end_date', 'feed_lang', 'feed_publisher_url']
-    rows = []
-    rows = [dict(r) for r in db.select('feed_info')]
-    for r in rows:
-        print dict((k, v.encode('utf-8')) for k, v in r.iteritems())
+    with open('database/feed_info_test.txt', 'w') as file:
+        writer = csv.DictWriter(file, keys)
+        writer.writeheader()
+        rows = []
+        rows = [dict(r) for r in db.select('feed_info')]
+        for r in rows:
+            row = dict((k, v.encode('utf-8')) for k, v in r.iteritems())
+            writer.writerow(row)
 
 
 def constructStopNames(db):
@@ -284,8 +308,9 @@ def buildSchedule(db, debug):
     addCalendar(db, schedule, debug)
     addCalendarDates(db, schedule, debug)
     addRoutes(db, schedule, debug)
-    addStops(db, schedule, debug)
     addTrips(db, schedule, debug)
+    # addUsedStops(db, schedule, debug)
+    addStops(db, schedule, debug)
     addShapes(db, schedule, debug)
     addStopTimes(db, schedule, interpolate=True, debug=debug)
     addFrequencies(db, schedule, debug)
