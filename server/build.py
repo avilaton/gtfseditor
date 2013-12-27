@@ -149,6 +149,68 @@ def addTrips(db,schedule,debug=False):
                 trip.shape_id = t['trip_id']
                 trip.direction_id = t['direction_id']
 
+
+def addTripsInit(db,schedule,debug=False):
+    for r in schedule.GetRouteList():
+        route_id = r['route_id']
+        for t in db.select('trips', route_id=route_id):
+            if t['trip_id'] != 'C0.ida' and debug:
+                continue
+            for service in schedule.GetServicePeriodList():
+                for init_time in getTripInitTimes(db, t['trip_id'], service.service_id):
+                    trip_id = t['trip_id'] + '.' + service.service_id + '.' + str(init_time)
+                    trip = r.AddTrip(trip_id = trip_id,headsign=t['trip_headsign'])
+                    trip.service_id = service.service_id
+                    trip.shape_id = t['trip_id']
+                    trip.direction_id = t['direction_id']
+
+
+def getTripInitTimes(db, trip_id, service_period):
+    # fetch init times
+    db.query("""SELECT {service_period} FROM salidas 
+        WHERE trip_id={trip_id} ORDER BY {service_period}""".format(
+            trip_id=trip_id,
+            service_period=service_period))
+    init_times = []
+    for r in db.cursor.fetchall():
+        if r[0]:
+            init_times.append(hhmmss2sec(r[0]))
+    return init_times
+
+def getTripStopSeq(db, trip_id):
+    q = """SELECT * FROM stop_seq 
+        WHERE trip_id="{0}" 
+        ORDER BY stop_sequence""".format(trip_id)
+    db.query(q)
+    trip_stops = db.cursor.fetchall()
+    return trip_stops
+
+def addStopTimesInit(db, schedule, debug=False):
+    """Adding Stop Times from trip start times"""
+
+    for trip in schedule.GetTripList():
+        trip_id, service_id, init_time = trip['trip_id'].split('.')
+        print(trip['trip_id'])
+        init_times = getTripInitTimes(db, trip_id, service_id)
+        trip_stops = getTripStopSeq(db, trip_id)
+
+        previousTime = None
+        for s in trip_stops:
+            stop_id = s['stop_id']
+            stop = schedule.GetStop(stop_id)
+            t = hhmmss2sec(s['time']) + int(init_time)
+            stop_time = sec2hhmmss(t)
+            # print(stop_id + ' at time ' + stop_time)
+            if not previousTime:
+                trip.AddStopTime(stop,stop_time=stop_time)
+            elif previousTime and (previousTime < hhmmss2sec(stop_time)):
+                trip.AddStopTime(stop,stop_time=stop_time)
+            else:
+                trip.AddStopTime(stop)
+            previousTime = hhmmss2sec(stop_time)
+        previousTime = None
+
+
 def addStopTimes(db,schedule,interpolate=True, debug=False):
     """Adding Stop Times"""
     #interpolate = False
@@ -200,12 +262,23 @@ def gettimepoints(db, trip_id):
     return [k[1] for k in db.cursor.fetchall()]
 
 def sec2hhmmss(sec):
-    x = datetime.timedelta(seconds=sec)
-    return str(x)
+    seconds = sec%60
+    
+    sec = sec-seconds
+    min = int(sec/60)
+
+    minutes = min%60    
+    h = min-minutes
+    hours = int(h/60)
+    t = map(lambda d:"{0:02d}".format(d), [hours, minutes, seconds])
+    formatedTime = ':'.join(t)
+
+    return formatedTime
 
 def hhmmss2sec(hhmmss):
-    hms = datetime.datetime.strptime(hhmmss,'%H:%M:%S')
-    return hms.hour*60*60+hms.minute*60+hms.second
+    # hms = datetime.datetime.strptime(hhmmss,'%H:%M:%S')
+    h,m,s = map(lambda x:int(x), hhmmss.split(':'))
+    return h*60*60+m*60+s
 
 def fixTimes(t0,t1):
     t_0 = datetime.datetime.strptime(t0,'%H:%M')
@@ -276,7 +349,6 @@ def createFeedInfoFile(db, debug):
             row = dict((k, v.encode('utf-8')) for k, v in r.iteritems())
             writer.writerow(row)
 
-
 def constructStopNames(db):
     db.query("""SELECT * FROM stops WHERE stop_id IN 
         (SELECT DISTINCT stop_id FROM stop_seq)""")
@@ -301,20 +373,27 @@ def constructStopNames(db):
         db.query("""UPDATE stops SET stop_name='{name}' 
             WHERE stop_id='{stop_id}' """.format(name=name.encode('utf-8'), stop_id=stop['stop_id']))
 
-def buildSchedule(db, debug):
+def buildSchedule(db, mode, debug):
     schedule = transitfeed.Schedule()
     
     addAgencies(db, schedule, debug)
     addCalendar(db, schedule, debug)
     addCalendarDates(db, schedule, debug)
     addRoutes(db, schedule, debug)
-    addTrips(db, schedule, debug)
-    # addUsedStops(db, schedule, debug)
-    addStops(db, schedule, debug)
-    addShapes(db, schedule, debug)
-    addStopTimes(db, schedule, interpolate=True, debug=debug)
-    addFrequencies(db, schedule, debug)
+    if mode is 'frequency':
+        addTrips(db, schedule, debug)
+        addStops(db, schedule, debug)
+        addShapes(db, schedule, debug)
+        addStopTimes(db, schedule, interpolate=True, debug=debug)
+        addFrequencies(db, schedule, debug)
+    elif mode is 'initTimes':
+        addTripsInit(db, schedule, debug)
+        addUsedStops(db, schedule, debug)
+        addShapes(db, schedule, debug)
+        addStopTimesInit(db, schedule, debug)
+
     addFeedInfo(schedule)
+        
     return schedule
 
 
@@ -354,8 +433,9 @@ def main():
     # updateDistTraveled(db)
 
     constructStopNames(db)
-    
-    schedule = buildSchedule(db, DEBUG)
+
+    schedule = buildSchedule(db, mode='frequency', DEBUG)
+    # schedule = buildSchedule(db, mode='initTimes', DEBUG)
 
     db.close()
 
