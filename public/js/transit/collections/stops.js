@@ -92,6 +92,16 @@ define([
             this.remove(feature);
             this.toGeoJSON();
             this.trigger("stop_removed", self);
+        },
+
+        sortStops: function () {
+            var self = this;
+            var trip_id = this.trip_id;
+
+            var req = api.put({
+                route: self.url()+'?q=sort'
+            });
+            return req;
         }
     });
 

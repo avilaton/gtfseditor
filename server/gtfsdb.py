@@ -3,7 +3,7 @@
 import gtfstools
 import geojson
 from collections import defaultdict
-import xml
+# import xml
 
 class toolbox(object):
   def __init__(self, db):

@@ -68,7 +68,7 @@ define([
       },
       
       sortStops: function (event) {
-        this.collection.sortTripStops();
+        this.collection.sortStops();
       },
       
       offsetStops: function (event) {
