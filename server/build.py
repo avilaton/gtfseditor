@@ -373,7 +373,7 @@ def constructStopNames(db):
         db.query("""UPDATE stops SET stop_name='{name}' 
             WHERE stop_id='{stop_id}' """.format(name=name.encode('utf-8'), stop_id=stop['stop_id']))
 
-def buildSchedule(db, mode, debug):
+def buildSchedule(db, debug, mode):
     schedule = transitfeed.Schedule()
     
     addAgencies(db, schedule, debug)
@@ -434,8 +434,8 @@ def main():
 
     constructStopNames(db)
 
-    schedule = buildSchedule(db, mode='frequency', DEBUG)
-    # schedule = buildSchedule(db, mode='initTimes', DEBUG)
+    # schedule = buildSchedule(db, DEBUG, mode='frequency')
+    schedule = buildSchedule(db, DEBUG, mode='initTimes')
 
     db.close()
 
