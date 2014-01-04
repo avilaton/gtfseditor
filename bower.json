@@ -9,6 +9,7 @@
     "requirejs": "*",
     "openlayers": "",
     "handlebars": "",
-    "requirejs-text": "~2.0.10"
+    "requirejs-text": "~2.0.10",
+    "bootstrap": "2.3.2"
   }
 }
