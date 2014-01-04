@@ -2,7 +2,8 @@
 	<select id="route">
 	  <option value=""> -- </option>
 	  {{#each routes}}
-	    <option value={{route_id}}>{{route_type}} {{route_short_name}}</option>
+	    <option value="{{route_id}}">{{route_type}} {{route_short_name}}</option>
 	  {{/each}}
 	</select>
 </label>
+<button class="btn" data-target="#routeEditData" data-toggle="modal"><i class="icon-pencil"></i></button>

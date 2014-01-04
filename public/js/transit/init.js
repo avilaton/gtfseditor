@@ -7,6 +7,7 @@ define([
   "transit/views/filter",
   "transit/views/routesSelect",
   "transit/views/tripsSelect",
+  "transit/views/modal",
   "transit/views/shapesToolbox",
   "transit/views/sequenceToolbox",
   "transit/views/stopData",
@@ -14,9 +15,11 @@ define([
   "transit/views/map"
 	], 
   function (ShapeModel, StopModel, RoutesCollection, TripsCollection, 
-    StopsCollection, FilterView, RoutesSelectView, TripsSelectView, 
+    StopsCollection, FilterView, RoutesSelectView, TripsSelectView, ModalView,
     ShapesToolboxView, SequenceToolboxView, StopDataView, StopToolbarView, 
     MapView) {
+
+    require(["bootstrap"]);
 
 		function createControls () {
 			var state = window.app.state;
@@ -33,6 +36,10 @@ define([
 
 
       var routeSelector = new RoutesSelectView({
+        collection: state.routes
+      });
+      var routeDataEditor = new ModalView({
+        el: $("#routeDataEditor"),
         collection: state.routes
       });
 
