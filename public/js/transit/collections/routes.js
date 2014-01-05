@@ -11,7 +11,7 @@ define([
 		url: 'api/routes/',
 
 	    initialize: function(){
-
+            this.selected = new this.model;
         },
 
         parse: function (response) {
@@ -25,7 +25,9 @@ define([
         		return model.get("route_id") == route_id;
         	});
 
-        	this.selected = selectedModel;
+            // this.selected = selectedModel;
+            this.selected.set(selectedModel.toJSON());
+            console.log(this.selected, selectedModel.toJSON());
 
             self.trigger('route_selected', selectedModel);
         }

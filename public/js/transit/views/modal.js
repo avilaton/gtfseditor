@@ -10,16 +10,25 @@ define([
         
         template: Handlebars.compile(tmpl),
 
-        events: {},
+        events: {
+            "click .btn-save": "saveRoute"
+        },
 
         initialize: function(options){
+            var self = this;
             this.render();
+            this.collection.on("route_selected", self.render, self);
         },
 
         render: function () {
             var self = this;
+            console.log(this);
 
-            this.$el.html(this.template({}));
+            this.$el.html(this.template(this.collection.selected.toJSON()));
+        },
+
+        saveRoute: function (event) {
+            console.log(this)
         }
     });
 

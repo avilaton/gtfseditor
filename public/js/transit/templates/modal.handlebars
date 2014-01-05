@@ -1,13 +1,32 @@
 <div id="routeEditData" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>Route Data</h3>
+    <h3>Route id: {{route_id}}</h3>
   </div>
   <div class="modal-body">
-    <p>Details</p>
+    <form action="">
+        <label>agency_id
+        <input type="text" class="edit-stop-entre" value="{{agency_id}}">
+        </label>
+        <label>route_color
+        <input type="text" class="edit-stop-entre" value="{{route_color}}">
+        </label>
+        <label>route_desc
+        <input type="text" class="edit-stop-entre" value="{{route_desc}}">
+        </label>
+        <label>route_long_name
+        <input type="text" class="edit-stop-entre" value="{{route_long_name}}">
+        </label>
+        <label>route_short_name
+        <input type="text" class="edit-stop-entre" value="{{route_short_name}}">
+        </label>
+        <label>route_type
+        <input type="text" class="edit-stop-entre" value="{{route_type}}">
+        </label>
+    </form>
   </div>
   <div class="modal-footer">
     <a href="#" class="btn">Close</a>
-    <a href="#" class="btn btn-primary">Save changes</a>
+    <a href="#" class="btn btn-primary btn-save">Save changes</a>
   </div>
 </div>
