@@ -69,6 +69,7 @@ class toolbox(object):
         'route_long_name', 'route_desc', 'route_type', 
         'route_color']:
         data.update({k:row[k]})
+        data['active'] = bool(row['active'])
       routes.append(data)
     return {'routes': routes}
 
