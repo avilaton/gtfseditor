@@ -2,9 +2,10 @@ define([
   "OpenLayers",
   "backbone",
   "transit/views/map/drawStops",
+  "transit/views/map/kmlLayer",
   "transit/views/mapStyles"
   ],
-  function (OpenLayers, Backbone, DrawStopsView, Styles) {
+  function (OpenLayers, Backbone, DrawStopsView, kmlLayerView, Styles) {
     'use strict';
 
     var MapView = Backbone.View.extend({
@@ -66,6 +67,10 @@ define([
           map: this.map,
           model: self.stop
         });
+        this.layers.kml = new kmlLayerView({
+          map: this.map
+        });
+
       },
 
       bindEvents: function () {
@@ -337,7 +342,7 @@ define([
         this.controls = controls;
 
         controls.selectStops = new OpenLayers.Control.SelectFeature(
-          [self.stopsLayer,self.bboxLayer, self.layers.marker.layer],
+          [self.stopsLayer,self.bboxLayer, self.layers.marker.layer, self.layers.kml.layer],
           {
             id: 'selectStops',
             clickout: true, toggle: false,
