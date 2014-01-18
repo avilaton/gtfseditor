@@ -4,11 +4,13 @@ DEBUG = False
 
 from bottle import route, static_file, get, post, put, request, redirect, hook, response
 
-import ormgeneric as o
+import database
 import gtfsdb
 from cork import Cork
 
-db = o.dbInterface('database/dbRecorridos.sqlite')
+db = database.dbInterface('database/dbRecorridos.sqlite')
+# db = database.Postgress(database='testdb', user='tester', password='tester', host='127.0.0.1')
+
 tb = gtfsdb.toolbox(db)
 
 
@@ -78,9 +80,9 @@ def saveTripStops(trip_id):
   return result
 
 @get('/api/trip/<trip_id>/stop/<stop_id>/timepoint')
-def is_timepoint(trip_id,stop_id):
-  state = db.select('stop_seq', trip_id=trip_id,stop_id=stop_id)[0]
-  return {'is_timepoint': state['is_timepoint']}
+def is_timepoint(trip_id, stop_id):
+  trip_stop = tb.getTripStop(trip_id, stop_id)
+  return {'is_timepoint': trip_stop['is_timepoint']}
 
 @put('/api/trip/<trip_id>/stop/<stop_id>/timepoint')
 def set_timepoint(trip_id,stop_id):

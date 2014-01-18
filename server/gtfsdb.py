@@ -96,7 +96,7 @@ class toolbox(object):
     features = []
     stopCodes = []
     q = """SELECT stop_id,is_timepoint 
-      FROM stop_seq WHERE trip_id="{0}"
+      FROM stop_seq WHERE trip_id='{0}'
       ORDER BY stop_sequence""".format(trip_id)
     self.db.query(q)
     for i,row in enumerate(self.db.cursor.fetchall()):
@@ -167,6 +167,9 @@ class toolbox(object):
         'stop_entre':stop['stop_entre']})
       features.append(f)
     return geojson.geoJsonFeatCollection(features)
+
+  def getTripStop(self, trip_id, stop_id):
+    return db.select('stop_seq', trip_id=trip_id,stop_id=stop_id)[0]
 
   def set_timepoint(self, trip_id, stop_id, is_timepoint):
     q = """UPDATE stop_seq 
