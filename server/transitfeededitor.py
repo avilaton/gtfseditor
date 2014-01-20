@@ -8,11 +8,30 @@ import database
 import gtfsdb
 from cork import Cork
 
-db = database.dbInterface('database/dbRecorridos.sqlite')
-# db = database.Postgress(database='testdb', user='tester', password='tester', host='127.0.0.1')
+# heroku setup
+# import urlparse
+# import os
+# urlparse.uses_netloc.append('postgres')
+# url = urlparse.urlparse(os.environ['DATABASE_URL'])
+# db = database.Postgress(
+#   database = url.path[1:], 
+#   user = url.username, 
+#   password = url.password, 
+#   host = url.hostname,
+#   port = url.port
+# )
+
+# db = database.Postgress(
+#   database='testdb', 
+#   user='tester', 
+#   password='tester', 
+#   host='127.0.0.1'
+# )
+
+# db = database.dbInterface('database/dbRecorridos.sqlite')
+db = database.dbInterface('database/cba-0.1.5.sqlite')
 
 tb = gtfsdb.toolbox(db)
-
 
 @hook('after_request')
 def after_request():

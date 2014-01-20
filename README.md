@@ -30,3 +30,13 @@ and .bowerrc
 		https-proxy: http://ip:port
 	}
 
+postgres notes
+---------------
+
+load from file
+	
+	\i database/cba-0.1.5.sql
+
+dump to csv
+
+	\COPY stops TO 'stops.txt' WITH delimiter ',' null '' csv header quote '"';
