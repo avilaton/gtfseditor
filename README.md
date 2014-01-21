@@ -40,3 +40,7 @@ load from file
 dump to csv
 
 	\COPY stops TO 'stops.txt' WITH delimiter ',' null '' csv header quote '"';
+
+push to heroku
+
+	PGUSER=*** PGPASSWORD=*** heroku pg:push cbadb HEROKU_POSTGRESQL_PINK --app gtfseditor
