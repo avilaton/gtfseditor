@@ -25,7 +25,8 @@ define([
                         extractAttributes: true,
                         maxDepth: 2
                     })
-                })
+                }),
+                visibility: false
             });
             this.layer.id = 'kml_layer';
             
