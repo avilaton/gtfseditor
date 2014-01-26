@@ -66,7 +66,7 @@ body {
 #leftbar {
   display:table-cell;
   /* background:#f0f0f0; */
-  padding: 10px;
+  padding: 10px 20px 0;
   width:28%;
 }
 #leftbar select,  {
@@ -88,7 +88,7 @@ body {
 	background-color: #eee;
   width: 100%;
   /* FIXME */
-  height: 670px;
+  height: 540px;
   border: 1px solid #aaa;
 }
 
