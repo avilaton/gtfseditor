@@ -1,7 +1,17 @@
 <div class="well well-small">
+  {{#if editMode}}
   <form class="form-horizontal">
     <fieldset>
+      <div class="control-group">
       <legend>Stop id: {{stop.properties.stop_id}}</legend>
+        <label>Calle</label>
+        <input placeholder="Calle" type="text" class="span3 edit-stop-calle" value="{{stop.properties.stop_calle}}">
+        <label>Número</label>
+        <input placeholder="Número" type="text" class="span3 edit-stop-numero" value="{{stop.properties.stop_numero}}">
+        <label>Esquina</label>
+        <input placeholder="Esquina" type="text" class="span3 edit-stop-esquina" value="{{stop.properties.stop_esquina}}">
+        <label>Entre</label>
+        <input placeholder="Entre" type="text" class="span3 edit-stop-entre" value="{{stop.properties.stop_entre}}">
       <!--
       <p><strong>Ordinal: </strong>{{stop.properties.stop_seq}}</p>
       <label class="checkbox">
@@ -9,41 +19,30 @@
         control tiempo
       </label>
       -->
-      {{#if editMode}}
-        <label>Calle</label>
-        <input type="text" class="edit-stop-calle" value="{{stop.properties.stop_calle}}">
-        <label>Número</label>
-        <input type="text" class="edit-stop-numero" value="{{stop.properties.stop_numero}}">
-        <label>Esquina</label>
-        <input type="text" class="edit-stop-esquina" value="{{stop.properties.stop_esquina}}">
-        <label>Entre</label>
-        <input type="text" class="edit-stop-entre" value="{{stop.properties.stop_entre}}">
-      {{else}}
-        <dl>
-          <dt>Calle</dt>
-          <dd>{{stop.properties.stop_calle}}</dd>
-          <dt>Numero</dt>
-          <dd>{{stop.properties.stop_numero}}</dd>
-          <dt>Esquina</dt>
-          <dd>{{stop.properties.stop_esquina}}</dd>
-          <dt>Entre</dt>
-          <dd>{{stop.properties.stop_entre}}</dd>
-          <dt>Lineas</dt>
-          <dd>
-            <p>{{#each stop.properties.stop_lineas}}{{this}}, {{/each}}</p>
-          </dd>
-        </dl>
-      {{/if}}
+      </div>
+      <div class="control-group">
+        <div class="btn-group">
+          <button class="btn btn-primary saveStop"><i class="icon-ok"></i> Save</button>
+          <button class="btn cancelEditStop">Cancel</button>
+        </div>
+      </div>
     </fieldset>
-    
-    <!--
-    <div class="btn-group">
-      <button class="btn {{#if editMode}}btn-primary {{/if}}editStop"><i class="icon-pencil"></i> Edit</button>
-      {{#if stop.changed}}
-        <button class="btn btn-primary saveStop"><i class="icon-ok"></i> Save</button>
-      {{/if}}
-      <button class="btn cancelEditStop">Cancel</button>
-    </div>
-    -->
   </form>
+  {{else}}
+  <legend>Stop id: {{stop.properties.stop_id}}</legend>
+  <dl>
+    <dt>Calle</dt>
+    <dd>{{stop.properties.stop_calle}}</dd>
+    <dt>Numero</dt>
+    <dd>{{stop.properties.stop_numero}}</dd>
+    <dt>Esquina</dt>
+    <dd>{{stop.properties.stop_esquina}}</dd>
+    <dt>Entre</dt>
+    <dd>{{stop.properties.stop_entre}}</dd>
+    <dt>Lineas</dt>
+    <dd>
+      <p>{{#each stop.properties.stop_lineas}}{{this}}, {{/each}}</p>
+    </dd>
+  </dl>
+  {{/if}}
 </div>

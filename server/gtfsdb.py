@@ -9,6 +9,8 @@ class toolbox(object):
   def __init__(self, db):
     self.db = db
 
+  ################
+  # stops
   def stops(self):
     stops = []
     self.db.query("""SELECT * FROM stops WHERE stop_id IN 
@@ -47,22 +49,27 @@ class toolbox(object):
   def updateStop(self, stop_id, data):
     """ 
     Stub - should carry out a full update, only updates stop_calle
-    SQL to find unnamed stops is
-    SELECT stop_id FROM stops WHERE stop_id IN (SELECT DISTINCT stop_id FROM stop_seq) AND stop_calle=''
     """
     stop_calle = data['properties']['stop_calle'].encode('utf-8')
     result = self.db.query("""UPDATE stops SET stop_calle='{stop_calle}' 
       WHERE stop_id='{stop_id}'"""
       .format(stop_id=stop_id,stop_calle=stop_calle))
-    #self.db.query("COMMIT;")
-    #print self.db.cursor.fetchall()
-    #print self.db.select('stops', stop_id=stop_id)
+    self.db.connection.commit()
     return {'success': True, 'result': result}
 
+  def deleteStop(self, stop_id):
+    """Deletes a stop by stop_id"""
+    result = self.db.query("""DELETE FROM stops WHERE stop_id='{stop_id}'"""
+      .format(stop_id=stop_id))
+    self.db.connection.commit()
+    return {'success': True, 'result': result}
+
+  ################
+  # routes
   def routes(self):
     routes = []
     self.db.query("""SELECT * FROM routes ORDER BY route_short_name""")
-    # for row in self.db.select('routes'):
+
     for row in self.db.cursor.fetchall():
       data = {}
       for k in ['route_id', 'agency_id', 'route_short_name', 

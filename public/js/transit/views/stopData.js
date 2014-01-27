@@ -35,7 +35,6 @@ define([
 
             render: function () {
                 var self = this;
-                console.log("stop model change fired:", this);
 
                 this.$el.html(this.template({
                     stop: self.model.toJSON(),
@@ -49,6 +48,11 @@ define([
                 this.model.save();
             },
 
+            setEditMode: function (editMode) {
+                this.editMode = editMode;
+                this.render();
+            },
+
             onCalleChange: function (event) {
                 var $target = $(event.currentTarget);
                 var value = $target.val();
@@ -56,46 +60,7 @@ define([
                 properties.stop_calle = value;
                 this.model.set({"properties": properties, changed: true});
                 console.log("stop model after set", this.model);
-            },
-
-            editStop: function (event) {
-                var self = this;
-                event.preventDefault();
-
-                var $target = $(event.currentTarget);
-                var feature = this.model.feature;
-                console.log(feature);
-                
-                if (this.controls.selectStops.active) {
-                    //$target.addClass('btn-primary');
-                    self.editMode = true;
-                    // this.controls.selectStops.unselectAll();
-                    this.controls.selectStops.deactivate();
-                    this.controls.modifyStops.activate();
-                    this.controls.modifyStops.selectFeature(feature);
-                } else {
-                    // $target.removeClass('btn-primary');
-                    self.editMode = false;
-                    this.controls.modifyStops.deactivate();
-                    this.controls.selectStops.activate();
-                }
-            },
-
-            newStop: function (event) {
-              var $target = $(event.currentTarget);
-              $target.toggleClass('btn-primary');
-              if (this.controls.selectStops.active) {
-                $target.addClass('btn-primary');
-                this.controls.selectStops.unselectAll();
-                this.controls.selectStops.deactivate();
-                this.controls.drawStops.activate();
-            } else {
-                $target.removeClass('btn-primary');
-                this.controls.drawStops.deactivate();
-                this.controls.selectStops.activate();
             }
-
-        }
 
     });
 

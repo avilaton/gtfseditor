@@ -14,6 +14,7 @@ define([
             events: {
                 "click button.newStop": "newStop",
                 "click button.editStop": "editStop",
+                "click button.removeStop": "removeStop",
                 "click button.saveStop": "saveStop"
             },
 
@@ -22,6 +23,8 @@ define([
 
                 this.controls = options.controls;
 
+                this.stopDataView = options.stopDataView;
+
                 this.editMode = false;
 
                 this.render();
@@ -29,6 +32,8 @@ define([
 
             render: function () {
                 this.$el.html(this.template({}));
+                this.saveBtn = this.$el.find('.saveStop');
+                this.editBtn = this.$el.find('.editStop');
             },
 
             saveStop: function (event) {
@@ -37,27 +42,33 @@ define([
                 this.model.save();
             },
 
+            removeStop: function (event) {
+                event.preventDefault();
+                console.log("remove stop clicked", event, this.model);
+                this.model.destroy();
+            },
+
             editStop: function (event) {
                 var self = this;
-                event.preventDefault();
-
                 var $target = $(event.currentTarget);
                 var feature = this.model.feature;
-                console.log(feature);
+                event.preventDefault();
                 
                 if (this.controls.selectStops.active) {
-                    //$target.addClass('btn-primary');
-                    self.editMode = true;
+                    $target.addClass('btn-primary');
+                    this.stopDataView.setEditMode(true);
                     // this.controls.selectStops.unselectAll();
                     this.controls.selectStops.deactivate();
                     this.controls.modifyStops.activate();
                     this.controls.modifyStops.selectFeature(feature);
                 } else {
-                    // $target.removeClass('btn-primary');
-                    self.editMode = false;
+                    $target.removeClass('btn-primary');
+                    this.stopDataView.setEditMode(false);
                     this.controls.modifyStops.deactivate();
                     this.controls.selectStops.activate();
+                    this.controls.selectStops.select(feature);
                 }
+                self.editMode = !self.editMode;
             },
 
             newStop: function (event) {
@@ -74,15 +85,6 @@ define([
                     this.controls.selectStops.activate();
                 }
 
-            },
-
-            onCalleChange: function (event) {
-                var $target = $(event.currentTarget);
-                var value = $target.val();
-                var properties = this.model.get("properties");
-                properties.stop_calle = value;
-                this.model.set({"properties": properties, changed: true});
-                console.log("stop model after set", this.model);
             }
     });
 

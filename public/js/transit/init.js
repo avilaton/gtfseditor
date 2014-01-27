@@ -72,14 +72,15 @@ define([
         controls: myMap.controls
       });
 
-      var myStopView = new StopDataView({
+      var myStopDataView = new StopDataView({
         model: state.stop,
         controls: myMap.controls
       });
 
-      var myStopToolbar = new StopToolbarView({
+      var myStopToolbarView = new StopToolbarView({
         model: state.stop,
-        controls: myMap.controls
+        controls: myMap.controls,
+        stopDataView: myStopDataView
       });
 
       /** 

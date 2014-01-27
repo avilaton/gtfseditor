@@ -2,7 +2,7 @@
 
 DEBUG = False
 
-from bottle import route, static_file, get, post, put, request, redirect, hook, response
+from bottle import route, static_file, get, post, put, delete, request, redirect, hook, response
 
 import database
 import gtfsdb
@@ -35,12 +35,19 @@ tb = gtfsdb.toolbox(db)
 
 @hook('after_request')
 def after_request():
-  db.connection.commit()
+  pass
+  # print("commit to db...")
+  # db.connection.commit()
 
 @hook('before_request')
 def before_request():
   #db.open()
   return
+
+###############################
+# GTFS API
+# ========
+###############################
 
 @route('/api/reports/unnamed')
 def unnamed():
@@ -50,19 +57,32 @@ def unnamed():
   result += '\n'.join(unnamed)
   return result
 
-@route('/assets/<filepath:path>')
-def server_files(filepath):
-  return static_file(filepath, root='./assets/')
-
-
+###############################
+# stops
 @route('/api/stop/<stop_id>')
 def findStop(stop_id):
   return tb.findStop(stop_id)
+
+@post('/api/stop/<stop_id>')
+def createStop(stop_id):
+  return tb.createStop(stop_id, request.json)
 
 @put('/api/stop/<stop_id>')
 def updateStop(stop_id):
   return tb.updateStop(stop_id, request.json)
 
+@delete('/api/stop/<stop_id>')
+def deleteStop(stop_id):
+  return tb.deleteStop(stop_id)
+
+@route('/api/bbox')
+def getBBOX():
+  bbox = request.query['bbox']
+  filterQuery = request.query['filter']
+  return tb.bbox(bbox, filterQuery)
+
+###############################
+# routes
 @route('/api/routes/')
 @route('/api/routes')
 def routes():
@@ -73,6 +93,8 @@ def routes():
 def routeTrips(route_id):
   return tb.trips(route_id)
 
+###############################
+# shapes
 @route('/api/shape/<shape_id>')
 def shape(shape_id):
   return tb.shape(shape_id)
@@ -82,6 +104,9 @@ def shape(shape_id):
   geojsonShape = request.json
   return tb.saveShape(shape_id, geojsonShape)
 
+
+###############################
+# trips
 @route('/api/trip/<trip_id>/stops')
 def tripStops(trip_id):
   return tb.tripStops(trip_id)
@@ -108,13 +133,12 @@ def set_timepoint(trip_id,stop_id):
   is_timepoint = request.params.is_timepoint
   return tb.set_timepoint(trip_id, stop_id, is_timepoint)
 
-@route('/api/bbox')
-def getBBOX():
-  bbox = request.query['bbox']
-  filterQuery = request.query['filter']
-  return tb.bbox(bbox, filterQuery)
-
+###############################
 # frontend routes
+@route('/assets/<filepath:path>')
+def server_files(filepath):
+  return static_file(filepath, root='./assets/')
+
 @route('/bower_components/<filepath:path>')
 def server_files(filepath):
   return static_file(filepath, root='./bower_components/')
