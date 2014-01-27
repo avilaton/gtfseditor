@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 DEBUG = False
 
@@ -55,6 +56,14 @@ def unnamed():
   unnamed = tb.unnamedStops()
   result = 'There are '+str(len(unnamed))+' unnamed stops.\n'
   result += '\n'.join(unnamed)
+  return result
+
+@route('/api/reports/available')
+def unnamed():
+  response.content_type = 'text/plain'
+  available = tb.availableStopIds()
+  result = 'There are '+str(len(available))+' available stops ids.\n'
+  result += '\n'.join(map(str,available))
   return result
 
 ###############################

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import gtfstools
 import geojson
@@ -187,6 +188,15 @@ class toolbox(object):
         is_timepoint=is_timepoint)
     self.db.query(q)
     return {'is_timepoint': is_timepoint}
+
+  def availableStopIds(self):
+    self.db.query("""SELECT stop_id FROM stops""")
+    allIds = set(range(1,10000))
+    usedIds = [int(r['stop_id'][1:]) for r in self.db.cursor.fetchall()]
+    availableIds = allIds.difference(usedIds)
+    print(len(availableIds))
+    print(len(usedIds))
+    return availableIds
 
   def getNewStopId(self):
     self.db.query("""SELECT stop_id FROM stops""")
