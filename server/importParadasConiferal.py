@@ -20,6 +20,7 @@
 #	   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #	   MA 02110-1301, USA.
 
+import csv
 import ormgeneric as o
 from gtfstools import utils
 
@@ -66,8 +67,7 @@ class Coniferal(object):
 					trips.update({trip_id: [stop_id]})
 				else:
 					trips[trip_id].append(stop_id)
-		for trip_id in trips:
-			print trip_id, trips[trip_id]
+		return trips
 
 if __name__ == '__main__':
 	db = o.dbInterface('../database/cba-1.0.0.sqlite')
@@ -77,6 +77,18 @@ if __name__ == '__main__':
 
 	# changed = coniferal.importStops()
 	# print changed
-	coniferal.importTripStops()
+	trips = coniferal.importTripStops()
+
+	fieldnames = ['trip_id','stop_id','stop_sequence', 'is_timepoint', 'shape_dist_traveled']
+	with open('stop_seq.csv', 'wb') as csvfile:
+		writer = csv.DictWriter(csvfile, fieldnames)
+		writer.writeheader()
+		for trip_id, stops in trips.items():
+			for i, stop_id in enumerate(stops):
+				writer.writerow({
+					'trip_id': trip_id,
+					'stop_sequence': i+1,
+					'stop_id': stop_id
+					})
 
 	db.close()
