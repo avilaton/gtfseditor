@@ -45,6 +45,7 @@ define([
             removeStop: function (event) {
                 event.preventDefault();
                 console.log("remove stop clicked", event, this.model);
+                console.log(this.model.feature.destroy());
                 this.model.destroy();
             },
 

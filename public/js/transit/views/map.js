@@ -368,12 +368,9 @@ define([
           });
         this.map.addControl(controls.modifyStops);
 
-        controls.modifyBbox = new OpenLayers.Control.ModifyFeature(
-          self.bboxLayer,{id: 'modifyBbox'});
-        self.map.addControl(controls.modifyBbox);
-
         controls.modifyShape = new OpenLayers.Control.ModifyFeature(
-          self.shapesLayer,{
+          self.shapesLayer,
+          {
             id: 'modifyShape',
             vertexRenderIntent: 'vertex'
           });
