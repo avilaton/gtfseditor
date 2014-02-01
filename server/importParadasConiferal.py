@@ -72,7 +72,6 @@ class Coniferal(object):
 if __name__ == '__main__':
 	db = o.dbInterface('../database/cba-1.0.0.sqlite')
 
-
 	coniferal = Coniferal(db)
 
 	# changed = coniferal.importStops()
