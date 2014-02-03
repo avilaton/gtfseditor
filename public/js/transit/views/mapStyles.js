@@ -90,6 +90,24 @@ define([
     })          
   });
 
+   Styles.drawStopsStyleMap = new OpenLayers.StyleMap({
+    'default': new OpenLayers.Style({
+      strokeColor: 'black', strokeWidth: 2, strokeOpacity: 1, 
+      pointRadius: 6, fillColor: 'blue', fill: true, 
+      fillOpacity: 1
+    })
+    ,
+    'select': new OpenLayers.Style({
+      strokeColor: 'black', strokeWidth: 2, strokeOpacity: 1, 
+      pointRadius: 8, fillColor: 'red', fill: true, fillOpacity: .6,
+      label: '${stop_id}',
+      fontColor: "black", fontSize: "16px", 
+      fontFamily: "Courier New, monospace", fontWeight: "bold",
+      labelAlign: "left", labelXOffset: "8", labelYOffset: "12",
+      labelOutlineColor: "white", labelOutlineWidth: 3
+    })          
+  });
+
    Styles.kmlStyleMap = new OpenLayers.StyleMap({
     'default': new OpenLayers.Style({
       strokeColor: 'black', strokeWidth: 2, strokeOpacity: 1, 

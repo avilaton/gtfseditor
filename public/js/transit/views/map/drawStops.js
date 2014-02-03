@@ -17,9 +17,9 @@ define([
             
             this.layer = new OpenLayers.Layer.Vector('Draw stops', {
               projection: new OpenLayers.Projection('EPSG:4326'),
-              styleMap: Styles.stopsStyleMap
+              styleMap: Styles.drawStopsStyleMap
             });
-            this.layer.id = 'draw_stops';
+            this.layer.id = 'drawStops';
             
             this.map.addLayer(self.layer);
             this.bindEvents();
@@ -31,6 +31,14 @@ define([
                 self.handleStopSelect);
             this.layer.events.register('featureunselected', self,
                 self.handleStopSelect);
+
+            // this.layer.events.register('featureadded', self.layer, function (event) {    
+            //     this.features.forEach(function (item) {
+            //         if (item.id !== event.feature.id) {
+            //             item.layer.removeFeatures([item]);
+            //         }
+            //     })
+            // });
         },
 
         handleStopSelect: function (event) {

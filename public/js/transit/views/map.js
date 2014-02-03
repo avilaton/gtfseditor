@@ -62,7 +62,7 @@ define([
 
       initializeChildViews: function () {
         var self = this;
-        this.layers.marker = new DrawStopsView({
+        this.layers.drawStops = new DrawStopsView({
           format: this.format,
           map: this.map,
           model: self.stop
@@ -342,7 +342,7 @@ define([
         this.controls = controls;
 
         controls.selectStops = new OpenLayers.Control.SelectFeature(
-          [self.stopsLayer,self.bboxLayer, self.layers.marker.layer, self.layers.kml.layer],
+          [self.stopsLayer,self.bboxLayer, self.layers.drawStops.layer, self.layers.kml.layer],
           {
             id: 'selectStops',
             clickout: true, toggle: false,
@@ -362,9 +362,10 @@ define([
         this.map.addControl(controls.selectMultiple);
 
         controls.modifyStops = new OpenLayers.Control.ModifyFeature(
-          self.bboxLayer,
+          self.layers.drawStops.layer,
           {
-            id: 'modifyStops'
+            id: 'modifyStops',
+            allowSelection: true
           });
         this.map.addControl(controls.modifyStops);
 
@@ -376,7 +377,7 @@ define([
           });
         this.map.addControl(controls.modifyShape);
         
-        controls.drawStops = new OpenLayers.Control.DrawFeature(self.layers.marker.layer,
+        controls.drawStops = new OpenLayers.Control.DrawFeature(self.layers.drawStops.layer,
           OpenLayers.Handler.Point);
         this.map.addControl(controls.drawStops);
         
@@ -393,6 +394,14 @@ define([
             };
             return feature;
         };
+
+        controls.copyFeature = function (feature, toLayer) {
+          self.layers[toLayer].layer.addFeatures([feature]);
+        }
+      },
+
+      editFeature: function (feature) {
+        // body...
       },
 
       activateControl: function (controlId) {

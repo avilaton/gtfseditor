@@ -50,24 +50,28 @@ define([
             },
 
             editStop: function (event) {
+                event.preventDefault();
                 var self = this;
                 var $target = $(event.currentTarget);
-                var feature = this.model.feature;
-                event.preventDefault();
-                
-                if (this.controls.selectStops.active) {
+                var feature = this.model.toFeature();
+
+                if (!this.editMode) {
+                    if (feature) {
+                        this.controls.copyFeature(feature, 'drawStops');
+                    };
                     $target.addClass('btn-primary');
                     this.stopDataView.setEditMode(true);
-                    // this.controls.selectStops.unselectAll();
+                    this.controls.selectStops.unselectAll();
                     this.controls.selectStops.deactivate();
                     this.controls.modifyStops.activate();
-                    this.controls.modifyStops.selectFeature(feature);
+                    this.controls.modifyStops.selectControl.select(feature);
                 } else {
                     $target.removeClass('btn-primary');
                     this.stopDataView.setEditMode(false);
                     this.controls.modifyStops.deactivate();
+
                     this.controls.selectStops.activate();
-                    this.controls.selectStops.select(feature);
+                    // this.controls.selectStops.select(feature);
                 }
                 self.editMode = !self.editMode;
             },
