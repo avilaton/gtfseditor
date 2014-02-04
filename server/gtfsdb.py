@@ -20,6 +20,11 @@ class toolbox(object):
       stops.append(dict(r))
     return stops
 
+  def allTrips(self):
+    self.db.query("""SELECT trip_id FROM trips""")
+    trips = [r['trip_id'] for r in self.db.cursor.fetchall()]
+    return trips
+
   def findStop(self, stop_id):
     data = self.db.select('stops',stop_id=stop_id)
     if data:
@@ -259,6 +264,7 @@ class toolbox(object):
   def sortTripStops(self, trip_id):
     trip = gtfstools.Trip(self.db, trip_id)
     trip.sortStops().saveStopsToDb()
+    self.db.connection.commit()
     return {'success': True}
 
   def alignTripStops(self, trip_id):

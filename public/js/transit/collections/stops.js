@@ -101,6 +101,9 @@ define([
             var req = api.put({
                 route: self.url()+'?q=sort'
             });
+            req.done(function () {
+                self.fetch()
+            })
             return req;
         }
     });

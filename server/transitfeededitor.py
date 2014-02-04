@@ -142,6 +142,15 @@ def set_timepoint(trip_id,stop_id):
   is_timepoint = request.params.is_timepoint
   return tb.set_timepoint(trip_id, stop_id, is_timepoint)
 
+@get('/api/commands/<command>')
+def dataSetCommands(command):
+  trips = tb.allTrips()
+  results = []
+  for trip_id in trips:
+    results.append(tb.sortTripStops(trip_id))
+    print("sorting trip: "+trip_id)
+  return {'results': results, 'trips': trips}
+
 ###############################
 # frontend routes
 @route('/assets/<filepath:path>')
