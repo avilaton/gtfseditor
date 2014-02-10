@@ -1,0 +1,1654 @@
+"Code","stop_calle","stop_numero","stop_entre","lineas","stop_lat","stop_lon"
+"C0004","Julio de Vedia",3837,"Jose Maria La Hora y Macacha Guemes","60 Ida - 63 Ida - 65 Ida - ",-31.36509,-64.13816
+"C0005","Julio de Vedia",3741,"Perez de Denis y Jose Agustin Donado","60 Ida - 63 Ida - 65 Ida - ",-31.36653,-64.13818
+"C0006","Julio de Vedia",3631,"Eustaquio Diaz Velez y Soriano de Areval","60 Ida - 63 Ida - 65 Ida - ",-31.36797,-64.13816
+"C0007","Arevalo",2552,"Heroes de Vilcapugio y Heroinas de Mayou","65 Ida - ",-31.36847,-64.1359
+"C0008","Arevalo",2682,"Heroinas de Ayouma y Chachapoyas","65 Ida - ",-31.36848,-64.13358
+"C0009","Chachapoyas",3550,"Bv Chorroarin doble mano","65 Ida - ",-31.36906,-64.13306
+"C0010","Chachapoyas",3401,"27 de Febrero y Fernando Abramo","65 Ida - ",-31.37101,-64.13308
+"C0011","Chachapoyas",3067,"Julian Laguna y 3 de Junio","65 Ida - ",-31.37247,-64.13308
+"C0012","Chachapoyas",3111,"Jose Mellian y Arredondo","65 Ida - ",-31.37387,-64.1331
+"C0013","Chachapoyas",3000,"Rauch y Balbastro","65 Ida - ",-31.37532,-64.13313
+"C0014","Rauch",2792,"Maestro Castro y Pje S/Nombre","65 Ida - ",-31.37572,-64.13165
+"C0015","Rauch",2894,"Castro y Calle sin Nombre","65 Ida - ",-31.3757,-64.1302
+"C0016","Mesa y Castro",2897,"Capdevila y Rauch","65 Ida - ",-31.37632,-64.1297
+"C0017","Montemayor",2767,"Capdevila y Rafael de Palencia","65 Ida - ",-31.37783,-64.1318
+"C0018","Montemayor",2611,"Rafael de Palencia y Vilchez y Montoya","65 Ida - ",-31.37925,-64.13178
+"C0019","Montemayor",2365,"Tadeo Davila y Jose de Medeiros","65 Ida - ",-31.38218,-64.1318
+"C0020","Montemayor",2225,"Medeiros y Archondo","65 Ida - ",-31.38309,-64.13182
+"C0021","Montemayor",2015,"Oca¤a y Isasmendi","65 Ida - ",-31.38508,-64.1318
+"C0022","Isasmendi",2900,"Alsina y Altolaguirre","65 Ida - 66 Reg - ",-31.38543,-64.13383
+"C0023","Altolaguirre",1718,"Gil de Taboada y Ramon de Carassa","60 Ida - 65 Ida - ",-31.38805,-64.1341
+"C0024","Malvinas",2613,"Edison y Wilson","60 Ida - ",-31.38936,-64.13602
+"C0026","Malvinas",2155,"Jose de Quevedo y Herman Huberman","60 Ida - 66 Reg - ",-31.39104,-64.14334
+"C0029","Malvinas",1445,"Santiso y Moscoso y Juan Tissera","60 Ida - 66 Reg - ",-31.39325,-64.15202
+"C0033","Polonia",1216,"Cochabamba y Charcas","65 Ida - ",-31.39878,-64.15663
+"C0034","Polonia",1041,"Urtubey y Garay","65 Ida - ",-31.40063,-64.15581
+"C0036","Armenia",2169,"Garibaldi y Eufrasio Loza","65 Ida - ",-31.40337,-64.15718
+"C0037","Libertad",2069,"Eufrasio Loza y Manuel Vergara","65 Ida - ",-31.40555,-64.15754
+"C0040","Viamonte",630,"Libertad y Oncativo","60 Ida - 62 Ida - 63 Ida - ",-31.4089,-64.16646
+"C0044","Sarmiento",331,"Pje Scabuzzo y Maipu","61 Ida - 63 Ida - 65 Ida - 66 Reg - ",-31.41146,-64.17708
+"C0047","Gral. Paz",331,"La Rioja y Santa Rosa","65 Ida - ",-31.41145,-64.18515
+"C0049","Velez Sarsfield",360,"Caseros y Duarte Quiros","61 Ida - 65 Ida - ",-31.41732,-64.18757
+"C0050","Velez Sarsfield",660,"San Luis y Laprida","61 Ida - 65 Ida - ",-31.42289,-64.18997
+"C0051","Achaval Rodriguez",333,"Belgrano y M.T. de Alvear","61 Ida - 65 Ida - ",-31.4241,-64.1924
+"C0053","M.T. de Alvear",1070,"Angelo de Peredo y Domingo Funes","61 Ida - 65 Ida - ",-31.4265,-64.19467
+"C0054","Julio Roca",418,"Brasil y Simon Bolivar","61 Ida - 65 Ida - ",-31.42723,-64.19542
+"C0056","Julio Roca",672,"Corro y Artigas","65 Ida - ",-31.42878,-64.20066
+"C0057","Julio Roca",886,"Clemente Sarraga y Paso de los Andes","65 Ida - ",-31.4286,-64.20286
+"C0058","Julio Roca",1091,"Achaval y Misiones","65 Ida - ",-31.42779,-64.207
+"C0059","Fuerza Aerea",1300,"Rio Negro y Rotonda del Ala","65 Ida - ",-31.429,-64.21121
+"C0060","Fuerza Aerea",1871,"Sol de Mayo y Sgto. Romero","60 Ida - 64 Ida - 65 Ida - ",-31.43038,-64.21456
+"C0063","Fuerza Aerea",2544,"Olegario Correa y Jose de Echeverria","60 Ida - 65 Ida - ",-31.43083,-64.22171
+"C0064","Fuerza Aerea",2884,"Espora y Leon Pinelo","60 Ida - 65 Ida - ",-31.43125,-64.22698
+"C0070","Aviador Abel",1887,"Fuerza Aerea y Aviador Zanni","65 Ida - ",-31.43226,-64.24571
+"C0071","Aviador Abel",1758,"Albarracin y Zuñiga","65 Ida - ",-31.42981,-64.24571
+"C0074","Aviador Kingsley",1745,"Zuñiga y Albarracin","65 Reg - ",-31.42935,-64.24691
+"C0075","Aviador Kingsley",1798,"Albarracin y Camilo Isleño","65 Reg - ",-31.43033,-64.24691
+"C0077","Fuerza Aerea",4300,"Aviador Richardson y Aviador Camilotti","60 Reg - 65 Reg - 67 Reg - B61 Reg -",-31.43257,-64.2443
+"C0079","Fuerza Aerea",3755,"Graham Bell y Varela Ortiz","60 Reg - 65 Reg - ",-31.43216,-64.23805
+"C0081","Fuerza Aerea",3100,"Peteroa y Fuerza Aerea","60 Reg - 65 Reg - ",-31.43166,-64.23062
+"C0082","Fuerza Aerea",2859,"Leon Pinelo y Espora","60 Reg - 65 Reg - ",-31.43143,-64.22722
+"C0083","Fuerza Aerea",2683,"Lafore y Padre Lozano","65 Reg - ",-31.43122,-64.22428
+"C0084","Fuerza Aerea",2433,"Olegario Correa y Vieytes","60 Reg - 65 Reg - ",-31.43093,-64.22036
+"C0085","Fuerza Aerea",2045,"Sosneado y Tronador","60 Reg - 65 Reg - ",-31.43075,-64.21739
+"C0088","Julio Roca",1260,"La Pampa y Luis Agote","65 Reg - ",-31.42842,-64.20924
+"C0089","Julio Roca",961,"Achaval y Paso de los Andes","65 Reg - ",-31.42813,-64.20598
+"C0090","Julio Roca",745,"Canalejas y Elpidio Gonzalez","65 Reg - ",-31.42871,-64.20221
+"C0092","Julio Roca",445,"Rodolfo Reyna y Simon Bolivar","61 Reg - 65 Reg - ",-31.42797,-64.1966
+"C0093","Pueyrredon",395,"M.T de Alvear y Belgrano","65 Reg - ",-31.42587,-64.19375
+"C0094","Pueyrredon",73,"Obispo Trejo y Independencia","65 Reg - ",-31.42709,-64.18975
+"C0095","Estrada",160,"Buenos Aires y Ituzaingo","65 Reg - ",-31.42796,-64.18663
+"C0100","Maipu",164,"25 de Mayo y Olmos","65 Reg - ",-31.41558,-64.17945
+"C0103","Esquiu",247,"24 de Setiembre y Lima","65 Reg - ",-31.41465,-64.17091
+"C0104","Catamarca",985,"Esquiu y Felix Frias","65 Reg - ",-31.41274,-64.17063
+"C0106","Jacinto Rios",554,"Sarmiento y Oncativo","65 Reg - ",-31.41028,-64.16721
+"C0107","Oncativo",1551,"Roma y Gral. Deheza","65 Reg - ",-31.40884,-64.16484
+"C0110","Rincon",2084,"Pje Manuel Vergara y Eufrasio Loza","65 Reg - ",-31.40484,-64.1583
+"C0111","Gavilan",827,"Frente al CPC","65 Reg - ",-31.40396,-64.15505
+"C0112","Garibaldi",962,"Armenia y Garay","65 Reg - ",-31.40283,-64.15741
+"C0113","Garibaldi",1336,"Cochabamba y Padre Luis Monti","65 Reg - ",-31.39872,-64.15893
+"C0116","Malvinas",1253,"Juan XXIII y Carlos III","60 Reg - 66 Ida - ",-31.39442,-64.15544
+"C0120","Malvinas",2189,"Huberman y Jose de Quevedio","60 Reg - 66 Ida - ",-31.39103,-64.14296
+"C0123","Malvinas",2765,"Wilson y Edison","60 Reg - ",-31.38932,-64.1357
+"C0125","Alsina",2032,"Isasmendi y Villacorta y Oca¤a","60 Reg - 65 Reg - ",-31.38546,-64.13336
+"C0126","Chachapoyas",2199,"Villacorta y Oca¤a y Tomas de Archondo","65 Reg - ",-31.38387,-64.13258
+"C0127","Chachapoyas",2394,"Medeiros y Tadeo Davila","65 Reg - ",-31.38193,-64.13256
+"C0128","Chachapoyas",2594,"Leon y Pizarro y Vilchez y Montoya","65 Reg - ",-31.37956,-64.13253
+"C0129","Montemayor",2682,"Vilchez y Montoya y  Rafael de Palencia","65 Reg - ",-31.37842,-64.13204
+"C0130","Montemayor",2800,"Palencia y Capdevila","65 Reg - ",-31.37754,-64.13181
+"C0131","Capdevila",2885,"Jose Arriola y Castro","65 Reg - ",-31.37698,-64.13014
+"C0132","Castro",3000,"Capdevila y Rauch","65 Reg - ",-31.37627,-64.12967
+"C0133","Rauch",2800,"Castro y Jose Arriola ","65 Reg - ",-31.37561,-64.13126
+"C0134","Rauch",2717,"Jose Arriola y Chachapoyas ","65 Reg - ",-31.37562,-64.133
+"C0135","Chachapoyas",3082,"Rauch y Mellian","65 Reg - ",-31.37471,-64.13309
+"C0136","Chachapoyas",3280,"3 de Junio y Julian Laguna","65 Reg - ",-31.37277,-64.13307
+"C0137","Chachapoyas",3442,"Fernando Abramo y 27 de Febrero","65 Reg - ",-31.37082,-64.13305
+"C0142","La Hora",2426,"Julio de Vedia y Casilla","65 Reg - ",-31.36467,-64.13774
+"C0146","Villegas",2300,"Celestino Vidal Frente a Plaza","63 Ida - ",-31.36898,-64.1398
+"C0147","Villegas",2163,"Manuel de Escalada y Liborio Muzlera","63 Ida - ",-31.36897,-64.14204
+"C0148","Diaz Colodrero",3575,"Villegas y Niceto Vega","63 Ida - ",-31.36895,-64.14435
+"C0149","Diaz Colodrero",3400,"Niceto Vega y Abramo","63 Ida - ",-31.37072,-64.14467
+"C0150","Diaz Colodrero",3257,"Julian Laguna y Joaquin Nazar","63 Ida - ",-31.37265,-64.14467
+"C0151","Diaz Colodrero",3105,"Arredondo y Meillan","63 Ida - ",-31.37417,-64.14468
+"C0152","Diaz Colodrero",2900,"Rauch y Vernet","63 Ida - ",-31.37629,-64.14475
+"C0153","Diaz Colodrero",2700,"Mariano Usandivaras y Ramon Lista","63 Ida - ",-31.37824,-64.14472
+"C0154","Capdevila",2069,"Diaz Colodrero y Maria Postorino","63 Ida - ",-31.37947,-64.14385
+"C0155","Capdevila",2223,"Escalada y Celestino Vidal","63 Ida - ",-31.37897,-64.14117
+"C0156","Celestino Vidal",2614,"Capdevila y Andres de Brun","63 Ida - ",-31.3792,-64.13993
+"C0157","Ledesma",2500,"Brun y Leon y Pizarro","63 Ida - ",-31.38089,-64.1406
+"C0158","Leon y Pizarro",2281,"Juan Liendo y Oscariz y Beaumont","63 Ida - ",-31.38118,-64.14166
+"C0159","Dos Barrios",2143,"Leon y Pizarro y Sin Nombre","63 Ida - ",-31.38193,-64.1431
+"C0160","Diaz Colodrero",2370,"Dos Barrios y Chinchilla","63 Ida - ",-31.3822,-64.14479
+"C0161","Diaz Colodrero",2204,"Mallorca y Cuzco","63 Ida - ",-31.38411,-64.145
+"C0162","Victor Manuel III",2100,"Astorga y Tinta","63 Ida - ",-31.3854,-64.14534
+"C0163","Victor Manuel III",1983,"Quilambe y Victoria","63 Ida - ",-31.38679,-64.14534
+"C0164","Ocampis",2200,"Victor Manuel III y Chilavert","63 Ida - ",-31.38748,-64.1464
+"C0165","Chilavert",1788,"Tridentina y Garaglio","63 Ida - ",-31.38841,-64.14661
+"C0166","Acapianta",1847,"Chilavert y Prosanto","63 Ida - ",-31.38995,-64.14717
+"C0167","Puerto Rico",2426,"Roberto Levillier y Carlos III","63 Ida - ",-31.38889,-64.14945
+"C0168","Juan XXIII",1811,"Puerto Rico y Tarija","63 Ida - ",-31.38884,-64.15122
+"C0169","Juan XXIII",1675,"Paisandu y Puerto de Palos","63 Ida - ",-31.3897,-64.15259
+"C0170","Juan XXIII",1500,"Puerto de Palos y Santiso y Moscoso","63 Ida - ",-31.39131,-64.1534
+"C0171","Santiso y Moscoso",2118,"Felipe II y Punta del Sauce","63 Ida - ",-31.39081,-64.15484
+"C0172","Punta del Sauce",1354,"Tisera y Abad e Iliana","63 Ida - ",-31.39172,-64.15603
+"C0173","Punta del Sauce",1148,"Mauricio Yadarola antes de la curva","63 Ida - ",-31.39398,-64.15801
+"C0175","Bulnes",2154,"Garibaldi y Eufrasio Loza","63 Ida - 66 Reg - ",-31.39639,-64.16074
+"C0176","Bulnes",1876,"Mejico y Janer","63 Ida - ",-31.39757,-64.16445
+"C0177","Bulnes",1756,"Janer y Pje Nores","60 Ida - 63 Ida - ",-31.39809,-64.16609
+"C0178","Viamonte",1445,"Suipacha y Cochabamba","60 Ida - 63 Ida - ",-31.40025,-64.16966
+"C0179","Viamonte",1207,"Cochabamba y Charcas","63 Ida - ",-31.40254,-64.16882
+"C0180","Viamonte",1050,"Buchardo y Juan de Garay","63 Ida - ",-31.40439,-64.16816
+"C0181","Viamonte",769,"Rincon y Libertad","63 Ida - ",-31.40721,-64.16709
+"C0187","Sarmiento",25,"Cortada de Israel y San Martin","61 Ida - 63 Ida - 65 Ida - 66 Reg - ",-31.41031,-64.18082
+"C0191","Velez Sarsfield",214,"Caseros y Duarte Quiros","63 Ida - 13 Reg - 19 Reg - D10 Reg - ",-31.41773,-64.18772
+"C0194","Hipolito Irigoyen",386,"Buenos Aires y Derqui","67 Reg - 13 Reg - 16 Reg - 18 Ida - 19 Reg - D10 Reg - ",-31.42445,-64.18679
+"C0196","Hipolito Irigoyen",660,"Ambrosio Olmos y Crisol","67 Reg - 13 Reg - 16 Reg - 18 Ida - 19 Reg - D10 Reg - ",-31.42971,-64.18456
+"C0197","Hipolito Irigoyen",750,"Chile y Bolivia","67 Reg - 13 Reg - 16 Reg - 18 Ida - 19 Reg - D10 Reg - ",-31.43107,-64.18439
+"C0198","Los Nogales",9999,"Valparaiso y Barros","16 Reg - ",-31.43361,-64.18572
+"C0202","Maestro Lopez",9999,"Medina Allende y Cruz Roja","67 Reg - 13 Reg - 16 Reg - 18 Ida - 19 Reg - D10 Reg - ",-31.43975,-64.19267
+"C0203","Maestro Lopez",9999,"Medina Allende y Cruz Roja","67 Reg - 13 Reg - 16 Reg - 18 Ida - 19 Reg - D10 Reg - ",-31.44201,-64.19375
+"C0205","Cruz Roja Argentina",9999,"Carlos Octavio Bunge y Obispo Echenique Altamira ","67 Reg - 13 Reg - 16 Reg - 18 Ida - 19 Reg - D10 Reg - ",-31.44293,-64.18985
+"C0206","Cruz Roja Argentina",9999,"Esquina con Valparaiso","67 Reg - 13 Reg - 16 Reg - 18 Ida - 19 Reg - D10 Reg - ",-31.44265,-64.18759
+"C0207","Cruz Roja Argentina",9999,"Esquina con Valparaiso","67 Ida - 13 Ida - 16 Ida - 18 Reg - 19 Ida - D10 Ida - ",-31.44251,-64.18708
+"C0208","Cruz Roja Argentina",9999,"Carlos Becu y Obispo Echenique altamira","67 Ida - 13 Ida - 16 Ida - 18 Reg - 19 Ida - D10 Ida - ",-31.44273,-64.18914
+"C0209","Cruz Roja Argentina",9999,"Esquina Maestro Lopez","67 Ida - 13 Ida - 16 Ida - 18 Reg - 19 Ida - D10 Ida - ",-31.44312,-64.19257
+"C0210","Maestro Lopez",9999,"Frente UTN","67 Ida - 13 Ida - 16 Ida - 18 Reg - 19 Ida - D10 Ida - ",-31.44238,-64.19396
+"C0211","Maestro Lopez",9999,"Frente Hellen Keller","67 Ida - 13 Ida - 16 Ida - 18 Reg - 19 Ida - D10 Ida - ",-31.4401,-64.19277
+"C0212","Haya de la Torre",9999,"Esquina con Medina Allende","16 Ida - ",-31.43813,-64.19243
+"C0219","27 de Abril",120,"Obispo Trejo y Velez Sarsfield","60 Ida - 67 Ida - ",-31.41667,-64.18563
+"C0220","Tucuman",56,"Dean Funes y 9 de Julio","61 Reg - 63 Reg - 64 Reg - 16 Ida - 66 Ida",-31.41432,-64.18788
+"C0228","Pringles",650,"Oncativo y Libertad","63 Reg - ",-31.40944,-64.16882
+"C0234","Bulnes",1780,"Pje. Nores y Janer","63 Reg - ",-31.39826,-64.16632
+"C0236","Bulnes",2192,"Patria y Garibaldi","60 Reg - 63 Reg - 66 Ida - ",-31.39636,-64.16043
+"C0238","Felipe II",1297,"Mauricio Yadarola y Abad e Illana","63 Reg - ",-31.393,-64.15601
+"C0239","Felipe II",1438,"Tissera y Moscoso","63 Reg - ",-31.39149,-64.1547
+"C0240","Felipe II",1700,"Puerto de Palos y Paysandu","63 Reg - ",-31.3896,-64.15301
+"C0241","Tarija",2286,"Felipe II y Juan XXIII","63 Reg - ",-31.38873,-64.15179
+"C0242","Tarija",2495,"Carlos III y Levillier","63 Reg - ",-31.38986,-64.15007
+"C0243","Rancagua",1682,"Tarija y Calabalumba","63 Reg - ",-31.39102,-64.14826
+"C0244","Calabalumba",1892,"Rancagua y Chilavert","63 Reg - ",-31.39054,-64.14678
+"C0245","Chilavert",1784,"Caraglio y Tridentina","63 Reg - ",-31.38918,-64.14656
+"C0246","Tridentina",1990,"Chilavert y Victor Manuel III","63 Reg - ",-31.38853,-64.14553
+"C0247","Victor Manuel III",1893,"Tridentina y Ocampis","63 Reg - ",-31.38718,-64.14529
+"C0248","Victor Manuel III",2092,"Quilambe y Tinta","63 Reg - ",-31.38567,-64.1453
+"C0249","Diaz Colodrero",2244,"Astorga y Mallorca","63 Reg - ",-31.3839,-64.14485
+"C0250","Diaz Colodrero",2370,"Mallorca y Dos Barrios","63 Reg - ",-31.38292,-64.14485
+"C0251","Dos Barrios",2000,"Huberman y Diaz Gomez","63 Reg - ",-31.38202,-64.14337
+"C0252","Leon y Pizarro",2296,"Oscariz Beaumont y Liendo","63 Reg - ",-31.38118,-64.14139
+"C0253","Liendo",2600,"Leon y Pizarro y Brum","63 Reg - ",-31.37993,-64.1412
+"C0254","Brum",2350,"Ledesma y Celestino Vidal","63 Reg - ",-31.37956,-64.14018
+"C0255","Capdevila",2200,"Celestino Vidal y Escalada","63 Reg - ",-31.3789,-64.14114
+"C0256","Capdevila",2045,"Postorino y Diaz Colodrero","63 Reg - ",-31.37943,-64.14407
+"C0257","Diaz Colodrero",2798,"Capdevila y Usandivaras","63 Reg - ",-31.3781,-64.14467
+"C0258","Diaz Colodrero",2884,"Usaqndivaras y Vernet","63 Reg - ",-31.37716,-64.14467
+"C0259","Diaz Colodrero",3080,"Rauch Esquina de la Plaza","63 Reg - ",-31.37509,-64.14442
+"C0260","Diaz Colodrero",3196,"Esquina de la Plaza y Arredondo","63 Reg - ",-31.37379,-64.14463
+"C0261","Diaz Colodrero",3294,"Arredondo y Laguna","63 Reg - ",-31.37231389,-64.14461389
+"C0262","Diaz Colodrero",3396,"Laguna y Rocamora","63 Reg - ",-31.37138,-64.14463
+"C0263","Diaz Colodrero",3600,"Vega y Villegas","63 Reg - ",-31.36945,-64.14459
+"C0264","Villegas",2144,"Pastorino y Muzlera","63 Reg - ",-31.369,-64.14241
+"C0265","Villegas",2288,"Sanguinetto y Celestino Vidal","63 Reg - ",-31.369,-64.14017
+"C0266","Villegas",2400,"Medina y Torres y Julio de Vedia","63 Reg - ",-31.369,-64.13851
+"C0267","Julio de Vedia",3692,"Diaz Velez y Alarcon","60 Reg - 63 Reg - 65 Reg - ",-31.36769,-64.13816
+"C0269","Lahora",2426,"Julio de Vedia y Casilla","60 Reg - 63 Reg - ",-31.36488,-64.13815
+"C0273","Julio de Vedia",3518,"Jose Chorroarin y Niceto Vega","60 Ida - ",-31.36961,-64.13824
+"C0274","27 de Febrero",2300,"Julio de Vedia y Celestino Vidal","60 Ida - ",-31.37064,-64.13929
+"C0275","Celestino Vidal",3324,"Tomas de Rocamora y Julian Laguna","60 Ida - ",-31.37162,-64.13986
+"C0276","Celestino Vidal",3167,"Jose de Arredondo y Rio Pasaje","60 Ida - ",-31.37348,-64.13986
+"C0277","Celestino Vidal",3015,"Vicente Balbastro y Federico Rauch","60 Ida - ",-31.37533,-64.1399
+"C0278","Celestino Vidal",2895,"Luis Vernet y Felipe Pereyra Lucena","60 Ida - ",-31.37704,-64.1399
+"C0279","Celestino Vidal",2717,"Juan Quesada y Capdevila","60 Ida - ",-31.37796,-64.1399
+"C0280","Capdevila",2529,"Heroes de Vilcapujio y Wilson","60 Ida - ",-31.37817,-64.13675
+"C0281","Altolaguirre",2750,"Fuenzalida Meneses y Rafael de Palencia","60 Ida - ",-31.37775,-64.13407
+"C0282","Altolaguirre",2509,"Vilchez y Montoya y Leon y Pizarro","60 Ida - ",-31.38009,-64.13408
+"C0283","Altolaguirre",2312,"Tadeo Davila y Jose de Medeiros","60 Ida - ",-31.38197,-64.13408
+"C0284","Altolaguirre",2153,"Tomas de Archondo y Villacorta y Oca¤a","60 Ida - ",-31.38342,-64.1341
+"C0291","Malvinas",1600,"Paysandu y Domingo Pronsato","60 Ida - 66 Reg - ",-31.39247,-64.14951
+"C0294","Malvinas",1050,"Punta del Sauce y Aragon","60 Ida - 63 Ida - 66 Reg - ",-31.39542,-64.15894
+"C0295","Bulnes",2148,"Garibaldi y Patria","60 Ida - ",-31.3964,-64.16069
+"C0296","Bulnes",1870,"Mejico y Janer","60 Ida - ",-31.39755,-64.16443
+"C0299","Viamonte",1207,"Cochabamba y Charcas","60 Ida - ",-31.40182,-64.16903
+"C0300","Viamonte",1050,"Buchardo y Juan de Garay","60 Ida - ",-31.40419,-64.16821
+"C0304","Sarmiento",1124,"Pringles y David Luque","60 Ida - 62 Ida - 63 Ida - 65 Ida - 66 Reg - ",-31.41112,-64.16914
+"C0306","Guzman",350,"Catamarca y Lima","60 Ida - 62 Ida - ",-31.41359,-64.17542
+"C0307","Guzman",250,"Lima y Olmos","60 Ida - ",-31.41493,-64.17583
+"C0308","Peron",72,"Rosario de Santa Fe y San Jeronimo","60 Ida - 62 Ida - 64 Ida - ",-31.41921,-64.17594
+"C0311","27 de Abril",370,"Belgrano y Ayacucho","60 Ida - 62 Ida - 67 Ida - ",-31.41579,-64.18902
+"C0312","27 de Abril",772,"Corro y Artigas","60 Ida - 62 Ida - 67 Ida - ",-31.41421,-64.1945
+"C0313","27 de Abril",984,"Calasanz y Mariano Moreno","60 Ida - 62 Ida - 67 Ida - ",-31.41342,-64.19711
+"C0316","Paso de los Andes",820,"Laprida y Achaval Rodriguez","60 Ida - 62 Ida - ",-31.42096,-64.2023
+"C0317","Pueyrredon",1154,"Paso de los Andes y Paraguay","60 Ida - 62 Ida - 64 Ida - 67 Ida - ",-31.42283,-64.20346
+"C0318","Pueyrredon",1382,"Misiones y La Pampa","60 Ida - ",-31.42201,-64.20603
+"C0320","Sol de Mayo",1132,"Angelo de Peredo y Domingo Funes","60 Ida - 62 Ida - 64 Ida - ",-31.42188,-64.21179
+"C0324","Fuerza Aerea",2200,"Haedo y Juan Vieytes","60 Ida - 65 Ida - ",-31.43065,-64.2182
+"C0326","Fuerza Aerea",2745,"Blamey Lafore y Almte. Brown","60 Ida - 65 Ida - ",-31.43109,-64.22443
+"C0328","Fuerza Aerea",3078,"Franz Schubert y Maestro Vidal","60 Ida - 65 Ida - ",-31.43145,-64.22958
+"C0329","Fuerza Aerea",3468,"Aaron Castellanos y Fleming","60 Ida - 65 Ida - ",-31.43176,-64.23412
+"C0330","Fuerza Aerea",3774,"Diaz de la Fuente y Graham Bell","60 Ida - 65 Ida - ",-31.43197,-64.23745
+"C0331","Fuerza Aerea",4024,"Marie Courie y Fournier","60 Ida - 65 Ida - ",-31.43215,-64.24054
+"C0333","Kingsley",2100,"Fuerza Aerea y Uritorco","60 Ida - ",-31.433808,-64.247009
+"C0334","Kingsley",2300,"Manuel Bustos y Gabriela Mistral","60 Ida - ",-31.43565,-64.246969
+"C0335","Kingsley",2460,"Lagunilla y Reconquista","60 Ida - ",-31.437008,-64.24695
+"C0336","Kingsley",2636,"Esmeralda y Antartida","60 Ida - ",-31.438834,-64.246963
+"C0337","Kingsley",2800,"Antartida y Alianza","60 Ida - ",-31.440791,-64.246994
+"C0338","Petirossi",3054,"Los Pinos y Riga","60 Ida - B61 Reg -",-31.44333,-64.2481
+"C0339","Petirossi",3236,"Tirana y Bucarest","60 Ida - B61 Reg -",-31.44571,-64.24817
+"C0340","Petirossi",3418,"Amsterdam y Estocolmo","60 Ida - B61 Reg -",-31.44757,-64.24817
+"C0341","Estocolmo",4785,"Estocolmo y Varsovia","60 Ida - B61 Reg -",-31.44858,-64.24917
+"C0342","Estocolmo",4785,"Estocolmo y Varsovia","60 Reg - B61 Ida -",-31.44858,-64.24917
+"C0343","Petirossi",3400,"Estocolmo y Amsterdam","60 Reg - B61 Ida -",-31.44771,-64.24811
+"C0344","Petirossi",3246,"Bucarest y Tirana","60 Reg - B61 Ida -",-31.44615,-64.24813
+"C0345","Petirossi",3006,"Riga y Los Pinos","60 Reg - B61 Ida -",-31.44374,-64.24806
+"C0346","Petirossi",2800,"Olivares y Alianza","60 Reg - B61 Ida -",-31.44159,-64.24806
+"C0347","Petirossi",2613,"Antartida y Esmeralda","60 Reg - B61 Ida -",-31.43926,-64.24806
+"C0348","Petirossi",2406,"Reconquista y Lagunilla","60 Reg - B61 Ida -",-31.43696,-64.24804
+"C0349","Petirossi",2267,"Gabriela Mistral y Manuel Bustos","60 Reg - B61 Ida -",-31.43582,-64.24798
+"C0350","Petirossi",2051,"Uritorco y Fuerza Aerea","60 Reg - B61 Ida -",-31.43348,-64.24806
+"C0353","Fuerza Aerea",4005,"Fournier y Marie Courie","60 Reg - 65 Reg - ",-31.43235,-64.24134
+"C0355","Fuerza Aerea",3525,"Felix Paz y Aaron Castellanos","60 Reg - 65 Reg - ",-31.43197,-64.23523
+"C0358","Fuerza Aerea",2693,"Blamey Lafore y Padre Lozano","60 Reg - ",-31.43122,-64.22453
+"C0361","Fuerza Aerea",1785,"Mercedario y Paso de los Andes","60 Reg - 64 Reg - 65 Reg - ",-31.43057,-64.21493
+"C0362","Fuerza Aerea",1611,"Fuerza Aerea y Julio Roca","60 Reg - 64 Reg - 65 Reg - ",-31.42945,-64.21163
+"C0363","Rio Negro",1365,"Luis Agote y Dellepiane","60 Reg - 64 Reg - ",-31.427263,-64.210226
+"C0365","Rio Negro",1107,"Domingo Funes y Angelo de Peredo","60 Reg - 62 Reg - 64 Reg - ",-31.42259,-64.20909
+"C0369","Mariano Moreno",915,"Pueyrredon y Fructuoso Rivera","60 Reg - 62 Reg - 67 Reg - ",-31.42304,-64.20149
+"C0370","Mariano Moreno",642,"San Luis y Felix Aguilar","60 Reg - 62 Reg - 67 Reg - ",-31.42075,-64.20067
+"C0374","Colon",521,"Ca¤ada y Jujuy","60 Reg - 62 Reg - ",-31.41142,-64.1902
+"C0376","Olmos",247,"Alvear y Maipu","60 Reg - ",-31.41465,-64.18011
+"C0381","Catamarca",1240,"Pringles y Jacinto Rios","65 Reg - ",-31.41185,-64.16747
+"C0382","Roma",450,"Pje. Juan Galiano y Pje. Manuel Soria","60 Reg - 62 Reg - ",-31.41085,-64.16437
+"C0383","Roma",682,"Oncativo y Libertad","60 Reg - 62 Reg - ",-31.40856,-64.16521
+"C0385","Roma",1272,"Charcas y Cochabamba","60 Reg - 62 Reg - ",-31.402,-64.16767
+"C0386","Roma",1500,"Padre Luis Monti y Suipacha","60 Reg - ",-31.40008,-64.16839
+"C0387","Bulnes",1756,"Pje. Nores y Janer","60 Reg - ",-31.39819,-64.16619
+"C0388","Bulnes",1898,"Janer y Mejico","60 Reg - 63 Reg - ",-31.39756,-64.16417
+"C0390","Malvinas",1050,"Aragon y Punta del Sauce","60 Reg - 63 Reg - 66 Ida - ",-31.39539,-64.1586
+"C0397","Malvinas",2495,"Correa de Saa y Homero","60 Reg - ",-31.38976,-64.13755
+"C0401","Alsina",2196,"Villacorta y Oca¤a y Tomas de Archondo","60 Reg - ",-31.38386,-64.13335
+"C0402","Alsina",2400,"Jose de Medeiros y Tadeo Davila","60 Reg - ",-31.38197,-64.13334
+"C0403","Alsina",2584,"Leon y Pizarro y Vilchez y Montoya","60 Reg - ",-31.37962,-64.13332
+"C0404","Alsina",2791,"Rafael de Palencia y Fuenzalida Meneses","60 Reg - ",-31.37815,-64.1333
+"C0405","Capdevila",2577,"Wilson y Heroes de Vilcapujio","60 Reg - ",-31.37795,-64.13604
+"C0406","Julio de Vedia",2836,"Usandivaras y Pereyra Lucena","60 Reg - ",-31.37785,-64.13825
+"C0407","Julio de Vedia",2995,"Roque Tollo y Federico Rauch","60 Reg - ",-31.376,-64.13824
+"C0408","Julio de Vedia",3172,"Rio Pasaje y Jose de Arredondo","60 Reg - ",-31.37406,-64.13822
+"C0409","Julio de Vedia",3260,"Tomas de Rocamora y Fernando Abramo","60 Reg - ",-31.37175,-64.13823
+"C0410","Julio de Vedia",3550,"Niceto Vega y Jose Chorroarin","60 Reg - ",-31.36988,-64.1382
+"C0412","Julio de Vedia",3792,"Perez de Denis y Aberastain Oro","60 Reg - 63 Reg - 65 Reg - ",-31.36611,-64.13816
+"C0414","Publica de Zepa B",9999,"Frente Manzana 6","62 Ida - ",-31.38937,-64.10248
+"C0415","Publica de Zepa B",9999,"Frente Manzana 2 ","62 Ida - ",-31.39019,-64.10295
+"C0416","Publica de Zepa B",9999,"Frente Manzana 9 ","62 Ida - ",-31.38978,-64.10952
+"C0417","Publica de Zepa B",9999,"Frente Manzana 7 ","62 Ida - ",-31.38964,-64.11074
+"C0418","De la Semilleria",9999,"Frente Mercado","62 Ida - ",-31.39121,-64.11176
+"C0419","Alcaraz",6100,"Frente Casilla","62 Ida - ",-31.39035,-64.11331
+"C0420","Alcaraz",5970,"Anchoris y Charlevoix","62 Ida - ",-31.38893,-64.11574
+"C0421","Alcaraz",5914,"Jeronimo Nadal y Ladislao Orosz","62 Ida - ",-31.38882,-64.11682
+"C0422","Alcaraz",5808,"Lorenzo Rillos y Marchoni","62 Ida - ",-31.38863,-64.11846
+"C0423","Machioni",1859,"Nieto Herrera y Bulnes","62 Ida - ",-31.38634,-64.11838
+"C0424","Bulnes",5618,"Machioni y Astori","62 Ida - ",-31.38631,-64.12104
+"C0425","Astori",1685,"Alcaraz y Anchoriz","62 Ida - ",-31.38736,-64.12194
+"C0426","Astori",1703,"Alcaraz y Anchoriz","62 Ida - ",-31.3883,-64.12211
+"C0427","Astori",1551,"Anchoriz y","62 Ida - ",-31.39025,-64.12243
+"C0428","Astori",9999,"Astori y Xanaes","62 Ida - ",-31.39257,-64.12279
+"C0429","Xanaes",9999,"Xanaes esquina Urien","62 Ida - ",-31.39288,-64.12479
+"C0430","Urien",1495,"Suncho Huaco y Suipacha","62 Ida - ",-31.39125,-64.125
+"C0431","Urien",1633,"Nu¤ez y Anchoris","62 Ida - ",-31.38941,-64.1247
+"C0432","Urien",1786,"Alcaraz y Bulnes","62 Ida - ",-31.38751,-64.12439
+"C0433","Malvinas",3500,"Colectora y Condarco","62 Ida - 66 Reg - ",-31.38752,-64.12818
+"C0434","Malvinas",3371,"Ramon de Clairac y Mesa y Castro","62 Ida - 66 Reg - ",-31.38804,-64.1304
+"C0435","Carassa",3100,"Malvinas y Alsina","62 Ida - 66 Reg - ",-31.38842,-64.13203
+"C0436","Carassa",2918,"Alsina y Altolaguirre","62 Ida - ",-31.38847,-64.1337
+"C0437","Bulnes",4690,"Alsina y Chachapoyas","62 Ida - ",-31.38916,-64.13307
+"C0438","Bulnes",4820,"Montemayor y Mesa y Castro","62 Ida - ",-31.38891,-64.13198
+"C0439","Bulnes",9999,"Elizalde y Ustaris y Martin Allende","62 Ida - ",-31.38839,-64.12981
+"C0440","Martin Allende",1518,"Nuñez y Suipacha","62 Ida - ",-31.39061,-64.12937
+"C0441","Martin Allende",1409,"Suipacha y Padre Luis Monti","62 Ida - ",-31.39249,-64.12939
+"C0442","Padre Luis Monti",4800,"Mesa y Castro y Montemayor","62 Ida - ",-31.39289,-64.13135
+"C0443","Padre Luis Monti",4643,"Chachapoyas y Alsina","62 Ida - ",-31.39291,-64.13242
+"C0444","Altolaguirre",1312,"Padre Luis Monti y Cochabamba","62 Ida - 65 Ida - ",-31.39391,-64.13408
+"C0445","Cochabamba",4327,"Edison y Wilson","62 Ida - 65 Ida - ",-31.3945,-64.13522
+"C0446","Cochabamba",4000,"Vaccaro y San Martin","62 Ida - 65 Ida - ",-31.39452,-64.13629
+"C0447","Cochabamba",3956,"Zavalia y Orgaz","62 Ida - 65 Ida - ",-31.39433,-64.13887
+"C0448","Cochabamba",3809,"Tierra del Fuego y Rawson","62 Ida - 65 Ida - ",-31.39432,-64.14054
+"C0449","Cochabamba",3656,"Duran y Clemente Villada","62 Ida - 65 Ida - ",-31.39433,-64.14227
+"C0450","Cochabamba",3509,"Fravet y Tula Cervin","62 Ida - 65 Ida - ",-31.39456,-64.14392
+"C0451","Cochabamba",3408,"Tomas Dombidas y Victor Manuel III","62 Ida - 65 Ida - ",-31.39474,-64.14505
+"C0452","Cochabamba",3111,"Juan Cavero y J de Dios Filiberto","62 Ida - 65 Ida - ",-31.39524,-64.14719
+"C0453","Cochabamba",2924,"Villoldo y Contursi","62 Ida - 65 Ida - ",-31.39568,-64.14877
+"C0454","Cochabamba",2767,"Santos Discepolo y Homero Manzi","62 Ida - 65 Ida - ",-31.39618,-64.15033
+"C0455","Cochabamba",2512,"Anibal Troilo y Ciriaco Ortiz","62 Ida - 65 Ida - ",-31.39684,-64.15238
+"C0456","Cochabamba",2400,"Juan Jose Casal y Maximo Virgolini","62 Ida - 65 Ida - ",-31.39753,-64.15457
+"C0457","Cochabamba",2305,"Maximo Virgolini y Polonia","62 Ida - 65 Ida - ",-31.39818,-64.15662
+"C0458","Cochabamba",2200,"Polonia y Garibaldo","62 Ida - 65 Ida - ",-31.39873,-64.15835
+"C0459","Cochabamba",2109,"Garibaldi y Eufrasio Loza","62 Ida - 65 Ida - ",-31.39937,-64.1604
+"C0460","Cochabamba",1914,"Patria y Mejico","62 Ida - 65 Ida - ",-31.40001,-64.16247
+"C0461","Cochabamba",1825,"Antranik y Janer","62 Ida - 65 Ida - ",-31.40054,-64.16414
+"C0462","Cochabamba",1500,"Roman Deheza y Roma","62 Ida - 65 Ida - ",-31.4015,-64.16744
+"C0463","Viamonte",1207,"Cochabamba y Charcas","62 Ida - ",-31.40244,-64.16883
+"C0464","Viamonte",1050,"Buchardo y Juan de Garay","62 Ida - ",-31.40424,-64.16818
+"C0465","Viamonte",769,"Rincon y Libertad","60 Ida - 62 Ida - ",-31.40699,-64.16715
+"C0467","Sarmiento",1321,"Viamonte y Jacinto Rios","60 Ida - 62 Ida - 63 Ida - 65 Ida - 66 Reg - ",-31.41043,-64.16651
+"C0473","San Jeronimo",343,"Obispo Salguero y Chacabuco","60 Ida - 62 Ida - 64 Ida - ",-31.41865,-64.17959
+"C0482","Pueyrredon",1357,"Misiones y La Pampa","62 Ida - 64 Ida - 67 Ida - ",-31.42199,-64.2061
+"C0483","Pueyrredon",1670,"Rio Negro y Miguel Urrutia","60 Ida - 62 Ida - 64 Ida - 67 Ida - ",-31.42094,-64.20976
+"C0485","Sol de Mayo",1230,"Peru y Brasil","60 Ida - 62 Ida - 64 Ida - ",-31.42403,-64.21236
+"C0487","Luis Agote",2130,"Ocaña y Josefa Zavattaro","62 Ida - ",-31.42671,-64.215159
+"C0488","Luis Agote",2341,"Sipe Sipe y Punta Lara","62 Ida - ",-31.42630833,-64.21729444
+"C0489","Luis Agote",2566,"Echeverria y Gilardo Gilardi","62 Ida - ",-31.42559,-64.22088
+"C0490","Luis Agote",2743,"Blamey Lafore y Brown","62 Ida - ",-31.42517,-64.22305
+"C0491","Luis Agote",2912,"Constantino Gaito y Leon Pinelo","62 Ida - ",-31.42474,-64.2253
+"C0492","Luis Agote",3068,"Schubert y Maestro Vidal","62 Ida - ",-31.42422,-64.22798
+"C0493","Luis Agote",3240,"Comechingones y Maldonado","62 Ida - ",-31.4239,-64.22967
+"C0494","Luis Agote",3390,"Los Platanos y Miguel Carcano","62 Ida - ",-31.42359,-64.23125
+"C0495","Luis Agote",3634,"Felix Paz y Warnes","62 Ida - ",-31.42304,-64.23402
+"C0498","Iseas",1538,"Alcorta y Manuel de Fierro","62 Ida - 67 Ida - ",-31.42439,-64.2376
+"C0499","Graham Bell",1642,"Arenales Uriburu y Alberto Williams","62 Ida - ",-31.42678,-64.2367
+"C0500","Williams",4000,"Luis Pasteur y Mary Curie","62 Ida - ",-31.42682,-64.23824
+"C0501","Williams",4176,"Fournier y Roque Arias","62 Ida - ",-31.42637,-64.2405
+"C0502","Williams",4319,"Ruiz de Guzman y Acu¤a","62 Ida - ",-31.42631,-64.24272
+"C0503","Williams",4488,"Aviador Abel y Aviador Abel","62 Ida - 65 Ida - ",-31.42632,-64.24553
+"C0504","Aviador Abel",1560,"Arenales Uriburu y Chavez","62 Ida - 65 Ida - ",-31.42558,-64.24595
+"C0505","Aviador Abel",1455,"Bradley y Santibañes","62 Ida - 65 Ida - ",-31.42374,-64.24594
+"C0506","Aviador Abel",1410,"Zabala y Mendoza","62 Ida - 65 Ida - ",-31.4228,-64.24594
+"C0507","Figueroa",4574,"Aviador Abel y Aviador Kingsley","62 Ida - 65 Ida - ",-31.42145,-64.24678
+"C0508","Figueroa",4574,"Aviador Abel y Aviador Kingsley","62 Reg - ",-31.42145,-64.24678
+"C0509","Aviador Kinsgley",1355,"Figueroa y Guemes","62 Reg - 65 Reg - ",-31.42145,-64.24678
+"C0510","Aviador Kingsley",1614,"Santiba¤ez y Bradley","62 Reg - 65 Reg - ",-31.42324,-64.247
+"C0511","Aviador Kingsley",1500,"Zuloaga y Chavez","62 Reg - 65 Reg - ",-31.4246,-64.247
+"C0512","Aviador Kingsley",1350,"Kingsley esquina con Williams","62 Reg - 65 Reg - ",-31.42598,-64.24702
+"C0513","Williams",4435,"Aviador Abel y Aviador Richardson","62 Reg - ",-31.42633,-64.24535
+"C0514","Williams",4325,"Aviador Camilotti y Acu¤a","62 Reg - ",-31.42634,-64.24317
+"C0515","Williams",4200,"Ruiz de Guzman y Roque Arias","62 Reg - ",-31.42634,-64.24152
+"C0517","Williams",3824,"Pasteur y Graham Bell","62 Reg - ",-31.42698,-64.23751
+"C0518","Graham Bell",1579,"Arenales Uriburu y De Chavez","62 Reg - ",-31.42669,-64.23664
+"C0519","Alcorta",3800,"Graham Bell y Iseas","62 Reg - ",-31.42478,-64.23734
+"C0520","Iseas",1470,"Rodrigo Pereyra y Jacobo Wolff","62 Reg - 67 Reg - ",-31.42399,-64.23706
+"C0522","Luis Agote",3625,"Warnes y Felix Paz","62 Reg - ",-31.423,-64.23435
+"C0523","Luis Agote",3400,"Luis Gaona y Miguel Carcano","62 Reg - ",-31.42333,-64.23272
+"C0524","Luis Agote",3253,"Los Platanos y Maldonado","62 Reg - ",-31.42375,-64.23056
+"C0525","Luis Agote",3061,"Maestro Vidal y Schubert","62 Reg - ",-31.42417,-64.2284
+"C0526","Luis Agote",2878,"Leon Pinelo y Constantino Gaito","62 Reg - ",-31.42469,-64.2257
+"C0527","Luis Agote",2774,"Chazarreta y Brown","62 Reg - ",-31.42501,-64.22402
+"C0528","Luis Agote",2600,"Padre Lozano y Gilardo Gilardi","62 Reg - ",-31.42545,-64.22175
+"C0529","Luis Agote",2451,"Olegario Correa y Pedro Goyena","62 Reg - ",-31.42588,-64.21958
+"C0530","Luis Agote",2305,"Punta Lara y Sipe Sipe","62 Reg - ",-31.42631,-64.21741
+"C0531","Luis Agote",2143,"Haedo y Ocaña","62 Reg - ",-31.42652,-64.21628
+"C0532","Luis Agote",1800,"Ingeniero Lopez y Sol de Mayo","62 Reg - ",-31.42706,-64.2135
+"C0533","Luis Agote",1646,"Roque Suarez y Rio Negro","62 Reg - ",-31.42755556,-64.21065833
+"C0534","Rio Negro",1365,"Luis Agote y Luis Dellepiane","62 Reg - ",-31.427103,-64.210179
+"C0535","Rio Negro",1243,"Brasil y Peru","60 Reg - 62 Reg - 64 Reg - ",-31.42534,-64.2097
+"C0538","Pueyrredon",1177,"Paraguay y Paso de los Andes","60 Reg - 62 Reg - 64 Reg - 67 Reg - ",-31.42256,-64.20443
+"C0539","Funes",1039,"Paso de los Andes y Mariano Moreno","60 Reg - 62 Reg - 67 Reg - ",-31.42455,-64.20242
+"C0542","Mariano Moreno",233,"Duarte Quiros y Caseros","60 Reg - 62 Reg - 67 Reg - ",-31.41518,-64.19861
+"C0543","Rodriguez Peña",170,"9 de Julio y Colon","60 Reg - 62 Reg - ",-31.41068,-64.19696
+"C0544","Colon",833,"Avellaneda y Urquiza","60 Reg - 62 Reg - ",-31.41028,-64.19445
+"C0548","Olmos",478,"Salta y Santiago del Estero","60 Reg - 61 Reg - 62 Reg - 63 Reg - 64 Reg - 65 Reg - 66 Ida - 16 Ida",-31.41559,-64.17708
+"C0555","Roma",1040,"Juan de Garay y Buchardo","60 Reg - 62 Reg - ",-31.40467,-64.16667
+"C0557","Padre Luis Monti",1738,"Nores y Janer","62 Reg - ",-31.40024,-64.16624
+"C0558","Padre Luis Monti",1913,"Mejico y Patria","62 Reg - ",-31.39927,-64.16314
+"C0559","Padre Luis Monti",2196,"Eufrasio Loza y Garibaldi","62 Reg - ",-31.39826,-64.15996
+"C0560","Padre Luis Monti",2292,"Garibaldi y Polonia","62 Reg - 65 Reg - ",-31.39759,-64.15785
+"C0561","Padre Luis Monti",2392,"Polonia y Maximo Virgolini","62 Reg - 65 Reg - ",-31.39694,-64.15576
+"C0562","Padre Luis Monti",2490,"Juan Jose Casal y Ciriaco Ortiz","62 Reg - 65 Reg - ",-31.39628,-64.15376
+"C0563","Padre Luis Monti",2692,"Anibal Troilo y Homero Manzi","62 Reg - 65 Reg - ",-31.3956,-64.15162
+"C0564","Padre Luis Monti",2888,"Santos Discepolo y Pascual Contursi","62 Reg - 65 Reg - ",-31.39496,-64.14953
+"C0565","Padre Luis Monti",3068,"Angel Villoldo y Celedonio Flores","62 Reg - 65 Reg - ",-31.39463,-64.14848
+"C0566","Padre Luis Monti",3282,"Juan Cavero y Jose Cervini","62 Reg - 65 Reg - ",-31.39419,-64.14685
+"C0567","Padre Luis Monti",3492,"Tomas Dombidas y Tula Cervin","62 Reg - 65 Reg - ",-31.39368,-64.14471
+"C0568","Padre Luis Monti",3687,"Jose de Quevedo y Clemente Villada","62 Reg - 65 Reg - ",-31.3932,-64.14305
+"C0569","Padre Luis Monti",3792,"Duran y Rawson","62 Reg - 65 Reg - ",-31.393,-64.14086
+"C0570","Padre Luis Monti",3933,"Cabo de Hornos y Orgaz","62 Reg - 65 Reg - ",-31.39303,-64.13977
+"C0571","Padre Luis Monti",4040,"Zavalia y San Martin","62 Reg - 65 Reg - ",-31.393,-64.13808
+"C0572","Padre Luis Monti",4200,"Severo Vaccaro y Franklin","62 Reg - 65 Reg - ",-31.39299,-64.13696
+"C0573","Padre Luis Monti",4392,"Wilson y Edison","62 Reg - 65 Reg - ",-31.39298,-64.13526
+"C0574","Padre Luis Monti",4582,"Altolaguirre y Alsina","62 Reg - ",-31.39296,-64.13359
+"C0575","Padre Luis Monti",4773,"Chachapoyas y Montemayor","62 Reg - ",-31.39293,-64.13249
+"C0576","Padre Luis Monti",4994,"Ramon de Clairac y Elizalde y Ustrariz","62 Reg - ",-31.39289,-64.13025
+"C0577","Padre Luis Monti",5078,"Allende y Condarco","62 Reg - ",-31.3929,-64.12915
+"C0578","Condarco",1498,"Padre Luis Monti y Suipacha","62 Reg - ",-31.39161,-64.12876
+"C0579","Condarco",1586,"Suipacha y Nuñez","62 Reg - ",-31.39024,-64.12877
+"C0580","Condarco",1698,"Nuñez y Bulnes","62 Reg - ",-31.38872,-64.12877
+"C0581","Bulnes",4700,"Mesa y Castro y Montemayor","62 Reg - ",-31.38875,-64.13143
+"C0582","Malvinas",3000,"Altolaguirre y Alsina","62 Reg - 65 Reg - ",-31.38896,-64.13402
+"C0583","Malvinas",3275,"Montemayor y Mesa y Castro","62 Reg - 66 Ida - ",-31.38843,-64.13185
+"C0584","Malvinas",3500,"Clariac y Condarco","62 Reg - ",-31.38788,-64.12952
+"C0585","Urien",1781,"Bulnes y Alcaraz","62 Reg - ",-31.38728,-64.12435
+"C0586","Urien",1659,"Sayos y Anchoris","62 Reg - ",-31.38871,-64.12461
+"C0587","Urien",1521,"Carbajal y Suipacha","62 Reg - ",-31.3906,-64.12493
+"C0588","Urien",9999,"Suncho Huaico y Xanaes","62 Reg - ",-31.39252,-64.12523
+"C0589","Xanaes",9999,"Urien y Astori","62 Reg - ",-31.39305,-64.12271
+"C0590","Astori",1500,"Xanaes y Suipacha","62 Reg - ",-31.3916,-64.12258
+"C0591","Astori",1603,"Suipacha y Anchoris","62 Reg - ",-31.3902,-64.12236
+"C0592","Astori",1674,"Anchoris y Alcaraz","62 Reg - ",-31.38828,-64.12206
+"C0593","Astori",1794,"Alcaraz y Bulnes","62 Reg - ",-31.38684,-64.12184
+"C0594","Bulnes",5705,"Astori y Machoni","62 Reg - ",-31.38622,-64.12045
+"C0595","Bulnes",5800,"Astori y Machoni","62 Reg - ",-31.38584,-64.11878
+"C0596","Machoni",1700,"Alonso Nieto Herrera y Alcaraz","62 Reg - ",-31.38805,-64.11868
+"C0597","Alcaraz",5870,"Lorenzo Rillos y Ladislao Orosz","62 Reg - ",-31.38879,-64.11775
+"C0598","Alcaraz",5976,"Blas Varela y Francisco Charlevoix","62 Reg - ",-31.38897,-64.11604
+"C0599","Alcaraz",9999,"Esquina con Mercado","62 Reg - ",-31.39058,-64.1121
+"C0600","Publica de Zepa B",9999,"Frente Manzana 7","62 Reg - ",-31.38973,-64.11175
+"C0601","Publica de Zepa B",9999,"Frente Manzana 8","62 Reg - ",-31.38977,-64.11012
+"C0602","Publica de Zepa B",9999,"Frente Manzana 2","62 Reg - ",-31.39017,-64.10394
+"C0603","Publica de Zepa B",9999,"Frente Manzana 6","62 Reg - ",-31.3896,-64.10198
+"C0604","Costa Rica",2957,"Sierras Grandes y Jesus Maria","61 Ida - 64 Ida -",-31.413818,-64.145893
+"C0605","Costa Rica",2811,"Jesus Maria y Sin Datos","61 Ida - 64 Ida - ",-31.414099,-64.147524
+"C0606","Martires",292,"Costa Rica y Caroya","61 Ida - ",-31.41442,-64.14804
+"C0607","Sinsacate",2500,"Loreto y Baylen","61 Ida - ",-31.4149,-64.14954
+"C0608","Sinsacate",2330,"Juan Roque y Yatasto","61 Ida - ",-31.41534,-64.15114
+"C0609","Sinsacate",2165,"Remedios de escalada y Burges","61 Ida - ",-31.41577,-64.15273
+"C0610","Sinsacate",2053,"Gral. Sandino y Nueva Zelanda","61 Ida - ",-31.41606,-64.15377
+"C0611","Nueva Zelanda",105,"Panama y Germania","61 Ida - ",-31.41438,-64.15508
+"C0614","Guemes",5,"Angel Machado y Rosario de Santa Fe","61 Ida - ",-31.41444,-64.16043
+"C0615","Republica Dominicana",100,"4 de Febrero y Juan Larrea","61 Ida - ",-31.41582,-64.15984
+"C0616","Republica Dominicana",294,"Alejandro Carbo y Manuel Dorrego","61 Ida - ",-31.41802,-64.16046
+"C0617","Asuncion",350,"Juan Jose Paso y Leonor de Tejedo","61 Ida - ",-31.41858,-64.16133
+"C0618","Vespucio",1610,"Asuncion y Uruguay","61 Ida - ",-31.42026,-64.16219
+"C0619","Vespucio",1415,"Salto y Garzon Agulla","61 Ida - ",-31.41983,-64.16441
+"C0620","Vespucio",1211,"Posadas y Rio Cuarto","61 Ida - ",-31.41942,-64.16664
+"C0621","San Nicolas",405,"Vespucio y Leonor de Tejeda","61 Ida - ",-31.41847,-64.16809
+"C0622","San Nicolas",205,"Juan Jose Paso y Rosario de Santa Fe","61 Ida - ",-31.41666,-64.16758
+"C0623","David Luque",295,"24 de Setiembre y Catamarca","61 Ida - ",-31.41383,-64.16855
+"C0624","Sarmiento",949,"Felix Frias","60 Ida - 61 Ida - 62 Ida - 63 Ida - 65 Ida - 66 Reg - ",-31.41165,-64.17105
+"C0628","Gral. Paz",365,"La Rioja y Santa Rosa","61 Ida - 63 Ida - 18 Ida - ",-31.41091,-64.18498
+"C0629","Gral. Paz",30,"9 de Julio y Dean Funes","61 Ida - 63 Ida - 65 Ida - 13 Reg - 18 Ida - 19 Reg - D10 Reg - ",-31.41479,-64.18655
+"C0632","M.T. de Alvear",360,"Duarte Quiros y San Juan","64 Ida - ",-31.41917,-64.19005
+"C0634","M.T. de Alvear",628,"San Luis y Ayacucho","64 Ida - ",-31.42203,-64.19257
+"C0638","Julio Roca",492,"Rodolfo Reyna y Arturo Bas","61 Ida - 65 Ida - ",-31.42839,-64.19789
+"C0639","Julio Roca",680,"Corro y Artigas","61 Ida - ",-31.42878,-64.20063
+"C0640","Elpidio Gonzalez",1468,"Zavaleta y Bambilla","61 Ida - ",-31.42913,-64.20166
+"C0641","Elpidio Gonzalez",1570,"Bambilla y Sin Datos","61 Ida - ",-31.43094,-64.2022
+"C0642","Fuencarral",754,"Elpidio Gonzalez y Canalejas","61 Ida - ",-31.43292,-64.20322
+"C0643","Fuencarral",948,"Paso de los Andes y Sin Datos","61 Ida - ",-31.4324,-64.20597
+"C0644","Fuencarral",1045,"Alejandro Dumas y Misiones","61 Ida - ",-31.43202,-64.20814
+"C0645","La Pampa",1758,"Minerva y Alcala","61 Ida - ",-31.43227,-64.2094
+"C0646","La Pampa",1914,"Neptuno y Venus","61 Ida - ",-31.43371,-64.20979
+"C0647","Venus",1040,"Alejandro Dumas y Emilio Achaval","61 Ida - ",-31.43466,-64.20899
+"C0648","Emilio Achaval",2066,"Ferreyra y Benito Soria","61 Ida - ",-31.43577,-64.20823
+"C0649","Kronfus",2308,"Romagosa y La Cañada","61 Ida - ",-31.43759,-64.20903
+"C0650","Kronfus",2505,"La Cañada y Goicocechea","61 Ida - ",-31.43856,-64.21044
+"C0651","Kronfus",2598,"Goicoechea y Jose Baca","61 Ida - ",-31.43938,-64.21158
+"C0652","Laspiur",2778,"Rodriguez de la Torre y Domingo de Irala","61 Ida - ",-31.44111667,-64.212925
+"C0653","Tronador",2852,"Olayon y Antonio Melo ","61 Ida - ",-31.44159444,-64.21491111
+"C0654","Guayama",1949,"Tronador y Aconquija","61 Ida - ",-31.4428,-64.21546
+"C0655","Aconquija",3090,"Yanquetruz y Ibacla","61 Ida - ",-31.44382,-64.21652
+"C0656","Lorenzo Ibacla",1950,"Tronador y Aconquija","61 Ida - ",-31.445899,-64.216575
+"C0658","Baigorria",1050,"Rio Negro y Cacheuta","61 Ida - ",-31.44563,-64.2126
+"C0659","Cacheuta",3290,"San Antonio y Jose Pizarro","61 Ida - ",-31.44626,-64.21154
+"C0660","Pizarro",1200,"Cacheuta y Horacio Martinez","61 Ida - ",-31.446181,-64.213376
+"C0661","Horacio Martinez",3494,"Novillo Martinez y Virgilio Moyano","61 Ida - ",-31.44741,-64.21386
+"C0662","Horacio Martinez",3594,"Brandan y Eliseo Soaje","61 Ida - ",-31.44874,-64.214199
+"C0663","Horacio Martinez",3800,"Manuel Moreno y Tafi","61 Ida - ",-31.45087,-64.2148
+"C0664","Tafi",1100,"Horacio Martinez y Cacheuta","61 Ida - ",-31.45139,-64.21327
+"C0665","Cacheuta",3914,"Tafi y Trelew","61 Ida - ",-31.45286,-64.21348
+"C0666","Cacheuta",4090,"Trelew y Huiliches","61 Ida - ",-31.45569,-64.21429
+"C0667","Huiliches",1196,"Publica Ey Treviso","61 Ida - ",-31.45572,-64.21623
+"C0668","Huiliches",1274,"Terry y Rio Negro","61 Ida - ",-31.4555,-64.21739
+"C0669","Manzana D Lote 6",9999,"Rio Negro y Sin Datos","61 Ida - ",-31.4572,-64.21854
+"C0670","Manzana H Lote 14",9999,"Frente Manzana H ","61 Ida - ",-31.45661,-64.22063
+"C0671","Manzana J Lote 24",9999,"Frente Manzana J ","61 Ida - ",-31.45624,-64.22164
+"C0672","Manzana Q Lote 3",9999,"Frente Manzana Q ","61 Ida - ",-31.455178,-64.222386
+"C0673","Manzana T Lote 27",9999,"Frente Manzana T ","61 Ida - ",-31.45337,-64.22325
+"C0675","Publica SMATA",9999,"Frente Manzana N ","61 Reg - ",-31.45434,-64.22351
+"C0676","Publica SMATA",9999,"Frente Manzana F ","61 Reg - ",-31.45564,-64.22289
+"C0677","Publica SMATA",9999,"Frente Manzana E ","61 Reg - ",-31.45617,-64.22196
+"C0678","Publica SMATA",9999,"Frente Manzana E ","61 Reg - ",-31.45652,-64.22089
+"C0679","Publica SMATA",9999,"Frente Manzana D ","61 Reg - ",-31.45726,-64.21882
+"C0680","Huiliches",1281,"Rio Negro y Terry","61 Reg - ",-31.4555,-64.21799
+"C0681","Huiliches",1115,"Publica F y Cacheuta","61 Reg - ",-31.45605,-64.21469
+"C0682","Cacheuta",4000,"Huiliches y Paso de la Patria","61 Reg - ",-31.454833,-64.213632
+"C0683","Cacheuta",3800,"Trelew y Tafi","61 Reg - ",-31.45247,-64.21299
+"C0684","Horacio Martinez",3756,"Tafi y Manuel Moreno","61 Reg - ",-31.45095,-64.21482
+"C0685","Horacio Martinez",3465,"Virgilio Moyano y Novillo Martinez","61 Reg - ",-31.44727,-64.21366
+"C0686","San Antonio",1189,"Martinez y Cacheuta","61 Reg - ",-31.44632,-64.21356
+"C0687","San Antonio",1100,"Martinez y Cacheuta","61 Reg - ",-31.44583,-64.21173
+"C0688","Baigorria",1050,"Cacheuta y Rio Negro","61 Reg - ",-31.44554,-64.21215
+"C0689","Tronador",3070,"Ibacla y Yanquetruz","61 Reg - ",-31.44559,-64.21585
+"C0690","Tronador",2973,"Yanquetruz y Ibiac","61 Reg - ",-31.443118,-64.215257
+"C0691","Rio Negro",2800,"Guayama y Irala","61 Reg - ",-31.4413,-64.21399
+"C0692","Kronfus",2566,"Jose Baca y Rafael Igarazabal","61 Reg - ",-31.43964,-64.21191
+"C0693","Kronfus",2505,"Goycoechea y la Misma","61 Reg - ",-31.43873,-64.21061
+"C0694","Kronfus",2305,"La Cañada y Romagosa","61 Reg - ",-31.43782,-64.20929
+"C0695","Emilio Achaval",2117,"Romagosa y Benito Soria","61 Reg - ",-31.43713,-64.20857
+"C0696","Emilio Achaval",2055,"Benito Soria y Fereryra","61 Reg - ",-31.436043,-64.208333
+"C0698","Dumas",1901,"Venus y Preciados","61 Reg - ",-31.43419,-64.20857
+"C0699","Alcala",1005,"Dumas y Emilio Achaval","61 Reg - ",-31.43301,-64.20792
+"C0700","Alcala",917,"Paraguay y","61 Reg - ",-31.43333,-64.20629
+"C0701","Alcala",715,"Canalejas y Elpidio Gonzalez","61 Reg - ",-31.433837,-64.203618
+"C0702","Elpidio Gonzalez",1721,"Alcala y Fuencarral","61 Reg - ",-31.43356,-64.20286
+"C0703","Elpidio Gonzalez",1575,"Rufino Zado y Mayor","61 Reg - ",-31.43161,-64.20236
+"C0704","Elpidio Gonzalez",1463,"Bambilla y Zavaleta","61 Reg - ",-31.42931,-64.20167
+"C0705","Julio Roca",557,"Corro y Arturo Bas","61 Reg - 65 Reg - ",-31.42877,-64.19921
+"C0711","Belgrano",147,"Caseros y 27 de Abril","61 Reg - 64 Reg - 16 Ida - 66 Ida",-31.41659,-64.18897
+"C0716","24 de Setiembre",772,"Ocampo y Ovidio Lagos","60 Reg - 61 Reg - 62 Reg - 63 Reg - 64 Reg - 65 Reg - 66 Ida - ",-31.4156,-64.17271
+"C0717","24 de Setiembre",980,"Esquiu y Felix Frias","60 Reg - 61 Reg - 62 Reg - 63 Reg - 64 Reg - 66 Ida - ",-31.414918,-64.170141
+"C0718","Felix Frias",105,"24 de Setiembre y 25 de Mayo","61 Reg - ",-31.41603,-64.16914
+"C0719","La Plata",496,"Leonor de Tejeda y Americo Vespucio","61 Reg - ",-31.41882,-64.16933
+"C0720","Zuviria",1086,"La Plata y San Nicolas","61 Reg - ",-31.42009,-64.16918
+"C0721","Zuviria",1266,"Rio Cuarto y Posadas","61 Reg - ",-31.4205,-64.16699
+"C0722","Zuviria",1494,"Garzon Agulla y Salto","61 Reg - ",-31.4209,-64.16468
+"C0723","Zuviria",1690,"Uruguay y Asuncion","61 Reg - ",-31.42136,-64.16235
+"C0724","Copiapo",507,"Arenales y Americo Vespucio","61 Reg - ",-31.42074,-64.16071
+"C0725","Copiapo",311,"Leonor de Tejeda y Manuel Dorrego","61 Reg - ",-31.4189,-64.16027
+"C0726","Copiapo",89,"Juan Larrea y 4 de Febrero","61 Reg - ",-31.41611,-64.15898
+"C0727","Copiapo",5,"4 de Febrero y Rosario de Santa Fe","61 Reg - ",-31.41515,-64.1593
+"C0728","Rosario de Santa Fe",1892,"Manuel Rio y Pedro Savid","61 Reg - ",-31.41429,-64.15843
+"C0729","Rosario de Santa Fe",1994,"Pichincha y Patria","61 Reg - ",-31.41339,-64.15651
+"C0730","Rosario de Santa Fe",2100,"Bio-Bio y Sandino","61 Reg - ",-31.41297,-64.15492
+"C0731","Sandino",189,"Germania y Panama","61 Reg - ",-31.4148,-64.15412
+"C0732","Panama",2180,"Burges y Remedios de Escalada","61 Reg - ",-31.41476,-64.15301
+"C0733","Panama",2374,"Yatasto y Juan Roque","61 Reg - ",-31.41431,-64.15142
+"C0734","Panama",2547,"Juan Roque y Sin Datos","61 Reg - ",-31.41386,-64.14976
+"C0735","Panama",2720,"Costa Rica y Caroya","61 Reg - 64 Reg - ",-31.413485,-64.148404
+"C0737","Costa Rica",2956,"Panama y Sierra Grande","61 Reg - 64 Reg - ",-31.413766,-64.145942
+"C0740","Los Martires",123,"Costa RIca y Sin Datos","64 Ida - ",-31.41314,-64.14848
+"C0741","Los Martires",11,"Germania y Rosario de Sta Fe","64 Ida - ",-31.41183,-64.149
+"C0742","Castañares",268,"Av 24 de Septiembre y Bajada de Piedras","64 Ida - ",-31.40912,-64.15
+"C0743","Achupayas",300,"Bajada de Piedras y Lima","64 Ida - ",-31.40885,-64.15116
+"C0744","Achupayas",425,"Catamarca y La Plaza","64 Ida - ",-31.40746,-64.15167
+"C0745","Achupayas",550,"Sarmiento y Oncativo","64 Ida - ",-31.40606,-64.15218
+"C0746","Libertad",2620,"Achupayas y Sin Datos","64 Ida - ",-31.40431,-64.15297
+"C0747","Libertad",2311,"Gavilan y Curapaligüe","64 Ida - ",-31.40489,-64.15509
+"C0748","Eufrasio Loza",650,"Libertad y Lituania","64 Ida - 65 Ida - ",-31.40592,-64.15742
+"C0749","Eufrasio Loza",496,"Oncativo y Sarmiento","64 Ida - 65 Ida - ",-31.40771,-64.15678
+"C0750","Eufrasio Loza",365,"Catamarca y Jose Veron","64 Ida - ",-31.40909,-64.15624
+"C0751","Eufrasio Loza",215,"Frasnadillo y 24 de Setiembre","64 Ida - ",-31.41044,-64.15576
+"C0752","25 de Mayo",2009,"Bio-Bio y Patria","61 Ida - 64 Ida - ",-31.41224,-64.15626
+"C0753","25 de Mayo",1815,"Mejico y Araoz de Lamadrid","61 Ida - 64 Ida - ",-31.41306,-64.15941
+"C0754","25 de Mayo",1541,"Roman Deheza y Roma","64 Ida - ",-31.41397,-64.16266
+"C0755","25 de Mayo",1307,"Viamonte y Jacinto Rios","64 Ida - ",-31.41469,-64.16537
+"C0756","25 de Mayo",1106,"Pringles y David Luque","64 Ida - ",-31.4153,-64.16754
+"C0760","Guzman",200,"Lima y Olmos","62 Ida - ",-31.41503,-64.17585
+"C0763","27 de Abril",154,"Obispo Trejo y Velez Sarsfield","62 Ida - 64 Ida - ",-31.41665,-64.18592
+"C0764","27 de Abril",325,"Belgrano y Ayacucho","64 Ida - ",-31.41586,-64.18867
+"C0765","M.T. de Alvear",175,"27 de Abril y Caseros","64 Ida - ",-31.41584,-64.191
+"C0766","M.T. de Alvear",482,"San Juan y Montevideo","64 Ida - ",-31.42061,-64.19059
+"C0768","M.T. de Alvear",842,"Achaval Rodriguez y Fructuoso Rivera","61 Ida - 64 Ida - 65 Ida - ",-31.424634,-64.193853
+"C0769","Pueyrredon",500,"Rafael Escuti y Simon Bolivar","64 Ida - ",-31.42543,-64.19517
+"C0770","Pueyrredon",675,"Arturo M. Bas y Corro","64 Ida - ",-31.42451,-64.19788
+"C0771","Pueyrredon",987,"Juan Davis y Mariano Moreno","64 Ida - ",-31.42358,-64.20099
+"C0777","Sol de Mayo",1363,"Luis Dellepiane y Luis Agote","60 Ida - 62 Ida - 64 Ida - ",-31.42646,-64.213
+"C0779","Tronador",1892,"Tupungato y Aconcagua","64 Ida - ",-31.43154,-64.21641
+"C0780","Tronador",2016,"Champaqui y Tronador","64 Ida - ",-31.43297,-64.21628
+"C0781","Tronador",2180,"Tronador y Pacheco de Mendoza","64 Ida - ",-31.43498,-64.21516
+"C0782","Tronador",2346,"Pacheco de Mendoza y Monte Bonete","64 Ida - ",-31.43656,-64.21505
+"C0783","Tronador",2494,"Cerro Bonete y Cerro Conico","64 Ida - ",-31.43825,-64.21518
+"C0784","Cerro Conico",2089,"Campanario y Aconquija","64 Ida - ",-31.43875,-64.2164
+"C0785","Aconquija",2379,"Cerro Conico y Lagunilla","64 Ida - ",-31.43724,-64.21652
+"C0786","Lagunilla",2332,"Cumbres Negras y Cerro del Morro","64 Ida - ",-31.43689,-64.21857
+"C0787","Lagunilla",2516,"Cerro del Morro y Sin Datos","64 Ida - ",-31.4369,-64.22134
+"C0788","Lagunilla",2648,"La Entente y Pedro Lozano","64 Ida - ",-31.43691,-64.22302
+"C0792","Antartida",3000,"Felipe Boero y La Paz","64 Ida - ",-31.44026,-64.2283
+"C0793","La Paz",2607,"Dalessio y Octaviano Navarro","64 Ida - ",-31.43945,-64.22871
+"C0794","La Paz",2437,"Reconquista y Lagunilla","64 Ida - ",-31.43756,-64.2287
+"C0795","Lagunilla",3154,"Domuyo y Houssay","64 Ida - ",-31.43692,-64.2302
+"C0796","Lagunilla",3321,"Houssay y Talma","64 Ida - ",-31.43685,-64.23251
+"C0797","Lagunilla",3488,"Talma y Aaron Castellanos","64 Ida - ",-31.43687,-64.23413
+"C0798","Fleming",2490,"Lagunilla y Reconquista","64 Ida - ",-31.43733,-64.23588
+"C0810","Diamante",3380,"Varela Ortiz y Luis Pasteur","57 Reg - ",-31.44064,-64.23884
+"C0811","Diamante",4100,"Maria Courie y Fournier","58 Reg - ",-31.44064,-64.24167
+"C0812","Fournier",2615,"Antartida y Octaviano Navarro","59 Reg - ",-31.43925,-64.24179
+"C0813","Fournier",2511,"Esmeralda y Reconquista","60 Reg - ",-31.438,-64.24179
+"C0814","Reconquista",3918,"Maria Courie y Luis Pasteur","61 Reg - ",-31.43766,-64.24019
+"C0815","Reconquista",3777,"Graham Bell y Varela Ortiz","62 Reg - ",-31.43765,-64.23843
+"C0816","Reconquista",3611,"Diaz de la Fuente y Fleming","63 Reg - ",-31.43763,-64.23623
+"C0817","Aaron Castellanos",2413,"Reconquista y Lagunilla","64 Reg - ",-31.436894,-64.234624
+"C0818","Lagunilla",3300,"Talma y Houssay","64 Reg - ",-31.43686,-64.23291
+"C0819","La Paz",2446,"Lagunilla y Reconquista","64 Reg - ",-31.43734,-64.22873
+"C0820","La Paz",2600,"Reconquista y Octaviano Navarro","64 Reg - ",-31.43885,-64.22872
+"C0821","La Paz",2740,"La Paz y Luis Angel Huergo","64 Reg - ",-31.44029,-64.22876
+"C0827","Lagunilla",2512,"Echevarria y Olegario Correa","64 Reg - ",-31.43693,-64.22166
+"C0828","Lagunilla",2300,"Cerro Morro y Cumbres Negras","64 Reg - ",-31.4369,-64.2192
+"C0829","Lagunilla",2100,"Cumbres Negras y Aconquija","64 Reg - ",-31.43691,-64.21677
+"C0830","Cerro Conico",2047,"Aconquija y Campanario","64 Reg - ",-31.43854,-64.21656
+"C0831","Tronador",2438,"Cerro Conico y Monte Bonete","64 Reg - ",-31.43792,-64.21513
+"C0832","Tronador",2286,"Monte Bonete y Agua Nueva","64 Reg - ",-31.4364,-64.21501
+"C0833","Tronador",2117,"Agua Nueva y Tromen","64 Reg - ",-31.43433,-64.2152
+"C0834","Tronador",2000,"Tromen y Champaqui","64 Reg - ",-31.43296,-64.21624
+"C0835","Tronador",1809,"Champaqui y Tupungato","64 Reg - ",-31.4315,-64.21639
+"C0841","Pueyrredon",1446,"Santa Cruz y La Pampa","60 Reg - 62 Reg - 64 Reg - 67 Reg - ",-31.42165,-64.20742
+"C0843","Pueyrredon",1065,"Paso de los Andes y Mariano Moreno","64 Reg - ",-31.42318,-64.20243
+"C0844","Pueyrredon",651,"Corro y Arturo M. Bas","64 Reg - ",-31.42465,-64.19776
+"C0846","Peredo",400,"Bolivar y M.T. de Alvear","64 Reg - ",-31.42581,-64.19551
+"C0847","Belgrano",827,"Fructuoso Rivera y Sin Datos","61 Reg - 64 Reg - 16 Ida - 66 Ida",-31.42474,-64.19239
+"C0848","Belgrano",475,"Montevideo y San Juan","61 Reg - 64 Reg - 16 Ida - 66 Ida",-31.4205,-64.18989
+"C0852","Olmos",238,"Alvear y Maipu","63 Reg - 64 Reg - 66 Ida - 16 Ida",-31.41466,-64.17967
+"C0856","24 de Setiembre",1150,"David Luque y Pringles","60 Reg - 62 Reg - 63 Reg - 64 Reg - 66 Ida - ",-31.41441,-64.16817
+"C0857","24 de Setiembre",1360,"Jacinto Rios y Viamonte","60 Reg - 62 Reg - 64 Reg - 66 Ida - ",-31.41368,-64.16555
+"C0858","24 de Setiembre",1594,"Roma y Roman Deheza","64 Reg - 66 Ida - ",-31.41294,-64.16294
+"C0859","24 de Setiembre",1796,"Martin de Guemes y Sin Datos","64 Reg - ",-31.41229,-64.16046
+"C0860","24 de Setiembre",1970,"Pichincha y Patria","64 Reg - ",-31.41155,-64.15778
+"C0861","24 de Setiembre",2150,"Eufrasio Loza y Camacua","64 Reg - ",-31.41083,-64.15516
+"C0862","Garibaldi",400,"Jose Veron y Catamarca","64 Reg - ",-31.40881,-64.15507
+"C0863","Garibaldi",600,"Sarmiento y Oncativo","64 Reg - ",-31.40695,-64.15576
+"C0864","Oncativo",2396,"Ucrania y Gavilan","64 Reg - ",-31.40607,-64.15409
+"C0865","Acoyte",505,"Oncativo y Sarmiento","64 Reg - ",-31.40603,-64.15306
+"C0866","Acoyte",374,"Catamarca y Lima","64 Reg - ",-31.40786,-64.1524
+"C0867","Acoyte",215,"Lima y 24 de Setiembre","64 Reg - ",-31.40925,-64.15188
+"C0868","Castañares",112,"24 de Setiembre y 25 de Mayo","64 Reg - ",-31.4102,-64.14961
+"C0869","Los Martires",100,"Rosario de Santa Fe y Panama","64 Reg - ",-31.41244,-64.14879
+"C0871","Panama",2885,"Caroya y Jesus Maria","61 Reg - 64 Reg - ",-31.414004,-64.147576
+"C0905","Sabattini",1100,"Bajada Pucara y Sabattini","11 Reg - ",-31.42951,-64.16977
+"C0906","Sabattini",500,"Frente A.C.A.","10 Ida - 11 Reg - 12 Ida - 14 Reg - 17 Reg - ",-31.42774,-64.17155
+"C0908","Illia",619,"Transito Caceres de Allende y Balcarce","10 Ida - 11 Reg - 12 Ida - 14 Reg - 17 Reg - ",-31.423,-64.17732
+"C0912","Jujuy",29,"Dean Funes y 9 de Julio","18 Reg - ",-31.41367,-64.19059
+"C0914","Colon",59,"Rivera Indarte y San Martin","60 Reg - 62 Reg - 63 Reg - 66 Ida - ",-31.41337,-64.18393
+"C0922","24 de Setiembre",1886,"Lamadrid y Mejico","66 Ida - ",-31.41189,-64.15898
+"C0923","Patria",290,"24 de Setiembre y Lima","66 Ida - ",-31.41049,-64.15732
+"C0924","Patria",448,"Catamarca y Sarmiento","66 Ida - ",-31.40869,-64.15801
+"C0926","Patria",930,"Armenia y Garay","66 Ida - ",-31.40361,-64.15987
+"C0927","Patria",1196,"Buchardo y Charcas","66 Ida - ",-31.40081,-64.16091
+"C0928","Patria",1526,"Suipacha y Bulnes","66 Ida - ",-31.39752,-64.16171
+"C0932","Malvinas",1445,"Juan Tissera y Santiso y Moscoso","60 Reg - 66 Ida - ",-31.39358,-64.15279
+"C0933","Malvinas",1600,"Pronsato y Paysandu","60 Reg - 66 Ida - ",-31.3927,-64.15003
+"C0934","Malvinas",1965,"Chilavert y Victor Manuel III","60 Reg - 66 Ida - ",-31.39181,-64.14626
+"C0936","Malvinas",2345,"Celestino Vidal y Correa de Saa","60 Reg - 66 Ida - ",-31.39034,-64.13997
+"C0937","Correa de Saa",1750,"Corera de Lemos y Ortiz Montiel","66 Ida - ",-31.38831,-64.13861
+"C0938","Correa de Saa",1900,"Ortiz Montiel y Domingo Echauri","66 Ida - ",-31.38687,-64.13859
+"C0939","Homero",1996,"Echauri y Nicolas Isasmendi","66 Ida - ",-31.38568,-64.13716
+"C0940","Homero",2094,"Nicolas Isasmendi y Villacorta y Oca¤a","66 Ida - ",-31.38474,-64.1372
+"C0941","Villacorta y Ocaña",2700,"Heroes de Vilcapugio y Wilson","66 Ida - ",-31.38449,-64.13619
+"C0942","Altolaguirre",2000,"Villacorta y Ocaña y Nicolas Isasmendi","60 Ida - 66 Ida - ",-31.3853,-64.13412
+"C0943","Taboada y Lemos",2988,"Altolaguirre y Alsina","66 Ida - ",-31.38751,-64.13363
+"C0944","Montemayor",1761,"Taboada y Lemos y Malvinas","66 Ida - ",-31.38748,-64.1319
+"C0946","Malvinas",3469,"Clairac y Elizalde y Ustaris","66 Ida - ",-31.38782,-64.12915
+"C0947","Malvinas",3700,"Hernandez y Urien","66 Ida - ",-31.38663,-64.124
+"C0948","Malvinas",4100,"Urien y Astori","66 Ida - ",-31.38625,-64.12239
+"C0949","Malvinas",4700,"Las Toscas y Sin Datos","66 Ida - ",-31.38517,-64.11779
+"C0950","Malvinas",5050,"Frente La Virginia","66 Ida - ",-31.38409,-64.11332
+"C0951","Malvinas",5520,"Km 5,50","66 Ida - ",-31.38203,-64.10445
+"C0952","Camino Montecristo",6000,"km 6","66 Ida - ",-31.3809,-64.09957
+"C0953","Camino Montecristo",6200,"Km 6,5","66 Ida - ",-31.38037,-64.09732
+"C0954","Camino Montecristo",6400,"Kilometro 6","66 Ida - ",-31.37987,-64.09508
+"C0955","Camino Montecristo",6500,"Km 7","66 Ida - ",-31.37908,-64.09171
+"C0956","Camino Montecristo",9999,"Kilometro 7.5","66 Ida - ",-31.37676,-64.08177
+"C0957","Camino Montecristo",9999,"Estacion de Servicio","66 Ida - ",-31.37493,-64.07401
+"C0958","Camino Montecristo",8500,"Km 9,5","66 Ida - ",-31.37327,-64.06693
+"C0959","Camino Montecristo",9999,"Km 10","66 Ida - ",-31.37206,-64.0617
+"C0961","Camino Montecristo",9999,"Andrada y Sin Datos","66 Reg - ",-31.371,-64.05783
+"C0962","Urraca",302,"Pirincha y Martin Pescador","66 Reg - ",-31.36821,-64.05752
+"C0963","El Pardal",9782,"Picaflor y Cardenal","66 Reg - ",-31.36616,-64.05805
+"C0964","El Pardal",9713,"Tijereta y Benteveo","66 Reg - ",-31.36617,-64.05967
+"C0965","Benteveo",3710,"Martin Pescador y La Pirincha","66 Reg - ",-31.36916,-64.06018
+"C0966","Benteveo",3608,"La Pirincha y El Cacholote","66 Reg - ",-31.37057,-64.06018
+"C0967","Camino Montecristo",9999,"Km 9,5","66 Reg - ",-31.37304,-64.06621
+"C0968","Camino Montecristo",9999,"Km 9","66 Reg - ",-31.37382,-64.06962
+"C0969","Camino Montecristo",9999,"Estacion de Servicio ","66 Reg - ",-31.37468,-64.07321
+"C0970","Camino Montecristo",9999,"Km 8,5","66 Reg - ",-31.37562,-64.07724
+"C0971","Camino Montecristo",9999,"Kilometro 7.5","66 Reg - ",-31.37661,-64.08158
+"C0972","Camino Montecristo",6500,"Km 7","66 Reg - ",-31.37887,-64.09111
+"C0973","Camino Montecristo",6300,"Kilometro 6","66 Reg - ",-31.37962,-64.09441
+"C0974","Camino Montecristo",6150,"Km 6,5","66 Reg - ",-31.38025,-64.09707
+"C0975","Camino Montecristo",6000,"Km 6 ,3","66 Reg - ",-31.38063,-64.09868
+"C0976","Malvinas",5700,"Km 6","66 Reg - ",-31.38127,-64.10144
+"C0977","Malvinas",5400,"Puesto de Maza","66 Reg - ",-31.38232,-64.10597
+"C0978","Malvinas",5300,"km 5,5","66 Reg - ",-31.38284,-64.10824
+"C0979","Malvinas",5200,"Puesto de Masa y  Las Quintas","66 Reg - ",-31.38333,-64.11032
+"C0980","Malvinas",5050,"Frente La Virginia","66 Reg - ",-31.38395,-64.11297
+"C0981","Malvinas",4700,"Las Quintas y Las Toscas","66 Reg - ",-31.38506,-64.11769
+"C0982","Malvinas",3500,"Las Gredas y Circunvalacion","66 Reg - ",-31.38668,-64.12465
+"C0983","Malvinas",3300,"Circunvalacion y Condarco","66 Reg - ",-31.3875,-64.12808
+"C0984","Malvinas",3345,"Clariac y Mesa y Castro","66 Reg - ",-31.38805,-64.13043
+"C0986","Alsina",1794,"Carassa y Gil de Taboada y Lemos","60 Reg - 65 Reg - 66 Reg - ",-31.38802,-64.13338
+"C0988","Isasmendi",2600,"Wilson y Heroes de Vilcapugio","66 Reg - ",-31.38545,-64.13614
+"C0989","Homero",1818,"Domingo Echauri y Gil de Taboada y Lemos","66 Reg - ",-31.38685,-64.13722
+"C0990","Homero",1600,"Correa de Lemos y Malvians","66 Reg - ",-31.38928,-64.1372
+"C0991","Malvinas",2305,"Celestino Vidal y Pedro de Ledesma","60 Ida - 66 Reg - ",-31.39043,-64.1406
+"C0993","Malvinas",1965,"Victor Manuel III y Chilavert","60 Ida - 66 Reg - ",-31.39157,-64.14549
+"C0996","Patria",1515,"Bulnes y Suipacha","66 Reg - ",-31.39726,-64.16194
+"C0999","Malvinas",1230,"Carlos III y Juan XXIII","60 Ida - 66 Reg - ",-31.39443,-64.15576
+"C1000","Patria",1276,"Cochabamba y Charcas","66 Reg - ",-31.39956,-64.16151
+"C1001","Patria",1015,"Buchardo y Juan de Garay","66 Reg - ",-31.40224,-64.1605
+"C1002","Patria",715,"Rincon y Libertad","66 Reg - ",-31.4054,-64.15933
+"C1003","Patria",561,"Oncativo y Sarmiento","66 Reg - ",-31.40723,-64.15867
+"C1004","Sarmiento",1911,"Patria y Mejico","65 Ida - 66 Reg - ",-31.40852,-64.1594
+"C1005","Sarmiento",1759,"Araoz Lamadrid y Martin de Guemes","65 Ida - 66 Reg - ",-31.40908,-64.16151
+"C1006","Sarmiento",1524,"Deheza y Roma","65 Ida - 66 Reg - ",-31.40979,-64.16424
+"C1013","Humberto Primo",760,"Fragueiro y Urquiza","14 Reg - 17 Reg - ",-31.40704,-64.19197
+"C1014","Avellaneda",359,"La Rioja y Santa Rosa","10 Reg - 11 Ida - 12 Reg - 13 Reg - 14 Ida - 15 Ida - 17 Ida - 19 Reg - D10 Reg - ",-31.40823,-64.1947
+"C1015","Colon",717,"Urquiza y Fragueiro","12 Reg - 15 Ida - ",-31.41063,-64.19325
+"C1017","Colon",111,"Gral. Paz y Rivera Indarte","61 Reg - 64 Reg - 16 Ida - 66 Ida",-31.41321,-64.18497
+"C1018","Olmos",263,"Alvear y Maipu","61 Reg - 62 Reg - ",-31.41479,-64.18018
+"C1021","Illia",454,"Obispo Salguero y Parana","10 Reg - 12 Reg - 17 Ida - ",-31.42252,-64.1802
+"C1024","Sabattini",500,"Frente A.C.A.","10 Reg - 11 Ida - 12 Reg - 14 Ida - 17 Ida - ",-31.42742,-64.17216
+"C1068","Chacabuco",817,"Plaza España y Derqui","67 Ida - ",-31.42722,-64.18432
+"C1069","Chacabuco",556,"San Lorenzo y Rondeau","67 Ida - 13 Ida - 18 Reg - 19 Ida - D10 Ida - ",-31.4242,-64.18304
+"C1074","Paso de los Andes",270,"Caseros y Duarte Quiros","60 Ida - 62 Ida - 67 Ida - ",-31.41464,-64.20006
+"C1075","Paso de los Andes",535,"Montevideo y Aguilar","60 Ida - 62 Ida - 67 Ida - ",-31.41832,-64.20133
+"C1076","Paso de los Andes",832,"Laprida y Achaval Rodriguez","67 Ida - ",-31.42088,-64.20228
+"C1080","Sol de Mayo",1086,"Pueyrredon y Peredo","67 Ida - ",-31.4215,-64.21174
+"C1081","Peredo",2176,"Oca¤a y Haedo","67 Ida - ",-31.42134722,-64.21445
+"C1082","Peredo",2350,"Sipe y Punta Lara","67 Ida - ",-31.42088,-64.21646
+"C1083","Julian Aguirre",2400,"Punta Lara y Vieytes","67 Ida - ",-31.42301,-64.21723
+"C1084","Julian Aguirre",2520,"Olegario Correa y Echeverria","67 Ida - ",-31.42225,-64.2191
+"C1085","Julian Aguirre",2640,"Gilardi y Padre Lozano","67 Ida - ",-31.4219,-64.22093
+"C1086","Julian Aguirre",2750,"Blamey Lafore y Alte. Brown","67 Ida - ",-31.42171,-64.22198
+"C1087","Julian Aguirre",2890,"Espora y Leon Pinelo","67 Ida - ",-31.42125,-64.2242
+"C1088","Leon Pinelo",1100,"Ricardo Wagner y Peredo","67 Ida - ",-31.41972,-64.22451
+"C1089","Peredo",3100,"Schubert y Maestro Vidal","67 Ida - ",-31.41892,-64.22663
+"C1090","Peredo",3296,"Maldonado y Los Platanos","67 Ida - ",-31.41838,-64.22946
+"C1091","Albeniz",3300,"Los Platanos y Miguel Carcano","67 Ida - ",-31.41924,-64.22997
+"C1092","Albeniz",3510,"Gaona y Felix Paz","67 Ida - ",-31.41903,-64.23176
+"C1093","Albeniz",3678,"Ignacio Warnes y Gurruchaga","67 Ida - ",-31.41876,-64.23323
+"C1094","Gauna",1208,"Albeniz y Verdi","67 Ida - ",-31.41952,-64.23473
+"C1095","Gauna",1286,"Jose Verdi y Pascual de Rogatis","67 Ida - ",-31.42102,-64.23513
+"C1096","Warnes",1384,"Descalzi y Luis Agote","67 Ida - ",-31.42255,-64.23455
+"C1097","Iseas",1428,"Luis de Hoyos y Iramain","62 Ida - 67 Ida - ",-31.42308,-64.23605
+"C1098","Iseas",1500,"Jacobo Golf y Rodrigo Pereyra","62 Ida - 67 Ida - ",-31.42374,-64.23683
+"C1100","Maria Curie",1574,"Jose Fierro y Ñuflo de Chavez","67 Ida - ",-31.42534,-64.23851
+"C1101","Maria Curie",1618,"Uriburu y Williams","67 Ida - ",-31.42584,-64.23861
+"C1102","Williams",4176,"Fournier y Roque Arias","67 Ida - ",-31.426388,-64.24075
+"C1103","Agustin Roque Arias",1696,"Aviador Almonacid y Felix de Zuñiga","67 Ida - ",-31.42787,-64.24147
+"C1104","Agustin Roque Arias",1785,"Gonzalez Albarracin y Camilo Iseño","67 Ida - ",-31.42981,-64.24198
+"C1105","Agustin Roque Arias",1850,"Aviador Zanni y la Misma","67 Ida - ",-31.43127,-64.24237
+"C1106","Fuerza Aerea",4300,"Aviador Camilotti y Aviador Richardson","60 Ida - 65 Ida - 67 Ida - B61 Ida - ",-31.43237,-64.2438
+"C1107","Fuerza Aerea",4570,"Aviador Abel y Aviador  Kingsley","67 Ida - B61 Ida -",-31.43252,-64.24608
+"C1108","Fuerza Aerea",4894,"Aviador Mira y Aviador Locatelli","67 Ida - B61 Ida -",-31.43278,-64.25008
+"C1109","Fuerza Aerea",5200,"Escuela de Suboficiales","67 Ida - B61 Ida -",-31.43307,-64.25555
+"C1110","Alto Alegre",2070,"a 30 metros de Fuerza Aerea","67 Ida - B61 Ida -",-31.43331,-64.26397
+"C1111","Alto Alegre",1696,"Candelaria y Aviador Almonacid","67 Ida - B61 Ida -",-31.42929,-64.26391
+"C1112","Alto Alegre",1600,"Aviador Almonacid y Carahue","67 Ida - B61 Ida -",-31.42721,-64.2639
+"C1113","Recalde",6294,"Alto Alegre y Asia","67 Ida - ",-31.42665,-64.26644
+"C1114","Rio Yuspe",1622,"Recalde y","67 Ida - ",-31.42707,-64.26839
+"C1115","Rio Yuspe",1672,"Recalde y Sin Datos","67 Ida - ",-31.42808,-64.26835
+"C1116","Rio Yuspe",9999,"Esquina Calle 53","67 Ida - ",-31.4301,-64.26837
+"C1117","Calle 4",9999,"Esquina 52","67 Ida - ",-31.43113,-64.27057
+"C1118","Calle 52",9999,"Esquina 5","67 Ida - ",-31.43184,-64.27108
+"C1119","Calle 5",9999,"Esquina 51","67 Ida - ",-31.432951,-64.274602
+"C1120","Principal Esc.Aviacion",9999,"51 y Fuerza Aerea","67 Ida - ",-31.434056,-64.274602
+"C1121","10 de Agosto",9999,"Gomez y Zanettini","67 Ida - ",-31.437579,-64.274547
+"C1122","10 de Agosto",9999,"Gomez y Zanettini","67 Ida - ",-31.43184,-64.27108
+"C1123","Lateral Esc.Aviacion",9999,"Frente Escuela de Aviación","67 Ida - ",-31.439178,-64.272165
+"C1124","Lateral Esc.Aviacion",9999,"Llegando a la Escuela de Aviación","67 Reg - ",-31.44125,-64.26852
+"C1125","Lateral Esc.Aviacion",9999,"Frente a la Escuela de Aviación","67 Reg - ",-31.44079,-64.26947
+"C1126","Lateral Esc.Aviacion",9999,"Llegando a la Escuela de Aviación","67 Reg - ",-31.43991,-64.27091
+"C1127","Principal Esc.Aviacion",9999,"Llegando a la Escuela de Aviación","67 Reg - ",-31.437579,-64.274407
+"C1128","Principal Esc.Aviacion",9999,"Fuerza Aerea y 51","67 Reg - ",-31.4322957,-64.273615
+"C1129","Calle 51",9999,"Frente Centro Civico","67 Reg - ",-31.43991,-64.27091
+"C1130","Calle 51",9999,"Esquina con 4","67 Reg - ",-31.43279,-64.27108
+"C1131","Calle 4",9999,"Esquina con 53","67 Reg - ",-31.43128,-64.2705
+"C1132","Calle 53",9999,"Esquina con Rio Yuspe","67 Reg - ",-31.43082,-64.26895
+"C1133","Rio Yuspe",1675,"Aviador Almonacid y Candelaria ","67 Reg - ",-31.42873,-64.26832
+"C1134","Rio Yuspe",9999,"Esquina con Recalde","67 Reg - ",-31.42669,-64.26831
+"C1135","Recalde",6270,"Asia y Sin Datos","67 Reg - ",-31.42668,-64.26605
+"C1136","Alto Alegre",1604,"Recalde y Aviador Almonacid","67 Reg - ",-31.42669,-64.26436
+"C1137","Alto Alegre",1696,"Aviador Almonacid y Candelaria","67 Reg - B61 Reg -",-31.42892,-64.2639
+"C1138","Fuerza Aerea",6000,"Frente Lockheed Martin","67 Reg - B61 Reg -",-31.43365,-64.26396
+"C1139","Fuerza Aerea",5200,"Frente Salida Escuela de Suboficiales","67 Reg - B61 Reg -",-31.43335,-64.25648
+"C1140","Fuerza Aerea",4927,"Circunvalacion y Aviador Locatelli","67 Reg - B61 Reg -",-31.433,-64.2507
+"C1141","Fuerza Aerea",4700,"Aviador Mira y Aviador Petirossi","67 Reg - B61 Reg -",-31.43283,-64.2484
+"C1142","Fuerza Aerea",4545,"Aviador Kingsley y Aviador Abel","60 Reg - 65 Reg - 67 Reg - B61 Reg -",-31.43272,-64.2467
+"C1144","Agustin Roque Arias",1808,"Aviador Zanni y Camilo Isleño","67 Reg - ",-31.43063,-64.24215
+"C1145","Agustin Roque Arias",1715,"Gonzalez Albarracin y Felix de Zuñiga","67 Reg - ",-31.4288,-64.24166
+"C1146","Agustin Roque Arias",1631,"Aviador Almonacid y Williams","67 Reg - ",-31.4269,-64.24116
+"C1147","Williams",4026,"Fournier y Maria Curie","62 Reg - 67 Reg - ",-31.4266,-64.23944
+"C1148","Maria Curie",1579,"Arenales Uriburu y Ñuflo de Chavez","67 Reg - ",-31.42578,-64.23855
+"C1149","Iseas",1529,"Jose Manuel Fierro y Alberto Alcorta","67 Reg - ",-31.42491,-64.23818
+"C1151","Iseas",1403,"Luis de Hoyos y Luis Agote","62 Reg - 67 Reg - ",-31.42292,-64.23574
+"C1152","Warnes",1388,"Nicolas Descalzi y Pascual de Rogatis","67 Reg - ",-31.4225,-64.23448
+"C1153","Pascual de Rogatis",3742,"Gurruchaga y Gauna","67 Reg - ",-31.42128,-64.23487
+"C1154","Gauna",1208,"Jorge Verdi y Albeniz","67 Reg - ",-31.41943,-64.23467
+"C1155","Albeniz",3721,"Gauna y Gurruchaga","67 Reg - ",-31.41858,-64.23425
+"C1156","Albeniz",3617,"Warnes y Felix Paz","67 Reg - ",-31.4188,-64.23315
+"C1157","Albeniz",3300,"Miguel Carcano y Los Platanos","67 Reg - ",-31.41932,-64.2305
+"C1158","Los Platanos",1228,"Albeniz y Verdi","67 Reg - ",-31.42043,-64.23027
+"C1159","Verdi",3200,"Maldonado y Comechingones","67 Reg - ",-31.42125,-64.22876
+"C1160","Verdi",3075,"Maestro Vidal y Schubert","67 Reg - ",-31.4212,-64.22771
+"C1161","Verdi",2907,"Enrique Granados y Leon Pinelo","67 Reg - ",-31.4216,-64.22553
+"C1162","Verdi",2805,"Leon Pinelo y Espora","67 Reg - ",-31.42201,-64.22342
+"C1163","Ceballos",2750,"Espora y Alte. Brown","67 Reg - ",-31.42285,-64.22312
+"C1164","Pascual de Rogatis",2651,"Blamey Lafore y Padre Lozano","67 Reg - ",-31.42359,-64.22187
+"C1165","Padre Lozano",1200,"Pascual de Rogatis y Julian Aguirre","67 Reg - ",-31.42234,-64.2212
+"C1166","Padre Lozano",1105,"Julian Aguirre y Peredo","67 Reg - ",-31.42025,-64.22065
+"C1167","Peredo",2465,"Olegario Correa y Pedro Goyena","67 Reg - ",-31.42056,-64.21845
+"C1168","Peredo",2311,"Punta Lara y SipeSipe","67 Reg - ",-31.42107,-64.21582
+"C1169","Peredo",2076,"Oca¤a e Ingeniero Lopez","67 Reg - ",-31.42139,-64.21414
+"C1170","Peredo",1811,"Ingeniero Lopez y Sol de Mayo","67 Reg - ",-31.42172,-64.21245
+"C1171","Peredo",1600,"Miguel Urrutia y Rio Negro","67 Reg - ",-31.42225,-64.20965
+"C1178","Caseros",813,"San Jose de Calazans y Artigas","67 Reg - ",-31.41497,-64.19612
+"C1179","Caseros",500,"Arturo M. Bas y Simon Bolivar","67 Reg - ",-31.41616,-64.19222
+"C1180","Caseros",223,"Belgrano y Velez Sarsfield","67 Reg - ",-31.41723,-64.18859
+"C1197","Vucetich",7693,"Lippman y Wolfgang Pauli","10 Ida - 12 Ida - 17 Reg - ",-31.465003,-64.080913
+"C1198","Vucetich",7607,"Pauli y Franck","10 Ida - 12 Ida - 17 Reg - ",-31.464968,-64.082076
+"C1199","Vucetich",7450,"Guillaume y Compton","10 Ida - 12 Ida - ",-31.46504,-64.08396
+"C1200","Vucetich",7273,"Bequerel y Thompson","10 Ida - 12 Ida - ",-31.46473,-64.08617
+"C1206","Vucetich",6305,"Diesel y Dalton","10 Ida - ",-31.46499,-64.09945
+"C1207","Vucetich",6100,"Taylor y Ruta 9","10 Ida - ",-31.46496,-64.10227
+"C1212","Sabattini",5400,"Delfin Huergo y Sin Datos","10 Ida - 12 Ida - 16 Reg - ",-31.45648,-64.11171
+"C1217","Sabattini",5025,"Croacia y Circunvalacion","10 Ida - 12 Ida - 16 Reg - 17 Reg - ",-31.44669,-64.12165
+"C1222","Sabattini",4050,"Ucacha y Athos Pampa","10 Ida - 12 Ida - 16 Reg - 17 Reg - ",-31.43324,-64.1336
+"C1223","Sabattini",3821,"Machado y Bancalari","10 Ida - 11 Reg - 12 Ida - 14 Reg - 16 Reg - 17 Reg - ",-31.43235,-64.1363
+"C1232","Sabattini",1779,"Isasa y Ortiz Herrera","10 Ida - 11 Reg - 12 Ida - 14 Reg - 16 Reg - 17 Reg - ",-31.4326,-64.16209
+"C1245","Castro Barros",443,"Europa y Palestina","10 Ida - 11 Reg - 12 Ida - 13 Ida - 14 Reg - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.40136,-64.19634
+"C1246","Castro Barros",675,"Chaco y Zelaya","10 Ida - 11 Reg - 12 Ida - 13 Ida - 14 Reg - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.39925,-64.19779
+"C1250","Caraffa",1896,"Pablo Cabrera y Obispo Pozo y Silva","10 Ida - 11 Reg - 12 Ida - 13 Ida - 14 Reg - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.3905,-64.20425
+"C1251","Caraffa",2084,"Progreso y Juan de la Serna","10 Ida - 11 Reg - 12 Ida - 13 Ida - 14 Reg - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.38968,-64.20693
+"C1253","Caraffa",2568,"Domingo Zipoli y Las Playas","10 Ida - 11 Reg - 12 Ida - 13 Ida - 14 Reg - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.38763,-64.21334
+"C1258","Rafael Nuñez",3545,"Rodriguez del Busto y Mosco y Peralta","10 Ida - 11 Reg - 12 Ida - 13 Ida - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.37869,-64.22411
+"C1261","Rafael Nuñez",3832,"Virey del Pino y Emilio Petorutti","10 Ida - 11 Reg - 12 Ida - 13 Ida - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.37369,-64.22853
+"C1266","Rafael Nuñez",4525,"Martel de los Rios y Manuel Pizarro","10 Ida - 11 Reg - 12 Ida - 13 Ida - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.36547,-64.23527
+"C1267","Rafael Nuñez",4663,"Manuel Pizarro y Manuel Lopez","10 Ida - 11 Reg - 12 Ida - 13 Ida - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.363,-64.23692
+"C1270","Rafael Nuñez",5441,"Albano de Laberge y Parmenio Ferrer","10 Ida - 11 Reg - 12 Ida - 15 Reg - 17 Reg - 18 Reg - ",-31.35363,-64.245
+"C1274","Ricardo Rojas",6870,"Frente C.P.C.","10 Ida - 12 Ida - 18 Reg - ",-31.34177,-64.25421
+"C1275","Ricardo Rojas",7000,"Ramon y Cajal y Poincare","10 Ida - 18 Reg - ",-31.34039,-64.25656
+"C1276","Ricardo Rojas",7319,"Francisco Vidal y Heriberto Martinez","10 Ida - 18 Reg - ",-31.33838,-64.25994
+"C1277","Heriberto Martinez",7339,"Ricardo Rojas y Carlos Andres","10 Ida - ",-31.33672,-64.26199
+"C1278","Heriberto Martinez",7119,"Carlos Andres y Jose Agusti","10 Ida - ",-31.33871,-64.26311
+"C1279","Heriberto Martinez",6851,"Sergio Camargo y Jose Morelos","10 Ida - ",-31.3416,-64.26378
+"C1280","Morelos",7544,"Mocovies y Guillermo Ostwald","10 Ida - ",-31.34181,-64.26539
+"C1281","Tomas Garzon",6872,"Manuel Montt y Nilo Pecanha","10 Ida - ",-31.34181,-64.26706
+"C1282","Sandoval",7705,"Tomas Garzon y German Busch","10 Ida - ",-31.34033,-64.26716
+"C1283","Sandoval",7830,"Antequera y Castro y Bartolome Solom","10 Ida - ",-31.34061,-64.26921
+"C1293","Bartolome Salom",6701,"Manuel Montt","10 Reg - ",-31.34205,-64.26936
+"C1294","Morelos",7704,"Bartolome Salom y Tomas Garzon","10 Reg - ",-31.34207,-64.26763
+"C1295","Morelos",7543,"Guillermo Ostwald y Mocovies","10 Reg - ",-31.34182,-64.26602
+"C1296","Morelos",7400,"Mocovies y Heriberto Martinez","10 Reg - ",-31.34185,-64.2644
+"C1297","Heriberto Martinez",7090,"Domingo Alvari¤os y Jose Agusti","10 Reg - ",-31.3396,-64.26325
+"C1298","Heriberto Martinez",7339,"Carlos Andres y Ricardo Rojas","10 Reg - ",-31.33733,-64.26264
+"C1299","Ricardo Rojas",7300,"Heriberto Martinez y Francisco Vidal","10 Reg - 18 Ida - ",-31.3378,-64.26042
+"C1300","Ricardo Rojas",7000,"Poincare y Ramon y Cajal","10 Reg - 18 Ida - ",-31.34023,-64.25695
+"C1304","Rafael Nuñez",6004,"Andres Piñero y Juan Perrin","10 Reg - 11 Ida - 12 Reg - 15 Ida - 18 Ida - ",-31.34758,-64.24985
+"C1305","Rafael Nuñez",5800,"Taravella y Angel Lo Celso","10 Reg - 11 Ida - 12 Reg - 15 Ida - 18 Ida - ",-31.34936,-64.24879
+"C1311","Rafael Nuñez",4515,"Manuel Pizarro y Jose Reynafe","10 Reg - 11 Ida - 12 Reg - 13 Reg - 15 Ida - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.36533,-64.23554
+"C1312","Rafael Nuñez",4418,"De Los Rios y Gavier","10 Reg - 18 Ida - ",-31.36698,-64.23443
+"C1313","Rafael Nuñez",4313,"Gavier y Jose Roque Funes","10 Reg - 13 Reg - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.36776,-64.23381
+"C1316","Rafael Nuñez",3911,"Roque Ferreyra y Beverina","10 Reg - 18 Ida - ",-31.37354,-64.22887
+"C1317","Rafael Nuñez",3835,"Berrotaran y Arruabarrena","10 Reg - 18 Ida - ",-31.37474,-64.22781
+"C1318","Rafael Nuñez",3770,"Arruabarrena y Perez de Herrera","10 Reg - 11 Ida - 13 Reg - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.37697,-64.22586
+"C1320","Octavio Pinto",3257,"Correa y Javier Lopez","10 Reg - 11 Ida - 12 Reg - 13 Reg - 14 Ida - 15 Ida - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.38348,-64.22236
+"C1324","Caraffa",2529,"Las Playas y Domingo Zipoli","10 Reg - 11 Ida - 12 Reg - 13 Reg - 14 Ida - 15 Ida - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.38784,-64.21303
+"C1327","Caraffa",1875,"Obispo Pozo y Silva y Castro Barros","10 Reg - 11 Ida - 12 Reg - 13 Reg - 14 Ida - 15 Ida - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.39033,-64.20517
+"C1329","Castro Barros",1299,"6 de Julio y Jose Maria Galan","10 Reg - 11 Ida - 12 Reg - 13 Reg - 14 Ida - 15 Ida - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.39358,-64.20238
+"C1333","Castro Barros",415,"Santa Fe y Agustin Olmedo","10 Reg - 11 Ida - 12 Reg - 14 Ida - 15 Ida - 17 Ida - 18 Ida - ",-31.40109,-64.19667
+"C1334","Castro Barros",50,"12 de Octubre Avellaneda","10 Reg - 11 Ida - 12 Reg - 13 Reg - 14 Ida - 15 Ida - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.40445,-64.1946
+"C1340","San Juan",21,"Obispo Treje e Independencia","10 Reg - 11 Ida - 12 Reg - 15 Ida - 17 Ida - ",-31.42078,-64.18692
+"C1341","Illia",136,"Buenos Aires e Ituzaingo","10 Reg - 12 Reg - 17 Ida - ",-31.42145,-64.18434
+"C1351","Sabattini",2564,"San Pedro y Navarra","10 Reg - 11 Ida - 12 Reg - 14 Ida - 16 Ida - 17 Ida - ",-31.43322,-64.15304
+"C1352","Sabattini",2700,"Juan Rodriguez y Ambrosio Funes","10 Reg - 11 Ida - 12 Reg - 14 Ida - 16 Ida - 17 Ida - ",-31.43329,-64.1509
+"C1367","Sabattini",5700,"Luciano Torrent y Martin Zapata","10 Reg - 12 Reg - ",-31.45781,-64.11051
+"C1370","Sabattini",6200,"Perello y Albizurri","10 Reg - 16 Ida - ",-31.46315,-64.10495
+"C1373","Vucetich",6500,"Guillermo Harvey y Kelvin","10 Reg - ",-31.46503,-64.09737
+"C1374","Vucetich",6628,"Galileo y Guttenberg","10 Reg - 12 Reg - ",-31.46505,-64.09506
+"C1375","Vucetich",6840,"Lavoser y Daguerre","10 Reg - 12 Reg - ",-31.46504,-64.09339
+"C1376","Vucetich",7040,"Watt y Gramme","10 Reg - 12 Reg - ",-31.46504,-64.09064
+"C1377","Vucetich",7178,"Westinghouse y Faraday","10 Reg - 12 Reg - ",-31.46505,-64.08835
+"C1380","Vucetich",7693,"Barkla y Franck","10 Reg - 12 Reg - ",-31.46519,-64.08228
+"C1384","Franck",5350,"Luis Broglie y Alfredo Nobel","17 Reg - ",-31.4629,-64.08223
+"C1385","Michelson",7510,"Barkla y Guillaume","17 Reg - ",-31.46217,-64.08327
+"C1386","Michelson",7610,"Compton y Bragg","17 Reg - ",-31.46217,-64.08437
+"C1387","Bragg",5181,"Laure y Capilla de Los Remedios","17 Reg - ",-31.46069,-64.0849
+"C1388","Cno C. de los Remedios",9999,"Frente Refineria","17 Reg - ",-31.45882,-64.08491
+"C1390","Cno C. de los Remedios",7000,"Watt y Mendez","17 Reg - ",-31.45831,-64.09104
+"C1391","Cno C. de los Remedios",6900,"Lavoisier y Hertz","17 Reg - ",-31.45837,-64.09339
+"C1392","Cno C. de los Remedios",6800,"Esquina con Santa Barbara","17 Reg - ",-31.45839,-64.09515
+"C1393","Cno C. de los Remedios",6500,"Los Cha¤ares y Los Espinillos","12 Ida - 17 Reg - ",-31.45934,-64.09859
+"C1394","Cno C. de los Remedios",6250,"Los Espinillos y Vermouth","12 Ida - 17 Reg - ",-31.46014,-64.10122
+"C1395","Vermouth",4897,"Godoy y Lavaysse","17 Reg - ",-31.45873,-64.10176
+"C1396","Vermouth",4703,"Gianantonio y Agustin Delgado","17 Reg - ",-31.45593,-64.10174
+"C1397","Baravalle",6063,"Vermouth y Marzano","17 Reg - ",-31.45515,-64.10344
+"C1398","Marzano",4750,"Baravalle","17 Reg - ",-31.45286,-64.10384
+"C1399","Publica Cuidad Evita",9999,"Frente Manzana 25","17 Reg - ",-31.45088,-64.10652
+"C1400","Publica Cuidad Evita",9999,"Frente Manzana 26","17 Reg - ",-31.45087,-64.10766
+"C1401","Publica Cuidad Evita",9999,"Esq. Manzana 26","17 Reg - ",-31.45004,-64.10794
+"C1402","Publica",9999,"Frente Comisaria","17 Reg - ",-31.44946,-64.11022
+"C1403","Publica Cuidad Evita",9999,"Frente Manzana 50","17 Reg - ",-31.44945,-64.11192
+"C1404","Publica Cuidad Evita",9999,"Frente Manzana 60","17 Reg - ",-31.45039,-64.11254
+"C1405","Huergo",4473,"Gorostiaga y Manuel Leiva","17 Reg - ",-31.45226,-64.11175
+"C1406","Leiva",5536,"Luciano Torrent y Martin Zapata","17 Reg - ",-31.45289,-64.11006
+"C1407","Zapata",4636,"Juan Llerena y Agustin Delgado","17 Reg - ",-31.4543,-64.10984
+"C1415","Sabattini",5125,"Cangallo y Croacia","10 Ida - 12 Ida - 16 Reg - 17 Reg - ",-31.4488,-64.11933
+"C1420","Sabattini",4303,"Rayo Cortado y Tancacha","10 Ida - 12 Ida - 16 Reg - 17 Reg - ",-31.43508,-64.13105
+"C1423","Sabattini",3691,"Acosta y Bajada Ferreyra","10 Ida - 11 Reg - 12 Ida - 14 Reg - 16 Reg - 17 Reg - ",-31.43163,-64.13848
+"C1424","Sabattini",3300,"Frente Hiper Libertad","10 Ida - 11 Reg - 12 Ida - 14 Reg - 16 Reg - 17 Reg - ",-31.43281,-64.14337
+"C1446","Chacabuco",257,"Corrientes y Entre Rios","65 Reg - ",-31.42053,-64.18145
+"C1455","Velez Sarsfield",230,"Caseros y Duarte Quiros","14 Ida - 15 Ida - ",-31.41756,-64.1878
+"C1476","Sabattini",3154,"Jose Ignacio Gorriti y Hiper Libertad","10 Reg - 11 Ida - 12 Reg - 14 Ida - 16 Ida - 17 Ida - ",-31.43338,-64.14566
+"C1481","Sabattini",4390,"Rayo Cortado y Totoralejos","10 Reg - 12 Reg - 16 Ida - 17 Ida - ",-31.4359,-64.13045
+"C1483","Sabattini",4850,"Fiambala y Calingasta","10 Reg - 12 Reg - 16 Ida - 17 Ida - ",-31.44035,-64.12754
+"C1484","Sabattini",5025,"Circunvalacion y Croacia","10 Reg - 12 Reg - 16 Reg - 17 Ida - ",-31.44638,-64.12215
+"C1485","Sabattini",5100,"Croacia y Cangallo","10 Reg - 12 Reg - 16 Reg - 17 Ida - ",-31.44862,-64.11985
+"C1486","Sabattini",5200,"Frente FIAT","10 Reg - 12 Reg - 16 Ida - 17 Ida - ",-31.45163,-64.11683
+"C1490","Zapata",4565,"Delgado y Juan Llerena","17 Ida - ",-31.45491,-64.10983
+"C1491","Leiva",5415,"Juan Segui y Huergo","17 Ida - ",-31.45284,-64.11148
+"C1492","Manzana 60 Lote 11",9999,"Frente Manzana 60","17 Ida - ",-31.45078,-64.11219
+"C1493","Publica Cuidad Evita",9999,"Esquina Manzana 60","17 Ida - ",-31.44994,-64.1125
+"C1494","Publica Cuidad Evita",9999,"Frente Manzana 56","17 Ida - ",-31.44992,-64.1097
+"C1495","Publica Cuidad Evita",9999,"Frente Manzana 26","17 Ida - ",-31.44995,-64.10804
+"C1496","Publica Cuidad Evita",9999,"Frente Manzana 25","17 Ida - ",-31.4504,-64.10662
+"C1497","Marzano",9999,"Frente el Colegio","17 Ida - ",-31.45279,-64.10387
+"C1498","Marzano",4650,"Baravalle y el Colegio","17 Ida - ",-31.45445,-64.10385
+"C1499","Baravalle",6170,"Marzano y Vermouth","17 Ida - ",-31.45532,-64.10232
+"C1500","Wermuth",4816,"Ferre y Gonzalez","17 Ida - ",-31.45686,-64.1018
+"C1501","Wermuth",5050,"Godoy y Camino Capilla de los Remedios","17 Ida - ",-31.45938,-64.10182
+"C1502","Cno C. de los Remedios",6284,"Virasoro y Los Espinillos","12 Reg - 17 Ida - ",-31.46009,-64.10095
+"C1503","Cno C. de los Remedios",6500,"Los Espinillos y Los Chañares","12 Reg - 17 Ida - ",-31.45945,-64.09875
+"C1504","Cno C. de los Remedios",6570,"Los Chañares y Los Piquillines","17 Ida - ",-31.4588,-64.09659
+"C1505","Cno C. de los Remedios",6670,"Los Piquillines y Santa Barbara","17 Ida - ",-31.45848,-64.0955
+"C1506","Cno C. de los Remedios",6800,"Santa Barbara y Lavoisier","17 Ida - ",-31.4584,-64.0936
+"C1508","Cno C. de los Remedios",9999,"Stephenson y Faraday","17 Ida - ",-31.45837,-64.08786
+"C1511","Publica",9999,"Bragg y Guillaume","17 Ida - ",-31.46104,-64.0839
+"C1512","Publica",9999,"Brakla y Franck","17 Ida - ",-31.46103,-64.08278
+"C1513","Franck",5351,"Nobel y Broglie","17 Ida - ",-31.46278,-64.08229
+"C1514","Franck",5462,"Millikan y Vucetich","17 Ida - ",-31.46473,-64.0823
+"C1526","Chacabuco",835,"Plaza España y Derqui","13 Ida - 18 Reg - 19 Ida - D10 Ida - ",-31.42722,-64.1843
+"C1531","Fragueiro",329,"Santa Rosa y La Rioja","13 Ida - 14 Reg - 17 Reg - 19 Ida - D10 Ida - ",-31.40978,-64.19216
+"C1533","Castro Barros",58,"Avellaneda y Ramirez de Velazco","10 Ida - 11 Reg - 12 Ida - 13 Ida - 14 Reg - 15 Reg - 17 Reg - 19 Ida - D10 Ida - ",-31.40506,-64.19398
+"C1537","Castro Barros",1224,"Galan y Tambo Nuevo","10 Ida - 11 Reg - 12 Ida - 13 Ida - 14 Reg - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.39449,-64.20187
+"C1538","Castro Barros",1527,"6 de Julio y Copacabana","10 Ida - 11 Ida - 12 Ida - 12 Reg - 13 Ida - 14 Ida - 15 Ida - 17 Ida - 18 Reg - 19 Ida - D10 Ida - ",-31.39231,-64.20302
+"C1544","Caraffa",2930,"Luis Galeano y Pedroni","10 Ida - 11 Reg - 12 Ida - 13 Ida - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.38626,-64.21765
+"C1548","Rafael Nuñez",3686,"De Angelis y Perez de Herrera","10 Ida - 11 Reg - 12 Ida - 13 Ida - 15 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.37646,-64.2261
+"C1552","Rafael Nuñez",4088,"Juan Battle Planas y Gregorio Laferrere","10 Ida - 11 Reg - 12 Ida - 13 Ida - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.37099,-64.2309
+"C1554","Rafael Nuñez",4352,"Jose Roque Funes y Gregorio Gavier","10 Ida - 11 Reg - 12 Ida - 13 Ida - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.36786,-64.23353
+"C1558","Laplace",5800,"Blas Pascal y Mariotte","13 Ida - 19 Ida - D10 Ida - ",-31.35804,-64.24172
+"C1559","Laplace",5600,"Mariotte y Gaty Lussac","13 Ida - 19 Ida - D10 Ida - ",-31.35941,-64.24476
+"C1560","Laplace",5390,"Jose Luis Lagrange y Dalembert","13 Ida - 19 Ida - D10 Ida - ",-31.36127,-64.24882
+"C1561","Laplace",5229,"Dalembert y Olmos","13 Ida - 19 Ida - D10 Ida - ",-31.36218,-64.25075
+"C1563","Gauss",5291,"Olmos y Dalembert","13 Ida - 19 Ida - D10 Ida - ",-31.3614,-64.25283
+"C1564","Gauss",5500,"Lagrange y Joule","13 Ida - 19 Ida - D10 Ida - ",-31.35909,-64.25189
+"C1565","Gauss",5679,"Gay Lussac y Mariotte","13 Ida - 19 Ida - D10 Ida - ",-31.35682,-64.25098
+"C1566","Gauss",5824,"Blas Pascal y Avogadro","13 Ida - 19 Ida - D10 Ida - ",-31.35501,-64.25022
+"C1567","Gauss",5968,"Avogadro y Martinolli","13 Ida - 19 Ida - D10 Ida - ",-31.3528,-64.249407
+"C1568","Martinolli",5900,"Locelso y Taravella","13 Ida - 19 Ida - D10 Ida - ",-31.35076,-64.2506
+"C1569","Martinolli",6200,"Aston y Nepper","13 Ida - 19 Ida - D10 Ida - ",-31.349312,-64.25277
+"C1570","Martinolli",6700,"Lasalle y Ferreyra","13 Ida - 19 Ida - D10 Ida - ",-31.34824,-64.25652
+"C1571","Martinolli",6894,"Hopkins y Cajal","13 Ida - 19 Ida - D10 Ida - ",-31.34804,-64.25926
+"C1572","Martinolli",7092,"Cajal y Fernando Braun","13 Ida - 19 Ida - D10 Ida - ",-31.34789,-64.2616
+"C1573","Martinolli",7258,"Laveran y Heriberto Martinez","13 Ida - 19 Ida - D10 Ida - ",-31.34775,-64.2638
+"C1574","Martinolli",7714,"Tomas Garzon y Richard","13 Ida - 19 Ida - D10 Ida - ",-31.34751,-64.26763
+"C1575","Martinolli",7894,"Albert Sabin y Barany","13 Ida - 19 Ida - D10 Ida - ",-31.347274,-64.271451
+"C1576","Martinolli",8124,"Buitrago y Curaquen","13 Ida - 19 Ida - D10 Ida - ",-31.347136,-64.273857
+"C1577","Martinolli",8200,"Curaquen y Yupanqui","13 Ida - 19 Ida - D10 Ida - ",-31.347008,-64.276121
+"C1578","Martinolli",8360,"Viracocha y Carolina","13 Ida - 19 Ida - D10 Ida - ",-31.34683,-64.27832
+"C1579","Martinolli",8530,"Carolina y Alberione","13 Ida - 19 Ida - D10 Ida - ",-31.34665,-64.28124
+"C1580","Martinolli",8720,"Alberione y La Gilda","13 Ida - 19 Ida - D10 Ida - ",-31.34592,-64.28398
+"C1581","Martinolli",8831,"San Pedro Nolasco y Pasasje C","13 Ida - 19 Ida - D10 Ida - ",-31.3446,-64.28637
+"C1582","Martinolli",8870,"Pasaje C y Diaz Caballero","13 Ida - 19 Ida - D10 Ida - ",-31.34385,-64.28772
+"C1583","Martinolli",8928,"Correa y Villegas","13 Ida - 19 Ida - D10 Ida - ",-31.34294,-64.28893
+"C1584","Manuel de Falla",9999,"Arias y Vinter = Almaceneros","13 Ida - D10 Ida - ",-31.34054,-64.29024
+"C1585","Manuel de Falla",7210,"Vinter y Vazquez = Almaceneros","13 Ida - D10 Ida - ",-31.33849,-64.29022
+"C1586","Manuel de Falla",7444,"Vazquez y Ricardo Rojas = Almaceneros","13 Ida - D10 Ida - ",-31.33661,-64.29016
+"C1587","Ricardo Rojas",9100,"Manuel de Falla y Seeber = Almaceneros","13 Ida - ",-31.33495,-64.2918
+"C1588","Ricardo Rojas",9250,"Seeber y Bruzone = Almaceneros","13 Ida - ",-31.33262,-64.29275
+"C1589","Ricardo Rojas",9370,"Ausonia y Laborde = Almaceneros","13 Ida - ",-31.32981,-64.29443
+"C1590","Ricardo Rojas",9511,"Arroyito y Los Reartes = Almaceneros","13 Ida - ",-31.32893,-64.29723
+"C1591","Ricardo Rojas",9630,"San Marcos Sierra y Jamaica","13 Ida - ",-31.32846,-64.29936
+"C1592","Ricardo Rojas",6846,"San Salvador y Jamaica","13 Ida - ",-31.32809,-64.301
+"C1593","Ricardo Rojas",9985,"Ricardo Rojas esq. Jamaica","13 Ida - ",-31.32731,-64.30277
+"C1594","Ricardo Rojas",9985,"Ricardo Rojas esq. Jamaica","13 Reg - ",-31.32731,-64.30277
+"C1595","Ricardo Rojas",9849,"Jamaica y San Salvador","13 Reg - ",-31.32799,-64.30155
+"C1596","Ricardo Rojas",9670,"Bell Ville y San Marcos Sierras","13 Reg - ",-31.32852,-64.29923
+"C1597","Ricardo Rojas",9500,"San Marcos Sierras y Los Reartes  ","13 Reg - ",-31.32891,-64.29748
+"C1598","Ricardo Rojas",9370,"Laborde y Ausonia = Almaceneros","13 Reg - ",-31.32967,-64.29486
+"C1599","Ricardo Rojas",9250,"Ausonia y Bruzone = Almaceneros","13 Reg - ",-31.33213,-64.29284
+"C1600","Ricardo Rojas",9100,"Bruzone y Seeber = Almaceneros","13 Reg - ",-31.33456,-64.29219
+"C1601","Manuel de Falla",7388,"Ricardo Rojas y Vinter = Almaceneros","13 Reg - D10 Reg - ",-31.33618,-64.29028
+"C1602","Manuel de Falla",7300,"Ricardo Rojas y Vinter = Almaceneros","13 Reg - D10 Reg - ",-31.33711,-64.2903
+"C1603","Manuel de Falla",7100,"Vinter y Arias = Almaceneros","13 Reg - D10 Reg - ",-31.33897,-64.29037
+"C1604","Manuel de Falla",6863,"Vinter y Arias = Almaceneros","13 Reg - D10 Reg - ",-31.33991,-64.29036
+"C1605","Entrada Warcalde",9999,"Manuel de Falla y Zanon = Warcalde","19 Ida - ",-31.34097,-64.29087
+"C1606","Zanon",9128,"Molino de Torres y Algarrobo","19 Ida - ",-31.34117,-64.29352
+"C1607","Zanon",9300,"Los Algarrobos y De la Capilla","19 Ida - ",-31.34023,-64.29478
+"C1608","Zanon",9468,"De la Capilla y Quintas de Cremader","19 Ida - ",-31.3391,-64.29629
+"C1609","Zanon",9695,"La Gargola y Eloy Martinez","19 Ida - ",-31.3376,-64.2992
+"C1610","Zanon",9963,"Pje Aguaducho y De la Aguada","19 Ida - ",-31.33567,-64.3029
+"C1611","Zanon",9999,"De la Aguada y Alto Hermoso","19 Ida - ",-31.33455,-64.30474
+"C1612","Zanon",9999,"Esquina con Ricardo Santos = Warcalde","19 Ida - ",-31.33345,-64.30656
+"C1613","Ricardo Santos",9999,"Angualasto y Pampa de los Guanacos","19 Ida - ",-31.33461,-64.3098
+"C1614","Ricardo Santos",9999,"Pampas de los Guanacos y Agualasto","19 Reg - ",-31.33461,-64.3098
+"C1615","Ricardo Santos",9999,"Esquina con Zanon = Warcalde","19 Reg - ",-31.33333,-64.30745
+"C1616","Zanon",10100,"Los Parlamentos y De la Aguada = Warcald","19 Reg - ",-31.3339,-64.30591
+"C1617","Zanon",9931,"De la Aguada y Pje. Aguaducho","19 Reg - ",-31.33581,-64.30278
+"C1618","Zanon",9695,"Eloy Martinez y Sin Datos = Warcalde","19 Reg - ",-31.33752,-64.29996
+"C1619","Zanon",9500,"Frente Ex Banco Hipotecario Nacional","19 Reg - ",-31.33836,-64.29742
+"C1620","Zanon",9400,"Quintas de Cremader y De la Capilla","19 Reg - ",-31.33931,-64.29611
+"C1621","Zanon",9121,"Monseños D'amico y Molino Viejo","19 Reg - ",-31.34091,-64.29396
+"C1622","Salida Warcalde",9999,"Esquina Manuel de Falla = Warcalde","19 Reg - ",-31.34103,-64.29099
+"C1623","Martinolli",8911,"Manuel de Falla y Doering","13 Reg - 19 Reg - D10 Reg - ",-31.3427,-64.28934
+"C1624","Martinolli",8819,"Di Francia y San Pedro Nolasco","13 Reg - 19 Reg - D10 Reg - ",-31.3445,-64.28675
+"C1625","Martinolli",8711,"La Gilda y Padre Santiago Alberione","13 Reg - 19 Reg - D10 Reg - ",-31.34584,-64.28436
+"C1626","Martinolli",8500,"Padre Santiago Alberione y Carolina","13 Reg - 19 Reg - D10 Reg - ",-31.34669,-64.2817
+"C1627","Martinolli",8300,"Enquen y Viracocha","13 Reg - 19 Reg - D10 Reg - ",-31.34691,-64.27829
+"C1628","Martinolli",8156,"Yupanqui y Curaquen","13 Reg - 19 Reg - D10 Reg - ",-31.347061,-64.275705
+"C1629","Martinolli",8105,"Curaquen y Biutrago","13 Reg - 19 Reg - D10 Reg - ",-31.347178,-64.273731
+"C1630","Martinolli",7900,"Barany y Sabin","13 Reg - 19 Reg - D10 Reg - ",-31.34737,-64.27111
+"C1631","Martinolli",7707,"Richards y Garzon","13 Reg - 19 Reg - D10 Reg - ",-31.34751,-64.26821
+"C1632","Martinolli",7415,"Ostwald y Heriberto Martinez","13 Reg - 19 Reg - D10 Reg - ",-31.34767,-64.26595
+"C1633","Martinolli",7095,"Fernando Braun y Edison","13 Reg - 19 Reg - D10 Reg - ",-31.34797,-64.26184
+"C1634","Martinolli",6939,"Cajal y Spemann","13 Reg - 19 Reg - D10 Reg - ",-31.34805,-64.26033
+"C1635","Martinolli",6675,"Ferreyra y Lasalle","13 Reg - 19 Reg - D10 Reg - ",-31.34828,-64.25691
+"C1636","Martinolli",6200,"Chagas y Neper","13 Reg - 19 Reg - D10 Reg - ",-31.34906,-64.2536
+"C1637","Martinolli",5900,"Tyvho Brahe y Branly","13 Reg - 19 Reg - D10 Reg - ",-31.35027,-64.25129
+"C1638","Gauss",5975,"Martinolli y Avogadro","13 Reg - 19 Reg - D10 Reg - ",-31.35246,-64.24928
+"C1639","Gauss",5824,"Avogadro y Pascal","13 Reg - 19 Reg - D10 Reg - ",-31.35466,-64.25017
+"C1640","Gauss",5713,"Pascal y Mariotte","13 Reg - 19 Reg - D10 Reg - ",-31.35599,-64.25072
+"C1641","Gauss",5527,"Gay Lussac y Joule","13 Reg - 19 Reg - D10 Reg - ",-31.35817,-64.2516
+"C1642","Gauss",5341,"Lagrange y Dalambert","13 Reg - 19 Reg - D10 Reg - ",-31.36048,-64.25252
+"C1643","Gauss",5055,"Boyle y Berzelius","13 Reg - 19 Reg - D10 Reg - ",-31.36319,-64.25357
+"C1644","Papin",5054,"Berzelius y Laplace","13 Reg - 19 Reg - D10 Reg - ",-31.36408,-64.25276
+"C1645","Laplace",5184,"Papin y Fresnel","13 Reg - 19 Reg - D10 Reg - ",-31.36241,-64.25099
+"C1646","Laplace",5419,"Henry y Lineo","13 Reg - 19 Reg - D10 Reg - ",-31.36122,-64.24866
+"C1647","Laplace",5525,"Berthelot y Julio Vernes","13 Reg - 19 Reg - D10 Reg - ",-31.36014,-64.24605
+"C1648","Laplace",5700,"Gay Lussac y Mariotte","13 Reg - 19 Reg - D10 Reg - ",-31.35903,-64.24359
+"C1649","Laplace",5800,"Mariotte y Jeronimo Cardan","13 Reg - 19 Reg - D10 Reg - ",-31.35837,-64.24217
+"C1653","Rafael Nuñez",4431,"De los Rios y Gavier","11 Ida - 12 Reg - 13 Reg - 15 Ida - 19 Reg - D10 Reg - ",-31.36694,-64.23444
+"C1660","Rafael Nuñez",3660,"Jose Otero y Orma","11 Ida - 13 Reg - 19 Reg - D10 Reg - ",-31.37808,-64.22483
+"C1663","Caraffa",2935,"Octavio Pinto y Galeano","10 Reg - 11 Ida - 12 Reg - 13 Reg - 15 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.38602,-64.21851
+"C1669","Castro Barros",1527,"Copacabana y 6 de Julio","10 Reg - 11 Reg - 13 Reg - 14 Reg - 15 Reg - 17 Reg - 18 Ida - 19 Reg - D10 Reg - ",-31.39193,-64.20331
+"C1672","Castro Barros",965,"Bialet Masse y Neuquen","10 Reg - 11 Ida - 12 Reg - 13 Reg - 14 Ida - 15 Ida - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.39652,-64.20037
+"C1674","Castro Barros",417,"Santa Fe y Coronel Olmedo","13 Reg - 19 Reg - D10 Reg - ",-31.40118,-64.19656
+"C1681","Hipolito Irigoyen",57,"San Juan y Montevideo","67 Reg - 13 Reg - 16 Reg - 18 Ida - 19 Reg - D10 Reg - ",-31.42101,-64.18849
+"C1682","Hipolito Irigoyen",175,"Obispo Trejo y San Luis","67 Reg - 13 Reg - 16 Reg - 18 Ida - 19 Reg - D10 Reg - ",-31.42281,-64.18756
+"C1697","Borda",9999,"Ornstein y Revello","12 Reg - 14 Ida - 17 Ida - ",-31.31725,-64.26032
+"C1698","Furlong",9053,"Borda y Ibarguren","12 Reg - ",-31.31725,-64.2591
+"C1699","Furlong y Yaven",8960,"Ibarguren y Sin Datos","12 Reg - ",-31.31848,-64.25827
+"C1700","Yaben",6900,"Furlong y Revello","12 Reg - ",-31.3201,-64.25715
+"C1703","Pizzolatto",7036,"Menditeguy y Giannini","12 Reg - ",-31.32191,-64.25813
+"C1704","Pizzolatto",7144,"Gianini y Hnos Grimm","12 Reg - ",-31.32138,-64.25965
+"C1705","Malalco",7050,"Pizzolatto y Pillahuenu","12 Reg - ",-31.32137,-64.26108
+"C1706","Malalco",7184,"Chapisgasta y Tabacue","12 Reg - ",-31.32212,-64.26251
+"C1707","Malalco",7350,"Kawall y Matra","12 Reg - ",-31.32313,-64.26449
+"C1708","Malalco",7288,"Liencura y Fangio","12 Reg - ",-31.32387,-64.26594
+"C1709","Fangio",8350,"Wieland y Miguel Marin","12 Reg - ",-31.32536,-64.26563
+"C1710","Beta",7405,"Fagio y Artagoveitia","12 Reg - ",-31.32566,-64.26404
+"C1711","Beta",7164,"Carlos Lusso y Fabio Pessatti","12 Reg - ",-31.32559,-64.26015
+"C1712","Massetti",8260,"Bizio y Risatti","12 Reg - ",-31.32648,-64.26023
+"C1713","Massetti",8152,"Risatti y Cubillos","12 Reg - ",-31.32818,-64.26113
+"C1714","Massetti",8071,"Cubillos y Benajele","12 Reg - ",-31.32905,-64.26157
+"C1715","Massetti",7955,"Benajele y Cordoba","12 Reg - ",-31.33045,-64.26232
+"C1716","Donato Alvarez",7500,"Milone y Pozo de la Loma","12 Reg - ",-31.33322,-64.26232
+"C1717","Donato Alvarez",7413,"Frente Arguello Junior","12 Reg - ",-31.33594,-64.2618
+"C1719","Donato Alvarez",7139,"Descotte y Blas Pascal","11 Reg - 12 Reg - 15 Reg - ",-31.33867,-64.25731
+"C1720","Rafael Nuñez",6500,"Frente CPC","11 Ida - 12 Reg - ",-31.34107,-64.25465
+"C1728","Rafael Nuñez",4775,"Avila y Zarate y Candonga","10 Reg - 11 Ida - 12 Reg - 13 Reg - 15 Ida - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.36041,-64.23854
+"C1732","Rafael Nuñez",4300,"Gavier y Jose Roque Funes","11 Ida - 12 Reg - 15 Ida - ",-31.36809,-64.23352
+"C1737","Rafael Nuñez",3660,"Perez de Herrera y de Angelis","12 Reg - 15 Ida - ",-31.37685,-64.22593
+"C1744","Caraffa",2313,"Alonso de Rivera y Juan Posse","10 Reg - 11 Ida - 12 Reg - 13 Reg - 14 Ida - 15 Ida - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.38868,-64.2104
+"C1745","Caraffa",2051,"Juan de la Serna y Progreso","10 Reg - 11 Ida - 12 Reg - 13 Reg - 14 Ida - 15 Ida - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.38962,-64.20742
+"C1749","Castro Barros",1125,"Galan y Bialet Masse","10 Reg - 11 Ida - 12 Reg - 13 Reg - 14 Ida - 15 Ida - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.39541,-64.2014
+"C1756","Colon",445,"Jujuy y Sucre","11 Ida - 12 Reg - ",-31.41183,-64.18932
+"C1858","Castro Barros",987,"Matias Zapiola y Gutierrez de Ceballos","10 Ida - 11 Reg - 12 Ida - 13 Ida - 14 Reg - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.39686,-64.19981
+"C1863","Caraffa",2253,"Julian Paz y Juan Posse","10 Ida - 11 Reg - 12 Ida - 13 Ida - 14 Reg - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.388804,-64.209579
+"C1868","Octavio Pinto",3285,"Javier Lopez y Sagrada Familia","10 Ida - 12 Ida - 13 Ida - 14 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.38318,-64.22251
+"C1873","Rafael Nuñez",3964,"Juan Castagnino y Juan Battle Planas","10 Ida - 11 Reg - 12 Ida - 13 Ida - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.37224,-64.2298
+"C1875","Rafael Nuñez",4250,"Del Campillo y Gigena","10 Ida - 11 Reg - 12 Ida - 13 Ida - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.36906,-64.23251
+"C1879","Rafael Nuñez",4832,"Avila y Zarate y Barranca Yaco","10 Ida - 11 Reg - 12 Ida - 13 Ida - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.36024,-64.23848
+"C1884","Rafael Nuñez",6330,"Santos Nuñez y Bracamonte","10 Ida - 11 Reg - 12 Ida - 15 Reg - 18 Reg - ",-31.34437,-64.25167
+"C1885","Rafael Nuñez",6500,"Frente CPC","11 Reg - 12 Ida - 15 Reg - ",-31.34149,-64.25389
+"C1889","Massetti",7964,"Fage y Bejanele","12 Ida - ",-31.33124,-64.26231
+"C1890","Massetti",8068,"Bejanele y Cubillos","12 Ida - ",-31.32939,-64.26168
+"C1891","Massetti",8194,"Cubillos y Risatti","12 Ida - ",-31.32829,-64.26113
+"C1892","Massetti",8297,"Risatti y Chapisgasta","12 Ida - ",-31.32648,-64.26019
+"C1893","Beta",7180,"Chapisgasta y Tabacue","12 Ida - ",-31.32555,-64.26023
+"C1894","Beta",7438,"Artajoveitia y Miguel Marin","12 Ida - ",-31.32561,-64.26412
+"C1895","Fangio",8500,"Beta y Malalco","12 Ida - ",-31.32453,-64.26625
+"C1896","Malalco",7300,"Mancol y Matra","12 Ida - ",-31.3236,-64.26536
+"C1897","Malalco",7200,"Llancaquen y Tabacue","12 Ida - ",-31.32259,-64.26339
+"C1898","Malalco",7050,"Pe¤i y Pillahuenu","12 Ida - ",-31.32186,-64.26199
+"C1899","Pizzolatto",7114,"Malalco y Giannini","12 Ida - ",-31.32126,-64.26012
+"C1900","Pizzolatto",7000,"Giannini y Menditeguy","12 Ida - ",-31.32178,-64.25858
+"C1901","Pizzolatto",6915,"Menditeguy y Ortega","12 Ida - ",-31.32231,-64.25704
+"C1903","Revello",8814,"Marimon y Yaben","12 Ida - ",-31.32031,-64.25778
+"C1904","Ornstein",8931,"Sin Datos y Ibarguren","12 Ida - ",-31.31934,-64.25918
+"C1905","Borda",9999,"Final","12 Ida - ",-31.31765,-64.26033
+"C1909","Mutual Policia",9999,"Esq. Cauque","17 Ida - ",-31.31392,-64.26182
+"C1910","Cauque",9999,"Frente Manzana 81","17 Ida - ",-31.31279,-64.26025
+"C1911","Cauque",9999,"Frente Manzana 104","17 Ida - ",-31.31231,-64.25933
+"C1912","Publica Policial",9999,"Frente Manzana 104","17 Ida - ",-31.31329,-64.25827
+"C1913","Publica Policial",9999,"Frente Manzana 105","17 Ida - ",-31.31489,-64.25721
+"C1914","Publica Policial",9999,"Frente Manzana 246","17 Ida - ",-31.31413,-64.25527
+"C1915","Publica Policial",9999,"Esq. Manzana 246","17 Ida - ",-31.3139,-64.25481
+"C1916","Ibarguren",9999,"3 Cuadras antes de Peña","17 Ida - ",-31.3154,-64.25465
+"C1917","Publica Policial",9999,"Frente Manzana 4","17 Ida - ",-31.31694,-64.25473
+"C1918","Peña",9999,"Tomasini y Yaben","17 Ida - ",-31.31851,-64.25476
+"C1919","Peña",9999,"Llegando a Marimon","17 Ida - ",-31.32017,-64.25362
+"C1920","Marimon",6746,"Calviño y Manuel Bordeu","17 Ida - ",-31.32061,-64.25431
+"C1922","Ortega",8650,"Esquina Pizzolatto","12 Reg - 14 Ida - 17 Ida - ",-31.32186,-64.25638
+"C1923","Pizzolatto",6820,"Ortega y Sin Datos","17 Ida - ",-31.32285,-64.25559
+"C1925","Calviño",8365,"Ernesto Bossola y Ovides","17 Ida - ",-31.32573,-64.25413
+"C1930","Fermin Martin",7850,"Bejanele y Bejanele","14 Ida - 17 Ida - ",-31.3315,-64.2469
+"C1939","Los Alemanes",5831,"Della Paolera y Lo Celso","14 Ida - 17 Ida - ",-31.34337,-64.24331
+"C1941","Potel Junot",6751,"Elkin y Oddone","14 Ida - 17 Ida - ",-31.34525,-64.24202
+"C1942","Potel Junot",6551,"Carlos Claro y Alfredo Voglino","14 Ida - 17 Ida - ",-31.34675,-64.24344
+"C1943","Potel Junot",6459,"Carlos Aubone y Belisario Caraffa","17 Ida - ",-31.34784,-64.24446
+"C1944","Potel Junot",6100,"Pje. Potel Junot y Rafael Nuñez","14 Ida - 17 Ida - ",-31.351,-64.24716
+"C1949","Rafael Nuñez",4653,"Hugo Wast y Felix Garzon","10 Reg - 11 Ida - 12 Reg - 13 Reg - 15 Ida - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.36305,-64.23708
+"C1951","Rafael Nuñez",4481,"Reinafe y Gavier","17 Ida - ",-31.36715,-64.23431
+"C1956","Rafael Nuñez",3828,"Berrotaran y Arruabarrena","11 Ida - 12 Reg - 13 Reg - 15 Ida - 17 Ida - 19 Reg - D10 Reg - ",-31.37483,-64.22772
+"C1958","Rafael Nuñez",3567,"Jose Otero y Orma","10 Reg - 12 Reg - 15 Ida - 17 Ida - 18 Ida - ",-31.37825,-64.22472
+"C1971","Castro Barros",617,"Brandsen y Chaco","10 Reg - 11 Ida - 12 Reg - 13 Reg - 14 Ida - 15 Ida - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.39936,-64.19782
+"C1978","Velez Sarsfield",254,"Caseros y Duarte Quiros","10 Reg - 11 Ida - 12 Reg - 17 Ida - ",-31.41766,-64.18775
+"C1982","Illia",560,"Balcarce y Transito Caceres","10 Reg - 12 Reg - 14 Ida - 15 Ida - 17 Ida - ",-31.42297,-64.17829
+"C1989","Sabattini",2330,"Cataluña y Murcia","10 Reg - 11 Ida - 12 Reg - 14 Ida - 16 Ida - 17 Ida - ",-31.43321,-64.15529
+"C1994","Sabattini",3300,"Frente Hiper Libertad","10 Reg - 11 Ida - 12 Reg - 14 Ida - 16 Ida - 17 Ida - ",-31.43307,-64.14357
+"C2034","Sabattini",5515,"Martin Zapata y Luciano Torrent","10 Ida - 12 Ida - 16 Reg - ",-31.45801,-64.11012
+"C2036","Sabattini",5375,"Frente Fiat Auto Argentina","10 Ida - 16 Reg - 17 Reg - ",-31.45509,-64.1131
+"C2045","Ramos Mejia",2535,"Fiambala y Andalgala","11 Reg - 14 Reg - ",-31.43859,-64.1234
+"C2050","Sabattini",4417,"Simbolar y Totoralejos","10 Ida - 12 Ida - 16 Reg - 17 Reg - ",-31.43673,-64.12935
+"C2059","Sabattini",2400,"Guillermo Marconi y Da Vinci","10 Ida - 11 Reg - 12 Ida - 14 Reg - 16 Reg - 17 Reg - ",-31.43296,-64.15376
+"C2061","Sabattini",1923,"Barcelona e Issasa","10 Ida - 11 Reg - 12 Ida - 14 Reg - 16 Reg - 17 Reg - ",-31.43299,-64.15948
+"C2071","Corro",73,"27 de Abril y Dean Funes","13 Ida - 14 Reg - 17 Reg - 19 Ida - D10 Ida - ",-31.41436,-64.19392
+"C2089","Rafael Nuñez",3692,"De Angelis y Perez de Herrera","17 Reg - ",-31.37645,-64.22608
+"C2102","Potel Junot",6482,"Belisario Caraffa y Aubone","14 Reg - 17 Reg - ",-31.34812,-64.2446
+"C2103","Potel Junot",6582,"Voglino y Carlos Claro","14 Reg - 17 Reg - ",-31.34663,-64.24324
+"C2105","Potel Junot",6900,"Elkin y Los Alemanes","14 Reg - 17 Reg - ",-31.34368,-64.24188
+"C2106","Los Alemanes",5890,"Lo Celso y Della Paolera","14 Reg - 17 Reg - ",-31.34332,-64.24288
+"C2107","Taravella",9999,"Esquina con Toledo","17 Ida - ",-31.34222,-64.243559
+"C2108","Toledo",6880,"Frente Hogas San Camilo","17 Reg - ",-31.34217,-64.24506
+"C2109","Toledo",7036,"Esquina con S. Funes","17 Reg - ",-31.34058,-64.24365
+"C2110","IPV Raul Ferreyra",9999,"Manzana G Lote 3","17 Reg - ",-31.33984,-64.24424
+"C2111","Gritti",9999,"Esquina con Fermin Martin","17 Reg - ",-31.33743,-64.24585
+"C2112","Fermin Martin",7500,"Riganti y Redelico","14 Reg - 17 Reg - ",-31.33577,-64.24651
+"C2113","Fermin Martin",7700,"Pasciuli y Fage","14 Reg - 17 Reg - ",-31.33386,-64.24635
+"C2114","Fermin Martin",7900,"Fage y Bejanele","14 Reg - 17 Reg - ",-31.33245,-64.24636
+"C2116","Cabalen",6400,"Fermin Martin y Sesarego","14 Reg - 17 Reg - ",-31.32926,-64.24834
+"C2117","Cabalen",6626,"Tristany y Calviño","14 Reg - 17 Reg - ",-31.32931,-64.25236
+"C2122","Pizzolatto",6757,"Calvi¤o y Sin Datos","14 Reg - 17 Reg - ",-31.3233,-64.25421
+"C2124","Ortega",8700,"Roatta y Marimon","17 Reg - ",-31.32119,-64.25641
+"C2126","Marimon",9999,"M. Calviño y Peña","17 Reg - ",-31.32062,-64.25366
+"C2127","Publica",9999,"Frente Colegio Artemio Aran","17 Reg - ",-31.31888,-64.25444
+"C2128","Peña",9999,"Yaben y Tomassini","17 Reg - ",-31.31802,-64.25505
+"C2129","Publica Coop. 16 Nov",9999,"Frente Manzana 7 ","17 Reg - ",-31.31709,-64.25436
+"C2130","Publica Coop. 16 Nov",9999,"Fremte Manzana 171 ","17 Reg - ",-31.31644,-64.25364
+"C2131","Publica Coop. 16 Nov",9999,"Frente Manzana 171 Lote 4","17 Reg - ",-31.31561,-64.25377
+"C2132","Publica Coop. 16 Nov",9999,"Frente Manzana 179 ","17 Reg - ",-31.31467,-64.25411
+"C2133","Publica Coop. 16 Nov",9999,"Frente Manzana 243 ","17 Reg - ",-31.31425,-64.25441
+"C2134","Publica Coop. 16 Nov",9999,"Frente Manzana 240 ","17 Reg - ",-31.31425,-64.25441
+"C2135","Manzana 240 Lote 2",9999,"Sin Datos","17 Reg - ",-31.31425,-64.25441
+"C2136","Publica Coop. 16 Nov",9999,"Frente Manzana 232 ","17 Reg - ",-31.31261,-64.25871
+"C2137","Publica Coop. 16 Nov",9999,"Frente Manzana 80 ","17 Reg - ",-31.3126,-64.25994
+"C2138","Cauque",9999,"Cauque esq Publica","17 Reg - ",-31.31356,-64.2619
+"C2143","Amuchastegui",5860,"Borda y Pje. Publico","14 Ida - ",-31.31669,-64.2573
+"C2144","Amuchastegui",9999,"Pje Publico y J. Yaben","14 Ida - ",-31.31837,-64.25616
+"C2145","Amuchastegui",9999,"Frente Manzana 162  Esquina Marimon","14 Ida - ",-31.32042,-64.25477
+"C2146","Ortega",8774,"Marimon y Roatta","12 Reg - 14 Ida - 17 Ida - ",-31.32116,-64.25644
+"C2148","Pizzolatto",6821,"Ortega y Sin Datos","14 Ida - ",-31.32275,-64.25588
+"C2149","Calviño",8489,"Esquina Gussi","14 Ida - 17 Ida - ",-31.32392,-64.25402
+"C2150","Calviño",8287,"Bossola y Ovides","14 Ida - ",-31.32582,-64.25411
+"C2151","Calviño",8200,"Ovides y Patria","14 Ida - 17 Ida - ",-31.32721,-64.2541
+"C2152","Calviño",8113,"Anticaglia y Cabalen","14 Ida - 17 Ida - ",-31.32865,-64.25411
+"C2153","Cabalen",6600,"Calviño y Tristany","14 Ida - 17 Ida - ",-31.32936,-64.25252
+"C2154","Cabalen",6400,"Sesarego y Fermin Martin","14 Ida - ",-31.32932,-64.24898
+"C2155","Fermin Martin",8100,"Cabalen y Calle Publica","14 Ida - 17 Ida - ",-31.32929,-64.24726
+"C2157","Fermin Martin",7700,"Fage y Pasciuli","14 Ida - 17 Ida - ",-31.33376,-64.24641
+"C2158","Fermin Martin",7507,"Pasciuli y Riganti","14 Ida - 17 Ida - ",-31.33518,-64.24655
+"C2159","Fermin Martin",7335,"Esquina Gritto","14 Ida - 17 Ida - ",-31.33703,-64.24655
+"C2166","Potel Junot",6885,"Los Alemanes y","14 Ida - 17 Ida - ",-31.34337,-64.24199
+"C2169","Potel Junot",6459,"Carlos Aubone y Belisario Caraffa","14 Ida - ",-31.3485,-64.24501
+"C2172","Rafael Nuñez",5471,"Pappin y Parmenio Ferrer","11 Ida - 12 Reg - 14 Ida - 15 Ida - 17 Ida - ",-31.35315,-64.24571
+"C2174","Martinolli",5185,"Astrada Ponce y Bunsen","14 Ida - ",-31.35693,-64.24314
+"C2175","La Cordillera",4841,"El Gaucho y Andres Blanqui","14 Ida - ",-31.35892,-64.23706
+"C2176","La Cordillera",4711,"Martin Fierro y Candonga","14 Ida - ",-31.35958,-64.23555
+"C2177","La Cordillera",4535,"Leopoldo Buteler y Pizarro","14 Ida - ",-31.36089,-64.23254
+"C2178","La Cordillera",4249,"Obispo Mercadillo y Martel de los Rios","14 Ida - ",-31.36218,-64.22959
+"C2179","La Cordillera",4113,"Martel de los Rios y Gavier","14 Ida - ",-31.36281,-64.2281
+"C2180","La Cordillera",4027,"Bernardo Capdevilla y Jose Roque Funes","14 Ida - ",-31.36325,-64.22713
+"C2181","La Cordillera",3719,"Loaysa y Varela","14 Ida - ",-31.36456,-64.22409
+"C2182","La Cordillera",3447,"Laferrere y Rodriguez del Busto","14 Ida - ",-31.36562,-64.22161
+"C2183","Rodriguez del Busto",3627,"Guttero y Battle Planas","14 Ida - ",-31.36852,-64.22117
+"C2184","Rodriguez del Busto",3219,"Alfredo Guido y Castagnino","14 Ida - ",-31.37097,-64.22171
+"C2185","Rodriguez del Busto",3047,"Posse y Viola","14 Ida - ",-31.37238,-64.22202
+"C2186","Rodriguez del Busto",2753,"Montenegro y Malvino","14 Ida - ",-31.37567,-64.22273
+"C2187","Rodriguez del Busto",2362,"Goicoechea y Rafael Nuñez","14 Ida - ",-31.37816,-64.22331
+"C2190","Caraffa",2939,"Octavio Pinto y Luis Galeano","14 Ida - 17 Ida - ",-31.38611,-64.21831
+"C2191","Caraffa",2717,"Armendariz y Claudio Cuenca","10 Reg - 11 Ida - 12 Reg - 13 Reg - 14 Ida - 15 Ida - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.387,-64.21557
+"C2204","Colon",731,"Urquiza y Fragueiro","14 Ida - ",-31.41054,-64.19293
+"C2206","Gral. Paz",7,"9 de Julio y Dean Funes","14 Ida - 15 Ida - ",-31.41484,-64.18665
+"C2224","Punilla",2200,"Sabattini y Caucete","11 Ida - ",-31.43273,-64.13439
+"C2225","Punilla",2017,"Cabalango y Quilino","11 Ida - ",-31.43074,-64.13174
+"C2228","Sacanta",1228,"Las Arrias y Guandacol","11 Ida - ",-31.43026,-64.12771
+"C2229","Junin",4667,"Chamical y Soto","11 Ida - ",-31.42981,-64.12561
+"C2230","Junin",4900,"Pichanas y Ramos Mejia","11 Ida - ",-31.42978,-64.12396
+"C2231","Junin",5100,"Mario Bravo y Callao","11 Ida - ",-31.42975,-64.12065
+"C2232","Cangallo",1838,"Junin y Rosales","11 Ida - ",-31.43014,-64.11927
+"C2233","Cangallo",2068,"Ariza y Arroyo","11 Ida - ",-31.43253,-64.11927
+"C2234","Cangallo",2244,"Serrezuela y Medrano","11 Ida - ",-31.43442,-64.11924
+"C2235","Medrano",5117,"Cangallo y Callao","11 Ida - ",-31.4353,-64.12004
+"C2236","Madrano",4915,"Mario Bravo y Ramos Mejia","11 Ida - ",-31.43537,-64.12293
+"C2237","Ramos Mejia",2485,"Talacasto y Tinogasta","11 Ida - ",-31.43703,-64.12347
+"C2240","Calingasta",5381,"Boedo y  Almagro","14 Ida - ",-31.441031,-64.11737
+"C2241","Publica",9999,"Esquina con Calingasta","14 Reg - ",-31.44109,-64.11382
+"C2246","Publica IPV Cno V. Pose",9999,"Sobre la Manzana 29","14 Reg - ",-31.4466,-64.11109
+"C2247","Publica IPV Cno V. Pose",9999,"Sobre la Manzana 31","14 Reg - ",-31.4464,-64.10929
+"C2248","Publica IPV Cno V. Pose",9999,"Sobre la Manzana 26","14 Reg - ",-31.44541,-64.10929
+"C2249","Publica IPV Cno V. Pose",9999,"Sobre la Manzana 21","14 Reg - ",-31.44446,-64.1093
+"C2250","Publica IPV Cno V. Pose",9999,"Sobre la Manazana 11","14 Reg - ",-31.44251,-64.10926
+"C2251","Publica IPV Cno V. Pose",9999,"Sobre la Manzana 3","14 Reg - ",-31.44176,-64.11029
+"C2252","Tulumba",9999,"Esquina Calingasta","14 Reg - ",-31.44133,-64.11103
+"C2262","Ramos Mejia",2400,"Tinogasta y Talacasto","11 Reg - ",-31.43657,-64.12345
+"C2263","Medrano",4950,"Ramos Mejia y Mario Bravo","11 Reg - ",-31.43536,-64.12288
+"C2264","Medrano",5083,"Mario Bravo y Callao","11 Reg - ",-31.43532,-64.12056
+"C2265","Cangallo",2211,"Medrano y Serrezuela","11 Reg - ",-31.43483,-64.11921
+"C2266","Cangallo",2012,"Arroyo y Ariza","11 Reg - ",-31.4323,-64.11924
+"C2267","Cangallo",1814,"Rosales y Junin","11 Reg - ",-31.43032,-64.11927
+"C2268","Junin",5004,"Callao y Mario Bravo","11 Reg - ",-31.42975,-64.12149
+"C2269","Junin",4850,"Ramos Mejia y Pichanas","11 Reg - ",-31.42975,-64.12377
+"C2270","Junin",4525,"Emilio Salgari y Guandacol","11 Reg - ",-31.42978,-64.12671
+"C2271","Guandacol",1915,"Rosales y Las Arrias","11 Reg - ",-31.43087,-64.1272
+"C2272","Tancacha",1894,"Guandacol y Pascanas","11 Reg - ",-31.43201,-64.12793
+"C2273","Pascanas",4123,"Sacanta y Ucacha","11 Reg - ",-31.43111,-64.12915
+"C2274","Pascanas",4000,"Athos Pampa y Punilla","11 Reg - ",-31.43004,-64.13026
+"C2275","Punilla",2078,"Quilino y Cavalango","11 Reg - ",-31.43093,-64.13208
+"C2276","Punilla",2217,"Caucete y Sabattini","11 Reg - ",-31.43221,-64.13381
+"C2280","Sabattini",3165,"Hiper Libertad y Gorriti","10 Ida - 11 Reg - 12 Ida - 14 Reg - 16 Reg - 17 Reg - ",-31.43316,-64.14543
+"C2287","Sabattini",1625,"Unamuno y Benavente","10 Ida - 11 Reg - 12 Ida - 14 Reg - 16 Reg - 17 Reg - ",-31.43159,-64.16397
+"C2292","San Jeronimo",483,"Parana y Obispo Salguero","14 Reg - ",-31.41908,-64.17799
+"C2293","27 de Abril",50,"Frente Catedral","13 Ida - 14 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.41696,-64.18486
+"C2308","Caraffa",2786,"Claudio Cuenca y Gato y Mancha","10 Ida - 11 Reg - 12 Ida - 13 Ida - 14 Reg - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.38683,-64.21577
+"C2309","Caraffa",2934,"Luis Galeano y Pedroni","14 Reg - ",-31.38619,-64.2178
+"C2312","Goycoechea",3370,"Albornoz y Rodriguez del Busto","14 Reg - ",-31.37826,-64.22319
+"C2313","Rodriguez del Busto",2817,"Goycoechea y Bacacay","14 Reg - ",-31.37584,-64.22277
+"C2314","Rodriguez del Busto",3068,"Roberto Viola y Los Granaderos","14 Reg - ",-31.37336,-64.2222
+"C2315","Rodriguez del Busto",3174,"Los Granaderos y Dinosaurio Mall","14 Reg - ",-31.37147,-64.2218
+"C2316","Rodriguez del Busto",3523,"Frente Dinosaurio Mall","14 Reg - ",-31.36767,-64.22085
+"C2317","La Cordillera",3500,"Frente Orfeo","14 Reg - ",-31.36551,-64.2216
+"C2318","La Cordillera",3850,"Juan Cruz Varela y Bustamante","14 Reg - ",-31.3642,-64.22474
+"C2319","La Cordillera",4046,"Capdevila y Gavier","14 Reg - ",-31.36304,-64.22738
+"C2320","La Cordillera",4294,"Matel de los Rios y Obispo Mercadillo","14 Reg - ",-31.36195,-64.22991
+"C2321","La Cordillera",4568,"Pizarro y Buteler","14 Reg - ",-31.3611,-64.23186
+"C2322","La Cordillera",4700,"Manuel Lopez y Candonga","14 Reg - ",-31.35992,-64.23463
+"C2323","La Cordillera",4822,"Blanqui y El Gaucho","14 Reg - ",-31.3597,-64.23515
+"C2324","Rafael Nuñez",5220,"Nudo Vial y Gaviola","10 Ida - 12 Ida - 14 Reg - 15 Reg - 17 Reg - 18 Reg - ",-31.35588,-64.24259
+"C2325","Rafael Nuñez",5471,"Pappin y Parmenio Ferrer","10 Reg - 14 Reg - 18 Ida - ",-31.352947,-64.245862
+"C2326","Potel Junot",6184,"Rafael Nuñez y Francisco de Olea","14 Reg - 17 Reg - ",-31.35044,-64.24668
+"C2329","Potel Junot",6751,"Oddone y Elkin","14 Reg - 17 Reg - ",-31.34584,-64.24254
+"C2332","Los Alemanes",5979,"Frente Plaza","14 Reg - ",-31.34328,-64.24523
+"C2338","Fermin Martin",9999,"Esquina con Gritti","14 Reg - ",-31.33741,-64.24599
+"C2342","Fermin Martin",8043,"Bejanele y Cabalen","14 Reg - 17 Reg - ",-31.33023,-64.24687
+"C2345","Calviño",8130,"Cabalen y Anticaglia","14 Reg - 17 Reg - ",-31.32898,-64.25411
+"C2346","Calviño",8200,"Patria y Ovides","14 Reg - 17 Reg - ",-31.32797,-64.25411
+"C2347","Calviño",8287,"Ovides y Bossola","14 Reg - 17 Reg - ",-31.32606,-64.25412
+"C2348","Calviño",8550,"Marimon y Bucci","14 Reg - 17 Reg - ",-31.32465,-64.25413
+"C2350","Pizzolatto",6894,"Esquina con Ortega","14 Reg - 17 Reg - ",-31.32247,-64.25652
+"C2351","Ortega",8800,"Roatta y Marimon","14 Reg - ",-31.32103,-64.25643
+"C2352","Marimon",9999,"Julian Elguea y Amuchastegui","14 Reg - 17 Reg - ",-31.32062,-64.255
+"C2353","Amuchastegui",8614,"Frente a la Plaza","14 Reg - ",-31.31891,-64.25576
+"C2354","Amuchastegui",8739,"Ibaguren y Tomasini","14 Reg - ",-31.31728,-64.25688
+"C2355","Peña",9999,"Esquina con Borda","14 Reg - ",-31.31637,-64.25751
+"C2356","Borda",9999,"Esquina con Calle Publica","14 Reg - ",-31.31665,-64.25926
+"C2357","Unidad Nacional",300,"Casilla","11 Ida - 15 Ida - ",-31.30698,-64.2871
+"C2358","Peron",211,"Auzzani y Pucara","11 Ida - 15 Ida - ",-31.30777,-64.28509
+"C2359","Peron",69,"Del Llano y Linco","11 Ida - 15 Ida - ",-31.30845,-64.28235
+"C2360","Peron",15,"Esquina con Goycoechea","11 Ida - ",-31.3086,-64.28069
+"C2361","Donato Alvarez",9943,"Maiten y Lancun","11 Ida - ",-31.31045,-64.27883
+"C2362","Donato Alvarez",9800,"Estacion de Servicio","11 Ida - ",-31.31174,-64.27787
+"C2363","Donato Alvarez",9609,"Yafu y Boro","11 Ida - ",-31.31318611,-64.276875
+"C2364","Donato Alvarez",9426,"Boro y Loncoche","11 Ida - ",-31.31479167,-64.27574722
+"C2366","Arrayan",9133,"Cauque y Molleyaco","11 Ida - 15 Ida - ",-31.32031944,-64.27450833
+"C2367","Molleyaco",7729,"Niyeu y Donato Alvarez","11 Ida - 15 Reg - ",-31.32012222,-64.27312778
+"C2368","Cauque",7450,"Coligue y Chacal","11 Ida - ",-31.31829,-64.27112
+"C2369","Cauque",7300,"Matra y Kawal","11 Ida - ",-31.31701,-64.26863
+"C2370","Tabacue",9143,"Cauque y Casuati","11 Ida - ",-31.31652,-64.2671
+"C2371","Tabacue",8927,"Casuati y Vulcan","11 Ida - ",-31.31815,-64.26598
+"C2372","Tabacue",8770,"Chaquira y Cambaceres","11 Ida - ",-31.31942,-64.26521
+"C2373","Tipayante",7500,"Tabacue y Sin Datos","11 Ida - ",-31.32113,-64.26605
+"C2374","Tipayante",7687,"Chacal y Donato Alvarez","11 Ida - ",-31.32271,-64.26913
+"C2375","Donato Alvarez",8423,"Malalco y Piedra Labrada","11 Ida - ",-31.32515,-64.26843
+"C2376","Donato Alvarez",8253,"Mogrovejo y Agua de la Pilona","11 Ida - 15 Ida - ",-31.32714,-64.267
+"C2377","Donato Alvarez",8011,"Alcalifes y Tomas Garzon","11 Ida - 15 Ida - ",-31.32958,-64.26534
+"C2381","Donato Alvarez",7410,"Frente Arguello Juniors","11 Ida - 15 Ida - ",-31.33605,-64.26161
+"C2382","Donato Alvarez",7335,"Dispensario","11 Ida - 12 Reg - 15 Ida - ",-31.33672,-64.26015
+"C2386","Rafael Nuñez",6107,"Esquina Andres Piñero","10 Reg - 11 Ida - 12 Reg - 15 Ida - 18 Ida - ",-31.34614,-64.25066
+"C2389","Rafael Nuñez",5600,"Gauss y Papin","10 Reg - 11 Ida - 12 Reg - 14 Ida - 15 Ida - 17 Ida - 18 Ida - ",-31.35181,-64.24713
+"C2391","Rafael Nuñez",5229,"Permenio Ferrer y Astrada Ponce","10 Reg - 11 Ida - 12 Reg - 14 Ida - 15 Ida - 17 Ida - 18 Ida - ",-31.35438,-64.24436
+"C2397","Rafael Nuñez",4121,"del Campillo y Bustos","10 Reg - 11 Ida - 12 Reg - 13 Reg - 15 Ida - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.37029,-64.23162
+"C2398","Rafael Nuñez",4005,"Bautista Daniel y Victorino Rodriguez","10 Reg - 11 Ida - 12 Reg - 13 Reg - 15 Ida - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.37187,-64.23028
+"C2399","Rafael Nuñez",3900,"Rique Ferreyra y Beverina","11 Ida - 12 Reg - 13 Reg - 15 Ida - 17 Ida - 19 Reg - D10 Reg - ",-31.37385,-64.22858
+"C2404","Octavio Pinto",3135,"Democracia y Temistocles Castellano","10 Reg - 11 Ida - 12 Reg - 13 Reg - 14 Ida - 15 Ida - 17 Ida - 18 Ida - 19 Reg - D10 Reg - ",-31.38498,-64.22027
+"C2419","Colon",761,"Urquiza y Fragueiro","10 Reg - 11 Ida - 13 Reg - 17 Ida - 19 Reg - D10 Reg - ",-31.4105,-64.19364
+"C2421","Gral. Paz",79,"9 de Julio y Dean Funes","11 Ida - ",-31.41429,-64.18617
+"C2424","Illia",226,"Ituzaingo y Chacabuco","11 Ida - 14 Ida - ",-31.42177,-64.18298
+"C2425","Illia",654,"Balcarce y Transito Caceres","11 Ida - ",-31.42315,-64.17735
+"C2426","Sabattini",350,"Frente Taborin","10 Reg - 11 Ida - 12 Reg - 14 Ida - 15 Ida - 17 Ida - ",-31.42601,-64.17359
+"C2507","Sabattini",359,"Frente Taborin","10 Ida - 11 Reg - 12 Ida - 14 Reg - 17 Reg - ",-31.42641,-64.17286
+"C2509","San Jeronimo",453,"Parana y Obispo Salguero","10 Ida - 11 Reg - 12 Ida - 17 Reg - ",-31.41894,-64.17832
+"C2511","27 de Abril",340,"Belgrano y Ayacucho","11 Reg - 13 Ida - 14 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.41585,-64.18867
+"C2512","Corro",37,"27 de Abril y Dean Funes","10 Ida - 11 Reg - 12 Ida - 15 Reg - ",-31.41405,-64.19378
+"C2513","Fragueiro",260,"Colon y Santa Rosa","10 Ida - 11 Reg - 12 Ida - 15 Reg - ",-31.4105,-64.19245
+"C2514","Humberto Primo",850,"Urquiza y Avellaneda","10 Ida - 11 Reg - 12 Ida - 13 Ida - 15 Reg - 19 Ida - D10 Ida - ",-31.40686,-64.19273
+"C2527","Octavio Pinto",3150,"Temistocles Castellano y Manuel Quintana","10 Ida - 11 Reg - 12 Ida - 13 Ida - 14 Reg - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.38472,-64.22039
+"C2528","Octavio Pinto",3318,"Javier Lopez y Sagrada Familia","11 Reg - 15 Reg - 17 Reg - ",-31.38311,-64.22257
+"C2531","Rafael Nuñez",3736,"Burger y Alameda","10 Ida - 11 Reg - 12 Ida - 13 Ida - 15 Reg - 17 Reg - 18 Reg - 19 Ida - D10 Ida - ",-31.375182,-64.22712
+"C2542","Rafael Nuñez",5752,"Potel Junot y Lo Celso","10 Ida - 11 Reg - 12 Ida - 15 Reg - 18 Reg - ",-31.35105,-64.247629
+"C2543","Rafael Nuñez",6004,"Taravella y Martinez","10 Ida - 11 Reg - 12 Ida - 15 Reg - 18 Reg - ",-31.34784,-64.24951
+"C2547","Donato Alvarez",7393,"Ataguille y Sin Datos","11 Reg - 12 Ida - 15 Reg - ",-31.33638,-64.2607
+"C2549","Donato Alvarez",7796,"Massetti y Tehuelches","11 Reg - 15 Reg - ",-31.33205,-64.26284
+"C2550","Donato Alvarez",7996,"Massetti y Rodolfo Medica","11 Reg - 15 Reg - ",-31.32978,-64.26509
+"C2552","Donato Alvarez",8524,"Malalco y Sin Datos","11 Reg - ",-31.32502,-64.26839
+"C2553","Donato Alvarez",8612,"Malalco y Tipayante","11 Reg - ",-31.32376,-64.26927
+"C2554","Chaquira",7688,"Donato Alvarez y","11 Reg - ",-31.32174,-64.26971
+"C2555","Chaquira",7500,"Argentina y Alvarez Jonte","11 Reg - ",-31.3204,-64.26711
+"C2556","Chaquira",7405,"Alvarez Jonte y Tabacue","11 Reg - ",-31.31963,-64.26557
+"C2557","Tabacue",8930,"Vulcan y Casuhati","11 Reg - ",-31.31835,-64.26584
+"C2558","Cauque",7300,"Tabacue y Llancaquen","11 Reg - ",-31.31632,-64.26728
+"C2559","Cauque",7400,"Kawall y Matra","11 Reg - ",-31.31704,-64.26879
+"C2560","Cauque",7500,"Laques y Chacal","11 Reg - ",-31.31784,-64.27027
+"C2561","Cauque",7672,"Coligue y Donato Alvarez","11 Reg - ",-31.318614,-64.2715
+"C2562","Donato Alvarez",9351,"Auquinco y Quilloamira","11 Reg - 15 Reg - ",-31.316997,-64.27395
+"C2563","Donato Alvarez",9596,"Loncoche y Boro","11 Reg - ",-31.31428056,-64.27587222
+"C2564","Donato Alvarez",9760,"Yafu y Lancun","11 Reg - ",-31.31220833,-64.27732778
+"C2565","Donato Alvarez",9960,"Llancafu y Amazonas","11 Reg - ",-31.31002,-64.27896
+"C2566","Peron",50,"Esquina con Goycoechea","11 Reg - ",-31.3084,-64.28034
+"C2569","Peron",9999,"Esquina Auzzani","11 Reg - ",-31.30724,-64.28764
+"C2573","Linco",10000,"Maloca y Malten","15 Ida - ",-31.30969,-64.28129
+"C2574","Linco",9725,"Quilca y Boro","15 Ida - ",-31.31263,-64.28228
+"C2575","Linco",9500,"Loncoche y Cruz Alta","15 Ida - ",-31.31403,-64.28276
+"C2576","Cruz Alta",8308,"Linco y Chicalco","15 Ida - ",-31.315,-64.28142
+"C2577","Cruz Alta",8176,"Lighen y Curaco","15 Ida - ",-31.3156,-64.27898
+"C2578","Cruz Alta",8000,"Curaco y Rincon de Luna","15 Ida - ",-31.31589,-64.27783
+"C2580","Donato Alvarez",9200,"Auquinco y Cauque","11 Ida - 15 Ida - ",-31.31861389,-64.27306667
+"C2582","Molleyaco",7994,"Arrayan y Pehuenches","15 Ida - ",-31.32143333,-64.27576667
+"C2583","Molleyaco",8097,"Pehuenches y Yupaqui","15 Ida - ",-31.32245,-64.27771
+"C2584","Molleyaco",8261,"Payen y San Pedro Toyos","15 Ida - ",-31.32398,-64.28067
+"C2585","Molleyaco",8338,"Payen y San Pedro Toyos","15 Ida - ",-31.32451,-64.28162
+"C2586","San Pedro Toyos",8400,"Molleyaco y Piedra Labrada","15 Ida - ",-31.32499,-64.28261
+"C2587","Piedra Labrada",8337,"San Pedro Toyo y Cashuati","15 Ida - ",-31.32552,-64.28146
+"C2588","Piedra Labrada",8266,"Huayana y Sinchi Roca","15 Ida - ",-31.32556,-64.27968
+"C2589","Piedra Labrada",8100,"Payen y Yupanqui","15 Ida - ",-31.32561,-64.27793
+"C2590","Piedra Labrada",8000,"Tipayante y Charruas","15 Ida - ",-31.32561,-64.27793
+"C2591","Piedra Labrada",7865,"Huarpes y Arrayan","15 Ida - ",-31.32578,-64.2711
+"C2592","Piedra Labrada",7710,"Onas y Donato Alvarez","15 Ida - ",-31.32585,-64.26875
+"C2595","Donato Alvarez",7900,"Rodolfo Medica y Querandies","11 Ida - 15 Ida - ",-31.33084,-64.26446
+"C2596","Donato Alvarez",7750,"Tehuelches y Fangio","11 Ida - 15 Ida - ",-31.33196,-64.26314
+"C2597","Donato Alvarez",7629,"Donato Alvarez y Pozo de la Loma","11 Ida - 12 Ida - 15 Ida - ",-31.33307,-64.2623
+"C2600","Donato Alvarez",7139,"Frente Blas Pascal","11 Ida - 12 Ida - 15 Ida - ",-31.3386,-64.25735
+"C2601","Donato Alvarez",6600,"Frente CPC","15 Ida - ",-31.34106,-64.25465
+"C2602","Rafael Nuñez",6348,"Francisco Aston y Nicasio","10 Reg - 11 Ida - 12 Reg - 15 Ida - 18 Ida - ",-31.34412,-64.25191
+"C2657","Illia",264,"Ver","15 Ida - ",-31.42177,-64.18298
+"C2726","Bajada Pucara",9999,"Ferroviarios y Peron","15 Reg - ",-31.42834,-64.16957
+"C2727","Peron",9999,"Frente Terminal","15 Reg - ",-31.42202,-64.17479
+"C2728","San Jeronimo",539,"Balcarce y Obispo Salguero","15 Reg - ",-31.41924,-64.17736
+"C2729","San Jeronimo",378,"Santiego del Estero","15 Reg - ",-31.41865,-64.17955
+"C2730","27 de Abril",75,"Frente Catedral","15 Reg - ",-31.41745,-64.18328
+"C2731","27 de Abril",359,"Belgrano y Ayacucho","10 Ida - 12 Ida - 15 Reg - ",-31.41578,-64.18868
+"C2786","Donato Alvarez",7668,"Paso de la Loma y Cesar Milone","11 Reg - 15 Reg - ",-31.33394,-64.26228
+"C2789","Donato Alvarez",8230,"Agua de la Pilona y Mogrovejo","11 Reg - 15 Reg - ",-31.32733,-64.26674
+"C2790","Piedra Labrada",7800,"Donato Alvarez y Onas","15 Reg - ",-31.32581,-64.26863
+"C2791","Piedra Labrada",7890,"Arrayan y Huarpes","15 Reg - ",-31.32576,-64.27098
+"C2792","Piedra Labrada",8014,"Charruas y Tipayante","15 Reg - ",-31.32576,-64.27098
+"C2793","Piedra Labrada",8096,"Tipayante y Yupanqui","15 Reg - ",-31.32576,-64.27098
+"C2794","Piedra Labrada",8250,"Yupanqui y Vulcan","15 Reg - ",-31.32556,-64.27887
+"C2795","Piedra Labrada",8386,"Casuhati y San Pedro de Toyos","15 Reg - ",-31.32549,-64.28182
+"C2796","Molleyaco",8323,"San Pedro de Toyos y Payen","15 Reg - ",-31.32455,-64.2817
+"C2797","Molleyaco",8108,"Payen y Yupanqui","15 Reg - ",-31.32279,-64.27828
+"C2798","Molleyaco",8011,"Yupanqui y Pehuenches","15 Reg - ",-31.32253,-64.27777
+"C2799","Molleyaco",7903,"Pehuenches y Arrayan","15 Reg - ",-31.32153056,-64.27578333
+"C2802","Cruz Alta",8000,"Donato Alvarez y Rincon de Luna","15 Reg - ",-31.31622222,-64.27524444
+"C2803","Cruz Alta",8186,"Curaco y Lighen","15 Reg - ",-31.31576,-64.27828
+"C2804","Cruz Alta",8392,"Chicalco y Linco","15 Reg - ",-31.31466,-64.28262
+"C2805","Linco",9800,"Boro y Quilca","15 Reg - ",-31.31288,-64.28235
+"C2806","Linco",10000,"Malten y Maloca","15 Reg - ",-31.30983,-64.28131
+"C2807","Peron",68,"Linco y Sin Datos","15 Reg - ",-31.30857,-64.2815
+"C2808","Peron",183,"Esquina Pucara","11 Reg - 15 Reg - ",-31.30788,-64.28432
+"C2809","Peron",294,"Pucara y Auzzani","11 Reg - 15 Reg - ",-31.30737,-64.28648
+"C2820","Hipolito Irigoyen",660,"Carlos Thays y Plaza España","65 Reg - 67 Ida - 13 Ida - 18 Reg - 19 Ida - D10 Ida - ",-31.43017,-64.1838
+"C2821","Chacabuco",775,"Derqui y Obispo Oro","65 Reg - ",-31.42649,-64.18381
+"C2822","Chacabuco",551,"San Lorenzo y Rondeau","65 Reg - ",-31.42452,-64.18305
+"C2830","Gral. Paz",55,"9 de Julio y Dean Funes","10 Reg - 12 Reg - 17 Ida - ",-31.4146,-64.18653
+"C2832","San Juan",55,"Obispo Trejo e Independencia","14 Ida - ",-31.42073,-64.1871
+"C2838","Sabattini",1400,"Esquina Monserrat","11 Ida - 14 Ida - 16 Ida - 17 Ida - ",-31.43068,-64.16806
+"C2841","Sabattini",2136,"Cadiz y Barcelona","10 Reg - 11 Ida - 12 Reg - 14 Ida - 16 Ida - 17 Ida - ",-31.43325,-64.15802
+"C2845","Sabattini",2984,"Futaleufu y Ramon Ocampo","10 Reg - 11 Ida - 12 Reg - 14 Ida - 16 Ida - 17 Ida - ",-31.43343,-64.14802
+"C2848","Sabattini",3800,"Picaflor y ¥andu","16 Ida - ",-31.43203,-64.13764
+"C2859","Sabattini",5550,"Frente Cargo","16 Ida - ",-31.45774,-64.11055
+"C2860","Sabattini",5650,"Padilla y Sanchez de Loria","10 Reg - 12 Reg - 16 Ida - ",-31.45964,-64.10863
+"C2863","Ciudad de mis Sueños",9999,"Entrada","16 Ida - ",-31.47742,-64.08962
+"C2864","Publica C. mis Sueños",9999,"Frente Manzana 43","16 Ida - ",-31.47742,-64.08792
+"C2865","Publica C. mis Sueños",9999,"Frente Manzana 44","16 Ida - ",-31.47742,-64.08625
+"C2866","Publica C. mis Sueños",9999,"Frente Manzana 51","16 Ida - ",-31.47891,-64.08518
+"C2867","Publica C. mis Sueños",9999,"Frente Manzana 52","16 Ida - ",-31.48028,-64.08521
+"C2868","Publica C. mis Sueños",9999,"Llegando Jardin de Infantes","16 Ida - ",-31.48083,-64.08467
+"C2869","Publica C. mis Sueños",9999,"Detrás del Colegio","16 Ida - ",-31.48213,-64.0843
+"C2870","Ruta 9",9999,"Pauli y Schrodinger","16 Ida - ",-31.48855,-64.07882
+"C2871","Entrada 25 de Mayo",9999,"Paso Nivel","16 Ida - ",-31.4909,-64.07662
+"C2872","Cumbres de Gaspar",9999,"La Carbonada","16 Ida - ",-31.48992,-64.0786
+"C2873","Cumbres de Gaspar",9999,"La Carbonada","16 Ida - ",-31.48991,-64.081
+"C2874","Cumbres de Gaspar",9999,"La Carbonada","16 Ida - ",-31.48991,-64.08339
+"C2875","Cumbres de Gaspar",9999,"La Carbonada","16 Ida - ",-31.4899,-64.08625
+"C2876","Cumbres de Gaspar",9999,"La Carbonada","16 Reg - ",-31.4899,-64.08625
+"C2877","Cumbres de Gaspar",9999,"La Carbonada","16 Reg - ",-31.4899,-64.08625
+"C2878","Cumbres de Gaspar",9999,"La Carbonada","16 Reg - ",-31.48994,-64.08396
+"C2879","Cumbres de Gaspar",9999,"La Carbonada","16 Reg - ",-31.48995,-64.07923
+"C2880","Cumbres de Gaspar",9999,"Salida 25 de Mayo","16 Reg - ",-31.49067,-64.0772
+"C2881","Ruta 9 Sur",9999,"Km. 688","16 Reg - ",-31.49934,-64.06739
+"C2882","Ruta 9 Sur",9999,"Fabrica Metal-Ce","16 Reg - ",-31.49414,-64.07296
+"C2883","Ruta 9 Sur",9999,"Salida La Carbonada","16 Reg - ",-31.49105,-64.07614
+"C2884","Ruta 9 Sur",9999,"Paso Nivel y Schroding","16 Reg - ",-31.48868,-64.07859
+"C2885","Ruta 9 Sur",9999,"Pauli y Cuidad de Mis Sueños","16 Reg - ",-31.48533,-64.08202
+"C2886","Parque Ituzaingo",9999,"Entrada","16 Reg - ",-31.4831,-64.08429
+"C2887","Publica",9999,"Frente Colegio","16 Reg - ",-31.48114,-64.0843
+"C2888","Publica C. mis Sueños",9999,"Frente Manzana 56","16 Reg - ",-31.48027,-64.08522
+"C2889","Publica C. mis Sueños",9999,"Frente Centro Comunal","16 Reg - ",-31.47792,-64.08517
+"C2890","Publica C. mis Sueños",9999,"Frente Manzana 31","16 Reg - ",-31.47715,-64.08729
+"C2891","Publica C. mis Sueños",9999,"Frente Manzana 31","16 Reg - ",-31.47715,-64.08893
+"C2892","Sabattini",6250,"Esquina Vucetich","16 Reg - ",-31.46526,-64.10265
+"C2894","Sabattini",5821,"Jose Cabrera y Jose Villegas","10 Ida - 16 Reg - ",-31.46201,-64.10604
+"C2895","Sabattini",5659,"Sanchez de Loria y Manuel Padilla","10 Ida - 12 Ida - 16 Reg - ",-31.45982,-64.10828
+"C2900","Sabattini",5200,"Frente FIAT","10 Ida - 12 Ida - 16 Reg - 17 Reg - ",-31.45236,-64.11588
+"C2903","Sabattini",4900,"Calingasta y Fiambala","10 Ida - 12 Ida - 16 Reg - 17 Reg - ",-31.44077,-64.12732
+"C2904","Sabattini",4600,"Frente Arco de Cordoba","10 Ida - 12 Ida - 16 Reg - 17 Reg - ",-31.43852,-64.12822
+"C2912","Sabattini",2915,"Ramon Ocampo y Tristan Narvaja","10 Ida - 11 Reg - 12 Ida - 14 Reg - 16 Reg - 17 Reg - ",-31.43326,-64.148
+"C2913","Sabattini",2633,"Juan Rodriguez y Sargento Cabral","10 Ida - 11 Reg - 12 Ida - 14 Reg - 16 Reg - 17 Reg - ",-31.43309,-64.15116
+"C2915","Sabattini",2241,"Tejedor y Morse","10 Ida - 11 Reg - 12 Ida - 14 Reg - 16 Reg - 17 Reg - ",-31.43302,-64.15627
+"C2919","Sabattini",1400,"Esquina Monserrat","10 Ida - 11 Reg - 12 Ida - 14 Reg - 16 Reg - 17 Reg - ",-31.43084,-64.16693
+"C2925","Velez Sarsfield",224,"Caceros y Duarte Quiros","16 Reg - 18 Ida - ",-31.41755,-64.18766
+"C2929","Hipolito Irigoyen",552,"Ituzaingo y Larrañaga","67 Reg - 13 Reg - 16 Reg - 18 Ida - 19 Reg - D10 Reg - ",-31.42717,-64.18556
+"C2946","Vucetich",7195,"Faraday y Westinghouse","10 Ida - 12 Ida - ",-31.46503,-64.08724
+"C2947","Vucetich",7100,"Stephenson y Lumiere","10 Ida - 12 Ida - ",-31.46503,-64.08891
+"C2948","Vucetich",6924,"Watt y Ohm","10 Ida - 12 Ida - ",-31.465,-64.09172
+"C2949","Vucetich",6673,"Hertz y Guttemberg","10 Ida - 12 Ida - ",-31.46499,-64.09441
+"C2950","Vucetich",6505,"Daimler y Kelvin","10 Ida - 12 Ida - ",-31.46499,-64.09661
+"C2953","Sabattini",6050,"Vucetich y Pesta¤a","10 Ida - 16 Reg - ",-31.46354,-64.10445
+"C2959","Sabattini",5300,"Frente a Tubos Transelectric","10 Ida - 12 Ida - 16 Reg - 17 Reg - ",-31.45382,-64.11442
+"C2984","27 de Abril",95,"Independencia y Obispo Trejo","10 Ida - 11 Reg - 12 Ida - 17 Reg - ",-31.4168,-64.18537
+"C2997","Sabattini",1400,"Esquina Monserrat","10 Reg - 12 Reg - ",-31.43053,-64.16836
+"C2998","Sabattini",1636,"Cartagena y Huelva","10 Reg - 12 Reg - ",-31.43158,-64.16454
+"C2999","Sabattini",1800,"Extremadura y El Escorial","10 Reg - 11 Ida - 12 Reg - 14 Ida - 16 Ida - 17 Ida - ",-31.43283,-64.16212
+"C3007","Sabattini",3784,"Picaflor y Ñandu","10 Reg - 11 Ida - 12 Reg - 14 Ida - 17 Ida - ",-31.43226,-64.13721
+"C3008","Sabattini",3970,"Zorsal y Punilla","10 Reg - 12 Reg - 16 Ida - 17 Ida - ",-31.4329,-64.13509
+"C3009","Sabattini",4290,"Sacanta y Tancacha","10 Reg - 12 Reg - 16 Ida - 17 Ida - ",-31.43463,-64.13176
+"C3016","Sabattini",5375,"Frente Fiat Auto Argentina","10 Reg - 12 Reg - 16 Ida - 17 Ida - ",-31.45486,-64.11354
+"C3017","Sabattini",5400,"Interindustria y Huergo","10 Reg - 12 Reg - 16 Ida - ",-31.45631,-64.11206
+"C3020","Sabattini",6028,"Frente Cordiez","10 Reg - 16 Ida - ",-31.46172,-64.10642
+"C3022","Vucetich",6250,"Sabattini y Taylor","10 Reg - ",-31.46503,-64.10079
+"C3023","Vucetich",6340,"Dalton y Diesel","10 Reg - ",-31.46503,-64.09906
+"C3029","Vucetich",7390,"Lorentz y Bragg","10 Reg - 12 Reg - ",-31.46537,-64.08561
+"C3030","Vucetich",7500,"Compton y Guillaume","10 Reg - 12 Reg - ",-31.46503,-64.084
+"C3031","Soriano de Arevalos",2410,"Julio de Vedia y Heroes de Vilcapugio","65 Reg - ",-31.368429,-64.137954
+"C3032","Vucetich",9999,"Casilla","10 Reg - 12 Reg - ",-31.46506,-64.08123
+"C3033","Soriano de Arevalos",2560,"Heroinas de Ayohuma  y Heroes de Vilcapu","65 Reg - ",-31.36842,-64.135687
+"C3034","Chachapoyas",3546,"Niceto Vega y Chorroarin","65 Reg - ",-31.3697,-64.1331
+"C3035","Rincon",2180,"Eufrasio Loza y Garibaldi","65 Reg - ",-31.4045,-64.15705
+"C3041","Cno C. de los Remedios",9999,"Esquina Faraday","17 Ida - ",-31.458542,-64.087313
+"C3046","Oncativo",1795,"Güemes y Lamadrid","65 Reg - ",-31.40801,-64.16164
+"C3047","Oncativo",1930,"Mexico y Patria","65 Reg - ",-31.407502,-64.15888
+"C3048","Patria",683,"Oncativo y Libertad","65 Reg - 66 Ida - ",-31.40639,-64.15888
+"C3100","Peron",9999,"Frente nueva Terminal","15 Reg - ",-31.42382,-64.17326
+"C3110","Nuestro Hogar 2",9999,"Despues de Barrio Zepa","62 Ida - ",-31.388235,-64.098324
+"C3115","Apostoles",9999,"Jesus maria y Jovita","61 Ida -",-31.41594,-64.14663
+"C3119","Maestro Vidal",1284,"Verdi y Rogatis","63 Ida -",-31.422584,-64.228179
+"C3120","Apostoles",9999,"Jovita y Jesus Maria","61 Reg - ",-31.41601,-64.146757
+"C3121","Maestro Vidal",1488,"Luis Agote y Hector Paniza","63 Ida -",-31.424931,-64.22875
+"C3122","Maestro Vidal",1678,"Gomez Carrillo y Alberto Williams","63 Ida -",-31.428185,-64.229657
+"C3123","Maestro Vidal",1830,"Pinedo y Buchardo","63 Ida -",-31.430339,-64.23022
+"C3124","Alexander Fleming",2050,"Aconcagua y Uritorco","63 Ida -",-31.433446,-64.235831
+"C3125","Alexander Fleming",2350,"Gabriela Mistral y Lagunilla","63 Ida -",-31.437107,-64.235833
+"C3126","Alexander Fleming",2650,"Octaviano Navarro y Antartida","63 Ida -",-31.439551,-64.23582
+"C3127","Alexander Fleming",2950,"Olivares y Los Pinos","63 Ida -",-31.442561,-64.235801
+"C3128","Alexander Fleming",3250,"Frontera y la que sigue","63 Ida -",-31.446466,-64.235789
+"C3129","Alexander Fleming",3450,"Amsterdam y Estocolmo","63 Ida -",-31.448624,-64.235822
+"C3130","Pueyrredon",1950,"Ing. Lopez y Ocaña","63 Ida -",-31.420206,-64.214583
+"C3131","Pueyrredon",2350,"Punta Lara y Vieytes","63 Ida -",-31.41972,-64.217861
+"C3132","Pueyrredon",2650,"Olegario Correa y Brown","63 Ida -",-31.419783,-64.220987
+"C3133","Schubert",1130,"Peredo y Albeniz","63 Ida -",-31.419501,-64.226744
+"C3134","Alexander Fleming",3450,"Amsterdam y Estocolmo","63 Reg -",-31.448624,-64.235822
+"C3135","Rufino Varela Ortiz",3250,"Frontera y la que sigue","63 Reg -",-31.446423,-64.237516
+"C3136","Rufino Varela Ortiz",2950,"Olivares y Los Pinos","63 Reg -",-31.44258,-64.236974
+"C3137","Rufino Varela Ortiz",2650,"Octaviano Navarro y Antartida","63 Reg -",-31.439552,-64.236949
+"C3138","Rufino Varela Ortiz",2350,"Gabriela Mistral y Lagunilla","63 Reg -",-31.437102,-64.236977
+"C3139","Rufino Varela Ortiz",2050,"Aconcagua y Uritorco","63 Reg -",-31.433431,-64.236952
+"C3140","Maestro Vidal",1830,"Pinedo y Buchardo","63 Reg -",-31.430339,-64.23022
+"C3141","Maestro Vidal",1678,"Gomez Carrillo y Alberto Williams","63 Reg -",-31.428185,-64.229657
+"C3142","Maestro Vidal",1488,"Luis Agote y Hector Paniza","63 Reg -",-31.424931,-64.22875
+"C3143","Maestro Vidal",1284,"Verdi y Rogatis","63 Reg -",-31.422584,-64.228179
+"C3144","Maestro Vidal",1130,"Peredo y Albeniz","63 Reg -",-31.419396,-64.227277
+"C3145","Pueyrredon",1950,"Ing. Lopez y Ocaña","63 Reg - ",-31.420206,-64.214583
+"C3146","Pueyrredon",2350,"Punta Lara y Vieytes","63 Reg - ",-31.41972,-64.217861
+"C3147","Pueyrredon",2650,"Olegario Correa y Brown","63 Reg - ",-31.419783,-64.220987
+"C3150","Reconquista",3611,"Diaz de la Fuente y Fleming","64 Ida - ",-31.43763,-64.23623
+"C3151","Reconquista",3777,"Graham Bell y Varela Ortiz","64 Ida - ",-31.43765,-64.23843
+"C3152","Reconquista",3918,"Maria Courie y Luis Pasteur","64 Ida - ",-31.43766,-64.24019
+"C3153","Fournier",2511,"Esmeralda y Reconquista","64 Ida - ",-31.438,-64.24179
+"C3154","Fournier",2615,"Antartida y Octaviano Navarro","64 Ida - ",-31.43925,-64.24179
+"C3155","Diamante",4100,"Maria Courie y Fournier","64 Ida - ",-31.44064,-64.24167
+"C3156","Diamante",3380,"Varela Ortiz y Luis Pasteur","64 Ida - ",-31.44064,-64.23884
+"C3200","Donosa",9999,"Totoral y Olta","B61 Ida -",-31.452821,-64.269166
+"C3201","Donosa",9999,"Virgenes y El Alto","B61 Ida -",-31.4528,-64.264784
+"C3202","Donosa",9999,"Ballester y Villa Angela","B61 Ida -",-31.45244,-64.257024
+"C3203","Alto Alegre",9999,"Zuloaga y Bradley","B61 Ida -",-31.423573,-64.263863
+"C3204","Alto Alegre",9999,"Cattaneo y Sgto. Gomez","B61 Ida -",-31.420713,-64.263729
+"C3205","Necuñan",9999,"Pincen y San Hueque","B61 Ida -",-31.416492,-64.258856
+"C3210","Donosa",9999,"Ballester y Villa Angela","B61 Reg -",-31.45244,-64.257024
+"C3211","Donosa",9999,"Virgenes y El Alto","B61 Reg -",-31.4528,-64.264784
+"C3212","Donosa",9999,"Totoral y Olta","B61 Reg -",-31.452821,-64.269166
+"C3213","Necuñan",9999,"Pincen y San Hueque","B61 Reg -",-31.416492,-64.258856
+"C3214","Alto Alegre",9999,"Cattaneo y Sgto. Gomez","B61 Reg -",-31.420713,-64.263729
+"C3215","Alto Alegre",9999,"Zuloaga y Bradley","B61 Reg -",-31.423573,-64.263863
+"C3300","Ricardo Rojas",7330,"Mocovies y Tomas Garzon","18 Reg -",-31.335045,-64.265272
+"C3301","Ricardo Rojas",7900,"Huarpes y Udaondo","18 Reg -",-31.334622,-64.272463
+"C3302","Ricardo Rojas",8200,"Pachamama y Yupanqui","18 Reg -",-31.336005,-64.276538
+"C3303","Ricardo Rojas",8500,"Huacac y Huayna","18 Reg -",-31.336902,-64.280714
+"C3304","Ricardo Rojas",8800,"Tahuantisuyo y Mamaquilla","18 Reg -",-31.337344,-64.285186
+"C3305","Bodereau",9999,"Ricardo Rojas y Amigorena","18 Reg -",-31.336202,-64.288082
+"C3306","Bodereau",9999,"Amigorena y Hanan Pacha","18 Reg -",-31.333759,-64.288063
+"C3307","Bodereau",9999,"Leon XIII y Pozo de la Loma","18 Reg -",-31.331716,-64.288066
+"C3308","Bodereau",9999,"Leon XIII y Pozo de la Loma","18 Reg -",-31.329261,-64.288005
+"C3309","Bodereau",9999,"Agua de la Pilona y Mussi","18 Reg -",-31.326657,-64.288573
+"C3310","Bodereau",9999,"Canteras de Quilpo y de los Gauchos","18 Reg -",-31.323091,-64.288455
+"C3311","Bodereau",9999,"Quilloamira y Rincon de Luna","18 Reg -",-31.319803,-64.288291
+"C3312","Bodereau",9999,"Cabral y Sacha","18 Reg -",-31.316694,-64.288164
+"C3313","Bodereau",9999,"Macha y Cruz Alta","18 Reg -",-31.313798,-64.288103
+"C3314","Cruz Alta",9999,"Corral de Bustos y Montebuey","18 Reg -",-31.313265,-64.29118
+"C3315","Cruz Alta",9999,"Laborde y Arroyito","18 Reg -",-31.313172,-64.294333
+"C3316","Cruz Alta",9999,"San Marcos Sierra y BelleVille","18 Reg -",-31.313069,-64.297598
+"C3317","San Jeronimo",9999,"San Salvador y Jamaica","18 Reg -",-31.314671,-64.300938
+"C3318","San Jeronimo",9999,"Esquina Avellaneda","18 Reg -",-31.315243,-64.304277
+"C3319","San Lorenzo",9999,"Esq. Eva Peron","18 Reg -",-31.315792,-64.3069
+"C3350","San Lorenzo",9999,"Esq. Eva Peron","18 Ida -",-31.315792,-64.3069
+"C3351","San Jeronimo",9999,"Esquina Avellaneda","18 Ida -",-31.315243,-64.304277
+"C3352","San Jeronimo",9999,"San Salvador y Jamaica","18 Ida -",-31.314671,-64.300938
+"C3353","Cruz Alta",9999,"San Marcos Sierra y BelleVille","18 Ida -",-31.313069,-64.297598
+"C3354","Cruz Alta",9999,"Laborde y Arroyito","18 Ida -",-31.313172,-64.294333
+"C3355","Cruz Alta",9999,"Corral de Bustos y Montebuey","18 Ida -",-31.313265,-64.29118
+"C3356","Bodereau",9999,"Macha y Cruz Alta","18 Ida -",-31.313798,-64.288103
+"C3357","Bodereau",9999,"Cabral y Sacha","18 Ida -",-31.316694,-64.288164
+"C3358","Bodereau",9999,"Quilloamira y Rincon de Luna","18 Ida -",-31.319803,-64.288291
+"C3359","Bodereau",9999,"Canteras de Quilpo y de los Gauchos","18 Ida -",-31.323091,-64.288455
+"C3360","Bodereau",9999,"Agua de la Pilona y Mussi","18 Ida -",-31.326657,-64.288573
+"C3361","Bodereau",9999,"Leon XIII y Pozo de la Loma","18 Ida -",-31.329261,-64.288005
+"C3362","Bodereau",9999,"Leon XIII y Pozo de la Loma","18 Ida -",-31.331716,-64.288066
+"C3363","Bodereau",9999,"Amigorena y Hanan Pacha","18 Ida -",-31.333759,-64.288063
+"C3364","Bodereau",9999,"Ricardo Rojas y Amigorena","18 Ida -",-31.336202,-64.288082
+"C3365","Ricardo Rojas",8800,"Tahuantisuyo y Mamaquilla","18 Ida -",-31.337344,-64.285186
+"C3366","Ricardo Rojas",8500,"Huacac y Huayna","18 Ida -",-31.336902,-64.280714
+"C3367","Ricardo Rojas",8200,"Pachamama y Yupanqui","18 Ida -",-31.336005,-64.276538
+"C3368","Ricardo Rojas",7900,"Huarpes y Udaondo","18 Ida -",-31.334622,-64.272463
+"C3369","Ricardo Rojas",7330,"Mocovies y Tomas Garzon","18 Ida -",-31.335045,-64.265272
+"C3370","Los Chañares",9999,"Noguchi y Los Algarrobos","12 Ida - ",-31.462124,-64.09493
+"C3371","Los Chañares",9999,"Los Algarrobos y Noguchi","12 Reg -",-31.462124,-64.09493
+"C3372","Cno C. de los Remedios",9999,"Entre Sabattini y Marzazno","12 Ida - ",-31.460408,-64.105155
+"C3373","Cno C. de los Remedios",9999,"Entre Marzano y Sabattini","12 Reg -",-31.460408,-64.105155
+"C3374","Calingasta",9999,"Esq. Radio María","14 Ida -",-31.441059,-64.111297
+"C3375","Tulumba",9999,"Entre 2º y 3º bocacalle","14 Ida -",-31.444157,-64.111084
+"C2041","Cangallo",3105,"Malabia y Pacheco de Melo","14 Ida -",-31.44597,-64.11865
+"C2043","Cangallo",2803,"Acevedo y Thames","14 Ida -",-31.44266,-64.11864
+"C2004","Cangallo",2900,"Ignacio Thames y Manuel Acevedo","14 Reg -",-31.44277,-64.11865
+"C2007","Cangallo",3250,"Serrano y Antonio Sanchez","14 Reg -",-31.44691,-64.1187
+"C3376","Las Heras",815,"Piñero y Barcala","18 Ida -",-31.405371,-64.192575
+"C3377","Las Heras",467,"Pasando Lavalleja","18 Ida -",-31.405635,-64.186945
+"C3378","Las Heras",9999,"Las Heras y Mestre","18 Ida -",-31.405013,-64.184316
+"C3379","Gral. Paz",527,"Pasando Plazoleta","18 Ida -",-31.408752,-64.184115
+"C3380","Jujuy ",334,"Santa Rosa y Rioja","18 Reg -",-31.410061,-64.189219
+"C3381","Jujuy ",570,"Hombuerto 1º y Mestre","18 Reg -",-31.40728,-64.188118
+"C3382","Ducasse",650,"Frente ACV","18 Reg -",-31.404218,-64.188581
+"C3384","Ducasse",824,"Barcala y Sarratea","18 Reg -",-31.403845,-64.19193
+"C3385","Ducasse",1034,"Avellaneda y Castro Barro","18 Reg -",-31.403731,-64.194218
+"C2160","Larguia",6354,"Pompeyo Moneta y Humboldt","17 Reg - ",-31.33868,-64.24711
+"C2161","Larguia",9999,"Esquina Tamburini","17 Reg - ",-31.33938,-64.24986
+"C2162","Tamburini",9999,"Esquina Los Alemanes","17 Reg - ",-31.34139,-64.25124
+"C2163","Doering",6160,"Pompeyo y Bv. Los Alemanes","17 Reg - ",-31.34267,-64.24865
+"C2333","Doering",6193,"Frente a plaza de la Madre","17 Ida - ",-31.34262,-64.24858
+"C2334","Doering",6329,"Pompeya Moneta y Bv. Alemanes","17 Ida - ",-31.34219,-64.24971
+"C2335","Tamburini",6900,"Doering y Junas Larguia","17 Ida - ",-31.34139,-64.25102
+"C2336","Tamburini",7080,"Esquina con Larguia","17 Ida - ",-31.33963,-64.25033
+"C2337","Larguia",6354,"Esquina con Pompeyo Moneta","17 Ida - ",-31.33882,-64.2477
+"C3386","Martinolli",5149,"Astrada de Ponce y Laplace","D10 Ida -",-31.357061,-64.24248
+"C3387","Martinolli",5326,"Astrada de Ponce y Evang. Torricelli","D10 Ida -",-31.35485,-64.245804
+"C3388","Martinolli",5631,"Papin y Gauss","D10 Ida -",-31.352752,-64.248259
+"C0806","Pasteur",3125,"Riga y Sin Datos","63 Reg -",-31.44496,-64.23936
+"C0807","Pasteur",3011,"Marcelino Augier y Maugier","63 Reg -",-31.44353,-64.23936
+"C3389","Pringles",,"Lima y Catamarca","63 Reg -",-31.412583,-64.167713
+"C3390","Pringles",1019,"Ibarbalz y Juan de Garay","63 Reg -",-31.406031,-64.170073
+"C3391","Pringles",1290,"Charcas y Cochabamba","63 Reg -",-31.403185,-64.171181
+"C3392","Potosi",1392,"Jacinto Rios y Viamonte","63 Reg -",-31.401047,-64.169785
+"C3393","Antartida",2703,"Padre Lozano y Lafore","64 Ida - ",-31.440267,-64.223517
+"C3394","Antartida",2680,"Lafore y Padre Lozano","64 Reg -",-31.440267,-64.223517
+"C3395","Valparaiso",9999,"Fte. Ciencias Economicas","13 Reg - 18 Reg - 19 Reg - D10 Reg - 67 Reg",-31.435495,-64.185327
+"C3396","Valparaiso",9999,"Fte. Esc. Enfermeria","13 Reg - 18 Reg - 19 Reg - D10 Reg - 67 Reg",-31.43827,-64.186078
+"C3397","Filloy",9999,"Fte. Comedor Universitario","13 Reg - 18 Reg - 19 Reg - D10 Reg - 67 Reg",-31.4405,-64.189556
+"C3398","Filloy",9999,"Fte. Comedor Universitario","13 Ida - 18 Ida - 19 Ida - D10 Ida - 67 Ida",-31.4405,-64.189556
+"C3399","Valparaiso",9999,"Fte. Esc. Enfermeria","13 Ida - 18 Ida - 19 Ida - D10 Ida - 67 Ida",-31.43827,-64.186078
+"C3400","Valparaiso",9999,"Fte. Ciencias Economicas","13 Ida - 18 Ida - 19 Ida - D10 Ida - 67 Ida",-31.435495,-64.185327
+"C3401","Belgrano",1421,"Richardson y Temple","16 Ida - 66 Ida",-31.431248,-64.195038
+"C3402","Belgrano",1275,"Lacosta y Peru","16 Ida - 66 Ida",-31.429456,-64.194287
+"C3403","Belgrano",1039,"Brasil y Peredo","16 Ida - 66 Ida",-31.426849,-64.193198
+"C3404","Medina Allende",9999,"Esq. Haya de la Torre","16 Ida - 66 Ida",-31.435971,-64.191728
+"C3405","Medina Allende",9999,"Esq. Hayta de la Torre","16 Reg - 66 Reg",-31.436019,-64.191926
+"C3406","Venezuela",15,"Parque de las Tejas","16 Reg - 66 Reg",-31.434143,-64.188627
+"C3407","Venezuela",55,"Buenos Aires y Pje. España","16 Reg - 66 Reg",-31.433116,-64.190122
+"C3408","Richardson",70,"Independencia y Olmos","16 Ida - 66 Ida",-31.432491,-64.192059
+"C3409","Bajada de Piedras",9999,"Esq. Castañares","68 Ida -",-31.408711,-64.150293
+"C3410","Bajada de Piedras",9999,"Olivera y Cavero","68 Ida -",-31.406557,-64.147513
+"C3411","Bajada de Piedras",9999,"Pasando Victor Manuel III","68 Ida -",-31.405357,-64.142766
+"C3412","Bajada de Piedras",9999,,"68 Ida -",-31.404098,-64.140543
+"C3413","Bajada de Piedras",9999,,"68 Ida -",-31.403185,-64.137989
+"C3414","Bajada de Piedras",9999,,"68 Ida -",-31.403364,-64.13569
+"C3415","Bajada de Piedras",9999,,"68 Ida -",-31.403631,-64.132237
+"C3416","Bajada de Piedras",9999,,"68 Ida -",-31.403185,-64.128055
+"C3417","Bajada de Piedras",9999,,"68 Ida -",-31.402259,-64.122503
+"C3418","Bajada de Piedras",9999,,"68 Ida -",-31.40184,-64.106063
+"C3419","Bajada de Piedras",9999,,"68 Ida -",-31.403399,-64.089592
+"C3420","Bajada de Piedras",9999,,"68 Ida -",-31.408596,-64.066812
+"C3421","Bajada de Piedras",9999,,"68 Ida -",-31.406289,-64.065557
+"C3422","Bajada de Piedras",9999,,"68 Ida -",-31.403053,-64.06387
+"C3423","Bajada de Piedras",9999,,"68 Ida -",-31.397417,-64.06062
+"C3424","Bajada de Piedras",9999,,"68 Ida -",-31.392812,-64.058637
+"C3425","Bajada de Piedras",9999,,"68 Ida -",-31.390673,-64.057985
+"C3426","Bajada de Piedras",9999,,"68 Reg -",-31.390673,-64.057985
+"C3427","Bajada de Piedras",9999,,"68 Reg -",-31.392812,-64.058637
+"C3428","Bajada de Piedras",9999,,"68 Reg -",-31.397417,-64.06062
+"C3429","Bajada de Piedras",9999,,"68 Reg -",-31.403053,-64.06387
+"C3430","Bajada de Piedras",9999,,"68 Reg -",-31.406289,-64.065557
+"C3431","Bajada de Piedras",9999,,"68 Reg -",-31.408596,-64.066812
+"C3432","Bajada de Piedras",9999,,"68 Reg -",-31.403399,-64.089592
+"C3433","Bajada de Piedras",9999,,"68 Reg -",-31.40184,-64.106063
+"C3434","Bajada de Piedras",9999,,"68 Reg -",-31.402259,-64.122503
+"C3435","Bajada de Piedras",9999,,"68 Reg -",-31.403185,-64.128055
+"C3436","Bajada de Piedras",9999,,"68 Reg -",-31.403631,-64.132237
+"C3437","Bajada de Piedras",9999,,"68 Reg -",-31.403364,-64.13569
+"C3438","Bajada de Piedras",9999,,"68 Reg -",-31.403185,-64.137989
+"C3439","Bajada de Piedras",9999,,"68 Reg -",-31.404098,-64.140543
+"C3440","Bajada de Piedras",9999,"Antes de Victor Manuel III","68 Reg -",-31.405357,-64.142766
+"C3441","Bajada de Piedras",9999,"Cavero y Olivera","68 Reg -",-31.406557,-64.147513
+"C3450","Capdevila",9999,"Circunvalacion y Al Gateado","B60 Ida -",-31.376255,-64.125827
+"C3451","Al Gateado",9999,"Capdevilla y De Las Cortaderas","B60 Ida -",-31.373688,-64.123945
+"C3452","De Las Cortaderas",9999,"Al Gateado y Las Toscas","B60 Ida -",-31.368953,-64.120915
+"C3453","De Las Cortaderas",9999,"Al Gateado y Las Toscas","B60 Ida -",-31.368799,-64.116772
+"C3454","Las Toscas",9999,"De Las Cortaderas y De La Pulperia","B60 Ida -",-31.366434,-64.11528
+"C3455","Las Toscas",9999,"De Las Cortaderas y De La Pulperia","B60 Ida -",-31.360742,-64.11526
+"C3456","De La Pulperia",9999,"Las Toscas y Las Quintas","B60 Ida -",-31.359514,-64.114573
+"C3457","De La Pulperia",9999,"Las Toscas y Las Quintas","B60 Ida -",-31.35945,-64.107893
+"C3458","Las Quintas",9999,"De la Pulperia y Santa Rosa","B60 Ida -",-31.355995,-64.105616
+"C3459","Santa Rosa",9999,,"B60 Ida -",-31.353509,-64.100804
+"C3460","Santa Rosa",9999,,"B60 Ida -",-31.349823,-64.095228
+"C3461","Santa Rosa",9999,,"B60 Ida -",-31.344227,-64.086053
+"C3462","Santa Rosa",9999,,"B60 Ida -",-31.339791,-64.082097
+"C3463","Santa Rosa",9999,,"B60 Ida -",-31.336297,-64.078853
+"C3464","Santa Rosa",9999,,"B60 Ida -",-31.338201,-64.072869
+"C3465","Santa Rosa",9999,,"B60 Ida -",-31.333524,-64.070977
+"C3466","Santa Rosa",9999,,"B60 Reg -",-31.333524,-64.070977
+"C3467","Santa Rosa",9999,,"B60 Reg -",-31.338201,-64.072869
+"C3468","Santa Rosa",9999,,"B60 Reg -",-31.336297,-64.078853
+"C3469","Santa Rosa",9999,,"B60 Reg -",-31.339791,-64.082097
+"C3470","Santa Rosa",9999,,"B60 Reg -",-31.344227,-64.086053
+"C3471","Santa Rosa",9999,,"B60 Reg -",-31.349823,-64.095228
+"C3472","Santa Rosa",9999,,"B60 Reg -",-31.353509,-64.100804
+"C3473","Las Quintas",9999,"De la Pulperia y Santa Rosa","B60 Reg -",-31.355995,-64.105616
+"C3474","De La Pulperia",9999,"Las Toscas y Las Quintas","B60 Reg -",-31.35945,-64.107893
+"C3475","De La Pulperia",9999,"Las Toscas y Las Quintas","B60 Reg -",-31.359514,-64.114573
+"C3476","Las Toscas",9999,"De Las Cortaderas y De La Pulperia","B60 Reg -",-31.360742,-64.11526
+"C3477","Las Toscas",9999,"De Las Cortaderas y De La Pulperia","B60 Reg -",-31.366434,-64.11528
+"C3478","De Las Cortaderas",9999,"Al Gateado y Las Toscas","B60 Reg -",-31.368799,-64.116772
+"C3479","De Las Cortaderas",9999,"Al Gateado y Las Toscas","B60 Reg -",-31.368953,-64.120915
+"C3480","Al Gateado",9999,"Capdevilla y De Las Cortaderas","B60 Reg -",-31.373688,-64.123945
+"C3481","Capdevila",9999,"Circunvalacion y Al Gateado","B60 Reg -",-31.376255,-64.125827

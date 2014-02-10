@@ -1,0 +1,3712 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>LINEA 30.kml</name>
+	<StyleMap id="a220055">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2200370</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a220048</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_bus22000">
+		<IconStyle>
+			<color>ff0000aa</color>
+			<scale>1.4</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/bus.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a6064">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a60320</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a60390</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a233241911">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a750000330">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a21618137">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a216181600</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a21618110</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a2332411300">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a220052">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin590">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin360</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin560</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a233241112">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a7500004400">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a220060">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a220053</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a2200110</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a220024">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a22002503">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2200800">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a7500001100">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a7500003800</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a750000190</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a220090">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a220057</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a220027</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a2013111">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a201324</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a201330</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a21618121">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a21618133</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a21618114</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a6015">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2200300">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a220039">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a220040</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a2200160</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a23324192">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a216181600">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a220048">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a233241134">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a233241122</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a233241125</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a21618110">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a233241113">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a233241123</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a233241128</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a2013700">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2013120">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a23324194">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a233241917</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a233241910</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a220040">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a6031">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a220054">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a220035</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a220024</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a21618125">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a21618122</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a21618113</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a220051">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a22007</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a220017</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a2013160">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a2013100">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2013600</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a2013170</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a7500003700">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a60590">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a220023">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a220030</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a2200150</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a233241114">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a23324115</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a233241124</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a2332480">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2332481</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a23324800</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a21618144">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618600">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a233241126">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a6072">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a2200412">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a22002500</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a2200803</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a750000190">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a2013150">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a201300</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a2013200</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a233241116">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2200260">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618116">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a6051">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a60600</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a6015</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a21618122">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a220045">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a220047</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a2200400</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a60420">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618111">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618142">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a606200">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2161860">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a7500004500">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a7500004600</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a750000600</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a21618135">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a750000000">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a7500002100</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a7500001700</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a60200">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2200420">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2200360">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a20133100">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a201329</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a201320</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a7500003100">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a233241918">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a233241911</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a233241916</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a6037">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a60520</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a60710</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a2200380">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a233241140">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a233241914">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618126">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a233241917">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a21618127">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a21618128</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a21618138</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a201355">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a7500003110">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a7500002300</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a750000360</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a6069">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a60540</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a60620</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a21618145">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618113">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a21618000">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a21618600</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a21618210</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a75000045000">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a75000046000</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a7500006000</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a21618143">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a21618123</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a216181000</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a220080">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a233241130">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618128">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2200110">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a7500006000">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a6038">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a233241133">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618123">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a23324118">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a2013300">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2013160</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a201326</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a22002502">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2200210">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2013110">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="msn_bus3120">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_bus8100000</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_bus22000</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a7500002400">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a201390">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a7500001000">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a750000160</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a750000411</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a2200160">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a750000610">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a750000590</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a750000200</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a233241125">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618139">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a220056">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a233241115">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a233241111</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a23324112</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a220057">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin3800">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ffff0000</color>
+			<width>3.5</width>
+		</LineStyle>
+	</Style>
+	<Style id="a220032">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a220000">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a6054">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a7500001400">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a2013130">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2013210</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a201355</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a21618120">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a23324112">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a21618151">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2161812000</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a216181310</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a23324113">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a233241116</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a233241117</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a21618133">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2161812000">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a2200280">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a220000</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a220019</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a233241919">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a6055">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a7500004600">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a216181400">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a60230">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="sn_bus8100000">
+		<IconStyle>
+			<color>ff0000aa</color>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/bus.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+	</Style>
+	<Style id="a2200100">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a21618147">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a21618150</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a21618126</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin560">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0000ff</color>
+			<width>3.5</width>
+		</LineStyle>
+	</Style>
+	<Style id="a233241910">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618190">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618114">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2013200">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a21618117">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a21618142</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a21618170</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a220047">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a7500002100">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a6093">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a6050">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a60200</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a60410</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a2013180">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2200140">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a220035">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2200802">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a60260">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a7500003200">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a750000180">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a750000411">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2200801">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a6000">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a23324114">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a7500002500">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a216181310">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a21618180">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a21618112</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a21618119</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a23324193">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a2722300">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a272290</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a272270</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a21618119">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a216181160">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a216181400</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a21618139</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a750000590">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a6047">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a60690">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a6054</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a606200</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a2013170">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a233241118">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a233241190</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a23324118</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a2332481">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a220034">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a7500004200">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a201319">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a750000200">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618170">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618138">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a22007">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a750000280">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2013340">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a201326">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a2722000">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2722100</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a272240</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a23324198">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a233241111">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618141">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a60210">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a6093</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a6038</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="msn_ylw-pushpin470">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin3800</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin351</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a233241912">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a60490">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a6047</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a6031</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a220018">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2200300</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a22002900</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a6014">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a220019">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a220027">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a21618146">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a216181200</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a21618144</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a21618300">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a220049">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a220056</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a22001300</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a60410">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a21618129">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a21618131</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a21618134</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a233241190">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a233241123">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a7500002300">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2013600">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a2200410">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a22002503</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a2200800</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a750000800">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a7500002500</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a7500004400</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a23324199">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a7500003500">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="msn_realestate0000">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_realestate0000</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_realestate0010</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a23324117">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a220017">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a6041">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a7500001700">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a6067">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a7500004300">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a7500002200</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a750000390</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a23324195">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a233241919</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a23324192</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a23324197">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a75000046000">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a201320">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a7500001300">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a750000280</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a7500003100</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a216181200">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a60710">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a220031">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2200140</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a2200260</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a7500002900">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a750000700</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a7500001500</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a272290">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a233241916">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a7500001200">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a201300">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a750000270">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a750000330</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a7500003000</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a21618148">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a2200330">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a220043</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a2200210</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a216182000">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a60610">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a60330</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a60260</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a21618136">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a21618141</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a21618148</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a60330">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a201324">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a233241132">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a60730">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a6055</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a60680</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a2332411100">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a233241130</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a233241140</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a22002501">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a233241122">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2200150">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a21618118">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a21618111</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a21618135</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a233241127">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a233241112</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a23324117</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a2013140">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a750000160">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a220043">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a23324191">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a23324196</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a233241912</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a220041">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a22002501</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a2200802</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a750000360">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a22002504">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a750000600">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a220058">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2200380</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a22003</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a60390">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a6063">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a6041</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a6014</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a2161850000">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a2200211">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2200460</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a220050</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a216181000">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a201338">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a201390</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a2013250</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a233241110">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2332411300</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a23324114</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a233241900">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a23324193</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a23324199</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin351">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ffff0000</color>
+			<width>3.5</width>
+		</LineStyle>
+	</Style>
+	<StyleMap id="a7500002110">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a7500004200</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a7500003200</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a2200370">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a750000700">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a7500002600">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a7500001200</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a7500003500</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a2200460">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a23324119">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a23324116</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a23324110</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_realestate0000">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+	</Style>
+	<Style id="a21618130">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a233241131">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a233241133</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a233241132</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a22001300">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a233241129">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2013210">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618134">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2013250">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a233241120">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a2013280">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2013180</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a2013340</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a2200411">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a22002504</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a2200801</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a6030">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a6000</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a6072</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a23324115">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a2200500">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a220032</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a220034</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a21618115">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a21618190</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a21618116</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a2722100">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="sh_realestate0010">
+		<IconStyle>
+			<scale>1.4</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+	</Style>
+	<Style id="a23324196">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a60540">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a2013320">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2013700</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a201319</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a23324800">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a7500004100">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a7500002400</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a7500001400</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a233241913">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a220053">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a2161840">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a21618120</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a2161800</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a220030">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618131">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618149">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a233241117">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a201323">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2013120</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a201322</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a233241128">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a216180100">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2161850000</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a216182000</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a23324111">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a233241120</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a233241126</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a60620">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618112">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a60130">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a60590</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a60420</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a60360">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a60230</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a6067</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a22002900">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a7500001500">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618124">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a220020">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a220052</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a2200100</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a233241121">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a23324190">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a233241914</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a23324197</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a272240">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a2200413">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a22002502</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a220080</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a2200120">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2200360</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a2200420</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a23324116">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a7500003000">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a23324110">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a21618140">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a21618130</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a21618124</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a21618132">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a21618145</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a21618149</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a220050">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a201322">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a201330">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a60320">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a21618150">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2161800">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2200803">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a7500002200">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a201329">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a272270">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a2200400">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a2013800">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2013140</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a2013110</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="a7500003400">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a7500003700</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a750000180</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_ylw-pushpin360">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0000ff</color>
+			<width>3.5</width>
+		</LineStyle>
+	</Style>
+	<Style id="a21618210">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a233241119">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a233241121</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a233241129</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a233241124">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a2161820">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a2161860</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a21618300</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a22002500">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a60680">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a60520">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a22003">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a750000390">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="a233241915">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#a23324198</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#a233241913</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="a7500003800">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="a60600">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/realestate.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Folder>
+		<name>LINEA 30</name>
+		<Folder>
+			<name>L30 Ida</name>
+			<Placemark>
+				<name>L30 (PP) Barrio Parque Futura</name>
+				<Camera>
+					<longitude>-64.24547095996233</longitude>
+					<latitude>-31.48417232567429</latitude>
+					<altitude>113.6283904296118</altitude>
+					<heading>1.158022153287467</heading>
+					<tilt>3.27421455505897</tilt>
+					<roll>1.679648728534893</roll>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</Camera>
+				<styleUrl>#msn_bus3120</styleUrl>
+				<Point>
+					<coordinates>-64.24563533759593,-31.4841414316744,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>L30 Ida</name>
+				<styleUrl>#msn_ylw-pushpin590</styleUrl>
+				<LineString>
+					<tessellate>1</tessellate>
+					<coordinates>
+						-64.2456332141295,-31.48412607565982,0 -64.24590341725333,-31.48440092134333,0 -64.24620359924941,-31.48470621907546,0 -64.24727596397274,-31.48574380250274,0 -64.24735582023204,-31.48579540742544,0 -64.24745324127585,-31.48574692389457,0 -64.24821126732449,-31.48520495672576,0 -64.24888992933221,-31.4847120341001,0 -64.24932032695861,-31.48440809330652,0 -64.24939000752252,-31.48430187377121,0 -64.24940811842012,-31.4841738179165,0 -64.24938418912636,-31.48290458398301,0 -64.24940181526335,-31.48176116220429,0 -64.24937225906734,-31.48163156729941,0 -64.24924285040983,-31.48143719890075,0 -64.24908277050019,-31.48132607282437,0 -64.24636430652849,-31.47909634917879,0 -64.24317721889592,-31.47647867620406,0 -64.24004766039866,-31.47390493741882,0 -64.23902594323432,-31.47301360213433,0 -64.23889534234601,-31.47299907508836,0 -64.23875828426959,-31.47304332477719,0 -64.23854437682783,-31.47303605849729,0 -64.2383347978448,-31.47295935983253,0 -64.23821728852623,-31.47281162402788,0 -64.2381097294416,-31.47274139327001,0 -64.23759244469979,-31.4727181223809,0 -64.23719375737966,-31.47272789710794,0 -64.23637097849161,-31.47275296042295,0 -64.2351510315244,-31.47182894575954,0 -64.23315297858667,-31.4701467146579,0 -64.23067782992574,-31.46810144741486,0 -64.22701812840793,-31.46501517631441,0 -64.22648340041769,-31.46457846540464,0 -64.22625903679767,-31.46442549605615,0 -64.2258056005663,-31.46481439971268,0 -64.22427598863707,-31.46622438282946,0 -64.22387861966349,-31.46656149922822,0 -64.2237406586348,-31.46656024622824,0 -64.22350042659936,-31.46647482200712,0 -64.22205588422005,-31.46525147398675,0 -64.22164809108094,-31.46477731797015,0 -64.22135017064494,-31.46443012687789,0 -64.22083526988061,-31.46380490941401,0 -64.22052575092614,-31.46344776482656,0 -64.2202729132141,-31.46318380355772,0 -64.22003250485119,-31.46292425150746,0 -64.21970214874496,-31.46268674247926,0 -64.21946922818911,-31.46253605078336,0 -64.21896801543535,-31.46221946234346,0 -64.2170854958631,-31.46105894759884,0 -64.21673589222634,-31.46083811333203,0 -64.21630900193705,-31.46050381356433,0 -64.21580553165056,-31.45999438606436,0 -64.21538145501741,-31.45958761273786,0 -64.21513852908143,-31.45940587878471,0 -64.21464822832391,-31.45920058380967,0 -64.21126181280077,-31.45810162369955,0 -64.20981377235894,-31.4576261818159,0 -64.20914179798224,-31.45740902031165,0 -64.20893162092479,-31.4572317637344,0 -64.20881080724152,-31.457064170463,0 -64.20871130519743,-31.45676367503051,0 -64.20841682443752,-31.45566982379892,0 -64.20838197437449,-31.45554806549374,0 -64.20827597484951,-31.45539438687387,0 -64.20805996078228,-31.45516672443065,0 -64.20762330994098,-31.45481462054076,0 -64.20519800636205,-31.45298299682063,0 -64.20373602842041,-31.45197347310305,0 -64.20286902217906,-31.45137135217749,0 -64.20194468609424,-31.45103157862077,0 -64.20142944936089,-31.45093164972607,0 -64.20117525271581,-31.45085610637346,0 -64.20075345374592,-31.4509236239001,0 -64.20042404380156,-31.45102647318864,0 -64.20020590487229,-31.45097558924746,0 -64.2000664822807,-31.45077632730441,0 -64.19988145292804,-31.45034870548349,0 -64.19803158821937,-31.44482851470162,0 -64.19671239855157,-31.44077350766398,0 -64.19566755061275,-31.43739620678283,0 -64.1951479225884,-31.43590382381347,0 -64.19477350758663,-31.43474350613554,0 -64.19470889030266,-31.43451090574385,0 -64.19458054870195,-31.43431268758147,0 -64.19437776549198,-31.43405968769964,0 -64.19376917586904,-31.43345169597955,0 -64.19364292244163,-31.43331190839557,0 -64.19353230493692,-31.43307539694961,0 -64.19350000048179,-31.43283628906544,0 -64.19368597573909,-31.43266948877626,0 -64.19397142532461,-31.43257391105953,0 -64.19434944003146,-31.43252414437471,0 -64.19469779760865,-31.43249432440702,0 -64.19521155735666,-31.43230551788924,0 -64.195394393996,-31.43225152660015,0 -64.19542127338522,-31.4321013644215,0 -64.1950413844456,-31.4311539370622,0 -64.19372035867481,-31.42797934981094,0 -64.19250914249426,-31.42503117085763,0 -64.19143563155907,-31.42247816046143,0 -64.19126612027407,-31.42225837515885,0 -64.19105859645867,-31.4220070488726,0 -64.19081981618875,-31.42176229797028,0 -64.19041837019533,-31.42138561009072,0 -64.19012422449835,-31.42111434785343,0 -64.190032651103,-31.42097213459973,0 -64.18998935099836,-31.42074480565954,0 -64.18989625999446,-31.41992501474871,0 -64.18979780084558,-31.41929248460085,0 -64.18975526855409,-31.41867032164992,0 -64.18921854684102,-31.41729892494378,0 -64.18896540953592,-31.41677103384196,0 -64.18802316256713,-31.41448836865174,0 -64.18692696706188,-31.4120169099938,0 -64.1857336490588,-31.40913416340978,0 -64.18570479467836,-31.4089846163409,0 -64.18759381519362,-31.40837812311479,0 -64.18839704581622,-31.4081431597174,0 -64.18842148949803,-31.4079810118397,0 -64.18831259964742,-31.40766569987266,0 -64.18801920736779,-31.40683253106925,0 -64.18769248357155,-31.40582899793194,0 -64.18766238677361,-31.40562169588688,0 -64.18761552710612,-31.40496109224056,0 -64.18756851165821,-31.40409270992964,0 -64.18693506243881,-31.40205721107984,0 -64.18679681842073,-31.40161479517522,0 -64.18634776390789,-31.40060845928598,0 -64.18594330135944,-31.39959144473691,0 -64.18548845041234,-31.39849744915839,0 -64.18547537118407,-31.39842203741384,0 -64.18556090429402,-31.39828435740173,0 -64.18581396297516,-31.39820662079578,0 -64.18673612083303,-31.39792797147661,0 -64.18787997069194,-31.39758287253881,0 -64.18791912998466,-31.39755151448197,0 -64.18791871456945,-31.39748302210609,0 -64.18728730354513,-31.39589010211174,0 -64.18697857773918,-31.39521143712159,0 -64.18661014629075,-31.3943068090353,0 -64.18619446892083,-31.39325539339822,0 -64.18603117958091,-31.39288759701874,0 -64.18573249003695,-31.39214679612826,0 -64.18561296361264,-31.39211614446322,0 -64.18425850504094,-31.39254290449931,0 -64.18333625723247,-31.3928318766205,0 -64.18312238061283,-31.39278052731097,0 -64.18288751399282,-31.39222604424181,0 -64.18262123914739,-31.39170641056612,0 -64.18244323321582,-31.39150551533034,0 -64.18242398938,-31.38997275322555,0 -64.18243787739262,-31.38691894203213,0 -64.18242785501215,-31.38161981685818,0 -64.18245406253388,-31.37711561156226,0 -64.18239160505124,-31.37374334756666,0 -64.18239189671947,-31.37269771134153,0 -64.18240197073382,-31.37253514311133,0 -64.18252264355482,-31.37245234965272,0 -64.18317588698656,-31.37246986715834,0 -64.18376276400997,-31.37245433904045,0 -64.18384199404274,-31.36213875405515,0 -64.18421557837448,-31.36211650538054,0 
+					</coordinates>
+				</LineString>
+			</Placemark>
+			<Placemark>
+				<name>Barlovento y Pinar del Rio</name>
+				<styleUrl>#a21618146</styleUrl>
+				<Point>
+					<coordinates>-64.24567187798137,-31.48412694233313,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Pinar del Rio y Bonaire</name>
+				<styleUrl>#a21618147</styleUrl>
+				<Point>
+					<coordinates>-64.24731779922332,-31.48576120806058,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Bonaire al 1900</name>
+				<LookAt>
+					<longitude>-64.24881183893831</longitude>
+					<latitude>-31.48468525920961</latitude>
+					<altitude>0</altitude>
+					<heading>-109.6905456453054</heading>
+					<tilt>23.27230083494548</tilt>
+					<range>182.9741596853301</range>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</LookAt>
+				<styleUrl>#msn_realestate0000</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-64.24874513043501,-31.48480985342466,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Masaya y Guanasacate</name>
+				<styleUrl>#a21618129</styleUrl>
+				<Point>
+					<coordinates>-64.24932262999999,-31.4831988,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Masaya y Usuahia</name>
+				<styleUrl>#a21618121</styleUrl>
+				<Point>
+					<coordinates>-64.24927801,-31.48162008,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Curazao al 3100</name>
+				<styleUrl>#a21618117</styleUrl>
+				<Point>
+					<coordinates>-64.24847964999999,-31.48092186,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av.Curazao al 2900</name>
+				<LookAt>
+					<longitude>-64.24706597403402</longitude>
+					<latitude>-31.47978130003488</latitude>
+					<altitude>0</altitude>
+					<heading>-109.6914573291325</heading>
+					<tilt>23.27345536996455</tilt>
+					<range>266.283292623807</range>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</LookAt>
+				<styleUrl>#a21618140</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-64.24685134157129,-31.47944246865837,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Curazao al 2700</name>
+				<styleUrl>#a21618143</styleUrl>
+				<Point>
+					<coordinates>-64.24452404,-31.47768142,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Curazao al 2500</name>
+				<styleUrl>#a21618136</styleUrl>
+				<Point>
+					<coordinates>-64.24258752866702,-31.47598467132606,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av. Curazao al 2400</name>
+				<LookAt>
+					<longitude>-64.24045516558878</longitude>
+					<latitude>-31.47430797376978</latitude>
+					<altitude>0</altitude>
+					<heading>-109.6948750995212</heading>
+					<tilt>22.4651059887956</tilt>
+					<range>157.1438326017776</range>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</LookAt>
+				<styleUrl>#a21618118</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-64.240746755092,-31.47443876639087,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av. Renault al 2200</name>
+				<styleUrl>#a21618125</styleUrl>
+				<Point>
+					<coordinates>-64.23703902,-31.47280966,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Casado al 2100</name>
+				<LookAt>
+					<longitude>-64.23530507935872</longitude>
+					<latitude>-31.47176400974993</latitude>
+					<altitude>0</altitude>
+					<heading>-109.6975868989778</heading>
+					<tilt>23.39974692909337</tilt>
+					<range>282.8824858892839</range>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</LookAt>
+				<styleUrl>#a21618127</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-64.23433064857007,-31.4710413229373,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Casado al 2000</name>
+				<styleUrl>#a21618137</styleUrl>
+				<Point>
+					<coordinates>-64.23264478999999,-31.4698006,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Casado al 1800</name>
+				<styleUrl>#a21618180</styleUrl>
+				<Point>
+					<coordinates>-64.23121043585328,-31.46849651298885,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Casado al 1700</name>
+				<styleUrl>#a21618151</styleUrl>
+				<Point>
+					<coordinates>-64.22862368323258,-31.46633057444472,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Casado al 1600</name>
+				<styleUrl>#a21618132</styleUrl>
+				<Point>
+					<coordinates>-64.22647523000001,-31.46474868,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Lago Argentino al 1900</name>
+				<styleUrl>#a21618115</styleUrl>
+				<Point>
+					<coordinates>-64.22491792,-31.46571111,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av. Armada Argentina al 1500 (refugio)</name>
+				<styleUrl>#a216181160</styleUrl>
+				<Point>
+					<coordinates>-64.22325454992749,-31.46632911839091,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av. Armada Argentina Canal de Los Olmos(refugio)</name>
+				<styleUrl>#a216180100</styleUrl>
+				<Point>
+					<coordinates>-64.21626475719974,-31.4604673132909,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av. Armada Argentina al 800</name>
+				<LookAt>
+					<longitude>-64.21267530926254</longitude>
+					<latitude>-31.4580286993932</latitude>
+					<altitude>0</altitude>
+					<heading>-18.68778732126181</heading>
+					<tilt>29.72577896516181</tilt>
+					<range>332.4094746444187</range>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</LookAt>
+				<styleUrl>#a21618000</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-64.21181927337824,-31.45831614616652,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Armada Argentina al 500</name>
+				<styleUrl>#a750000800</styleUrl>
+				<Point>
+					<coordinates>-64.20854156999999,-31.45642409,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Armada Argentina al 200</name>
+				<styleUrl>#a7500004100</styleUrl>
+				<Point>
+					<coordinates>-64.2044952,-31.45258718,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av. Armada Argentina al 70</name>
+				<styleUrl>#a7500001000</styleUrl>
+				<Point>
+					<coordinates>-64.2014444,-31.45100283,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Vélez Sarsfield al 3400</name>
+				<styleUrl>#a7500003110</styleUrl>
+				<Point>
+					<coordinates>-64.19960574,-31.44977449,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Vélez Sarsfield al 3200</name>
+				<styleUrl>#a7500002110</styleUrl>
+				<Point>
+					<coordinates>-64.19897426999999,-31.44792714,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Vélez Sarsfield al 3000</name>
+				<styleUrl>#a7500003400</styleUrl>
+				<Point>
+					<coordinates>-64.19818613,-31.44545396,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av. Velez Sarsfield al 2400</name>
+				<styleUrl>#a7500004300</styleUrl>
+				<Point>
+					<coordinates>-64.19645834000001,-31.44018916,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av. Velez Sarsfield al 1900</name>
+				<Camera>
+					<longitude>-64.19387451752263</longitude>
+					<latitude>-31.43636410152003</latitude>
+					<altitude>559.2651111288761</altitude>
+					<heading>-10.09705443211255</heading>
+					<tilt>1.111456964144235</tilt>
+					<roll>-9.809581774029628</roll>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</Camera>
+				<styleUrl>#a750000610</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-64.19486610226284,-31.43534376754519,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Plaza de las Americas</name>
+				<styleUrl>#a7500002900</styleUrl>
+				<Point>
+					<coordinates>-64.19368767051239,-31.4325169726931,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Manuel Belgrano al 1400</name>
+				<styleUrl>#a750000000</styleUrl>
+				<Point>
+					<coordinates>-64.19498978999999,-31.43136514,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Manuel Belgrano al 1275</name>
+				<styleUrl>#a7500002600</styleUrl>
+				<Point>
+					<coordinates>-64.19430754654755,-31.42971014872327,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Manuel Belgrano al 1000</name>
+				<styleUrl>#a7500001100</styleUrl>
+				<Point>
+					<coordinates>-64.19307637925417,-31.42679159296832,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Manuel Belgrano al 800</name>
+				<styleUrl>#a750000270</styleUrl>
+				<Point>
+					<coordinates>-64.19219640319054,-31.4244536248033,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Manuel Belgrano al 400</name>
+				<Camera>
+					<longitude>-64.18946781652238</longitude>
+					<latitude>-31.42147039855133</latitude>
+					<altitude>638.7654425705003</altitude>
+					<heading>-16.08411210560845</heading>
+					<tilt>2.670453536841752</tilt>
+					<roll>-13.55072870088328</roll>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</Camera>
+				<styleUrl>#a7500001300</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-64.19019864175824,-31.42123998550434,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Manuel Belgrano y San Jeronimo</name>
+				<styleUrl>#a7500004500</styleUrl>
+				<Point>
+					<coordinates>-64.18850954089682,-31.41604896935242,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Manuel Belgrano y 9 de Julio</name>
+				<open>1</open>
+				<styleUrl>#a75000045000</styleUrl>
+				<Point>
+					<coordinates>-64.18762422914877,-31.41390955614235,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Belgrano y La Rioja</name>
+				<styleUrl>#a2722000</styleUrl>
+				<Point>
+					<coordinates>-64.18608514537776,-31.41037180958158,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Jujuy al 500</name>
+				<styleUrl>#a2722300</styleUrl>
+				<Point>
+					<coordinates>-64.18816606579048,-31.4074323204702,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. avalleja al 900</name>
+				<styleUrl>#a2332480</styleUrl>
+				<Point>
+					<coordinates>-64.18759518,-31.40492583,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Lavalleja al 1200</name>
+				<styleUrl>#a233241114</styleUrl>
+				<Point>
+					<coordinates>-64.18659910561615,-31.40146127313356,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Lavalleja al 1400</name>
+				<LookAt>
+					<longitude>-64.18398701754687</longitude>
+					<latitude>-31.3987767803445</latitude>
+					<altitude>0</altitude>
+					<heading>-33.59294131134769</heading>
+					<tilt>30.00278963343286</tilt>
+					<range>855.4675781493322</range>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</LookAt>
+				<styleUrl>#a233241113</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-64.18549317200322,-31.39849620059441,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Bedoya y Urquiza</name>
+				<LookAt>
+					<longitude>-64.18607628176281</longitude>
+					<latitude>-31.39658692836452</latitude>
+					<altitude>0</altitude>
+					<heading>-33.5918527478961</heading>
+					<tilt>30.00277690496784</tilt>
+					<range>852.6334947423992</range>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</LookAt>
+				<styleUrl>#a23324113</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-64.18748810019017,-31.39757040062473,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Urquiza al 1700</name>
+				<LookAt>
+					<longitude>-64.18589870434813</longitude>
+					<latitude>-31.39340294140368</latitude>
+					<altitude>0</altitude>
+					<heading>-33.59196469615065</heading>
+					<tilt>30.00250653737161</tilt>
+					<range>675.3200054047885</range>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</LookAt>
+				<styleUrl>#a233241110</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-64.1867140423234,-31.39442147903623,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Urquiza al 1900</name>
+				<open>1</open>
+				<Camera>
+					<longitude>-64.18375991931795</longitude>
+					<latitude>-31.39538957751848</latitude>
+					<altitude>1178.912585352566</altitude>
+					<heading>-16.35470209051838</heading>
+					<tilt>2.702328973334073</tilt>
+					<roll>-12.94045299665321</roll>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</Camera>
+				<styleUrl>#a2332411100</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-64.18572323853061,-31.39223158952336,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>José Baigorri al 600</name>
+				<styleUrl>#a233241119</styleUrl>
+				<Point>
+					<coordinates>-64.18390117,-31.39261011,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Lavalleja al 2100</name>
+				<styleUrl>#a233241134</styleUrl>
+				<Point>
+					<coordinates>-64.18262667,-31.39174286,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Lavalleja al 2200</name>
+				<styleUrl>#a233241118</styleUrl>
+				<Point>
+					<coordinates>-64.18233036894657,-31.38892628106759,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral.Lavalleja al 2300</name>
+				<styleUrl>#a233241918</styleUrl>
+				<Point>
+					<coordinates>-64.18243599,-31.38776168,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Lavalleja al 2600</name>
+				<styleUrl>#a23324191</styleUrl>
+				<Point>
+					<coordinates>-64.18242647,-31.38533845,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Lavalleja al 2700</name>
+				<styleUrl>#a233241131</styleUrl>
+				<Point>
+					<coordinates>-64.18241711,-31.38296395,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Lavalleja al 3000</name>
+				<styleUrl>#a23324119</styleUrl>
+				<Point>
+					<coordinates>-64.18230307213634,-31.3799721743843,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Lavalleja al 3300</name>
+				<LookAt>
+					<longitude>-64.18129209994123</longitude>
+					<latitude>-31.37721324970137</latitude>
+					<altitude>0</altitude>
+					<heading>-21.46954310608999</heading>
+					<tilt>28.70193465145806</tilt>
+					<range>880.9432274319747</range>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</LookAt>
+				<styleUrl>#a233241115</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-64.18237895959588,-31.37740376707831,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Lavalleja al 3600</name>
+				<LookAt>
+					<longitude>-64.18089529881225</longitude>
+					<latitude>-31.37336773106489</latitude>
+					<altitude>0</altitude>
+					<heading>-21.46974970868456</heading>
+					<tilt>28.70192197428265</tilt>
+					<range>878.0042467795259</range>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</LookAt>
+				<styleUrl>#a23324111</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-64.18234474339616,-31.37407992214697,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Unquillo y Fragueiro</name>
+				<LookAt>
+					<longitude>-64.18126113087041</longitude>
+					<latitude>-31.37259337837621</latitude>
+					<altitude>0</altitude>
+					<heading>-21.46412028766535</heading>
+					<tilt>28.27324327415536</tilt>
+					<range>686.2297778475247</range>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</LookAt>
+				<styleUrl>#a233241127</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-64.18342645635472,-31.37236670235425,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 3500</name>
+				<styleUrl>#a233241915</styleUrl>
+				<Point>
+					<coordinates>-64.18381983,-31.37014108,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 3700</name>
+				<styleUrl>#a23324195</styleUrl>
+				<Point>
+					<coordinates>-64.18382152,-31.36716257,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 4000</name>
+				<styleUrl>#a233241900</styleUrl>
+				<Point>
+					<coordinates>-64.18382249,-31.36548273,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 4200</name>
+				<styleUrl>#a23324190</styleUrl>
+				<Point>
+					<coordinates>-64.1838235,-31.36378644,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Sabino Donell</name>
+				<styleUrl>#a23324194</styleUrl>
+				<Point>
+					<coordinates>-64.1841093790716,-31.36198551134912,0</coordinates>
+				</Point>
+			</Placemark>
+		</Folder>
+		<Folder>
+			<name>L30 Regreso</name>
+			<Placemark>
+				<name>L30 Barrio Geronimo Luis de Cabrera</name>
+				<open>1</open>
+				<LookAt>
+					<longitude>-64.18332023073262</longitude>
+					<latitude>-31.36214244336969</latitude>
+					<altitude>0</altitude>
+					<heading>1.646259151274411</heading>
+					<tilt>9.583770779616232</tilt>
+					<range>591.4698373340077</range>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</LookAt>
+				<styleUrl>#msn_bus3120</styleUrl>
+				<Point>
+					<coordinates>-64.18378616361467,-31.36227702914103,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>L30 Vuelta</name>
+				<open>1</open>
+				<styleUrl>#msn_ylw-pushpin470</styleUrl>
+				<LineString>
+					<tessellate>1</tessellate>
+					<coordinates>
+						-64.18418783965411,-31.3621076828648,0 -64.18475428096404,-31.36216215375313,0 -64.18470567511039,-31.36328644822836,0 -64.18469026086605,-31.36354600558892,0 -64.18398108545094,-31.36354667412738,0 -64.18391658774024,-31.3656036257645,0 -64.18391386452936,-31.36784723481987,0 -64.18391519173404,-31.3700589216475,0 -64.1838973084802,-31.371795745943,0 -64.18388589253155,-31.37263115782935,0 -64.18387245478699,-31.37715567856665,0 -64.18387532768133,-31.38029635491686,0 -64.18387182685285,-31.38446463147,0 -64.18388851154864,-31.39052959290713,0 -64.18386845584367,-31.3908181049018,0 -64.18396456620587,-31.39126575563571,0 -64.18449718872418,-31.39244578396038,0 -64.1868076328872,-31.39786942686068,0 -64.18771340107128,-31.40009851420722,0 -64.18813280378779,-31.40115864530437,0 -64.18802184509534,-31.40131884726365,0 -64.18726725039713,-31.40157083775711,0 -64.18561364692202,-31.4020598518521,0 -64.1842019363814,-31.4025039995268,0 -64.1833506479222,-31.40276291204849,0 -64.1830158428829,-31.40283965055034,0 -64.18281295069521,-31.4029455891141,0 -64.18270691332674,-31.40328418896085,0 -64.18262931810968,-31.40375390393408,0 -64.18265706899953,-31.4043341607079,0 -64.18289033842119,-31.40538247740508,0 -64.1831131585556,-31.40624298546737,0 -64.18332184775055,-31.40686982488658,0 -64.18490758318882,-31.41075178116268,0 -64.18732023981858,-31.41658515538517,0 -64.18890718353734,-31.42022952333555,0 -64.18926153970114,-31.4211005633198,0 -64.19076962661819,-31.42463696904131,0 -64.19214188754273,-31.42798611352268,0 -64.19309202133684,-31.4302535108152,0 -64.19397267912251,-31.43237686141962,0 -64.19413106533148,-31.43252292701865,0 -64.19436509838313,-31.43256623464502,0 -64.19466580376502,-31.43271380386616,0 -64.19484876505111,-31.43289369525168,0 -64.19485905339437,-31.43309981596015,0 -64.19481149212048,-31.43323926857998,0 -64.19470821920662,-31.43341471108776,0 -64.19461166420483,-31.43353530224417,0 -64.19452387158007,-31.4337013871017,0 -64.19453354975147,-31.43385938555175,0 -64.19470322512481,-31.43416964421688,0 -64.19496977135424,-31.43469710193227,0 -64.19589421512212,-31.43773297208467,0 -64.19685392143097,-31.4408572017568,0 -64.19783751344679,-31.44396254900738,0 -64.19914819171528,-31.44787157138424,0 -64.20008458875972,-31.4503598940617,0 -64.20025151862102,-31.45047267802229,0 -64.20083978158769,-31.45067139361058,0 -64.20236898336894,-31.45108518757214,0 -64.20297883506596,-31.4513238300773,0 -64.20374392310831,-31.45189275868212,0 -64.20497067841696,-31.45272984888144,0 -64.20776545816594,-31.45484795100517,0 -64.20816774907726,-31.45513858902393,0 -64.20825713332897,-31.45522821330169,0 -64.20847210776344,-31.45546716951461,0 -64.20886261909547,-31.45689831271901,0 -64.20896509092441,-31.45712047215486,0 -64.20917478798083,-31.45730755170472,0 -64.21391996076299,-31.45891902334105,0 -64.21498667652176,-31.45925027331417,0 -64.21532588391082,-31.45943700318756,0 -64.21568741624178,-31.45979318339716,0 -64.21623764926981,-31.46022675331421,0 -64.2165870012489,-31.46047641799754,0 -64.21747293208293,-31.46102436199779,0 -64.2193935285114,-31.46219930492266,0 -64.220393442489,-31.46295105176461,0 -64.22076946670138,-31.46338960123135,0 -64.22162336565599,-31.46442602913664,0 -64.22201125078514,-31.46487891508753,0 -64.2226362958345,-31.46550824701983,0 -64.22337651346569,-31.46614836672545,0 -64.22373672974881,-31.46636835674509,0 -64.22384817759061,-31.46641468848494,0 -64.22410247326921,-31.46624775807889,0 -64.22614420370638,-31.46440259050138,0 -64.22628384397451,-31.4643519178944,0 -64.22996085962644,-31.46741043614542,0 -64.23081924757399,-31.46812630526673,0 -64.23578903820075,-31.47222986144082,0 -64.23633106710855,-31.47260016447045,0 -64.23782047260423,-31.47264833400907,0 -64.23810614718469,-31.47264106101206,0 -64.23820196459268,-31.47246725963168,0 -64.23837152697457,-31.47239848544273,0 -64.23880006633065,-31.47238784891684,0 -64.23902711413217,-31.47261775397389,0 -64.23905454229819,-31.47280115163152,0 -64.23900984266696,-31.47290091056132,0 -64.23903943311409,-31.47298036729781,0 -64.24003998429816,-31.47385773460642,0 -64.24261367230035,-31.47594607454771,0 -64.24911905771467,-31.4812810845054,0 -64.24931069517905,-31.4814508408832,0 -64.2494510885543,-31.48164908334885,0 -64.24941897533778,-31.48326701890664,0 -64.24901860018764,-31.48326988435875,0 -64.24814176830989,-31.48327664749312,0 -64.24741233146625,-31.4832770034557,0 -64.24697111198273,-31.48327410157029,0 -64.24676290434007,-31.48330587635474,0 -64.24660651960296,-31.48337882770302,0 -64.2463882289784,-31.48356239050978,0 -64.24595157441195,-31.48386758880252,0 -64.24564753422577,-31.48408579829203,0 
+					</coordinates>
+				</LineString>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 4500</name>
+				<styleUrl>#a220031</styleUrl>
+				<Point>
+					<coordinates>-64.18391707387759,-31.36488408747007,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 4000</name>
+				<styleUrl>#a220049</styleUrl>
+				<Point>
+					<coordinates>-64.18396548,-31.36706187,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 3600</name>
+				<styleUrl>#a220023</styleUrl>
+				<Point>
+					<coordinates>-64.18396435,-31.37159657,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 3400</name>
+				<styleUrl>#a2200120</styleUrl>
+				<Point>
+					<coordinates>-64.18396129,-31.37426547,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 3300</name>
+				<styleUrl>#a220018</styleUrl>
+				<Point>
+					<coordinates>-64.1839202412218,-31.37591203899453,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 3200</name>
+				<styleUrl>#a220051</styleUrl>
+				<Point>
+					<coordinates>-64.18388590979772,-31.37783815859165,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 2700</name>
+				<styleUrl>#a220090</styleUrl>
+				<Point>
+					<coordinates>-64.18384774738404,-31.38318294716665,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 2600</name>
+				<styleUrl>#a220039</styleUrl>
+				<Point>
+					<coordinates>-64.18392172531465,-31.3849381325817,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 2400</name>
+				<styleUrl>#a2200211</styleUrl>
+				<Point>
+					<coordinates>-64.18387004840828,-31.38653742109354,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 2200</name>
+				<open>1</open>
+				<styleUrl>#a2200500</styleUrl>
+				<Point>
+					<coordinates>-64.18382883950233,-31.38965395532323,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 1900</name>
+				<styleUrl>#a2200410</styleUrl>
+				<Point>
+					<coordinates>-64.18478834403102,-31.39310497647618,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 1700</name>
+				<open>1</open>
+				<styleUrl>#a2200411</styleUrl>
+				<Point>
+					<coordinates>-64.1858141450694,-31.39546156548855,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 1500</name>
+				<open>1</open>
+				<styleUrl>#a2200413</styleUrl>
+				<Point>
+					<coordinates>-64.18670180110929,-31.39768648342081,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 1400</name>
+				<open>1</open>
+				<styleUrl>#a2200412</styleUrl>
+				<Point>
+					<coordinates>-64.18723327658809,-31.39885555647746,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mariano Fragueiro al 1300</name>
+				<open>1</open>
+				<styleUrl>#a220041</styleUrl>
+				<Point>
+					<coordinates>-64.18758650025315,-31.39990127061403,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Bustos al 600</name>
+				<styleUrl>#a220020</styleUrl>
+				<Point>
+					<coordinates>-64.18738028999999,-31.401535,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Gral. Bustos al 400</name>
+				<styleUrl>#a2200280</styleUrl>
+				<Point>
+					<coordinates>-64.18522922,-31.40220298,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Roque Sanez Peña  Parque Las Heras(refugio)</name>
+				<styleUrl>#a220055</styleUrl>
+				<Point>
+					<coordinates>-64.18283689,-31.40495595,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av. Gral Paz y Humberto Primo</name>
+				<styleUrl>#a220058</styleUrl>
+				<Point>
+					<coordinates>-64.18424327,-31.40910584,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>A. Gral. Paz al 500 (Correo Central)</name>
+				<styleUrl>#a220045</styleUrl>
+				<Point>
+					<coordinates>-64.18546195,-31.41198729,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Vélez Sarsfield al 100</name>
+				<styleUrl>#a2200330</styleUrl>
+				<Point>
+					<coordinates>-64.18737797,-31.41660816,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Vélez Sarsfield al 400</name>
+				<styleUrl>#a220054</styleUrl>
+				<Point>
+					<coordinates>-64.18912351,-31.42074476,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Vélez Sarsfield al 600</name>
+				<styleUrl>#a220060</styleUrl>
+				<Point>
+					<coordinates>-64.19012056,-31.42310143,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Vélez Sarsfield al 980</name>
+				<styleUrl>#a6064</styleUrl>
+				<Point>
+					<coordinates>-64.1924447,-31.42860705,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Vélez Sarsfield al 1170</name>
+				<styleUrl>#a60210</styleUrl>
+				<Point>
+					<coordinates>-64.19397384097516,-31.43219627502005,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Vélez Sarsfield al 1460</name>
+				<styleUrl>#a60610</styleUrl>
+				<Point>
+					<coordinates>-64.19565708,-31.43670889,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Vélez Sarsfield al 1900</name>
+				<styleUrl>#a6063</styleUrl>
+				<Point>
+					<coordinates>-64.19650176,-31.43936201,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Vélez Sarsfield al 2350</name>
+				<styleUrl>#a6030</styleUrl>
+				<Point>
+					<coordinates>-64.19891699,-31.44688024,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Vélez Sarsfield al 3100</name>
+				<styleUrl>#a6051</styleUrl>
+				<Point>
+					<coordinates>-64.19950436000001,-31.44855866,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Armada Argentina al 46</name>
+				<styleUrl>#a6050</styleUrl>
+				<Point>
+					<coordinates>-64.20082489000001,-31.45051933,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Armada Argentina al 180</name>
+				<styleUrl>#a60490</styleUrl>
+				<Point>
+					<coordinates>-64.20300994999999,-31.45124427,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Armada Argentina al 400</name>
+				<styleUrl>#a60130</styleUrl>
+				<Point>
+					<coordinates>-64.20758377,-31.45452276,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av. Armada  Argentina al 500</name>
+				<styleUrl>#a60360</styleUrl>
+				<Point>
+					<coordinates>-64.20882164,-31.45636754,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Armada Argentina al 700</name>
+				<styleUrl>#a60730</styleUrl>
+				<Point>
+					<coordinates>-64.2116104,-31.45802425,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Armada Argentina al 900</name>
+				<styleUrl>#a6037</styleUrl>
+				<Point>
+					<coordinates>-64.21450240999999,-31.45902161,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Armada Argentina al 1100</name>
+				<styleUrl>#a6069</styleUrl>
+				<Point>
+					<coordinates>-64.2183218,-31.46145486,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Armada Argentina al 1600</name>
+				<open>1</open>
+				<styleUrl>#a60690</styleUrl>
+				<Point>
+					<coordinates>-64.22240228949889,-31.46505118952537,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Lago Argentino al 1800</name>
+				<styleUrl>#a2013800</styleUrl>
+				<Point>
+					<coordinates>-64.22434092,-31.46597925,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Lago Argentino al  2100</name>
+				<styleUrl>#a2013280</styleUrl>
+				<Point>
+					<coordinates>-64.22602098,-31.46450091,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Casado al 1700</name>
+				<styleUrl>#a201338</styleUrl>
+				<Point>
+					<coordinates>-64.22825668,-31.46597558,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Casado al 1800</name>
+				<styleUrl>#a201323</styleUrl>
+				<Point>
+					<coordinates>-64.22945831,-31.46695999,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Casado al 2000</name>
+				<styleUrl>#a2013100</styleUrl>
+				<Point>
+					<coordinates>-64.2313733,-31.46852881,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Casado al 2200</name>
+				<styleUrl>#a2013300</styleUrl>
+				<Point>
+					<coordinates>-64.23354222,-31.47030171,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av. Renault al 2200</name>
+				<styleUrl>#a2013320</styleUrl>
+				<Point>
+					<coordinates>-64.23719982,-31.47262957,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Curazao al 2500</name>
+				<styleUrl>#a2013150</styleUrl>
+				<Point>
+					<coordinates>-64.2416774,-31.47511695,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Curazao al 2700</name>
+				<styleUrl>#a20133100</styleUrl>
+				<Point>
+					<coordinates>-64.24416137,-31.47715181,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Curazao al 3000</name>
+				<styleUrl>#a2013130</styleUrl>
+				<Point>
+					<coordinates>-64.2463984,-31.47898439,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Av Curazao al 3400</name>
+				<open>1</open>
+				<styleUrl>#a2013111</styleUrl>
+				<Point>
+					<coordinates>-64.24929307248449,-31.48141227804069,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Masaya y Guanasacate</name>
+				<styleUrl>#a2161840</styleUrl>
+				<Point>
+					<coordinates>-64.24932262999999,-31.4831988,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Guanasacate 2900</name>
+				<LookAt>
+					<longitude>-64.24766723272722</longitude>
+					<latitude>-31.48331252550031</latitude>
+					<altitude>0</altitude>
+					<heading>-150.0935498304606</heading>
+					<tilt>30.02577360051328</tilt>
+					<range>366.1462276822814</range>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</LookAt>
+				<styleUrl>#a2161820</styleUrl>
+				<Point>
+					<coordinates>-64.24804863999999,-31.48318799000001,0</coordinates>
+				</Point>
+			</Placemark>
+		</Folder>
+	</Folder>
+</Document>
+</kml>
