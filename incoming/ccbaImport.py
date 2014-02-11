@@ -23,7 +23,7 @@ def getStopsFromKml():
 	print("Total unique stops in kml: "+ str(len(stops.items())))
 	return stops
 
-if __name__ == '__main__':
+def matchTableToKml():
 	stopsKml = getStopsFromKml()
 
 	uniqueInCsv = {}
@@ -42,7 +42,6 @@ if __name__ == '__main__':
 			coordinates = stopsKml[stop_id]
 			stop['stop_lat'] = coordinates['lat']
 			stop['stop_lon'] = coordinates['lon']
-			print stop
 			coordsFound.append(stop)
 		else:
 			#print("not found")
@@ -64,3 +63,31 @@ if __name__ == '__main__':
 		stopsCsv.writeheader()
 		for stop in coordsFound:
 			stopsCsv.writerow(stop)
+
+def buildSequenceNumbers():
+	rows = []
+	with open('ccba/trip_stops.csv', 'r') as csvfile:
+		reader = csv.DictReader(csvfile)
+		fieldnames = reader.fieldnames
+		i = 1
+		prev = None
+		for r in reader:
+			rows.append(r)
+			if prev:
+				if prev['trip_id'] == r['trip_id']:
+					i += 1
+				else:
+					i = 1
+			r['stop_sequence'] = i
+			prev = r
+
+	with open('ccba/stop_times.csv', 'wb') as csvfile:
+		fieldnames.append('stop_sequence')
+		writer = csv.DictWriter(csvfile, fieldnames)
+		writer.writeheader()
+		writer.writerows(rows)
+
+
+if __name__ == '__main__':
+	matchTableToKml()
+	buildSequenceNumbers()
