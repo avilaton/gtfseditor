@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import logging
+lgr = logging.getLogger(__name__)
+lgr.log("hello")
 import database
 import csv
 import codecs
-
 class Stop(object):
     """docstring for Stop"""
     def __init__(self, arg):
