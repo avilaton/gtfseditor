@@ -116,7 +116,12 @@ class toolbox(object):
       stopCodes.append([i,row['stop_id'],row['is_timepoint']])
 
     for i,stop_id,is_timepoint in stopCodes:
-      d = self.db.select('stops',stop_id=stop_id)[0]
+      try:
+        d = self.db.select('stops',stop_id=stop_id)[0]
+      except Exception, e:
+        print("unable to find stop: " + stop_id)
+        # raise e
+        continue
       l = self.db.select('stop_seq',stop_id=stop_id)
       lineas = [t['trip_id'] for t in l]
       f = geojson.geoJsonFeature(stop_id,

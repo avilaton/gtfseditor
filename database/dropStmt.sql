@@ -1,0 +1,13 @@
+DROP TABLE agency;
+DROP TABLE calendar;
+DROP TABLE calendar_dates;
+DROP TABLE feed_info;
+DROP TABLE frequencies;
+DROP TABLE routes;
+DROP TABLE servicios;
+DROP TABLE shapes;
+DROP TABLE stop_seq;
+DROP TABLE stops;
+DROP TABLE stops_removed;
+DROP TABLE timepoints;
+DROP TABLE trips;

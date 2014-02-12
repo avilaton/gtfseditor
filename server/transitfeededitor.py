@@ -30,7 +30,7 @@ from cork import Cork
 # )
 
 # db = database.dbInterface('database/dbRecorridos.sqlite')
-db = database.dbInterface('database/cba-1.0.1.sqlite')
+db = database.dbInterface('database/cba-1.0.2.sqlite')
 
 tb = gtfsdb.toolbox(db)
 
