@@ -38,8 +38,8 @@ class FeedFactory(object):
         if self.mode is 'frequency':
             self.loadTrips()
             self.loadStops()
-            self.loadStopTimes(interpolate=True)
-            self.loadFrequencies()
+            # self.loadStopTimes(interpolate=True)
+            # self.loadFrequencies()
         elif self.mode is 'initTimes':
             self.loadTripsInit()
             self.loadUsedStops()
@@ -302,7 +302,8 @@ class FeedFactory(object):
             WHERE trip_id='{trip_id}' ORDER BY key""".format(trip_id=trip_id))
         return [k[1] for k in self.db.cursor.fetchall()]
 
-
+######################################33
+# Deprecated
 def addAgencies(db,schedule,debug=False):
     for r in db.select('agency'):
         agency = schedule.AddAgency(r['agency_name'],r['agency_url'],r['agency_timezone'],agency_id=r['agency_id'])
@@ -577,6 +578,8 @@ def addFrequencies(db,schedule,debug=False):
                 'headway_secs':headway_secs})
             f.AddToSchedule(schedule)
 
+
+
 def addFeedInfo(schedule):
     feedInfo = transitfeed.FeedInfo()
     feedInfo.feed_publisher_url = 'http://www.cordoba.gov.ar/'
@@ -590,12 +593,13 @@ def updateDistTraveled(db):
     db.query("""SELECT DISTINCT trip_id FROM stop_seq""")
     for row in db.cursor.fetchall():
         trip_id = row["trip_id"]
+        print "updating traveled distance for trip:", trip_id
         tripTb = gtfstools.Trip(db, trip_id)
         tripTb.computeAllSnaps()
         for s in tripTb.snaps:
             stop_id = s[0]['stop_id']
             d = "{0:.3f}".format(s[1]['traveled'])
-            print stop_id, d
+            # print stop_id, d
             q = """UPDATE stop_seq SET shape_dist_traveled='{d}' 
                 WHERE trip_id='{trip_id}' 
                 AND stop_id='{stop_id}'""".format(d=d, trip_id=trip_id, stop_id=stop_id)
@@ -634,7 +638,10 @@ def constructStopNames(db):
                 else:
                     name = stop['stop_calle']
         else:
-            name = stop['stop_id']
+            if type(stop['stop_id']) is int:
+                name = str(stop['stop_id'])
+            name = str(stop['stop_id'])
+            name = name.zfill(4)
         # print name
         db.query("""UPDATE stops SET stop_name='{name}' 
             WHERE stop_id='{stop_id}' """.format(name=name.encode('utf-8'), stop_id=stop['stop_id']))
@@ -671,7 +678,7 @@ def attachFeedInfo(filename):
 
     
     #extract for debuging
-
+def extract(filename):
     with zipfile.ZipFile(filename, "r") as z:
         if not os.path.exists('extracted/'):
             os.makedirs('extracted/')
@@ -687,19 +694,20 @@ def validateAndSaveSchedule(schedule):
     schedule.WriteGoogleTransitFeed('compiled/google_transit.zip')
 
     attachFeedInfo('compiled/google_transit.zip')
+    extract('compiled/google_transit.zip')
 
 def main():
     DEBUG = False
 
-    db = o.dbInterface('database/dbRecorridos.sqlite')
+    db = o.dbInterface('database/cba-1.0.3.sqlite')
 
-    #feedpdateDistTraveled(db)
+    # updateDistTraveled(db)
 
-    #constructStopNames(db)
+    constructStopNames(db)
 
     feed = FeedFactory(db, mode='frequency', debug=DEBUG)
     feed.build()
-    feed.validate()
+    # feed.validate()
     feed.save('compiled/google_transit.zip')
 
     attachFeedInfo('compiled/google_transit.zip')
