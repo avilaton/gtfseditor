@@ -30,7 +30,7 @@ from cork import Cork
 # )
 
 # db = database.dbInterface('database/dbRecorridos.sqlite')
-db = database.dbInterface('database/cba-1.0.2.sqlite')
+db = database.dbInterface('database/cba-1.0.3.sqlite')
 
 tb = gtfsdb.toolbox(db)
 
@@ -142,14 +142,23 @@ def set_timepoint(trip_id,stop_id):
   is_timepoint = request.params.is_timepoint
   return tb.set_timepoint(trip_id, stop_id, is_timepoint)
 
-@get('/api/commands/<command>')
-def dataSetCommands(command):
-  trips = tb.allTrips()
+@get('/api/commands/<command>/<param>')
+def dataSetCommands(command, param):
   results = []
-  for trip_id in trips:
-    results.append(tb.sortTripStops(trip_id))
-    print("sorting trip: "+trip_id)
-  return {'results': results, 'trips': trips}
+  print param
+  if command == 'sort':
+    if param != '*':
+      print("sorting trip: "+param)
+      results.append(tb.sortTripStops(param))
+      return {'results': results}
+    else:
+      trips = tb.allTrips()
+      for trip_id in trips:
+        print("sorting trip: "+trip_id)
+        results.append(tb.sortTripStops(trip_id))
+      return {'results': results, 'trips': trips}
+  elif command == offset:
+    pass
 
 ###############################
 # frontend routes

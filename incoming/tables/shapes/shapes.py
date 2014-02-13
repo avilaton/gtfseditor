@@ -53,7 +53,6 @@ class kmz(object):
         coords = []
         coords.append(coordDict[1])
         for p in coordDict[1:]:
-            print p
             if p != coords[-1]:
                 coords.append(p)
             else:
@@ -72,10 +71,12 @@ def main():
         writer = csv.DictWriter(csvfile, fieldnames)
         writer.writeheader()
         for filename in files:
-            shape_id = filename[0:-4].replace(" ",".").lower()
+
+            shape_id = filename[0:-4].replace(" IDA", ".ida").replace(" REG", ".reg")
+            shape_id = shape_id.replace(" ","").lower()
 
             points = kmz(filename).parse()
-            print(str(len(points))+"\t found parsing: \t"+filename)
+            print(str(len(points))+"\t found parsing: \t"+filename+"\t set shape id to:\t"+shape_id)
             for i, point in enumerate(points):
                 writer.writerow({
                     'shape_id':shape_id, 

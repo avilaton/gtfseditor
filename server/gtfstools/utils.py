@@ -13,8 +13,8 @@ def headingC(n1,n2):
   """Returns a complex number representing a heading"""
   p1 = (float(n1['lat'])+float(n1['lon'])*1j)
   p2 = (float(n2['lat'])+float(n2['lon'])*1j)
-  
-  assert p1 <> p2
+
+  assert p1 != p2, "points should be different"
   u = (p2-p1)/abs(p2-p1)
   #n = {'lat':u.real,'lon':u.imag}
   return u

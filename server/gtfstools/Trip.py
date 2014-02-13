@@ -38,11 +38,14 @@ class Trip(object):
     self.db.query("""SELECT * FROM stop_seq WHERE trip_id="{0}" 
               ORDER BY stop_sequence""".format(self.trip_id))
     for stop in self.db.cursor.fetchall():
-      stop = self.db.select('stops',stop_id=stop['stop_id'])[0]
-      stopDict = {'stop_id':stop['stop_id'],
-        'lat':stop['stop_lat'],
-        'lon':stop['stop_lon']}
-      self.stops.append(stopDict)
+      try:
+        stop = self.db.select('stops',stop_id=stop['stop_id'])[0]
+        stopDict = {'stop_id':stop['stop_id'],
+          'lat':stop['stop_lat'],
+          'lon':stop['stop_lon']}
+        self.stops.append(stopDict)
+      except Exception, e:
+        print("unable to find stop: "+stop['stop_id'])
 
   def saveShapeToDb(self):
     self.db.remove('shapes',shape_id=self.shape_id)
