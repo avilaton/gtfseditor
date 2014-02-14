@@ -427,7 +427,7 @@ def extract(filename):
 def main():
     DEBUG = False
 
-    db = o.dbInterface('database/cba-1.0.3.sqlite')
+    db = o.dbInterface('database/cba-1.0.4.sqlite')
 
     # updateDistTraveled(db)
     constructStopNames(db)
