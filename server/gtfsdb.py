@@ -25,7 +25,6 @@ class toolbox(object):
   def __init__(self, db):
     self.db = db
     self.Stops = Stops(db)
-    print len(self.Stops.all())
 
   ################
   # stops
@@ -155,28 +154,34 @@ class toolbox(object):
       features.append(f)
     return geojson.geoJsonFeatCollection(features)
 
-  def bbox(self, bbox, filterQuery):
+  def bbox(self, bbox, filterQ):
     w,s,e,n = map(float,bbox.split(','))
-    if filterQuery:
-      q = """SELECT * 
+    q = ["""SELECT * 
         FROM stops s INNER JOIN stop_seq sq ON s.stop_id=sq.stop_id
         WHERE
           (stop_lat BETWEEN {s} AND {n})
           AND 
-          (stop_lon BETWEEN {w} AND {e})
-          AND stop_calle LIKE '%{f}%'
-        LIMIT 300
-        """.format(s=s,n=n,w=w,e=e, f=filterQuery)
+          (stop_lon BETWEEN {w} AND {e}) """]
+
+    if filterQ:
+      if 'id:' in filterQ:
+        stop_id = filterQ.split(':')[1]
+        q.append("""AND s.stop_id='{f}'""")
+        q.append("LIMIT 300")
+        query = ''.join(q).format(s=s,n=n,w=w,e=e, f=stop_id)
+      elif 'calle:' in filterQ:
+        stop_calle = filterQ.split(':')[1]
+        q.append("""AND s.stop_calle LIKE '%{f}%'""")
+        q.append("LIMIT 300")
+        query = ''.join(q).format(s=s,n=n,w=w,e=e, f=stop_calle)
+      else:
+        q.append("""AND s.stop_calle LIKE '%{f}%'""")
+        q.append("LIMIT 300")
+        query = ''.join(q).format(s=s,n=n,w=w,e=e, f=filterQ)
     else:
-      q = """SELECT * 
-        FROM stops s INNER JOIN stop_seq sq ON s.stop_id=sq.stop_id
-        WHERE
-          (stop_lat BETWEEN {s} AND {n})
-          AND 
-          (stop_lon BETWEEN {w} AND {e})
-        LIMIT 300
-        """.format(s=s,n=n,w=w,e=e)
-    self.db.query(q)
+      q.append("LIMIT 300")
+      query = ''.join(q).format(s=s,n=n,w=w,e=e)
+    self.db.query(query)
 
     d = {}
     for r in self.db.cursor.fetchall():
