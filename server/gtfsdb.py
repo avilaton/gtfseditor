@@ -69,15 +69,18 @@ class toolbox(object):
     return stops
 
   def updateStop(self, stop_id, data):
-    """ 
-    Stub - should carry out a full update, only updates stop_calle
-    """
-    stop_calle = data['properties']['stop_calle'].encode('utf-8')
-    result = self.db.query("""UPDATE stops SET stop_calle='{stop_calle}' 
+    """ Stub - should carry out a full update, only updates stop_calle"""
+    p = {'stop_id': stop_id}
+    p['stop_calle'] = data['properties']['stop_calle'].encode('utf-8')
+    p['stop_lon'] = data['geometry']['coordinates'][0]
+    p['stop_lat'] = data['geometry']['coordinates'][1]
+    result = self.db.query("""UPDATE stops 
+      SET stop_calle='{stop_calle}', 
+        stop_lat='{stop_lat}', stop_lon='{stop_lon}'
       WHERE stop_id='{stop_id}'"""
-      .format(stop_id=stop_id,stop_calle=stop_calle))
+      .format(**p))
     self.db.connection.commit()
-    return {'success': True, 'result': result}
+    return {'success': True, 'result': p}
 
   def deleteStop(self, stop_id):
     """Deletes a stop by stop_id"""

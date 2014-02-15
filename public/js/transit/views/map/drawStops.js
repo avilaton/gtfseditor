@@ -31,6 +31,8 @@ define([
                 self.handleStopSelect);
             this.layer.events.register('featureunselected', self,
                 self.handleStopSelect);
+            this.layer.events.register('featuremodified', self,
+                self.onFeatureModified);
 
             // this.layer.events.register('featureadded', self.layer, function (event) {    
             //     this.features.forEach(function (item) {
@@ -39,6 +41,15 @@ define([
             //         }
             //     })
             // });
+        },
+
+        onFeatureModified: function (event) {
+            var feature = event.feature;
+            var geoJSON = this.format.write(feature);
+            var featureObject = JSON.parse(geoJSON);
+            console.log("afterfeaturemodified", featureObject);
+            this.model.feature = feature;
+            this.model.set(featureObject);
         },
 
         handleStopSelect: function (event) {
@@ -50,6 +61,7 @@ define([
                 this.model.feature = feature;
                 this.model.set(featureObject);
             } else if (event.type == "featureunselected") {
+                console.log
                 this.model.clear();
             };
         },
