@@ -48,17 +48,17 @@ CREATE TABLE IF NOT EXISTS routes (
 	route_text_color TEXT,
 	active BOOL NOT NULL  DEFAULT 'true'
 	);
-CREATE TABLE IF NOT EXISTS servicios (
-	route_id TEXT, 
-	dia TEXT, 
-	desde TEXT, 
-	hasta TEXT, 
-	frecuencia INTEGER, 
+CREATE TABLE IF NOT EXISTS services (
+	route_id TEXT,
+	service_id TEXT, 
+	start_time TEXT,
+	end_time TEXT,
+	headway_secs INTEGER,
 	PRIMARY KEY (
 		route_id, 
-		dia, 
-		desde, 
-		hasta
+		service_id, 
+		start_time, 
+		end_time
 		)
 	);
 CREATE TABLE IF NOT EXISTS shapes (

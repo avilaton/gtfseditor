@@ -40,7 +40,7 @@ class FeedFactory(object):
             self.loadStops()
             # self.loadUsedStops()
             self.loadStopTimes(interpolate=True)
-            # self.loadFrequencies()
+            self.loadFrequencies()
         elif self.mode is 'initTimes':
             self.loadTripsInit()
             self.loadUsedStops()
@@ -57,6 +57,7 @@ class FeedFactory(object):
         self.schedule.Validate()
 
     def loadAgencies(self):
+        print("Loading Agencies")
         for r in self.db.select('agency'):
             agency = self.schedule.AddAgency(r['agency_name'],r['agency_url'], 
                 r['agency_timezone'],agency_id=r['agency_id'])
@@ -65,6 +66,7 @@ class FeedFactory(object):
         self.schedule.SetDefaultAgency(self.schedule.GetAgencyList()[0])
 
     def loadCalendar(self):   
+        print("Loading Calendar")
         for s in self.db.select('calendar'):
             service = transitfeed.ServicePeriod()
             service.SetServiceId(s['service_id'])
@@ -80,6 +82,7 @@ class FeedFactory(object):
             self.schedule.AddServicePeriodObject(service)
 
     def loadCalendarDates(self):
+        print("Loading Calendar Dates")
         """Inserts calendar date exceptions from calendar_dates table"""
         for feriado in self.db.select("calendar_dates"):
             service_period = self.schedule.GetServicePeriod(feriado['service_id'])
@@ -89,13 +92,14 @@ class FeedFactory(object):
                 service_period.SetDateHasService(feriado['date'], has_service=False)
 
     def loadRoutes(self):
+        count = 0
         for route in self.db.select('routes'):
             route_id = route['route_id']
             if route_id not in ['C0'] and self.debug:
                 continue
             if 'active' in dict(route) and not bool(route['active']):
                 continue
-            print('adding route: ' + route_id)
+            # print('adding route: ' + route_id)
             r = self.schedule.AddRoute(short_name=route['route_short_name'], 
                 #long_name=route['route_long_name'], 
                 long_name='', 
@@ -104,21 +108,25 @@ class FeedFactory(object):
             r.agency_id = route['agency_id']
             r.route_color = route['route_color']
             r.route_text_color = route['route_text_color']
+            count += 1
+        print("Loaded "+ str(count) + "routes")
 
     def loadTrips(self):
+        count = 0
         for r in self.schedule.GetRouteList():
             route_id = r['route_id']
             for t in self.db.select('trips', route_id=route_id):
-                if t['trip_id'] != 'C0.ida' and self.debug:
-                    continue
                 for service in self.schedule.GetServicePeriodList():
                     trip_id = t['trip_id'] + '.' + service.service_id
                     trip = r.AddTrip(trip_id = trip_id,headsign=t['trip_headsign'])
                     trip.service_id = service.service_id
                     trip.shape_id = t['trip_id']
                     trip.direction_id = t['direction_id']
+                    count += 1
+        print("Loaded " + str(count) + " Trips")
 
     def loadStops(self):
+        print("Loading Stops")
         # q = """SELECT DISTINCT stop_id FROM stop_seq 
         #   WHERE trip_id="{0}" OR trip_id="{1}" """.format('C0.ida','C0.vuelta')
         if self.debug:
@@ -128,7 +136,7 @@ class FeedFactory(object):
         else:
             q = """SELECT * FROM stops WHERE stop_id IN 
                 (SELECT DISTINCT stop_id FROM stop_seq)"""
-        
+
         self.db.query(q)
 
         for s in self.db.cursor.fetchall():
@@ -139,6 +147,7 @@ class FeedFactory(object):
             stop.stop_code = s['stop_id']
 
     def loadShapes(self):
+        print("Loading Shapes")
         self.db.query("""SELECT DISTINCT shape_id FROM shapes""")
 
         usedShapes = set([trip['shape_id'] for trip in self.schedule.GetTripList()])
@@ -153,15 +162,15 @@ class FeedFactory(object):
 
     def loadStopTimes(self, interpolate=True):
         """Adding Stop Times"""
+        print("Loading Stop Times")
         #interpolate = False
         for trip in self.schedule.GetTripList():
             trip_id = trip['trip_id'][:-2]
-            print(trip_id)
             trip_stops = self.getTripStops(trip_id)
             l = len(trip_stops)
 
             total_distance = float(trip_stops[-1]["shape_dist_traveled"])
-            print(trip_id + " has " + str(total_distance) + " km")
+            # print(trip_id + " has " + str(total_distance) + " km")
 
             # old total time computation
             # trip_timepoints = self.gettimepoints(trip_id)
@@ -194,19 +203,19 @@ class FeedFactory(object):
                         trip.AddStopTime(stop)
 
     def loadFrequencies(self):
-        #f = transitfeed.Frequency({'trip_id':'C0.ida.H__','start_time':'00:00:00', 'end_time':'00:00:30', 'headway_secs':'345'})
+        """ A Frequency object is created using
+            f = transitfeed.Frequency({'trip_id':'C0.ida.H__', 
+                'start_time':'00:00:00', 
+                'end_time':'00:00:30', 
+                'headway_secs':'345'})
+        """
+        print("Loading Frecuencies")
         for t in self.schedule.GetTripList():
             trip_id = t.trip_id
-            route_id = t.route_id
-            # route_id = trip_id.split('.')[0]
-            # service = trip_id.split('.')[-1]
-            service_id = t.service_id
-            diaLookup = {'H':'lav','S':'sabado','D':'domingo'}
-            dia = diaLookup[service_id]
-            for frec in self.db.select('servicios',route_id=route_id,dia=dia):
-                start_time, end_time = fixTimes(frec['desde'],frec['hasta'])
-                headway_secs = frec['frecuencia']*60
-                #print start_time, end_time, headway_secs
+            for row in self.db.select('services', route_id=t.route_id, 
+                service_id=t.service_id):
+                start_time, end_time = fixTimes(row['start_time'],row['end_time'])
+                headway_secs = row['headway_secs']
                 f = transitfeed.Frequency({'trip_id':trip_id, 
                     'start_time':start_time, 
                     'end_time':end_time, 
@@ -333,8 +342,8 @@ def hhmmss2sec(hhmmss):
     return h*60*60+m*60+s
 
 def fixTimes(t0,t1):
-    t_0 = datetime.datetime.strptime(t0,'%H:%M')
-    t_1 = datetime.datetime.strptime(t1,'%H:%M')
+    t_0 = datetime.datetime.strptime(t0,'%H:%M:%S')
+    t_1 = datetime.datetime.strptime(t1,'%H:%M:%S')
     if (t_1-t_0).total_seconds() > 0:
         end_time = t_1.strftime('%H:%M:%S')
     elif (t_1-t_0).total_seconds() < 0:
@@ -424,13 +433,27 @@ def extract(filename):
             with file('extracted/'+filename, "w") as outfile:
                 outfile.write(z.read(filename))
 
-def main():
-    DEBUG = False
+def fakeFrequencyTable(db):
+    db.query("SELECT trip_id FROM trips")
+    for r in db.cursor.fetchall():
+        trip_id = r['trip_id']
+        db.query("""DELETE * FROM frequencies""")
+        db.insert('frequencies', 
+            trip_id=trip_id, 
+            start_time="08:00:00", 
+            end_time="23:00:00",
+            headway_secs=900,
+            exact_times=0)
 
-    db = o.dbInterface('database/cba-1.0.4.sqlite')
-
+def precompilationTasks(db):
+    """ These tasks build computed data into the DB from the 
+        existing rows """
     # updateDistTraveled(db)
-    constructStopNames(db)
+    # constructStopNames(db)
+    fakeFrequencyTable(db)
+
+def compilationTasks(db):
+    DEBUG = False
 
     feed = FeedFactory(db, mode='frequency', debug=DEBUG)
     feed.build()
@@ -439,6 +462,12 @@ def main():
     feed.validate()
     extract('compiled/google_transit.zip')
 
+def main():
+
+    db = o.dbInterface('database/cba-1.0.4.sqlite')
+
+    # precompilationTasks(db)
+    compilationTasks(db)
 
     db.close()
 
