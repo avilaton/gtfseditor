@@ -6,11 +6,12 @@ from __future__ import division
 import os
 import zipfile
 import codecs
-
 import transitfeed
 import datetime
+
 import ormgeneric.ormgeneric as o
-import gtfstools
+import gtfsdb
+import util
 
 class FeedFactory(object):
     """Turns dbRecorridos into a proper GTFS bundle"""
@@ -174,12 +175,12 @@ class FeedFactory(object):
 
             # old total time computation
             # trip_timepoints = self.gettimepoints(trip_id)
-            # total_time = hhmmss2sec(trip_timepoints[-1])
+            # total_time = util.hhmmss2sec(trip_timepoints[-1])
             
             # new total time computation
             speed = self.speed # km/h
             total_time = 3600*total_distance/speed # seconds
-            # print "total time for", trip_id, " is: ", sec2hhmmss(total_time), "distance: ", total_distance
+            # print "total time for", trip_id, " is: ", util.sec2hhmmss(total_time), "distance: ", total_distance
 
             for i,s in enumerate(trip_stops):
                 stop_id = s['stop_id']
@@ -188,8 +189,8 @@ class FeedFactory(object):
                 # stop_seq = s['stop_sequence']
                 if interpolate:
                     t = int(total_time*traveled/(total_distance))
-                    # print t, sec2hhmmss(t)
-                    trip.AddStopTime(stop,stop_time=sec2hhmmss(t))
+                    # print t, util.sec2hhmmss(t)
+                    trip.AddStopTime(stop,stop_time=util.sec2hhmmss(t))
                 else:
                     if i == 0:
                         trip.AddStopTime(stop,stop_time='00:00:00')
@@ -214,7 +215,7 @@ class FeedFactory(object):
             trip_id = t.trip_id
             for row in self.db.select('services', route_id=t.route_id, 
                 service_id=t.service_id):
-                start_time, end_time = fixTimes(row['start_time'],row['end_time'])
+                start_time, end_time = util.fixTimes(row['start_time'],row['end_time'])
                 headway_secs = row['headway_secs']
                 f = transitfeed.Frequency({'trip_id':trip_id, 
                     'start_time':start_time, 
@@ -268,7 +269,7 @@ class FeedFactory(object):
         init_times = []
         for r in self.db.cursor.fetchall():
             if r[0]:
-                init_times.append(hhmmss2sec(r[0]))
+                init_times.append(util.hhmmss2sec(r[0]))
         return init_times
 
     def getTripStopSeq(self, trip_id):
@@ -292,16 +293,16 @@ class FeedFactory(object):
             for s in trip_stops:
                 stop_id = s['stop_id']
                 stop = self.schedule.GetStop(stop_id)
-                t = hhmmss2sec(s['time']) + int(init_time)
-                stop_time = sec2hhmmss(t)
+                t = util.hhmmss2sec(s['time']) + int(init_time)
+                stop_time = util.sec2hhmmss(t)
                 # print(stop_id + ' at time ' + stop_time)
                 if not previousTime:
                     trip.AddStopTime(stop,stop_time=stop_time)
-                elif previousTime and (previousTime < hhmmss2sec(stop_time)):
+                elif previousTime and (previousTime < util.hhmmss2sec(stop_time)):
                     trip.AddStopTime(stop,stop_time=stop_time)
                 else:
                     trip.AddStopTime(stop)
-                previousTime = hhmmss2sec(stop_time)
+                previousTime = util.hhmmss2sec(stop_time)
             previousTime = None
 
     def gettimepoints(self, trip_id):
@@ -319,38 +320,6 @@ class FeedFactory(object):
         self.db.query(q)
         trip_stops = self.db.cursor.fetchall()
         return trip_stops
-
-######################################33
-# Time Utils         
-def sec2hhmmss(sec):
-    seconds = sec%60
-    
-    sec = sec-seconds
-    min = int(sec/60)
-
-    minutes = min%60    
-    h = min-minutes
-    hours = int(h/60)
-    t = map(lambda d:"{0:02d}".format(d), [hours, minutes, seconds])
-    formatedTime = ':'.join(t)
-
-    return formatedTime
-
-def hhmmss2sec(hhmmss):
-    # hms = datetime.datetime.strptime(hhmmss,'%H:%M:%S')
-    h,m,s = map(lambda x:int(x), hhmmss.split(':'))
-    return h*60*60+m*60+s
-
-def fixTimes(t0,t1):
-    t_0 = datetime.datetime.strptime(t0,'%H:%M:%S')
-    t_1 = datetime.datetime.strptime(t1,'%H:%M:%S')
-    if (t_1-t_0).total_seconds() > 0:
-        end_time = t_1.strftime('%H:%M:%S')
-    elif (t_1-t_0).total_seconds() < 0:
-        str(t_1.hour+24)
-        end_time = str(t_1.hour+24) + t_1.strftime(':%M:%S')
-    start_time = t_0.strftime('%H:%M:%S')
-    return start_time,end_time
 
 ######################################33
 # Feed info utils
@@ -381,49 +350,6 @@ def attachFeedInfo(filename):
     with zipfile.ZipFile(filename, "a") as z:
         z.write('database/feed_info.txt', 'feed_info.txt')
 
-def constructStopNames(db):
-    db.query("""SELECT * FROM stops WHERE stop_id IN 
-        (SELECT DISTINCT stop_id FROM stop_seq)""")
-
-    for stop in db.cursor.fetchall():
-        lat = stop['stop_lat']
-        lng = stop['stop_lon']
-        if stop['stop_calle']:
-            if stop['stop_numero']:
-                name = stop['stop_calle'] + ' ' + str(stop['stop_numero'])
-            else:
-                if stop['stop_entre']:
-                    if ' y ' in stop['stop_entre']:
-                        name = stop['stop_calle'] + u' entre ' + stop['stop_entre']
-                    else:
-                        name = stop['stop_calle'] + u', ' + stop['stop_entre']
-                else:
-                    name = stop['stop_calle']
-        else:
-            if type(stop['stop_id']) is int:
-                name = str(stop['stop_id'])
-            name = str(stop['stop_id'])
-            name = name.zfill(4)
-        # print name
-        db.query("""UPDATE stops SET stop_name='{name}' 
-            WHERE stop_id='{stop_id}' """.format(name=name.encode('utf-8'), stop_id=stop['stop_id']))
-
-def updateDistTraveled(db):
-    db.query("""SELECT DISTINCT trip_id FROM stop_seq""")
-    for row in db.cursor.fetchall():
-        trip_id = row["trip_id"]
-        print "updating traveled distance for trip:", trip_id
-        tripTb = gtfstools.Trip(db, trip_id)
-        tripTb.computeAllSnaps()
-        for s in tripTb.snaps:
-            stop_id = s[0]['stop_id']
-            d = "{0:.3f}".format(s[1]['traveled'])
-            # print stop_id, d
-            q = """UPDATE stop_seq SET shape_dist_traveled='{d}' 
-                WHERE trip_id='{trip_id}' 
-                AND stop_id='{stop_id}'""".format(d=d, trip_id=trip_id, stop_id=stop_id)
-            db.query(q)
-
 def extract(filename):
     """extract for debuging"""
     with zipfile.ZipFile(filename, "r") as z:
@@ -433,24 +359,13 @@ def extract(filename):
             with file('extracted/'+filename, "w") as outfile:
                 outfile.write(z.read(filename))
 
-def fakeFrequencyTable(db):
-    db.query("SELECT trip_id FROM trips")
-    for r in db.cursor.fetchall():
-        trip_id = r['trip_id']
-        db.query("""DELETE * FROM frequencies""")
-        db.insert('frequencies', 
-            trip_id=trip_id, 
-            start_time="08:00:00", 
-            end_time="23:00:00",
-            headway_secs=900,
-            exact_times=0)
-
 def precompilationTasks(db):
     """ These tasks build computed data into the DB from the 
         existing rows """
-    # updateDistTraveled(db)
-    # constructStopNames(db)
-    fakeFrequencyTable(db)
+
+    toolbox = gtfsdb.toolbox(db)
+    toolbox.constructStopNames()
+    toolbox.updateDistTraveled()
 
 def compilationTasks(db):
     DEBUG = False

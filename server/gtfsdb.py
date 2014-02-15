@@ -5,10 +5,27 @@ import gtfstools
 import geojson
 from collections import defaultdict
 # import xml
+import gtfstools
+
+class Stops(object):
+  """docstring for stops"""
+  def __init__(self, db):
+    self.db = db
+
+  def all(self):
+    stops = []
+    self.db.query("""SELECT * FROM stops WHERE stop_id IN 
+      (SELECT DISTINCT stop_id FROM stop_seq)""")
+    for r in self.db.cursor.fetchall():
+      stops.append(dict(r))
+    return stops
+    
 
 class toolbox(object):
   def __init__(self, db):
     self.db = db
+    self.Stops = Stops(db)
+    print len(self.Stops.all())
 
   ################
   # stops
@@ -276,6 +293,61 @@ class toolbox(object):
     trip = gtfstools.Trip(self.db, trip_id)
     trip.offsetStops().saveStopsToDb()
     return {'success': True}
+
+  def constructStopNames(self):
+      self.db.query("""SELECT * FROM stops WHERE stop_id IN 
+          (SELECT DISTINCT stop_id FROM stop_seq)""")
+
+      for stop in self.db.cursor.fetchall():
+          lat = stop['stop_lat']
+          lng = stop['stop_lon']
+          if stop['stop_calle']:
+              if stop['stop_numero']:
+                  name = stop['stop_calle'] + ' ' + str(stop['stop_numero'])
+              else:
+                  if stop['stop_entre']:
+                      if ' y ' in stop['stop_entre']:
+                          name = stop['stop_calle'] + u' entre ' + stop['stop_entre']
+                      else:
+                          name = stop['stop_calle'] + u', ' + stop['stop_entre']
+                  else:
+                      name = stop['stop_calle']
+          else:
+              if type(stop['stop_id']) is int:
+                  name = str(stop['stop_id'])
+              name = str(stop['stop_id'])
+              name = name.zfill(4)
+          self.db.query("""UPDATE stops SET stop_name='{name}' 
+              WHERE stop_id='{stop_id}' """.format(name=name.encode('utf-8'), stop_id=stop['stop_id']))
+  
+  def updateDistTraveled(self):
+      self.db.query("""SELECT DISTINCT trip_id FROM stop_seq""")
+      for row in self.db.cursor.fetchall():
+          trip_id = row["trip_id"]
+          print "updating traveled distance for trip:", trip_id
+          tripTb = gtfstools.Trip(self.db, trip_id)
+          tripTb.computeAllSnaps()
+          for s in tripTb.snaps:
+              stop_id = s[0]['stop_id']
+              d = "{0:.3f}".format(s[1]['traveled'])
+              # print stop_id, d
+              q = """UPDATE stop_seq SET shape_dist_traveled='{d}' 
+                  WHERE trip_id='{trip_id}' 
+                  AND stop_id='{stop_id}'""".format(d=d, trip_id=trip_id, stop_id=stop_id)
+              self.db.query(q)
+
+  def fakeFrequencyTable(self):
+      self.db.query("SELECT trip_id FROM trips")
+      for r in self.db.cursor.fetchall():
+          trip_id = r['trip_id']
+          self.db.query("""DELETE * FROM frequencies""")
+          self.db.insert('frequencies', 
+              trip_id=trip_id, 
+              start_time="08:00:00", 
+              end_time="23:59:59",
+              headway_secs=900,
+              exact_times=0)
+
 
 if __name__ == '__main__':
   import ormgeneric as o
