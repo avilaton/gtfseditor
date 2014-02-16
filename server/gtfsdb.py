@@ -261,15 +261,17 @@ class toolbox(object):
       
       stop_lon,stop_lat = f['geometry']['coordinates']
 
-      self.db.insert('stops',stop_id=stop_id,
-        stop_lat=stop_lat,
-        stop_lon=stop_lon,
-        stop_calle = p['stop_calle'],
-        stop_entre = p['stop_entre'],
-        stop_numero = p['stop_numero']
-        )
+      # do not save stops while saving trip. only save trip members. 2014-02-16
+      # self.db.insert('stops',stop_id=stop_id,
+      #   stop_lat=stop_lat,
+      #   stop_lon=stop_lon,
+      #   stop_calle = p['stop_calle'],
+      #   stop_entre = p['stop_entre'],
+      #   stop_numero = p['stop_numero']
+      #   )
 
-    self.tripStops(trip_id)
+    # self.tripStops(trip_id)
+    self.db.connection.commit()
 
     return {'success':True,'trip_id':trip_id, 'stops':self.tripStops(trip_id)}
 

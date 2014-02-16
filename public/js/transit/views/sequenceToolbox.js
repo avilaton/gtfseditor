@@ -27,6 +27,8 @@ define([
       initialize: function(options){
         var self = this;
 
+        $(document).bind('keyup', this.keypress.bind(self));
+
         this.controls = options.controls;
         this.selectedStop = options.stop;
 
@@ -39,6 +41,11 @@ define([
         var self = this;
 
         this.$el.html(this.template());
+      },
+
+      keypress : function (event) {
+        if (event.keyCode == 82)
+          this.removeStop();
       },
 
       prevStop: function (event) {
