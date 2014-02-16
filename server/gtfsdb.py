@@ -288,7 +288,7 @@ class toolbox(object):
           'shape': self.shape(shape_id)}
       else:
         response = {'success': False}
-
+    self.db.connection.commit()
     return response
 
   def sortTripStops(self, trip_id):
