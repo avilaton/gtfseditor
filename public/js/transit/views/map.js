@@ -376,7 +376,7 @@ define([
 
       activateControl: function (controlId) {
         this.controls.drawStops.deactivate();
-        this.controls.modifyBbox.deactivate();
+        // this.controls.modifyBbox.deactivate();
         this.controls.modifyShape.deactivate();
         this.controls.modifyStops.deactivate();
         this.controls.selectMultiple.deactivate();
