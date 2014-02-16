@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import transitfeed
+import datetime
 
 # Time Utils         
 def sec2hhmmss(sec):

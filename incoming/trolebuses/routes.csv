@@ -1,0 +1,4 @@
+route_id, agency_id, route_short_name, route_long_name,	route_desc,	route_type,	route_color, route_text_color, active
+"TA","tamse","TA","Trolebus A","","800","6F419A","FFFFFF","TRUE"
+"TB","tamse","TB","Trolebus B",,"800","6F419A","FFFFFF","TRUE"
+"TC","tamse","TC","Trolebus C",,"800","6F419A","FFFFFF","TRUE"
