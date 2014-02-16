@@ -378,8 +378,9 @@ def compilationTasks(db):
     extract('compiled/google_transit.zip')
 
 def main():
+    import config
 
-    db = o.dbInterface('database/cba-1.0.4.sqlite')
+    db = o.dbInterface(config.DATABASE)
 
     # precompilationTasks(db)
     compilationTasks(db)

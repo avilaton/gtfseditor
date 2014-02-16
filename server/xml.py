@@ -24,6 +24,7 @@ import ormgeneric as o
 import gtfsdb
 import pystache
 import codecs
+import config
 
 class Kml(object):
     """docstring for Kml"""
@@ -39,10 +40,10 @@ class Kml(object):
         return renderer.render(parsed, {'stops': stops})
 
 def main():
-    db = o.dbInterface('database/dbRecorridos.sqlite')
-    tb = gtfsdb.toolbox(db)
+    db = o.dbInterface(config.DATABASE)
+    toolbox = gtfsdb.toolbox(db)
 
-    stops = tb.stops()
+    stops = toolbox.stops()
     kml = Kml()
     kmlString = kml.renderStops(stops)
 

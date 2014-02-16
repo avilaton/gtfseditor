@@ -8,7 +8,8 @@ Usage
 -----
 
 Fetch dependencies using
-
+	
+	pip install -r requirements.txt
 	bower install
 
 then run

@@ -4,10 +4,11 @@
 DEBUG = False
 
 from bottle import route, static_file, get, post, put, delete, request, redirect, hook, response
+from cork import Cork
 
 import database
 import gtfsdb
-from cork import Cork
+import config
 
 # heroku setup
 # import urlparse
@@ -30,7 +31,7 @@ from cork import Cork
 # )
 
 # db = database.dbInterface('database/dbRecorridos.sqlite')
-db = database.dbInterface('database/cba-1.0.4.sqlite')
+db = database.dbInterface(config.DATABASE)
 
 tb = gtfsdb.toolbox(db)
 
