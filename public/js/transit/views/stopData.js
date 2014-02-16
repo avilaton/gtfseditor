@@ -17,7 +17,6 @@ define([
                 "blur input.edit-stop-calle": "onCalleChange",
                 "click button.toggleMultipleSelect": "toggleMultipleSelect",
                 "click button.newStop": "newStop",
-                "click button.editStop": "editStop",
                 "click button.saveStop": "saveStop"
             },
 
@@ -45,7 +44,13 @@ define([
             saveStop: function (event) {
                 event.preventDefault();
                 console.log("save stop clicked", event, this.model);
-                this.model.save();
+                var promise = this.model.save();
+                promise.done(function (response) {
+                    console.log("success", response);
+                    
+                }).fail(function (err, response) {
+                    console.log("saving failed", err, response)
+                });
             },
 
             setEditMode: function (editMode) {

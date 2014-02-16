@@ -15,7 +15,8 @@ define([
                 "click button.newStop": "newStop",
                 "click button.editStop": "editStop",
                 "click button.removeStop": "removeStop",
-                "click button.saveStop": "saveStop"
+                "click button.saveStop": "saveStop",
+                "click button.clearEdits": "clearEdits"
             },
 
             initialize: function(options){
@@ -90,6 +91,10 @@ define([
                     this.controls.selectStops.activate();
                 }
 
+            },
+
+            clearEdits: function (event) {
+                this.controls.clearEdits();
             }
     });
 

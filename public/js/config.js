@@ -23,6 +23,7 @@ require.config({
         // "OpenLayers": "../../bower_components/openlayers/lib/OpenLayers",
         "underscore": "../../bower_components/underscore-amd/underscore",
         "handlebars": "../../bower_components/handlebars/handlebars",
-        "text": "../../bower_components/requirejs-text/text"
+        "text": "../../bower_components/requirejs-text/text",
+        "async": "../../bower_components/requirejs-plugins/src/async"
     }
 });

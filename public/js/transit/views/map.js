@@ -3,9 +3,10 @@ define([
   "backbone",
   "transit/views/map/drawStops",
   "transit/views/map/kmlLayer",
+  "transit/views/map/googleLayer",
   "transit/views/mapStyles"
   ],
-  function (OpenLayers, Backbone, DrawStopsView, kmlLayerView, Styles) {
+  function (OpenLayers, Backbone, DrawStopsView, KmlLayerView, GoogleLayerView, Styles) {
     'use strict';
 
     var MapView = Backbone.View.extend({
@@ -33,8 +34,6 @@ define([
         
         app.map = this;
 
-        this.addGoogleMapsLayers();
-
         this.baselayer = new OpenLayers.Layer.OSM('OSM Map');
 
         this.map.addLayer(this.baselayer);
@@ -56,7 +55,7 @@ define([
 
         this.initializeChildViews();
         
-        this.addOldControls();
+        this.addControls();
         this.attachEventHandlers();
       },
 
@@ -67,10 +66,12 @@ define([
           map: this.map,
           model: self.stop
         });
-        this.layers.kml = new kmlLayerView({
+        this.layers.kml = new KmlLayerView({
           map: this.map
         });
-
+        this.layers.google = new GoogleLayerView({
+          map: this.map
+        });
       },
 
       bindEvents: function () {
@@ -129,25 +130,6 @@ define([
         this.notesLayer.addFeatures([startFeature, endFeature]);  
       },
 
-      addGoogleMapsLayers: function () {
-        var gmap, gsat;
-
-        if (typeof (google) === 'object') {
-          gmap = new OpenLayers.Layer.Google('Google Streets', {
-            numZoomLevels: 22,
-            animationEnabled: false
-          });
-          this.map.addLayer(gmap);
-          gsat = new OpenLayers.Layer.Google('Google Satellite', {
-            type: google.maps.MapTypeId.SATELLITE,
-            numZoomLevels: 22,
-            animationEnabled: false
-          });
-          this.map.addLayer(gsat);
-          gsat.mapObject.setTilt(0);
-        };
-      },
-
       addNotesLayer: function () {
         this.notesLayer = new OpenLayers.Layer.Vector('Notes', {
           styleMap: Styles.notesStyleMap
@@ -164,22 +146,6 @@ define([
         this.shapesLayer.id = 'shapes';
 
         this.map.addLayer(this.shapesLayer);
-      },
-
-      addGpxLayer: function () {
-        gpxLayer = new OpenLayers.Layer.Vector('Gpx', {
-          strategies: [new OpenLayers.Strategy.Fixed()],
-          protocol: new OpenLayers.Protocol.HTTP({
-            url: "",
-            format: new OpenLayers.Format.GPX()
-          }),
-          styleMap: Styles.gpxStyleMap,
-          projection: new OpenLayers.Projection("EPSG:4326")
-        });
-        gpxLayer.id = 'gpx';
-        map.addLayer(gpxLayer);
-
-        return maps;
       },
 
       addRoutesLayer: function () {
@@ -335,7 +301,7 @@ define([
         control.activate();
       },
 
-      addOldControls: function () {
+      addControls: function () {
         var self = this;
         var controls = {};
 
@@ -397,6 +363,10 @@ define([
 
         controls.copyFeature = function (feature, toLayer) {
           self.layers[toLayer].layer.addFeatures([feature]);
+        }
+
+        controls.clearEdits = function () {
+          self.layers.drawStops.layer.removeAllFeatures();
         }
       },
 
