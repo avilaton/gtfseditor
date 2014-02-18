@@ -364,8 +364,14 @@ def precompilationTasks(db):
         existing rows """
 
     toolbox = gtfsdb.toolbox(db)
-    toolbox.constructStopNames()
+    # toolbox.constructStopNames()
+    trips = toolbox.allTrips()
+    for trip_id in trips:
+        print("sorting trip: "+trip_id)
+        toolbox.sortTripStops(trip_id)
+    toolbox.commit()
     toolbox.updateDistTraveled()
+    toolbox.commit()
 
 def compilationTasks(db):
     DEBUG = False
@@ -382,7 +388,7 @@ def main():
 
     db = o.dbInterface(config.DATABASE)
 
-    # precompilationTasks(db)
+    precompilationTasks(db)
     compilationTasks(db)
 
     db.close()

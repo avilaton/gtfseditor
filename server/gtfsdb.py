@@ -26,6 +26,9 @@ class toolbox(object):
     self.db = db
     self.Stops = Stops(db)
 
+  def commit(self):
+    self.db.connection.commit()
+
   ################
   # stops
   def stops(self):
