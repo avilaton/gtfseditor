@@ -394,7 +394,7 @@ def main():
 
     db = o.dbInterface(config.DATABASE)
 
-    # precompilationTasks(db)
+    precompilationTasks(db)
     compilationTasks(db)
 
     db.close()
