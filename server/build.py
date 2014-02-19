@@ -52,6 +52,8 @@ class FeedFactory(object):
     def validate(self):
         """Validate feed object"""
         print("Validating feed")
+        # self.accumulator = CountingConsoleProblemAccumulator()
+        # self.schedule.problem_reporter = transitfeed.ProblemReporter(self.accumulator)
         # accumulator = transitfeed.ProblemAccumulatorInterface()
         # reporter = transitfeed.ProblemReporter(accumulator)
         # self.schedule.Validate(reporter)
@@ -114,10 +116,14 @@ class FeedFactory(object):
 
     def loadTrips(self):
         count = 0
+        print("FIXME!!!")
+        print("you have commented most services for debugging. remember to enable them")
         for r in self.schedule.GetRouteList():
             route_id = r['route_id']
             for t in self.db.select('trips', route_id=route_id):
                 for service in self.schedule.GetServicePeriodList():
+                    if service.service_id != 'H':
+                        continue
                     trip_id = t['trip_id'] + '.' + service.service_id
                     trip = r.AddTrip(trip_id = trip_id,headsign=t['trip_headsign'])
                     trip.service_id = service.service_id
@@ -388,7 +394,7 @@ def main():
 
     db = o.dbInterface(config.DATABASE)
 
-    precompilationTasks(db)
+    # precompilationTasks(db)
     compilationTasks(db)
 
     db.close()
