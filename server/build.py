@@ -122,8 +122,8 @@ class FeedFactory(object):
             route_id = r['route_id']
             for t in self.db.select('trips', route_id=route_id):
                 for service in self.schedule.GetServicePeriodList():
-                    if service.service_id != 'H':
-                        continue
+                    # if service.service_id != 'H':
+                    #     continue
                     trip_id = t['trip_id'] + '.' + service.service_id
                     trip = r.AddTrip(trip_id = trip_id,headsign=t['trip_headsign'])
                     trip.service_id = service.service_id
