@@ -18,6 +18,7 @@ define([
         self.shape = options.shape;
         self.stops = options.stops;
         self.stop = options.stop;
+        self.kml = options.kml;
 
         this.map = new OpenLayers.Map('map', {
           controls : [
@@ -67,7 +68,8 @@ define([
           model: self.stop
         });
         this.layers.kml = new KmlLayerView({
-          map: this.map
+          map: this.map,
+          collection: self.kml
         });
         this.layers.google = new GoogleLayerView({
           map: this.map

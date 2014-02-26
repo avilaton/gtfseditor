@@ -110,7 +110,7 @@ define([
 
    Styles.kmlStyleMap = new OpenLayers.StyleMap({
     'default': new OpenLayers.Style({
-      strokeColor: 'black', strokeWidth: 2, strokeOpacity: 1, 
+      strokeColor: 'black', strokeWidth: 8, strokeOpacity: 0.6, 
       pointRadius: 6, fillColor: 'white', fill: true, 
       fillOpacity: 1
     })

@@ -5,6 +5,7 @@ DEBUG = False
 
 from bottle import route, static_file, get, post, put, delete, request, redirect, hook, response
 from cork import Cork
+import os
 
 import database
 import gtfsdb
@@ -163,6 +164,13 @@ def dataSetCommands(command, param):
 
 ###############################
 # frontend routes
+@get('/api/kml/')
+def kmlFiles():
+  options = []
+  for filename in sorted(os.listdir('./public/kml')):
+    options.append({'value': filename})
+  return {'options': options}
+
 @route('/assets/<filepath:path>')
 def server_files(filepath):
   return static_file(filepath, root='./assets/')

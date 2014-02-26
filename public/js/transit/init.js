@@ -4,7 +4,9 @@ define([
   "transit/collections/routes",
   "transit/collections/trips",
   "transit/collections/stops",
+  "transit/collections/kml",
   "transit/views/filter",
+  "transit/views/kmlSelect",
   "transit/views/routesSelect",
   "transit/views/tripsSelect",
   "transit/views/modal",
@@ -15,11 +17,11 @@ define([
   "transit/views/map"
 	], 
   function (ShapeModel, StopModel, RoutesCollection, TripsCollection, 
-    StopsCollection, FilterView, RoutesSelectView, TripsSelectView, ModalView,
-    ShapesToolboxView, SequenceToolboxView, StopDataView, StopToolbarView, 
-    MapView) {
+    StopsCollection, KmlCollection, FilterView, KmlSelectView, RoutesSelectView, 
+    TripsSelectView, ModalView, ShapesToolboxView, SequenceToolboxView, 
+    StopDataView, StopToolbarView, MapView) {
 
-    require(["bootstrap"]);
+    // require(["bootstrap"]);
 
 		function createControls () {
 			var state = window.app.state;
@@ -27,6 +29,7 @@ define([
 			// console.log("create controls");
 
       state.routes = new RoutesCollection();
+      state.kml = new KmlCollection();
       state.trips = new TripsCollection();
       state.stops = new StopsCollection();
       state.shape = new ShapeModel();
@@ -42,17 +45,20 @@ define([
         el: $("#routeDataEditor"),
         collection: state.routes
       });
-
       var tripsSelector = new TripsSelectView({
         routesCollection: state.routes,
         collection: state.trips
       });
-
+      var kmlSelector = new KmlSelectView({
+        el: $("#kmlSelect"),
+        collection: state.kml
+      })
 
       var myMap = new MapView({
         shape: state.shape,
         stops: state.stops,
-        stop: state.stop
+        stop: state.stop,
+        kml: state.kml
       });
       // myMap.bboxLayer.refresh({force: true});
 
