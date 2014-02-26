@@ -38,15 +38,27 @@
 
   <div id="container">
     <div id="leftbar">
-      <div id="shapesToolbox"></div>
+      <ul class="nav nav-tabs" data-tabs="tabs">
+        <li class="active"><a href="#shapes" data-toggle="tab">Shapes</a></li>
+        <li><a href="#trips" data-toggle="tab">Trips</a></li>
+        <li><a href="#stops" data-toggle="tab">Stops</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="shapes">
+          <div id="shapesToolbox"></div>
+          <div id="kmlSelect"></div>
+        </div>
+        <div class="tab-pane" id="trips">
+          <div id="sequenceToolbox"></div>
+        </div>
+        <div class="tab-pane" id="stops">
+          <div id="stopToolbar"></div>
+          <div id="stopData"></div>
+        </div>
+      </div>
 
-      <div id="kmlSelect"></div>
 
-      <div id="sequenceToolbox"></div>
 
-      <div id="stopToolbar"></div>
-      
-      <div id="stopData"></div>
       <!--
       <hr>
       <div id="stopList"></div>

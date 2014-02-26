@@ -1,4 +1,5 @@
 define([
+  'jquery',
   "transit/models/shape",
 	"transit/models/stop",
   "transit/collections/routes",
@@ -16,12 +17,12 @@ define([
   "transit/views/stopToolbar",
   "transit/views/map"
 	], 
-  function (ShapeModel, StopModel, RoutesCollection, TripsCollection, 
+  function ($, ShapeModel, StopModel, RoutesCollection, TripsCollection, 
     StopsCollection, KmlCollection, FilterView, KmlSelectView, RoutesSelectView, 
     TripsSelectView, ModalView, ShapesToolboxView, SequenceToolboxView, 
     StopDataView, StopToolbarView, MapView) {
 
-    // require(["bootstrap"]);
+    require(["bootstrap"]);
 
 		function createControls () {
 			var state = window.app.state;
@@ -49,6 +50,7 @@ define([
         routesCollection: state.routes,
         collection: state.trips
       });
+
       var kmlSelector = new KmlSelectView({
         el: $("#kmlSelect"),
         collection: state.kml
