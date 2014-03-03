@@ -25,6 +25,8 @@ def hhmmss2sec(hhmmss):
     return h*60*60+m*60+s
 
 def fixTimes(t0,t1):
+    """ converts a time interval of the form 23:00:00, 01:30:00 into the 
+    form 23:00:00, 25:30:00"""
     t_0 = datetime.datetime.strptime(t0,'%H:%M:%S')
     t_1 = datetime.datetime.strptime(t1,'%H:%M:%S')
     if (t_1-t_0).total_seconds() > 0:

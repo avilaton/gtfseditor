@@ -297,11 +297,25 @@ class toolbox(object):
     return response
 
   def sortTripStops(self, trip_id):
+    print("Sorting stops along trip:\t" + trip_id)
     trip = gtfstools.Trip(self.db, trip_id)
     trip.sortStops().saveStopsToDb()
-    self.db.connection.commit()
+    self.commit()
     return {'success': True}
 
+  def updateTripDistTraveled(self, trip_id):
+    print("Updating traveled distance for trip:\t" + trip_id)
+    tripTb = gtfstools.Trip(self.db, trip_id)
+    tripTb.computeAllSnaps()
+    for s in tripTb.snaps:
+        stop_id = s[0]['stop_id']
+        d = "{0:.3f}".format(s[1]['traveled'])
+        # print stop_id, d
+        q = """UPDATE stop_seq SET shape_dist_traveled='{d}' 
+            WHERE trip_id='{trip_id}' 
+            AND stop_id='{stop_id}'""".format(d=d, trip_id=trip_id, stop_id=stop_id)
+        self.db.query(q)
+  
   def alignTripStops(self, trip_id):
     trip = gtfstools.Trip(self.db, trip_id)
     trip.offsetStops().saveStopsToDb()
@@ -334,32 +348,33 @@ class toolbox(object):
               WHERE stop_id='{stop_id}' """.format(name=name.encode('utf-8'), stop_id=stop['stop_id']))
   
   def updateDistTraveled(self):
-      self.db.query("""SELECT DISTINCT trip_id FROM stop_seq""")
-      for row in self.db.cursor.fetchall():
-          trip_id = row["trip_id"]
-          print "updating traveled distance for trip:", trip_id
-          tripTb = gtfstools.Trip(self.db, trip_id)
-          tripTb.computeAllSnaps()
-          for s in tripTb.snaps:
-              stop_id = s[0]['stop_id']
-              d = "{0:.3f}".format(s[1]['traveled'])
-              # print stop_id, d
-              q = """UPDATE stop_seq SET shape_dist_traveled='{d}' 
-                  WHERE trip_id='{trip_id}' 
-                  AND stop_id='{stop_id}'""".format(d=d, trip_id=trip_id, stop_id=stop_id)
-              self.db.query(q)
+    """DEPRECATED, use updateTripDistTraveled """
+    self.db.query("""SELECT DISTINCT trip_id FROM stop_seq""")
+    for row in self.db.cursor.fetchall():
+      trip_id = row["trip_id"]
+      print "updating traveled distance for trip:", trip_id
+      tripTb = gtfstools.Trip(self.db, trip_id)
+      tripTb.computeAllSnaps()
+      for s in tripTb.snaps:
+        stop_id = s[0]['stop_id']
+        d = "{0:.3f}".format(s[1]['traveled'])
+        # print stop_id, d
+        q = """UPDATE stop_seq SET shape_dist_traveled='{d}' 
+            WHERE trip_id='{trip_id}' 
+            AND stop_id='{stop_id}'""".format(d=d, trip_id=trip_id, stop_id=stop_id)
+        self.db.query(q)
 
   def fakeFrequencyTable(self):
-      self.db.query("SELECT trip_id FROM trips")
-      for r in self.db.cursor.fetchall():
-          trip_id = r['trip_id']
-          self.db.query("""DELETE * FROM frequencies""")
-          self.db.insert('frequencies', 
-              trip_id=trip_id, 
-              start_time="08:00:00", 
-              end_time="23:59:59",
-              headway_secs=900,
-              exact_times=0)
+    self.db.query("SELECT trip_id FROM trips")
+    for r in self.db.cursor.fetchall():
+      trip_id = r['trip_id']
+      self.db.query("""DELETE * FROM frequencies""")
+      self.db.insert('frequencies', 
+          trip_id=trip_id, 
+          start_time="08:00:00", 
+          end_time="23:59:59",
+          headway_secs=900,
+          exact_times=0)
 
 
 if __name__ == '__main__':

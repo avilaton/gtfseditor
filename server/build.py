@@ -221,7 +221,9 @@ class FeedFactory(object):
             trip_id = t.trip_id
             for row in self.db.select('services', route_id=t.route_id, 
                 service_id=t.service_id):
-                start_time, end_time = util.fixTimes(row['start_time'],row['end_time'])
+                # this code was used when the time slots where incorrectly written
+                # start_time, end_time = util.fixTimes(row['start_time'],row['end_time'])
+                start_time, end_time = row['start_time'],row['end_time']
                 headway_secs = row['headway_secs']
                 f = transitfeed.Frequency({'trip_id':trip_id, 
                     'start_time':start_time, 
@@ -373,10 +375,10 @@ def precompilationTasks(db):
     # toolbox.constructStopNames()
     trips = toolbox.allTrips()
     for trip_id in trips:
-        print("sorting trip: "+trip_id)
         toolbox.sortTripStops(trip_id)
     toolbox.commit()
-    toolbox.updateDistTraveled()
+    for trip_id in trips:
+        toolbox.updateTripDistTraveled(trip_id)
     toolbox.commit()
 
 def compilationTasks(db):
@@ -386,16 +388,30 @@ def compilationTasks(db):
     feed.build()
     feed.save('compiled/google_transit.zip')
     attachFeedInfo('compiled/google_transit.zip')
-    feed.validate()
     extract('compiled/google_transit.zip')
+    return feed
 
 def main():
     import config
-
     db = o.dbInterface(config.DATABASE)
 
-    precompilationTasks(db)
-    compilationTasks(db)
+    import optparse
+    parser = optparse.OptionParser()
+    parser.add_option('-p', '--precompile', help='Execute pre-compilation tasks', 
+        action='store_true', dest='precompile')
+    parser.add_option('-v', '--validate', help='Execute validation at the end', 
+        action='store_true', dest='validate')
+    (opts, args) = parser.parse_args()
+
+    if opts.precompile:
+        print "START Precompilation -----------------"
+        precompilationTasks(db)
+        print "END Precompilation -------------------"
+    
+    feed = compilationTasks(db)
+
+    if opts.validate:
+        feed.validate()
 
     db.close()
 
