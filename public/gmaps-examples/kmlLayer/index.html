@@ -14,17 +14,16 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script>
 function initialize() {
-  var chicago = new google.maps.LatLng(41.875696,-87.624207);
+  var cordoba = new google.maps.LatLng(-31.4128832, -64.1857371);
   var mapOptions = {
     zoom: 11,
-    center: chicago
+    center: cordoba
   }
 
   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
   var kmlLayer = new google.maps.KmlLayer({
-    // url: 'http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml'
-    url: 'http://ec2-54-207-59-227.sa-east-1.compute.amazonaws.com/kml/10%20IDA.kml'
+    url: 'http://ec2-54-207-59-227.sa-east-1.compute.amazonaws.com/kml/stops.kmz'
   });
   kmlLayer.setMap(map);
 }
