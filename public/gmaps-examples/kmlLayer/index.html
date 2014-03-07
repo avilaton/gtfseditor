@@ -23,7 +23,7 @@ function initialize() {
   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
   var kmlLayer = new google.maps.KmlLayer({
-    url: 'http://ec2-54-207-59-227.sa-east-1.compute.amazonaws.com/kml/stops.kmz'
+    url: './stops.kmz'
   });
   kmlLayer.setMap(map);
 }
