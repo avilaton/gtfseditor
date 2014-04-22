@@ -11,6 +11,8 @@ import database
 import gtfsdb
 import config
 
+from controllers import *
+
 # heroku setup
 # import urlparse
 # import os
