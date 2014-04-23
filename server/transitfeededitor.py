@@ -11,7 +11,11 @@ import database
 import gtfsdb
 import config
 
-from controllers import *
+import bottle
+
+bottle.BaseRequest.MEMFILE_MAX = 1024 * 1024
+
+app = bottle.app()
 
 # heroku setup
 # import urlparse
@@ -173,40 +177,5 @@ def kmlFiles():
     options.append({'value': filename})
   return {'options': options}
 
-@route('/assets/<filepath:path>')
-def server_files(filepath):
-  return static_file(filepath, root='./assets/')
+from controllers import *
 
-@route('/bower_components/<filepath:path>')
-def server_files(filepath):
-  return static_file(filepath, root='./bower_components/')
-
-@route('/<filepath:path>')
-def server_files(filepath):
-  return static_file(filepath, root='./public/')
-
-@route('/')
-def index():
-  return static_file('index.html', root='./public/')
-
-@post('/login')
-def login():
-  print request.params.email
-  print request.params.password
-  print request.params.keep
-
-  return
-
-import bottle
-
-bottle.BaseRequest.MEMFILE_MAX = 1024 * 1024
-
-if DEBUG == True:
-  bottle.debug(True)
-
-app = bottle.app()
-
-if __name__ == '__main__':
-  app.run(server='cgi')
-  #from bottle import run
-  #run(app,reloader=True)
