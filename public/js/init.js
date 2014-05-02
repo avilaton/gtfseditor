@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: 'js',
+    baseUrl: 'static/js',
     shim: {
         OpenLayers: {
             exports: 'OpenLayers'

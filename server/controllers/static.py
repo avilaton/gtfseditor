@@ -27,7 +27,7 @@ def server_files(filepath):
 def server_files(filepath):
   return static_file(filepath, root='./bower_components/')
 
-@route('/<filepath:path>')
+@route('/static/<filepath:path>')
 def server_files(filepath):
   return static_file(filepath, root='./public/')
 

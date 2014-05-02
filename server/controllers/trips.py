@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from bottle import route, request, post, put, delete
+from bottle import route, request, get, post, put, delete
 # remove this global latter on
 from server.transitfeededitor import tb
 
