@@ -4,6 +4,7 @@
 from bottle import route, request, post, put, delete
 # remove this global latter on
 from server.transitfeededitor import tb
+from server.models import Stop
 
 @route('/api/stop/<stop_id>')
 def findStop(stop_id):
@@ -23,6 +24,7 @@ def deleteStop(stop_id):
 
 @route('/api/bbox')
 def getBBOX():
+  print Stop().all()
   bbox = request.query['bbox']
   filterQuery = request.query['filter']
   return tb.bbox(bbox, filterQuery)
