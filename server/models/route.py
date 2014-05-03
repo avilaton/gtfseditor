@@ -13,9 +13,10 @@ class Route(object):
   def get(self, route_id):
     return self.db.select('trips',route_id=route_id)
 
-  def trips(self, route_id):
+  @classmethod
+  def trips(cls, route_id):
     trips = []
-    for row in self.db.select('trips',route_id=route_id):
+    for row in cls.db.select('trips',route_id=route_id):
       trips.append({
         'service_id':row['service_id'],
         'trip_id':row['trip_id'],
