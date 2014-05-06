@@ -122,5 +122,12 @@ class Stop(object):
       WHERE 
         stop_id IN (SELECT DISTINCT stop_id FROM stop_seq) 
       AND stop_calle=''""")
-    stops = [r['stop_id'] for r in cls.db.cursor.fetchall()]
-    return stops
+    return [dict(r) for r in cls.db.cursor.fetchall()]
+
+  @classmethod
+  def availableIds(cls):
+    cls.db.query("""SELECT stop_id FROM stops""")
+    allIds = set(range(1,10000))
+    usedIds = [int(r['stop_id']) for r in cls.db.cursor.fetchall()]
+    availableIds = allIds.difference(usedIds)
+    return availableIds

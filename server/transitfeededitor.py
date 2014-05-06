@@ -3,7 +3,7 @@
 
 DEBUG = False
 
-from bottle import hook
+from bottle import hook, TEMPLATE_PATH
 from cork import Cork
 
 import database
@@ -13,6 +13,8 @@ import config
 import bottle
 bottle.BaseRequest.MEMFILE_MAX = 1024 * 1024
 app = bottle.app()
+TEMPLATE_PATH.append("./server/views/")
+TEMPLATE_PATH.remove("./views/")
 
 # # heroku setup
 # import urlparse
