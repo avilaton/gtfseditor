@@ -4,10 +4,11 @@
 from bottle import route, request, get, post, put, delete
 # remove this global latter on
 from server.transitfeededitor import tb
+from server.models import Trip
 
 @route('/api/trip/<trip_id>/stops')
 def tripStops(trip_id):
-  return tb.tripStops(trip_id)
+  return Trip(trip_id).stops()
 
 @put('/api/trip/<trip_id>/stops')
 def saveTripStops(trip_id):
@@ -23,6 +24,8 @@ def saveTripStops(trip_id):
 
 @get('/api/trip/<trip_id>/stop/<stop_id>/timepoint')
 def is_timepoint(trip_id, stop_id):
+  # trip = Trip(trip_id)
+  # stop = trip.stop(stop_id)
   trip_stop = tb.getTripStop(trip_id, stop_id)
   return {'is_timepoint': trip_stop['is_timepoint']}
 
