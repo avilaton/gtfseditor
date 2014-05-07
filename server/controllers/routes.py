@@ -4,7 +4,6 @@
 from bottle import route
 from server.models import Route
 
-
 @route('/api/routes/')
 @route('/api/routes')
 def routes():

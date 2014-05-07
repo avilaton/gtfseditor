@@ -1,15 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from bottle import route, request, post, put, delete
-# remove this global latter on
-from server.transitfeededitor import tb
+from bottle import route, request, put
+from server.models import Shape
 
 @route('/api/shape/<shape_id>')
 def shape(shape_id):
-  return tb.shape(shape_id)
+  return Shape.get(shape_id)
 
 @put('/api/shape/<shape_id>')
 def shape(shape_id):
   geojsonShape = request.json
-  return tb.saveShape(shape_id, geojsonShape)
+  return Shape.set(shape_id, geojsonShape)
