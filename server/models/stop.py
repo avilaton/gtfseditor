@@ -1,10 +1,40 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import server.geojson as geojson
-from server.transitfeededitor import db as current_db
+from sqlalchemy import create_engine, Column, Integer, Sequence, String, Float
+from server import Base
 
-class Stop(object):
+class Stop(Base):
+  __tablename__ = 'stops'
+  stop_id = Column(Integer, Sequence('id_seq'), primary_key=True)
+  stop_code = Column(String(50))
+  stop_desc = Column(String(50))
+  stop_name = Column(String(50))
+  stop_lat = Column(Float(precision=64))
+  stop_lon = Column(Float(precision=64))
+  stop_calle = Column(String(50))
+  stop_numero = Column(String(50))
+  stop_entre = Column(String(50))
+  stop_esquina = Column(String(50))
+
+  def __repr__(self):
+    return "<Stop: '%s' (lat:'%s', lon:'%s')>" % (self.stop_id, 
+      self.stop_lat, self.stop_lon)
+
+  @property
+  def as_dict(self):
+    d = {}
+    for column in self.__table__.columns:
+      d[column.name] = unicode(getattr(self, column.name))
+    return d
+
+
+
+import server.geojson as geojson
+
+current_db = ''
+
+class StopOld(object):
   """docstring for stops"""
   db = current_db
 

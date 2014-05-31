@@ -1,15 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from bottle import route
 from server.models import Route
+from server.models import Trip
+from server import app
 
-@route('/api/routes/')
-@route('/api/routes')
-def routes():
-  return Route.all()
+@app.get('/api/routes')
+@app.get('/api/routes/')
+def routes(db):
+  routes = db.query(Route).order_by(Route.route_short_name).all()
+  return {'routes': [route.as_dict for route in routes]}
 
-@route('/api/route/<route_id>/trips')
-@route('/api/route/<route_id>/trips/')
-def routeTrips(route_id):
-  return Route.trips(route_id)
+@app.get('/api/route/<route_id>/trips')
+@app.get('/api/route/<route_id>/trips/')
+def routeTrips(db, route_id):
+  trips = db.query(Trip).filter(Trip.route_id == route_id).all()
+  return {'trips': [trip.as_dict for trip in trips]}

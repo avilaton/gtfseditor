@@ -1,0 +1,19 @@
+<h1>Stop id: {{stop_id}}</h1>
+<table>
+	<thead>
+		<tr>
+			<th>stop_id</th>
+			<th>stop_lat</th>
+			<th>stop_lon</th>
+		</tr>
+	</thead>
+<tbody>
+	% for stop in stops:
+	<tr>
+	    <td>{{stop.stop_id}}</td>
+	    <td>{{stop.stop_lat}}</td>
+	    <td>{{stop.stop_lon}}</td>
+	</tr>
+	% end
+</tbody>
+</table>

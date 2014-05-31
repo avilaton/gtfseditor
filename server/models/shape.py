@@ -1,10 +1,34 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import server.geojson as geojson
-from server.transitfeededitor import db as current_db
+from sqlalchemy import Column, Integer, String, Float
+from server import Base
 
-class Shape(object):
+class Shape(Base):
+  __tablename__ = 'shapes'
+  shape_id = Column(String(50), primary_key=True)
+  shape_pt_lat = Column(Float(precision=64))
+  shape_pt_lon = Column(Float(precision=64))
+  shape_pt_sequence = Column(Integer, primary_key=True)
+
+  def __repr__(self):
+    return "<Shape_point: (shape_id:'%s', shape_pt_sequence:'%s')>" % (self.shape_id, 
+      self.shape_pt_sequence)
+
+  @property
+  def as_dict(self):
+    d = {}
+    for column in self.__table__.columns:
+      d[column.name] = unicode(getattr(self, column.name))
+    return d
+
+
+
+
+
+current_db = ''
+
+class ShapeOld(object):
   """docstring for stops"""
   db = current_db
 

@@ -1,42 +1,29 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from server.transitfeededitor import db as current_db
+from sqlalchemy import Column, String
+from server import Base
 
-class Route(object):
-  """docstring for stops"""
-  db = current_db
+class Route(Base):
+  __tablename__ = 'routes'
+  route_id = Column(String(50), primary_key=True)
+  agency_id = Column(String(50))
+  route_short_name = Column(String(50))
+  route_long_name = Column(String(50))
+  route_desc = Column(String(50))
+  route_type = Column(String(50))
+  route_color = Column(String(50))
+  route_text_color = Column(String(50))
+  active = Column(String(50))
+  # active = Column(Boolean, nullable=False, default=True)
 
-  def __init__(self):
-    self.db = current_db
+  def __repr__(self):
+    return "<Route: '%s' (route_short_name:'%s')>" % (self.route_id, 
+      self.route_short_name)
 
-  def get(self, route_id):
-    return self.db.select('trips',route_id=route_id)
-
-  @classmethod
-  def trips(cls, route_id):
-    trips = []
-    for row in cls.db.select('trips',route_id=route_id):
-      trips.append({
-        'service_id':row['service_id'],
-        'trip_id':row['trip_id'],
-        'trip_headsign':row['trip_headsign'],
-        'trip_short_name':row['trip_short_name'],
-        'direction_id':row['direction_id'],
-        'shape_id':row['shape_id']
-        })
-    return {'trips':trips}
-
-  @classmethod
-  def all(cls):
-    routes = []
-    cls.db.query("""SELECT * FROM routes ORDER BY route_short_name""")
-    for row in cls.db.cursor.fetchall():
-      data = {}
-      for k in ['route_id', 'agency_id', 'route_short_name', 
-        'route_long_name', 'route_desc', 'route_type', 
-        'route_color']:
-        data.update({k:row[k]})
-        data['active'] = bool(row['active'])
-      routes.append(data)
-    return {'routes': routes}
+  @property
+  def as_dict(self):
+    d = {}
+    for column in self.__table__.columns:
+      d[column.name] = unicode(getattr(self, column.name))
+    return d

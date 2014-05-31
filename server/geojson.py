@@ -21,22 +21,22 @@
 #	   MA 02110-1301, USA.
 
 
-def geoJsonFeature(id,lon,lat,properties):
-	jsonPoint ={
+def feature(id=None, feature_type="Point", coords=[], properties={}):
+	result ={
 		"type":"Feature",
 		"id":id,
 		"properties":properties,
 		"geometry":{
-			"type":"Point", 
-			"coordinates":[lon,lat]
+			"type": feature_type, 
+			"coordinates": coords
 		}
 		#~ ,"crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}}
 	}
-	return jsonPoint
+	return result
 	
-def geoJsonFeatCollection(features):
+def featureCollection(features):
 	""" Wraps an array of geoJson features as a Feature Collection """
-	geoJson = {
+	result = {
 		"type": "FeatureCollection",
 		"crs":{
 				"type":"name", 
@@ -45,8 +45,8 @@ def geoJsonFeatCollection(features):
 				}
 			}
 		}
-	geoJson.update({"features":features})
-	return geoJson
+	result.update({"features":features})
+	return result
 
 def geoJsonPolygon(id,coordList):
 	""" takes a table of coordinates and returns a geoJson polygon """
@@ -61,7 +61,7 @@ def geoJsonPolygon(id,coordList):
 	}
 	return geoJsonFeature
 	
-def geoJsonLineString(id,coordList,properties):
+def lineString(id,coordList,properties):
 	""" takes a table of coordinates and returns a geoJson LineString """
 	if not properties:
 		properties = {}
@@ -75,18 +75,6 @@ def geoJsonLineString(id,coordList,properties):
 		}
 	}
 	return geoJsonFeature
-
-def getGeoJsonTable(tableName):
-	"""takes TABLE with lat,lon columns and outputs GeoJSON features"""
-	features = []
-	i=1
-	for row in db.select(table=tableName):
-		drow = dict(row)
-		lat = drow.pop('lat')
-		lon = drow.pop('lon')
-		features.append(geoJsonFeature(i,lon,lat,drow))
-		i += 1
-	return geoJsonFeatCollection(features)
 
 if __name__ == '__main__':
 	print geoJsonPolygon('test',[[0,1],[5,9]])

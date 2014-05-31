@@ -1,22 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from sqlalchemy import Column, Integer, Sequence, String, Float, Boolean
+from sqlalchemy import Column, Integer, String, Float
 from server import Base
 
-class Trip(Base):
-  __tablename__ = 'trips'
+class StopSeq(Base):
+  __tablename__ = 'stop_seq'
   trip_id = Column(String(50), primary_key=True)
-  route_id = Column(String(50))
-  service_id = Column(String(50))
-  trip_headsign = Column(String(50))
-  trip_short_name = Column(String(50))
-  direction_id = Column(String(50))
-  shape_id = Column(String(50))
-  
+  stop_id = Column(String(50), primary_key=True)
+  stop_sequence = Column(Integer, primary_key=True) 
+  shape_dist_traveled = Column(Float(precision=64))
+  is_timepoint = Column(String(50), default="FALSE")
+
   def __repr__(self):
-    return "<trip: '%s' (trip_short_name:'%s')>" % (self.trip_id, 
-      self.trip_short_name)
+    return "<Stop_seq for trip: '%s' (stop_id:'%s', stop_sequence:'%s')>" % (self.trip_id, 
+      self.stop_id, self.stop_sequence)
 
   @property
   def as_dict(self):
@@ -26,9 +24,7 @@ class Trip(Base):
     return d
 
 
-import server.gtfstools
 
-from collections import defaultdict
 
 current_db = ''
 
