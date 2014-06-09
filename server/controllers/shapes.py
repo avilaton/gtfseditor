@@ -12,7 +12,7 @@ def shape(db, shape_id):
   shape = db.query(Shape).filter(Shape.shape_id == shape_id)\
   	.order_by(Shape.shape_pt_sequence).all()
   coords = [[pt.shape_pt_lon,pt.shape_pt_lat] for pt in shape]
-  feature = geojson.feature(id=shape_id, feature_type="Line",
+  feature = geojson.feature(id=shape_id, feature_type="LineString",
   	coords=coords, properties={})
   return geojson.featureCollection([feature])
 

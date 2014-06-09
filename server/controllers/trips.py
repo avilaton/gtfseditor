@@ -37,15 +37,3 @@ def tripStops(db, trip_id):
 #     geojsonTrip = request.json  
 #     result = tb.saveTripStops(trip_id, geojsonTrip)
 #   return result
-
-# @get('/api/trip/<trip_id>/stop/<stop_id>/timepoint')
-# def is_timepoint(trip_id, stop_id):
-#   # trip = Trip(trip_id)
-#   # stop = trip.stop(stop_id)
-#   trip_stop = tb.getTripStop(trip_id, stop_id)
-#   return {'is_timepoint': trip_stop['is_timepoint']}
-
-# @put('/api/trip/<trip_id>/stop/<stop_id>/timepoint')
-# def set_timepoint(trip_id,stop_id):
-#   is_timepoint = request.params.is_timepoint
-#   return tb.set_timepoint(trip_id, stop_id, is_timepoint)
