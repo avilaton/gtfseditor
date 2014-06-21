@@ -25,5 +25,10 @@ class Route(Base):
   def as_dict(self):
     d = {}
     for column in self.__table__.columns:
-      d[column.name] = unicode(getattr(self, column.name))
+      attr = getattr(self, column.name)
+      if attr:
+        d[column.name] = unicode(attr)
+      else:
+        print attr, 'is none'
+        d[column.name] = ''
     return d

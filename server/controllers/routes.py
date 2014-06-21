@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from bottle import request
+import json
 from server.models import Route
 from server.models import Trip
 from server import app
@@ -16,3 +18,12 @@ def routes(db):
 def routeTrips(db, route_id):
   trips = db.query(Trip).filter(Trip.route_id == route_id).all()
   return {'trips': [trip.as_dict for trip in trips]}
+
+
+@app.post('/api/routes/<route_id>')
+def shape(db, route_id):
+  data = request.json
+  route = Route(**data)
+  print route.as_dict
+  db.merge(route)
+  return 
