@@ -16,7 +16,8 @@ def shape(db, shape_id):
   	coords=coords, properties={})
   return geojson.featureCollection([feature])
 
-# @app.put('/api/shape/<shape_id>')
-# def shape(shape_id):
-#   geojsonShape = request.json
-#   return Shape.set(shape_id, geojsonShape)
+@app.put('/api/shape/<shape_id>')
+def shape(db, shape_id):
+  geojsonShape = request.json
+  print geojsonShape
+  # return Shape.set(shape_id, geojsonShape)

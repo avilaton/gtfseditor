@@ -3,10 +3,9 @@ define([
   "backbone",
   "transit/views/map/drawStops",
   "transit/views/map/kmlLayer",
-  "transit/views/map/googleLayer",
   "transit/views/mapStyles"
   ],
-  function (OpenLayers, Backbone, DrawStopsView, KmlLayerView, GoogleLayerView, Styles) {
+  function (OpenLayers, Backbone, DrawStopsView, KmlLayerView, Styles) {
     'use strict';
 
     var MapView = Backbone.View.extend({
@@ -71,9 +70,13 @@ define([
           map: this.map,
           collection: self.kml
         });
-        this.layers.google = new GoogleLayerView({
-          map: this.map
-        });
+        if (typeof (google) === 'object') {
+          require(["transit/views/map/googleLayer"], function (GoogleLayerView) {
+            self.layers.google = new GoogleLayerView({
+              map: self.map
+            });
+          })
+        }
       },
 
       bindEvents: function () {
