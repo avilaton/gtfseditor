@@ -9,6 +9,7 @@ class Shape(Base):
   shape_id = Column(String(50), primary_key=True)
   shape_pt_lat = Column(Float(precision=64))
   shape_pt_lon = Column(Float(precision=64))
+  shape_pt_time = Column(String(50))
   shape_pt_sequence = Column(Integer, primary_key=True)
 
   def __repr__(self):

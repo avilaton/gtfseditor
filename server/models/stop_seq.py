@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from sqlalchemy import Column, Integer, String, Float
+import sqlalchemy.types
 from server import Base
 
 class StopSeq(Base):
@@ -9,6 +10,7 @@ class StopSeq(Base):
   trip_id = Column(String(50), primary_key=True)
   stop_id = Column(String(50), primary_key=True)
   stop_sequence = Column(Integer, primary_key=True) 
+  stop_time = Column(String(50)) 
   shape_dist_traveled = Column(Float(precision=64))
   is_timepoint = Column(String(50), default="FALSE")
 
@@ -20,10 +22,15 @@ class StopSeq(Base):
   def as_dict(self):
     d = {}
     for column in self.__table__.columns:
-      d[column.name] = unicode(getattr(self, column.name))
+      attr = getattr(self, column.name)
+      if attr is not None:
+        if isinstance(column.type, Float):
+          d[column.name] = float(attr)
+        else:
+          d[column.name] = unicode(attr)
+      else:
+        d[column.name] = None
     return d
-
-
 
 
 current_db = ''

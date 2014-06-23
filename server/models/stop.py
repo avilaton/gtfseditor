@@ -6,7 +6,8 @@ from server import Base
 
 class Stop(Base):
   __tablename__ = 'stops'
-  stop_id = Column(Integer, Sequence('id_seq'), primary_key=True)
+  # stop_id = Column(Integer, Sequence('id_seq'), primary_key=True)
+  stop_id = Column(String(50), primary_key=True)
   stop_code = Column(String(50))
   stop_desc = Column(String(50))
   stop_name = Column(String(50))

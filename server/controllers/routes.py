@@ -24,6 +24,5 @@ def routeTrips(db, route_id):
 def shape(db, route_id):
   data = request.json
   route = Route(**data)
-  print route.as_dict
   db.merge(route)
   return 

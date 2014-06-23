@@ -29,6 +29,5 @@ class Route(Base):
       if attr:
         d[column.name] = unicode(attr)
       else:
-        print attr, 'is none'
         d[column.name] = ''
     return d
