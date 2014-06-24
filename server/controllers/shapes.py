@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import logging
+logger = logging.getLogger(__name__)
 
 from bottle import request
 from server import app
@@ -8,7 +10,7 @@ from server.models import Shape
 
 @app.route('/api/shape/<shape_id>')
 def shape(db, shape_id):
-  print shape_id
+  logger.info("Shape fetched")
   shape = db.query(Shape).filter(Shape.shape_id == shape_id)\
   	.order_by(Shape.shape_pt_sequence).all()
   coords = [[pt.shape_pt_lon,pt.shape_pt_lat] for pt in shape]
