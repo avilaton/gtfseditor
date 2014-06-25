@@ -87,6 +87,9 @@ def importRoutes(db, filename):
 	db.commit()
 
 def importShapes(db, filename):
+	# errorsFile = open('errors.log', 'w')
+	# errorsLog = csv.DictWriter(errorsFile)
+	# errorsLog.write
 	keyMap = {
 		"shape_id": "shape_id",
 		"shape_pt_lat": "shape_pt_lat",
@@ -101,7 +104,23 @@ def importShapes(db, filename):
 		reader = csv.DictReader(csvfile)
 		for i, row in enumerate(reader):
 			d = {outKey:row[inKey] for inKey, outKey in keyMap.items()}
-			d.update({'shape_pt_sequence': i + 300000})
+			lat, lon = d['shape_pt_lat'], d['shape_pt_lon']
+			try:
+				lat, lon = float(lat), float(lon)
+			except Exception, e:
+				logger.info("droped point", d)
+				continue
+			try:
+				assert lat > -180
+				assert lat < 180
+				assert lon < 90
+				assert lon > -90
+			except Exception, e:
+				logger.info("invalid coords")
+				logger.info(d)
+				continue
+			d.update({'shape_pt_lat': lat, 'shape_pt_lon': lon, 
+				'shape_pt_sequence': i + 300000})
 			rows.append(d)
 
 	engine.execute(ins, rows)
