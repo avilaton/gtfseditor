@@ -32,6 +32,7 @@ from server.models import *
 from sqlalchemy.orm import sessionmaker, scoped_session
 
 def importStops(db, filename):
+	logger.info("Importing stops from : %s", filename)
 	keyMap = {
 		'stop_id': 'stop_id', 
 		'stop_lat': 'stop_lat',
@@ -54,35 +55,43 @@ def importStops(db, filename):
 	db.commit()
 
 def importTrips(db, filename):
+	logger.info("Importing trips from : %s", filename)
 	keyMap = {
-		'trip_id': 'trip_id', 
-		'route_id': 'route_id',
-		# 'route_name': 'route_name',
-		'direction_id': 'direction_id',
-		# 'active': 'active',
-		# 'codigo': 'codigo',
-		'trip_headsign': 'trip_headsign',
-		'trip_short_name': 'trip_short_name'}
+		'ID-recorrido': 'trip_id', 
+		'ida-vuelta': 'direction_id',
+		'descripcion': 'trip_headsign',
+		'destino': 'trip_short_name'}
 	with open(filename, 'r') as csvfile:
 		reader = csv.DictReader(csvfile)
 		for row in reader:
+			codigo = row['route-trip']
+			route_id = codigo[:-3]
+			if route_id.isdigit():
+				route_id = route_id.zfill(3)
 			d = {outKey:codecs.decode(row[inKey],'utf8') for inKey, outKey in keyMap.items()}
+			d['route_id'] = route_id
 			trip = Trip(**d)
 			trip.shape_id = trip.trip_id
 			db.merge(trip)
 	db.commit()
 
 def importRoutes(db, filename):
-	keyMap = {
-		'route_id': 'route_id',
-		'route_name': 'route_short_name',
-		'active': 'active'
-		}
+	logger.info("Importing routes from : %s", filename)
 	with open(filename, 'r') as csvfile:
 		reader = csv.DictReader(csvfile)
 		for row in reader:
-			d = {outKey:codecs.decode(row[inKey],'utf8') for inKey, outKey in keyMap.items()}
+			codigo = row['route-trip']
+			route_id = codigo[:-3]
+			if route_id.isdigit():
+				route_id = route_id.zfill(3)
+			d = {}
+			d['route_id'] = route_id
+			# d['route_short_name'] = codecs.decode(row['descripcion'],'utf8')
+			d['route_short_name'] = route_id
+			d['route_type'] = 'Bus'
+			d['route_desc'] = codecs.decode(row['descripcion'],'utf8')
 			route = Route(**d)
+
 			db.merge(route)
 	db.commit()
 
@@ -192,8 +201,8 @@ if __name__ == '__main__':
 	Session = sessionmaker(bind=engine)
 	db = scoped_session(Session)
 	importStops(db, 'incoming/mza/stops.csv')
-	importTrips(db, 'incoming/mza/trips.csv')
-	importRoutes(db, 'incoming/mza/trips.csv')
+	importTrips(db, 'incoming/mza/routes-trips-clean.csv')
+	importRoutes(db, 'incoming/mza/routes-trips-clean.csv')
 	importShapes(db, 'incoming/mza/shapes-raw.csv')
 	importStopTimes(db, 'incoming/mza/stop_times.csv')
 	generateShapePtSequence(db)
