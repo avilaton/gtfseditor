@@ -36,8 +36,22 @@ def deleteStop(db, stop_id):
   return {'success': bool(result), 'stop_id': stop_id}
 
 @app.put('/api/stop/<stop_id>')
-def updateStop(stop_id):
-  raise NotImplementedError
+def updateStop(db, stop_id):
+  data = request.json
+  # """ Stub - should carry out a full update, only updates stop_calle"""
+  p = {'stop_id': stop_id}
+  p['stop_calle'] = data['properties']['stop_calle'].encode('utf-8')
+  p['stop_lon'] = data['geometry']['coordinates'][0]
+  p['stop_lat'] = data['geometry']['coordinates'][1]
+  # result = self.db.query("""UPDATE stops 
+  #   SET stop_calle='{stop_calle}', 
+  #     stop_lat='{stop_lat}', stop_lon='{stop_lon}'
+  #   WHERE stop_id='{stop_id}'"""
+  #   .format(**p))
+  # self.db.connection.commit()
+  stop = Stop(**p)
+  db.merge(stop)
+  return {'success': True, 'result': p}
 
 @app.post('/api/stop/<stop_id>')
 def createStop(db, stop_id):
