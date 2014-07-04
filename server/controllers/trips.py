@@ -8,6 +8,8 @@ from server.models import Stop
 from server.models import StopSeq
 from server import geojson
 
+from collections import defaultdict
+
 @app.get('/api/trip/<trip_id>/stops')
 def tripStops(db, trip_id):
 	rows = db.query(Stop, StopSeq).join(StopSeq, Stop.stop_id == StopSeq.stop_id)\
@@ -26,14 +28,33 @@ def tripStops(db, trip_id):
 		features.append(f)
 	return geojson.featureCollection(features)
 
-# @put('/api/trip/<trip_id>/stops')
-# def saveTripStops(trip_id):
-#   if 'q' in request.query:
-#     if request.query['q'] == 'sort':
-#       result = tb.sortTripStops(trip_id)
-#     elif request.query['q'] == 'align':
-#       result = tb.alignTripStops(trip_id)
-#   else:
-#     geojsonTrip = request.json  
-#     result = tb.saveTripStops(trip_id, geojsonTrip)
-#   return result
+@app.put('/api/trip/<trip_id>/stops')
+def saveTripStops(db, trip_id):
+	# if 'q' in request.query:
+	# 	if request.query['q'] == 'sort':
+	# 		result = tb.sortTripStops(trip_id)
+	# 	elif request.query['q'] == 'align':
+	# 		result = tb.alignTripStops(trip_id)
+	# 	else:
+	geojsonTrip = request.json
+	featureList = geojsonTrip['features']
+	print featureList
+
+	# stops = db.query(StopSeq).filter(StopSeq.trip_id == trip_id).delete()
+
+	# create new ids for new stops
+	# for i,f in enumerate(featureList):
+	# 	p = defaultdict(str)
+	# 	for k,v in f['properties'].items():
+	# 		p[k] = v
+
+	# 		if 'id' in f:
+	# 			stop_id = f['id']
+	# 			stop_seq = p['stop_seq']
+	# 		else:
+	# 			stop_id = self.getNewStopId()
+	# 			stop_seq = 1000+i
+
+	# self.db.insert('stop_seq',trip_id=trip_id,stop_id=stop_id,stop_sequence=stop_seq)
+
+	return {'success':True,'trip_id':trip_id}
