@@ -1,7 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
+from server import initialize
+from bottle import debug, run
 
-from server import transitfeededitor as tfe
-
-if __name__ == "__main__":
-    tfe.app.run(host='localhost', port=8000, debug=True, reloader=True)
+debug(True)
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 8000))
+    app = initialize()
+    run(app, reloader=True, host='0.0.0.0', port=port)

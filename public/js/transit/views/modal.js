@@ -2,8 +2,9 @@ define([
     "underscore",
     "backbone",
     "handlebars",
-    "text!transit/templates/modal.handlebars"
-], function (_, Backbone, Handlebars, tmpl) {
+    "text!transit/templates/modal.handlebars",
+    'transit/api'
+], function (_, Backbone, Handlebars, tmpl, Api) {
     var View;
 
     View = Backbone.View.extend({
@@ -11,7 +12,8 @@ define([
         template: Handlebars.compile(tmpl),
 
         events: {
-            "click .btn-save": "saveRoute"
+            "click .btn-save": "saveRoute",
+            "keyup input": 'onEdit'
         },
 
         initialize: function(options){
@@ -22,13 +24,25 @@ define([
 
         render: function () {
             var self = this;
-            console.log(this);
 
             this.$el.html(this.template(this.collection.selected.toJSON()));
         },
 
         saveRoute: function (event) {
-            console.log(this)
+            var routeData = this.collection.selected.toJSON();
+            var route_id = this.collection.selected.get('route_id');
+            console.log(route_id, routeData);
+            Api.post({
+                url: 'api/routes/' + route_id,
+                data: JSON.stringify(routeData)
+            }).done(function (response) {
+                console.log(response)
+            });
+        },
+
+        onEdit: function (event) {
+            var $target = $(event.currentTarget);
+            this.collection.selected.set($target.attr('name'), $target.val());
         }
     });
 
