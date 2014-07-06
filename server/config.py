@@ -9,4 +9,4 @@ import os
 # DATABASE_URL = 'postgres:///mza'
 # heroku setup
 DATABASE_URL = os.environ.get('DATABASE_URL', 'postgres:///mza')
-DEBUG = True
+DEBUG = False

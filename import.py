@@ -96,6 +96,7 @@ def importRoutes(db, filename):
 	db.commit()
 
 def importShapes(db, filename):
+	logger.info("Importing shapes from : %s", filename)
 	# errorsFile = open('errors.log', 'w')
 	# errorsLog = csv.DictWriter(errorsFile)
 	# errorsLog.write
@@ -136,6 +137,7 @@ def importShapes(db, filename):
 	logger.info("done importing shapes")
 
 def importStopTimes(db, filename):
+	logger.info("Importing stop_times from : %s", filename)
 	keyMap = {
 		"stop_id": "stop_id",
 		"trip_id": "trip_id",
@@ -197,13 +199,24 @@ def generateStopSeq(db):
 	db.commit()
 	logger.info("Time elapsed %s",time.time()-t0)
 
+def emptyAll(db):
+	from server import Base
+	Base.metadata.drop_all(engine)
+	# db.query(Stop).delete()
+	# db.query(Shape).delete()
+	# db.query(StopSeq).delete()
+	# db.query(Route).delete()
+	# db.query(Trip).delete()
+	# db.commit()
+
 if __name__ == '__main__':
 	Session = sessionmaker(bind=engine)
 	db = scoped_session(Session)
-	importStops(db, 'incoming/mza/stops.csv')
-	importTrips(db, 'incoming/mza/routes-trips-clean.csv')
-	importRoutes(db, 'incoming/mza/routes-trips-clean.csv')
-	importShapes(db, 'incoming/mza/shapes-raw.csv')
+	# emptyAll(db)
+	# importStops(db, 'incoming/mza/stops.csv')
+	# importTrips(db, 'incoming/mza/routes-trips-clean.csv')
+	# importRoutes(db, 'incoming/mza/routes-trips-clean.csv')
+	# importShapes(db, 'incoming/mza/shapes-raw.csv')
 	importStopTimes(db, 'incoming/mza/stop_times.csv')
-	generateShapePtSequence(db)
+	# generateShapePtSequence(db)
 	generateStopSeq(db)
