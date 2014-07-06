@@ -9,8 +9,8 @@ class Trip(Base):
   trip_id = Column(String(50), primary_key=True)
   route_id = Column(String(50))
   service_id = Column(String(50))
-  trip_headsign = Column(String(50))
-  trip_short_name = Column(String(50))
+  trip_headsign = Column(String(150))
+  trip_short_name = Column(String(150))
   direction_id = Column(String(50))
   shape_id = Column(String(50))
   

@@ -11,7 +11,7 @@ class StopSeq(Base):
   stop_id = Column(String(50), primary_key=True)
   stop_sequence = Column(Integer, primary_key=True) 
   stop_time = Column(String(50)) 
-  shape_dist_traveled = Column(Float(precision=64))
+  shape_dist_traveled = Column(Float(precision=53))
   is_timepoint = Column(String(50), default="FALSE")
 
   def __repr__(self):
