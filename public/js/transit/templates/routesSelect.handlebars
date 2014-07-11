@@ -6,4 +6,19 @@
 	  {{/each}}
 	</select>
 </label>
-<button class="btn" data-target="#routeEditData" data-toggle="modal"><i class="icon-pencil"></i></button>
+<div class="btn-group">
+  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+  	<i class="icon-pencil"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="icon-plus"></i> Add</a></li>
+    <li role="presentation">
+		<a role="menuitem" tabindex="-1" href="#" data-target="#routeEditData" data-toggle="modal">
+			<i class="icon-pencil"></i> Edit
+		</a>
+    </li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="icon-trash"></i> Delete</a></li>
+    <li role="presentation" class="divider"></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">View all</a></li>
+  </ul>
+</div>
