@@ -1,107 +1,13 @@
-/* Reset body padding and margins */
-html,body{
-  display: table;
-  width: 100%;
-  margin:0;
-  padding:0;
-  font-size: 100%;
-}
-body {
-  display: table;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  background: white;
-  color: #222222;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: normal;
-  font-style: normal;
-  line-height: 1;
-}
-
-#header_container{
-  padding: 1em;
-  display:table-row;
-  width: 100%;
+.header {
   background-color: #fafafa;
-  height: 2rem;
-  padding:5px;
-  z-index:1;
-}
-#header {
   padding: 1em;
   font-size: 1.2em;
 }
-#footer_container {
-  display: table-row;
-  background-color: #f0f0f0;
-  text-align: right;
-  width: 100%;
-  background-color: #fafafa;
-  height:25px;
-  padding:15px;
-  position:relative;
-  z-index:1;
-}
-#actions_container {
-  display: table-row;
-  /* background-color: #fafafa; */
-  height:2rem;
-  /*padding-top:20px;*/
-  position:relative;
-  z-index:1;
-}
-.topBar {
+.topbar {
   padding: 1em;
 }
-#container {
-  display: table;
-  /*padding:30px 0;
-  margin:-30px 0;*/
-  width: 100%;
-  height: 100%;
-}
-
-#leftbar {
-  display:table-cell;
-  /* background:#f0f0f0; */
-  padding: 10px 20px 0;
-  width:28%;
-}
-#leftbar select,  {
-  width: 100%;
-}
-
-#leftbarStops {
-  display:table-cell;
-  background:#f0f0f0;
-  padding: 10px;
-  width:25%;
-}
-#leftbarStops select,  {
-  width: 100%;
-}
-
 #map {
-	display: table-cell;
 	background-color: #eee;
   width: 100%;
-  /* FIXME */
   height: 540px;
-  border: 1px solid #aaa;
-}
-
-/*
-Reset stuff from bootstrap
-*/
-#map img {
-  max-width: none;
-}
-#map label {
-  display: inline;
-}
-
-form.form-inline > div {
-  float:left;
 }

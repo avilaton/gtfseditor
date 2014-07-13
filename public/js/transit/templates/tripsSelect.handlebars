@@ -1,5 +1,5 @@
 <label for="trip">Trip
-	<select id="trip">
+	<select class="form-control" id="trip">
 	  <option value=""> -- </option>
 	  {{#each trips}}
 	    <option value="{{trip_id}}">{{trip_id}} - {{trip_headsign}}</option>
@@ -8,13 +8,13 @@
 </label>
 <div class="btn-group">
   <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-  	<i class="icon-pencil"></i>
+  	<i class="glyphicon glyphicon-pencil"></i>
   </button>
   <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="icon-plus"></i> Add</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="glyphicon glyphicon-plus"></i> Add</a></li>
     <li role="presentation">
-		<a role="menuitem" tabindex="-1" href="#" data-toggle="modal"><i class="icon-pencil"></i> Edit</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="icon-trash"></i> Delete</a></li>
+		<a role="menuitem" tabindex="-1" href="#" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i> Edit</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="glyphicon glyphicon-trash"></i> Delete</a></li>
     <li role="presentation" class="divider"></li>
     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">View all</a></li>
   </ul>

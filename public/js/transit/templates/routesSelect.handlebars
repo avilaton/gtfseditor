@@ -1,24 +1,29 @@
-<label for="route">Route
-	<select id="route">
-	  <option value=""> -- </option>
-	  {{#each routes}}
-	    <option value="{{route_id}}">{{route_type}} {{route_short_name}}</option>
-	  {{/each}}
-	</select>
-</label>
+<label for="route">Route</label>
+  <select class="form-control" id="route">
+    <option value=""> -- </option>
+    {{#each routes}}
+      <option value="{{route_id}}">{{route_type}} {{route_short_name}}</option>
+    {{/each}}
+  </select>
 <div class="btn-group">
   <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-  	<i class="icon-pencil"></i>
+    <i class="glyphicon glyphicon-pencil"></i>
   </button>
   <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="icon-plus"></i> Add</a></li>
-    <li role="presentation">
-		<a role="menuitem" tabindex="-1" href="#" data-target="#routeEditData" data-toggle="modal">
-			<i class="icon-pencil"></i> Edit
-		</a>
+    <li class="js-add" role="presentation">
+      <a role="menuitem" tabindex="-1" href="#"><i class="glyphicon glyphicon-plus"></i> Add</a>
     </li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="icon-trash"></i> Delete</a></li>
+    <li class="js-edit" role="presentation">
+      <a role="menuitem" tabindex="-1" href="#" data-target="#routeEditData" data-toggle="modal">
+       <i class="glyphicon glyphicon-pencil"></i> Edit
+      </a>
+    </li>
+    <li class="js-remove" role="presentation">
+      <a role="menuitem" tabindex="-1" href="#"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+    </li>
     <li role="presentation" class="divider"></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">View all</a></li>
+    <li class="js-view-all"  role="presentation">
+      <a role="menuitem" tabindex="-1" href="#">View all</a>
+    </li>
   </ul>
 </div>

@@ -13,7 +13,11 @@ define([
         template: Handlebars.compile(tmpl),
 
         events: {
-            "change select": "selectRoute"
+            "change select": "selectRoute",
+            'click .js-add': 'onAdd',
+            'click .js-edit': 'onEdit',
+            'click .js-remove': 'onRemove',
+            'click .js-view-all': 'onViewAll'
         },
 
         initialize: function(){
@@ -37,6 +41,22 @@ define([
             var selectedValue = event.currentTarget.value;
 
             self.collection.select(selectedValue);
+        },
+
+        onAdd: function (event) {
+            console.log(event)
+        },
+
+        onEdit: function (event) {
+            console.log(event)
+        },
+
+        onRemove: function (event) {
+            console.log(event)
+        },
+
+        onViewAll: function (event) {
+            console.log(event)
         }
     });
 

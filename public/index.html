@@ -7,67 +7,63 @@
   <meta name="author" content="Gastón Avila">
   <title>Transit Feed Editor</title>
   <script data-main="/static/js/init" src="/bower_components/requirejs/require.js"></script>
+  <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-  <link href="/static/css/bootstrap/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <div id="header_container">
-    <div id="header">
-      Transit Feed Editor
+  <div class="container-fluid">
+    <div class="row">
+      <div class="header">
+        Transit Feed Editor
+      </div>
     </div>
   </div>
-  <div id="actions_container">
-    <form class="form-inline">
-      <div class="topBar" id="routesSelect"></div>
-      <div id="routeDataEditor"></div>
-      <div class="topBar" id="tripsSelect"></div>
-      <div class="topBar" id="filterBox"></div>
-      <!--
-      <div class="btn-group">
-        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-          Action
-          <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-          <li>dropdown menu links</li>
+  <div class="container-fluid">
+    <div class="row topbar">
+      <form class="form-inline" role="form">
+        <div class="form-group" id="routesSelect"></div>
+        <div class="form-group" id="tripsSelect"></div>
+        <div class="form-group" id="filterBox"></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+        <ul class="nav nav-tabs" data-tabs="tabs">
+          <li class="active"><a href="#shapes" data-toggle="tab">Shapes</a></li>
+          <li><a href="#trips" data-toggle="tab">Trips</a></li>
+          <li><a href="#stops" data-toggle="tab">Stops</a></li>
         </ul>
-      </div>
-      -->
-    </form>
-  </div>
+        <div class="tab-content">
+          <div class="tab-pane active" id="shapes">
+            <div id="shapesToolbox"></div>
+            <div id="kmlSelect"></div>
+          </div>
+          <div class="tab-pane" id="trips">
+            <div id="sequenceToolbox"></div>
+          </div>
+          <div class="tab-pane" id="stops">
+            <div id="stopToolbar"></div>
+            <div id="stopData"></div>
+          </div>
+        </div>
 
-  <div id="container">
-    <div id="leftbar">
-      <ul class="nav nav-tabs" data-tabs="tabs">
-        <li class="active"><a href="#shapes" data-toggle="tab">Shapes</a></li>
-        <li><a href="#trips" data-toggle="tab">Trips</a></li>
-        <li><a href="#stops" data-toggle="tab">Stops</a></li>
-      </ul>
-      <div class="tab-content">
-        <div class="tab-pane active" id="shapes">
-          <div id="shapesToolbox"></div>
-          <div id="kmlSelect"></div>
-        </div>
-        <div class="tab-pane" id="trips">
-          <div id="sequenceToolbox"></div>
-        </div>
-        <div class="tab-pane" id="stops">
-          <div id="stopToolbar"></div>
-          <div id="stopData"></div>
-        </div>
+        <!--
+        <hr>
+        <div id="stopList"></div>
+        -->
       </div>
 
-
-
-      <!--
-      <hr>
-      <div id="stopList"></div>
-      -->
+      <div class="col-md-8">
+        <div id="map"></div>
+      </div>
     </div>
 
-    <div id="map"></div>
-
   </div>
+  <!-- Modals -->
+  <div id="routeDataEditor"></div>
 
 <!--
   <div id="footer_container">
