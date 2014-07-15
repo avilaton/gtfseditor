@@ -19,10 +19,23 @@ def routeTrips(db, route_id):
   trips = db.query(Trip).filter(Trip.route_id == route_id).all()
   return {'trips': [trip.as_dict for trip in trips]}
 
-
-@app.post('/api/routes/<route_id>')
+@app.put('/api/routes/<route_id>')
 def shape(db, route_id):
   data = request.json
   route = Route(**data)
   db.merge(route)
-  return 
+  return route.as_dict
+
+@app.post('/api/routes')
+def shape(db):
+  data = request.json
+  print data
+  route = Route(**data)
+  db.add(route)
+  return route.as_dict
+
+@app.delete('/api/routes/<route_id>')
+def shape(db, route_id):
+  route = db.query(Route).filter(Route.route_id == route_id).one()
+  db.delete(route)
+  return {'success': True}

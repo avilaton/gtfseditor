@@ -1,69 +1,49 @@
-<div id="routeEditData" class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>Route id: {{route_id}}</h3>
-  </div>
-
-  <div class="modal-body">
-
-<form class="form-horizontal">
-  <div class="control-group hide">
-    <label class="control-label" for="inputEmail">Email</label>
-    <div class="controls">
-      <input type="text" id="inputEmail" placeholder="Email">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+      </button>
+      <h3 class="modal-title">Route id: {{route_id}}</h3>
     </div>
-  </div>
-</form>
 
-    <form class="form-horizontal">
-      <div class="control-group">
-        <label class="control-label" for="agency_id">agency_id</label>
-        <div class="controls">
-          <input type="text" name="agency_id" placeholder="agency_id" value="{{agency_id}}">
+    <div class="modal-body">
+      <form role="form" >
+        <div class="form-group">
+          <label for="agency_id">agency_id</label>
+          <input class="form-control" type="text" name="agency_id" placeholder="agency_id" value="{{agency_id}}">
         </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="route_color">route_color</label>
-        <div class="controls">
-          <input type="text" name="route_color" placeholder="route_color" value="{{route_color}}">
+        <div class="form-group">
+          <label for="route_color">route_color</label>
+            <input class="form-control" type="text" name="route_color" placeholder="route_color" value="{{route_color}}">
         </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="route_desc">route_desc</label>
-        <div class="controls">
-          <input type="text" name="route_desc" placeholder="route_desc" value="{{route_desc}}">
+        <div class="form-group">
+          <label for="route_desc">route_desc</label>
+            <input class="form-control" type="text" name="route_desc" placeholder="route_desc" value="{{route_desc}}">
         </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="route_long_name">route_long_name</label>
-        <div class="controls">
-          <input type="text" name="route_long_name" placeholder="route_long_name" value="{{route_long_name}}">
+        <div class="form-group">
+          <label for="route_long_name">route_long_name</label>
+            <input class="form-control" type="text" name="route_long_name" placeholder="route_long_name" value="{{route_long_name}}">
         </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="route_short_name">route_short_name</label>
-        <div class="controls">
-          <input type="text" name="route_short_name" placeholder="route_short_name" value="{{route_short_name}}">
+        <div class="form-group">
+          <label for="route_short_name">route_short_name</label>
+          <input class="form-control" type="text" name="route_short_name" placeholder="route_short_name" value="{{route_short_name}}">
         </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="route_type">route_type</label>
-        <div class="controls">
-          <input type="text" name="route_type" placeholder="route_type" value="{{route_type}}">
+        <div class="form-group">
+          <label for="route_type">route_type</label>
+          <input class="form-control" type="text" name="route_type" placeholder="route_type" value="{{route_type}}">
         </div>
-      </div>
-      <div class="control-group">
-        <div class="controls">
-          <label class="checkbox">
-            <input type="checkbox" {{#if active}}checked{{/if}}> Active
-          </label>
+        <div class="form-group">
+            <label>
+              <input type="checkbox" {{#if active}}checked{{/if}}> Active
+            </label>
         </div>
-      </div>
-    </form>
-  </div>
+      </form>
+    </div>
 
-  <div class="modal-footer">
-    <a href="#" class="btn">Close</a>
-    <a href="#" class="btn btn-primary btn-save">Save changes</a>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary">Save changes</button>
+    </div>
   </div>
 </div>

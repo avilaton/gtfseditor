@@ -10,7 +10,6 @@ define([
   "transit/views/kmlSelect",
   "transit/views/routesSelect",
   "transit/views/tripsSelect",
-  "transit/views/modal",
   "transit/views/shapesToolbox",
   "transit/views/sequenceToolbox",
   "transit/views/stopData",
@@ -19,7 +18,7 @@ define([
 	], 
   function ($, ShapeModel, StopModel, RoutesCollection, TripsCollection, 
     StopsCollection, KmlCollection, FilterView, KmlSelectView, RoutesSelectView, 
-    TripsSelectView, ModalView, ShapesToolboxView, SequenceToolboxView, 
+    TripsSelectView, ShapesToolboxView, SequenceToolboxView, 
     StopDataView, StopToolbarView, MapView) {
 
     require(["bootstrap"]);
@@ -40,10 +39,6 @@ define([
 
 
       var routeSelector = new RoutesSelectView({
-        collection: state.routes
-      });
-      var routeDataEditor = new ModalView({
-        el: $("#routeDataEditor"),
         collection: state.routes
       });
       var tripsSelector = new TripsSelectView({

@@ -3,8 +3,10 @@ define([
     "backbone",
     "handlebars",
     "text!transit/templates/routesSelect.handlebars",
-    "transit/collections/trips"
-], function (_, Backbone, Handlebars, tmpl, TripsCollection) {
+    "transit/collections/trips",
+    'transit/models/route',
+    'transit/views/modals/route'
+], function (_, Backbone, Handlebars, tmpl, TripsCollection, RouteModel, RouteModal) {
     var RoutesSelect;
 
     RoutesSelect = Backbone.View.extend({
@@ -43,19 +45,30 @@ define([
             self.collection.select(selectedValue);
         },
 
-        onAdd: function (event) {
-            console.log(event)
+        onAdd: function () {
+            var model = new RouteModel();
+            var routeModal = new RouteModal({
+                model: model,
+                el: $('#routeDataEditor')
+            });
+            routeModal.render();
+            routeModal.$el.modal('show');
         },
 
-        onEdit: function (event) {
-            console.log(event)
+        onEdit: function () {
+            var routeModal = new RouteModal({
+                model: this.collection.selected,
+                el: $('#routeDataEditor')
+            });
+            routeModal.render();
+            routeModal.$el.modal('show');
         },
 
-        onRemove: function (event) {
-            console.log(event)
+        onRemove: function () {
+            this.collection.selected.destroy();
         },
 
-        onViewAll: function (event) {
+        onViewAll: function () {
             console.log(event)
         }
     });
