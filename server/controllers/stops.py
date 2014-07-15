@@ -18,7 +18,6 @@ def index(db, stop_id):
 def getBBOX(db):
   bounds = request.query['bbox']
   w,s,e,n = map(float,bounds.split(','))
-  print w,s,e,n
   stops = db.query(Stop).filter(Stop.stop_lat < n, Stop.stop_lat >s,
    Stop.stop_lon < e, Stop.stop_lon > w).limit(300).all()
   features = []

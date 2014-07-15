@@ -9,7 +9,7 @@ define([
       if (this.isNew()) {
         return 'api/routes';
       } else {
-        return 'api/routes/' + this.get('route_id');
+        return 'api/routes/' + this.id;
       }
     }
   });

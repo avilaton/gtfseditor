@@ -3,17 +3,23 @@ define([
   "backbone",
   "handlebars",
   "text!transit/templates/tripsSelect.handlebars",
-  "transit/collections/trips"
-  ], function (_, Backbone, Handlebars, tmpl, TripsCollection) {
-    var tripsSelect;
+  "transit/collections/trips",
+  'transit/models/trip',
+  'transit/views/modals/trip'
+  ], function (_, Backbone, Handlebars, tmpl, TripsCollection, TripModel, TripModal) {
+    var View;
 
-    tripsSelect = Backbone.View.extend({
+    View = Backbone.View.extend({
       el: $("#tripsSelect"),
 
       template: Handlebars.compile(tmpl),
 
       events: {
-        "change select": "selectTrip"
+          "change select": "selectTrip",
+          'click .js-add': 'onAdd',
+          'click .js-edit': 'onEdit',
+          'click .js-remove': 'onRemove',
+          'click .js-view-all': 'onViewAll'
       },
 
       initialize: function(options){
@@ -46,8 +52,33 @@ define([
         var selectedValue = event.currentTarget.value;
 
         self.collection.select(selectedValue);
+      },
+
+      onAdd: function () {
+        var model = new TripModel();
+        var tripModal = new TripModal({
+            model: model,
+            el: $('#routeDataEditor')
+        });
+        tripModal.$el.modal('show');
+      },
+
+      onEdit: function () {
+        var tripModal = new TripModal({
+            model: this.collection.selected,
+            el: $('#routeDataEditor')
+        });
+        tripModal.$el.modal('show');
+      },
+
+      onRemove: function () {
+        this.collection.selected.destroy();
+      },
+
+      onViewAll: function () {
+        console.log(event)
       }
     });
 
-    return tripsSelect;
+    return View;
   })

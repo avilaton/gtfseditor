@@ -6,10 +6,13 @@ define([
 
 	Model = Backbone.Model.extend({
 		idAttribute: "trip_id",
-
-	    initialize: function(){
-            
-        }
+    url: function() {
+      if (this.isNew()) {
+        return 'api/trips';
+      } else {
+        return 'api/trips/' + this.id;
+      }
+    }
  	});
 
 	return Model;

@@ -7,9 +7,9 @@ define([
     'transit/models/route',
     'transit/views/modals/route'
 ], function (_, Backbone, Handlebars, tmpl, TripsCollection, RouteModel, RouteModal) {
-    var RoutesSelect;
+    var View;
 
-    RoutesSelect = Backbone.View.extend({
+    View = Backbone.View.extend({
         el: $("#routesSelect"),
         
         template: Handlebars.compile(tmpl),
@@ -51,7 +51,6 @@ define([
                 model: model,
                 el: $('#routeDataEditor')
             });
-            routeModal.render();
             routeModal.$el.modal('show');
         },
 
@@ -60,7 +59,6 @@ define([
                 model: this.collection.selected,
                 el: $('#routeDataEditor')
             });
-            routeModal.render();
             routeModal.$el.modal('show');
         },
 
@@ -73,5 +71,5 @@ define([
         }
     });
 
-    return RoutesSelect;
+    return View;
 })

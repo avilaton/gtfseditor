@@ -10,6 +10,26 @@ from server import geojson
 
 from collections import defaultdict
 
+@app.put('/api/trips/<trip_id>')
+def updateTrip(db, trip_id):
+  data = request.json
+  trip = Trip(**data)
+  db.merge(trip)
+  return trip.as_dict
+
+@app.post('/api/trips')
+def createTrip(db):
+  data = request.json
+  trip = Trip(**data)
+  db.add(trip)
+  return trip.as_dict
+
+@app.delete('/api/trips/<trip_id>')
+def deleteTrip(db, trip_id):
+  route = db.query(Trip).filter(Trip.trip_id == trip_id).one()
+  db.delete(route)
+  return {'success': True}
+
 @app.get('/api/trip/<trip_id>/stops')
 def tripStops(db, trip_id):
 	rows = db.query(Stop, StopSeq).join(StopSeq, Stop.stop_id == StopSeq.stop_id)\
