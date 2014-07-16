@@ -9,7 +9,7 @@ import server.geojson as geojson
 from server.models import Shape
 
 @app.route('/api/shape/<shape_id>')
-def shape(db, shape_id):
+def getShape(db, shape_id):
   logger.info("Shape fetched")
   shape = db.query(Shape).filter(Shape.shape_id == shape_id)\
   	.order_by(Shape.shape_pt_sequence).all()
@@ -19,7 +19,7 @@ def shape(db, shape_id):
   return geojson.featureCollection([feature])
 
 @app.put('/api/shape/<shape_id>')
-def shape(db, shape_id):
+def updateShape(db, shape_id):
   geojsonShape = request.json
   for feature in geojsonShape['features']:
     if feature['geometry']['type'] == 'LineString':
