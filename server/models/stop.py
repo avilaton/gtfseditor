@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 from sqlalchemy import create_engine, Column, Integer, Sequence, String, Float
-from server import Base
+from base import Base, Entity
 
-class Stop(Base):
+class Stop(Entity):
   __tablename__ = 'stops'
   # stop_id = Column(Integer, Sequence('id_seq'), primary_key=True)
   stop_id = Column(String(50), primary_key=True)
@@ -21,15 +21,6 @@ class Stop(Base):
   def __repr__(self):
     return "<Stop: '%s' (lat:'%s', lon:'%s')>" % (self.stop_id, 
       self.stop_lat, self.stop_lon)
-
-  @property
-  def as_dict(self):
-    d = {}
-    for column in self.__table__.columns:
-      d[column.name] = unicode(getattr(self, column.name))
-    return d
-
-
 
 import server.geojson as geojson
 

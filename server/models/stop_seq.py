@@ -3,9 +3,9 @@
 
 from sqlalchemy import Column, Integer, String, Float
 import sqlalchemy.types
-from server import Base
+from base import Base, Entity
 
-class StopSeq(Base):
+class StopSeq(Base, Entity):
   __tablename__ = 'stop_seq'
   trip_id = Column(String(50), primary_key=True)
   stop_id = Column(String(50), primary_key=True)
@@ -17,21 +17,6 @@ class StopSeq(Base):
   def __repr__(self):
     return "<Stop_seq for trip: '%s' (stop_id:'%s', stop_sequence:'%s')>" % (self.trip_id, 
       self.stop_id, self.stop_sequence)
-
-  @property
-  def as_dict(self):
-    d = {}
-    for column in self.__table__.columns:
-      attr = getattr(self, column.name)
-      if attr is not None:
-        if isinstance(column.type, Float):
-          d[column.name] = float(attr)
-        else:
-          d[column.name] = unicode(attr)
-      else:
-        d[column.name] = None
-    return d
-
 
 current_db = ''
 

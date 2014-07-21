@@ -17,17 +17,15 @@ logger.addHandler(ch)
 import config
 from bottle import Bottle, TEMPLATE_PATH
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
 
 TEMPLATE_PATH.append("./server/views/")
 TEMPLATE_PATH.remove("./views/")
 
-Base = declarative_base()
 engine = create_engine(config.DATABASE_URL, echo=config.DEBUG)
 
-from models import *
+from models import Base
 
-Base.metadata.create_all(engine)
+# Base.metadata.create_all(engine)
 
 app = Bottle()
 

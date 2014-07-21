@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 from sqlalchemy import Column, Integer, Sequence, String, Float, Boolean
-from server import Base
+from base import Base, Entity
 
-class Trip(Base):
+class Trip(Base, Entity):
   __tablename__ = 'trips'
   trip_id = Column(String(50), primary_key=True)
   route_id = Column(String(50))
@@ -17,14 +17,6 @@ class Trip(Base):
   def __repr__(self):
     return "<trip: '%s' (trip_short_name:'%s')>" % (self.trip_id, 
       self.trip_short_name)
-
-  @property
-  def as_dict(self):
-    d = {}
-    for column in self.__table__.columns:
-      d[column.name] = unicode(getattr(self, column.name))
-    return d
-
 
 import server.gtfstools
 
