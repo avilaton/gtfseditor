@@ -25,7 +25,7 @@ engine = create_engine(config.DATABASE_URL, echo=config.DEBUG)
 
 from models import Base
 
-Base.metadata.create_all(engine)
+# Base.metadata.create_all(engine)
 
 app = Bottle()
 

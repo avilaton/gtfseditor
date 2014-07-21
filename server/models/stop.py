@@ -4,7 +4,7 @@
 from sqlalchemy import create_engine, Column, Integer, Sequence, String, Float
 from base import Base, Entity
 
-class Stop(Entity):
+class Stop(Base, Entity):
   __tablename__ = 'stops'
   # stop_id = Column(Integer, Sequence('id_seq'), primary_key=True)
   stop_id = Column(String(50), primary_key=True)

@@ -38,7 +38,7 @@ class Feed(object):
     self.loadCalendarDates()
     self.loadRoutes()
     self.loadTrips()
-    # self.loadStops()
+    self.loadStops()
 
     self.schedule.WriteGoogleTransitFeed('tmp/test.zip')
 
@@ -114,14 +114,13 @@ class Feed(object):
 
   def loadStops(self):
     logger.info("Loading Stops")
-    # query = db.query(Stop, StopSeq).join(StopSeq, Stop.stop_id == StopSeq.stop_id).all()
-    # query = db.query(Stop).all()
-    query = db.query(Stop)
+    used_stops_subquery = db.query(StopSeq.stop_id).distinct().subquery()
+    query = db.query(Stop).filter(Stop.stop_id.in_(used_stops_subquery))
 
-    print query
-    for stop in query:
-        lat = stop.stop_lat
-        lng = stop.stop_lon
-        stop_id = stop.stop_id
-        stop = self.schedule.AddStop(lat=float(lat),lng=float(lng),name=s['stop_name'],stop_id=stop_id)
-        stop.stop_code = s['stop_id']
+    for stop in query.all():
+      lat = stop.stop_lat
+      lng = stop.stop_lon
+      stop_id = stop.stop_id
+      stop = self.schedule.AddStop(lat=float(lat), lng=float(lng), 
+        name=stop.stop_name, stop_id=stop_id)
+      stop.stop_code = stop.stop_id
