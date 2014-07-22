@@ -53,7 +53,7 @@ class Feed(object):
     if len(self.schedule.GetAgencyList()):
       self.schedule.SetDefaultAgency(self.schedule.GetAgencyList()[0])
 
-  def loadCalendar(self):   
+  def loadCalendar(self):
     logger.info("Loading Calendar")
     for s in db.query(Calendar).all():
       service = transitfeed.ServicePeriod()
@@ -115,9 +115,9 @@ class Feed(object):
   def loadStops(self):
     logger.info("Loading Stops")
     used_stops_subquery = db.query(StopSeq.stop_id).distinct().subquery()
-    query = db.query(Stop).filter(Stop.stop_id.in_(used_stops_subquery))
+    stops_query = db.query(Stop).filter(Stop.stop_id.in_(used_stops_subquery))
 
-    for stop in query.all():
+    for stop in stops_query.all():
       lat = stop.stop_lat
       lng = stop.stop_lon
       stop_id = stop.stop_id

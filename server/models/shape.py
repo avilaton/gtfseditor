@@ -15,10 +15,3 @@ class Shape(Base, Entity):
   def __repr__(self):
     return "<Shape_point: (shape_id:'%s', shape_pt_sequence:'%s')>" % (self.shape_id, 
       self.shape_pt_sequence)
-
-  @property
-  def as_dict(self):
-    d = {}
-    for column in self.__table__.columns:
-      d[column.name] = unicode(getattr(self, column.name))
-    return d
