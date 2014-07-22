@@ -13,8 +13,10 @@ from server.models import Agency
 from server.models import Trip
 from server.models import Calendar
 from server.models import CalendarDate
+from server.models import Shape
 from server.models import Stop
 from server.models import StopSeq
+from server.models import StopTime
 
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session
@@ -39,6 +41,8 @@ class Feed(object):
     self.loadRoutes()
     self.loadTrips()
     self.loadStops()
+    self.loadStopTimes()
+    self.loadShapes()
 
     self.schedule.WriteGoogleTransitFeed('tmp/test.zip')
 
@@ -108,7 +112,7 @@ class Feed(object):
           trip_id = t.trip_id + '.' + service.service_id
           trip = route.AddTrip(trip_id = trip_id, headsign=t.trip_headsign)
           trip.service_id = service.service_id
-          trip.shape_id = t.trip_id
+          trip.shape_id = t.shape_id
           trip.direction_id = t.direction_id
           logger.info("Loading trip_id: {0}".format(trip_id))
 
@@ -124,3 +128,33 @@ class Feed(object):
       stop = self.schedule.AddStop(lat=float(lat), lng=float(lng), 
         name=stop.stop_name, stop_id=stop_id)
       stop.stop_code = stop.stop_id
+
+  def loadStopTimes(self):
+    """Adding Stop Times from trip start times"""
+    logger.info("Loading Stop Times")
+
+    for trip in self.schedule.GetTripList():
+      trip_id, service_id = trip['trip_id'].split('.')
+
+      for stopTime in db.query(StopTime).filter_by(trip_id=trip_id).\
+        order_by(StopTime.stop_sequence).all():
+        stop = self.schedule.GetStop(stopTime.stop_id)
+        stop_time = stopTime.arrival_time
+        if stop_time:
+          trip.AddStopTime(stop,stop_time=stop_time)
+        else:
+          trip.AddStopTime(stop)
+
+  def loadShapes(self):
+    logger.info("Loading Shapes")
+
+    usedShapes = set([trip['shape_id'] for trip in self.schedule.GetTripList()])
+
+    for shape_id in usedShapes:
+      logger.info(shape_id)
+      shape_query = db.query(Shape).filter_by(shape_id=shape_id).order_by(Shape.shape_pt_sequence)
+
+      shape = transitfeed.Shape(shape_id=shape_id)
+      for pt in shape_query.all():
+          shape.AddPoint(lat=pt.shape_pt_lat, lon=pt.shape_pt_lon)
+      self.schedule.AddShapeObject(shape)
