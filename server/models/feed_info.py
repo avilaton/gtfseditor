@@ -9,3 +9,6 @@ class FeedInfo(Base, Entity):
   feed_publisher_name = Column(String(50), primary_key=True)
   feed_publisher_url = Column(String(50))
   feed_lang = Column(String(50))
+  feed_version = Column(String(50))
+  feed_start_date = Column(String(50))
+  feed_end_date = Column(String(50))

@@ -3,20 +3,32 @@
 
 import os
 import zipfile
+import optparse
 
 from server.models import Feed
 
-def extract(filename):
+def extract(filename, destination):
     """extract for debuging"""
     with zipfile.ZipFile(filename, "r") as z:
-        if not os.path.exists('tmp/extracted/'):
-            os.makedirs('tmp/extracted/')
+        if not os.path.exists(destination):
+            os.makedirs(destination)
         for filename in z.namelist():
-            with file('tmp/extracted/'+filename, "w") as outfile:
+            with file(destination + filename, "w") as outfile:
                 outfile.write(z.read(filename))
 
 if __name__ == '__main__':
-  feed = Feed('test')
+  parser = optparse.OptionParser()
+  parser.add_option('-v', '--validate', help='Execute validation at the end', 
+      action='store_true', dest='validate')
+  parser.add_option('-e', '--extract', help='Extract compiled feed', 
+      action='store_true', dest='extract')
+  (opts, args) = parser.parse_args()
+
+  feed = Feed('tmp/dev.zip')
   feed.build()
-  extract('tmp/test.zip')
-  print(feed)
+
+  if opts.validate:
+    feed.validate()
+
+  if opts.extract:
+    extract('tmp/dev.zip', 'tmp/extracted/')

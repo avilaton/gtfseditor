@@ -16,7 +16,3 @@ class Route(Base, Entity):
   route_text_color = Column(String(50))
   active = Column(String(50))
   # active = Column(Boolean, nullable=False, default=True)
-
-  def __repr__(self):
-    return "<Route: '%s' (route_short_name:'%s')>" % (self.route_id, 
-      self.route_short_name)

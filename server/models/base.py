@@ -20,3 +20,11 @@ class Entity(object):
       else:
         d[column.name] = None
     return d
+
+  def __repr__(self):
+    info = ['<', self.__class__.__name__, ': ']
+    for col in self.__table__.primary_key.columns:
+      attr = getattr(self, col.name)
+      info.extend([col.name, '=', unicode(attr), ' '])
+    info.append('>')
+    return ('').join(info)

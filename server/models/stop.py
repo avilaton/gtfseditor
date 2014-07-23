@@ -17,7 +17,3 @@ class Stop(Base, Entity):
   stop_numero = Column(String(50))
   stop_entre = Column(String(50))
   stop_esquina = Column(String(50))
-
-  def __repr__(self):
-    return "<Stop: '%s' (lat:'%s', lon:'%s')>" % (self.stop_id, 
-      self.stop_lat, self.stop_lon)

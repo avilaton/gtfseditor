@@ -11,8 +11,3 @@ class StopSeq(Base, Entity):
   stop_sequence = Column(Integer, primary_key=True) 
   stop_time = Column(String(50)) 
   shape_dist_traveled = Column(Float(precision=53))
-  # is_timepoint = Column(String(50), default="FALSE")
-
-  def __repr__(self):
-    return "<Stop_seq for trip: '%s' (stop_id:'%s', stop_sequence:'%s')>" % (self.trip_id, 
-      self.stop_id, self.stop_sequence)

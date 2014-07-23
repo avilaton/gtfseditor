@@ -4,3 +4,6 @@ server/gtfstools/*.pyc
 node_modules/
 assets/js/lib/
 bower_components/
+venv/
+tmp/
+logs.log

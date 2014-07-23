@@ -11,7 +11,3 @@ class Shape(Base, Entity):
   shape_pt_lon = Column(Float(precision=53))
   shape_pt_time = Column(String(50))
   shape_pt_sequence = Column(Integer, primary_key=True)
-
-  def __repr__(self):
-    return "<Shape_point: (shape_id:'%s', shape_pt_sequence:'%s')>" % (self.shape_id, 
-      self.shape_pt_sequence)

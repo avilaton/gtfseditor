@@ -12,6 +12,3 @@ class Agency(Base, Entity):
   agency_timezone = Column(String(50))
   agency_lang = Column(String(50))
   agency_phone = Column(String(50))
-
-  def __repr__(self):
-    return "<Agency: (id: '%s')>" % (self.agency_id)

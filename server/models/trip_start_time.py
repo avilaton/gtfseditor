@@ -4,12 +4,8 @@
 from sqlalchemy import Column, Integer, Sequence, String, Float, Boolean
 from base import Base, Entity
 
-class Trip(Base, Entity):
-  __tablename__ = 'trips'
+class TripStartTime(Base, Entity):
+  __tablename__ = 'trips_start_times'
   trip_id = Column(String(50), primary_key=True)
-  route_id = Column(String(50))
   service_id = Column(String(50))
-  trip_headsign = Column(String(150))
-  trip_short_name = Column(String(150))
-  direction_id = Column(String(50))
-  shape_id = Column(String(50))
+  start_time = Column(String(50))
