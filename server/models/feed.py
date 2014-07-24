@@ -31,12 +31,13 @@ db = scoped_session(Session)
 
 class Feed(object):
   """GTFS schedule feed factory"""
-  def __init__(self, filename):
+  def __init__(self, filename='google_transit.zip'):
     self.filename = filename
+    self.fileObj = StringIO.StringIO()
     self.schedule = transitfeed.Schedule()
 
   def __repr__(self):
-    return 'GTFS feed at:' + self.filename
+    return 'GTFS feed:' + self.filename
 
   def build(self):
     logger.info("Feed build started")
@@ -49,9 +50,10 @@ class Feed(object):
     self.loadStopTimes()
     self.loadShapes()
     self.loadFrequencies()
-    self.schedule.WriteGoogleTransitFeed(self.filename)
+    self.schedule.WriteGoogleTransitFeed(self.fileObj)
     self.loadFeedInfo()
     logger.info("Feed build completed")
+    return self.fileObj
 
   def loadAgencies(self):
     logger.info("Loading Agencies")
@@ -182,5 +184,5 @@ class Feed(object):
     writer.writeheader()
     for info in db.query(FeedInfo).all():
       writer.writerow(info.as_dict)
-    with zipfile.ZipFile(self.filename, "a") as z:
+    with zipfile.ZipFile(self.fileObj, "a") as z:
         z.writestr('feed_info.txt', feed_info_txt.getvalue())

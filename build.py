@@ -7,14 +7,17 @@ import optparse
 
 from server.models import Feed
 
-def extract(filename, destination):
+TMP_FOLDER = 'tmp/'
+
+def extract(filename, dest):
     """extract for debuging"""
+    if not os.path.exists(dest):
+      os.makedirs(dest)
+
     with zipfile.ZipFile(filename, "r") as z:
-        if not os.path.exists(destination):
-            os.makedirs(destination)
-        for filename in z.namelist():
-            with file(destination + filename, "w") as outfile:
-                outfile.write(z.read(filename))
+      for filename in z.namelist():
+        with file(dest + filename, "w") as outfile:
+          outfile.write(z.read(filename))
 
 if __name__ == '__main__':
   parser = optparse.OptionParser()
@@ -24,11 +27,14 @@ if __name__ == '__main__':
       action='store_true', dest='extract')
   (opts, args) = parser.parse_args()
 
-  feed = Feed('tmp/dev.zip')
-  feed.build()
+  feed = Feed()
+  feedFile = feed.build()
+
+  with open(TMP_FOLDER + feed.filename, 'wb') as f:
+    f.write(feedFile.getvalue())
 
   if opts.validate:
     feed.validate()
 
   if opts.extract:
-    extract('tmp/dev.zip', 'tmp/extracted/')
+    extract(TMP_FOLDER + feed.filename, 'tmp/extracted/')

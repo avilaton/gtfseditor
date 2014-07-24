@@ -49,6 +49,7 @@ def initialize():
 	from controllers import routes
 	from controllers import shapes
 	from controllers import trips
+	from controllers import feed
 
 	logger.info("Controllers Loaded")
 	return app
