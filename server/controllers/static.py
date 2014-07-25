@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-from bottle import static_file, route
+from bottle import static_file
 from server import app
 
 # @route('/:file#(favicon.ico|humans.txt)#')
@@ -23,3 +23,7 @@ def kmlFiles():
 @app.get('/<filepath:path>')
 def index(filepath):
   return static_file(filepath, root='./app/')
+
+@app.get('/')
+def index():
+  return static_file('index.html', root='./app/')
