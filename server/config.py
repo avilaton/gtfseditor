@@ -3,7 +3,7 @@
 
 import os
 
-DATABASE_URL = 'sqlite:///database/dev.sqlite'
+DATABASE_URL = 'sqlite:///dev.sqlite'
 # DATABASE_URL = 'sqlite:///database/test.sqlite'
 # DATABASE_URL = 'sqlite:///database/1.0.9.sqlite'
 # DATABASE_URL = 'sqlite:///:memory:'
