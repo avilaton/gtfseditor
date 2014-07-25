@@ -1,7 +1,0 @@
-route_id, service_id, trip_id, trip_headsign, trip_short_name, direction_id, shape_id
-"TA",,"TA.ida","Plaza de las Américas",,"0","TA.ida"
-"TA",,"TA.reg","Mariano Fragueiro",,"1","TA.reg"
-"TB",,"TB.ida","Pueyrredón",,"0","TB.ida"
-"TB",,"TB.reg","Alto Alberdi",,"1","TB.reg"
-"TC",,"TC.ida","San Vicente",,"0","TC.ida"
-"TC",,"TC.reg","Ameghino",,"1","TC.reg"
