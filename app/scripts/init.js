@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: 'static/js',
+    baseUrl: 'scripts',
     shim: {
         OpenLayers: {
             exports: 'OpenLayers'
@@ -16,15 +16,15 @@ require.config({
         }
     },
     paths: {
-        "backbone": "../../bower_components/backbone-amd/backbone",
-        "jquery": "../../bower_components/jquery/dist/jquery",
-        "bootstrap": "../../bower_components/bootstrap/dist/js/bootstrap",
+        "backbone": "/bower_components/backbone-amd/backbone",
+        "jquery": "/bower_components/jquery/dist/jquery",
+        "bootstrap": "/bower_components/bootstrap/dist/js/bootstrap",
         "OpenLayers": "lib/OpenLayers",
-        // "OpenLayers": "../../bower_components/openlayers/lib/OpenLayers",
-        "underscore": "../../bower_components/underscore-amd/underscore",
-        "handlebars": "../../bower_components/handlebars/handlebars",
-        "text": "../../bower_components/requirejs-text/text",
-        "async": "../../bower_components/requirejs-plugins/src/async"
+        // "OpenLayers": "/bower_components/openlayers/lib/OpenLayers",
+        "underscore": "/bower_components/underscore-amd/underscore",
+        "handlebars": "/bower_components/handlebars/handlebars",
+        "text": "/bower_components/requirejs-text/text",
+        "async": "/bower_components/requirejs-plugins/src/async"
     }
 });
 
