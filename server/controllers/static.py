@@ -20,10 +20,6 @@ def kmlFiles():
     options.append({'value': filename})
   return {'options': options}
 
-@app.get('/bower_components/<filepath:path>')
-def server_files(filepath):
-  return static_file(filepath, root='./bower_components/')
-
 @app.get('/<filepath:path>')
 def index(filepath):
   return static_file(filepath, root='./app/')
