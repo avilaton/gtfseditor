@@ -45,11 +45,11 @@ def initialize():
 	app.install(plugin)
 
 	from controllers import stops
-	from controllers import static
 	from controllers import routes
 	from controllers import shapes
 	from controllers import trips
 	from controllers import feed
+	from controllers import static
 
 	logger.info("Controllers Loaded")
 	return app

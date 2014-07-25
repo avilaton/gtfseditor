@@ -20,10 +20,6 @@ def kmlFiles():
     options.append({'value': filename})
   return {'options': options}
 
-@app.get('/assets/<filepath:path>')
-def server_files(filepath):
-  return static_file(filepath, root='./assets/')
-
 @app.get('/bower_components/<filepath:path>')
 def server_files(filepath):
   return static_file(filepath, root='./bower_components/')
@@ -32,6 +28,6 @@ def server_files(filepath):
 def server_files(filepath):
   return static_file(filepath, root='./public/')
 
-@app.get('/')
-def index():
-  return static_file('index.html', root='./public/')
+@app.get('/<filepath:path>')
+def index(filepath):
+  return static_file(filepath, root='./app/')
