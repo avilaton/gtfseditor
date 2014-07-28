@@ -13,7 +13,6 @@ $ cd gtfseditor
 ```
 
 Create a new virtual environment and activate it using
-
 ```
 $ mkdir venv
 $ virtualenv venv
@@ -21,13 +20,11 @@ $ source venv/bin/activate
 ```
 
 Install the projects dependencies using
-
 ```
 pip install -r requirements.txt
 ```
 
 You can now run the server using
-
 ```
 ./dev_server.py
 ```
