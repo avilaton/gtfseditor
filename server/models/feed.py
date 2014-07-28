@@ -13,7 +13,7 @@ import zipfile
 from server import config
 from server import engine
 from server.models import Route
-from server.models import RouteService
+from server.models import RouteFrequency
 from server.models import Agency
 from server.models import Trip
 from server.models import Calendar
@@ -143,7 +143,7 @@ class Feed(object):
       lng = stop.stop_lon
       stop_id = stop.stop_id
       stop = self.schedule.AddStop(lat=float(lat), lng=float(lng), 
-        name=stop.stop_name, stop_id=stop_id)
+        name=stop.stop_name, stop_id=str(stop_id))
       stop.stop_code = stop.stop_id
 
   def loadStopTimes(self):
@@ -151,14 +151,16 @@ class Feed(object):
     logger.info("Loading Stop Times")
 
     for trip in self.schedule.GetTripList():
-      # trip_id, service_id = trip['trip_id'].split('.')
 
-      for stopTime in db.query(StopTime).filter_by(trip_id=trip.trip_id).\
+      trip_id = trip.trip_id.replace('.'+trip.service_id, '')
+
+
+      for stopTime in db.query(StopTime).filter_by(trip_id=trip_id).\
         order_by(StopTime.stop_sequence).all():
         stop = self.schedule.GetStop(stopTime.stop_id)
         stop_time = stopTime.arrival_time
         if stop_time:
-          trip.AddStopTime(stop,stop_time=stop_time)
+          trip.AddStopTime(stop, stop_time=stop_time)
         else:
           trip.AddStopTime(stop)
 
@@ -179,7 +181,7 @@ class Feed(object):
 
       if self.mode == 'cba':
         for trip in self.schedule.GetTripList():
-          services = db.query(RouteService).filter_by(route_id=trip.route_id, 
+          services = db.query(RouteFrequency).filter_by(route_id=trip.route_id, 
             service_id=trip.service_id).all()
           for route_service in services:
             f = transitfeed.Frequency({'trip_id': trip.trip_id, 
