@@ -28,7 +28,9 @@ pip install -r requirements.txt
 
 You can now run the server using
 
-	./dev_server.py
+```
+./dev_server.py
+```
 
 and open your web browser at `http://localhost:8000`.
 
