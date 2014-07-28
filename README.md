@@ -43,22 +43,22 @@ Development
 
 The project has two main parts,
 
-	- a client application, located at `app/`
-	- a API server + some building tools at `server/`
+- a client application, located at `app/`
+- a API server + some building tools at `server/`
 
 The client application uses
 
-	- require.js to load javascript modules,
-	- backbone.js to structure models and views,
-	- openlayers.js to create and manage the map components,
-	- bootstrap.js for styling, scaffolding and plugins,
-	- handlebars.js as a templating engine.
+- require.js to load javascript modules,
+- backbone.js to structure models and views,
+- openlayers.js to create and manage the map components,
+- bootstrap.js for styling, scaffolding and plugins,
+- handlebars.js as a templating engine.
 
 The API server uses
 
-	- bottle.py for WSGI,
-	- SQLAlchemy for database abstraction,
-	- transitfeed.py for gtfs building and validation.
+- bottle.py for WSGI,
+- SQLAlchemy for database abstraction,
+- transitfeed.py for gtfs building and validation.
 
 among other auxiliary packages.
 
