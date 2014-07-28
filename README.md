@@ -1,47 +1,70 @@
-gtfseditor
+Gtfseditor
 ==========
 
-wsgi application to be both a standalone gtfs editor or deployed to google app engine/other wsgi compliant hosting.
+A customizable editor for GTFS files which can be used both as a standalone app 
+or deployed to a wsgi compliant hosting.
 
+Installation
+------------
+Clone the project and `cd` into the new folder using
+```
+$ git clone git@github.com:avilaton/gtfseditor.git
+$ cd gtfseditor
+```
 
-Usage
------
+Create a new virtual environment and activate it using
+```
+$ mkdir venv
+$ virtualenv venv
+$ source venv/bin/activate
+```
 
-Fetch dependencies using
-	
-	pip install -r requirements.txt
-	bower install
+Install the projects dependencies using
+```
+pip install -r requirements.txt
+```
 
-then run
+You can now run the server using
+```
+./dev_server.py
+```
 
-	./dev_server.py
+and open your web browser at `http://localhost:8000`.
 
-and point your browser to `http://localhost:8080`.
+Configuration
+-------------
+The main configuration file for the server is located at `server/config.py`.
 
-notes
------
-using behind corporate proxy needs
+Development
+-----------
 
-	git config --global url."https://".insteadOf git://
+The project has two main parts,
 
-and .bowerrc
+- a client application, located at `app/`
+- a API server + some building tools at `server/`
 
-	{
-		proxy: http://ip:port,
-		https-proxy: http://ip:port
-	}
+The client application uses
 
-postgres notes
----------------
+- require.js to load javascript modules,
+- backbone.js to structure models and views,
+- openlayers.js to create and manage the map components,
+- bootstrap.js for styling, scaffolding and plugins,
+- handlebars.js as a templating engine.
 
-load from file
-	
-	\i database/cba-0.1.5.sql
+The API server uses
 
-dump to csv
+- bottle.py for WSGI,
+- SQLAlchemy for database abstraction,
+- transitfeed.py for gtfs building and validation.
 
-	\COPY stops TO 'stops.txt' WITH delimiter ',' null '' csv header quote '"';
+among other auxiliary packages.
 
-push to heroku
+Database
+--------
 
-	PGUSER=*** PGPASSWORD=*** heroku pg:push cbadb HEROKU_POSTGRESQL_PINK --app gtfseditor
+Development and local usage are best served by using **SQLite** as a db engine. It 
+allows for rapid setup and portability. 
+
+Some hosted services do not support sqlite as a db engine (heroku), and 
+**postgres** can be used.
+
