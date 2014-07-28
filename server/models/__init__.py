@@ -8,6 +8,7 @@ from fare_rule import FareRule
 from feed_info import FeedInfo
 from frequency import Frequency
 from route import Route
+from route_service import RouteService
 from shape import Shape
 from stop import Stop
 from stop_seq import StopSeq
