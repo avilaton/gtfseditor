@@ -33,6 +33,7 @@ class Populator(object):
         'arrival_time': stopSeq.stop_time,
         'departure_time': stopSeq.stop_time
         })
+      stop_seq_dict.pop('stop_time')
       stopTime = StopTime(**stop_seq_dict)
       db.merge(stopTime)
     if commit:
