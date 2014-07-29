@@ -10,8 +10,10 @@ import transitfeed
 import StringIO
 import zipfile
 
+from server import config
 from server import engine
 from server.models import Route
+from server.models import RouteFrequency
 from server.models import Agency
 from server.models import Trip
 from server.models import Calendar
@@ -32,6 +34,7 @@ db = scoped_session(Session)
 class Feed(object):
   """GTFS schedule feed factory"""
   def __init__(self, filename='google_transit.zip'):
+    self.mode = config.BUILD_MODE
     self.filename = filename
     self.fileObj = StringIO.StringIO()
     self.schedule = transitfeed.Schedule()
@@ -49,7 +52,9 @@ class Feed(object):
     self.loadStops()
     self.loadStopTimes()
     self.loadShapes()
-    self.loadFrequencies()
+    if self.mode == 'cba':
+      self.loadFrequencies()
+
     self.schedule.WriteGoogleTransitFeed(self.fileObj)
     self.loadFeedInfo()
     logger.info("Feed build completed")
@@ -112,15 +117,21 @@ class Feed(object):
     """Loads active trips into schedule"""
     logger.info("Loading Trips")
 
-    for route in self.schedule.GetRouteList():
-      for t in db.query(Trip).filter_by(route_id=route.route_id).all():
-        # trip_id = t.trip_id + '.' + service.service_id
-        trip_id = t.trip_id
-        trip = route.AddTrip(trip_id = trip_id, headsign=t.trip_headsign)
-        trip.service_id = t.service_id
-        trip.shape_id = t.shape_id
-        trip.direction_id = t.direction_id
-        logger.info("Loading trip_id: {0}".format(trip_id))
+    services = self.schedule.GetServicePeriodList()
+
+    if self.mode == 'cba':
+      for route in self.schedule.GetRouteList():
+        for tripRow in db.query(Trip).filter_by(route_id=route.route_id).all():
+          for service in services:
+            trip_id = tripRow.trip_id + '.' + service.service_id
+            trip = route.AddTrip(trip_id = trip_id, headsign=tripRow.trip_headsign)
+            trip.service_id = service.service_id
+            trip.shape_id = tripRow.shape_id
+            trip.direction_id = tripRow.direction_id
+            logger.info("Loading trip_id: {0}".format(trip_id))
+    else:
+      # trip_id = t.trip_id
+      raise NotImplementedError
 
   def loadStops(self):
     logger.info("Loading Stops")
@@ -132,7 +143,7 @@ class Feed(object):
       lng = stop.stop_lon
       stop_id = stop.stop_id
       stop = self.schedule.AddStop(lat=float(lat), lng=float(lng), 
-        name=stop.stop_name, stop_id=stop_id)
+        name=stop.stop_name, stop_id=str(stop_id))
       stop.stop_code = stop.stop_id
 
   def loadStopTimes(self):
@@ -140,14 +151,16 @@ class Feed(object):
     logger.info("Loading Stop Times")
 
     for trip in self.schedule.GetTripList():
-      # trip_id, service_id = trip['trip_id'].split('.')
 
-      for stopTime in db.query(StopTime).filter_by(trip_id=trip.trip_id).\
+      trip_id = trip.trip_id.replace('.'+trip.service_id, '')
+
+
+      for stopTime in db.query(StopTime).filter_by(trip_id=trip_id).\
         order_by(StopTime.stop_sequence).all():
         stop = self.schedule.GetStop(stopTime.stop_id)
         stop_time = stopTime.arrival_time
         if stop_time:
-          trip.AddStopTime(stop,stop_time=stop_time)
+          trip.AddStopTime(stop, stop_time=stop_time)
         else:
           trip.AddStopTime(stop)
 
@@ -166,13 +179,23 @@ class Feed(object):
   def loadFrequencies(self):
       logger.info("Loading Frequencies")
 
-      for freq in db.query(Frequency).all():
-
-        f = transitfeed.Frequency({'trip_id':freq.trip_id, 
-            'start_time':freq.start_time, 
-            'end_time':freq.end_time, 
-            'headway_secs':freq.headway_secs})
-        f.AddToSchedule(self.schedule)
+      if self.mode == 'cba':
+        for trip in self.schedule.GetTripList():
+          services = db.query(RouteFrequency).filter_by(route_id=trip.route_id, 
+            service_id=trip.service_id).all()
+          for route_service in services:
+            f = transitfeed.Frequency({'trip_id': trip.trip_id, 
+                'start_time': route_service.start_time, 
+                'end_time': route_service.end_time, 
+                'headway_secs': route_service.headway_secs})
+            f.AddToSchedule(self.schedule)
+      else:
+        for freq in db.query(Frequency).all():
+          f = transitfeed.Frequency({'trip_id':freq.trip_id, 
+              'start_time':freq.start_time, 
+              'end_time':freq.end_time, 
+              'headway_secs':freq.headway_secs})
+          f.AddToSchedule(self.schedule)
 
   def loadFeedInfo(self):
     logger.info("Load Feed Info")
@@ -183,6 +206,7 @@ class Feed(object):
     writer = csv.DictWriter(feed_info_txt, keys)
     writer.writeheader()
     for info in db.query(FeedInfo).all():
-      writer.writerow(info.as_dict)
+      uDict = dict((k, v.encode('utf-8')) for k, v in info.as_dict.iteritems())
+      writer.writerow(uDict)
     with zipfile.ZipFile(self.fileObj, "a") as z:
         z.writestr('feed_info.txt', feed_info_txt.getvalue())
