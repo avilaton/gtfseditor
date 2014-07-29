@@ -5,9 +5,9 @@ import os
 
 DEBUG = False
 
-# DATABASE_URL = 'sqlite:///dev.sqlite'
+DATABASE_URL = 'sqlite:///dev.sqlite'
 # DATABASE_URL = 'sqlite:///database/test.sqlite'
-DATABASE_URL = 'sqlite:///../cba.sqlite'
+# DATABASE_URL = 'sqlite:///../cba.sqlite'
 # DATABASE_URL = 'sqlite:///:memory:'
 # DATABASE_URL = 'postgres:///mza'
 # heroku setup
