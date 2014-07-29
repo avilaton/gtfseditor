@@ -11,6 +11,7 @@ db = scoped_session(Session)
 
 from server.services.interpolation import Interpolator
 from server.services.populator import Populator
+from server.services.trip_actions import TripActions
 
 import os
 import zipfile
@@ -41,6 +42,10 @@ def generate_stop_times_from_stop_seqs():
   # populator.stop_seq_to_stop_times(trip_id='10.ida', commit=True)
   populator.allSeqs()
 
+def sort_trips():
+  trip = TripActions('a_trip_id')
+  trip.sortStops()
+  trip.computeStopDistTraveled()
 
 if __name__ == '__main__':
   usage = "usage: %prog [options] command"
@@ -71,3 +76,8 @@ if __name__ == '__main__':
     generate_interpolated_stop_times()
   elif args[0] == 'populate-times':
     generate_stop_times_from_stop_seqs()
+  elif args[0] == 'sort-trip':
+    sort_trips()
+  else:
+    parser.error("command not found")
+

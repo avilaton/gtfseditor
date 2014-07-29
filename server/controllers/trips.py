@@ -78,3 +78,7 @@ def saveTripStops(db, trip_id):
 	# self.db.insert('stop_seq',trip_id=trip_id,stop_id=stop_id,stop_sequence=stop_seq)
 
 	return {'success':True,'trip_id':trip_id}
+
+@app.post('/api/trips/<trip_id>/sort')
+def sortTripStops(db, trip_id):
+  pass
