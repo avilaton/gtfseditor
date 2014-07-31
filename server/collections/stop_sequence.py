@@ -24,6 +24,7 @@ class StopSequence(object):
 
   def __init__(self, trip_id):
     self.db = db
+    self.trip_id = trip_id
     trip = db.query(Trip).filter_by(trip_id=trip_id).first()
     self.stopsSequence = db.query(Stop, StopSeq).\
       join(StopSeq, Stop.stop_id == StopSeq.stop_id).\
@@ -69,6 +70,7 @@ class StopSequence(object):
   def sortStops(self, commit=False):
     """ Compute stop snaps for each stop. Sort according to traveled 
      distance for each snap point. Return a sorted list of stops """
+    logger.debug("Sorting stops in trip_id: %s", self.trip_id)
     self.computeAllSnaps()
     sortedStops = sorted(self.snaps, key=lambda StopSnap: StopSnap['Snap']['traveled'])
     for i, item in enumerate(sortedStops):
@@ -78,7 +80,7 @@ class StopSequence(object):
     db.commit()
 
   def updateStopSeqDistTraveled(self):
-    logger.debug("Updating traveled distance for trip")
+    logger.debug("Updating traveled distance for trip_id: %s", self.trip_id)
     self.computeAllSnaps()
     for s in self.snaps:
       stopSeq = s['StopSeq']
