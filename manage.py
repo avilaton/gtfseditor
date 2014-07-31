@@ -9,9 +9,9 @@ from sqlalchemy.orm import scoped_session
 Session = sessionmaker(bind=engine)
 db = scoped_session(Session)
 
-from server.services.interpolation import Interpolator
-from server.services.populator import Populator
-from server.services.trip_actions import StopSequence
+from server.collections.interpolation import Interpolator
+from server.collections.populator import Populator
+from server.collections.stop_sequence import StopSequence
 
 import os
 import zipfile
