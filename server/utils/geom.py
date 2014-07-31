@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#
-#   gtfstools/utils.py
 
 from math import radians, degrees, acos, cos, sin, asin, sqrt, atan
 import cmath
@@ -75,8 +73,47 @@ def mPoint(n1,n2,s0):
   
   return between,n
 
-def tests():
-    return
+def snapPointToPolygon(point, polygon):
+  allInterpolators = []
+  allCorners = []
+  accumulated = 0
+  for i in range(len(polygon)-1):
+    # find nearest corner node
+    p1 = polygon[i]
+    p2 = polygon[i+1]
+    heading = headingC(p1,p2)
+    length = tripLength([p1,p2])
+    d1 = haversineDict(point,p1)
+    d2 = haversineDict(point,p2)
+    cornerSol = {'heading':heading}
+    if d1 <= d2:
+      cornerSol.update({'node':p1,'dist':d1,'traveled':accumulated})
+    else:
+      cornerSol.update({'node':p2,'dist':d2,'traveled':accumulated + length})
+    allCorners.append(cornerSol)
 
-if __name__ == '__main__':
-    tests()
+    b,n = mPoint(p1, p2, point)
+    if b:
+      mSol = {'heading':heading, 
+        'node': n, 
+        'dist':haversineDict(point,n), 
+        'traveled': accumulated + tripLength([p1,n])}
+      allInterpolators.append(mSol)    
+
+    accumulated += length
+
+  nearestCorner = min(allCorners,key=lambda x:x['dist'])
+  if allInterpolators:
+    nearestInterpolator = min(allInterpolators,key=lambda x:x['dist'])
+  else:
+    nearestInterpolator = []
+
+  if nearestInterpolator:
+    if nearestInterpolator['dist'] <= nearestCorner['dist']:
+      snap = nearestInterpolator
+    else:
+      snap = nearestCorner
+  else:
+    snap = nearestCorner
+
+  return snap

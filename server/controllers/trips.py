@@ -6,6 +6,7 @@ from server import app
 from server.models import Trip
 from server.models import Stop
 from server.models import StopSeq
+from server.collections.stop_sequence import StopSequence
 from server import geojson
 
 from collections import defaultdict
@@ -78,3 +79,15 @@ def saveTripStops(db, trip_id):
 	# self.db.insert('stop_seq',trip_id=trip_id,stop_id=stop_id,stop_sequence=stop_seq)
 
 	return {'success':True,'trip_id':trip_id}
+
+@app.get('/api/trips/<trip_id>/actions/sort-stops')
+def sortTripStops(db, trip_id):
+  stopSequence = StopSequence(trip_id)
+  stopSequence.sortStops()
+  return {'success': True}
+
+@app.get('/api/trips/<trip_id>/actions/update-distances')
+def sortTripStops(db, trip_id):
+  stopSequence = StopSequence(trip_id)
+  stopSequence.updateDistances()
+  return {'success': True}
