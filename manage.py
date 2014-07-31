@@ -11,7 +11,7 @@ db = scoped_session(Session)
 
 from server.services.interpolation import Interpolator
 from server.services.populator import Populator
-from server.services.trip_actions import TripActions
+from server.services.trip_actions import StopSequence
 
 import os
 import zipfile
@@ -43,12 +43,21 @@ def generate_stop_times_from_stop_seqs():
   populator.allSeqs()
 
 def sort_trips():
-  trip = TripActions('a_trip_id')
+  trip = StopSequence('a_trip_id')
   trip.sortStops()
-  trip.computeStopDistTraveled()
+
+def update_distance_traveled():
+  trip = StopSequence('a_trip_id')
+  trip.updateStopSeqDistTraveled()
 
 if __name__ == '__main__':
-  usage = "usage: %prog [options] command"
+  usage = """usage: %prog [options] command
+where command can be one of:
+  build         create GTFS feed
+  interpolate   interpolate trip times
+  pop-times     generates stop times from stop sequences
+  sort-trip     sort trip stops along shape"""
+
 
   parser = optparse.OptionParser(usage=usage)
   parser.add_option('-v', '--validate', help='Execute validation at the end', 
@@ -74,10 +83,12 @@ if __name__ == '__main__':
 
   elif args[0] == 'interpolate':
     generate_interpolated_stop_times()
-  elif args[0] == 'populate-times':
+  elif args[0] == 'pop-times':
     generate_stop_times_from_stop_seqs()
   elif args[0] == 'sort-trip':
     sort_trips()
+  elif args[0] == 'update-dist':
+    update_distance_traveled()
   else:
     parser.error("command not found")
 

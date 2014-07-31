@@ -5,8 +5,6 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-import transitfeed
-
 from server import config
 from server import engine
 from server.models import StopSeq
@@ -22,29 +20,28 @@ db = scoped_session(Session)
 
 import server.utils.geom as utils
 
-class TripActions(object):
+class StopSequence(object):
 
   def __init__(self, trip_id):
     self.db = db
     trip = db.query(Trip).filter_by(trip_id=trip_id).first()
-    stopsSequence = db.query(Stop, StopSeq).\
+    self.stopsSequence = db.query(Stop, StopSeq).\
       join(StopSeq, Stop.stop_id == StopSeq.stop_id).\
       filter(StopSeq.trip_id == trip_id).\
       order_by(StopSeq.stop_sequence).all()
-    self.stops = [item.Stop for item in stopsSequence]
+    self.stops = [item.Stop for item in self.stopsSequence]
     self.shape = db.query(Shape).filter_by(shape_id=trip.shape_id).all()
 
   def offsetStops(self, offset=6.0):
+    raise NotImplementedError
     self.computeAllSnaps()
-    self.stops = []
-    for stop,snap in self.snaps:
+    for stop, snap in self.snaps:
       nLat = snap['node']['lat']
       nLon = snap['node']['lon']
       of = utils.leftHand(snap['node'], snap['heading'], offset)
       nStop = {'stop_id':stop['stop_id'], 
                 'lat':of['lat'],
                 'lon':of['lon']}
-      self.stops.append(nStop)
     return self
 
   def computeAllSnaps(self):
@@ -59,35 +56,34 @@ class TripActions(object):
     
     shape_dicts = map(shape_lat_lon, self.shape)
 
-    for stop in self.stops:
-      stop_dict = stop_lat_lon(stop)
+    for item in self.stopsSequence:
+      stop = item.Stop
+      stop_dict = stop_lat_lon(item.Stop)
       snap = utils.snapPointToPolygon(stop_dict, shape_dicts)
       self.snaps.append({
-        'Stop': stop,
+        'StopSeq': item.StopSeq,
+        'Stop': item.Stop,
         'Snap': snap
         })
-    return self
 
   def sortStops(self, commit=False):
     """ Compute stop snaps for each stop. Sort according to traveled 
      distance for each snap point. Return a sorted list of stops """
     self.computeAllSnaps()
     sortedStops = sorted(self.snaps, key=lambda StopSnap: StopSnap['Snap']['traveled'])
-    assert len(self.stops) == len(sortedStops)
-    
-    self.stops = [stopSnap['Stop'] for stopSnap in sortedStops]
-    return self.stops
+    for i, item in enumerate(sortedStops):
+      stopSeq = item['StopSeq']
+      stopSeq.stop_sequence = i + 1
+      db.merge(stopSeq)
+    db.commit()
 
-  def computeStopDistTraveled(self):
+  def updateStopSeqDistTraveled(self):
     logger.debug("Updating traveled distance for trip")
     self.computeAllSnaps()
     for s in self.snaps:
-        stop_id = s['Stop'].stop_id
-
-        d = "{0:.3f}".format(s['Snap']['traveled'])
-        print s['Stop'], d
-        
-        # q = """UPDATE stop_seq SET shape_dist_traveled='{d}' 
-        #     WHERE trip_id='{trip_id}' 
-        #     AND stop_id='{stop_id}'""".format(d=d, trip_id=self.trip_id, stop_id=stop_id)
-        # self.db.query(q)
+      stopSeq = s['StopSeq']
+      snap = s['Snap']
+      shape_dist_traveled = "{0:.4f}".format(snap['traveled'])
+      stopSeq.shape_dist_traveled = shape_dist_traveled
+      db.merge(stopSeq)
+    db.commit()
