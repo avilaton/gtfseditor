@@ -49,6 +49,7 @@ def initialize():
 	from controllers import shapes
 	from controllers import trips
 	from controllers import feed
+	from controllers import reports
 	from controllers import static
 
 	logger.info("Controllers Loaded")
