@@ -47,7 +47,7 @@ def sort_trips():
 
 def update_distance_traveled():
   trip = StopSequence('a_trip_id')
-  trip.updateStopSeqDistTraveled()
+  trip.updateDistances()
 
 if __name__ == '__main__':
   usage = """usage: %prog [options] command

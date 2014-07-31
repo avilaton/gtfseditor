@@ -45,7 +45,7 @@ class StopSequence(object):
                 'lon':of['lon']}
     return self
 
-  def computeAllSnaps(self):
+  def _computeAllSnaps(self):
     self.snaps = []
     shape_lat_lon = lambda Shape: {
       'lat': Shape.shape_pt_lat, 
@@ -68,10 +68,8 @@ class StopSequence(object):
         })
 
   def sortStops(self, commit=False):
-    """ Compute stop snaps for each stop. Sort according to traveled 
-     distance for each snap point. Return a sorted list of stops """
     logger.debug("Sorting stops in trip_id: %s", self.trip_id)
-    self.computeAllSnaps()
+    self._computeAllSnaps()
     sortedStops = sorted(self.snaps, key=lambda StopSnap: StopSnap['Snap']['traveled'])
     for i, item in enumerate(sortedStops):
       stopSeq = item['StopSeq']
@@ -79,9 +77,9 @@ class StopSequence(object):
       db.merge(stopSeq)
     db.commit()
 
-  def updateStopSeqDistTraveled(self):
+  def updateDistances(self):
     logger.debug("Updating traveled distance for trip_id: %s", self.trip_id)
-    self.computeAllSnaps()
+    self._computeAllSnaps()
     for s in self.snaps:
       stopSeq = s['StopSeq']
       snap = s['Snap']

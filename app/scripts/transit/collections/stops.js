@@ -98,8 +98,8 @@ define([
             var self = this;
             var trip_id = this.trip_id;
 
-            var req = api.put({
-                route: self.url()+'?q=sort'
+            var req = api.get({
+                route: 'api/trips/' + self.trip_id +'/actions/sort-stops'
             });
             req.done(function () {
                 self.fetch()
