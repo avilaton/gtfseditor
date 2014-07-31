@@ -34,7 +34,6 @@ def extract(filename, dest):
 
 def generate_interpolated_stop_times():
   interpolator = Interpolator()
-  # interpolator.bySpeed(trip_id='10.ida')
   interpolator.allSeqs()
 
 def generate_stop_times_from_stop_seqs():
