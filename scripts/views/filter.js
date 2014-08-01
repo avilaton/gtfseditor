@@ -2,7 +2,7 @@ define([
     "underscore",
     "backbone",
     "handlebars",
-    "text!transit/templates/filter.handlebars"
+    "text!templates/filter.handlebars"
 ], function (_, Backbone, Handlebars, tmpl) {
     var View;
 

@@ -1,7 +1,7 @@
 define([
     "underscore",
     "backbone",
-    "transit/models/track"
+    "models/track"
 ], function (_, Backbone, TrackModel) {
     var Collection;
 
