@@ -2,10 +2,10 @@ define([
     "underscore",
     "backbone",
     "handlebars",
-    "text!transit/templates/routesSelect.handlebars",
-    "transit/collections/trips",
-    'transit/models/route',
-    'transit/views/modals/route'
+    "text!templates/routesSelect.handlebars",
+    "collections/trips",
+    'models/route',
+    'views/modals/route'
 ], function (_, Backbone, Handlebars, tmpl, TripsCollection, RouteModel, RouteModal) {
     var View;
 

@@ -1,7 +1,7 @@
 define([
   "backbone",
   "handlebars",
-  "text!transit/templates/kmlSelect.handlebars"
+  "text!templates/kmlSelect.handlebars"
   ], function (Backbone, Handlebars, tmpl) {
 
     var View = Backbone.View.extend({

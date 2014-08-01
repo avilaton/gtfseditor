@@ -2,7 +2,7 @@ define([
   "underscore",
   "backbone",
   "handlebars",
-  "text!transit/templates/shapesToolbox.handlebars"
+  "text!templates/shapesToolbox.handlebars"
   ], function (_, Backbone, Handlebars, tmpl) {
     var View;
 

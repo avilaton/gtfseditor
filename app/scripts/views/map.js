@@ -1,9 +1,9 @@
 define([
   "OpenLayers",
   "backbone",
-  "transit/views/map/drawStops",
-  "transit/views/map/kmlLayer",
-  "transit/views/mapStyles"
+  "views/map/drawStops",
+  "views/map/kmlLayer",
+  "views/mapStyles"
   ],
   function (OpenLayers, Backbone, DrawStopsView, KmlLayerView, Styles) {
     'use strict';
@@ -71,7 +71,7 @@ define([
           collection: self.kml
         });
         if (typeof (google) === 'object') {
-          require(["transit/views/map/googleLayer"], function (GoogleLayerView) {
+          require(["views/map/googleLayer"], function (GoogleLayerView) {
             self.layers.google = new GoogleLayerView({
               map: self.map
             });

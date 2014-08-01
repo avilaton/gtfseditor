@@ -1,7 +1,7 @@
 define([
   "OpenLayers",
   "backbone",
-  "transit/views/mapStyles"
+  "views/mapStyles"
   ],
   function (OpenLayers, Backbone, Styles) {
     'use strict';
