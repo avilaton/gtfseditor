@@ -19,7 +19,7 @@ require.config({
         "backbone": "/bower_components/backbone-amd/backbone-min",
         "jquery": "/bower_components/jquery/dist/jquery.min",
         "bootstrap": "/bower_components/bootstrap/dist/js/bootstrap.min",
-        "OpenLayers": "lib/OpenLayers",
+        "OpenLayers": "/vendor/OpenLayers",
         // "OpenLayers": "/bower_components/openlayers/lib/OpenLayers",
         "underscore": "/bower_components/underscore-amd/underscore-min",
         "handlebars": "/bower_components/handlebars/handlebars.min",
