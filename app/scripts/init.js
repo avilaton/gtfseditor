@@ -29,8 +29,8 @@ require.config({
 });
 
 require([
-    "transit/init",
-    "transit/models/state"
+    "main",
+    "models/state"
     ],
     function (init, StateModel) {
     'use strict';

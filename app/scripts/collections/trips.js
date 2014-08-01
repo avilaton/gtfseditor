@@ -1,7 +1,7 @@
 define([
     "underscore",
     "backbone",
-    "transit/models/trip"
+    "models/trip"
 ], function (_, Backbone, TripModel) {
     var TripsCollection;
 

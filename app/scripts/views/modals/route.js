@@ -2,8 +2,8 @@ define([
     "underscore",
     "backbone",
     "handlebars",
-    "text!transit/templates/modals/route.handlebars",
-    'transit/api'
+    "text!templates/modals/route.handlebars",
+    'api'
 ], function (_, Backbone, Handlebars, tmpl, Api) {
     var View;
 

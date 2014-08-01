@@ -2,7 +2,7 @@ define([
   "underscore",
   "backbone",
   "handlebars",
-  "text!transit/templates/sequenceToolbox.handlebars"
+  "text!templates/sequenceToolbox.handlebars"
   ], function (_, Backbone, Handlebars, tmpl) {
     var View;
 

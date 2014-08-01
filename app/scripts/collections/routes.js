@@ -1,7 +1,7 @@
 define([
 	"underscore",
 	"backbone",
-	"transit/models/route"
+	"models/route"
 ], function (_, Backbone, RouteModel) {
 	var RouteCollection;
 
