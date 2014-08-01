@@ -3,7 +3,7 @@ define([
   "backbone",
   "views/map/drawStops",
   "views/map/kmlLayer",
-  "views/mapStyles"
+  "views/map/styles"
   ],
   function (OpenLayers, Backbone, DrawStopsView, KmlLayerView, Styles) {
     'use strict';
