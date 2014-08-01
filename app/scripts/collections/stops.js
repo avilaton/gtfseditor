@@ -1,7 +1,7 @@
 define([
     "underscore",
     "backbone",
-    "legacy/api",
+    "api",
     "models/stop"
 ], function (_, Backbone, api, StopModel) {
     var Collection;
