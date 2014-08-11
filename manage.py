@@ -21,6 +21,11 @@ from server.models import Feed
 
 TMP_FOLDER = 'tmp/'
 
+def init_db():
+  from server.models import Base
+  Base.metadata.create_all(engine)
+
+
 def extract(filename, dest):
   """extract for debuging"""
   if not os.path.exists(dest):
@@ -30,7 +35,6 @@ def extract(filename, dest):
     for filename in z.namelist():
       with file(dest + filename, "w") as outfile:
         outfile.write(z.read(filename))
-
 
 def generate_interpolated_stop_times():
   interpolator = Interpolator()
@@ -80,6 +84,8 @@ where command can be one of:
     if opts.extract:
       extract(TMP_FOLDER + feed.filename, 'tmp/extracted/')
 
+  elif args[0] == 'init-db':
+    init_db()
   elif args[0] == 'interpolate':
     generate_interpolated_stop_times()
   elif args[0] == 'pop-times':

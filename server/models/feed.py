@@ -206,7 +206,7 @@ class Feed(object):
     writer = csv.DictWriter(feed_info_txt, keys)
     writer.writeheader()
     for info in db.query(FeedInfo).all():
-      uDict = dict((k, v.encode('utf-8')) for k, v in info.as_dict.iteritems())
+      uDict = {k:v.encode('utf-8') for k, v in info.as_dict.iteritems() if v}
       writer.writerow(uDict)
     with zipfile.ZipFile(self.fileObj, "a") as z:
         z.writestr('feed_info.txt', feed_info_txt.getvalue())
