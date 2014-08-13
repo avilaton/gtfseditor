@@ -10,7 +10,7 @@ Session = sessionmaker(bind=engine)
 db = scoped_session(Session)
 
 from server.collections.interpolation import Interpolator
-from server.collections.populator import Populator
+from server.collections.populator import StopTimesFactory
 from server.collections.stop_sequence import StopSequence
 
 import os
@@ -41,9 +41,10 @@ def generate_interpolated_stop_times():
   interpolator.allSeqs()
 
 def generate_stop_times_from_stop_seqs():
-  populator = Populator()
-  # populator.stop_seq_to_stop_times(trip_id='10.ida', commit=True)
-  populator.allSeqs()
+  stopTimesFactory = StopTimesFactory()
+  # stopTimesFactory.frequency_mode(trip_id='10.ida', commit=True)
+  # stopTimesFactory.initial_times_mode(trip_id='a_trip_id', commit=True)
+  stopTimesFactory.allSeqs()
 
 def sort_trips():
   trip = StopSequence('a_trip_id')
@@ -56,10 +57,12 @@ def update_distance_traveled():
 if __name__ == '__main__':
   usage = """usage: %prog [options] command
 where command can be one of:
-  build         create GTFS feed
-  interpolate   interpolate trip times
-  pop-times     generates stop times from stop sequences
-  sort-trip     sort trip stops along shape"""
+
+  init-db         Initialize Database engine issuing all CREATE statements
+  build           create GTFS feed
+  interpolate     interpolate trip times
+  pop-times       generates stop times from stop sequences
+  sort-trip       sort trip stops along shape"""
 
 
   parser = optparse.OptionParser(usage=usage)
@@ -67,6 +70,8 @@ where command can be one of:
       action='store_true', dest='validate')
   parser.add_option('-e', '--extract', help='Extract compiled feed', 
       action='store_true', dest='extract')
+  parser.add_option('-d', '--dry-run', help='Do not save changes to db', 
+      action='store_true', dest='dry-run')
   (opts, args) = parser.parse_args()
   
   if len(args) != 1:

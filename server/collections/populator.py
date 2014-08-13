@@ -5,13 +5,15 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-import transitfeed
+from transitfeed import TimeToSecondsSinceMidnight
+from transitfeed import FormatSecondsSinceMidnight
 
 from server import config
 from server import engine
 from server.models import Trip
 from server.models import StopSeq
 from server.models import StopTime
+from server.models import TripStartTime
 
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session
@@ -19,15 +21,16 @@ from sqlalchemy.orm import scoped_session
 Session = sessionmaker(bind=engine)
 db = scoped_session(Session)
 
-class Populator(object):
-  """docstring for Populator"""
+class StopTimesFactory(object):
+  """docstring for StopTimesFactory"""
   def __init__(self):
     self.db = db
 
-  def stop_seq_to_stop_times(self, trip_id=None, commit=False):
-    seq_stops = db.query(StopSeq).filter_by(trip_id=trip_id).all()
+  def frequency_mode(self, trip_id=None, commit=False):
+    """ In Frequency mode, copy each stop sequence to the stop times table"""
+    trip_stop_sequence = db.query(StopSeq).filter_by(trip_id=trip_id).all()
 
-    for stopSeq in seq_stops:
+    for stopSeq in trip_stop_sequence:
       stop_seq_dict = stopSeq.as_dict
       stop_seq_dict.update({
         'arrival_time': stopSeq.stop_time,
@@ -39,10 +42,46 @@ class Populator(object):
     if commit:
       db.commit()
 
+  def initial_times_mode(self, trip_id=None, commit=False):
+    """ In Frequency mode, copy each stop sequence to the stop times table"""
+    trip_stop_sequence = db.query(StopSeq).filter_by(trip_id=trip_id).all()
+    trip_start_times = db.query(TripStartTime).filter_by(trip_id=trip_id).all()
+
+
+    for startTimeRow in trip_start_times:
+      start_time_secs = TimeToSecondsSinceMidnight(startTimeRow.start_time)
+      new_trip_id = '.'.join([startTimeRow.trip_id, startTimeRow.service_id, 
+        startTimeRow.start_time])
+      print new_trip_id
+      for stopSeq in trip_stop_sequence:
+        stop_seq_dict = stopSeq.as_dict
+
+        stop_time_elapsed = stopSeq.stop_time
+        if stop_time_elapsed:
+          stop_time_secs = TimeToSecondsSinceMidnight(stop_time_elapsed)
+          stop_time_total_secs = stop_time_secs + start_time_secs
+          stop_time = FormatSecondsSinceMidnight(stop_time_total_secs)
+        else:
+          stop_time = stop_time_elapsed
+
+        stop_seq_dict.update({
+          'arrival_time': stop_time,
+          'departure_time': stop_time,
+          'trip_id': new_trip_id
+          })
+        stop_seq_dict.pop('stop_time')
+        stopTime = StopTime(**stop_seq_dict)
+        print stopTime
+        db.merge(stopTime)
+
+    if commit:
+      db.commit()
+
   def allSeqs(self):
     for trip in db.query(StopSeq.trip_id).distinct().all():
       logger.info("Populating stop times for trip_id:" + trip.trip_id)
-      self.stop_seq_to_stop_times(trip_id=trip.trip_id)
+      # self.frequency_mode(trip_id=trip.trip_id)
+      self.initial_times_mode(trip_id=trip.trip_id)
     db.commit()
 
 
