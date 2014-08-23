@@ -61,6 +61,16 @@ class Feed(object):
     logger.info("Feed build completed")
     return self.fileObj
 
+  def validate(self):
+    """Validate feed object"""
+    logger.info("Validating feed")
+    # self.accumulator = CountingConsoleProblemAccumulator()
+    # self.schedule.problem_reporter = transitfeed.ProblemReporter(self.accumulator)
+    # accumulator = transitfeed.ProblemAccumulatorInterface()
+    # reporter = transitfeed.ProblemReporter(accumulator)
+    # self.schedule.Validate(reporter)
+    self.schedule.Validate()
+
   def loadAgencies(self):
     logger.info("Loading Agencies")
 

@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 from server import engine
 
 from sqlalchemy.orm import sessionmaker
@@ -8,6 +12,9 @@ from sqlalchemy.orm import scoped_session
 
 Session = sessionmaker(bind=engine)
 db = scoped_session(Session)
+
+from server.models import StopSeq
+from server.models import Shape
 
 from server.collections.interpolation import Interpolator
 from server.collections.populator import StopTimesFactory
@@ -25,6 +32,15 @@ def init_db():
   from server.models import Base
   Base.metadata.create_all(engine)
 
+def drop_all():
+  from server.models import Base
+  Base.metadata.drop_all(engine)
+  # db.query(Stop).delete()
+  # db.query(Shape).delete()
+  # db.query(StopSeq).delete()
+  # db.query(Route).delete()
+  # db.query(Trip).delete()
+  # db.commit()  
 
 def extract(filename, dest):
   """extract for debuging"""
@@ -54,15 +70,61 @@ def update_distance_traveled():
   trip = StopSequence('a_trip_id')
   trip.updateDistances()
 
+def generateShapePtSequence():
+  ins = Shape.__table__.insert()
+  for shape in db.query(Shape.shape_id).distinct():
+    
+    logger.info("generate sequence for shape_id: %s", shape.shape_id)
+
+    shapeQuery = db.query(Shape).filter_by(shape_id = shape.shape_id)
+    shape_pts = shapeQuery.order_by(Shape.shape_pt_time)
+
+    pts = []
+    for i, pt in enumerate(shape_pts):
+      pt.shape_pt_sequence = i
+      pts.append(pt.as_dict)
+      db.delete(pt)
+    # db.commit()
+    db.execute(ins, pts)
+
+  db.commit()
+
+def generateStopSeq():
+  logger.info("Generating Stop Sequences")
+
+  import time
+  t0 = time.time()
+
+  ins = StopSeq.__table__.insert()
+  for trip in db.query(StopSeq.trip_id).distinct():
+    
+    logger.info("generate sequence for trip_id: %s", trip.trip_id)
+
+    query = db.query(StopSeq).filter_by(trip_id = trip.trip_id)
+    trip_pts = query.order_by(StopSeq.stop_time)
+
+    pts = []
+    for i, pt in enumerate(trip_pts):
+      pt.stop_sequence = i
+      pts.append(pt.as_dict)
+      db.delete(pt)
+    db.execute(ins, pts)
+
+  db.commit()
+  logger.info("Time elapsed %s",time.time()-t0)
+
 if __name__ == '__main__':
   usage = """usage: %prog [options] command
 where command can be one of:
 
-  init-db         Initialize Database engine issuing all CREATE statements
-  build           create GTFS feed
-  interpolate     interpolate trip times
-  pop-times       generates stop times from stop sequences
-  sort-trip       sort trip stops along shape"""
+  create-all        Initialize Database engine issuing CREATE statements for
+                    each table
+  build             create GTFS feed
+  interpolate       interpolate trip times
+  pop-times         generates stop times from stop sequences
+  sort-trip         sort trip stops along shape
+  gen-stop-seq      Generate stop_sequence values from stop_time
+  gen-shape-pt-seq  Generate shape point sequence from shape_pt_time"""
 
 
   parser = optparse.OptionParser(usage=usage)
@@ -89,8 +151,10 @@ where command can be one of:
     if opts.extract:
       extract(TMP_FOLDER + feed.filename, 'tmp/extracted/')
 
-  elif args[0] == 'init-db':
+  elif args[0] == 'create-all':
     init_db()
+  elif args[0] == 'drop-all':
+    drop_all()
   elif args[0] == 'interpolate':
     generate_interpolated_stop_times()
   elif args[0] == 'pop-times':
@@ -99,6 +163,10 @@ where command can be one of:
     sort_trips()
   elif args[0] == 'update-dist':
     update_distance_traveled()
+  elif args[0] == 'gen-stop-seq':
+    generateStopSeq()
+  elif args[0] == 'gen-shape-pt-seq':
+    generateShapePtSequence()
   else:
     parser.error("command not found")
 
