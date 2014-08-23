@@ -4,6 +4,17 @@ Gtfseditor
 A customizable editor for GTFS files which can be used both as a standalone app 
 or deployed to a wsgi compliant hosting.
 
+Management
+----------
+A series of database management scripts are accesible from the command line using 
+the `manage.py` script. 
+
+To initialize the database, use 
+```
+$ python manage.py init-db
+```
+
+
 Installation
 ------------
 Clone the project and `cd` into the new folder using
