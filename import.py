@@ -174,6 +174,8 @@ if __name__ == '__main__':
 
 	importTable(db, Agency, FOLDER + 'agency.csv')
 	importTable(db, FeedInfo, FOLDER + 'feed_info.csv')
+	importTable(db, Calendar, FOLDER + 'calendar.csv')
+	importTable(db, CalendarDate, FOLDER + 'calendar_dates.csv')
 	
 	importStops(db, FOLDER + 'stops.csv')
 	importTrips(db, FOLDER + 'routes-trips-clean.csv')

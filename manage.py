@@ -138,7 +138,10 @@ where command can be one of:
   
   if len(args) != 1:
     parser.error("incorrect number of arguments")
-  elif args[0] == 'build':
+  else:
+    command = args[0]
+
+  if command == 'build':
     feed = Feed()
     feedFile = feed.build()
 
@@ -151,22 +154,26 @@ where command can be one of:
     if opts.extract:
       extract(TMP_FOLDER + feed.filename, 'tmp/extracted/')
 
-  elif args[0] == 'create-all':
+  elif command == 'create-all':
     init_db()
-  elif args[0] == 'drop-all':
+  elif command == 'drop-all':
     drop_all()
-  elif args[0] == 'interpolate':
+  elif command == 'interpolate':
     generate_interpolated_stop_times()
-  elif args[0] == 'pop-times':
+  elif command == 'pop-times':
     generate_stop_times_from_stop_seqs()
-  elif args[0] == 'sort-trip':
+  elif command == 'sort-trip':
     sort_trips()
-  elif args[0] == 'update-dist':
+  elif command == 'update-dist':
     update_distance_traveled()
-  elif args[0] == 'gen-stop-seq':
+  elif command == 'gen-stop-seq':
     generateStopSeq()
-  elif args[0] == 'gen-shape-pt-seq':
+  elif command == 'gen-shape-pt-seq':
     generateShapePtSequence()
+  elif command == 'mza':
+    generateStopSeq()
+    generateShapePtSequence()
+    generate_stop_times_from_stop_seqs()
   else:
     parser.error("command not found")
 
