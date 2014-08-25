@@ -112,8 +112,9 @@ class Feed(object):
 
     for route in db.query(Route).all():
       route_id = route.route_id
-      # if str(route.active) is not "TRUE":
-      #   continue
+      if str(route.active) not in ["1", "TRUE"]:
+        logger.info("Skiping route_id: %s with active=%s", route_id, route.active)
+        continue
       logger.info("Loading route_id: {0}".format(route_id))
       r = self.schedule.AddRoute(short_name=route.route_short_name, 
           #long_name=route.route_long_name, 

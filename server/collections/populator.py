@@ -52,7 +52,6 @@ class StopTimesFactory(object):
       start_time_secs = TimeToSecondsSinceMidnight(startTimeRow.start_time)
       new_trip_id = '.'.join([startTimeRow.trip_id, startTimeRow.service_id, 
         startTimeRow.start_time])
-      print new_trip_id
       for stopSeq in trip_stop_sequence:
         stop_seq_dict = stopSeq.as_dict
 
@@ -71,7 +70,6 @@ class StopTimesFactory(object):
           })
         stop_seq_dict.pop('stop_time')
         stopTime = StopTime(**stop_seq_dict)
-        print stopTime
         db.merge(stopTime)
 
     if commit:

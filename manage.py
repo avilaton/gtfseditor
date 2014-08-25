@@ -21,6 +21,7 @@ from server.collections.populator import StopTimesFactory
 from server.collections.stop_sequence import StopSequence
 
 import os
+import glob
 import zipfile
 import optparse
 
@@ -28,7 +29,7 @@ from server.models import Feed
 
 TMP_FOLDER = 'tmp/'
 
-def init_db():
+def create_all():
   from server.models import Base
   Base.metadata.create_all(engine)
 
@@ -46,6 +47,9 @@ def extract(filename, dest):
   """extract for debuging"""
   if not os.path.exists(dest):
     os.makedirs(dest)
+  else:
+    for oldfile in glob.glob(dest + '*'):
+      os.remove(oldfile)
 
   with zipfile.ZipFile(filename, "r") as z:
     for filename in z.namelist():
@@ -155,7 +159,7 @@ where command can be one of:
       extract(TMP_FOLDER + feed.filename, 'tmp/extracted/')
 
   elif command == 'create-all':
-    init_db()
+    create_all()
   elif command == 'drop-all':
     drop_all()
   elif command == 'interpolate':
