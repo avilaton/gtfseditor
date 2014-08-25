@@ -31,6 +31,17 @@ from server import engine
 from server.models import *
 from sqlalchemy.orm import sessionmaker, scoped_session
 
+def importTable(db, Model, filename):
+	logger.info("Importing " + Model.__tablename__ + " from : %s", filename)
+	with open(filename, 'r') as csvfile:
+		reader = csv.DictReader(csvfile)
+		keyMap = {field:field for field in reader.fieldnames}
+		for row in reader:
+			d = {outKey:codecs.decode(row[inKey],'utf8') for inKey, outKey in keyMap.items()}
+			model = Model(**d)
+			db.merge(model)
+	db.commit()
+
 def importStops(db, filename):
 	logger.info("Importing stops from : %s", filename)
 	keyMap = {
@@ -156,67 +167,23 @@ def importStopTimes(db, filename):
 	engine.execute(ins, rows)
 	logger.info("done importing stop times")
 
-def generateShapePtSequence(db):
-	ins = Shape.__table__.insert()
-	for shape in db.query(Shape.shape_id).distinct():
-		
-		logger.info("generate sequence for shape_id: %s", shape.shape_id)
-
-		shapeQuery = db.query(Shape).filter_by(shape_id = shape.shape_id)
-		shape_pts = shapeQuery.order_by(Shape.shape_pt_time)
-
-		pts = []
-		for i, pt in enumerate(shape_pts):
-			pt.shape_pt_sequence = i
-			pts.append(pt.as_dict)
-			db.delete(pt)
-		# db.commit()
-		db.execute(ins, pts)
-
-	db.commit()
-
-def generateStopSeq(db):
-	logger.info("Generating Stop Sequences")
-
-	import time
-	t0 = time.time()
-
-	ins = StopSeq.__table__.insert()
-	for trip in db.query(StopSeq.trip_id).distinct():
-		
-		logger.info("generate sequence for trip_id: %s", trip.trip_id)
-
-		query = db.query(StopSeq).filter_by(trip_id = trip.trip_id)
-		trip_pts = query.order_by(StopSeq.stop_time)
-
-		pts = []
-		for i, pt in enumerate(trip_pts):
-			pt.stop_sequence = i
-			pts.append(pt.as_dict)
-			db.delete(pt)
-		db.execute(ins, pts)
-
-	db.commit()
-	logger.info("Time elapsed %s",time.time()-t0)
-
-def emptyAll(db):
-	from server import Base
-	Base.metadata.drop_all(engine)
-	# db.query(Stop).delete()
-	# db.query(Shape).delete()
-	# db.query(StopSeq).delete()
-	# db.query(Route).delete()
-	# db.query(Trip).delete()
-	# db.commit()
-
 if __name__ == '__main__':
 	Session = sessionmaker(bind=engine)
 	db = scoped_session(Session)
-	# emptyAll(db)
-	# importStops(db, 'incoming/mza/stops.csv')
-	# importTrips(db, 'incoming/mza/routes-trips-clean.csv')
-	# importRoutes(db, 'incoming/mza/routes-trips-clean.csv')
-	# importShapes(db, 'incoming/mza/shapes-raw.csv')
-	importStopTimes(db, 'incoming/mza/stop_times.csv')
-	# generateShapePtSequence(db)
-	generateStopSeq(db)
+	FOLDER = 'incoming/mza/'
+
+	importTable(db, Agency, FOLDER + 'agency.csv')
+	importTable(db, FeedInfo, FOLDER + 'feed_info.csv')
+	importTable(db, Calendar, FOLDER + 'calendar.csv')
+	importTable(db, CalendarDate, FOLDER + 'calendar_dates.csv')
+	
+	importStops(db, FOLDER + 'stops.csv')
+	importTrips(db, FOLDER + 'routes-trips-clean.csv')
+	importRoutes(db, FOLDER + 'routes-trips-clean.csv')
+	importShapes(db, FOLDER + 'shapes-raw.csv')
+	importStopTimes(db, FOLDER + 'stop_times.csv')
+
+	importTable(db, TripStartTime, FOLDER + 'trips_start_times.csv')
+
+	# please run manage.py to generate shape-pt-sequence
+	# and stop_sequence

@@ -4,6 +4,41 @@ Gtfseditor
 A customizable editor for GTFS files which can be used both as a standalone app 
 or deployed to a wsgi compliant hosting.
 
+Modes
+-----
+So far, there are 3 modes in which we plan to run this.
+
+### Frequency mode
+
+Uses the GTFS with the frequency table. 
+
+### Initial times mode
+
+Trip initial times are used to create GTFS trips. Follow these steps to get 
+started 
+
+1. run `$ python import.py`
+2. run `$ python manage.py gen-stop-seq`
+3. run `$ python manage.py gen-shape-pt-seq`
+
+you can now run the server using `$ python wsgi.py`.
+
+### Full specification mode
+
+Every trip is created in manual mode
+
+
+Management
+----------
+A series of database management scripts are accesible from the command line using 
+the `manage.py` script. 
+
+To initialize the database, use 
+```
+$ python manage.py init-db
+```
+
+
 Installation
 ------------
 Clone the project and `cd` into the new folder using

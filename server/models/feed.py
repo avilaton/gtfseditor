@@ -24,6 +24,7 @@ from server.models import FeedInfo
 from server.models import Stop
 from server.models import StopSeq
 from server.models import StopTime
+from server.models import TripStartTime
 
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session
@@ -52,13 +53,23 @@ class Feed(object):
     self.loadStops()
     self.loadStopTimes()
     self.loadShapes()
-    if self.mode == 'cba':
+    if self.mode == 'frequency':
       self.loadFrequencies()
 
     self.schedule.WriteGoogleTransitFeed(self.fileObj)
     self.loadFeedInfo()
     logger.info("Feed build completed")
     return self.fileObj
+
+  def validate(self):
+    """Validate feed object"""
+    logger.info("Validating feed")
+    # self.accumulator = CountingConsoleProblemAccumulator()
+    # self.schedule.problem_reporter = transitfeed.ProblemReporter(self.accumulator)
+    # accumulator = transitfeed.ProblemAccumulatorInterface()
+    # reporter = transitfeed.ProblemReporter(accumulator)
+    # self.schedule.Validate(reporter)
+    self.schedule.Validate()
 
   def loadAgencies(self):
     logger.info("Loading Agencies")
@@ -101,8 +112,9 @@ class Feed(object):
 
     for route in db.query(Route).all():
       route_id = route.route_id
-      # if str(route.active) is not "TRUE":
-      #   continue
+      if str(route.active) not in ["1", "TRUE"]:
+        logger.info("Skiping route_id: %s with active=%s", route_id, route.active)
+        continue
       logger.info("Loading route_id: {0}".format(route_id))
       r = self.schedule.AddRoute(short_name=route.route_short_name, 
           #long_name=route.route_long_name, 
@@ -115,11 +127,11 @@ class Feed(object):
 
   def loadTrips(self):
     """Loads active trips into schedule"""
-    logger.info("Loading Trips")
+    logger.info("--- Loading Trips ---")
 
-    services = self.schedule.GetServicePeriodList()
+    if self.mode == 'frequency':
+      services = self.schedule.GetServicePeriodList()
 
-    if self.mode == 'cba':
       for route in self.schedule.GetRouteList():
         for tripRow in db.query(Trip).filter_by(route_id=route.route_id).all():
           for service in services:
@@ -128,7 +140,21 @@ class Feed(object):
             trip.service_id = service.service_id
             trip.shape_id = tripRow.shape_id
             trip.direction_id = tripRow.direction_id
-            logger.info("Loading trip_id: {0}".format(trip_id))
+            logger.info("Loading trip_id: {0}", trip_id)
+
+    elif self.mode == 'initial-times':
+      for route in self.schedule.GetRouteList():
+        for tripRow in db.query(Trip).filter_by(route_id=route.route_id).all():
+          trip_start_times = db.query(TripStartTime).filter_by(trip_id=tripRow.trip_id).all()
+          if not trip_start_times:
+            trip_start_times = [TripStartTime(trip_id='fake_trip_id', service_id='H', start_time='08:00:00')]
+          for startTimeRow in trip_start_times:
+            new_trip_id = '.'.join([tripRow.trip_id, startTimeRow.service_id, startTimeRow.start_time])
+            tripObject = route.AddTrip(trip_id = new_trip_id, headsign=tripRow.trip_headsign)
+            tripObject.service_id = startTimeRow.service_id
+            tripObject.shape_id = tripRow.shape_id
+            tripObject.direction_id = tripRow.direction_id
+            logger.info("Loading trip_id: {0}".format(new_trip_id))
     else:
       # trip_id = t.trip_id
       raise NotImplementedError
@@ -150,19 +176,31 @@ class Feed(object):
     """Adding Stop Times from trip start times"""
     logger.info("Loading Stop Times")
 
-    for trip in self.schedule.GetTripList():
+    if self.mode == 'frequency':  
+      for trip in self.schedule.GetTripList():
+        trip_id = trip.trip_id.replace('.'+trip.service_id, '')
 
-      trip_id = trip.trip_id.replace('.'+trip.service_id, '')
+        for stopTime in db.query(StopTime).filter_by(trip_id=trip_id).\
+          order_by(StopTime.stop_sequence).all():
+          stop = self.schedule.GetStop(stopTime.stop_id)
+          stop_time = stopTime.arrival_time
+          if stop_time:
+            trip.AddStopTime(stop, stop_time=stop_time)
+          else:
+            trip.AddStopTime(stop)
 
-
-      for stopTime in db.query(StopTime).filter_by(trip_id=trip_id).\
-        order_by(StopTime.stop_sequence).all():
-        stop = self.schedule.GetStop(stopTime.stop_id)
-        stop_time = stopTime.arrival_time
-        if stop_time:
-          trip.AddStopTime(stop, stop_time=stop_time)
-        else:
-          trip.AddStopTime(stop)
+    elif self.mode == 'initial-times':
+      for trip in self.schedule.GetTripList():
+        for stopTime in db.query(StopTime).filter_by(trip_id=trip.trip_id).\
+          order_by(StopTime.stop_sequence).all():
+          stop = self.schedule.GetStop(stopTime.stop_id)
+          stop_time = stopTime.arrival_time
+          if stop_time:
+            trip.AddStopTime(stop, stop_time=stop_time)
+          else:
+            trip.AddStopTime(stop)
+    else:
+      raise NotImplementedError
 
   def loadShapes(self):
     logger.info("Loading Shapes")
@@ -179,7 +217,7 @@ class Feed(object):
   def loadFrequencies(self):
       logger.info("Loading Frequencies")
 
-      if self.mode == 'cba':
+      if self.mode == 'frequency':
         for trip in self.schedule.GetTripList():
           services = db.query(RouteFrequency).filter_by(route_id=trip.route_id, 
             service_id=trip.service_id).all()
@@ -206,7 +244,7 @@ class Feed(object):
     writer = csv.DictWriter(feed_info_txt, keys)
     writer.writeheader()
     for info in db.query(FeedInfo).all():
-      uDict = dict((k, v.encode('utf-8')) for k, v in info.as_dict.iteritems())
+      uDict = {k:v.encode('utf-8') for k, v in info.as_dict.iteritems() if v}
       writer.writerow(uDict)
     with zipfile.ZipFile(self.fileObj, "a") as z:
         z.writestr('feed_info.txt', feed_info_txt.getvalue())

@@ -13,4 +13,6 @@ DATABASE_URL = 'sqlite:///dev.sqlite'
 # heroku setup
 # DATABASE_URL = os.environ.get('DATABASE_URL', 'postgres:///mza')
 
-BUILD_MODE = 'cba'
+# BUILD_MODE = 'frequency'
+BUILD_MODE = 'initial-times'
+# BUILD_MODE = 'full-spec'
