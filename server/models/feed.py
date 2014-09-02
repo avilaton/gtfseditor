@@ -161,8 +161,12 @@ class Feed(object):
 
   def loadStops(self):
     logger.info("Loading Stops")
-    used_stops_subquery = db.query(StopSeq.stop_id).distinct().subquery()
-    stops_query = db.query(Stop).filter(Stop.stop_id.in_(used_stops_subquery))
+    active_routes_subq = db.query(Route.route_id).filter(Route.active != None).subquery()
+    active_trips_subq = db.query(Trip.trip_id).\
+      filter(Trip.route_id.in_(active_routes_subq)).subquery()
+    used_stops_subq = db.query(StopSeq.stop_id).distinct().\
+      filter(StopSeq.trip_id.in_(active_trips_subq)).subquery()
+    stops_query = db.query(Stop).filter(Stop.stop_id.in_(used_stops_subq))
 
     for stop in stops_query.all():
       lat = stop.stop_lat

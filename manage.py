@@ -208,6 +208,7 @@ where command can be one of:
     drop_all()
     create_all()
     import_csv()
+  elif command == 'mza-gen':
     generateStopSeq()
     generateShapePtSequence()
     generate_stop_times_from_stop_seqs()
