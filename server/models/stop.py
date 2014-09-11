@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from sqlalchemy import create_engine, Column, Integer, Sequence, String, Float
+from sqlalchemy.orm import relationship, backref
 from base import Base, Entity
 
 class Stop(Base, Entity):
@@ -17,3 +18,5 @@ class Stop(Base, Entity):
   stop_numero = Column(String(50))
   stop_entre = Column(String(50))
   stop_esquina = Column(String(50))
+  stop_sequences = relationship("StopSeq")
+  stop_times = relationship("StopTime")

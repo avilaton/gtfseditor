@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy.orm import relationship, backref
 from base import Base, Entity
 
 class Route(Base, Entity):
@@ -15,4 +16,4 @@ class Route(Base, Entity):
   route_color = Column(String(50))
   route_text_color = Column(String(50))
   active = Column(String(50))
-  # active = Column(Boolean, nullable=False, default=True)
+  route_trips = relationship("Trip", backref=backref("trip_routes", uselist=True))
