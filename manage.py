@@ -138,9 +138,9 @@ def import_csv():
   readCsv(session, engine, CalendarDate, FOLDER + 'calendar_dates.csv')
   readCsv(session, engine, Stop, FOLDER + 'stops.csv')
   readCsv(session, engine, Route, FOLDER + 'routes.csv')
+  readCsv(session, engine, Shape, FOLDER + 'shapes.csv', mode='direct')
   readCsv(session, engine, Trip, FOLDER + 'trips.csv')
   readCsv(session, engine, TripStartTime, FOLDER + 'trips_start_times.csv')
-  readCsv(session, engine, Shape, FOLDER + 'shapes.csv', mode='direct')
   readCsv(session, engine, StopSeq, FOLDER + 'stop_times.csv', mode='direct')
 
 if __name__ == '__main__':
@@ -211,7 +211,7 @@ where command can be one of:
   elif command == 'mza-gen':
     generateStopSeq()
     generateShapePtSequence()
-    generate_stop_times_from_stop_seqs()
+    # generate_stop_times_from_stop_seqs()
   else:
     parser.error("command not found")
 

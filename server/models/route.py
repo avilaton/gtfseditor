@@ -16,4 +16,4 @@ class Route(Base, Entity):
   route_color = Column(String(50))
   route_text_color = Column(String(50))
   active = Column(String(50))
-  route_trips = relationship("Trip", backref=backref("trip_routes", uselist=True))
+  # route_trips = relationship("Trip", backref=backref("trip_routes", uselist=True))

@@ -18,5 +18,5 @@ class Stop(Base, Entity):
   stop_numero = Column(String(50))
   stop_entre = Column(String(50))
   stop_esquina = Column(String(50))
-  stop_sequences = relationship("StopSeq")
-  stop_times = relationship("StopTime")
+  # stop_sequences = relationship("StopSeq")
+  # stop_times = relationship("StopTime")
