@@ -25,9 +25,8 @@ define([
 
     require(["bootstrap"]);
 
-		function createControls () {
-			var state = window.app.state,
-      routesCollection,
+		function init () {
+			var routesCollection,
       kmlCollection,
       tripsCollection,
       stopsCollection,
@@ -37,11 +36,11 @@ define([
       var navbarRight = new NavbarRightView();
 
       routesCollection = new RoutesCollection();
-      state.kml = new KmlCollection();
-      state.trips = new TripsCollection();
-      state.stops = new StopsCollection();
-      state.shape = new ShapeModel();
-      state.stop = new StopModel();
+      kmlCollection = new KmlCollection();
+      tripsCollection = new TripsCollection();
+      stopsCollection = new StopsCollection();
+      shapeModel = new ShapeModel();
+      stopModel = new StopModel();
 
 			routesCollection.fetch();
 
@@ -51,22 +50,22 @@ define([
       });
       var tripsSelector = new TripsSelectView({
         routesCollection: routesCollection,
-        collection: state.trips
+        collection: tripsCollection
       });
       var sequenceView = new SequenceView({
-        collection: state.stops
+        collection: stopsCollection
       });
 
       var kmlSelector = new KmlSelectView({
         el: $("#kmlSelect"),
-        collection: state.kml
+        collection: kmlCollection
       })
 
       var myMap = new MapView({
-        shape: state.shape,
-        stops: state.stops,
-        stop: state.stop,
-        kml: state.kml
+        shape: shapeModel,
+        stops: stopsCollection,
+        stop: stopModel,
+        kml: kmlCollection
       });
       // myMap.bboxLayer.refresh({force: true});
 
@@ -75,24 +74,24 @@ define([
       });
 
       var myShapesToolbox = new ShapesToolboxView({
-        model: state.shape,
+        model: shapeModel,
         controls: myMap.controls,
         map: myMap
       });
 
       var mySequenceToolbox = new SequenceToolboxView({
-        collection: state.stops,
-        model: state.stop,
+        collection: stopsCollection,
+        model: stopModel,
         controls: myMap.controls
       });
 
       var myStopDataView = new StopDataView({
-        model: state.stop,
+        model: stopModel,
         controls: myMap.controls
       });
 
       var myStopToolbarView = new StopToolbarView({
-        model: state.stop,
+        model: stopModel,
         controls: myMap.controls,
         stopDataView: myStopDataView
       });
@@ -100,22 +99,22 @@ define([
       /** 
        * this should be inside map.js
        */
-      state.trips.on("trip_selected", function (selectedModel) {
+      tripsCollection.on("trip_selected", function (selectedModel) {
         var trip_id = selectedModel.get("trip_id");
         var shape_id = selectedModel.get("shape_id");
 
-        state.shape.set("shape_id", shape_id);
-        state.shape.fetch({reset: true}).done(function () {
+        shapeModel.set("shape_id", shape_id);
+        shapeModel.fetch({reset: true}).done(function () {
           myMap.updateShapesLayer();
         });
 
-        state.stops.trip_id = trip_id;
-        state.stops.fetch({reset: true});
+        stopsCollection.trip_id = trip_id;
+        stopsCollection.fetch({reset: true});
       });
 
 		};
 
 		return {
-			createControls: createControls
+			init: init
 		};
 	});
