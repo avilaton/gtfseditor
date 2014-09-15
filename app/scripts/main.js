@@ -15,36 +15,46 @@ define([
   "views/stopData",
   "views/stopToolbar",
   "views/map",
-  'views/navbarRight'
+  'views/navbarRight',
+  'views/sequence'
 	], 
   function ($, ShapeModel, StopModel, RoutesCollection, TripsCollection, 
     StopsCollection, KmlCollection, FilterView, KmlSelectView, RoutesSelectView, 
     TripsSelectView, ShapesToolboxView, SequenceToolboxView, 
-    StopDataView, StopToolbarView, MapView, NavbarRightView) {
+    StopDataView, StopToolbarView, MapView, NavbarRightView, SequenceView) {
 
     require(["bootstrap"]);
 
 		function createControls () {
-			var state = window.app.state;
+			var state = window.app.state,
+      routesCollection,
+      kmlCollection,
+      tripsCollection,
+      stopsCollection,
+      shapeModel,
+      stopModel;
 			
       var navbarRight = new NavbarRightView();
 
-      state.routes = new RoutesCollection();
+      routesCollection = new RoutesCollection();
       state.kml = new KmlCollection();
       state.trips = new TripsCollection();
       state.stops = new StopsCollection();
       state.shape = new ShapeModel();
       state.stop = new StopModel();
 
-			state.routes.fetch();
+			routesCollection.fetch();
 
 
       var routeSelector = new RoutesSelectView({
-        collection: state.routes
+        collection: routesCollection
       });
       var tripsSelector = new TripsSelectView({
-        routesCollection: state.routes,
+        routesCollection: routesCollection,
         collection: state.trips
+      });
+      var sequenceView = new SequenceView({
+        collection: state.stops
       });
 
       var kmlSelector = new KmlSelectView({

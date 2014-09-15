@@ -16,6 +16,7 @@ define([
         "click button.nextStop": "nextStop",
         "click button.sortStops": "sortStops",
         "click button.offsetStops": "offsetStops",
+        "click button.updateDist": "updateDist",
         "click button.toggleMultipleSelect": "toggleMultipleSelect",
         "click button.editStops": "editStops",
         "click button.removeStop": "removeStop",
@@ -77,9 +78,13 @@ define([
       sortStops: function (event) {
         this.collection.sortStops();
       },
-      
+
       offsetStops: function (event) {
         this.collection.alignTripStops();
+      },
+
+      updateDist: function (event) {
+        this.collection.updateDist();
       },
       
       toggleMultipleSelect: function (event) {

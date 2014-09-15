@@ -31,7 +31,7 @@ def deleteTrip(db, trip_id):
   db.delete(route)
   return {'success': True}
 
-@app.get('/api/trip/<trip_id>/stops')
+@app.get('/api/trips/<trip_id>/stops.geojson')
 def tripStops(db, trip_id):
 	rows = db.query(Stop, StopSeq).join(StopSeq, Stop.stop_id == StopSeq.stop_id)\
 		.filter(StopSeq.trip_id == trip_id)\
@@ -43,13 +43,15 @@ def tripStops(db, trip_id):
 		stop_seq = row.StopSeq
 		properties = stop.as_dict
 		properties.update({'stop_seq': stop_seq.stop_sequence})
+		properties.update({'stop_time': stop_seq.stop_time})
+		properties.update({'shape_dist_traveled': stop_seq.shape_dist_traveled})
 		f = geojson.feature(id = stop.stop_id,
 			coords = [stop.stop_lon, stop.stop_lat], 
 			properties = properties)
 		features.append(f)
 	return geojson.featureCollection(features)
 
-@app.put('/api/trip/<trip_id>/stops')
+@app.put('/api/trips/<trip_id>/stops')
 def saveTripStops(db, trip_id):
 	# if 'q' in request.query:
 	# 	if request.query['q'] == 'sort':
@@ -86,7 +88,7 @@ def sortTripStops(db, trip_id):
   stopSequence.sortStops()
   return {'success': True}
 
-@app.get('/api/trips/<trip_id>/actions/update-distances')
+@app.get('/api/trips/<trip_id>/actions/update-dist')
 def sortTripStops(db, trip_id):
   stopSequence = StopSequence(trip_id)
   stopSequence.updateDistances()
