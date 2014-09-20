@@ -31,8 +31,6 @@ define([
           new OpenLayers.Control.Attribution()
           ]
         });
-        
-        app.map = this;
 
         this.baselayer = new OpenLayers.Layer.OSM('OSM Map');
 
