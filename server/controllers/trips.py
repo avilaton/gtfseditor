@@ -51,6 +51,22 @@ def tripStops(db, trip_id):
 		features.append(f)
 	return geojson.featureCollection(features)
 
+@app.get('/api/trips/<trip_id>/stops.json')
+def tripStops(db, trip_id):
+	rows = db.query(Stop, StopSeq).join(StopSeq, Stop.stop_id == StopSeq.stop_id)\
+		.filter(StopSeq.trip_id == trip_id)\
+		.order_by(StopSeq.stop_sequence).all()
+
+	features = []
+	for row in rows:
+		stop = row.Stop
+		stop_seq = row.StopSeq
+		features.append({
+			'stop': row.Stop.as_dict,
+			'stop_seq': row.StopSeq.as_dict
+			})
+	return {'rows': features}
+
 @app.put('/api/trips/<trip_id>/stops')
 def saveTripStops(db, trip_id):
 	# if 'q' in request.query:

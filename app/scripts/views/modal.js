@@ -19,7 +19,6 @@ define([
         initialize: function(options){
             var self = this;
             this.render();
-            this.collection.on("route_selected", self.render, self);
         },
 
         render: function () {
