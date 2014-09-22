@@ -6,7 +6,7 @@ define([
 	var Model;
 
 	Model = Backbone.Model.extend({
-		// idAttribute: "stop_id",
+		idAttribute: "stop_id",
 		urlRoot: '/api/stops',
 		
 	    initialize: function(){

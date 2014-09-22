@@ -1,8 +1,9 @@
 define([
   "backbone",
   "handlebars",
+  'collections/kml',
   "text!templates/kmlSelect.handlebars"
-  ], function (Backbone, Handlebars, tmpl) {
+  ], function (Backbone, Handlebars, KmlCollection, tmpl) {
 
     var View = Backbone.View.extend({
 
@@ -14,7 +15,7 @@ define([
 
       initialize: function(options){
         var self = this;
-
+        this.collection = new KmlCollection();
         this.collection.on("change add remove reset", self.render, self);
         this.collection.fetch();
       },
@@ -27,8 +28,9 @@ define([
       },
 
       onChange: function (event) {
-        var selectedValue = event.currentTarget.value;
-        this.collection.select(selectedValue);
+        var value = event.currentTarget.value;
+        this.collection.select(value);
+        this.trigger('select', value);
       }
     });
 

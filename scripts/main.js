@@ -2,10 +2,7 @@ define([
   'jquery',
   "models/shape",
 	"models/stop",
-  "collections/routes",
-  "collections/trips",
   "collections/stops",
-  "collections/kml",
   "views/filter",
   "views/kmlSelect",
   "views/routesSelect",
@@ -16,100 +13,105 @@ define([
   "views/stopToolbar",
   "views/map",
   'views/navbarRight',
-  'views/sequence'
+  'views/sequence',
+  'collections/stop_seq'
 	], 
-  function ($, ShapeModel, StopModel, RoutesCollection, TripsCollection, 
-    StopsCollection, KmlCollection, FilterView, KmlSelectView, RoutesSelectView, 
+  function ($, ShapeModel, StopModel, 
+    StopsCollection, FilterView, KmlSelectView, RoutesSelectView, 
     TripsSelectView, ShapesToolboxView, SequenceToolboxView, 
-    StopDataView, StopToolbarView, MapView, NavbarRightView, SequenceView) {
+    StopDataView, StopToolbarView, MapView, NavbarRightView, SequenceView,
+    StopsSeqCollection) {
 
     require(["bootstrap"]);
 
 		function init () {
-			var routesCollection,
-      kmlCollection,
-      tripsCollection,
-      stopsCollection,
+			var stopsCollection,
       shapeModel,
       stopModel;
 			
       var navbarRight = new NavbarRightView();
 
-      routesCollection = new RoutesCollection();
-      kmlCollection = new KmlCollection();
-      tripsCollection = new TripsCollection();
       stopsCollection = new StopsCollection();
+      stopsSeqCollection = new StopsSeqCollection();
       shapeModel = new ShapeModel();
       stopModel = new StopModel();
 
-			routesCollection.fetch();
+      var routeSelector = new RoutesSelectView();
 
+      var tripsSelector = new TripsSelectView();
 
-      var routeSelector = new RoutesSelectView({
-        collection: routesCollection
+      routeSelector.on('select', function (route_id) {
+        tripsSelector.collection.route_id = route_id;
+        tripsSelector.collection.fetch();
       });
-      var tripsSelector = new TripsSelectView({
-        routesCollection: routesCollection,
-        collection: tripsCollection
-      });
+
       var sequenceView = new SequenceView({
         collection: stopsCollection
       });
 
-      var kmlSelector = new KmlSelectView({
-        el: $("#kmlSelect"),
-        collection: kmlCollection
-      })
+      var kmlSelectView = new KmlSelectView({
+        el: $("#kmlSelect")
+      });
+      kmlSelectView.on('select', function (value) {
+        mapView.layers.kml.refresh(value);
+      });
 
-      var myMap = new MapView({
+      var mapView = new MapView({
         shape: shapeModel,
         stops: stopsCollection,
-        stop: stopModel,
-        kml: kmlCollection
+        stop: stopModel
       });
-      // myMap.bboxLayer.refresh({force: true});
 
-      var filterBox = new FilterView({
-        bboxLayer: myMap.bboxLayer
+      var filterView = new FilterView();
+
+      filterView.on('change', function (value) {
+        mapView.bboxLayer.protocol.params.filter = value;
+        mapView.bboxLayer.refresh({force:true});
       });
 
       var myShapesToolbox = new ShapesToolboxView({
         model: shapeModel,
-        controls: myMap.controls,
-        map: myMap
+        controls: mapView.controls,
+        map: mapView
       });
 
       var mySequenceToolbox = new SequenceToolboxView({
         collection: stopsCollection,
         model: stopModel,
-        controls: myMap.controls
+        controls: mapView.controls
       });
 
       var myStopDataView = new StopDataView({
         model: stopModel,
-        controls: myMap.controls
+        controls: mapView.controls
       });
 
       var myStopToolbarView = new StopToolbarView({
         model: stopModel,
-        controls: myMap.controls,
+        controls: mapView.controls,
         stopDataView: myStopDataView
       });
 
       /** 
        * this should be inside map.js
        */
-      tripsCollection.on("trip_selected", function (selectedModel) {
-        var trip_id = selectedModel.get("trip_id");
-        var shape_id = selectedModel.get("shape_id");
+      tripsSelector.on('select', function (value) {
+        var selectedTrip = tripsSelector.collection.get(value);
+        var trip_id = selectedTrip.get('trip_id');
+        var shape_id = selectedTrip.get('shape_id');
 
         shapeModel.set("shape_id", shape_id);
         shapeModel.fetch({reset: true}).done(function () {
-          myMap.updateShapesLayer();
+          mapView.updateShapesLayer();
         });
 
         stopsCollection.trip_id = trip_id;
         stopsCollection.fetch({reset: true});
+
+        stopsSeqCollection.trip_id = trip_id;
+        stopsSeqCollection.fetch({reset: true}).done(function () {
+          console.log(stopsSeqCollection);
+        });
       });
 
 		};
