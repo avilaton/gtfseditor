@@ -10,7 +10,7 @@
 	{{#each this}}
 	<tr data-stop-id="{{stop_seq.stop_id}}" draggable="true">
 		<td>{{stop_seq.stop_id}}</td>
-		<td>{{stop_seq.stop_time}}</td>
+		<td class="stop-time" contenteditable="true">{{stop_seq.stop_time}}</td>
 		<td>{{stop_seq.shape_dist_traveled}}</td>
 	</tr>
 	{{/each}}

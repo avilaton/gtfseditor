@@ -13,6 +13,8 @@ define([
 
       events: {
         'click tr': 'onClickRow',
+        'click td.stop-time': 'onClickStopTime',
+        'keyup td.stop-time': 'onKeyUpStopTime',
         'dragstart tr': 'onDragStart',
         'dragenter tr': 'onDragEnter',
         'dragover tr': 'onDragOver',
@@ -34,6 +36,16 @@ define([
         var $target = $(event.currentTarget),
         stop_id = $target.data('stopId');
         console.log(event, stop_id);
+      },
+
+      onClickStopTime: function (e) {
+        var $target = $(event.currentTarget);
+        console.log(e);
+      },
+
+      onKeyUpStopTime: function (e) {
+        var $target = $(event.currentTarget);
+        console.log(e);
       },
 
       onDragStart: function (e) {
