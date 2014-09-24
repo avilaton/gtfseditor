@@ -18,9 +18,10 @@ define([
         },
 
         parse: function (response) {
-            return _.map(response.rows, function (row) {
-                return row.stop;
-            });
+            return response.rows;
+            // return _.map(response.rows, function (row) {
+            //     return row.stop_seq;
+            // });
         }
     });
 

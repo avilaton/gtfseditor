@@ -46,7 +46,7 @@ define([
       });
 
       var sequenceView = new SequenceView({
-        collection: stopsCollection
+        collection: stopsSeqCollection
       });
 
       var kmlSelectView = new KmlSelectView({
