@@ -31,12 +31,10 @@ define([
             this.layer.id = 'kml_layer';
             
             this.map.addLayer(self.layer);
-
-            this.collection.on("select", self.onUrlChange, self);
         },
 
-        onUrlChange: function (event) {
-            this.layer.refresh({url: './kml/'+event.selected});
+        refresh: function (value) {
+            this.layer.refresh({url: './kml/' + value});
         }
 
     });

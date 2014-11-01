@@ -7,10 +7,7 @@ logger = logging.getLogger(__name__)
 
 from server import config
 from server import engine
-from server.models import StopSeq
-from server.models import Stop
-from server.models import Shape
-from server.models import Trip
+from server.models import *
 
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session

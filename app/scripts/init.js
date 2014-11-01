@@ -28,17 +28,12 @@ require.config({
     }
 });
 
-require([
-    "main",
-    "models/state"
-    ],
-    function (init, StateModel) {
+require(['main', 'router'],
+    function (main, Router) {
     'use strict';
 
-    var app = window.app = {};
+    Router.initialize();
 
-    app.state = new StateModel();
-
-    init.createControls();
+    main.init();
 
 });

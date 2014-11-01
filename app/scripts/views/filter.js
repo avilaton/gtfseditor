@@ -7,7 +7,7 @@ define([
     var View;
 
     View = Backbone.View.extend({
-        el: $("#filterBox"),
+        el: $('.filter-view'),
         
         template: Handlebars.compile(tmpl),
 
@@ -18,20 +18,17 @@ define([
         },
 
         initialize: function(options){
-            this.bboxLayer = options.bboxLayer;
             this.render();
         },
 
         render: function () {
             var self = this;
-
             this.$el.html(this.template({}));
         },
 
         onChangeFilter: function (event) {
             var val = $(event.currentTarget).val();
-            this.bboxLayer.protocol.params.filter = val;
-            this.bboxLayer.refresh({force:true});
+            this.trigger('change', val);
         },
 
         onClickFilter: function (event) {

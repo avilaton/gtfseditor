@@ -10,7 +10,7 @@ define([
         model: StopModel,
 
         url: function () {
-            return 'api/trip/' + this.trip_id + '/stops';
+            return 'api/trips/' + this.trip_id + '/stops.geojson';
         },
         
         initialize: function (options) {
@@ -99,7 +99,20 @@ define([
             var trip_id = this.trip_id;
 
             var req = api.get({
-                route: 'api/trips/' + self.trip_id +'/actions/sort-stops'
+                url: 'api/trips/' + self.trip_id +'/actions/sort-stops'
+            });
+            req.done(function () {
+                self.fetch()
+            })
+            return req;
+        },
+
+        updateDist: function () {
+            var self = this;
+            var trip_id = this.trip_id;
+            console.log('this far', self.trip_id);
+            var req = api.get({
+                url: 'api/trips/' + self.trip_id +'/actions/update-dist'
             });
             req.done(function () {
                 self.fetch()

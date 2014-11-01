@@ -17,7 +17,6 @@ define([
         self.shape = options.shape;
         self.stops = options.stops;
         self.stop = options.stop;
-        self.kml = options.kml;
 
         this.map = new OpenLayers.Map('map', {
           controls : [
@@ -31,8 +30,6 @@ define([
           new OpenLayers.Control.Attribution()
           ]
         });
-        
-        app.map = this;
 
         this.baselayer = new OpenLayers.Layer.OSM('OSM Map');
 
@@ -67,8 +64,7 @@ define([
           model: self.stop
         });
         this.layers.kml = new KmlLayerView({
-          map: this.map,
-          collection: self.kml
+          map: this.map
         });
         if (typeof (google) === 'object') {
           require(["views/map/googleLayer"], function (GoogleLayerView) {

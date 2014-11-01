@@ -6,7 +6,7 @@ import server.geojson as geojson
 from server import app
 from server.models import Stop
 
-@app.route('/api/stop/<stop_id>')
+@app.route('/api/stops/<stop_id>')
 def index(db, stop_id):
   stop = db.query(Stop).filter(Stop.stop_id == stop_id).first()
   if stop:
@@ -29,12 +29,12 @@ def getBBOX(db):
   geojson.featureCollection(features)
   return geojson.featureCollection(features)
 
-@app.delete('/api/stop/<stop_id>')
+@app.delete('/api/stops/<stop_id>')
 def deleteStop(db, stop_id):
   result = db.query(Stop).filter(Stop.stop_id == stop_id).delete()
   return {'success': bool(result), 'stop_id': stop_id}
 
-@app.put('/api/stop/<stop_id>')
+@app.put('/api/stops/<stop_id>')
 def updateStop(db, stop_id):
   data = request.json
   # """ Stub - should carry out a full update, only updates stop_calle"""
@@ -52,6 +52,6 @@ def updateStop(db, stop_id):
   db.merge(stop)
   return {'success': True, 'result': p}
 
-@app.post('/api/stop/<stop_id>')
+@app.post('/api/stops/<stop_id>')
 def createStop(db, stop_id):
   raise NotImplementedError

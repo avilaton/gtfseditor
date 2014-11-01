@@ -27,13 +27,34 @@ from models import Base
 
 # Base.metadata.create_all(engine)
 
+
+from cors import EnableCors
+
 app = Bottle()
+
+import bottle
+from bottle import request
+
+@app.error(405)
+def method_not_allowed(res):
+    if request.method == 'OPTIONS':
+        new_res = bottle.HTTPResponse()
+        new_res.set_header('Access-Control-Allow-Origin', '*')
+        new_res.set_header('Access-Control-Allow-Headers', 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token')
+
+        return new_res
+    res.headers['Allow'] += ', OPTIONS'
+    return request.app.default_error_handler(res)
+
+@app.hook('after_request')
+def enableCORSAfterRequestHook():
+    bottle.response.set_header('Access-Control-Allow-Origin', '*')
 
 def initialize():
 	
 	from bottle.ext import sqlalchemy
 
-	plugin = sqlalchemy.Plugin(
+	sqlAlchemyPlugin = sqlalchemy.Plugin(
 		engine, # SQLAlchemy engine created with create_engine function.
 		Base.metadata, # SQLAlchemy metadata, required only if create=True.
 		keyword='db', # Keyword used to inject session database in a route (default 'db').
@@ -42,7 +63,10 @@ def initialize():
 		use_kwargs=False # If it is true and keyword is not defined, plugin uses **kwargs argument to inject session database (default False).
 	)
 
-	app.install(plugin)
+	corsPlugin = EnableCors()
+
+	app.install(sqlAlchemyPlugin)
+	app.install(corsPlugin)
 
 	from controllers import stops
 	from controllers import routes

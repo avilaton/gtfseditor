@@ -4,9 +4,8 @@ define([
   "handlebars",
   "text!templates/tripsSelect.handlebars",
   "collections/trips",
-  'models/trip',
   'views/modals/trip'
-  ], function (_, Backbone, Handlebars, tmpl, TripsCollection, TripModel, TripModal) {
+  ], function (_, Backbone, Handlebars, tmpl, TripsCollection, TripModal) {
     var View;
 
     View = Backbone.View.extend({
@@ -25,18 +24,10 @@ define([
       initialize: function(options){
         var self = this;
 
-        self.routesCollection = options.routesCollection;
-
-        self.routesCollection.on('route_selected', self.routeChanged, self);
-
-        this.render();
+        this.collection = new TripsCollection();
         
         this.collection.on("change add remove reset", self.render, self);
-      },
-
-      routeChanged: function (event) {
-        this.collection.route_id = event.get("route_id");
-        this.collection.fetch();
+        this.render();
       },
 
       render: function () {
@@ -49,13 +40,15 @@ define([
 
       selectTrip: function (event) {
         var self = this;
-        var selectedValue = event.currentTarget.value;
+        var value = event.currentTarget.value;
+        this.selected = value;
 
-        self.collection.select(selectedValue);
+        self.collection.select(value);
+        this.trigger('select', value);
       },
 
       onAdd: function () {
-        var model = new TripModel();
+        var model = new this.collection.model();
         var tripModal = new TripModal({
             model: model,
             el: $('#routeDataEditor')
@@ -64,15 +57,17 @@ define([
       },
 
       onEdit: function () {
+        var model = this.collection.get(this.selected);
         var tripModal = new TripModal({
-            model: this.collection.selected,
+            model: model,
             el: $('#routeDataEditor')
         });
         tripModal.$el.modal('show');
       },
 
       onRemove: function () {
-        this.collection.selected.destroy();
+        var model = this.collection.get(this.selected);
+        model.destroy();
       },
 
       onViewAll: function () {
