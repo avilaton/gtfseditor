@@ -1,11 +1,12 @@
 define([
   "OpenLayers",
   "backbone",
+  'config',
   "views/map/drawStops",
   "views/map/kmlLayer",
   "views/map/styles"
   ],
-  function (OpenLayers, Backbone, DrawStopsView, KmlLayerView, Styles) {
+  function (OpenLayers, Backbone, Config, DrawStopsView, KmlLayerView, Styles) {
     'use strict';
 
     var MapView = Backbone.View.extend({
@@ -196,7 +197,7 @@ define([
             ],
           protocol: new OpenLayers.Protocol.HTTP({
             format: new OpenLayers.Format.GeoJSON(),
-            url: 'api/bbox',
+            url: Config.server + 'api/bbox',
             params: {filter:''}
           })
         });

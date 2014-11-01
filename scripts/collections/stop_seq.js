@@ -2,14 +2,15 @@ define([
   "underscore",
   "backbone",
   "api",
+  'config',
   "models/stop"
-], function (_, Backbone, api, StopModel) {
+], function (_, Backbone, api, Config, StopModel) {
   var Collection;
 
   Collection = Backbone.Collection.extend({
 
     url: function () {
-      return 'api/trips/' + this.trip_id + '/stops.json';
+      return Config.server + 'api/trips/' + this.trip_id + '/stops.json';
     },
     
     initialize: function (options) {

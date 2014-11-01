@@ -1,13 +1,14 @@
 define([
 	"OpenLayers",
 	"underscore",
-	"backbone"
-], function (OpenLayers, _, Backbone) {
+	"backbone",
+	'config'
+], function (OpenLayers, _, Backbone, Config) {
 	var Model;
 
 	Model = Backbone.Model.extend({
 		idAttribute: "stop_id",
-		urlRoot: '/api/stops',
+		urlRoot: Config.server + 'api/stops',
 		
 	    initialize: function(){
 

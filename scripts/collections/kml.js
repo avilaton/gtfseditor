@@ -1,14 +1,15 @@
 define([
 	"underscore",
-	"backbone"
-], function (_, Backbone) {
+	"backbone",
+    'config'
+], function (_, Backbone, Config) {
 
 	var Model = Backbone.Model.extend({idAttribute:'value'});
 
 	var Collection = Backbone.Collection.extend({
 		model: Model,
 
-		url: 'api/kml/',
+		url: Config.server + 'api/kml/',
 
 	    initialize: function(){
             this.selected = '';

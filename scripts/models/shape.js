@@ -1,13 +1,14 @@
 define([
 	"underscore",
-	"backbone"
-], function (_, Backbone) {
+	"backbone",
+	'config'
+], function (_, Backbone, Config) {
 	var Model;
 
 	Model = Backbone.Model.extend({
 		idAttribute: "shape_id",
 
-		urlRoot: './api/shape',
+		urlRoot: Config.server + 'api/shape',
 
 	    initialize: function(){
 

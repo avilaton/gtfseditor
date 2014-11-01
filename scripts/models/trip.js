@@ -1,16 +1,17 @@
 define([
 	"underscore",
-	"backbone"
-], function (_, Backbone) {
+	"backbone",
+  'config'
+], function (_, Backbone, Config) {
 	var Model;
 
 	Model = Backbone.Model.extend({
 		idAttribute: "trip_id",
     url: function() {
       if (this.isNew()) {
-        return 'api/trips';
+        return Config.server + 'api/trips';
       } else {
-        return 'api/trips/' + this.id;
+        return Config.server + 'api/trips/' + this.id;
       }
     }
  	});

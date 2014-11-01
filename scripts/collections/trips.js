@@ -1,8 +1,9 @@
 define([
     "underscore",
     "backbone",
+    'config',
     "models/trip"
-], function (_, Backbone, TripModel) {
+], function (_, Backbone, Config, TripModel) {
     var TripsCollection;
 
     TripsCollection = Backbone.Collection.extend({
@@ -11,7 +12,7 @@ define([
         route_id: '',
 
         url: function() {
-            return 'api/route/' + this.route_id + '/trips';
+            return Config.server + 'api/route/' + this.route_id + '/trips';
         },
 
         initialize: function(){
