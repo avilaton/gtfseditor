@@ -7,7 +7,7 @@ define([
     var View;
 
     View = Backbone.View.extend({
-        el: $("#filterBox"),
+        el: $('.filter-view'),
         
         template: Handlebars.compile(tmpl),
 

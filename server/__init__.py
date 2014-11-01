@@ -27,13 +27,15 @@ from models import Base
 
 # Base.metadata.create_all(engine)
 
+from cors import EnableCors
+
 app = Bottle()
 
 def initialize():
 	
 	from bottle.ext import sqlalchemy
 
-	plugin = sqlalchemy.Plugin(
+	sqlAlchemyPlugin = sqlalchemy.Plugin(
 		engine, # SQLAlchemy engine created with create_engine function.
 		Base.metadata, # SQLAlchemy metadata, required only if create=True.
 		keyword='db', # Keyword used to inject session database in a route (default 'db').
@@ -42,7 +44,10 @@ def initialize():
 		use_kwargs=False # If it is true and keyword is not defined, plugin uses **kwargs argument to inject session database (default False).
 	)
 
-	app.install(plugin)
+	corsPlugin = EnableCors()
+
+	app.install(sqlAlchemyPlugin)
+	app.install(corsPlugin)
 
 	from controllers import stops
 	from controllers import routes

@@ -1,3 +1,10 @@
+
+<div class="form-group">
+  <label for="speed">Guestimate times</label>
+  <input name="speed" type="number" class="form-control" placeholder="speed (km/h)">
+	<button class="btn btn-default">Do</button>
+</div>
+
 <table class="table table-hover table-condensed">
 <thead>
 	<tr>
@@ -8,10 +15,10 @@
 </thead>
 <tbody>
 	{{#each this}}
-	<tr data-stop-id="{{stop_seq.stop_id}}" draggable="true">
-		<td>{{stop_seq.stop_id}}</td>
-		<td class="stop-time" contenteditable="true">{{stop_seq.stop_time}}</td>
-		<td>{{stop_seq.shape_dist_traveled}}</td>
+	<tr data-stop-id="{{stop_id}}" draggable="true">
+		<td>{{stop_id}}</td>
+		<td class="stop-time" contenteditable="true">{{stop_time}}</td>
+		<td>{{shape_dist_traveled}}</td>
 	</tr>
 	{{/each}}
 </tbody>

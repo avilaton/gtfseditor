@@ -2,15 +2,16 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'main'
-], function($, _, Backbone, Main){
+  'main',
+  'views/filter'
+], function($, _, Backbone, Main, FilterView){
 
   var AppRouter = Backbone.Router.extend({
     routes: {
-      // Define some URL routes
-      'route/:route_id': 'showRoute',
-
-      // Default
+      'routes(/:route_id)': 'showRoute',
+      'stops(/:stop_id)': 'stopsView',
+      'calendar(/)': 'calendarView',
+      'agencies(/:agency_id)': 'agenciesView',
       '*actions': 'defaultAction'
     }
   });
@@ -19,7 +20,12 @@ define([
     var app_router = new AppRouter;
 
     app_router.on('route:showRoute', function(route_id){
-
+      console.log('showRoute', route_id);
+    });
+    app_router.on('route:stopsView', function(route_id){
+      var filterView = new FilterView();
+    });
+    app_router.on('route:showRoute', function(route_id){
       console.log('showRoute', route_id);
     });
     app_router.on('route:defaultAction', function(actions){
@@ -29,6 +35,7 @@ define([
     Backbone.history.start();
 
     // Main.init();
+
   };
   return {
     initialize: initialize
