@@ -16,13 +16,13 @@ from server import app
 @app.get('/api/kml/')
 def kmlFiles():
   options = []
-  for filename in sorted(os.listdir('./app/kml')):
+  for filename in sorted(os.listdir('./client/kml')):
     options.append({'value': filename})
   return {'options': options}
 
 @app.get('/<filepath:path>')
 def index(filepath):
-  return static_file(filepath, root='./app/')
+  return static_file(filepath, root='./client/')
 
 @app.get('/')
 def index():
