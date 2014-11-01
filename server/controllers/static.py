@@ -26,4 +26,4 @@ def index(filepath):
 
 @app.get('/')
 def index():
-  return static_file('index.html', root='./app/')
+  return static_file('index.html', root='./client/')
