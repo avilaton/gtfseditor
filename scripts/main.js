@@ -62,12 +62,12 @@ define([
         stop: stopModel
       });
 
-      var filterView = new FilterView();
+      // var filterView = new FilterView();
 
-      filterView.on('change', function (value) {
-        mapView.bboxLayer.protocol.params.filter = value;
-        mapView.bboxLayer.refresh({force:true});
-      });
+      // filterView.on('change', function (value) {
+      //   mapView.bboxLayer.protocol.params.filter = value;
+      //   mapView.bboxLayer.refresh({force:true});
+      // });
 
       var myShapesToolbox = new ShapesToolboxView({
         model: shapeModel,
