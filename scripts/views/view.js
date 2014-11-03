@@ -1,13 +1,13 @@
 define([
-  "underscore",
-  "backbone",
-  "handlebars",
-  "text!templates/view.handlebars"
+  'underscore',
+  'backbone',
+  'handlebars',
+  'text!templates/view.handlebars'
   ], function (_, Backbone, Handlebars, tmpl) {
     var View;
 
     View = Backbone.View.extend({
-      el: $("#someDomElementId"),
+      el: $('#someDomElementId'),
 
       template: Handlebars.compile(tmpl),
 
@@ -18,7 +18,7 @@ define([
 
         this.render();
 
-        this.model.on("change reset", self.render, self);
+        this.model.on('change reset', self.render, self);
       },
 
       render: function () {

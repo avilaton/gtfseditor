@@ -3,8 +3,8 @@ define([
   'underscore',
   'backbone',
   'main',
-  'views/filter'
-], function($, _, Backbone, Main, FilterView){
+  'views/stops'
+], function($, _, Backbone, Main, StopsView){
 
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -23,7 +23,7 @@ define([
       console.log('showRoute', route_id);
     });
     app_router.on('route:stopsView', function(route_id){
-      var filterView = new FilterView();
+      var stopsView = new StopsView();
     });
     app_router.on('route:showRoute', function(route_id){
       console.log('showRoute', route_id);

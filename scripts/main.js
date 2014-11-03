@@ -57,6 +57,7 @@ define([
       });
 
       var mapView = new MapView({
+        el: '.map-view',
         shape: shapeModel,
         stops: stopsCollection,
         stop: stopModel

@@ -10,8 +10,6 @@ define([
     'use strict';
 
     var MapView = Backbone.View.extend({
-      // el: $("#mapBox"),
-
       initialize: function(options){
         var self = this;
 
@@ -19,7 +17,7 @@ define([
         self.stops = options.stops;
         self.stop = options.stop;
 
-        this.map = new OpenLayers.Map('map', {
+        this.map = new OpenLayers.Map(this.el, {
           controls : [
           new OpenLayers.Control.Navigation(),
           new OpenLayers.Control.PanZoomBar(),
