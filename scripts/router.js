@@ -4,8 +4,9 @@ define([
   'backbone',
   'main',
   'views/stops',
+  'views/routes',
   'views/navbarRight'
-], function($, _, Backbone, Main, StopsView, NavbarRightView){
+], function ($, _, Backbone, Main, StopsView, RoutesView, NavbarRightView){
 
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -24,6 +25,7 @@ define([
 
     app_router.on('route:showRoute', function(route_id){
       console.log('showRoute', route_id);
+      var routesView = new RoutesView();
     });
     app_router.on('route:stopsView', function(route_id){
       var stopsView = new StopsView();
@@ -33,6 +35,7 @@ define([
     });
     app_router.on('route:defaultAction', function(actions){
       // We have no matching route, lets just log what the URL was
+      var routesView = new RoutesView();
       console.log('No route:', actions);
     });
     Backbone.history.start();

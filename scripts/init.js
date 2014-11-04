@@ -34,6 +34,6 @@ require(['main', 'router'],
 
     Router.initialize();
 
-    main.init();
+    // main.init();
 
 });
