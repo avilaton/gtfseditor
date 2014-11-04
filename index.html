@@ -31,10 +31,6 @@
     <div class="row top-sp main-view">
       <div class="col-md-4 panel-left">
         <div class="row">
-          <div class="col-md-12 top-sp filter-view" id="filterBox">
-          </div>
-        </div>
-        <div class="row">
           <div id="routesSelect" class="col-md-12">
           </div>
         </div>
@@ -45,7 +41,6 @@
         <ul class="nav nav-pills top-sp">
           <li class="active"><a href="#shapes" data-toggle="tab">Shapes</a></li>
           <li><a href="#trips" data-toggle="tab">Trips</a></li>
-          <li><a href="#stops" data-toggle="tab">Stops</a></li>
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="shapes">
@@ -56,14 +51,10 @@
             <div id="sequenceToolbox"></div>
             <div id="sequenceView"></div>
           </div>
-          <div class="tab-pane" id="stops">
-            <div id="stopToolbar"></div>
-            <div id="stopData"></div>
-          </div>
         </div>
       </div>
       <div class="col-md-8 panel-right">
-        <div id="map"></div>
+        <div id="map" class="map-view"></div>
       </div>
     </div>
   </div>
