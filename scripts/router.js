@@ -2,11 +2,10 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'main',
   'views/stops',
   'views/routes',
   'views/navbarRight'
-], function ($, _, Backbone, Main, StopsView, RoutesView, NavbarRightView){
+], function ($, _, Backbone, StopsView, RoutesView, NavbarRightView){
 
   var AppRouter = Backbone.Router.extend({
     routes: {

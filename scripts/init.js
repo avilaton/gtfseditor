@@ -28,12 +28,10 @@ require.config({
     }
 });
 
-require(['main', 'router'],
-    function (main, Router) {
+require(['router'],
+    function (Router) {
     'use strict';
 
     Router.initialize();
-
-    // main.init();
 
 });
