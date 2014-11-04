@@ -9,18 +9,14 @@ define([
   "views/tripsSelect",
   "views/shapesToolbox",
   "views/sequenceToolbox",
-  "views/stopData",
-  "views/stopToolbar",
   "views/map",
-  'views/navbarRight',
   'views/sequence',
   'collections/stop_seq'
 	], 
   function ($, ShapeModel, StopModel, 
     StopsCollection, FilterView, KmlSelectView, RoutesSelectView, 
     TripsSelectView, ShapesToolboxView, SequenceToolboxView, 
-    StopDataView, StopToolbarView, MapView, NavbarRightView, SequenceView,
-    StopsSeqCollection) {
+    MapView, SequenceView, StopsSeqCollection) {
 
     require(["bootstrap"]);
 
@@ -29,8 +25,6 @@ define([
       shapeModel,
       stopModel;
 			
-      var navbarRight = new NavbarRightView();
-
       stopsCollection = new StopsCollection();
       stopsSeqCollection = new StopsSeqCollection();
       shapeModel = new ShapeModel();
@@ -63,13 +57,6 @@ define([
         stop: stopModel
       });
 
-      // var filterView = new FilterView();
-
-      // filterView.on('change', function (value) {
-      //   mapView.bboxLayer.protocol.params.filter = value;
-      //   mapView.bboxLayer.refresh({force:true});
-      // });
-
       var myShapesToolbox = new ShapesToolboxView({
         model: shapeModel,
         controls: mapView.controls,
@@ -82,20 +69,6 @@ define([
         controls: mapView.controls
       });
 
-      var myStopDataView = new StopDataView({
-        model: stopModel,
-        controls: mapView.controls
-      });
-
-      var myStopToolbarView = new StopToolbarView({
-        model: stopModel,
-        controls: mapView.controls,
-        stopDataView: myStopDataView
-      });
-
-      /** 
-       * this should be inside map.js
-       */
       tripsSelector.on('select', function (value) {
         var selectedTrip = tripsSelector.collection.get(value);
         var trip_id = selectedTrip.get('trip_id');

@@ -6,11 +6,12 @@ define([
   'views/stopData',
   'views/filter',
   'views/map',
+  'views/stopToolbar',
   'models/stop',
   'models/shape',
   'collections/stops'
   ], function (_, Backbone, Handlebars, tmpl, StopDataView, FilterView, MapView,
-      StopModel, ShapeModel, StopsCollection) {
+      StopToolbarView, StopModel, ShapeModel, StopsCollection) {
     var View;
 
     View = Backbone.View.extend({
@@ -34,14 +35,24 @@ define([
           model: this.stopModel,
           el: this.$('.stop-data-view')
         });
-        var filterView = new FilterView({
-          el: this.$('.filter-view')
-        });
         var mapView = new MapView({
           el: '.map-view',
           shape: this.shapeModel,
           stops: this.stopsCollection,
           stop: this.stopModel
+        });
+        var filterView = new FilterView({
+          el: this.$('.filter-view')
+        });
+        filterView.on('change', function (value) {
+          mapView.bboxLayer.protocol.params.filter = value;
+          mapView.bboxLayer.refresh({force:true});
+        });
+        var stopToolbarView = new StopToolbarView({
+          el: '.stop-toolbar-view',
+          model: this.stopModel,
+          controls: mapView.controls,
+          stopDataView: stopDataView
         });
       }
 

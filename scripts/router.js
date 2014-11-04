@@ -3,8 +3,9 @@ define([
   'underscore',
   'backbone',
   'main',
-  'views/stops'
-], function($, _, Backbone, Main, StopsView){
+  'views/stops',
+  'views/navbarRight'
+], function($, _, Backbone, Main, StopsView, NavbarRightView){
 
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -18,6 +19,8 @@ define([
 
   var initialize = function(){
     var app_router = new AppRouter;
+    
+    var navbarRight = new NavbarRightView();
 
     app_router.on('route:showRoute', function(route_id){
       console.log('showRoute', route_id);
