@@ -6,6 +6,7 @@ from server import app
 from server.models import Trip
 from server.models import Stop
 from server.models import StopSeq
+from server.models import TripStartTime
 from server.collections.stop_sequence import StopSequence
 from server import geojson
 
@@ -109,3 +110,18 @@ def sortTripStops(db, trip_id):
   stopSequence = StopSequence(trip_id)
   stopSequence.updateDistances()
   return {'success': True}
+
+@app.get('/api/trips/<trip_id>/start-times.json')
+def tripStops(db, trip_id):
+	rows = db.query(TripStartTime).filter(TripStartTime.trip_id == trip_id).all()
+
+	features = [row.as_dict for row in rows]
+	return {'rows': features}
+
+@app.put('/api/trips/<trip_id>/start-times.json')
+def updateTripStartTimes(db, trip_id):
+  data = request.json
+  print(data)
+  # trip = Trip(**data)
+  # db.merge(trip)
+  return 
