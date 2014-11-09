@@ -28,7 +28,7 @@ require.config({
     }
 });
  
-require(['router'],
+require(['router', 'bootstrap'],
     function (Router) {
     'use strict';
 

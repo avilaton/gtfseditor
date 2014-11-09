@@ -139,7 +139,7 @@ this["JST"]["navbar-right"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.
 
 
 this["JST"]["navbarRight"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<ul class=\"nav navbar-top-links navbar-right\">\n    <li>\n        <a href=\"#stops\">\n            <i class=\"glyphicon glyphicon-record\"> Stops</i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/routes\">\n            <i class=\"glyphicon glyphicon-road\"> Routes</i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/agencies\">\n            <i class=\"glyphicon glyphicon-road\"> Agencies</i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/calendar\">\n            <i class=\"glyphicon glyphicon-calendar\"> Calendar</i>\n        </a>\n    </li>\n\n\n    <!-- /.dropdown -->\n    <li class=\"dropdown\">\n        <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">\n            <i class=\"glyphicon glyphicon-cog\"></i>  Feed<i class=\"caret\"></i>\n        </a>\n        <ul class=\"dropdown-menu dropdown-user\">\n<!--             <li><a href=\"#\"><i class=\"glyphicon glyphicon-user glyphicon-fw\"></i> User Profile</a>\n            </li>\n            <li><a href=\"#\"><i class=\"glyphicon glyphicon-gear glyphicon-fw\"></i> Settings</a>\n            </li>\n            <li class=\"divider\"></li>\n            <li><a href=\"login.html\"><i class=\"glyphicon glyphicon-sign-out glyphicon-fw\"></i> Logout</a>\n            </li> -->\n            <li><a href=\"/api/feed/google_transit.zip\" target=\"_blank\"><i class=\"glyphicon glyphicon-download-alt\"></i> Download Feed</a>\n            </li>\n        </ul>\n        <!-- /.dropdown-user -->\n    </li>\n    <!-- /.dropdown -->\n</ul>\n<!-- /.navbar-top-links -->\n";
+  return "<ul class=\"nav navbar-top-links navbar-right\">\n    <li>\n        <a href=\"#stops\">\n            <i class=\"glyphicon glyphicon-record\"> Stops</i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/routes\">\n            <i class=\"glyphicon glyphicon-road\"> Routes</i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/times\">\n            <i class=\"glyphicon glyphicon-time\"> Times</i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/agencies\">\n            <i class=\"glyphicon glyphicon-road\"> Agencies</i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/calendar\">\n            <i class=\"glyphicon glyphicon-calendar\"> Calendar</i>\n        </a>\n    </li>\n\n\n    <!-- /.dropdown -->\n    <li class=\"dropdown\">\n        <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">\n            <i class=\"glyphicon glyphicon-cog\"></i>  Feed<i class=\"caret\"></i>\n        </a>\n        <ul class=\"dropdown-menu dropdown-user\">\n<!--             <li><a href=\"#\"><i class=\"glyphicon glyphicon-user glyphicon-fw\"></i> User Profile</a>\n            </li>\n            <li><a href=\"#\"><i class=\"glyphicon glyphicon-gear glyphicon-fw\"></i> Settings</a>\n            </li>\n            <li class=\"divider\"></li>\n            <li><a href=\"login.html\"><i class=\"glyphicon glyphicon-sign-out glyphicon-fw\"></i> Logout</a>\n            </li> -->\n            <li><a href=\"/api/feed/google_transit.zip\" target=\"_blank\"><i class=\"glyphicon glyphicon-download-alt\"></i> Download Feed</a>\n            </li>\n        </ul>\n        <!-- /.dropdown-user -->\n    </li>\n    <!-- /.dropdown -->\n</ul>\n<!-- /.navbar-top-links -->\n";
   },"useData":true});
 
 
@@ -224,6 +224,24 @@ this["JST"]["shapesToolbox"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta
 
 
 
+this["JST"]["startTimes"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return "	<tr data-stop-id=\""
+    + escapeExpression(((helper = (helper = helpers.stop_id || (depth0 != null ? depth0.stop_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"stop_id","hash":{},"data":data}) : helper)))
+    + "\" draggable=\"true\">\n		<td>"
+    + escapeExpression(((helper = (helper = helpers.service_id || (depth0 != null ? depth0.service_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"service_id","hash":{},"data":data}) : helper)))
+    + "</td>\n		<td class=\"stop-time\" contenteditable=\"true\">"
+    + escapeExpression(((helper = (helper = helpers.start_time || (depth0 != null ? depth0.start_time : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"start_time","hash":{},"data":data}) : helper)))
+    + "</td>\n	</tr>\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, buffer = "<button class=\"btn btn-default add-btn\">Add</button>\n<button class=\"btn btn-default save-btn\">Save</button>\n<table class=\"table table-hover table-condensed\">\n<thead>\n	<tr>\n		<th>Stop Id</th>\n		<th>Time</th>\n	</tr>\n</thead>\n<tbody>\n";
+  stack1 = helpers.each.call(depth0, depth0, {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "</tbody>\n</table>";
+},"useData":true});
+
+
+
 this["JST"]["stopData"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "    <form class=\"form-horizontal\" role=\"form\">\n      <div class=\"form-group\">\n        <legend>Stop id: "
@@ -278,6 +296,12 @@ this["JST"]["stopToolbar"] = Handlebars.template({"1":function(depth0,helpers,pa
 
 this["JST"]["stops"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<div class=\"col-md-4 panel-left\">\n  <div class=\"row\">\n    <div class=\"col-md-12 top-sp filter-view\"></div>\n  </div>\n  <div class=\"stop-toolbar-view\"></div>\n  <div class=\"stop-data-view\"></div>\n</div>\n<div class=\"col-md-8 panel-right\">\n  <div id=\"map\" class=\"map-view\"></div>\n</div>";
+  },"useData":true});
+
+
+
+this["JST"]["times"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<div class=\"col-md-4 panel-left\">\n  <div class=\"row\">\n    <div  class=\"col-md-12 routes-select\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12 trips-select\">\n    </div>\n  </div>\n</div>\n<div class=\"col-md-8 panel-right\">\n  <div class=\"start-times-view\"></div>\n</div>";
   },"useData":true});
 
 
