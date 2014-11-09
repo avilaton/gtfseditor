@@ -2,14 +2,14 @@ define([
     "underscore",
     "backbone",
     "handlebars",
-    "text!templates/stopToolbar.handlebars"
-    ], function (_, Backbone, Handlebars, tmpl) {
+    'JST'
+    ], function (_, Backbone, Handlebars, JST) {
         var View;
 
         View = Backbone.View.extend({
             el: $('#stopToolbar'),
 
-            template: Handlebars.compile(tmpl),
+            template: JST['stopToolbar'],
 
             events: {
                 "click button.newStop": "newStop",

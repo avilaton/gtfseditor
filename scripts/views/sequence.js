@@ -2,14 +2,14 @@ define([
   "underscore",
   "backbone",
   "handlebars",
-  "text!templates/sequence.handlebars"
-  ], function (_, Backbone, Handlebars, tmpl) {
+  'JST'
+  ], function (_, Backbone, Handlebars, JST) {
     var View;
 
     View = Backbone.View.extend({
       el: $("#sequenceView"),
 
-      template: Handlebars.compile(tmpl),
+      template: JST['sequence'],
 
       events: {
         'click tr': 'onClickRow',

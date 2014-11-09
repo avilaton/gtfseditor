@@ -2,14 +2,14 @@ define([
   "underscore",
   "backbone",
   "handlebars",
-  "text!templates/shapesToolbox.handlebars"
-  ], function (_, Backbone, Handlebars, tmpl) {
+  'JST'
+  ], function (_, Backbone, Handlebars, JST) {
     var View;
 
     View = Backbone.View.extend({
       el: $("#shapesToolbox"),
 
-      template: Handlebars.compile(tmpl),
+      template: JST['shapesToolbox'],
 
       events: {
         "click button.reverseShape": "reverseShape",

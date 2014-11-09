@@ -2,7 +2,7 @@ define([
   'underscore',
   'backbone',
   'handlebars',
-  'text!templates/stops.handlebars',
+  'JST',
   'views/stopData',
   'views/filter',
   'views/map',
@@ -10,14 +10,14 @@ define([
   'models/stop',
   'models/shape',
   'collections/stops'
-  ], function (_, Backbone, Handlebars, tmpl, StopDataView, FilterView, MapView,
+  ], function (_, Backbone, Handlebars, JST, StopDataView, FilterView, MapView,
       StopToolbarView, StopModel, ShapeModel, StopsCollection) {
     var View;
 
     View = Backbone.View.extend({
       el: $('.main-view'),
 
-      template: Handlebars.compile(tmpl),
+      template: JST['stops'],
 
       events: {},
 

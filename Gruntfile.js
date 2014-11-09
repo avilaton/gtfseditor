@@ -7,6 +7,7 @@ module.exports = function(grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+console.log(require('./bower.json').directory);
 
   grunt.initConfig({
 
@@ -22,7 +23,7 @@ module.exports = function(grunt) {
 		      namespace: "JST",
 		      amd: true,
 					processName: function (filePath) {
-						var file = filePath.replace('scripts/templates/','');
+						var file = filePath.replace('templates/','');
 						var templatePath = file.split('.')[0];
 						return templatePath;
 					},
@@ -36,7 +37,7 @@ module.exports = function(grunt) {
 		    },
 		    files: {
 		      // "path/to/result.js": "path/to/source.hbs",
-		      "scripts/JST.js": ["scripts/templates/**/*.handlebars"]
+		      "scripts/JST.js": ["templates/**/*.handlebars"]
 		    }
 		  }
 		},
@@ -63,39 +64,58 @@ module.exports = function(grunt) {
           ]
         }
       }
-    }
+    },
+    // Watches files for changes and runs tasks based on the changed files
+    watch: {
+      js: {
+        files: ['scripts/{,**/}*.js'],
+        // files: ['{.tmp,<%= yeoman.app %>}/scripts/{,**/}*.js'],
+        tasks: ['handlebars']
+      },
+      hbs: {
+        files: ['templates/{,**/}*.handlebars'],
+        tasks: ['handlebars']
+      },
+//      jsTest: {
+//        files: ['test/spec/{,*/}*.js'],
+//        tasks: ['newer:jshint:test', 'karma']
+//      },
+      // compass: {
+      //   files: ['<%= yeoman.app %>/styles/{,**/}*.{scss,sass}'],
+      //   tasks: ['compass:server'] //, 'autoprefixer'
+      // },
+      // styles: {
+      //   files: ['<%= yeoman.app %>/styles/{,**/}*.css'],
+      //   tasks: ['newer:copy:styles', 'autoprefixer']
+      // },
+      // gruntfile: {
+      //   files: ['Gruntfile.js']
+      // },
+      livereload: {
+        options: {
+          livereload: '<%= connect.options.livereload %>'
+        },
+        files: [
+          'scripts/{,**/}*.js'
+          // '<%= yeoman.app %>/{,**/}*.html',
+          // '.tmp/styles/{,**/}*.css',
+          // '<%= yeoman.app %>/images/{,**/}*.{png,jpg,jpeg,gif,webp,svg}'
+        ]
+      }
+    },
   });
 
   // By default, lint and run all tests.
-  grunt.registerTask('dev', [
-    // 'compass',
-    // 'concurrent:dev'
+  grunt.registerTask('monitor', [
+    'watch:livereload'
   ]);
 
   grunt.registerTask('serve', [
-    // 'compass',
-    // 'handlebars',
-    // 'uglify',
-    'connect:livereload'
-  ]);
-
-  // Setting up dummy task for grunt to build the dist folder
-  grunt.registerTask('build', [
-    // 'clean:dist',
-    // 'concurrent:dist',
-    // 'concat',
-    // 'cssc:build',
-    // 'cssmin:build',
-    // 'handlebars',
-    // 'uglify',
-    // // 'imagemin:build',
-    // 'copy:dist'
+    'connect:livereload',
+    'watch'
   ]);
 
   grunt.registerTask('default', [
-    // 'newer:jshint',
-    // 'test',
-    // 'build'
   ]);
 
 };

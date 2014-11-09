@@ -2,14 +2,14 @@ define([
     "underscore",
     "backbone",
     "handlebars",
-    "text!templates/filter.handlebars"
-], function (_, Backbone, Handlebars, tmpl) {
+    'JST'
+], function (_, Backbone, Handlebars, JST) {
     var View;
 
     View = Backbone.View.extend({
         el: $('.filter-view'),
         
-        template: Handlebars.compile(tmpl),
+        template: JST['filter'],
 
         events: {
             "click .filter-button": "onClickFilter",

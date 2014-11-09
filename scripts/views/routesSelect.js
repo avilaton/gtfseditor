@@ -2,16 +2,16 @@ define([
     "underscore",
     "backbone",
     "handlebars",
-    "text!templates/routesSelect.handlebars",
+    'JST',
     'collections/routes',
     'views/modals/route'
-], function (_, Backbone, Handlebars, tmpl, RoutesCollection, RouteModal) {
+], function (_, Backbone, Handlebars, JST, RoutesCollection, RouteModal) {
     var View;
 
     View = Backbone.View.extend({
         el: $("#routesSelect"),
         
-        template: Handlebars.compile(tmpl),
+        template: JST['routesSelect'],
 
         events: {
             "change select": "selectRoute",

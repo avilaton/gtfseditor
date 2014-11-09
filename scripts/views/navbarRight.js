@@ -1,14 +1,14 @@
 define([
   'backbone',
   'handlebars',
-  'text!templates/navbarRight.handlebars'
-  ], function (Backbone, Handlebars, tmpl) {
+  'JST'
+  ], function (Backbone, Handlebars, JST) {
     var View;
 
     View = Backbone.View.extend({
       el: $('.js-navbar-right'),
 
-      template: Handlebars.compile(tmpl),
+      template: JST['navbarRight'],
 
       initialize: function(options){
         this.render();

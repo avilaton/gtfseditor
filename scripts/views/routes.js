@@ -2,7 +2,7 @@ define([
   'underscore',
   'backbone',
   'handlebars',
-  'text!templates/routes.handlebars',
+  'JST',
   'views/map',
   'views/routesSelect',
   'views/tripsSelect',
@@ -13,7 +13,7 @@ define([
   'models/shape',
   'collections/stops',
   'collections/stop_seq'
-  ], function (_, Backbone, Handlebars, tmpl, MapView, RoutesSelectView,
+  ], function (_, Backbone, Handlebars, JST, MapView, RoutesSelectView,
       TripsSelectView, SequenceToolboxView, ShapesToolboxView, SequenceView,
       StopModel, ShapeModel, StopsCollection, StopsSeqCollection) {
     var View;
@@ -21,7 +21,7 @@ define([
     View = Backbone.View.extend({
       el: $('.main-view'),
 
-      template: Handlebars.compile(tmpl),
+      template: JST['routes'],
 
       events: {},
 

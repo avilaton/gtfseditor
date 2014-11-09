@@ -27,7 +27,7 @@ require.config({
         "async": "/bower_components/requirejs-plugins/src/async"
     }
 });
-
+ 
 require(['router'],
     function (Router) {
     'use strict';

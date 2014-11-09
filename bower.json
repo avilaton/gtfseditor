@@ -1,6 +1,6 @@
 {
   "name": "gtfseditor",
-  "directory": "assets/lib",
+  "directory": "./",
   "version": "0.0.0",
   "dependencies": {
     "backbone-amd": "*",

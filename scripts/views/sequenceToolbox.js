@@ -2,14 +2,14 @@ define([
   "underscore",
   "backbone",
   "handlebars",
-  "text!templates/sequenceToolbox.handlebars"
-  ], function (_, Backbone, Handlebars, tmpl) {
+  'JST'
+  ], function (_, Backbone, Handlebars, JST) {
     var View;
 
     View = Backbone.View.extend({
       el: $("#sequenceToolbox"),
 
-      template: Handlebars.compile(tmpl),
+      template: JST['sequenceToolbox'],
 
       events: {
         "click button.prevStop": "prevStop",

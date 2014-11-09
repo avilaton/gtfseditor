@@ -2,16 +2,16 @@ define([
   "underscore",
   "backbone",
   "handlebars",
-  "text!templates/tripsSelect.handlebars",
+  'JST',
   "collections/trips",
   'views/modals/trip'
-  ], function (_, Backbone, Handlebars, tmpl, TripsCollection, TripModal) {
+  ], function (_, Backbone, Handlebars, JST, TripsCollection, TripModal) {
     var View;
 
     View = Backbone.View.extend({
       el: $("#tripsSelect"),
 
-      template: Handlebars.compile(tmpl),
+      template: JST['tripsSelect'],
 
       events: {
           "change select": "selectTrip",

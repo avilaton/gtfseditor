@@ -2,14 +2,14 @@ define([
     "underscore",
     "backbone",
     "handlebars",
-    "text!templates/stopData.handlebars"
-    ], function (_, Backbone, Handlebars, tmpl) {
+    'JST'
+    ], function (_, Backbone, Handlebars, JST) {
         var View;
 
         View = Backbone.View.extend({
             el: $('#stopData'),
 
-            template: Handlebars.compile(tmpl),
+            template: JST['stopData'],
 
             events: {
                 "click button.save-stop": "onClickSave",

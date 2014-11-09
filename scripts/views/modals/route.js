@@ -2,14 +2,14 @@ define([
     "underscore",
     "backbone",
     "handlebars",
-    "text!templates/modals/route.handlebars",
+    'JST',
     'api'
-], function (_, Backbone, Handlebars, tmpl, Api) {
+], function (_, Backbone, Handlebars, JST, Api) {
     var View;
 
     View = Backbone.View.extend({
         
-        template: Handlebars.compile(tmpl),
+        template: JST['modals/route'],
 
         events: {
             "click .js-save": "save",
