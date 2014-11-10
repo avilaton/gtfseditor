@@ -10,7 +10,9 @@ define([
 
       template: JST['startTimes'],
 
-      events: {},
+      events: {
+        'click button.save-btn': 'save'
+      },
 
       initialize: function(){
         var self = this;
@@ -25,6 +27,10 @@ define([
         console.log(this.collection.toJSON());
 
         this.$el.html(this.template(this.collection.toJSON()));
+      },
+
+      save: function () {
+        this.collection.save();
       }
 
     });

@@ -2,9 +2,8 @@ define([
     "underscore",
     "backbone",
     "handlebars",
-    'JST',
-    'api'
-], function (_, Backbone, Handlebars, JST, Api) {
+    'JST'
+], function (_, Backbone, Handlebars, JST) {
     var View;
 
     View = Backbone.View.extend({

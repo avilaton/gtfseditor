@@ -107,12 +107,12 @@ console.log(require('./bower.json').directory);
 
   // By default, lint and run all tests.
   grunt.registerTask('monitor', [
-    'watch:livereload'
+    'watch:hbs'
   ]);
 
   grunt.registerTask('serve', [
     'connect:livereload',
-    'watch'
+    'watch:hbs'
   ]);
 
   grunt.registerTask('default', [

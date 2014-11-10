@@ -225,19 +225,19 @@ this["JST"]["shapesToolbox"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta
 
 
 this["JST"]["startTimes"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "	<tr data-stop-id=\""
-    + escapeExpression(((helper = (helper = helpers.stop_id || (depth0 != null ? depth0.stop_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"stop_id","hash":{},"data":data}) : helper)))
-    + "\" draggable=\"true\">\n		<td>"
+  var helper, lambda=this.lambda, escapeExpression=this.escapeExpression, functionType="function", helperMissing=helpers.helperMissing;
+  return "		<tr data-index=\""
+    + escapeExpression(lambda((data && data.index), depth0))
+    + "\" draggable=\"true\">\n			<td>"
     + escapeExpression(((helper = (helper = helpers.service_id || (depth0 != null ? depth0.service_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"service_id","hash":{},"data":data}) : helper)))
-    + "</td>\n		<td class=\"stop-time\" contenteditable=\"true\">"
+    + "</td>\n			<td class=\"stop-time\">"
     + escapeExpression(((helper = (helper = helpers.start_time || (depth0 != null ? depth0.start_time : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"start_time","hash":{},"data":data}) : helper)))
-    + "</td>\n	</tr>\n";
+    + "</td>\n		</tr>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<button class=\"btn btn-default add-btn\">Add</button>\n<button class=\"btn btn-default save-btn\">Save</button>\n<table class=\"table table-hover table-condensed\">\n<thead>\n	<tr>\n		<th>Stop Id</th>\n		<th>Time</th>\n	</tr>\n</thead>\n<tbody>\n";
+  var stack1, buffer = "<button class=\"btn btn-default add-btn\">Add</button>\n<button class=\"btn btn-default save-btn\">Save</button>\n<table class=\"table table-hover table-condensed\">\n	<thead>\n		<tr>\n			<th>Service Id</th>\n			<th>Time</th>\n		</tr>\n	</thead>\n	<tbody>\n";
   stack1 = helpers.each.call(depth0, depth0, {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "</tbody>\n</table>";
+  return buffer + "	</tbody>\n</table>";
 },"useData":true});
 
 

@@ -7,9 +7,6 @@ function ($, Config) {
 
   var api = {};
 
-  var config = {};
-  config.cgiUrl = Config.server;
-
   function ajax(spec) {
     var type = spec.type || 'GET';
     var url = spec.url || '';
@@ -21,7 +18,7 @@ function ($, Config) {
       contentType: 'application/json',
       dataType: 'json',
       data: data,
-      url: config.cgiUrl+url,
+      url: url,
       success: success,
       statusCode: {
         404: function () {
