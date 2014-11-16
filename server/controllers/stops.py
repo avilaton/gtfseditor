@@ -14,7 +14,7 @@ def index(db, stop_id):
   else:
     abort(404, 'no such stop_id')
 
-@app.route('/api/bbox')
+@app.route('/api/bbox', method=['GET', 'OPTIONS'])
 def getBBOX(db):
   bounds = request.query['bbox']
   w,s,e,n = map(float,bounds.split(','))

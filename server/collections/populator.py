@@ -44,13 +44,16 @@ class StopTimesFactory(object):
 
   def initial_times_mode(self, trip_id=None, commit=False):
     """ In Frequency mode, copy each stop sequence to the stop times table"""
+    logger.info("Populating stop times for trip_id:" + trip_id)
     trip_stop_sequence = db.query(StopSeq).filter_by(trip_id=trip_id).all()
     trip_start_times = db.query(TripStartTime).filter_by(trip_id=trip_id).all()
+    if not trip_start_times:
+      trip_start_times = db.query(TripStartTime).filter_by(trip_id='default').all()
 
 
     for startTimeRow in trip_start_times:
       start_time_secs = TimeToSecondsSinceMidnight(startTimeRow.start_time)
-      new_trip_id = '.'.join([startTimeRow.trip_id, startTimeRow.service_id, 
+      new_trip_id = '.'.join([trip_id, startTimeRow.service_id, 
         startTimeRow.start_time])
       for stopSeq in trip_stop_sequence:
         stop_seq_dict = stopSeq.as_dict
@@ -77,7 +80,6 @@ class StopTimesFactory(object):
 
   def allSeqs(self):
     for trip in db.query(StopSeq.trip_id).distinct().all():
-      logger.info("Populating stop times for trip_id:" + trip.trip_id)
       # self.frequency_mode(trip_id=trip.trip_id)
       self.initial_times_mode(trip_id=trip.trip_id)
     db.commit()

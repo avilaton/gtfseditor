@@ -17,6 +17,7 @@ from server.models import *
 from server.collections.interpolation import Interpolator
 from server.collections.populator import StopTimesFactory
 from server.collections.stop_sequence import StopSequence
+from server.services.defaults import loadDefaultTripStartTimes
 
 import os
 import glob
@@ -149,6 +150,7 @@ where command can be one of:
 
   create-all        Create all tables in DB
   drop-all          Drop all tables in DB
+  load-defaults     Load defaults into DB
   import-csv        Read Csv files into DB
   build             create GTFS feed
   interpolate       interpolate trip times
@@ -190,7 +192,9 @@ where command can be one of:
     create_all()
   elif command == 'drop-all':
     drop_all()
-  elif command == 'import':
+  elif command == 'load-defaults':
+    loadDefaultTripStartTimes(db)
+  elif command == 'import-csv':
     import_csv()
   elif command == 'interpolate':
     generate_interpolated_stop_times()

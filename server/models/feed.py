@@ -147,7 +147,7 @@ class Feed(object):
         for tripRow in db.query(Trip).filter_by(route_id=route.route_id).all():
           trip_start_times = db.query(TripStartTime).filter_by(trip_id=tripRow.trip_id).all()
           if not trip_start_times:
-            trip_start_times = [TripStartTime(trip_id='fake_trip_id', service_id='H', start_time='08:00:00')]
+            trip_start_times = db.query(TripStartTime).filter_by(trip_id='default').all()
           for startTimeRow in trip_start_times:
             new_trip_id = '.'.join([tripRow.trip_id, startTimeRow.service_id, startTimeRow.start_time])
             tripObject = route.AddTrip(trip_id = new_trip_id, headsign=tripRow.trip_headsign)
