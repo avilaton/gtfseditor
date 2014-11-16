@@ -3,7 +3,7 @@
 
 import os
 
-DEBUG = False
+DEBUG = True
 
 DATABASE_URL = 'sqlite:///dev.sqlite'
 # DATABASE_URL = 'sqlite:///database/test.sqlite'
