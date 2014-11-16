@@ -59,7 +59,7 @@ def generate_stop_times_from_stop_seqs():
   stopTimesFactory = StopTimesFactory()
   # stopTimesFactory.frequency_mode(trip_id='10.ida', commit=True)
   # stopTimesFactory.initial_times_mode(trip_id='a_trip_id', commit=True)
-  stopTimesFactory.allSeqs()
+  stopTimesFactory.allActiveRoutes()
 
 def sort_trips():
   trip = StopSequence('a_trip_id')

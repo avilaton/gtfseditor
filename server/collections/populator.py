@@ -11,6 +11,7 @@ from transitfeed import FormatSecondsSinceMidnight
 from server import config
 from server import engine
 from server.models import Trip
+from server.models import Route
 from server.models import StopSeq
 from server.models import StopTime
 from server.models import TripStartTime
@@ -79,9 +80,17 @@ class StopTimesFactory(object):
       db.commit()
 
   def allSeqs(self):
+    logger.info("Populating initial times for all trips")
     for trip in db.query(StopSeq.trip_id).distinct().all():
       # self.frequency_mode(trip_id=trip.trip_id)
       self.initial_times_mode(trip_id=trip.trip_id)
     db.commit()
 
+  def allActiveRoutes(self):
+    logger.info("Populating initial times for all active routes")
 
+    for route in db.query(Route).filter(Route.active.in_(("1", "TRUE"))).all():
+      logger.info("Populating times for route_id: {0}".format(route.route_id))
+      for trip in db.query(Trip).filter_by(route_id=route.route_id).all():
+        self.initial_times_mode(trip_id=trip.trip_id)
+    db.commit()
