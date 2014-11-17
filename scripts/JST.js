@@ -204,7 +204,7 @@ this["JST"]["sequence"] = Handlebars.template({"1":function(depth0,helpers,parti
     + escapeExpression(((helper = (helper = helpers.shape_dist_traveled || (depth0 != null ? depth0.shape_dist_traveled : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"shape_dist_traveled","hash":{},"data":data}) : helper)))
     + "</td>\n	</tr>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "\n<div class=\"form-group\">\n  <label for=\"speed\">Guestimate times</label>\n  <input name=\"speed\" type=\"number\" class=\"form-control\" placeholder=\"speed (km/h)\">\n	<button class=\"btn btn-default\">Do</button>\n</div>\n\n<table class=\"table table-hover table-condensed\">\n<thead>\n	<tr>\n		<th>Stop Id</th>\n		<th>Time</th>\n		<th>Distance (km)</th>\n	</tr>\n</thead>\n<tbody>\n";
+  var stack1, buffer = "<h4>Sequence Editor</h4>\n\n<button class=\"btn btn-default btn-save\">Save</button>\n<table class=\"table table-hover table-condensed\">\n<thead>\n	<tr>\n		<th>Stop Id</th>\n		<th>Time</th>\n		<th>Distance (km)</th>\n	</tr>\n</thead>\n<tbody>\n";
   stack1 = helpers.each.call(depth0, depth0, {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "</tbody>\n</table>";

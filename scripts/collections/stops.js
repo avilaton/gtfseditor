@@ -100,7 +100,7 @@ define([
             var trip_id = this.trip_id;
 
             var req = api.get({
-                url: 'api/trips/' + self.trip_id +'/actions/sort-stops'
+                url: Config.server + 'api/trips/' + self.trip_id +'/actions/sort-stops'
             });
             req.done(function () {
                 self.fetch()
@@ -113,7 +113,7 @@ define([
             var trip_id = this.trip_id;
             console.log('this far', self.trip_id);
             var req = api.get({
-                url: 'api/trips/' + self.trip_id +'/actions/update-dist'
+                url: Config.server + 'api/trips/' + self.trip_id +'/actions/update-dist'
             });
             req.done(function () {
                 self.fetch()

@@ -19,7 +19,9 @@ define([
         'dragenter tr': 'onDragEnter',
         'dragover tr': 'onDragOver',
         'dragleave tr': 'onDragLeave',
-        'drop tr': 'onDrop'
+        'drop tr': 'onDrop',
+        'click button.btn-save': 'onClickSave',
+        'blur td.stop-time': 'onBlurStopTime'
       },
 
       initialize: function(){
@@ -30,6 +32,17 @@ define([
 
       render: function () {
         this.$el.html(this.template(this.collection.toJSON()));
+      },
+
+      onClickSave: function (e) {
+        this.collection.save();
+      },
+
+      onBlurStopTime: function (e) {
+        var $target = $(e.currentTarget);
+        var stop_id = $target.parent().data('stop-id');
+        var model = this.collection.get(stop_id);
+        model.set('stop_time', $target.text());
       },
 
       onClickRow: function (event) {
