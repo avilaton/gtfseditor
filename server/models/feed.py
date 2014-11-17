@@ -189,7 +189,11 @@ class Feed(object):
           stop = self.schedule.GetStop(stopTime.stop_id)
           stop_time = stopTime.arrival_time
           if stop_time:
-            trip.AddStopTime(stop, stop_time=stop_time)
+            try:
+              trip.AddStopTime(stop, stop_time=stop_time)
+            except Exception, e:
+              trip.AddStopTime(stop)
+              logger.error(e)
           else:
             trip.AddStopTime(stop)
 
@@ -200,7 +204,11 @@ class Feed(object):
           stop = self.schedule.GetStop(stopTime.stop_id)
           stop_time = stopTime.arrival_time
           if stop_time:
-            trip.AddStopTime(stop, stop_time=stop_time)
+            try:
+              trip.AddStopTime(stop, stop_time=stop_time)
+            except Exception, e:
+              trip.AddStopTime(stop)
+              logger.error(e)
           else:
             trip.AddStopTime(stop)
     else:

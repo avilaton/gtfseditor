@@ -32,7 +32,7 @@ def deleteTrip(db, trip_id):
 	db.delete(route)
 	return {'success': True}
 
-@app.get('/api/trips/<trip_id>/stops.geojson')
+@app.route('/api/trips/<trip_id>/stops.geojson', method=['GET', 'OPTIONS'])
 def tripStops(db, trip_id):
 	rows = db.query(Stop, StopSeq).join(StopSeq, Stop.stop_id == StopSeq.stop_id)\
 		.filter(StopSeq.trip_id == trip_id)\
@@ -52,7 +52,7 @@ def tripStops(db, trip_id):
 		features.append(f)
 	return geojson.featureCollection(features)
 
-@app.get('/api/trips/<trip_id>/stops.json')
+@app.route('/api/trips/<trip_id>/stops.json', method=['GET', 'OPTIONS'])
 def tripStops(db, trip_id):
 	rows = db.query(Stop, StopSeq).join(StopSeq, Stop.stop_id == StopSeq.stop_id)\
 		.filter(StopSeq.trip_id == trip_id)\
@@ -99,19 +99,19 @@ def saveTripStops(db, trip_id):
 
 	return {'success':True,'trip_id':trip_id}
 
-@app.get('/api/trips/<trip_id>/actions/sort-stops')
+@app.route('/api/trips/<trip_id>/actions/sort-stops', method=['GET', 'OPTIONS'])
 def sortTripStops(db, trip_id):
 	stopSequence = StopSequence(trip_id)
 	stopSequence.sortStops()
 	return {'success': True}
 
-@app.get('/api/trips/<trip_id>/actions/update-dist')
+@app.route('/api/trips/<trip_id>/actions/update-dist', method=['GET', 'OPTIONS'])
 def sortTripStops(db, trip_id):
 	stopSequence = StopSequence(trip_id)
 	stopSequence.updateDistances()
 	return {'success': True}
 
-@app.get('/api/trips/<trip_id>/start-times.json')
+@app.route('/api/trips/<trip_id>/start-times.json', method=['GET', 'OPTIONS'])
 def tripStops(db, trip_id):
 	rows = db.query(TripStartTime).filter(TripStartTime.trip_id == trip_id).all()
 
