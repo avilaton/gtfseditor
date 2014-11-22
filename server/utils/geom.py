@@ -81,6 +81,8 @@ def snapPointToPolygon(point, polygon):
     # find nearest corner node
     p1 = polygon[i]
     p2 = polygon[i+1]
+    if p1 == p2:
+      continue
     heading = headingC(p1,p2)
     length = tripLength([p1,p2])
     d1 = haversineDict(point,p1)
