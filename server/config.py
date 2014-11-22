@@ -11,7 +11,7 @@ if ENV == "dev":
 	DATABASE_URL = 'sqlite:///dev.sqlite'
 
 if ENV == "staging":
-	DEBUG = True
+	DEBUG = False
 	DATABASE_URL = 'postgres:///mza'
 
 if ENV == "prod":
