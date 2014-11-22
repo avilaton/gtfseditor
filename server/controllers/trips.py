@@ -12,27 +12,27 @@ from server import geojson
 
 from collections import defaultdict
 
-@app.put('/api/trips/<trip_id>')
+@app.route('/api/trips/<trip_id>', method=['PUT', 'OPTIONS'])
 def updateTrip(db, trip_id):
-  data = request.json
-  trip = Trip(**data)
-  db.merge(trip)
-  return trip.as_dict
+	data = request.json
+	trip = Trip(**data)
+	db.merge(trip)
+	return trip.as_dict
 
-@app.post('/api/trips')
+@app.route('/api/trips', method=['POST', 'OPTIONS'])
 def createTrip(db):
-  data = request.json
-  trip = Trip(**data)
-  db.add(trip)
-  return trip.as_dict
+	data = request.json
+	trip = Trip(**data)
+	db.add(trip)
+	return trip.as_dict
 
-@app.delete('/api/trips/<trip_id>')
+@app.route('/api/trips/<trip_id>', method=['DELETE', 'OPTIONS'])
 def deleteTrip(db, trip_id):
-  route = db.query(Trip).filter(Trip.trip_id == trip_id).one()
-  db.delete(route)
-  return {'success': True}
+	route = db.query(Trip).filter(Trip.trip_id == trip_id).one()
+	db.delete(route)
+	return {'success': True}
 
-@app.get('/api/trips/<trip_id>/stops.geojson')
+@app.route('/api/trips/<trip_id>/stops.geojson', method=['GET', 'OPTIONS'])
 def tripStops(db, trip_id):
 	rows = db.query(Stop, StopSeq).join(StopSeq, Stop.stop_id == StopSeq.stop_id)\
 		.filter(StopSeq.trip_id == trip_id)\
@@ -52,7 +52,7 @@ def tripStops(db, trip_id):
 		features.append(f)
 	return geojson.featureCollection(features)
 
-@app.get('/api/trips/<trip_id>/stops.json')
+@app.route('/api/trips/<trip_id>/stops.json', method=['GET', 'OPTIONS'])
 def tripStops(db, trip_id):
 	rows = db.query(Stop, StopSeq).join(StopSeq, Stop.stop_id == StopSeq.stop_id)\
 		.filter(StopSeq.trip_id == trip_id)\
@@ -68,7 +68,7 @@ def tripStops(db, trip_id):
 			})
 	return {'rows': features}
 
-@app.put('/api/trips/<trip_id>/stops')
+@app.route('/api/trips/<trip_id>/stops', method=['PUT', 'OPTIONS'])
 def saveTripStops(db, trip_id):
 	# if 'q' in request.query:
 	# 	if request.query['q'] == 'sort':
@@ -99,29 +99,29 @@ def saveTripStops(db, trip_id):
 
 	return {'success':True,'trip_id':trip_id}
 
-@app.get('/api/trips/<trip_id>/actions/sort-stops')
+@app.route('/api/trips/<trip_id>/actions/sort-stops', method=['GET', 'OPTIONS'])
 def sortTripStops(db, trip_id):
-  stopSequence = StopSequence(trip_id)
-  stopSequence.sortStops()
-  return {'success': True}
+	stopSequence = StopSequence(trip_id)
+	stopSequence.sortStops()
+	return {'success': True}
 
-@app.get('/api/trips/<trip_id>/actions/update-dist')
+@app.route('/api/trips/<trip_id>/actions/update-dist', method=['GET', 'OPTIONS'])
 def sortTripStops(db, trip_id):
-  stopSequence = StopSequence(trip_id)
-  stopSequence.updateDistances()
-  return {'success': True}
+	stopSequence = StopSequence(trip_id)
+	stopSequence.updateDistances()
+	return {'success': True}
 
-@app.get('/api/trips/<trip_id>/start-times.json')
+@app.route('/api/trips/<trip_id>/start-times.json', method=['GET', 'OPTIONS'])
 def tripStops(db, trip_id):
 	rows = db.query(TripStartTime).filter(TripStartTime.trip_id == trip_id).all()
 
 	features = [row.as_dict for row in rows]
 	return {'rows': features}
 
-@app.put('/api/trips/<trip_id>/start-times.json')
+@app.route('/api/trips/<trip_id>/start-times.json', method=['PUT', 'OPTIONS'])
 def updateTripStartTimes(db, trip_id):
-  data = request.json
-  print(data)
-  # trip = Trip(**data)
-  # db.merge(trip)
-  return 
+	data = request.json
+	for item in data['rows']:
+		tripStartTime = TripStartTime(**item)
+		db.merge(tripStartTime)
+	return {'success': True}

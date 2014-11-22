@@ -19,14 +19,14 @@ def routeTrips(db, route_id):
   trips = db.query(Trip).filter(Trip.route_id == route_id).all()
   return {'trips': [trip.as_dict for trip in trips]}
 
-@app.put('/api/routes/<route_id>')
+@app.route('/api/routes/<route_id>', method=['OPTIONS', 'PUT'])
 def updateRoute(db, route_id):
   data = request.json
   route = Route(**data)
   db.merge(route)
   return route.as_dict
 
-@app.post('/api/routes')
+@app.route('/api/routes', method=['OPTIONS', 'POST'])
 def createRoute(db):
   data = request.json
   print data
@@ -34,7 +34,7 @@ def createRoute(db):
   db.add(route)
   return route.as_dict
 
-@app.delete('/api/routes/<route_id>')
+@app.route('/api/routes/<route_id>', method=['OPTIONS', 'DELETE'])
 def deleteRoute(db, route_id):
   route = db.query(Route).filter(Route.route_id == route_id).one()
   db.delete(route)
