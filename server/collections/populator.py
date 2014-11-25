@@ -89,7 +89,7 @@ class StopTimesFactory(object):
   def allActiveRoutes(self):
     logger.info("Populating initial times for all active routes")
 
-    for route in db.query(Route).filter(Route.active.in_(("1", "TRUE"))).all():
+    for route in db.query(Route).filter(Route.active != None).all():
       logger.info("Populating times for route_id: {0}".format(route.route_id))
       for trip in db.query(Trip).filter_by(route_id=route.route_id).all():
         self.initial_times_mode(trip_id=trip.trip_id)

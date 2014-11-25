@@ -110,11 +110,8 @@ class Feed(object):
     """Loads active routes into schedule"""
     logger.info("Loading Routes")
 
-    for route in db.query(Route).all():
+    for route in db.query(Route).filter(Route.active != None).all():
       route_id = route.route_id
-      if str(route.active) not in ["1", "TRUE"]:
-        logger.info("Skiping route_id: %s with active=%s", route_id, route.active)
-        continue
       logger.info("Loading route_id: {0}".format(route_id))
       r = self.schedule.AddRoute(short_name=route.route_short_name, 
           #long_name=route.route_long_name, 
@@ -140,7 +137,7 @@ class Feed(object):
             trip.service_id = service.service_id
             trip.shape_id = tripRow.shape_id
             trip.direction_id = tripRow.direction_id
-            logger.info("Loading trip_id: {0}", trip_id)
+            logger.info(" route_id:{0} trip_id:{1} ".format(route.route_id, trip_id))
 
     elif self.mode == 'initial-times':
       for route in self.schedule.GetRouteList():
@@ -154,7 +151,7 @@ class Feed(object):
             tripObject.service_id = startTimeRow.service_id
             tripObject.shape_id = tripRow.shape_id
             tripObject.direction_id = tripRow.direction_id
-            logger.info("Loading trip_id: {0}".format(new_trip_id))
+            logger.info(" route_id:{0} trip_id:{1} ".format(route.route_id, new_trip_id))
     else:
       # trip_id = t.trip_id
       raise NotImplementedError
