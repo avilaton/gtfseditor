@@ -70,12 +70,6 @@ def tripStops(db, trip_id):
 
 @app.route('/api/trips/<trip_id>/stops', method=['PUT', 'OPTIONS'])
 def saveTripStops(db, trip_id):
-	# if 'q' in request.query:
-	# 	if request.query['q'] == 'sort':
-	# 		result = tb.sortTripStops(trip_id)
-	# 	elif request.query['q'] == 'align':
-	# 		result = tb.alignTripStops(trip_id)
-	# 	else:
 	geojsonTrip = request.json
 	featureList = geojsonTrip['features']
 	print featureList

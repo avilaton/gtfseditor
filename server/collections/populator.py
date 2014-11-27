@@ -43,15 +43,7 @@ class StopTimesFactory(object):
     if commit:
       db.commit()
 
-  def initial_times_mode(self, trip_id=None, commit=False):
-    """ In Frequency mode, copy each stop sequence to the stop times table"""
-    logger.info("Populating stop times for trip_id:" + trip_id)
-    trip_stop_sequence = db.query(StopSeq).filter_by(trip_id=trip_id).all()
-    trip_start_times = db.query(TripStartTime).filter_by(trip_id=trip_id).all()
-    if not trip_start_times:
-      trip_start_times = db.query(TripStartTime).filter_by(trip_id='default').all()
-
-
+  def offsetStartTimes(self, trip_id, trip_stop_sequence, trip_start_times):
     for startTimeRow in trip_start_times:
       start_time_secs = TimeToSecondsSinceMidnight(startTimeRow.start_time)
       new_trip_id = '.'.join([trip_id, startTimeRow.service_id, 
@@ -73,8 +65,19 @@ class StopTimesFactory(object):
           'trip_id': new_trip_id
           })
         stop_seq_dict.pop('stop_time')
-        stopTime = StopTime(**stop_seq_dict)
-        db.merge(stopTime)
+        yield stop_seq_dict    
+
+  def initial_times_mode(self, trip_id=None, commit=False):
+    """ In Frequency mode, copy each stop sequence to the stop times table"""
+    logger.info("Populating stop times for trip_id:" + trip_id)
+    trip_stop_sequence = db.query(StopSeq).filter_by(trip_id=trip_id).all()
+    trip_start_times = db.query(TripStartTime).filter_by(trip_id=trip_id).all()
+    if not trip_start_times:
+      trip_start_times = db.query(TripStartTime).filter_by(trip_id='default').all()
+
+    for stop_time in self.offsetStartTimes(trip_id, trip_stop_sequence, trip_start_times):
+      stopTime = StopTime(**stop_time)
+      db.merge(stopTime)
 
     if commit:
       db.commit()
@@ -89,7 +92,7 @@ class StopTimesFactory(object):
   def allActiveRoutes(self):
     logger.info("Populating initial times for all active routes")
 
-    for route in db.query(Route).filter(Route.active.in_(("1", "TRUE"))).all():
+    for route in db.query(Route).filter(Route.active != None).all():
       logger.info("Populating times for route_id: {0}".format(route.route_id))
       for trip in db.query(Trip).filter_by(route_id=route.route_id).all():
         self.initial_times_mode(trip_id=trip.trip_id)

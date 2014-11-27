@@ -38,7 +38,20 @@ def drop_all():
   from server.models import Base
   Base.metadata.drop_all(engine)
 
-def extract(filename, dest):
+def build(validate=False, extract=False):
+  feed = Feed()
+  feedFile = feed.build()
+
+  with open(TMP_FOLDER + feed.filename, 'wb') as f:
+    f.write(feedFile.getvalue())
+
+  if validate:
+    feed.validate()
+
+  if extract:
+    extractZip(TMP_FOLDER + feed.filename, 'tmp/extracted/')
+
+def extractZip(filename, dest):
   """extract for debuging"""
   if not os.path.exists(dest):
     os.makedirs(dest)
@@ -154,8 +167,8 @@ where command can be one of:
   import-csv        Read Csv files into DB
   build             create GTFS feed
   interpolate       interpolate trip times
-  pop-times         generates stop times from stop sequences
   sort-trip         sort trip stops along shape
+  gen-stop-times    generates stop times from stop sequences
   gen-stop-seq      Generate stop_sequence values from stop_time
   gen-shape-pt-seq  Generate shape point sequence from shape_pt_time
   """
@@ -176,18 +189,7 @@ where command can be one of:
     command = args[0]
 
   if command == 'build':
-    feed = Feed()
-    feedFile = feed.build()
-
-    with open(TMP_FOLDER + feed.filename, 'wb') as f:
-      f.write(feedFile.getvalue())
-
-    if opts.validate:
-      feed.validate()
-
-    if opts.extract:
-      extract(TMP_FOLDER + feed.filename, 'tmp/extracted/')
-
+    build(validate=opts.validate, extract=opts.extract)
   elif command == 'create-all':
     create_all()
   elif command == 'drop-all':
@@ -198,12 +200,12 @@ where command can be one of:
     import_csv()
   elif command == 'interpolate':
     generate_interpolated_stop_times()
-  elif command == 'pop-times':
-    generate_stop_times_from_stop_seqs()
   elif command == 'sort-trip':
     sort_trips()
   elif command == 'update-dist':
     update_distance_traveled()
+  elif command == 'gen-stop-times':
+    generate_stop_times_from_stop_seqs()
   elif command == 'gen-stop-seq':
     generateStopSeq()
   elif command == 'gen-shape-pt-seq':
@@ -215,7 +217,6 @@ where command can be one of:
   elif command == 'mza-gen':
     generateStopSeq()
     generateShapePtSequence()
-    # generate_stop_times_from_stop_seqs()
+    generate_stop_times_from_stop_seqs()
   else:
     parser.error("command not found")
-
