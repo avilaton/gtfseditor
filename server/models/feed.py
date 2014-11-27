@@ -26,6 +26,8 @@ from server.models import StopSeq
 from server.models import StopTime
 from server.models import TripStartTime
 
+from server.collections.populator import StopTimesFactory
+
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session
 
@@ -48,10 +50,8 @@ class Feed(object):
     self.loadAgencies()
     self.loadCalendar()
     self.loadCalendarDates()
-    self.loadRoutes()
-    self.loadTrips()
     self.loadStops()
-    self.loadStopTimes()
+    self.loadRoutes()
     self.loadShapes()
     if self.mode == 'frequency':
       self.loadFrequencies()
@@ -110,51 +110,51 @@ class Feed(object):
     """Loads active routes into schedule"""
     logger.info("Loading Routes")
 
-    for route in db.query(Route).filter(Route.active != None).all():
-      route_id = route.route_id
+    for row in db.query(Route).filter(Route.active != None).all():
+      route_id = row.route_id
       logger.info("Loading route_id: {0}".format(route_id))
-      r = self.schedule.AddRoute(short_name=route.route_short_name, 
-          #long_name=route.route_long_name, 
+      route = self.schedule.AddRoute(short_name=row.route_short_name, 
+          #long_name=row.route_long_name, 
           long_name='', 
-          route_id=route.route_id,
-          route_type=route.route_type)
-      r.agency_id = route.agency_id
-      r.route_color = route.route_color
-      r.route_text_color = route.route_text_color
+          route_id=row.route_id,
+          route_type=row.route_type)
+      route.agency_id = row.agency_id
+      route.route_color = row.route_color
+      route.route_text_color = row.route_text_color
+      self.loadTrips(route)
 
-  def loadTrips(self):
+  def loadTrips(self, route):
     """Loads active trips into schedule"""
-    logger.info("--- Loading Trips ---")
 
-    if self.mode == 'frequency':
-      services = self.schedule.GetServicePeriodList()
+    for tripRow in db.query(Trip).filter_by(route_id=route.route_id).all():
+      if self.mode == 'frequency':
+        services = self.schedule.GetServicePeriodList()
+        for service in services:
+          trip_id = tripRow.trip_id + '.' + service.service_id
+          trip = route.AddTrip(trip_id = trip_id, headsign=tripRow.trip_headsign)
+          trip.service_id = service.service_id
+          trip.shape_id = tripRow.shape_id
+          trip.direction_id = tripRow.direction_id
+          logger.info("Loading trip_id:{1} ".format(route.route_id, trip_id))
+          self.loadStopTimes(trip)
 
-      for route in self.schedule.GetRouteList():
-        for tripRow in db.query(Trip).filter_by(route_id=route.route_id).all():
-          for service in services:
-            trip_id = tripRow.trip_id + '.' + service.service_id
-            trip = route.AddTrip(trip_id = trip_id, headsign=tripRow.trip_headsign)
-            trip.service_id = service.service_id
-            trip.shape_id = tripRow.shape_id
-            trip.direction_id = tripRow.direction_id
-            logger.info(" route_id:{0} trip_id:{1} ".format(route.route_id, trip_id))
+      elif self.mode == 'initial-times':
 
-    elif self.mode == 'initial-times':
-      for route in self.schedule.GetRouteList():
-        for tripRow in db.query(Trip).filter_by(route_id=route.route_id).all():
-          trip_start_times = db.query(TripStartTime).filter_by(trip_id=tripRow.trip_id).all()
-          if not trip_start_times:
-            trip_start_times = db.query(TripStartTime).filter_by(trip_id='default').all()
-          for startTimeRow in trip_start_times:
-            new_trip_id = '.'.join([tripRow.trip_id, startTimeRow.service_id, startTimeRow.start_time])
-            tripObject = route.AddTrip(trip_id = new_trip_id, headsign=tripRow.trip_headsign)
-            tripObject.service_id = startTimeRow.service_id
-            tripObject.shape_id = tripRow.shape_id
-            tripObject.direction_id = tripRow.direction_id
-            logger.info(" route_id:{0} trip_id:{1} ".format(route.route_id, new_trip_id))
-    else:
-      # trip_id = t.trip_id
-      raise NotImplementedError
+        trip_start_times = db.query(TripStartTime).filter_by(trip_id=tripRow.trip_id).all()
+        if not trip_start_times:
+          trip_start_times = db.query(TripStartTime).filter_by(trip_id='default').all()
+
+        for startTimeRow in trip_start_times:
+          new_trip_id = '.'.join([tripRow.trip_id, startTimeRow.service_id, startTimeRow.start_time])
+          trip = route.AddTrip(trip_id = new_trip_id, headsign=tripRow.trip_headsign)
+          trip.service_id = startTimeRow.service_id
+          trip.shape_id = tripRow.shape_id
+          trip.direction_id = tripRow.direction_id
+          logger.info("Loading trip_id:{1} ".format(route.route_id, new_trip_id))
+          self.loadStopTimes(trip, tripRow.trip_id)
+      else:
+        # trip_id = t.trip_id
+        raise NotImplementedError
 
   def loadStops(self):
     logger.info("Loading Stops")
@@ -173,31 +173,37 @@ class Feed(object):
         name=stop.stop_name, stop_id=str(stop_id))
       stop.stop_code = stop.stop_id
 
-  def loadStopTimes(self):
+  def loadStopTimes(self, trip, seq_trip_id=None):
     """Adding Stop Times from trip start times"""
-    logger.info("Loading Stop Times")
+    logger.info("Loading Stop Times for trip_id:{0}".format(trip.trip_id))
 
-    if self.mode == 'frequency':  
-      for trip in self.schedule.GetTripList():
-        trip_id = trip.trip_id.replace('.'+trip.service_id, '')
+    if self.mode == 'frequency':
+      # Should use StopTimesFactory instead of reading from stop_times table.
+      trip_id = trip.trip_id.replace('.'+trip.service_id, '')
 
-        for stopTime in db.query(StopTime).filter_by(trip_id=trip_id).\
-          order_by(StopTime.stop_sequence).all():
-          stop = self.schedule.GetStop(stopTime.stop_id)
-          stop_time = stopTime.arrival_time
-          if stop_time:
-            try:
-              trip.AddStopTime(stop, stop_time=stop_time)
-            except Exception, e:
-              trip.AddStopTime(stop)
-              logger.error(e)
-          else:
+      for stopTime in db.query(StopTime).filter_by(trip_id=trip_id).\
+        order_by(StopTime.stop_sequence).all():
+        stop = self.schedule.GetStop(stopTime.stop_id)
+        stop_time = stopTime.arrival_time
+        if stop_time:
+          try:
+            trip.AddStopTime(stop, stop_time=stop_time)
+          except Exception, e:
             trip.AddStopTime(stop)
+            logger.error(e)
+        else:
+          trip.AddStopTime(stop)
 
     elif self.mode == 'initial-times':
-      for trip in self.schedule.GetTripList():
-        for stopTime in db.query(StopTime).filter_by(trip_id=trip.trip_id).\
-          order_by(StopTime.stop_sequence).all():
+      trip_stop_sequence = db.query(StopSeq).filter_by(trip_id=seq_trip_id).\
+        order_by(StopSeq.stop_sequence).all()
+      trip_start_times = db.query(TripStartTime).filter_by(trip_id=seq_trip_id).all()
+      if not trip_start_times:
+        trip_start_times = db.query(TripStartTime).filter_by(trip_id='default').all()
+
+      for startTimeRow in trip_start_times:
+        for stop_time in StopTimesFactory.offsetStartTimes(seq_trip_id, trip_stop_sequence, startTimeRow):
+          stopTime = StopTime(**stop_time)
           stop = self.schedule.GetStop(stopTime.stop_id)
           stop_time = stopTime.arrival_time
           if stop_time:

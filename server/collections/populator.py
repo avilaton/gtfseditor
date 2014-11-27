@@ -43,41 +43,43 @@ class StopTimesFactory(object):
     if commit:
       db.commit()
 
-  def offsetStartTimes(self, trip_id, trip_stop_sequence, trip_start_times):
-    for startTimeRow in trip_start_times:
-      start_time_secs = TimeToSecondsSinceMidnight(startTimeRow.start_time)
-      new_trip_id = '.'.join([trip_id, startTimeRow.service_id, 
-        startTimeRow.start_time])
-      for stopSeq in trip_stop_sequence:
-        stop_seq_dict = stopSeq.as_dict
+  @staticmethod
+  def offsetStartTimes(trip_id, trip_stop_sequence, startTimeRow):
+    start_time_secs = TimeToSecondsSinceMidnight(startTimeRow.start_time)
+    new_trip_id = '.'.join([trip_id, startTimeRow.service_id, 
+      startTimeRow.start_time])
+    for stopSeq in trip_stop_sequence:
+      stop_seq_dict = stopSeq.as_dict
 
-        stop_time_elapsed = stopSeq.stop_time
-        if stop_time_elapsed:
-          stop_time_secs = TimeToSecondsSinceMidnight(stop_time_elapsed)
-          stop_time_total_secs = stop_time_secs + start_time_secs
-          stop_time = FormatSecondsSinceMidnight(stop_time_total_secs)
-        else:
-          stop_time = stop_time_elapsed
+      stop_time_elapsed = stopSeq.stop_time
+      if stop_time_elapsed:
+        stop_time_secs = TimeToSecondsSinceMidnight(stop_time_elapsed)
+        stop_time_total_secs = stop_time_secs + start_time_secs
+        stop_time = FormatSecondsSinceMidnight(stop_time_total_secs)
+      else:
+        stop_time = stop_time_elapsed
 
-        stop_seq_dict.update({
-          'arrival_time': stop_time,
-          'departure_time': stop_time,
-          'trip_id': new_trip_id
-          })
-        stop_seq_dict.pop('stop_time')
-        yield stop_seq_dict    
+      stop_seq_dict.update({
+        'arrival_time': stop_time,
+        'departure_time': stop_time,
+        'trip_id': new_trip_id
+        })
+      stop_seq_dict.pop('stop_time')
+      yield stop_seq_dict    
 
   def initial_times_mode(self, trip_id=None, commit=False):
     """ In Frequency mode, copy each stop sequence to the stop times table"""
     logger.info("Populating stop times for trip_id:" + trip_id)
-    trip_stop_sequence = db.query(StopSeq).filter_by(trip_id=trip_id).all()
+    trip_stop_sequence = db.query(StopSeq).filter_by(trip_id=trip_id).\
+      order_by(StopSeq.stop_sequence).all()
     trip_start_times = db.query(TripStartTime).filter_by(trip_id=trip_id).all()
     if not trip_start_times:
       trip_start_times = db.query(TripStartTime).filter_by(trip_id='default').all()
 
-    for stop_time in self.offsetStartTimes(trip_id, trip_stop_sequence, trip_start_times):
-      stopTime = StopTime(**stop_time)
-      db.merge(stopTime)
+    for startTimeRow in trip_start_times:
+      for stop_time in self.offsetStartTimes(trip_id, trip_stop_sequence, startTimeRow):
+        stopTime = StopTime(**stop_time)
+        db.merge(stopTime)
 
     if commit:
       db.commit()
