@@ -2,8 +2,9 @@ define([
   'underscore',
   'backbone',
   'handlebars',
+  'collections/calendars',
   'JST'
-  ], function (_, Backbone, Handlebars, JST) {
+  ], function (_, Backbone, Handlebars, CalendarsCollection, JST) {
     var View;
 
     View = Backbone.View.extend({
@@ -14,12 +15,16 @@ define([
         'click button.save-btn': 'save',
         'click button.add-btn': 'add',
         'blur .table-editable input': 'blur',
+        'blur .table-editable select': 'blur',
         'click button.btn-rm': 'remove'
       },
 
       initialize: function(){
         var self = this;
-
+        this.calendars = new CalendarsCollection();
+        this.calendars.fetch().then(function (response) {
+          self.service_ids = self.calendars.pluck('service_id');
+        });
         this.render();
 
         this.collection.on('add remove reset', self.render, self);
@@ -28,7 +33,10 @@ define([
       render: function () {
         var self = this;
 
-        this.$el.html(this.template(this.collection.toJSON()));
+        this.$el.html(this.template({
+          models: this.collection.toJSON(),
+          service_ids: this.service_ids
+        }));
       },
 
       save: function () {

@@ -2,17 +2,17 @@ define([
 	"underscore",
 	"backbone",
 	'config',
-	"models/route"
-], function (_, Backbone, Config, RouteModel) {
+	"models/calendar"
+], function (_, Backbone, Config, CalendarModel) {
 	var RouteCollection;
 
 	RouteCollection = Backbone.Collection.extend({
-		model: RouteModel,
+		model: CalendarModel,
 
-		url: Config.server + 'api/routes/',
+		url: Config.server + 'api/calendars/',
 
         parse: function (response) {
-        	return response.routes;
+        	return response.rows;
         }
  	});
 

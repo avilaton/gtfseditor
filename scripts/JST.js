@@ -235,7 +235,7 @@ this["JST"]["startTimes"] = Handlebars.template({"1":function(depth0,helpers,par
     + "\"/></td>\n			<td><button class=\"btn btn-default btn-rm\"><span class=\"glyphicon glyphicon-trash\"></span></button></td>\n		</tr>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, buffer = "<button class=\"btn btn-default add-btn\"><span class=\"glyphicon glyphicon-plus\"></span> Add</button>\n<button class=\"btn btn-default save-btn\"><span class=\"glyphicon glyphicon-save\"></span> Save</button>\n<table class=\"table table-hover table-condensed table-editable\">\n	<thead>\n		<tr>\n			<th class=\"col-sm-5\">Service Id</th>\n			<th class=\"col-sm-6\">Time</th>\n			<th class=\"col-sm-1\"></th>\n		</tr>\n	</thead>\n	<tbody>\n";
-  stack1 = helpers.each.call(depth0, depth0, {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.models : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "	</tbody>\n</table>";
 },"useData":true});

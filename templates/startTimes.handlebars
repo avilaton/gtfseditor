@@ -9,9 +9,16 @@
 		</tr>
 	</thead>
 	<tbody>
-		{{#each this}}
+		{{#each models}}
 		<tr data-index="{{@index}}">
 			<td><input class="form-control" data-attr="service_id" type="text" value="{{service_id}}"/></td>
+			{{!-- <td>
+				<select class="form-control" data-attr="service_id">
+					{{#each ../service_ids}}
+					<option value="{{this}}">{{this}}</option>
+					{{/each}}
+				</select>
+			</td> --}}
 			<td><input class="form-control" data-attr="start_time" type="text" value="{{start_time}}"/></td>
 			<td><button class="btn btn-default btn-rm"><span class="glyphicon glyphicon-trash"></span></button></td>
 		</tr>
