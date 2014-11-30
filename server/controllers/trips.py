@@ -107,7 +107,8 @@ def sortTripStops(db, trip_id):
 
 @app.route('/api/trips/<trip_id>/start-times.json', method=['GET', 'OPTIONS'])
 def tripStops(db, trip_id):
-	rows = db.query(TripStartTime).filter(TripStartTime.trip_id == trip_id).all()
+	rows = db.query(TripStartTime).filter(TripStartTime.trip_id == trip_id).\
+		order_by(TripStartTime.service_id, TripStartTime.start_time).all()
 
 	features = [row.as_dict for row in rows]
 	return {'rows': features}
@@ -115,6 +116,7 @@ def tripStops(db, trip_id):
 @app.route('/api/trips/<trip_id>/start-times.json', method=['PUT', 'OPTIONS'])
 def updateTripStartTimes(db, trip_id):
 	data = request.json
+	db.query(TripStartTime).filter(TripStartTime.trip_id == trip_id).delete()
 	for item in data['rows']:
 		tripStartTime = TripStartTime(**item)
 		db.merge(tripStartTime)

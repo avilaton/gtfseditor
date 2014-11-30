@@ -3,10 +3,10 @@
 
 from bottle import request
 import json
-from server.models import Calendar as Model
+from server.models import CalendarDate as Model
 from server import app
 
-BASE = '/api/calendars'
+BASE = '/api/' + Model.__tablename__
 
 @app.get(BASE)
 @app.get(BASE + '/')
