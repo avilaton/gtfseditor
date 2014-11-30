@@ -228,13 +228,13 @@ this["JST"]["startTimes"] = Handlebars.template({"1":function(depth0,helpers,par
   var helper, lambda=this.lambda, escapeExpression=this.escapeExpression, functionType="function", helperMissing=helpers.helperMissing;
   return "		<tr data-index=\""
     + escapeExpression(lambda((data && data.index), depth0))
-    + "\" draggable=\"true\">\n			<td>"
+    + "\">\n			<td><input class=\"form-control\" data-attr=\"service_id\" type=\"text\" value=\""
     + escapeExpression(((helper = (helper = helpers.service_id || (depth0 != null ? depth0.service_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"service_id","hash":{},"data":data}) : helper)))
-    + "</td>\n			<td class=\"stop-time\">"
+    + "\"/></td>\n			<td><input class=\"form-control\" data-attr=\"start_time\" type=\"text\" value=\""
     + escapeExpression(((helper = (helper = helpers.start_time || (depth0 != null ? depth0.start_time : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"start_time","hash":{},"data":data}) : helper)))
-    + "</td>\n		</tr>\n";
+    + "\"/></td>\n			<td><button class=\"btn btn-default btn-rm\"><span class=\"glyphicon glyphicon-trash\"></span></button></td>\n		</tr>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<button class=\"btn btn-default add-btn\">Add</button>\n<button class=\"btn btn-default save-btn\">Save</button>\n<table class=\"table table-hover table-condensed\">\n	<thead>\n		<tr>\n			<th>Service Id</th>\n			<th>Time</th>\n		</tr>\n	</thead>\n	<tbody>\n";
+  var stack1, buffer = "<button class=\"btn btn-default add-btn\"><span class=\"glyphicon glyphicon-plus\"></span> Add</button>\n<button class=\"btn btn-default save-btn\"><span class=\"glyphicon glyphicon-save\"></span> Save</button>\n<table class=\"table table-hover table-condensed table-editable\">\n	<thead>\n		<tr>\n			<th class=\"col-sm-5\">Service Id</th>\n			<th class=\"col-sm-6\">Time</th>\n			<th class=\"col-sm-1\"></th>\n		</tr>\n	</thead>\n	<tbody>\n";
   stack1 = helpers.each.call(depth0, depth0, {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "	</tbody>\n</table>";

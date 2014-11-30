@@ -1,17 +1,19 @@
-<button class="btn btn-default add-btn">Add</button>
-<button class="btn btn-default save-btn">Save</button>
-<table class="table table-hover table-condensed">
+<button class="btn btn-default add-btn"><span class="glyphicon glyphicon-plus"></span> Add</button>
+<button class="btn btn-default save-btn"><span class="glyphicon glyphicon-save"></span> Save</button>
+<table class="table table-hover table-condensed table-editable">
 	<thead>
 		<tr>
-			<th>Service Id</th>
-			<th>Time</th>
+			<th class="col-sm-5">Service Id</th>
+			<th class="col-sm-6">Time</th>
+			<th class="col-sm-1"></th>
 		</tr>
 	</thead>
 	<tbody>
 		{{#each this}}
-		<tr data-index="{{@index}}" draggable="true">
-			<td>{{service_id}}</td>
-			<td class="stop-time">{{start_time}}</td>
+		<tr data-index="{{@index}}">
+			<td><input class="form-control" data-attr="service_id" type="text" value="{{service_id}}"/></td>
+			<td><input class="form-control" data-attr="start_time" type="text" value="{{start_time}}"/></td>
+			<td><button class="btn btn-default btn-rm"><span class="glyphicon glyphicon-trash"></span></button></td>
 		</tr>
 		{{/each}}
 	</tbody>

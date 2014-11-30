@@ -11,7 +11,10 @@ define([
       template: JST['startTimes'],
 
       events: {
-        'click button.save-btn': 'save'
+        'click button.save-btn': 'save',
+        'click button.add-btn': 'add',
+        'blur .table-editable input': 'blur',
+        'click button.btn-rm': 'remove'
       },
 
       initialize: function(){
@@ -19,20 +22,39 @@ define([
 
         this.render();
 
-        this.collection.on('change reset', self.render, self);
+        this.collection.on('add remove reset', self.render, self);
       },
 
       render: function () {
         var self = this;
-        console.log(this.collection.toJSON());
 
         this.$el.html(this.template(this.collection.toJSON()));
       },
 
       save: function () {
         this.collection.save();
-      }
+      },
 
+      add: function () {
+        this.collection.add({
+          trip_id: this.collection.trip_id
+        });
+      },
+
+      remove: function (e) {
+        var $target = $(e.currentTarget),
+          index = $target.closest('tr').data('index'),
+          model = this.collection.at(index);
+        this.collection.remove(model);
+      },
+
+      blur: function (e) {
+        var $target = $(e.currentTarget),
+          index = $target.closest('tr').data('index'),
+          attr = $target.data('attr'),
+          model = this.collection.at(index);
+        model.set(attr, $target.val());
+      }
     });
 
     return View;
