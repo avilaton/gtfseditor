@@ -49,6 +49,7 @@ def initialize():
 
 	from controllers import stops
 	from controllers import routes
+	from controllers import calendars
 	from controllers import shapes
 	from controllers import trips
 	from controllers import feed
