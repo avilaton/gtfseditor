@@ -11,6 +11,7 @@ from server.collections.stop_sequence import StopSequence
 from server import geojson
 
 from collections import defaultdict
+from sqlalchemy import not_
 
 @app.route('/api/trips/<trip_id>', method=['PUT', 'OPTIONS'])
 def updateTrip(db, trip_id):
@@ -68,29 +69,32 @@ def tripStops(db, trip_id):
 			})
 	return {'rows': features}
 
-@app.route('/api/trips/<trip_id>/stops', method=['PUT', 'OPTIONS'])
+@app.route('/api/trips/<trip_id>/stops.geojson', method=['PUT', 'OPTIONS'])
 def saveTripStops(db, trip_id):
-	geojsonTrip = request.json
-	featureList = geojsonTrip['features']
-	print featureList
+	geojson = request.json
+	featureList = geojson['features']
+	
+	stop_ids = set([])
+	rows = []
+	for item in featureList:
+		properties = item["properties"]
+		stop_ids.add(str(properties["stop_id"]))
+		data = {
+			'trip_id': trip_id,
+			"stop_sequence": properties["stop_seq"],
+			"stop_id": properties["stop_id"]
+		}
+		rows.append(data)
 
-	# stops = db.query(StopSeq).filter(StopSeq.trip_id == trip_id).delete()
+	removedStops = db.query(StopSeq).filter(StopSeq.trip_id == trip_id, 
+		not_(StopSeq.stop_id.in_(stop_ids))).all()
+	for stopSeq in removedStops:
+		db.remove(stopSeq)
 
-	# create new ids for new stops
-	# for i,f in enumerate(featureList):
-	# 	p = defaultdict(str)
-	# 	for k,v in f['properties'].items():
-	# 		p[k] = v
-
-	# 		if 'id' in f:
-	# 			stop_id = f['id']
-	# 			stop_seq = p['stop_seq']
-	# 		else:
-	# 			stop_id = self.getNewStopId()
-	# 			stop_seq = 1000+i
-
-	# self.db.insert('stop_seq',trip_id=trip_id,stop_id=stop_id,stop_sequence=stop_seq)
-
+	for row in rows:
+		stopSeq = StopSeq(**row)
+		db.merge(stopSeq)
+	
 	return {'success':True,'trip_id':trip_id}
 
 @app.route('/api/trips/<trip_id>/actions/sort-stops', method=['GET', 'OPTIONS'])
