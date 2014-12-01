@@ -18,10 +18,8 @@ define([
         "click button.offsetStops": "offsetStops",
         "click button.updateDist": "updateDist",
         "click button.toggleMultipleSelect": "toggleMultipleSelect",
-        "click button.editStops": "editStops",
         "click button.removeStop": "removeStop",
         "click button.appendStop": "appendStop",
-        "click button.toggleTimepoint": "toggleTimepoint",
         "click button.saveStops": "saveStops"
       },
 
@@ -114,22 +112,12 @@ define([
       },
 
       removeStop: function (event) {
+        console.log(this.model);
         this.collection.removeStop(this.model);
       },
       
       appendStop: function (event) {
         this.collection.appendStop(this.model);
-      },
-      
-      toggleTimepoint: function (event) {
-        this.collection.selected.toggleTimepoint();
-        // api.put({
-        //   route: 'trip/'+trip_id+'/stop/'+stopFeature['fid']+'/timepoint',
-        //   params: {is_timepoint: is_timepoint},
-        //   success: function(response) {
-        //     console.log(response);
-        //   }
-        // });
       },
       
       saveStops: function (event) {

@@ -73,8 +73,8 @@ define([
         save: function () {
             var self = this;
             var req = api.put({
-                route: self.url(),
-                params: self.toGeoJSON()
+                url: self.url(),
+                data: self.toGeoJSON()
             });
             return req;
         },
