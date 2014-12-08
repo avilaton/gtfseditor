@@ -32,7 +32,7 @@ define([
       },
 
       render: function () {
-        this.$el.html(this.template(this.collection.toJSON()));
+        this.$el.html(this.template(this.collection.toJSONwithSpeed()));
       },
 
       onClickSave: function (e) {

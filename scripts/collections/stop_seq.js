@@ -45,7 +45,7 @@ define([
       return obj;
     },
 
-    toJSON: function () {
+    toJSONwithSpeed: function () {
       var json = Backbone.Collection.prototype.toJSON.call(this),
         timeI = 0, timeF, posI, posF;
 
