@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import logging
+logger = logging.getLogger(__name__)
 
 from bottle import request
 from server import app
@@ -68,6 +70,17 @@ def tripStops(db, trip_id):
 			'stop_seq': row.StopSeq.as_dict
 			})
 	return {'rows': features}
+
+@app.route('/api/trips/<trip_id>/stops.json', method=['PUT'])
+def tripStops(db, trip_id):
+	data = request.json
+	rows = data['rows']
+	for row in rows:
+		row.pop('speed', None)
+		stopSeq = StopSeq(**row)
+		db.merge(stopSeq)
+	
+	return {'success':True,'trip_id':trip_id}
 
 @app.route('/api/trips/<trip_id>/stops.geojson', method=['PUT', 'OPTIONS'])
 def saveTripStops(db, trip_id):
