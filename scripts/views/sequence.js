@@ -21,6 +21,7 @@ define([
         'dragleave tr': 'onDragLeave',
         'drop tr': 'onDrop',
         'click button.btn-save': 'onClickSave',
+        'click button.btn-speed': 'onClickSpeed',
         'blur td.stop-time': 'onBlurStopTime'
       },
 
@@ -36,6 +37,12 @@ define([
 
       onClickSave: function (e) {
         this.collection.save();
+      },
+
+      onClickSpeed: function (e) {
+        var speed = this.$('input.speed').val();
+        console.log(speed);
+        this.collection.setTimes({speed: speed|| 20.0});
       },
 
       onBlurStopTime: function (e) {

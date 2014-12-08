@@ -202,9 +202,11 @@ this["JST"]["sequence"] = Handlebars.template({"1":function(depth0,helpers,parti
     + escapeExpression(((helper = (helper = helpers.stop_time || (depth0 != null ? depth0.stop_time : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"stop_time","hash":{},"data":data}) : helper)))
     + "</td>\n		<td>"
     + escapeExpression(((helper = (helper = helpers.shape_dist_traveled || (depth0 != null ? depth0.shape_dist_traveled : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"shape_dist_traveled","hash":{},"data":data}) : helper)))
+    + "</td>\n		<td>"
+    + escapeExpression(((helper = (helper = helpers.speed || (depth0 != null ? depth0.speed : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"speed","hash":{},"data":data}) : helper)))
     + "</td>\n	</tr>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<h4>Sequence Editor</h4>\n\n<button class=\"btn btn-default btn-save\">Save</button>\n<table class=\"table table-hover table-condensed\">\n<thead>\n	<tr>\n		<th>Stop Id</th>\n		<th>Time</th>\n		<th>Distance (km)</th>\n	</tr>\n</thead>\n<tbody>\n";
+  var stack1, buffer = "<h4>Sequence Editor</h4>\n\n<button class=\"btn btn-default btn-save\">Save</button>\n<input name=\"speed\" type=\"number\" class=\"form-control speed\" placeholder=\"speed (km/h)\">\n<button class=\"btn btn-default btn-speed\">Set</button>\n<table class=\"table table-hover table-condensed\">\n<thead>\n	<tr>\n		<th>Stop Id</th>\n		<th>Time</th>\n		<th>Distance (km)</th>\n		<th>Speed (km/h)</th>\n	</tr>\n</thead>\n<tbody>\n";
   stack1 = helpers.each.call(depth0, depth0, {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "</tbody>\n</table>";
@@ -301,8 +303,8 @@ this["JST"]["stops"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"ma
 
 
 this["JST"]["times"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"col-md-4 panel-left\">\n  <div class=\"row\">\n    <div  class=\"col-md-12 routes-select\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12 trips-select\">\n    </div>\n  </div>\n</div>\n<div class=\"col-md-8 panel-right\">\n  <div class=\"start-times-view\"></div>\n</div>";
-  },"useData":true});
+  return "<div class=\"col-md-4 panel-left\">\n  <div class=\"row\">\n    <div  class=\"col-md-12 routes-select\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12 trips-select\">\n    </div>\n  </div>\n</div>\n<div class=\"col-md-8 panel-right\">\n	<form role=\"form\" action=\"/api/times\" method=\"post\">\n	  <div class=\"form-group\">\n	    <label for=\"exampleInputFile\">File input</label>\n	    <input type=\"file\">\n	    <p class=\"help-block\">specified format</p>\n	  </div>\n	  <button type=\"submit\" class=\"btn btn-default\">Submit</button>\n	</form>\n  <div class=\"start-times-view\"></div>\n</div>";
+},"useData":true});
 
 
 

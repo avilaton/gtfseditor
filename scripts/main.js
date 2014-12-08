@@ -24,7 +24,8 @@ require.config({
         "underscore": "/bower_components/underscore-amd/underscore-min",
         "handlebars": "/bower_components/handlebars/handlebars.min",
         "text": "/bower_components/requirejs-text/text",
-        "async": "/bower_components/requirejs-plugins/src/async"
+        "async": "/bower_components/requirejs-plugins/src/async",
+        "moment": "/bower_components/moment/moment",
     }
 });
  
