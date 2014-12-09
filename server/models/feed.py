@@ -135,7 +135,7 @@ class Feed(object):
           trip.service_id = service.service_id
           trip.shape_id = tripRow.shape_id
           trip.direction_id = tripRow.direction_id
-          logger.info("Loading trip_id:{1} ".format(route.route_id, trip_id))
+          logger.info("Loading trip_id:{0} ".format(trip_id))
           self.loadStopTimes(trip)
 
       elif self.mode == 'initial-times':
@@ -150,8 +150,8 @@ class Feed(object):
           trip.service_id = startTimeRow.service_id
           trip.shape_id = tripRow.shape_id
           trip.direction_id = tripRow.direction_id
-          logger.info("Loading trip_id:{1} ".format(route.route_id, new_trip_id))
-          self.loadStopTimes(trip, tripRow.trip_id)
+          logger.info("Loading trip_id:{0} ".format(new_trip_id))
+          self.loadStopTimes(trip, tripRow.trip_id, startTimeRow)
       else:
         # trip_id = t.trip_id
         raise NotImplementedError
@@ -173,7 +173,7 @@ class Feed(object):
         name=stop.stop_name, stop_id=str(stop_id))
       stop.stop_code = stop.stop_id
 
-  def loadStopTimes(self, trip, seq_trip_id=None):
+  def loadStopTimes(self, trip, seq_trip_id=None, startTimeRow=None):
     """Adding Stop Times from trip start times"""
     logger.info("Loading Stop Times for trip_id:{0}".format(trip.trip_id))
 
@@ -195,25 +195,24 @@ class Feed(object):
           trip.AddStopTime(stop)
 
     elif self.mode == 'initial-times':
-      trip_stop_sequence = db.query(StopSeq).filter_by(trip_id=seq_trip_id).\
+      stop_sequence = db.query(StopSeq).filter_by(trip_id=seq_trip_id).\
         order_by(StopSeq.stop_sequence).all()
       trip_start_times = db.query(TripStartTime).filter_by(trip_id=seq_trip_id).all()
       if not trip_start_times:
         trip_start_times = db.query(TripStartTime).filter_by(trip_id='default').all()
 
-      for startTimeRow in trip_start_times:
-        for stop_time in StopTimesFactory.offsetStartTimes(seq_trip_id, trip_stop_sequence, startTimeRow):
-          stopTime = StopTime(**stop_time)
-          stop = self.schedule.GetStop(stopTime.stop_id)
-          stop_time = stopTime.arrival_time
-          if stop_time:
-            try:
-              trip.AddStopTime(stop, stop_time=stop_time)
-            except Exception, e:
-              trip.AddStopTime(stop)
-              logger.error(e)
-          else:
+      for stop_time in StopTimesFactory.offsetStartTimes(seq_trip_id, stop_sequence, startTimeRow):
+        stopTime = StopTime(**stop_time)
+        stop = self.schedule.GetStop(stopTime.stop_id)
+        stop_time = stopTime.arrival_time
+        if stop_time:
+          try:
+            trip.AddStopTime(stop, stop_time=stop_time)
+          except Exception, e:
             trip.AddStopTime(stop)
+            logger.error(e)
+        else:
+          trip.AddStopTime(stop)
     else:
       raise NotImplementedError
 
