@@ -100,7 +100,7 @@ define([
         url: Config.server + 'api/trips/' + self.trip_id +'/actions/sort-stops'
       });
       req.done(function () {
-        self.fetch()
+        self.fetch({reset: true});
       });
       return req;
     },
@@ -112,7 +112,7 @@ define([
         url: Config.server + 'api/trips/' + self.trip_id +'/actions/update-dist'
       });
       req.done(function () {
-        self.fetch()
+        self.fetch({reset: true});
       });
       return req;
     }

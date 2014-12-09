@@ -32,6 +32,7 @@ define([
       },
 
       render: function () {
+        console.info('render sequence view');
         this.$el.html(this.template(this.collection.toJSONwithSpeed()));
       },
 

@@ -73,6 +73,7 @@ define([
         var sequenceToolbox = new SequenceToolboxView({
           el: '.sequence-toolbox',
           collection: this.stopsCollection,
+          collectionFix: this.stopsSeqCollection,
           model: this.stopModel,
           controls: mapView.controls
         });

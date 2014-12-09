@@ -29,6 +29,7 @@ define([
         $(document).bind('keyup', this.keypress.bind(self));
 
         this.controls = options.controls;
+        this.collectionFix = options.collectionFix;
         this.selectedStop = options.stop;
 
         this.render();
@@ -74,15 +75,15 @@ define([
       },
       
       sortStops: function (event) {
-        this.collection.sortStops();
+        this.collectionFix.sortStops();
       },
 
       offsetStops: function (event) {
-        this.collection.alignTripStops();
+        this.collectionFix.alignTripStops();
       },
 
       updateDist: function (event) {
-        this.collection.updateDist();
+        this.collectionFix.updateDist();
       },
       
       toggleMultipleSelect: function (event) {
