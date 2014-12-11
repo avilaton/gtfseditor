@@ -56,6 +56,7 @@ def initialize():
 	from controllers import feed
 	from controllers import reports
 	from controllers import static
+	from controllers import agency
 
 	logger.info("Controllers Loaded")
 	return app
