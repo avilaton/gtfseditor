@@ -18,6 +18,7 @@ from server.collections.interpolation import Interpolator
 from server.collections.populator import StopTimesFactory
 from server.collections.stop_sequence import StopSequence
 from server.services.defaults import loadDefaultTripStartTimes
+from server.services.feed import Feed
 
 import os
 import glob
