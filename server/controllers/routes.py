@@ -29,7 +29,7 @@ def updateRoute(db, route_id):
 @app.route('/api/routes', method=['OPTIONS', 'POST'])
 def createRoute(db):
   data = request.json
-  print data
+  print "####Estoy aca",data
   route = Route(**data)
   db.add(route)
   return route.as_dict

@@ -23,6 +23,7 @@ def updateAgency(db, agency_id):
 @app.route('/api/agency', method=['OPTIONS', 'POST'])
 def createAgency(db):
   data = request.json
+  print "###",data
   agency = Agency(**data)
   db.add(agency)
   return agency.as_dict
