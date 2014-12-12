@@ -3,7 +3,7 @@
 
 from bottle import request, abort, static_file, response
 from server import app
-from server.models import Feed
+from server.services.feed import Feed
 
 @app.route('/api/feed/')
 @app.route('/api/feed/google_transit.zip')
