@@ -40,3 +40,13 @@ class Route(db.Model, Entity):
   route_color = db.Column(db.String(50))
   route_text_color = db.Column(db.String(50))
   active = db.Column(db.String(50))
+
+
+class FeedInfo(db.Model, Entity):
+  __tablename__ = 'feed_info'
+  feed_publisher_name = db.Column(db.String(50), primary_key=True)
+  feed_publisher_url = db.Column(db.String(50))
+  feed_lang = db.Column(db.String(50))
+  feed_version = db.Column(db.String(50))
+  feed_start_date = db.Column(db.String(50))
+  feed_end_date = db.Column(db.String(50))
