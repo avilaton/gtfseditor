@@ -4,40 +4,6 @@ Gtfseditor
 A customizable editor for GTFS files which can be used both as a standalone app 
 or deployed to a wsgi compliant hosting.
 
-Modes
------
-So far, there are 3 modes in which we plan to run this.
-
-### Frequency mode
-
-Uses the GTFS with the frequency table. 
-
-### Initial times mode
-
-Trip initial times are used to create GTFS trips. Follow these steps to get 
-started 
-
-1. run `$ python import.py`
-2. run `$ python manage.py gen-stop-seq`
-3. run `$ python manage.py gen-shape-pt-seq`
-
-you can now run the server using `$ python wsgi.py`.
-
-### Full specification mode
-
-Every trip is created in manual mode
-
-
-Management
-----------
-A series of database management scripts are accesible from the command line using 
-the `manage.py` script. 
-
-To initialize the database, use 
-```
-$ python manage.py init-db
-```
-
 
 Installation
 ------------
@@ -45,13 +11,20 @@ Clone the project and `cd` into the new folder using
 ```
 $ git clone git@github.com:avilaton/gtfseditor.git
 $ cd gtfseditor
+$ git submodule init
+$ git submodule update --remote
 ```
+which will get you the latest version of the client and put it into the `client` 
+folder.
 
-Create a new virtual environment and activate it using
+Create a new virtual environment (we named it __gtfs__ but you can name it 
+anything you like) and activate it using
 ```
-$ mkdir venv
-$ virtualenv venv
-$ source venv/bin/activate
+$ mkvirtualenv gtfs
+```
+You should now see your command line prompt changed to something like
+```
+(gtfs)$ 
 ```
 
 Install the projects dependencies using
@@ -63,12 +36,28 @@ You can now run the server using
 ```
 ./wsgi.py
 ```
-
 and open your web browser at `http://localhost:8000`.
+
+
+Management
+----------
+A series of database management scripts are accesible from the command line using 
+the `manage.py` script. 
+
+To initialize the database, use
+```
+$ ./manage.py db upgrade
+```
+In development mode this will create a file called data-dev.sqlite in the same 
+directory with a DB looking like the one in production.
+
+
 
 Configuration
 -------------
-The main configuration file for the server is located at `server/config.py`.
+The main configuration file for the server is located at `server/config.py`. It 
+is being ported to `config.py`.
+
 
 Development
 -----------
