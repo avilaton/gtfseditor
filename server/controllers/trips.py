@@ -3,6 +3,8 @@
 import logging
 logger = logging.getLogger(__name__)
 
+import csv
+
 from bottle import request
 from server import app
 from server.models import Trip
@@ -138,3 +140,15 @@ def updateTripStartTimes(db, trip_id):
 		tripStartTime = TripStartTime(**item)
 		db.merge(tripStartTime)
 	return {'success': True}
+
+@app.route('/api/trips/<trip_id>/start-times.csv', method=['POST'])
+def uploadTripStartTimes(db, trip_id):
+	data = request.files.get('upload')
+	filename = data.filename
+	print data, filename
+
+	reader = csv.DictReader(data.file)
+	for row in reader:
+		print row
+
+	return filename
