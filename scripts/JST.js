@@ -303,8 +303,8 @@ this["JST"]["stops"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"ma
 
 
 this["JST"]["times"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"col-md-4 panel-left\">\n  <div class=\"row\">\n    <div  class=\"col-md-12 routes-select\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12 trips-select\">\n    </div>\n  </div>\n</div>\n<div class=\"col-md-8 panel-right\">\n	<form role=\"form\" action=\"/api/times\" method=\"post\">\n	  <div class=\"form-group\">\n	    <label for=\"exampleInputFile\">File input</label>\n	    <input type=\"file\">\n	    <p class=\"help-block\">specified format</p>\n	  </div>\n	  <button type=\"submit\" class=\"btn btn-default\">Submit</button>\n	</form>\n  <div class=\"start-times-view\"></div>\n</div>";
-},"useData":true});
+  return "<div class=\"col-md-4 panel-left\">\n  <div class=\"row\">\n    <div  class=\"col-md-12 routes-select\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12 trips-select\">\n    </div>\n  </div>\n</div>\n<div class=\"col-md-8 panel-right\">\n	<form role=\"form\" class=\"upload\">\n	  <div class=\"form-group\">\n	    <label for=\"exampleInputFile\">File input</label>\n	    <input type=\"file\" name=\"file\" class=\"file\">\n	    <p class=\"help-block\">specified format</p>\n	  </div>\n	  <button type=\"submit\" class=\"btn btn-default btn-upload\">Submit</button>\n	</form>\n  <div class=\"start-times-view\"></div>\n</div>";
+  },"useData":true});
 
 
 

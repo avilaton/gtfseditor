@@ -26,7 +26,9 @@ define([
 
       template: JST['times'],
 
-      events: {},
+      events: {
+        'submit form.upload': 'onSubmit'
+      },
 
       initialize: function(){
         this.render();
@@ -65,6 +67,23 @@ define([
           this.tripStartTimesCol.fetch({reset: true});
 
         }, this);
+      },
+
+      onSubmit: function (event) {
+        var $target = $(event.currentTarget); 
+        event.preventDefault();
+        event.stopPropagation();
+
+        var fileInput = $target.find('.file').get(0);
+        var data = new FormData();
+        data.append('upload', fileInput.files[0]);
+        $.ajax({
+          url: "http://localhost:8000/api/trips/MTM/start-times.csv",
+          type: "POST",
+          data: data,
+          processData: false,
+          contentType: false
+        });
       }
 
     });
