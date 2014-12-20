@@ -54,6 +54,19 @@ module.exports = function(grunt) {
 		    }
 		  }
 		},
+    copy: {
+      main: {
+        files: [
+          {expand: true, cwd: 'app/', src: ['vendor/**'], dest: 'dist/scripts/'},
+
+          {expand: true, cwd: 'app/', src: ['styles/**'], dest: 'dist/'},
+
+          {expand: true, cwd: 'app/bower_components/bootstrap/dist/', src: ['css', 'fonts'], dest: 'dist/styles/bootstrap'},
+
+          {src: ['app/index.prod.html'], dest: 'dist/index.html'}
+        ],
+      },
+    },
 
     // The actual grunt server settings
     connect: {
@@ -113,6 +126,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'copy',
     'requirejs:prod'
   ]);
 
