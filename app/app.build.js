@@ -1,5 +1,5 @@
 ({
-    baseUrl: "app/scripts",
+    baseUrl: "scripts",
     paths: {
       "backbone": "../bower_components/backbone-amd/backbone-min",
       "jquery": "../bower_components/jquery/dist/jquery.min",
@@ -28,6 +28,6 @@
         }
     },
     name: "main",
-    out: "dist/scripts/main.js",
+    out: "../dist/scripts/main.js",
     optimize: 'uglify'
 })
