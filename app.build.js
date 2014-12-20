@@ -1,5 +1,5 @@
 ({
-    baseUrl: "scripts",
+    baseUrl: "app/scripts",
     paths: {
       "backbone": "../bower_components/backbone-amd/backbone-min",
       "jquery": "../bower_components/jquery/dist/jquery.min",

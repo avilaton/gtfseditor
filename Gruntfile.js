@@ -7,14 +7,12 @@ module.exports = function(grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
-console.log(require('./bower.json').directory);
-
   grunt.initConfig({
 
     // Project settings
     yeoman: {
       // configurable paths
-      app: require('./bower.json').appPath || './',
+      app: require('./bower.json').directory || './',
       dist: 'dist'
     },
 		handlebars: {
@@ -23,7 +21,7 @@ console.log(require('./bower.json').directory);
 		      namespace: "JST",
 		      amd: true,
 					processName: function (filePath) {
-						var file = filePath.replace('templates/','');
+						var file = filePath.replace('./app/templates/','');
 						var templatePath = file.split('.')[0];
 						return templatePath;
 					},
@@ -37,7 +35,7 @@ console.log(require('./bower.json').directory);
 		    },
 		    files: {
 		      // "path/to/result.js": "path/to/source.hbs",
-		      "scripts/JST.js": ["templates/**/*.handlebars"]
+		      "./app/scripts/JST.js": ['<%= yeoman.app %>' + '/templates/**/*.handlebars']
 		    }
 		  }
 		},
