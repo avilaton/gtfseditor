@@ -29,5 +29,5 @@
     },
     name: "main",
     out: "dist/scripts/main.js",
-    optimize: 'none'
+    optimize: 'uglify'
 })

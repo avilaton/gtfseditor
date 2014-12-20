@@ -61,6 +61,14 @@ module.exports = function(grunt) {
             '<%= yeoman.app %>'
           ]
         }
+      },
+      dist: {
+        options: {
+          open: true,
+          base: [
+            '<%= yeoman.dist %>'
+          ]
+        }
       }
     },
     // Watches files for changes and runs tasks based on the changed files
@@ -111,6 +119,10 @@ module.exports = function(grunt) {
   grunt.registerTask('serve', [
     'connect:livereload',
     'watch:hbs'
+  ]);
+
+  grunt.registerTask('serve:dist', [
+    'connect:dist'
   ]);
 
   grunt.registerTask('default', [
