@@ -3,7 +3,7 @@ server/gtfstools/*.pyc
 *.pyo
 node_modules/
 assets/js/lib/
-bower_components/
+app/bower_components/
 venv/
 tmp/
 logs.log
