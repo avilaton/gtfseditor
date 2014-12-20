@@ -61,7 +61,7 @@ module.exports = function(grunt) {
 
           {expand: true, cwd: 'app/', src: ['styles/**'], dest: 'dist/'},
 
-          {expand: true, cwd: 'app/bower_components/bootstrap/dist/', src: ['css', 'fonts'], dest: 'dist/styles/bootstrap'},
+          {expand: true, cwd: 'app/bower_components/bootstrap/dist/', src: ['css/**', 'fonts/**'], dest: 'dist/styles/bootstrap'},
 
           {src: ['app/index.prod.html'], dest: 'dist/index.html'}
         ],
@@ -126,6 +126,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'handlebars',
     'copy',
     'requirejs:prod'
   ]);
@@ -136,10 +137,12 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('serve:dist', [
+    'build',
     'connect:dist',
   ]);
 
   grunt.registerTask('default', [
+    'serve'
   ]);
 
 };

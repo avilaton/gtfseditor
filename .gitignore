@@ -1,9 +1,4 @@
-*.pyc
-server/gtfstools/*.pyc
-*.pyo
 node_modules/
-assets/js/lib/
+dist/
 app/bower_components/
-venv/
-tmp/
-logs.log
+.tmp/
