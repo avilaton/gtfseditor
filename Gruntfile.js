@@ -7,15 +7,28 @@ module.exports = function(grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
-console.log(require('./bower.json').directory);
-
   grunt.initConfig({
 
     // Project settings
     yeoman: {
       // configurable paths
-      app: require('./bower.json').appPath || './',
+      app: require('./bower.json').directory || './',
       dist: 'dist'
+    },
+    requirejs: {
+      prod: {
+        options: {
+          almond: true,
+          wrap: true,
+          baseUrl: "app/scripts",
+          name: "../bower_components/almond/almond",
+          // exclude: ["OpenLayers"],
+          include: ["main"],
+          mainConfigFile: "app/scripts/main.js",
+          out: "dist/scripts/main.js",
+          optimize: 'uglify'
+        }
+      }
     },
 		handlebars: {
 		  compile: {
@@ -23,7 +36,7 @@ console.log(require('./bower.json').directory);
 		      namespace: "JST",
 		      amd: true,
 					processName: function (filePath) {
-						var file = filePath.replace('templates/','');
+						var file = filePath.replace('./app/templates/','');
 						var templatePath = file.split('.')[0];
 						return templatePath;
 					},
@@ -37,14 +50,23 @@ console.log(require('./bower.json').directory);
 		    },
 		    files: {
 		      // "path/to/result.js": "path/to/source.hbs",
-		      "scripts/JST.js": ["templates/**/*.handlebars"]
+		      "./app/scripts/JST.js": ['<%= yeoman.app %>' + '/templates/**/*.handlebars']
 		    }
 		  }
 		},
+    copy: {
+      main: {
+        files: [
+          {expand: true, cwd: 'app/', src: ['vendor/**'], dest: 'dist/scripts/'},
 
-				options: {
+          {expand: true, cwd: 'app/', src: ['styles/**'], dest: 'dist/'},
 
-				},
+          {expand: true, cwd: 'app/bower_components/bootstrap/dist/', src: ['css/**', 'fonts/**'], dest: 'dist/styles/bootstrap'},
+
+          {src: ['app/index.prod.html'], dest: 'dist/index.html'}
+        ],
+      },
+    },
 
     // The actual grunt server settings
     connect: {
@@ -63,6 +85,14 @@ console.log(require('./bower.json').directory);
             '<%= yeoman.app %>'
           ]
         }
+      },
+      dist: {
+        options: {
+          open: true,
+          base: [
+            '<%= yeoman.dist %>'
+          ]
+        }
       }
     },
     // Watches files for changes and runs tasks based on the changed files
@@ -76,21 +106,6 @@ console.log(require('./bower.json').directory);
         files: ['templates/{,**/}*.handlebars'],
         tasks: ['handlebars']
       },
-//      jsTest: {
-//        files: ['test/spec/{,*/}*.js'],
-//        tasks: ['newer:jshint:test', 'karma']
-//      },
-      // compass: {
-      //   files: ['<%= yeoman.app %>/styles/{,**/}*.{scss,sass}'],
-      //   tasks: ['compass:server'] //, 'autoprefixer'
-      // },
-      // styles: {
-      //   files: ['<%= yeoman.app %>/styles/{,**/}*.css'],
-      //   tasks: ['newer:copy:styles', 'autoprefixer']
-      // },
-      // gruntfile: {
-      //   files: ['Gruntfile.js']
-      // },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -110,12 +125,24 @@ console.log(require('./bower.json').directory);
     'watch:hbs'
   ]);
 
+  grunt.registerTask('build', [
+    'handlebars',
+    'copy',
+    'requirejs:prod'
+  ]);
+
   grunt.registerTask('serve', [
     'connect:livereload',
     'watch:hbs'
   ]);
 
+  grunt.registerTask('serve:dist', [
+    'build',
+    'connect:dist',
+  ]);
+
   grunt.registerTask('default', [
+    'serve'
   ]);
 
 };
