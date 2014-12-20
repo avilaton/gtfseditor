@@ -18,8 +18,8 @@ module.exports = function(grunt) {
     requirejs: {
       prod: {
         options: {
-          // almond: true,
-          // wrap: true,
+          almond: true,
+          wrap: true,
           baseUrl: "app/scripts",
           paths: {
             "backbone": "../bower_components/backbone-amd/backbone-min",
@@ -48,8 +48,10 @@ module.exports = function(grunt) {
                   deps: ["underscore"]
               }
           },
-          name: "main",
-          // mainConfigFile: "main"
+          name: "../bower_components/almond/almond",
+          // exclude: ["OpenLayers"],
+          include: ["main"],
+          mainConfigFile: "app/scripts/main.js",
           out: "dist/scripts/main.js",
           optimize: 'uglify'
         }
