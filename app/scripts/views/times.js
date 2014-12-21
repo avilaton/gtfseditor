@@ -70,7 +70,8 @@ define([
       },
 
       onSubmit: function (event) {
-        var $target = $(event.currentTarget); 
+        var self = this,
+          $target = $(event.currentTarget); 
         event.preventDefault();
         event.stopPropagation();
 
@@ -78,7 +79,7 @@ define([
         var data = new FormData();
         data.append('upload', fileInput.files[0]);
         $.ajax({
-          url: "http://localhost:8000/api/trips/MTM/start-times.csv",
+          url: 'http://localhost:8000/api/trips/' + self.tripStartTimesCol.trip_id + '/start-times.csv',
           type: "POST",
           data: data,
           processData: false,
