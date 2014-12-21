@@ -10,8 +10,24 @@ from server import app
 @app.get('/api/routes')
 @app.get('/api/routes/')
 def routes(db):
-  routes = db.query(Route).order_by(Route.route_short_name).all()
-  return {'routes': [route.as_dict for route in routes]}
+  result = db.query(Route, Trip).\
+    outerjoin(Trip, Route.route_id == Trip.route_id).\
+    order_by(Route.route_id).all()
+
+  last = None
+  routes = []
+  for route, trip in result:
+    if last and route.route_id is last:
+      routes[-1].get("trips").append(trip.as_dict)
+    else:
+      route_d = route.as_dict
+      route_d.setdefault("trips", [])
+      if trip:
+        route_d.get("trips").append(trip.as_dict)
+      routes.append(route_d)
+      last = route.route_id
+
+  return {'routes': routes}
 
 @app.get('/api/route/<route_id>/trips')
 @app.get('/api/route/<route_id>/trips/')
