@@ -6,6 +6,7 @@ logger = logging.getLogger(__name__)
 import csv
 
 from bottle import request
+from bottle import abort
 from server import app
 from server.models import Trip
 from server.models import Stop
@@ -143,12 +144,24 @@ def updateTripStartTimes(db, trip_id):
 
 @app.route('/api/trips/<trip_id>/start-times.csv', method=['POST'])
 def uploadTripStartTimes(db, trip_id):
-	data = request.files.get('upload')
-	filename = data.filename
-	print data, filename
+	fileUpload = request.files.get('upload')
+	filename = fileUpload.filename
 
-	reader = csv.DictReader(data.file)
-	for row in reader:
-		print row
+	reader = csv.DictReader(fileUpload.file)
+	if len(reader.fieldnames) is not 2 or 'start_time' not in reader.fieldnames or\
+		'service_id' not in reader.fieldnames:
+		abort(400)
 
-	return filename
+	db.query(TripStartTime).filter(TripStartTime.trip_id == trip_id).delete()
+
+	if db.query(Trip).filter(Trip.trip_id == trip_id).count():
+		for row in reader:
+			row['trip_id'] = trip_id
+			startTime = TripStartTime(trip_id = trip_id,
+				start_time = row['start_time'],
+				service_id = row['service_id'])
+			db.merge(startTime)
+	else:
+		abort(404, 'trip not found')
+
+	return {'success': True}
