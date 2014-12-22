@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from bottle import request
+from bottle import template
 import json
 from server.models import Route
 from server.models import Trip
@@ -28,6 +29,31 @@ def routes(db):
       last = route.route_id
 
   return {'routes': routes}
+
+@app.get('/api/routes.html')
+def routes(db):
+  result = db.query(Route, Trip).\
+    outerjoin(Trip, Route.route_id == Trip.route_id).\
+    order_by(Route.route_id).all()
+
+  last = None
+  active = 0
+  routes = []
+  for route, trip in result:
+    if getattr(trip, "active", False):
+      active += 1
+    if last and route.route_id is last:
+      routes[-1].get("trips").append(trip.as_dict)
+    else:
+      route_d = route.as_dict
+      route_d.setdefault("trips", [])
+      if trip:
+        route_d.get("trips").append(trip.as_dict)
+      routes.append(route_d)
+      last = route.route_id
+
+
+  return template('routes.html', routes=routes, count=len(result), active=active)
 
 @app.get('/api/route/<route_id>/trips')
 @app.get('/api/route/<route_id>/trips/')
