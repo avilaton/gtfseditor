@@ -72,3 +72,56 @@ class Calendar(db.Model, Entity):
   friday = db.Column(db.String(50))
   saturday = db.Column(db.String(50))
   sunday = db.Column(db.String(50))
+
+
+
+
+class Trip(db.Model, Entity):
+  __tablename__ = 'trips'
+  trip_id = db.Column(db.String(50), primary_key=True)
+  route_id = db.Column(db.String(50), db.ForeignKey("routes.route_id"))
+  service_id = db.Column(db.String(50), db.ForeignKey("calendar.service_id"))
+  trip_headsign = db.Column(db.String(150))
+  trip_short_name = db.Column(db.String(150))
+  direction_id = db.Column(db.String(50))
+  shape_id = db.Column(db.String(50))
+
+
+class CalendarDate(db.Model, Entity):
+  __tablename__ = 'calendar_dates'
+  service_id = db.Column(db.String(50), db.ForeignKey("calendar.service_id"), primary_key=True)
+  date = db.Column(db.String(50), primary_key=True)
+  exception_type = db.Column(db.String(50), primary_key=True)
+
+class FareAttribute(db.Model, Entity):
+  __tablename__ = 'fare_attributes'
+  fare_id = db.Column(db.String(50), primary_key=True)
+  price = db.Column(db.String(50))
+  currency_type = db.Column(db.String(50))
+  payment_method = db.Column(db.String(50))
+  transfers = db.Column(db.String(50))
+  transfer_duration = db.Column(db.String(50))
+
+class FareRule(db.Model, Entity):
+  __tablename__ = 'fare_rules'
+  fare_id = db.Column(db.String(50), primary_key=True)
+  route_id = db.Column(db.String(50))
+  origin_id = db.Column(db.String(50))
+  destination_id = db.Column(db.String(50))
+  contains_id = db.Column(db.String(50))
+
+class Frequency(db.Model, Entity):
+  __tablename__ = 'frequencies'
+  trip_id = db.Column(db.String(50), db.ForeignKey("trips.trip_id"), primary_key=True)
+  start_time = db.Column(db.String(50))
+  end_time = db.Column(db.String(50))
+  headway_secs = db.Column(db.String(50))
+  exact_times = db.Column(db.String(50))
+
+class RouteFrequency(db.Model, Entity):
+  __tablename__ = 'route_frequencies'
+  route_id = db.Column(db.String(50), primary_key=True)
+  service_id = db.Column(db.String(50), primary_key=True)
+  start_time = db.Column(db.String(50), primary_key=True)
+  end_time = db.Column(db.String(50), primary_key=True)
+  headway_secs = db.Column(db.Integer)
