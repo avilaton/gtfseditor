@@ -50,3 +50,25 @@ class FeedInfo(db.Model, Entity):
   feed_version = db.Column(db.String(50))
   feed_start_date = db.Column(db.String(50))
   feed_end_date = db.Column(db.String(50))
+
+class Agency(db.Model, Entity):
+  __tablename__ = 'agency'
+  agency_id = db.Column(db.String(50), primary_key=True)
+  agency_name = db.Column(db.String(50))
+  agency_url = db.Column(db.String(50))
+  agency_timezone = db.Column(db.String(50))
+  agency_lang = db.Column(db.String(50))
+  agency_phone = db.Column(db.String(50))
+
+class Calendar(db.Model, Entity):
+  __tablename__ = 'calendar'
+  service_id = db.Column(db.String(50), primary_key=True)
+  start_date = db.Column(db.String(50))
+  end_date = db.Column(db.String(50))
+  monday = db.Column(db.String(50))
+  tuesday = db.Column(db.String(50))
+  wednesday = db.Column(db.String(50))
+  thursday = db.Column(db.String(50))
+  friday = db.Column(db.String(50))
+  saturday = db.Column(db.String(50))
+  sunday = db.Column(db.String(50))
