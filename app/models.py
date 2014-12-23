@@ -125,3 +125,54 @@ class RouteFrequency(db.Model, Entity):
   start_time = db.Column(db.String(50), primary_key=True)
   end_time = db.Column(db.String(50), primary_key=True)
   headway_secs = db.Column(db.Integer)
+
+class Shape(db.Model, Entity):
+  __tablename__ = 'shapes'
+  shape_id = db.Column(db.String(50), primary_key=True)
+  shape_pt_lat = db.Column(db.Float(precision=53))
+  shape_pt_lon = db.Column(db.Float(precision=53))
+  shape_pt_time = db.Column(db.String(50))
+  shape_pt_sequence = db.Column(db.Integer, primary_key=True)
+
+class Stop(db.Model, Entity):
+  __tablename__ = 'stops'
+  # stop_id = Column(Integer, Sequence('id_seq'), primary_key=True)
+  stop_id = db.Column(db.String(50), primary_key=True)
+  stop_code = db.Column(db.String(50))
+  stop_desc = db.Column(db.String(50))
+  stop_name = db.Column(db.String(50))
+  stop_lat = db.Column(db.Float(precision=53))
+  stop_lon = db.Column(db.Float(precision=53))
+  stop_calle = db.Column(db.String(50))
+  stop_numero = db.Column(db.String(50))
+  stop_entre = db.Column(db.String(50))
+  stop_esquina = db.Column(db.String(50))
+
+class StopSeq(db.Model, Entity):
+  __tablename__ = 'stop_seq'
+  trip_id = db.Column(db.String(50), primary_key=True)
+  stop_id = db.Column(db.String(50), primary_key=True)
+  stop_sequence = db.Column(db.Integer, primary_key=True) 
+  stop_time = db.Column(db.String(50)) 
+  shape_dist_traveled = db.Column(db.Float(precision=53))
+
+class StopTime(db.Model, Entity):
+  __tablename__ = 'stop_times'
+  trip_id = db.Column(db.String(50), primary_key=True)
+  stop_id = db.Column(db.String(50), primary_key=True)
+  stop_sequence = db.Column(db.Integer, primary_key=True)
+  arrival_time = db.Column(db.String(50))
+  departure_time = db.Column(db.String(50))
+  shape_dist_traveled = db.Column(db.Float(precision=53))
+
+class Transfer(db.Model, Entity):
+  __tablename__ = 'transfers'
+  from_stop_id = db.Column(db.String(50), primary_key=True)
+  to_stop_id = db.Column(db.String(50))
+  transfer_type = db.Column(db.String(50))
+
+class TripStartTime(db.Model, Entity):
+  __tablename__ = 'trips_start_times'
+  trip_id = db.Column(db.String(50), primary_key=True)
+  service_id = db.Column(db.String(50), primary_key=True)
+  start_time = db.Column(db.String(50), primary_key=True)
