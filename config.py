@@ -39,6 +39,13 @@ class TestingConfig(Config):
     WTF_CSRF_ENABLED = False
 
 
+class StagingConfig(Config):
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = os.environ.get('STAGING_DATABASE_URL') or \
+        'postgres:///mza'
+    WTF_CSRF_ENABLED = False
+
+
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'data.sqlite')
@@ -102,6 +109,7 @@ class UnixConfig(ProductionConfig):
 config = {
     'development': DevelopmentConfig,
     'testing': TestingConfig,
+    'staging': StagingConfig,
     'production': ProductionConfig,
     'heroku': HerokuConfig,
     'unix': UnixConfig,
