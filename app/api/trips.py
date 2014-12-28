@@ -54,7 +54,7 @@ def tripStops(trip_id):
 	for row in rows:
 		stop = row.Stop
 		stop_seq = row.StopSeq
-		features.append({'stop': row.Stop.as_dict,'stop_seq': row.StopSeq.as_dict}) #no funciona el as_dict
+		features.append({'stop': row.Stop.as_json,'stop_seq': row.StopSeq.as_json}) #no funciona el as_json
 	return {'rows': "features"}
 
 @api.route('/trips/<trip_id>/stops.json', methods=['PUT'])
@@ -112,8 +112,8 @@ def tripStopsStartTimes(trip_id):
 	rows = db.session.query(TripStartTime).filter(TripStartTime.trip_id == trip_id).\
 		order_by(TripStartTime.service_id, TripStartTime.start_time).all()
 
-	features = [row.as_dict for row in rows]
-	return {'rows': features} #Listo pero hay que importar el as_dict
+	features = [row.as_json for row in rows]
+	return {'rows': features} #Listo pero hay que importar el as_json
 
 @api.route('/trips/<trip_id>/start-times.json', methods=['PUT'])
 def updateTripStartTimes(trip_id):
