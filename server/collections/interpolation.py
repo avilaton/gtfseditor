@@ -7,7 +7,6 @@ logger = logging.getLogger(__name__)
 
 import transitfeed
 
-from server import config
 from server import engine
 from server.models import StopSeq
 
