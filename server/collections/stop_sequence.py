@@ -27,6 +27,7 @@ class StopSequence(object):
       join(StopSeq, Stop.stop_id == StopSeq.stop_id).\
       filter(StopSeq.trip_id == trip_id).\
       order_by(StopSeq.stop_sequence).all()
+    
     self.stops = [item.Stop for item in self.stopsSequence]
     self.shape = db.query(Shape).filter_by(shape_id=trip.shape_id).all()
 
@@ -71,8 +72,8 @@ class StopSequence(object):
     for i, item in enumerate(sortedStops):
       stopSeq = item['StopSeq']
       stopSeq.stop_sequence = i + 1
-      db.merge(stopSeq)
-    db.commit()
+      db.session.merge(stopSeq)
+    db.session.commit()
 
   def updateDistances(self):
     logger.debug("Updating traveled distance for trip_id: %s", self.trip_id)
