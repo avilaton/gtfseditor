@@ -14,7 +14,7 @@ ch.setFormatter(formatter)
 logger.addHandler(fh)
 logger.addHandler(ch)
 
-import config
+from . import config
 from bottle import Bottle, TEMPLATE_PATH
 from sqlalchemy import create_engine
 
