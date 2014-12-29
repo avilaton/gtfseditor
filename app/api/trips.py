@@ -10,19 +10,19 @@ from ..models import TripStartTime
 from . import api
 from sqlalchemy import not_
 from server.collections.stop_sequence import StopSequence
-@api.route('/trips/') #LISTO
+@api.route('/trips/') 
 def get_alltrips():
     trips = Trip.query.all()
     return jsonify({
         'trips': [item.to_json for item in trips]
     }) 
 
-@api.route('/trips/<id>') #LISTO
+@api.route('/trips/<id>')
 def get_trip(id):
     item = Trip.query.get_or_404(id)
     return jsonify(item.to_json)
 
-@api.route('/trips/<id>', methods=['PUT'])#LISTO
+@api.route('/trips/<id>', methods=['PUT'])
 def edit_trip(id):
 	data = request.json
 	item = Trip.query.get_or_404(data.get('trip_id'))
@@ -30,7 +30,7 @@ def edit_trip(id):
 	db.session.merge(item)
 	return jsonify(item.to_json)
 
-@api.route('/trips/', methods=['POST']) #LISTO
+@api.route('/trips/', methods=['POST']) 
 def add_trip():
 	data = request.json
 	trip = Trip(**data)
@@ -54,24 +54,24 @@ def tripStops(trip_id):
 	for row in rows:
 		stop = row.Stop
 		stop_seq = row.StopSeq
-		features.append({'stop': row.Stop.as_json,'stop_seq': row.StopSeq.as_json}) #no funciona el as_json
+		features.append({'stop': row.Stop.to_json,'stop_seq': row.StopSeq.to_json}) 
 	return {'rows': "features"}
 
 @api.route('/trips/<trip_id>/stops.json', methods=['PUT'])
 def tripStopsPut(trip_id):
 	data = request.json
 	print data
-	rows = data['rows'] #No se que parametro es rows, no se como probar con el REST Console
+	rows = data['rows'] 
 	for row in rows:
 		row.pop('speed', None)
 		stopSeq = StopSeq(**row)
 		db.session.merge(stopSeq)
-	return {'success':True,'trip_id':trip_id} #LISTO pero sin testear
+	return {'success':True,'trip_id':trip_id} 
 
 @api.route('/trips/<trip_id>/stops.geojson', methods=['PUT'])
 def saveTripStops(trip_id):
 	geojson = request.json
-	featureList = geojson['features'] #No se que parametro es features, no se como probar con el REST Console
+	featureList = geojson['features'] 
 	
 	stop_ids = set([])
 	rows = []
@@ -93,18 +93,18 @@ def saveTripStops(trip_id):
 		stopSeq = StopSeq(**row)
 		db.session.merge(stopSeq)
 	
-	return {'success':True,'trip_id':trip_id} #LISTO pero sin testear
+	return {'success':True,'trip_id':trip_id} 
 
 @api.route('/trips/<trip_id>/actions/sort-stops', methods=['GET', 'OPTIONS'])
 def sortTripStops( trip_id):
 	stopSequence = StopSequence(trip_id)
-	stopSequence.sortStops() #Hay que importar de la carpeta collection el archivo stop_sequence
-	return {'success': True} #No se puede usar ese mismo porque apunta a la otra base de datos
+	stopSequence.sortStops() 
+	return {'success': True} 
 
 @api.route('/trips/<trip_id>/actions/update-dist', methods=['GET'])
 def sortTripStopsUpdate(trip_id):
 	stopSequence = StopSequence(trip_id)
-	stopSequence.updateDistances() #Idem al anterior
+	stopSequence.updateDistances()
 	return {'success': True}
 
 @api.route('/trips/<trip_id>/start-times.json', methods=['GET'])
@@ -112,8 +112,8 @@ def tripStopsStartTimes(trip_id):
 	rows = db.session.query(TripStartTime).filter(TripStartTime.trip_id == trip_id).\
 		order_by(TripStartTime.service_id, TripStartTime.start_time).all()
 
-	features = [row.as_json for row in rows]
-	return {'rows': features} #Listo pero hay que importar el as_json
+	features = [row.to_json for row in rows]
+	return {'rows': features} 
 
 @api.route('/trips/<trip_id>/start-times.json', methods=['PUT'])
 def updateTripStartTimes(trip_id):
@@ -121,7 +121,7 @@ def updateTripStartTimes(trip_id):
 	db.session.query(TripStartTime).filter(TripStartTime.trip_id == trip_id).delete()
 	for item in data['rows']:
 		tripStartTime = TripStartTime(**item)
-		db.session.merge(tripStartTime) #Listo pero sin testear, no se que es data['rows']
+		db.session.merge(tripStartTime)
 	return {'success': True}
 
 @api.route('/trips/<trip_id>/start-times.csv', methods=['POST'])
@@ -146,4 +146,4 @@ def uploadTripStartTimes(db, trip_id):
 	else:
 		abort(404, 'trip not found')
 
-	return {'success': True} #Listo pero sin testear
+	return {'success': True} 
