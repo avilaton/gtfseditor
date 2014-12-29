@@ -7,6 +7,7 @@ from flask import jsonify, request, g, abort, url_for, current_app
 from .. import db
 from ..models import Shape
 from . import api
+import app.services.geojson as geojson
 
 
 @api.route('/shape/<shape_id>')
@@ -19,7 +20,7 @@ def getShape(shape_id):
   	coords=coords, properties={})
   return geojson.featureCollection([feature])
 
-@api.put('/shape/<shape_id>')
+@api.route('/shape/<shape_id>',  methods=['PUT'])
 def updateShape(shape_id):
   geojsonShape = request.json
   for feature in geojsonShape['features']:
