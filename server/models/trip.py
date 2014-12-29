@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from sqlalchemy import Column, ForeignKey, String
+from sqlalchemy import Boolean
 from base import Base, Entity
 
 class Trip(Base, Entity):
@@ -13,3 +14,4 @@ class Trip(Base, Entity):
   trip_short_name = Column(String(150))
   direction_id = Column(String(50))
   shape_id = Column(String(50))
+  active = Column(Boolean, default=False)
