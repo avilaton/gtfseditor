@@ -5,7 +5,6 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-from server import config
 from server import engine
 from server.models import *
 
