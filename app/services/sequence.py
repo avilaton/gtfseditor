@@ -5,14 +5,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-from server import engine
-from server.models import *
-
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm import scoped_session
-
-Session = sessionmaker(bind=engine)
-db = scoped_session(Session)
+from ..models import *
 
 import server.utils.geom as utils
 
@@ -21,13 +14,13 @@ class StopSequence(object):
   def __init__(self, trip_id):
     self.db = db
     self.trip_id = trip_id
-    trip = db.query(Trip).filter_by(trip_id=trip_id).first()
-    self.stopsSequence = db.query(Stop, StopSeq).\
+    trip = db.session.query(Trip).filter_by(trip_id=trip_id).first()
+    self.stopsSequence = db.session.query(Stop, StopSeq).\
       join(StopSeq, Stop.stop_id == StopSeq.stop_id).\
       filter(StopSeq.trip_id == trip_id).\
       order_by(StopSeq.stop_sequence).all()
     self.stops = [item.Stop for item in self.stopsSequence]
-    self.shape = db.query(Shape).filter_by(shape_id=trip.shape_id).all()
+    self.shape = db.session.query(Shape).filter_by(shape_id=trip.shape_id).all()
 
   def offsetStops(self, offset=6.0):
     raise NotImplementedError
@@ -70,8 +63,8 @@ class StopSequence(object):
     for i, item in enumerate(sortedStops):
       stopSeq = item['StopSeq']
       stopSeq.stop_sequence = i + 1
-      db.merge(stopSeq)
-    db.commit()
+      db.session.merge(stopSeq)
+    db.session.commit()
 
   def updateDistances(self):
     logger.debug("Updating traveled distance for trip_id: %s", self.trip_id)
@@ -81,5 +74,5 @@ class StopSequence(object):
       snap = s['Snap']
       shape_dist_traveled = "{0:.4f}".format(snap['traveled'])
       stopSeq.shape_dist_traveled = shape_dist_traveled
-      db.merge(stopSeq)
-    db.commit()
+      db.session.merge(stopSeq)
+    db.session.commit()
