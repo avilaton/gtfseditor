@@ -9,7 +9,7 @@ from ..models import StopSeq
 from ..models import TripStartTime
 from . import api
 from sqlalchemy import not_
-from server.collections.stop_sequence import StopSequence
+from app.service.sequence import StopSequence
 @api.route('/trips/') 
 def get_alltrips():
     trips = Trip.query.all()
