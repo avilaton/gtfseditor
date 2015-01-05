@@ -7,6 +7,7 @@ from app import create_app, db
 from app.models import Route
 from app.models import Trip
 from app.services.feed import Feed
+from app.services.sequence import StopSequence as Sequence
 
 from flask.ext.script import Manager, Shell
 from flask.ext.migrate import Migrate, MigrateCommand
@@ -34,7 +35,7 @@ def extractZip(filename, dest):
 
 
 def make_shell_context():
-    return dict(app=app, db=db, Route=Route, Trip=Trip)
+    return dict(app=app, db=db, Route=Route, Trip=Trip, Sequence=Sequence)
 
 manager.add_command("shell", Shell(make_context=make_shell_context))
 manager.add_command('db', MigrateCommand)
@@ -65,6 +66,18 @@ def build(validate=False, extract=False):
 
   if extract:
     extractZip(TMP_FOLDER + feed.filename, 'tmp/extracted/')
+
+@manager.command
+def update_distances():
+  """Update traveled distances for every trip"""
+
+  trips = Trip.query.all()
+
+  for trip in trips:
+  	print trip.trip_id
+  	seq = Sequence(trip_id=trip.trip_id)
+  	seq.updateDistances()
+
 
 if __name__ == '__main__':
     manager.run()
