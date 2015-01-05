@@ -2,8 +2,11 @@
 # -*- coding: utf-8 -*-
 
 from bottle import request
+from bottle import response
 from bottle import template
 import json
+import csv
+import StringIO
 from server.models import Route
 from server.models import Trip
 from server import app
@@ -54,6 +57,34 @@ def routes(db):
 
 
   return template('routes.html', routes=routes, count=len(result), active=active)
+
+
+@app.get('/api/routes.csv')
+def routesCsv(db):
+  result = db.query(Route, Trip).\
+    outerjoin(Trip, Route.route_id == Trip.route_id).\
+    order_by(Route.route_id).all()
+
+  rows = []
+  fieldnames = None
+  for route, trip in result:
+    fieldnames = route.as_dict.keys() + trip.as_dict.keys()
+    print fieldnames
+    row = route.as_dict
+    row.update(trip.as_dict)
+    rows.append(row)
+
+  fout = StringIO.StringIO()
+  writer = csv.DictWriter(fout, fieldnames=fieldnames)
+
+  writer.writerows(rows)
+
+  # response.content_type = 'application/csv'
+  response.set_header('Content-Type', 'text/plain')
+
+  # response.set_header('Content-Disposition', 
+  #   'attachment; filename="{0}"'.format(feed.filename))
+  return fout.getvalue()
 
 @app.get('/api/route/<route_id>/trips')
 @app.get('/api/route/<route_id>/trips/')
