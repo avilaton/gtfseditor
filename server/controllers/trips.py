@@ -23,20 +23,20 @@ def updateTrip(db, trip_id):
 	data = request.json
 	trip = Trip(**data)
 	db.merge(trip)
-	return trip.as_dict #LISTO
+	return trip.as_dict
 
 @app.route('/api/trips', method=['POST', 'OPTIONS'])
 def createTrip(db):
 	data = request.json
 	trip = Trip(**data)
 	db.add(trip)
-	return trip.as_dict #LISTO
+	return trip.as_dict
 
 @app.route('/api/trips/<trip_id>', method=['DELETE', 'OPTIONS'])
 def deleteTrip(db, trip_id):
 	route = db.query(Trip).filter(Trip.trip_id == trip_id).one()
 	db.delete(route)
-	return {'success': True} #LISTO
+	return {'success': True}
 
 @app.route('/api/trips/<trip_id>/stops.geojson', method=['GET', 'OPTIONS'])
 def tripStops(db, trip_id):
@@ -61,7 +61,8 @@ def tripStops(db, trip_id):
 @app.route('/api/trips/<trip_id>/stops.json', method=['GET', 'OPTIONS'])
 def tripStops(db, trip_id):
 	rows = db.query(Stop, StopSeq).join(StopSeq, Stop.stop_id == StopSeq.stop_id)\
-		.filter(StopSeq.trip_id == trip_id).order_by(StopSeq.stop_sequence).all()
+		.filter(StopSeq.trip_id == trip_id)\
+		.order_by(StopSeq.stop_sequence).all()
 
 	features = []
 	for row in rows:
@@ -71,23 +72,23 @@ def tripStops(db, trip_id):
 			'stop': row.Stop.as_dict,
 			'stop_seq': row.StopSeq.as_dict
 			})
-	return {'rows': features} #no se como importar en flask el as_dict
+	return {'rows': features}
 
 @app.route('/api/trips/<trip_id>/stops.json', method=['PUT'])
 def tripStops(db, trip_id):
 	data = request.json
-	rows = data['rows'] #No se que parametro es rows, no se como probar con el REST Console
+	rows = data['rows']
 	for row in rows:
 		row.pop('speed', None)
 		stopSeq = StopSeq(**row)
 		db.merge(stopSeq)
 	
-	return {'success':True,'trip_id':trip_id} # LISTO pero sin testear, 
+	return {'success':True,'trip_id':trip_id}
 
 @app.route('/api/trips/<trip_id>/stops.geojson', method=['PUT', 'OPTIONS'])
 def saveTripStops(db, trip_id):
 	geojson = request.json
-	featureList = geojson['features'] #No se que parametro es features, no se como probar con el REST Console
+	featureList = geojson['features']
 	
 	stop_ids = set([])
 	rows = []
@@ -110,19 +111,19 @@ def saveTripStops(db, trip_id):
 		stopSeq = StopSeq(**row)
 		db.merge(stopSeq)
 	
-	return {'success':True,'trip_id':trip_id} #LISTO pero sin testear
+	return {'success':True,'trip_id':trip_id}
 
 @app.route('/api/trips/<trip_id>/actions/sort-stops', method=['GET', 'OPTIONS'])
 def sortTripStops(db, trip_id):
 	stopSequence = StopSequence(trip_id)
 	stopSequence.sortStops()
-	return {'success': True} #Listo pero con errores
+	return {'success': True}
 
 @app.route('/api/trips/<trip_id>/actions/update-dist', method=['GET', 'OPTIONS'])
 def sortTripStops(db, trip_id):
 	stopSequence = StopSequence(trip_id)
 	stopSequence.updateDistances()
-	return {'success': True} #Listo pero con errores
+	return {'success': True}
 
 @app.route('/api/trips/<trip_id>/start-times.json', method=['GET', 'OPTIONS'])
 def tripStops(db, trip_id):
@@ -130,7 +131,7 @@ def tripStops(db, trip_id):
 		order_by(TripStartTime.service_id, TripStartTime.start_time).all()
 
 	features = [row.as_dict for row in rows]
-	return {'rows': features} #Listo pero falta as_dict
+	return {'rows': features}
 
 @app.route('/api/trips/<trip_id>/start-times.json', method=['PUT', 'OPTIONS'])
 def updateTripStartTimes(db, trip_id):
