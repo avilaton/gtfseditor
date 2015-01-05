@@ -9,7 +9,22 @@ import csv
 import StringIO
 from server.models import Route
 from server.models import Trip
+from server.models import StopSeq
 from server import app
+from sqlalchemy import func
+
+
+class DictUnicodeProxy(object):
+  def __init__(self, d):
+    self.d = d
+  def __iter__(self):
+    return self.d.__iter__()
+  def get(self, item, default=None):
+    i = self.d.get(item, default)
+    if isinstance(i, unicode):
+      return i.encode('utf-8')
+    return i
+
 
 @app.get('/api/routes')
 @app.get('/api/routes/')
@@ -67,17 +82,22 @@ def routesCsv(db):
 
   rows = []
   fieldnames = None
+  route, trip = result[0]
+  fieldnames = list(set(route.as_dict.keys() + trip.as_dict.keys())) + ['length']
+
   for route, trip in result:
-    fieldnames = route.as_dict.keys() + trip.as_dict.keys()
-    print fieldnames
     row = route.as_dict
     row.update(trip.as_dict)
     rows.append(row)
 
   fout = StringIO.StringIO()
   writer = csv.DictWriter(fout, fieldnames=fieldnames)
+  writer.writeheader()
 
-  writer.writerows(rows)
+  for row in rows:
+    length = db.query(func.max(StopSeq.shape_dist_traveled)).filter_by(trip_id=row['trip_id']).one()
+    row.update({'length': length[0]})
+    writer.writerow(DictUnicodeProxy(row))
 
   # response.content_type = 'application/csv'
   response.set_header('Content-Type', 'text/plain')
