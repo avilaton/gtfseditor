@@ -15,7 +15,7 @@
 	<li><strong>Completed: {{active/count}}%</strong></li>
 </ul>
 
-{%route_keys = ["route_id", "route_short_name", "route_long_name", "active"]%}
+{% set route_keys = ["route_id", "route_short_name", "route_long_name", "active"]%}
 {%for route in routes %}
 <h3>Route: {{route.get("route_short_name")}}</h3>
 <ul>
@@ -23,7 +23,7 @@
 	<li>{{key}}: {{route.get(key, "")}}</li>
 	{%endfor%}
 </ul>
-{%keys = ["active", "trip_id", "trip_headsign", "trip_short_name"] %}
+{% set keys = ["active", "trip_id", "trip_headsign", "trip_short_name"] %}
 <table class="table table-bordered table-hover">
 	<thead>
 		<tr>
@@ -33,13 +33,14 @@
 		</tr>
 	</thead>
 {%for trip in route.get("trips")%}
-	{%if getattr(trip, "active", False)%}
+	{% if getattr(trip, "active", False) %}
 	<tr class="active">
 	{%else%}
   <tr>
   {%endif%}
 	  {%for key in keys%}
-	  	{%if key is "active" and trip.get("active", "")%}
+
+	  	{%if key == "active" and trip.get("active", "")%}
 	  	<td>
 	  		<span class="glyphicon glyphicon-ok"></span>
 	  	</td>
