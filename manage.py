@@ -74,9 +74,20 @@ def update_distances():
   trips = Trip.query.all()
 
   for trip in trips:
-  	print trip.trip_id
-  	seq = Sequence(trip_id=trip.trip_id)
-  	seq.updateDistances()
+    print trip.trip_id
+    seq = Sequence(trip_id=trip.trip_id)
+    seq.updateDistances()
+
+@manager.command
+def sorttrips():
+  """Update traveled distances for every trip"""
+
+  trips = Trip.query.all()
+
+  for trip in trips:
+    print('sorting: {0}'.format(trip.trip_id))
+    seq = Sequence(trip.trip_id)
+    seq.sortStops()
 
 
 if __name__ == '__main__':

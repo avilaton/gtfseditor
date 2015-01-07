@@ -43,7 +43,7 @@ class StopSequence(object):
       'stop_id': Stop.stop_id,
       'lat': Stop.stop_lat,
       'lon': Stop.stop_lon}
-    
+
     shape_dicts = map(shape_lat_lon, self.shape)
 
     for item in self.stopsSequence:

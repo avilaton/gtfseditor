@@ -89,3 +89,15 @@ allows for rapid setup and portability.
 Some hosted services do not support sqlite as a db engine (heroku), and 
 **postgres** can be used.
 
+Install postgresql and run
+
+```
+createdb -T template0 dbname
+```
+You are now ready to import a DB dump 
+```
+```
+or initialize this db by using
+```
+FLASK_CONFIG=dev ./manage.py db upgrade
+```
