@@ -9,13 +9,10 @@ Installation
 ------------
 Clone the project and `cd` into the new folder using
 ```
-$ git clone git@github.com:avilaton/gtfseditor.git
+$ git clone https://github.com/avilaton/gtfseditor.git
 $ cd gtfseditor
-$ git submodule init
-$ git submodule update --remote
 ```
-which will get you the latest version of the client and put it into the `client` 
-folder.
+which will get you the latest version.
 
 Create a new virtual environment (we named it __gtfs__ but you can name it 
 anything you like) and activate it using
