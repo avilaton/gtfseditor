@@ -16,3 +16,4 @@ Flask-Login==0.2.7
 Flask-Migrate==1.1.0
 Flask-SQLAlchemy==1.0
 Flask-Script==0.6.6
+Flask-Cors==1.10.2
