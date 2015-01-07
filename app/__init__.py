@@ -13,7 +13,7 @@ def create_app(config_name):
 
     db.init_app(app)
 
-    app.config['CORS_HEADERS'] = 'Content-Type'
+    app.config['CORS_HEADERS'] = 'X-Requested-With, Content-Type'
     cors.init_app(app)
 
     if not app.debug and not app.testing and not app.config['SSL_DISABLE']:

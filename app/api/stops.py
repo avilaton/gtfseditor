@@ -20,7 +20,7 @@ def get_stop(id):
 
 @api.route('/bbox', methods=['GET', 'OPTIONS'])
 def getBBOX():
-  bounds = request.query['bbox']
+  bounds = request.args.get('bbox')
   w,s,e,n = map(float,bounds.split(','))
   stops = db.session.query(Stop).filter(Stop.stop_lat < n, Stop.stop_lat >s,
    Stop.stop_lon < e, Stop.stop_lon > w).limit(300).all()
@@ -28,10 +28,9 @@ def getBBOX():
   for stop in stops:
     ft = geojson.feature(id = stop.stop_id, feature_type = "Point",
       coords = [float(stop.stop_lon), float(stop.stop_lat)],
-      properties = stop.as_dict)
+      properties = stop.to_json)
     features.append(ft)
-  geojson.featureCollection(features)
-  return geojson.featureCollection(features)
+  return jsonify(geojson.featureCollection(features))
 
 @api.route('/stops/<stop_id>', methods=['DELETE'])
 def deleteStop(stop_id):
