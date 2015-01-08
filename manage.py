@@ -68,13 +68,14 @@ def build(validate=False, extract=False):
     extractZip(TMP_FOLDER + feed.filename, 'tmp/extracted/')
 
 @manager.command
-def update_distances():
+def updatedistances():
   """Update traveled distances for every trip"""
 
   trips = Trip.query.all()
+  total = len(trips)
 
-  for trip in trips:
-    print trip.trip_id
+  for i, trip in enumerate(trips):
+    print("{2}/{1} updating distances for trip_id={0}".format(trip.trip_id, total, i))
     seq = Sequence(trip_id=trip.trip_id)
     seq.updateDistances()
 
@@ -83,12 +84,12 @@ def sorttrips():
   """Update traveled distances for every trip"""
 
   trips = Trip.query.all()
+  total = len(trips)
 
-  for trip in trips:
-    print('sorting: {0}'.format(trip.trip_id))
+  for i, trip in enumerate(trips):
+    print("{2}/{1} sorting stos for for trip_id={0}".format(trip.trip_id, total, i))
     seq = Sequence(trip.trip_id)
     seq.sortStops()
-
 
 if __name__ == '__main__':
     manager.run()
