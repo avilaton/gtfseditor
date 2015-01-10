@@ -73,7 +73,7 @@ define([
           };
         };
       },
-      
+
       sortStops: function (event) {
         this.collectionFix.sortStops();
       },
@@ -85,19 +85,19 @@ define([
       updateDist: function (event) {
         this.collectionFix.updateDist();
       },
-      
+
       toggleMultipleSelect: function (event) {
         var $target = $(event.currentTarget);
 
         $target.toggleClass('btn-primary');
-          
+
         // this.controls.selectStops.deactivate();
         // this.controls.selectMultiple.activate();
-      
+
         // this.controls.selectMultiple.deactivate();
         // this.controls.selectStops.activate();
       },
-      
+
       editStops: function (event) {
         var $target = $(event.currentTarget);
         if (this.controls.selectStops.active) {
@@ -113,14 +113,14 @@ define([
       },
 
       removeStop: function (event) {
-        console.log(this.model);
-        this.collection.removeStop(this.model);
+        this.collectionFix.remove(this.model.get('id'))
+        this.collectionFix.save();
       },
-      
+
       appendStop: function (event) {
         this.collection.appendStop(this.model);
       },
-      
+
       saveStops: function (event) {
         this.collection.save();
       }
