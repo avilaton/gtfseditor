@@ -87,9 +87,22 @@ def sorttrips():
   total = len(trips)
 
   for i, trip in enumerate(trips):
-    print("{2}/{1} sorting stos for for trip_id={0}".format(trip.trip_id, total, i))
+    print("{2}/{1} sorting stops for for trip_id={0}".format(trip.trip_id, total, i))
     seq = Sequence(trip.trip_id)
     seq.sortStops()
+
+@manager.command
+def interpolatetimes():
+  """Interpolate trip times for every trip"""
+
+  trips = Trip.query.all()
+  total = len(trips)
+
+  for i, trip in enumerate(trips):
+    print("{2}/{1} interpolating times for trip_id={0}".format(trip.trip_id, total, i))
+    seq = Sequence(trip.trip_id)
+    seq.interpolateTimes()
+  db.session.commit()
 
 if __name__ == '__main__':
     manager.run()

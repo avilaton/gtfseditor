@@ -53,7 +53,7 @@ def tripStops(db, trip_id):
 		properties.update({'stop_time': stop_seq.stop_time})
 		properties.update({'shape_dist_traveled': stop_seq.shape_dist_traveled})
 		f = geojson.feature(id = stop.stop_id,
-			coords = [stop.stop_lon, stop.stop_lat], 
+			coords = [stop.stop_lon, stop.stop_lat],
 			properties = properties)
 		features.append(f)
 	return geojson.featureCollection(features)
@@ -78,18 +78,19 @@ def tripStops(db, trip_id):
 def tripStops(db, trip_id):
 	data = request.json
 	rows = data['rows']
+	db.query(StopSeq).filter_by(trip_id=trip_id).delete()
 	for row in rows:
 		row.pop('speed', None)
 		stopSeq = StopSeq(**row)
-		db.merge(stopSeq)
-	
+		db.add(stopSeq)
+
 	return {'success':True,'trip_id':trip_id}
 
 @app.route('/api/trips/<trip_id>/stops.geojson', method=['PUT', 'OPTIONS'])
 def saveTripStops(db, trip_id):
 	geojson = request.json
 	featureList = geojson['features']
-	
+
 	stop_ids = set([])
 	rows = []
 	for item in featureList:
@@ -102,7 +103,7 @@ def saveTripStops(db, trip_id):
 		}
 		rows.append(data)
 
-	removedStops = db.query(StopSeq).filter(StopSeq.trip_id == trip_id, 
+	removedStops = db.query(StopSeq).filter(StopSeq.trip_id == trip_id,
 		not_(StopSeq.stop_id.in_(stop_ids))).all()
 	for stopSeq in removedStops:
 		db.remove(stopSeq)
@@ -110,7 +111,7 @@ def saveTripStops(db, trip_id):
 	for row in rows:
 		stopSeq = StopSeq(**row)
 		db.merge(stopSeq)
-	
+
 	return {'success':True,'trip_id':trip_id}
 
 @app.route('/api/trips/<trip_id>/actions/sort-stops', method=['GET', 'OPTIONS'])

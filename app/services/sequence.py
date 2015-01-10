@@ -8,6 +8,7 @@ logger = logging.getLogger(__name__)
 from ..models import *
 
 import server.utils.geom as utils
+import transitfeed
 
 class StopSequence(object):
 
@@ -75,5 +76,17 @@ class StopSequence(object):
       snap = s['Snap']
       shape_dist_traveled = "{0:.4f}".format(snap['traveled'])
       stopSeq.shape_dist_traveled = shape_dist_traveled
+      db.session.merge(stopSeq)
+    db.session.commit()
+
+  def interpolateTimes(self, speed=20, commit=False):
+    logger.debug("Interpolating stop times for trip_id: %s", self.trip_id)
+    for item in self.stopsSequence:
+      stop = item.Stop
+      stopSeq = item.StopSeq
+      dist_traveled = float(stopSeq.shape_dist_traveled)
+      stop_time_secs = int(3600*dist_traveled/(speed))
+      stop_time = transitfeed.FormatSecondsSinceMidnight(stop_time_secs)
+      stopSeq.stop_time = stop_time
       db.session.merge(stopSeq)
     db.session.commit()
