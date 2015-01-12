@@ -65,7 +65,7 @@ def build(validate=False, extract=False):
     feed.validate()
 
   if extract:
-    extractZip(TMP_FOLDER + feed.filename, 'tmp/extracted/')
+    extractZip(TMP_FOLDER + feed.filename, TMP_FOLDER + 'extracted/')
 
 @manager.command
 def updatedistances():
