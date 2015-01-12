@@ -27,6 +27,8 @@ class Feed(object):
 
   def build(self):
     logger.info("Feed build started")
+    self.trip_start_times_default = self.db.query(TripStartTime).filter_by(trip_id='default').all()
+
     self.loadAgencies()
     self.loadCalendar()
     self.loadCalendarDates()
@@ -79,7 +81,7 @@ class Feed(object):
   def loadCalendarDates(self):
     """Inserts calendar date exceptions from calendar_dates table"""
     logger.info("Loading Calendar Dates")
-    
+
     exceptions = {"1": True, "2": False}
 
     for date in self.db.query(CalendarDate).all():
@@ -106,7 +108,7 @@ class Feed(object):
   def loadTrips(self, route):
     """Loads active trips into schedule"""
 
-    for tripRow in self.db.query(Trip).filter_by(route_id=route.route_id).all():
+    for tripRow in self.db.query(Trip).filter_by(route_id=route.route_id).filter(Trip.active).all():
       if self.mode == 'frequency':
         services = self.schedule.GetServicePeriodList()
         for service in services:
@@ -122,7 +124,7 @@ class Feed(object):
 
         trip_start_times = self.db.query(TripStartTime).filter_by(trip_id=tripRow.trip_id).all()
         if not trip_start_times:
-          trip_start_times = self.db.query(TripStartTime).filter_by(trip_id='default').all()
+          trip_start_times = self.trip_start_times_default
 
         for startTimeRow in trip_start_times:
           new_trip_id = '.'.join([tripRow.trip_id, startTimeRow.service_id, startTimeRow.start_time])
@@ -130,7 +132,6 @@ class Feed(object):
           trip.service_id = startTimeRow.service_id
           trip.shape_id = tripRow.shape_id
           trip.direction_id = tripRow.direction_id
-          logger.info("Loading trip_id:{0} ".format(new_trip_id))
           self.loadStopTimes(trip, tripRow.trip_id, startTimeRow)
       else:
         # trip_id = t.trip_id
@@ -175,11 +176,12 @@ class Feed(object):
           trip.AddStopTime(stop)
 
     elif self.mode == 'initial-times':
+      trip_start_times_default = self.trip_start_times_default
       stop_sequence = self.db.query(StopSeq).filter_by(trip_id=seq_trip_id).\
         order_by(StopSeq.stop_sequence).all()
       trip_start_times = self.db.query(TripStartTime).filter_by(trip_id=seq_trip_id).all()
       if not trip_start_times:
-        trip_start_times = self.db.query(TripStartTime).filter_by(trip_id='default').all()
+        trip_start_times = trip_start_times_default
 
       for stop_time in StopTimesFactory.offsetStartTimes(seq_trip_id, stop_sequence, startTimeRow):
         stopTime = StopTime(**stop_time)

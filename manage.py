@@ -4,8 +4,7 @@
 import os
 import zipfile
 from app import create_app, db
-from app.models import Route
-from app.models import Trip
+from app.models import *
 from app.services.feed import Feed
 from app.services.sequence import StopSequence as Sequence
 
@@ -35,7 +34,8 @@ def extractZip(filename, dest):
 
 
 def make_shell_context():
-    return dict(app=app, db=db, Route=Route, Trip=Trip, Sequence=Sequence)
+    return dict(app=app, db=db, Route=Route, Trip=Trip, Sequence=Sequence,
+      Shape=Shape, Stop=Stop)
 
 manager.add_command("shell", Shell(make_context=make_shell_context))
 manager.add_command('db', MigrateCommand)

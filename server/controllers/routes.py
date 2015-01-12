@@ -29,23 +29,8 @@ class DictUnicodeProxy(object):
 @app.get('/api/routes')
 @app.get('/api/routes/')
 def routes(db):
-  result = db.query(Route, Trip).\
-    outerjoin(Trip, Route.route_id == Trip.route_id).\
-    order_by(Route.route_id).all()
-
-  last = None
-  routes = []
-  for route, trip in result:
-    if last and route.route_id is last:
-      routes[-1].get("trips").append(trip.as_dict)
-    else:
-      route_d = route.as_dict
-      route_d.setdefault("trips", [])
-      if trip:
-        route_d.get("trips").append(trip.as_dict)
-      routes.append(route_d)
-      last = route.route_id
-
+  result = db.query(Route).order_by(Route.route_id).all()
+  routes = [route.as_dict for route in result]
   return {'routes': routes}
 
 @app.get('/api/routes.html')
