@@ -1,7 +1,10 @@
-from flask import jsonify, request, g, abort, url_for, current_app,render_template
+from flask import Flask, jsonify, request, g, abort, url_for, current_app,render_template, send_from_directory
 from . import admin
 
-@admin.route('/admin/')
-def admin():
-	print "UUUUUUUUUU#############"
-	return render_template('index.html')
+
+app = Flask(__name__, static_folder ='/home/mariano/gaston/gtfseditor/client/')
+
+@admin.route('/index')
+def root():
+	return send_from_directory(app.static_folder, 'index.html')
+
