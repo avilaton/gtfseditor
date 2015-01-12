@@ -40,8 +40,8 @@
   <tr>
   {%endif%}
 	  {%for key in keys%}
-
-	  	{%if key == "active" and trip.get("active", "")%}
+	  
+	  	{%if key == "active" and trip['active'] == 'True'%}
 	  	<td>
 	  		<span class="glyphicon glyphicon-ok"></span>
 	  	</td>
