@@ -33,7 +33,8 @@
 		</tr>
 	</thead>
 {%for trip in route.get("trips")%}
-	{% if getattr(trip, "active", False) %}
+	
+	{% if trip['active'] %}
 	<tr class="active">
 	{%else%}
   <tr>
