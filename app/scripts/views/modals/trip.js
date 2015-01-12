@@ -1,18 +1,18 @@
 define([
-    "underscore",
-    "backbone",
-    "handlebars",
+    'underscore',
+    'backbone',
+    'handlebars',
     'JST'
 ], function (_, Backbone, Handlebars, JST) {
     var View;
 
     View = Backbone.View.extend({
-        
+
         template: JST['modals/trip'],
 
         events: {
-            "click .js-save": "save",
-            "keyup input": 'onEdit',
+            'click .js-save': 'save',
+            'keyup input': 'onEdit',
             'click input[type="checkbox"]': 'onEditCheckbox'
         },
 
