@@ -56,7 +56,7 @@ def tripStops(trip_id):
 		stop = row.Stop
 		stop_seq = row.StopSeq
 		features.append({'stop': row.Stop.to_json,'stop_seq': row.StopSeq.to_json}) 
-	return {'rows': "features"}
+	return jsonify({'rows': features})
 
 @api.route('/trips/<trip_id>/stops.json', methods=['PUT'])
 def tripStopsPut(trip_id):
@@ -72,8 +72,8 @@ def tripStopsPut(trip_id):
 @api.route('/trips/<trip_id>/stops.geojson', methods=['PUT'])
 def saveTripStops(trip_id):
 	geojson = request.json
-	featureList = geojson['features'] 
-	
+	featureList = geojson['features']
+
 	stop_ids = set([])
 	rows = []
 	for item in featureList:
