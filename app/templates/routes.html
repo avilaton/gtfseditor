@@ -1,0 +1,60 @@
+<html>
+
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+<div class="container">
+
+<h1>Summary</h1>
+<ul>
+	<li>Number of trips: {{count}}</li>
+	<li>Active trips: {{active}}</li>
+	<li><strong>Completed: {{active/count}}%</strong></li>
+</ul>
+
+{% set route_keys = ["route_id", "route_short_name", "route_long_name", "active"]%}
+{%for route in routes %}
+<h3>Route: {{route.get("route_short_name")}}</h3>
+<ul>
+	{%for key in route_keys%}
+	<li>{{key}}: {{route.get(key, "")}}</li>
+	{%endfor%}
+</ul>
+{% set keys = ["active", "trip_id", "trip_headsign", "trip_short_name"] %}
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+  		{%for key in keys%}
+			<th>{{key}}</th>
+  		{%endfor%}
+		</tr>
+	</thead>
+{%for trip in route.get("trips")%}
+	
+	{% if trip['active']%}
+	<tr class="active">
+	{%else%}
+  <tr>
+  {%endif%}
+	  {%for key in keys%}
+	  
+	  	{%if key == "active" and trip['active'] == 'True'%}
+	  	<td>
+	  		<span class="glyphicon glyphicon-ok"></span>
+	  	</td>
+	  	{%else%}
+	    <td>{{trip.get(key, "")}}</td>
+	    {%endif%}
+	  {%endfor%}
+  </tr>
+{%endfor%}
+</table>
+{%endfor%}
+
+</div>
+</body>
+
+</html>
