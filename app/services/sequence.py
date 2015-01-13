@@ -79,14 +79,18 @@ class StopSequence(object):
       db.session.merge(stopSeq)
     db.session.commit()
 
-  def interpolateTimes(self, speed=20, commit=False):
+  def interpolateTimes(self, speed=20, commit=False, n_timepoints=5):
     logger.debug("Interpolating stop times for trip_id: %s", self.trip_id)
-    for item in self.stopsSequence:
+    interval = len(self.stopsSequence)/n_timepoints or 1
+    for i, item in enumerate(self.stopsSequence):
       stop = item.Stop
       stopSeq = item.StopSeq
-      dist_traveled = float(stopSeq.shape_dist_traveled)
-      stop_time_secs = int(3600*dist_traveled/(speed))
-      stop_time = transitfeed.FormatSecondsSinceMidnight(stop_time_secs)
+      if i % interval == 0 or i + 1 == len(self.stopsSequence):
+        dist_traveled = float(stopSeq.shape_dist_traveled)
+        stop_time_secs = int(3600*dist_traveled/(speed))
+        stop_time = transitfeed.FormatSecondsSinceMidnight(stop_time_secs)
+      else:
+        stop_time = None
       stopSeq.stop_time = stop_time
       db.session.merge(stopSeq)
     db.session.commit()
