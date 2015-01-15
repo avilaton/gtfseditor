@@ -4,6 +4,7 @@
 from flask import jsonify, request, g, abort, url_for, current_app
 from .. import db
 from ..models import Route
+from ..models import Trip
 from . import api
 
 
@@ -45,3 +46,9 @@ def delete_route(id):
     db.session.delete(route)
     db.session.commit()
     return jsonify({'status': 'success'}), 200
+
+
+@api.route('/route/<route_id>/trips')
+def get_route_trips(route_id):
+    trips = Trip.query.filter(Trip.route_id == route_id).all()
+    return jsonify({'trips': [trip.to_json for trip in trips]}), 200

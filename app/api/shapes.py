@@ -18,7 +18,7 @@ def getShape(shape_id):
   coords = [[pt.shape_pt_lon,pt.shape_pt_lat] for pt in shape]
   feature = geojson.feature(id=shape_id, feature_type="LineString",
   	coords=coords, properties={})
-  return geojson.featureCollection([feature])
+  return jsonify(geojson.featureCollection([feature]))
 
 @api.route('/shape/<shape_id>',  methods=['PUT'])
 def updateShape(shape_id):
@@ -37,4 +37,4 @@ def updateShape(shape_id):
         shape_pt = Shape(**d)
         db.session.add(shape_pt)
 
-  return {'success': True,'shape_id': shape_id}
+  return jsonify({'success': True,'shape_id': shape_id})
