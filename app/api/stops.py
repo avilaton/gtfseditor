@@ -6,6 +6,8 @@ from .. import db
 from ..models import Stop
 from . import api
 import app.services.geojson as geojson
+
+
 @api.route('/stops/')
 def get_stops():
     stops = Stop.query.all()

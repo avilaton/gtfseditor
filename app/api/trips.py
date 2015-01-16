@@ -10,6 +10,8 @@ from ..models import TripStartTime
 from . import api
 from sqlalchemy import not_
 from app.services.sequence import StopSequence
+import app.services.geojson as geojson
+
 
 @api.route('/trips/') 
 def get_alltrips():
@@ -57,6 +59,26 @@ def tripStops(trip_id):
 		stop_seq = row.StopSeq
 		features.append({'stop': row.Stop.to_json,'stop_seq': row.StopSeq.to_json}) 
 	return jsonify({'rows': features})
+
+@api.route('/trips/<trip_id>/stops.geojson', methods=['GET'])
+def tripStopsGeoJson(trip_id):
+	rows = db.session.query(Stop, StopSeq).join(StopSeq, Stop.stop_id == StopSeq.stop_id)\
+		.filter(StopSeq.trip_id == trip_id)\
+		.order_by(StopSeq.stop_sequence).all()
+
+	features = []
+	for row in rows:
+		stop = row.Stop
+		stop_seq = row.StopSeq
+		properties = stop.to_json
+		properties.update({'stop_seq': stop_seq.stop_sequence})
+		properties.update({'stop_time': stop_seq.stop_time})
+		properties.update({'shape_dist_traveled': stop_seq.shape_dist_traveled})
+		f = geojson.feature(id = stop.stop_id,
+			coords = [stop.stop_lon, stop.stop_lat],
+			properties = properties)
+		features.append(f)
+	return jsonify(geojson.featureCollection(features))
 
 @api.route('/trips/<trip_id>/stops.json', methods=['PUT'])
 def tripStopsPut(trip_id):
