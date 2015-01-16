@@ -10,7 +10,7 @@ from . import api
 
 @api.route('/routes/')
 def get_routes():
-    routes = Route.query.all()
+    routes = Route.query.order_by(Route.route_short_name).all()
     return jsonify({
         'routes': [item.to_json for item in routes]
     })
@@ -50,5 +50,6 @@ def delete_route(id):
 
 @api.route('/route/<route_id>/trips')
 def get_route_trips(route_id):
-    trips = Trip.query.filter(Trip.route_id == route_id).all()
+    trips = Trip.query.filter(Trip.route_id == route_id)\
+        .order_by(Trip.trip_headsign).all()
     return jsonify({'trips': [trip.to_json for trip in trips]}), 200

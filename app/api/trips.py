@@ -136,7 +136,7 @@ def tripStopsStartTimes(trip_id):
 		order_by(TripStartTime.service_id, TripStartTime.start_time).all()
 
 	features = [row.to_json for row in rows]
-	return {'rows': features} 
+	return jsonify({'rows': features})
 
 @api.route('/trips/<trip_id>/start-times.json', methods=['PUT'])
 def updateTripStartTimes(trip_id):
@@ -145,7 +145,7 @@ def updateTripStartTimes(trip_id):
 	for item in data['rows']:
 		tripStartTime = TripStartTime(**item)
 		db.session.merge(tripStartTime)
-	return {'success': True}
+	return jsonify({'success': True})
 
 @api.route('/trips/<trip_id>/start-times.csv', methods=['POST'])
 def uploadTripStartTimes(db, trip_id):
