@@ -51,6 +51,7 @@ class FeedInfo(db.Model, Entity):
   feed_start_date = db.Column(db.String(50))
   feed_end_date = db.Column(db.String(50))
 
+
 class Agency(db.Model, Entity):
   __tablename__ = 'agency'
   agency_id = db.Column(db.String(50), primary_key=True)
@@ -59,6 +60,7 @@ class Agency(db.Model, Entity):
   agency_timezone = db.Column(db.String(50))
   agency_lang = db.Column(db.String(50))
   agency_phone = db.Column(db.String(50))
+
 
 class Calendar(db.Model, Entity):
   __tablename__ = 'calendar'
@@ -72,8 +74,6 @@ class Calendar(db.Model, Entity):
   friday = db.Column(db.String(50))
   saturday = db.Column(db.String(50))
   sunday = db.Column(db.String(50))
-
-
 
 
 class Trip(db.Model, Entity):
@@ -94,6 +94,7 @@ class CalendarDate(db.Model, Entity):
   date = db.Column(db.String(50), primary_key=True)
   exception_type = db.Column(db.String(50), primary_key=True)
 
+
 class FareAttribute(db.Model, Entity):
   __tablename__ = 'fare_attributes'
   fare_id = db.Column(db.String(50), primary_key=True)
@@ -103,6 +104,7 @@ class FareAttribute(db.Model, Entity):
   transfers = db.Column(db.String(50))
   transfer_duration = db.Column(db.String(50))
 
+
 class FareRule(db.Model, Entity):
   __tablename__ = 'fare_rules'
   fare_id = db.Column(db.String(50), primary_key=True)
@@ -110,6 +112,7 @@ class FareRule(db.Model, Entity):
   origin_id = db.Column(db.String(50))
   destination_id = db.Column(db.String(50))
   contains_id = db.Column(db.String(50))
+
 
 class Frequency(db.Model, Entity):
   __tablename__ = 'frequencies'
@@ -119,6 +122,7 @@ class Frequency(db.Model, Entity):
   headway_secs = db.Column(db.String(50))
   exact_times = db.Column(db.String(50))
 
+
 class RouteFrequency(db.Model, Entity):
   __tablename__ = 'route_frequencies'
   route_id = db.Column(db.String(50), primary_key=True)
@@ -127,6 +131,7 @@ class RouteFrequency(db.Model, Entity):
   end_time = db.Column(db.String(50), primary_key=True)
   headway_secs = db.Column(db.Integer)
 
+
 class Shape(db.Model, Entity):
   __tablename__ = 'shapes'
   shape_id = db.Column(db.String(50), primary_key=True)
@@ -134,6 +139,7 @@ class Shape(db.Model, Entity):
   shape_pt_lon = db.Column(db.Float(precision=53))
   shape_pt_time = db.Column(db.String(50))
   shape_pt_sequence = db.Column(db.Integer, primary_key=True)
+
 
 class Stop(db.Model, Entity):
   __tablename__ = 'stops'
@@ -149,6 +155,7 @@ class Stop(db.Model, Entity):
   stop_entre = db.Column(db.String(50))
   stop_esquina = db.Column(db.String(50))
 
+
 class StopSeq(db.Model, Entity):
   __tablename__ = 'stop_seq'
   trip_id = db.Column(db.String(50), primary_key=True)
@@ -156,6 +163,7 @@ class StopSeq(db.Model, Entity):
   stop_sequence = db.Column(db.Integer, primary_key=True) 
   stop_time = db.Column(db.String(50)) 
   shape_dist_traveled = db.Column(db.Float(precision=53))
+
 
 class StopTime(db.Model, Entity):
   __tablename__ = 'stop_times'
@@ -166,11 +174,13 @@ class StopTime(db.Model, Entity):
   departure_time = db.Column(db.String(50))
   shape_dist_traveled = db.Column(db.Float(precision=53))
 
+
 class Transfer(db.Model, Entity):
   __tablename__ = 'transfers'
   from_stop_id = db.Column(db.String(50), primary_key=True)
   to_stop_id = db.Column(db.String(50))
   transfer_type = db.Column(db.String(50))
+
 
 class TripStartTime(db.Model, Entity):
   __tablename__ = 'trips_start_times'

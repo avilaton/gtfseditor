@@ -150,7 +150,7 @@ class Feed(object):
       lat = stop.stop_lat
       lng = stop.stop_lon
       stop_id = stop.stop_id
-      stop = self.schedule.AddStop(lat=float(lat), lng=float(lng), 
+      stop = self.schedule.AddStop(lat=float(lat), lng=float(lng),
         name=stop.stop_name, stop_id=str(stop_id))
       stop.stop_code = stop.stop_id
 
