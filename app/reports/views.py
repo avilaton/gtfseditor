@@ -6,9 +6,12 @@ from .. import db
 from ..models import Route, Trip
 from . import reports
 
+@reports.route('/')
+def index():
+	return render_template('reports/index.html')
+
 @reports.route('/routes')
 def get_report_routes():
-	
 	
 	result = db.session.query(Route, Trip).outerjoin(Trip, Route.route_id == Trip.route_id).order_by(Route.route_id).all()
 
@@ -28,5 +31,4 @@ def get_report_routes():
 			routes.append(route_d)
 			last = route.route_id
 
-
-	return render_template('routes.html', routes=routes, count=len(result), active=active)
+	return render_template('reports/routes.html', routes=routes, count=len(result), active=active)
