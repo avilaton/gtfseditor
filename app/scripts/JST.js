@@ -252,27 +252,27 @@ this["JST"]["startTimes"] = Handlebars.template({"1":function(depth0,helpers,par
 this["JST"]["stopData"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "    <form class=\"form-horizontal\" role=\"form\">\n      <div class=\"form-group\">\n        <legend>Stop id: "
-    + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.properties : stack1)) != null ? stack1.stop_id : stack1), depth0))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_id : stack1), depth0))
     + "</legend>\n        <label>Calle</label>\n        <input placeholder=\"Calle\" type=\"text\" class=\"form-control edit-stop-calle\" value=\""
-    + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.properties : stack1)) != null ? stack1.stop_calle : stack1), depth0))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_calle : stack1), depth0))
     + "\">\n        <label>Número</label>\n        <input placeholder=\"Número\" type=\"text\" class=\"form-control edit-stop-numero\" value=\""
-    + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.properties : stack1)) != null ? stack1.stop_numero : stack1), depth0))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_numero : stack1), depth0))
     + "\">\n        <label>Esquina</label>\n        <input placeholder=\"Esquina\" type=\"text\" class=\"form-control edit-stop-esquina\" value=\""
-    + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.properties : stack1)) != null ? stack1.stop_esquina : stack1), depth0))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_esquina : stack1), depth0))
     + "\">\n        <label>Entre</label>\n        <input placeholder=\"Entre\" type=\"text\" class=\"form-control edit-stop-entre\" value=\""
-    + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.properties : stack1)) != null ? stack1.stop_entre : stack1), depth0))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_entre : stack1), depth0))
     + "\">\n      </div>\n      <div class=\"control-group\">\n        <div class=\"btn-group\">\n          <button class=\"btn btn-primary saveStop\"><i class=\"glyphicon glyphicon-ok\"></i> Save</button>\n          <button class=\"btn btn-default cancelEditStop\">Cancel</button>\n        </div>\n      </div>\n    </form>\n";
 },"3":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "    <dl>\n      <dt>Calle</dt>\n      <dd>"
-    + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.properties : stack1)) != null ? stack1.stop_calle : stack1), depth0))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_calle : stack1), depth0))
     + "</dd>\n      <dt>Numero</dt>\n      <dd>"
-    + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.properties : stack1)) != null ? stack1.stop_numero : stack1), depth0))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_numero : stack1), depth0))
     + "</dd>\n      <dt>Esquina</dt>\n      <dd>"
-    + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.properties : stack1)) != null ? stack1.stop_esquina : stack1), depth0))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_esquina : stack1), depth0))
     + "</dd>\n      <dt>Entre</dt>\n      <dd>"
-    + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.properties : stack1)) != null ? stack1.stop_entre : stack1), depth0))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_entre : stack1), depth0))
     + "</dd>\n      <dt>Lineas</dt>\n      <dd>\n        <p>";
-  stack1 = helpers.each.call(depth0, ((stack1 = ((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.properties : stack1)) != null ? stack1.stop_lineas : stack1), {"name":"each","hash":{},"fn":this.program(4, data),"inverse":this.noop,"data":data});
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_lineas : stack1), {"name":"each","hash":{},"fn":this.program(4, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "</p>\n      </dd>\n    </dl>\n";
 },"4":function(depth0,helpers,partials,data) {
@@ -281,7 +281,7 @@ this["JST"]["stopData"] = Handlebars.template({"1":function(depth0,helpers,parti
     + ", ";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">\n    <h3 class=\"panel-title\">Stop id: "
-    + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.properties : stack1)) != null ? stack1.stop_id : stack1), depth0))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_id : stack1), depth0))
     + "</h3>\n  </div>\n  <div class=\"panel-body\">\n";
   stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.editMode : depth0), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data});
   if (stack1 != null) { buffer += stack1; }

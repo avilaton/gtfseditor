@@ -1,20 +1,20 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Stop id: {{stop.properties.stop_id}}</h3>
+    <h3 class="panel-title">Stop id: {{stop.stop_id}}</h3>
   </div>
   <div class="panel-body">
   {{#if editMode}}
     <form class="form-horizontal" role="form">
       <div class="form-group">
-        <legend>Stop id: {{stop.properties.stop_id}}</legend>
+        <legend>Stop id: {{stop.stop_id}}</legend>
         <label>Calle</label>
-        <input placeholder="Calle" type="text" class="form-control edit-stop-calle" value="{{stop.properties.stop_calle}}">
+        <input placeholder="Calle" type="text" class="form-control edit-stop-calle" value="{{stop.stop_calle}}">
         <label>Número</label>
-        <input placeholder="Número" type="text" class="form-control edit-stop-numero" value="{{stop.properties.stop_numero}}">
+        <input placeholder="Número" type="text" class="form-control edit-stop-numero" value="{{stop.stop_numero}}">
         <label>Esquina</label>
-        <input placeholder="Esquina" type="text" class="form-control edit-stop-esquina" value="{{stop.properties.stop_esquina}}">
+        <input placeholder="Esquina" type="text" class="form-control edit-stop-esquina" value="{{stop.stop_esquina}}">
         <label>Entre</label>
-        <input placeholder="Entre" type="text" class="form-control edit-stop-entre" value="{{stop.properties.stop_entre}}">
+        <input placeholder="Entre" type="text" class="form-control edit-stop-entre" value="{{stop.stop_entre}}">
       </div>
       <div class="control-group">
         <div class="btn-group">
@@ -26,16 +26,16 @@
   {{else}}
     <dl>
       <dt>Calle</dt>
-      <dd>{{stop.properties.stop_calle}}</dd>
+      <dd>{{stop.stop_calle}}</dd>
       <dt>Numero</dt>
-      <dd>{{stop.properties.stop_numero}}</dd>
+      <dd>{{stop.stop_numero}}</dd>
       <dt>Esquina</dt>
-      <dd>{{stop.properties.stop_esquina}}</dd>
+      <dd>{{stop.stop_esquina}}</dd>
       <dt>Entre</dt>
-      <dd>{{stop.properties.stop_entre}}</dd>
+      <dd>{{stop.stop_entre}}</dd>
       <dt>Lineas</dt>
       <dd>
-        <p>{{#each stop.properties.stop_lineas}}{{this}}, {{/each}}</p>
+        <p>{{#each stop.stop_lineas}}{{this}}, {{/each}}</p>
       </dd>
     </dl>
   {{/if}}

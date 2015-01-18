@@ -49,7 +49,7 @@ define([
             var featureObject = JSON.parse(geoJSON);
             console.log("afterfeaturemodified", featureObject);
             this.model.feature = feature;
-            this.model.set(featureObject);
+            this.model.set(feature.attributes);
         },
 
         handleStopSelect: function (event) {
@@ -59,7 +59,7 @@ define([
 
             if (event.type == "featureselected") {
                 this.model.feature = feature;
-                this.model.set(featureObject);
+                this.model.set(feature.attributes);
             } else if (event.type == "featureunselected") {
                 console.log
                 this.model.clear();
