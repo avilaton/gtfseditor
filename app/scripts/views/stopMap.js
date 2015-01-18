@@ -3,10 +3,9 @@ define([
   "backbone",
   'config',
   "views/map/drawStops",
-  "views/map/kmlLayer",
   "views/map/styles"
   ],
-  function (OpenLayers, Backbone, Config, DrawStopsView, KmlLayerView, Styles) {
+  function (OpenLayers, Backbone, Config, DrawStopsView, Styles) {
     'use strict';
 
     var MapView = Backbone.View.extend({
@@ -54,9 +53,6 @@ define([
           format: this.format,
           map: this.map,
           model: self.stop
-        });
-        this.layers.kml = new KmlLayerView({
-          map: this.map
         });
         if (typeof (google) === 'object') {
           require(["views/map/googleLayer"], function (GoogleLayerView) {
@@ -116,10 +112,6 @@ define([
         this.map.addLayer(self.bboxLayer);
       },
 
-      onBboxFeatureSelected: function (event) {
-        this.handleStopSelect(event);
-      },
-
       handleStopSelect: function (event) {
         var feature = event.feature;
         var geoJSON = this.format.write(feature);
@@ -133,55 +125,13 @@ define([
         };
       },
 
-      onMultipleFeatureSelected: function (event) {
-        console.log(event);
-      },
-
       attachEventHandlers: function () {
         var self = this;
 
         this.bboxLayer.events.register('featureselected', self,
-          self.onBboxFeatureSelected);
+          self.handleStopSelect);
         this.bboxLayer.events.register('featureunselected', self,
-          self.onBboxFeatureSelected);
-
-        // this.bboxLayer.events.on({
-        //   'featureselected': self.onMultipleFeatureSelected,
-        //   'featureunselected': self.onMultipleFeatureSelected,
-        //   scope: self.bboxLayer
-        // });
-      },
-
-      addSelectControl: function (layerIds) {
-        var self = this,
-        layers = [],
-        control;
-
-        _.each(self.collection.models, function (layerModel) {
-          var layer = self.map.getLayer(layerModel.attributes.filename);
-          layers.push(layer);
-          layer.events.on({
-            "featureselected": self.selectedFeature,
-            "featureunselected": self.selectedFeature, 
-            scope: self
-          });
-          layer.events.fallThrough = true;
-        });
-
-        control = new OpenLayers.Control.SelectFeature(
-          layers,
-          {
-            clickout: true, toggle: true,
-            multiple: false, hover: false
-          }
-          );
-        control.id = "selectControl";
-
-        control.handlers['feature'].stopDown = false;
-        control.handlers['feature'].stopUp = false;
-
-        self.map.addControl(control);
-        control.activate();
+          self.handleStopSelect);
       },
 
       addControls: function () {
@@ -191,24 +141,13 @@ define([
         this.controls = controls;
 
         controls.selectStops = new OpenLayers.Control.SelectFeature(
-          [self.bboxLayer, self.layers.drawStops.layer, self.layers.kml.layer],
+          [self.bboxLayer, self.layers.drawStops.layer],
           {
             id: 'selectStops',
             clickout: true, toggle: false,
             multiple: false, hover: false
           });
         this.map.addControl(controls.selectStops);
-
-        controls.selectMultiple = new OpenLayers.Control.SelectFeature(
-          self.bboxLayer,
-          {
-            id: 'selectMultiple',
-            multiple: true, multipleKey: 'shiftKey', 
-            box: true,
-            clickout: true, toggle: true,
-            hover: false
-          });
-        this.map.addControl(controls.selectMultiple);
 
         controls.modifyStops = new OpenLayers.Control.ModifyFeature(
           self.layers.drawStops.layer,
@@ -247,9 +186,7 @@ define([
 
       activateControl: function (controlId) {
         this.controls.drawStops.deactivate();
-        // this.controls.modifyBbox.deactivate();
         this.controls.modifyStops.deactivate();
-        this.controls.selectMultiple.deactivate();
         this.controls.selectStops.deactivate();
 
         if (this.controls.hasOwnProperty(controlId)) {
@@ -268,11 +205,6 @@ define([
             this.map.getProjectionObject()
             ), zoom
           );
-      },
-
-      toJSON: function (features) {
-        var result = this.format.write(features);
-        console.log("feature to json", result);
       }
 
     }); 

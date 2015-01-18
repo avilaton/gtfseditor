@@ -7,7 +7,6 @@ define([
         var View;
 
         View = Backbone.View.extend({
-            el: $('#stopToolbar'),
 
             template: JST['stopToolbar'],
 
