@@ -29,10 +29,6 @@ define([
         this.$el.html(this.template());
         this.stopModel = new StopModel();
 
-        var stopDataView = new StopDataView({
-          model: this.stopModel,
-          el: this.$('.stop-data-view')
-        });
         var stopMapView = new StopMapView({
           el: '.map-view',
           stop: this.stopModel,
@@ -44,6 +40,11 @@ define([
         filterView.on('change', function (value) {
           stopMapView.bboxLayer.protocol.params.filter = value;
           stopMapView.bboxLayer.refresh({force:true});
+        });
+
+        var stopDataView = new StopDataView({
+          model: this.stopModel,
+          el: this.$('.stop-data-view')
         });
         var stopToolbarView = new StopToolbarView({
           el: '.stop-toolbar-view',
