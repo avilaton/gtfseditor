@@ -42,12 +42,12 @@ define([
             },
 
             saveStop: function (event) {
+                var self = this;
                 event.preventDefault();
                 console.log("save stop clicked", event, this.model);
                 var promise = this.model.save();
                 promise.done(function (response) {
-                    console.log("success", response);
-                    
+                    self.setEditMode(false);
                 }).fail(function (err, response) {
                     console.log("saving failed", err, response)
                 });

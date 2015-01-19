@@ -8,7 +8,7 @@ define([
 
 	Model = Backbone.Model.extend({
 		idAttribute: 'stop_id',
-		urlRoot: Config.server + 'api/stops',
+		urlRoot: Config.server + 'api/stops/',
 		
 	    initialize: function(){
 

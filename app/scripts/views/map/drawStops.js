@@ -47,9 +47,12 @@ define([
             var feature = event.feature;
             var geoJSON = this.format.write(feature);
             var featureObject = JSON.parse(geoJSON);
+            var coords = feature.geometry.getBounds().getCenterLonLat();
+            console.log(coords);
             console.log("afterfeaturemodified", featureObject);
             this.model.feature = feature;
-            this.model.set(feature.attributes);
+            this.model.set('stop_lon', featureObject.geometry.coordinates[0]);
+            this.model.set('stop_lat', featureObject.geometry.coordinates[1]);
         },
 
         handleStopSelect: function (event) {
