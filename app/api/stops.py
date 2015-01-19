@@ -20,8 +20,9 @@ def get_stop(id):
     item = Stop.query.get_or_404(id)
     return jsonify(item.to_json)
 
+# Deprecated
 @api.route('/bbox', methods=['GET', 'OPTIONS'])
-def getBBOX():
+def getBBOXGeoJson():
   bounds = request.args.get('bbox')
   w,s,e,n = map(float,bounds.split(','))
   stops = db.session.query(Stop).filter(Stop.stop_lat < n, Stop.stop_lat >s,
@@ -33,6 +34,16 @@ def getBBOX():
       properties = stop.to_json)
     features.append(ft)
   return jsonify(geojson.featureCollection(features))
+
+@api.route('/bbox.json', methods=['GET'])
+def getBBOX():
+  bounds = request.args.get('bbox')
+  w,s,e,n = map(float,bounds.split(','))
+  stops = db.session.query(Stop).filter(Stop.stop_lat < n, Stop.stop_lat >s,
+   Stop.stop_lon < e, Stop.stop_lon > w).limit(300).all()
+  features = [stop.to_json for stop in stops]
+
+  return jsonify({"stops": features})
 
 @api.route('/stops/<stop_id>', methods=['DELETE'])
 def deleteStop(stop_id):
