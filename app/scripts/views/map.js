@@ -239,10 +239,6 @@ define([
         };
       },
 
-      onMultipleFeatureSelected: function (event) {
-        console.log(event);
-      },
-
       attachEventHandlers: function () {
         var self = this;
         this.stopsLayer.events.register('featureselected', self,
@@ -254,19 +250,6 @@ define([
           self.onBboxFeatureSelected);
         this.bboxLayer.events.register('featureunselected', self,
           self.onBboxFeatureSelected);
-
-        // this.bboxLayer.events.on({
-        //   'featureselected': self.onMultipleFeatureSelected,
-        //   'featureunselected': self.onMultipleFeatureSelected,
-        //   scope: self.bboxLayer
-        // });
-
-        // this.shapesLayer.events.register('loadend',
-        // {
-        //   'routesLayer':self.routesLayer,
-        //   'notesLayer':self.notesLayer
-        // },
-        // utils.endsRenderer);
       },
 
       addSelectControl: function (layerIds) {
@@ -385,102 +368,6 @@ define([
         if (this.controls.hasOwnProperty(controlId)) {
           this.controls[controlId].activate();
         };
-      },
-
-      addGeolocationControl: function () {
-        var firstGeolocation;
-
-        controls.geolocate = new OpenLayers.Control.Geolocate({
-          bind: false,
-          geolocationOptions: {
-            enableHighAccuracy: false,
-            maximumAge: 0,
-            timeout: 7000
-          }
-        });
-        map.addControl(controls.geolocate);
-        
-        controls.geolocate.events.register("locationupdated",controls.geolocate,function(e) {
-          console.log('location updated');
-          var cross = notesLayer.getFeatureById('userCross');
-          var circle = notesLayer.getFeatureById('userAccuracy');
-          if (cross) {
-            notesLayer.removeFeatures(cross);
-          }
-          if (circle) {
-            notesLayer.removeFeatures(circle);
-          }
-          
-          circle = new OpenLayers.Feature.Vector(
-            OpenLayers.Geometry.Polygon.createRegularPolygon(
-              new OpenLayers.Geometry.Point(e.point.x, e.point.y),
-              e.position.coords.accuracy/2,
-              40,
-              0
-              ),
-            {},
-            {
-              fillColor: '#000',
-              fillOpacity: 0.1,
-              strokeWidth: 0
-            }
-            );
-          circle.id = 'userAccuracy';
-          
-          cross = new OpenLayers.Feature.Vector(
-            e.point,
-            {},
-            {
-              graphicName: 'cross',
-              strokeColor: '#f00',
-              strokeWidth: 2,
-              fillOpacity: 0,
-              pointRadius: 10
-            }
-            );
-          cross.id = 'userCross';
-          
-          notesLayer.addFeatures([cross,circle]);
-          
-          if (firstGeolocation) {
-            firstGeolocation = false;
-            // the following will center the map to the user's location
-            //~ this.bind = true; 
-          }
-        });
-
-        controls.geolocate.events.register("locationfailed", this, function() {
-          console.log('Location detection failed');
-        });
-        controls.geolocate.watch = true;
-        firstGeolocation = true;
-        controls.geolocate.activate();
-
-        controls.selectStops.activate();
-
-        maps.controls = controls;
-      },
-
-      skip: function () {
-        var selectedFeature = this.stopsLayer.selectedFeatures[0];
-        var ordinal = selectedFeature.data.stop_seq;
-        console.log(selectedFeatures);
-        var nextSelected = stopsLayer.getFeaturesByAttribute('stop_seq',ordinal+i)[0];
-
-        var current;
-        if (controls.selectStops.active) {
-          current = controls.selectStops;
-        } else if (controls.modifyStops.active) {
-          current = controls.modifyStops.selectControl;
-        };
-        if (nextSelected) {
-          current.unselectAll();
-          current.select(nextSelected);
-          map.setCenter(
-            new OpenLayers.LonLat(nextSelected.geometry.x,
-              nextSelected.geometry.y));
-        };
-        return false;
       },
 
       panAndZoom: function (lon, lat, zoom) {
