@@ -199,22 +199,22 @@ this["JST"]["schedule"] = Handlebars.template({"1":function(depth0,helpers,parti
 
 this["JST"]["sequence"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "	<tr data-stop-id=\""
+  return "		<tr data-stop-id=\""
     + escapeExpression(((helper = (helper = helpers.stop_id || (depth0 != null ? depth0.stop_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"stop_id","hash":{},"data":data}) : helper)))
-    + "\" draggable=\"true\">\n		<td>"
+    + "\" draggable=\"true\">\n			<td>"
     + escapeExpression(((helper = (helper = helpers.stop_id || (depth0 != null ? depth0.stop_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"stop_id","hash":{},"data":data}) : helper)))
-    + "</td>\n		<td class=\"stop-time\" contenteditable=\"true\">"
+    + "</td>\n			<td class=\"stop-time\" contenteditable=\"true\">"
     + escapeExpression(((helper = (helper = helpers.stop_time || (depth0 != null ? depth0.stop_time : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"stop_time","hash":{},"data":data}) : helper)))
-    + "</td>\n		<td>"
+    + "</td>\n			<td>"
     + escapeExpression(((helper = (helper = helpers.shape_dist_traveled || (depth0 != null ? depth0.shape_dist_traveled : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"shape_dist_traveled","hash":{},"data":data}) : helper)))
-    + "</td>\n		<td>"
+    + "</td>\n			<td>"
     + escapeExpression(((helper = (helper = helpers.speed || (depth0 != null ? depth0.speed : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"speed","hash":{},"data":data}) : helper)))
-    + "</td>\n	</tr>\n";
+    + "</td>\n		</tr>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<h4>Sequence Editor</h4>\n\n<button class=\"btn btn-default btn-save\">Save</button>\n<input name=\"speed\" type=\"number\" class=\"form-control speed\" placeholder=\"speed (km/h)\">\n<button class=\"btn btn-default btn-speed\">Set</button>\n<table class=\"table table-hover table-condensed\">\n<thead>\n	<tr>\n		<th>Stop Id</th>\n		<th>Time</th>\n		<th>Distance (km)</th>\n		<th>Speed (km/h)</th>\n	</tr>\n</thead>\n<tbody>\n";
+  var stack1, buffer = "<h4>Sequence Editor</h4>\n\n<div class=\"row voffset1\">\n  <div class=\"col-md-12\">\n	<form class=\"form-inline\">\n	  <div class=\"form-group\">\n	    <label for=\"speed\">Speed</label>\n		<input name=\"speed\" type=\"number\" class=\"form-control speed\" placeholder=\"speed (km/h)\">\n	  </div>\n	  <button class=\"btn btn-default btn-speed\">Set</button>\n	</form>\n  </div>\n</div>\n\n<div class=\"row voffset1\">\n  <div class=\"col-md-12\">\n	<form class=\"form-inline\">\n	  <div class=\"form-group\">\n	    <label for=\"add-stops\">Add stops</label>\n		<input name=\"add-stops\" type=\"text\" class=\"form-control add-stops\" placeholder=\"id_1, id_2, ...\">\n	  </div>\n	  <button class=\"btn btn-default btn-add-stops\">Add</button>\n	</form>\n  </div>\n</div>\n\n<div class=\"row voffset1\">\n  <div class=\"col-md-12\">\n	<button class=\"btn btn-default btn-save\">Save</button>\n  </div>\n</div>\n\n<div class=\"row voffset1\">\n  <div class=\"col-md-12\">\n	<table class=\"table table-hover table-condensed\">\n	<thead>\n		<tr>\n			<th>Stop Id</th><th>Time</th><th>Distance (km)</th><th>Speed (km/h)</th>\n		</tr>\n	</thead>\n	<tbody>\n";
   stack1 = helpers.each.call(depth0, depth0, {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "</tbody>\n</table>";
+  return buffer + "	</tbody>\n	</table>  	\n  </div>\n</div>";
 },"useData":true});
 
 

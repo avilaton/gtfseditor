@@ -1,31 +1,53 @@
 <h4>Sequence Editor</h4>
-{{!-- <div class="form-group">
-  <label for="speed">Guestimate times</label>
-  <input name="speed" type="number" class="form-control" placeholder="speed (km/h)">
-	<button class="btn btn-default">Do</button>
-</div>
- --}}
 
-<button class="btn btn-default btn-save">Save</button>
-<input name="speed" type="number" class="form-control speed" placeholder="speed (km/h)">
-<button class="btn btn-default btn-speed">Set</button>
-<table class="table table-hover table-condensed">
-<thead>
-	<tr>
-		<th>Stop Id</th>
-		<th>Time</th>
-		<th>Distance (km)</th>
-		<th>Speed (km/h)</th>
-	</tr>
-</thead>
-<tbody>
-	{{#each this}}
-	<tr data-stop-id="{{stop_id}}" draggable="true">
-		<td>{{stop_id}}</td>
-		<td class="stop-time" contenteditable="true">{{stop_time}}</td>
-		<td>{{shape_dist_traveled}}</td>
-		<td>{{speed}}</td>
-	</tr>
-	{{/each}}
-</tbody>
-</table>
+<div class="row voffset1">
+  <div class="col-md-12">
+	<form class="form-inline">
+	  <div class="form-group">
+	    <label for="speed">Speed</label>
+		<input name="speed" type="number" class="form-control speed" placeholder="speed (km/h)">
+	  </div>
+	  <button class="btn btn-default btn-speed">Set</button>
+	</form>
+  </div>
+</div>
+
+<div class="row voffset1">
+  <div class="col-md-12">
+	<form class="form-inline">
+	  <div class="form-group">
+	    <label for="add-stops">Add stops</label>
+		<input name="add-stops" type="text" class="form-control add-stops" placeholder="id_1, id_2, ...">
+	  </div>
+	  <button class="btn btn-default btn-add-stops">Add</button>
+	</form>
+  </div>
+</div>
+
+<div class="row voffset1">
+  <div class="col-md-12">
+	<button class="btn btn-default btn-save">Save</button>
+  </div>
+</div>
+
+<div class="row voffset1">
+  <div class="col-md-12">
+	<table class="table table-hover table-condensed">
+	<thead>
+		<tr>
+			<th>Stop Id</th><th>Time</th><th>Distance (km)</th><th>Speed (km/h)</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each this}}
+		<tr data-stop-id="{{stop_id}}" draggable="true">
+			<td>{{stop_id}}</td>
+			<td class="stop-time" contenteditable="true">{{stop_time}}</td>
+			<td>{{shape_dist_traveled}}</td>
+			<td>{{speed}}</td>
+		</tr>
+		{{/each}}
+	</tbody>
+	</table>  	
+  </div>
+</div>

@@ -30,7 +30,6 @@ define([
 
         this.controls = options.controls;
         this.collectionFix = options.collectionFix;
-        this.selectedStop = options.stop;
 
         this.render();
 
@@ -113,16 +112,18 @@ define([
       },
 
       removeStop: function (event) {
-        this.collectionFix.remove(this.model.get('id'))
+        var stop_id = this.model.get('id');
+        this.collectionFix.removeStop(stop_id);
         this.collectionFix.save();
       },
 
       appendStop: function (event) {
-        this.collection.appendStop(this.model);
+        var stop_id = this.model.get('id');
+        this.collectionFix.appendStop(stop_id);
       },
 
       saveStops: function (event) {
-        this.collection.save();
+        this.collectionFix.save();
       }
 
     });

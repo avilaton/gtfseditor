@@ -45,6 +45,32 @@ define([
       return obj;
     },
 
+    appendStop: function (stop_id) {
+      var max = 0, lastStop;
+
+      if (!this.isEmpty()) {
+        lastStop = this.max(function(model) {
+            return model.get('stop_sequence');
+        });
+        max = Number(lastStop.get('stop_sequence'));
+      };
+
+      this.add({
+        stop_id: stop_id,
+        stop_sequence: max + 1,
+        trip_id: this.trip_id
+      });
+    },
+
+    removeStop: function (stop_id) {
+      var self = this;
+      this.each(function(model){
+        if (model.get('stop_id') === stop_id) {
+          self.remove(model);
+        };
+      });
+    },
+
     toJSONwithSpeed: function () {
       var json = Backbone.Collection.prototype.toJSON.call(this),
         timeI = 0, timeF, posI, posF;
