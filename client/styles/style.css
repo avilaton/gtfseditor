@@ -187,3 +187,10 @@ body {
     margin: 0 !important;
     padding: 0 !important;
 }
+
+
+.voffset-m2  { margin-top: 0.2rem; }
+.voffset-m2 { margin-top: 0.5rem; }
+.voffset1 { margin-top: 1rem; }
+.voffset1m5 { margin-top: 10.5rem; }
+.voffset2 { margin-top: 30.0rem; }
