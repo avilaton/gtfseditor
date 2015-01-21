@@ -83,13 +83,26 @@ def tripStopsGeoJson(trip_id):
 @api.route('/trips/<trip_id>/stops.json', methods=['PUT'])
 def tripStopsPut(trip_id):
 	data = request.json
-	print data
-	rows = data['rows'] 
+	items = data['rows']
+
+	stop_ids = set([])
+	rows = []
+	for item in items:
+		stop_ids.add(str(item["stop_id"]))
+		rows.append(item)
+
+	removedStops = db.session.query(StopSeq).filter(StopSeq.trip_id == trip_id, \
+		not_(StopSeq.stop_id.in_(stop_ids))).all()
+
+	for stopSeq in removedStops:
+		print stopSeq
+		db.session.delete(stopSeq)
+
 	for row in rows:
-		row.pop('speed', None)
 		stopSeq = StopSeq(**row)
 		db.session.merge(stopSeq)
-	return {'success':True,'trip_id':trip_id} 
+
+	return jsonify({'success':True,'trip_id':trip_id})
 
 @api.route('/trips/<trip_id>/stops.geojson', methods=['PUT'])
 def saveTripStops(trip_id):
@@ -122,13 +135,19 @@ def saveTripStops(trip_id):
 def sortTripStops( trip_id):
 	stopSequence = StopSequence(trip_id)
 	stopSequence.sortStops() 
-	return {'success': True} 
+	return jsonify({'success': True})
 
 @api.route('/trips/<trip_id>/actions/update-dist', methods=['GET'])
 def sortTripStopsUpdate(trip_id):
 	stopSequence = StopSequence(trip_id)
 	stopSequence.updateDistances()
-	return {'success': True}
+	return jsonify({'success': True})
+
+@api.route('/trips/<trip_id>/actions/interpolate-times', methods=['GET'])
+def interpolateTimes(trip_id):
+	stopSequence = StopSequence(trip_id)
+	stopSequence.interpolateTimes()
+	return jsonify({'success': True})
 
 @api.route('/trips/<trip_id>/start-times.json', methods=['GET'])
 def tripStopsStartTimes(trip_id):
@@ -169,4 +188,4 @@ def uploadTripStartTimes(db, trip_id):
 	else:
 		abort(404, 'trip not found')
 
-	return {'success': True} 
+	return jsonify({'success': True})

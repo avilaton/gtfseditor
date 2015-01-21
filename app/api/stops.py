@@ -55,24 +55,10 @@ def deleteStop(stop_id):
 @api.route('/stops/<stop_id>',methods=['PUT', 'OPTIONS'])
 def updateStop(stop_id):
   data = request.json
-  # """ Stub - should carry out a full update, only updates stop_calle"""
-  p = {'stop_id': stop_id}
-  p['stop_calle'] = data['properties']['stop_calle'].encode('utf-8')
-  p['stop_lon'] = data['geometry']['coordinates'][0]
-  p['stop_lat'] = data['geometry']['coordinates'][1]
-  # result = self.db.query("""UPDATE stops 
-  #   SET stop_calle='{stop_calle}', 
-  #     stop_lat='{stop_lat}', stop_lon='{stop_lon}'
-  #   WHERE stop_id='{stop_id}'"""
-  #   .format(**p))
-  # self.db.connection.commit()
-  stop = Stop(**p)
-  db.session.merge(stop)
-  return {'success': True, 'result': p}
-
-# @api.route('/stops/<stop_id>',methods=['POST', 'OPTIONS'])
-# def createStop(stop_id):
-#   raise NotImplementedError
+  item = Stop.query.get_or_404(data.get('stop_id'))
+  item = Stop(**data)
+  db.session.merge(item)
+  return jsonify(item.to_json)
 
 @api.route('/stops/', methods=['POST'])
 def add_stop():
