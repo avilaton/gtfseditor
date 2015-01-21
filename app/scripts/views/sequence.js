@@ -55,7 +55,7 @@ define([
         _.each(input.split(','), function (item) {
           var stop_id = item.trim();
           if (stop_id !== '') {
-            collection.appendStop(item.trim());
+            collection.appendStopById(item.trim());
           }
         });
       },
