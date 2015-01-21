@@ -52,7 +52,7 @@ define([
         var mapView = new MapView({
           el: '.map-view',
           shape: this.shapeModel,
-          stops: this.stopsCollection,
+          collection: this.stopsSeqCollection,
           stop: this.stopModel
         });
 
@@ -72,8 +72,7 @@ define([
 
         var sequenceToolbox = new SequenceToolboxView({
           el: '.sequence-toolbox',
-          collection: this.stopsCollection,
-          collectionFix: this.stopsSeqCollection,
+          collection: this.stopsSeqCollection,
           model: this.stopModel,
           controls: mapView.controls
         });
@@ -97,9 +96,7 @@ define([
           this.stopsCollection.fetch({reset: true});
 
           this.stopsSeqCollection.trip_id = trip_id;
-          this.stopsSeqCollection.fetch({reset: true}).done(function () {
-            console.log(this.stopsSeqCollection);
-          });
+          this.stopsSeqCollection.fetch({reset: true});
         }, this);
       }
 

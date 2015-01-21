@@ -33,7 +33,6 @@ define([
       },
 
       render: function () {
-        console.info('render sequence view');
         this.$el.html(this.template(this.collection.toJSONwithSpeed()));
       },
 
@@ -44,7 +43,6 @@ define([
       onClickSpeed: function (e) {
         e.preventDefault();
         var speed = this.$('input.speed').val();
-        console.log(speed);
         this.collection.setTimes({speed: speed|| 20.0});
       },
 

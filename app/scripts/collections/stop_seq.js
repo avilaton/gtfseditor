@@ -9,44 +9,69 @@ define([
   var Collection;
 
   Collection = Backbone.Collection.extend({
-    model: StopModel,
-
     url: function () {
       return Config.server + 'api/trips/' + this.trip_id + '/stops.json';
     },
-    
+
     initialize: function (options) {
       this.selected = new this.model;
     },
 
     parse: function (response) {
       return _.map(response.rows, function (row) {
+          row.stop_seq._stop = row.stop;
           return row.stop_seq;
+        });
+    },
+
+    toJSON: function(){
+      var json = Backbone.Collection.prototype.toJSON.call(this);
+      // remove the fields that do not need to be sent back
+      _.each(json, function (model) {
+        delete model._stop;
       });
+      return json;
     },
 
     toGeoJSON: function () {
       var self = this,
         obj = {
         crs: {
-          type: "name",
+          type: 'name',
           properties: {
-            name: "urn:ogc:def:crs:OGC:1.3:CRS84"
+            name: 'urn:ogc:def:crs:OGC:1.3:CRS84'
           }
         },
         features:[],
-        type: "FeatureCollection"
+        type: 'FeatureCollection'
       };
 
       _.each(self.models, function (model) {
-        obj.features.push(model.toGeoJSON());
+        var stop = model.get('_stop');
+        if (!stop) return;
+
+        obj.features.push({
+          geometry: {
+            coordinates: [
+              stop.stop_lon,
+              stop.stop_lat
+            ],
+            type: 'Point'
+          },
+          id: stop.stop_id,
+          properties: {
+            stop_id: stop.stop_id
+          },
+          type: 'Feature'
+        });
       });
 
       return obj;
     },
 
-    appendStop: function (stop_id) {
-      var max = 0, lastStop;
+    appendStop: function (model) {
+      var max = 0, lastStop,
+        stop_id = model.get('stop_id');
 
       if (!this.isEmpty()) {
         lastStop = this.max(function(model) {
@@ -58,7 +83,8 @@ define([
       this.add({
         stop_id: stop_id,
         stop_sequence: max + 1,
-        trip_id: this.trip_id
+        trip_id: this.trip_id,
+        _stop: model.toJSON()
       });
     },
 

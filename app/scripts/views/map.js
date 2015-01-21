@@ -14,7 +14,6 @@ define([
         var self = this;
 
         self.shape = options.shape;
-        self.stops = options.stops;
         self.stop = options.stop;
 
         this.map = new OpenLayers.Map(this.el, {
@@ -50,7 +49,7 @@ define([
         this.addStopsLayer();
 
         this.initializeChildViews();
-        
+
         this.addControls();
         this.attachEventHandlers();
       },
@@ -76,10 +75,10 @@ define([
 
       bindEvents: function () {
         var self = this;
-        self.stops.on("reset stop_added stop_removed", self.updateStopsLayer, self);
         self.shape.on("reset", self.updateShapesLayer, self);
-        self.stops.on("trip_stop_selected", self.selectTripStop, self);
-        // self.stop.on("reset", self.selectTripStop, self);
+
+        this.collection.on("change reset add remove", self.updateStopsLayer, self);
+        self.collection.on("trip_stop_selected", self.selectTripStop, self);
       },
 
       updateShapesLayer: function () {
@@ -100,10 +99,11 @@ define([
 
       updateStopsLayer: function () {
         var self = this;
-        var ft = this.format.read(self.stops.geoJSON);
+        var ft = this.format.read(JSON.stringify(self.collection.toGeoJSON()));
         this.stopsLayer.removeAllFeatures();
         this.stopsLayer.addFeatures(ft);
         this.stopsLayer.refresh();
+        this.map.zoomToExtent(this.stopsLayer.getDataExtent());
       },
 
       updateNotesLayer: function () {
@@ -127,7 +127,7 @@ define([
         endFeature.id = 'routeEnd';
         endFeature.attributes.type = 'End';
 
-        this.notesLayer.addFeatures([startFeature, endFeature]);  
+        this.notesLayer.addFeatures([startFeature, endFeature]);
       },
 
       addNotesLayer: function () {
@@ -173,7 +173,7 @@ define([
           styleMap: Styles.stopsStyleMap
         });
         this.stopsLayer.id = 'stops';
-        
+
         this.map.addLayer(self.stopsLayer);
       },
 
@@ -181,7 +181,7 @@ define([
         var self = this;
 
         var refreshStrategy = new OpenLayers.Strategy.Refresh({
-          // interval: 1000, 
+          // interval: 1000,
           force: true
         });
 
@@ -207,7 +207,7 @@ define([
       },
 
       selectTripStop: function () {
-        var stop_id = this.stop.get("id");
+        var stop_id = this.stop.get("stop_id");
 
         var newSelection = this.stopsLayer.getFeaturesByAttribute("stop_id", stop_id)[0];
 
@@ -233,7 +233,7 @@ define([
 
         if (event.type == "featureselected") {
           this.stop.feature = feature;
-          this.stop.set(featureObject);
+          this.stop.set(feature.attributes);
         } else if (event.type == "featureunselected") {
           this.stop.clear();
         };
@@ -262,7 +262,7 @@ define([
           layers.push(layer);
           layer.events.on({
             "featureselected": self.selectedFeature,
-            "featureunselected": self.selectedFeature, 
+            "featureunselected": self.selectedFeature,
             scope: self
           });
           layer.events.fallThrough = true;
@@ -303,7 +303,7 @@ define([
           self.bboxLayer,
           {
             id: 'selectMultiple',
-            multiple: true, multipleKey: 'shiftKey', 
+            multiple: true, multipleKey: 'shiftKey',
             box: true,
             clickout: true, toggle: true,
             hover: false
@@ -325,11 +325,11 @@ define([
             vertexRenderIntent: 'vertex'
           });
         this.map.addControl(controls.modifyShape);
-        
+
         controls.drawStops = new OpenLayers.Control.DrawFeature(self.layers.drawStops.layer,
           OpenLayers.Handler.Point);
         this.map.addControl(controls.drawStops);
-        
+
         controls.selectStops.activate();
 
         controls.getSelectedFeature = function () {
@@ -353,10 +353,6 @@ define([
         }
       },
 
-      editFeature: function (feature) {
-        // body...
-      },
-
       activateControl: function (controlId) {
         this.controls.drawStops.deactivate();
         // this.controls.modifyBbox.deactivate();
@@ -373,7 +369,7 @@ define([
       panAndZoom: function (lon, lat, zoom) {
         var lon = lon || -64.1857371;
         var lat = lat || -31.4128832;
-        var zoom = zoom || 12;
+        var zoom = zoom || 4;
 
         this.map.setCenter(
           new OpenLayers.LonLat(lon, lat).transform(
@@ -381,14 +377,8 @@ define([
             this.map.getProjectionObject()
             ), zoom
           );
-      },
-
-      toJSON: function (features) {
-        var result = this.format.write(features);
-        console.log("feature to json", result);
       }
-
-    }); 
+    });
 
 return MapView;
 });

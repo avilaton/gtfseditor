@@ -29,7 +29,7 @@ define([
         $(document).bind('keyup', this.keypress.bind(self));
 
         this.controls = options.controls;
-        this.collectionFix = options.collectionFix;
+        this.collection = options.collection;
 
         this.render();
 
@@ -49,7 +49,7 @@ define([
 
       prevStop: function (event) {
         var self = this;
-        var selMember = this.collection.findWhere({"id": self.model.get("id")});
+        var selMember = this.collection.findWhere({'stop_id': self.model.get('stop_id')});
         if (selMember) {
           var index = this.collection.indexOf(selMember);
           var modelAbove = this.collection.at(index-1);
@@ -62,7 +62,7 @@ define([
 
       nextStop: function (event) {
         var self = this;
-        var selMember = this.collection.findWhere({"id": self.model.get("id")});
+        var selMember = this.collection.findWhere({'stop_id': self.model.get('stop_id')});
         if (selMember) {
           var index = this.collection.indexOf(selMember);
           var modelBelow = this.collection.at(index+1);
@@ -74,15 +74,15 @@ define([
       },
 
       sortStops: function (event) {
-        this.collectionFix.sortStops();
+        this.collection.sortStops();
       },
 
       offsetStops: function (event) {
-        this.collectionFix.alignTripStops();
+        this.collection.alignTripStops();
       },
 
       updateDist: function (event) {
-        this.collectionFix.updateDist();
+        this.collection.updateDist();
       },
 
       toggleMultipleSelect: function (event) {
@@ -112,18 +112,17 @@ define([
       },
 
       removeStop: function (event) {
-        var stop_id = this.model.get('id');
-        this.collectionFix.removeStop(stop_id);
-        this.collectionFix.save();
+        var stop_id = this.model.get('stop_id');
+        this.collection.removeStop(stop_id);
       },
 
       appendStop: function (event) {
-        var stop_id = this.model.get('id');
-        this.collectionFix.appendStop(stop_id);
+        var stop = this.model;
+        this.collection.appendStop(stop);
       },
 
       saveStops: function (event) {
-        this.collectionFix.save();
+        this.collection.save();
       }
 
     });
