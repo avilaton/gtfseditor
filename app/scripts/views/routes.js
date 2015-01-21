@@ -11,11 +11,10 @@ define([
   'views/sequence',
   'models/stop',
   'models/shape',
-  'collections/stops',
   'collections/stop_seq'
   ], function (_, Backbone, Handlebars, JST, MapView, RoutesSelectView,
       TripsSelectView, SequenceToolboxView, ShapesToolboxView, SequenceView,
-      StopModel, ShapeModel, StopsCollection, StopsSeqCollection) {
+      StopModel, ShapeModel, StopsSeqCollection) {
     var View;
 
     View = Backbone.View.extend({
@@ -32,7 +31,6 @@ define([
       render: function () {
         this.$el.html(this.template());
         this.stopModel = new StopModel();
-        this.stopsCollection = new StopsCollection();
         this.stopsSeqCollection = new StopsSeqCollection();
         this.shapeModel = new ShapeModel();
 
@@ -91,9 +89,6 @@ define([
           this.shapeModel.fetch({reset: true}).done(function () {
             mapView.updateShapesLayer();
           });
-
-          this.stopsCollection.trip_id = trip_id;
-          this.stopsCollection.fetch({reset: true});
 
           this.stopsSeqCollection.trip_id = trip_id;
           this.stopsSeqCollection.fetch({reset: true});

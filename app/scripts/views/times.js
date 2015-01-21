@@ -12,12 +12,11 @@ define([
   'views/startTimes',
   'models/stop',
   'models/shape',
-  'collections/stops',
   'collections/stop_seq',
   'collections/tripStartTimes'
   ], function (_, Backbone, Handlebars, JST, MapView, RoutesSelectView,
       TripsSelectView, SequenceToolboxView, ShapesToolboxView, SequenceView,
-      StartTimesView, StopModel, ShapeModel, StopsCollection, StopsSeqCollection,
+      StartTimesView, StopModel, ShapeModel, StopsSeqCollection,
       TripStartTimesCol) {
     var View;
 
@@ -37,7 +36,6 @@ define([
       render: function () {
         this.$el.html(this.template());
         this.stopModel = new StopModel();
-        this.stopsCollection = new StopsCollection();
         this.stopsSeqCollection = new StopsSeqCollection();
         this.tripStartTimesCol = new TripStartTimesCol();
 

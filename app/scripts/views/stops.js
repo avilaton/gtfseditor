@@ -8,10 +8,9 @@ define([
   'views/stopMap',
   'views/stopToolbar',
   'models/stop',
-  'models/shape',
-  'collections/stops'
+  'models/shape'
   ], function (_, Backbone, Handlebars, JST, StopDataView, FilterView, StopMapView,
-      StopToolbarView, StopModel, ShapeModel, StopsCollection) {
+      StopToolbarView, StopModel, ShapeModel) {
     var View;
 
     View = Backbone.View.extend({
