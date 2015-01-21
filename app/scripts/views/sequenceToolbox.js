@@ -1,26 +1,26 @@
 define([
-  "underscore",
-  "backbone",
-  "handlebars",
+  'underscore',
+  'backbone',
+  'handlebars',
   'JST'
   ], function (_, Backbone, Handlebars, JST) {
     var View;
 
     View = Backbone.View.extend({
-      el: $("#sequenceToolbox"),
 
       template: JST['sequenceToolbox'],
 
       events: {
-        "click button.prevStop": "prevStop",
-        "click button.nextStop": "nextStop",
-        "click button.sortStops": "sortStops",
-        "click button.offsetStops": "offsetStops",
-        "click button.updateDist": "updateDist",
-        "click button.toggleMultipleSelect": "toggleMultipleSelect",
-        "click button.removeStop": "removeStop",
-        "click button.appendStop": "appendStop",
-        "click button.saveStops": "saveStops"
+        'click button.prevStop': 'prevStop',
+        'click button.nextStop': 'nextStop',
+        'click button.sortStops': 'sortStops',
+        'click button.offsetStops': 'offsetStops',
+        'click button.updateDist': 'updateDist',
+        'click button.interpolateTimes': 'interpolateTimes',
+        'click button.toggleMultipleSelect': 'toggleMultipleSelect',
+        'click button.removeStop': 'removeStop',
+        'click button.appendStop': 'appendStop',
+        'click button.saveStops': 'saveStops'
       },
 
       initialize: function(options){
@@ -33,7 +33,7 @@ define([
 
         this.render();
 
-        this.collection.on("change reset", self.render, self);
+        this.collection.on('change reset', self.render, self);
       },
 
       render: function () {
@@ -83,6 +83,10 @@ define([
 
       updateDist: function (event) {
         this.collection.updateDist();
+      },
+
+      interpolateTimes: function (event) {
+        this.collection.interpolateTimes();
       },
 
       toggleMultipleSelect: function (event) {

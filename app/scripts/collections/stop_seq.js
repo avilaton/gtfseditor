@@ -184,6 +184,18 @@ define([
         self.fetch({reset: true});
       });
       return req;
+    },
+
+    interpolateTimes: function () {
+      var self = this;
+      var trip_id = this.trip_id;
+      var req = api.get({
+        url: Config.server + 'api/trips/' + self.trip_id +'/actions/interpolate-times'
+      });
+      req.done(function () {
+        self.fetch({reset: true});
+      });
+      return req;
     }
   });
 
