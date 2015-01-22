@@ -1,0 +1,11 @@
+<div class="nav-collapse collapse">
+            <ul class="nav">
+                <li class="active"><a href="/">Home</a></li>
+               
+                    <li><a href="/new">New Todo</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+        
+                    <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                    <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+            </ul>
+</div>
