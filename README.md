@@ -94,10 +94,11 @@ Install postgresql and run
 ```
 createdb -T template0 dbname
 ```
-You are now ready to import a DB dump 
-```
-```
-or initialize this db by using
+You are now ready to initialize an empty DB by using
 ```
 FLASK_CONFIG=dev ./manage.py db upgrade
+```
+or import a DB dump
+```
+pg_restore -d mza dump.tar
 ```
