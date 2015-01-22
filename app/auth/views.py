@@ -12,12 +12,12 @@ def login():
         if current_user.is_authenticated():
             return redirect( url_for('admin.root'))
         return render_template('auth/login.html')
-    username = request.form['username']
+    email = request.form['email']
     password = request.form['password']
     remember_me = True
     if 'remember_me' in request.form:
         remember_me = True
-    registered_user = User.query.filter_by(username=username,password=password).first()
+    registered_user = User.query.filter_by(email=email,password=password).first()
     if registered_user is None:
         flash('Username or Password is invalid' , 'error')
         return redirect(url_for('auth.login'))
@@ -29,21 +29,15 @@ def login():
 def register():
     if request.method == 'GET':
         return render_template('auth/register.html')
-    username = request.form['username']
+    email = request.form['email']
     password = request.form['password']
-    email = request.form['email'] 
-
-    searchUser = User.query.filter_by(username=username).first()
-    if searchUser is not None:
-        flash("User exists, please choose other Username")
-        return redirect(url_for('auth.register'))
 
     searchEmail = User.query.filter_by(email=email).first()
     if searchEmail is not None:
         flash("Email exists, please choose other Email")
         return redirect(url_for('auth.register'))
 
-    user = User(username , password, email)
+    user = User(password, email)
     db.session.add(user)
     db.session.commit()
     flash('User successfully registered')

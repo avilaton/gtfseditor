@@ -11,13 +11,15 @@
     
   <form action="" method=post class="navbar-form  ">
     
+    
     <div class="form-group">
-        
-          <input type="text" id="username" name="username" class="form-control"
-            placeholder="Enter Username" value="{{ request.form.username }}"
+
+          <input type="email" id="email" name="email" class="form-control"
+            placeholder="Enter Email" value="{{ request.form.email }}"
             required>
-       
+        
     </div>
+    
     <br>
     <br>
     <div class="form-group">
@@ -26,15 +28,6 @@
             placeholder="Enter Password" value="{{ request.form.password }}"
             required>
        
-    </div>
-    <br>
-    <br>
-    <div class="form-group">
-
-          <input type="email" id="email" name="email" class="form-control"
-            placeholder="Enter Email" value="{{ request.form.username }}"
-            required>
-        
     </div>
      <br>
     <br>
