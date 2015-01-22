@@ -18,7 +18,7 @@ def login():
         remember_me = True
     registered_user = User.query.filter_by(email=email,password=password).first()
     if registered_user is None:
-        flash('Username or Password is invalid' , 'error')
+        flash('Email or Password is invalid' , 'error')
         return redirect(url_for('auth.login'))
     login_user(registered_user, remember = remember_me)
     flash('Logged in successfully')
