@@ -217,7 +217,7 @@ class User(db.Model):
         return unicode(self.id)
  
     def __repr__(self):
-        return '<User %r>' % (self.username)
+        return '<User %r>' % (self.email)
 
 @login_manager.user_loader
 def load_user(id):
