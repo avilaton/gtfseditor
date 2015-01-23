@@ -12,6 +12,6 @@ from sqlalchemy import func
 def get_stats():
 	result = db.session.query(func.min(Stop.stop_lat) \
 		,func.min(Stop.stop_lon),func.max(Stop.stop_lat),func.max(Stop.stop_lon),func.count()).first()
-	list = {'minLat': result[0], 'minLon': result[1], 'maxLat':result[2],'maxLon' :result[3],'numbers':result[4]}
+	data = {'minLat': result[0], 'minLon': result[1], 'maxLat':result[2],'maxLon' :result[3],'numbers':result[4]}
     
-	return jsonify(stops=list)
+	return jsonify(stops=data)
