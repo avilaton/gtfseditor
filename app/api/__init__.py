@@ -9,4 +9,5 @@ from . import stops
 from . import calendar_dates
 from . import calendars
 from . import agency
+from . import stats
 
