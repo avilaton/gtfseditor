@@ -10,8 +10,8 @@ from sqlalchemy import func
 
 @api.route('/stats')
 def get_stats():
-	stops = db.session.query(func.min(Stop.stop_lat) \
+	result = db.session.query(func.min(Stop.stop_lat) \
 		,func.min(Stop.stop_lon),func.max(Stop.stop_lat),func.max(Stop.stop_lon),func.count()).first()
-	list = {'minLat': stops[0], 'minLon': stops[1], 'maxLat':stops[2],'maxLon' :stops[3],'numbers':stops[4]}
+	list = {'minLat': result[0], 'minLon': result[1], 'maxLat':result[2],'maxLon' :result[3],'numbers':result[4]}
     
 	return jsonify(stops=list)
