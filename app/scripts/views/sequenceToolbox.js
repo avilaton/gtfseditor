@@ -17,9 +17,10 @@ define([
         'click button.offsetStops': 'offsetStops',
         'click button.updateDist': 'updateDist',
         'click button.interpolateTimes': 'interpolateTimes',
-        'click button.toggleMultipleSelect': 'toggleMultipleSelect',
         'click button.removeStop': 'removeStop',
         'click button.appendStop': 'appendStop',
+        'click button.btn-speed': 'onClickSpeed',
+        'click button.btn-add-stops': 'onClickAddStops',
         'click button.saveStops': 'saveStops'
       },
 
@@ -28,17 +29,12 @@ define([
 
         $(document).bind('keyup', this.keypress.bind(self));
 
-        this.controls = options.controls;
-        this.collection = options.collection;
-
         this.render();
 
         this.collection.on('change reset', self.render, self);
       },
 
       render: function () {
-        var self = this;
-
         this.$el.html(this.template());
       },
 
@@ -89,30 +85,24 @@ define([
         this.collection.interpolateTimes();
       },
 
-      toggleMultipleSelect: function (event) {
-        var $target = $(event.currentTarget);
-
-        $target.toggleClass('btn-primary');
-
-        // this.controls.selectStops.deactivate();
-        // this.controls.selectMultiple.activate();
-
-        // this.controls.selectMultiple.deactivate();
-        // this.controls.selectStops.activate();
+      onClickSpeed: function (e) {
+        e.preventDefault();
+        var speed = this.$('input.speed').val();
+        this.collection.setTimes({speed: speed|| 20.0});
       },
 
-      editStops: function (event) {
-        var $target = $(event.currentTarget);
-        if (this.controls.selectStops.active) {
-          $target.addClass('btn-primary');
-          this.controls.selectStops.unselectAll();
-          this.controls.selectStops.deactivate();
-          this.controls.modifyStops.activate();
-        } else {
-          $target.removeClass('btn-primary');
-          this.controls.modifyStops.deactivate();
-          this.controls.selectStops.activate();
-        }
+      onClickAddStops: function (e) {
+        e.preventDefault();
+        var input = this.$('input.add-stops').val(),
+          stop_ids,
+          collection = this.collection;
+
+        _.each(input.split(','), function (item) {
+          var stop_id = item.trim();
+          if (stop_id !== '') {
+            collection.appendStopById(item.trim());
+          }
+        });
       },
 
       removeStop: function (event) {

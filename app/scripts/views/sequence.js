@@ -7,7 +7,6 @@ define([
     var View;
 
     View = Backbone.View.extend({
-      el: $("#sequenceView"),
 
       template: JST['sequence'],
 
@@ -20,9 +19,6 @@ define([
         'dragover tr': 'onDragOver',
         'dragleave tr': 'onDragLeave',
         'drop tr': 'onDrop',
-        'click button.btn-save': 'onClickSave',
-        'click button.btn-speed': 'onClickSpeed',
-        'click button.btn-add-stops': 'onClickAddStops',
         'blur td.stop-time': 'onBlurStopTime'
       },
 
@@ -34,30 +30,6 @@ define([
 
       render: function () {
         this.$el.html(this.template(this.collection.toJSONwithSpeed()));
-      },
-
-      onClickSave: function (e) {
-        this.collection.save();
-      },
-
-      onClickSpeed: function (e) {
-        e.preventDefault();
-        var speed = this.$('input.speed').val();
-        this.collection.setTimes({speed: speed|| 20.0});
-      },
-
-      onClickAddStops: function (e) {
-        e.preventDefault();
-        var input = this.$('input.add-stops').val(),
-          stop_ids,
-          collection = this.collection;
-
-        _.each(input.split(','), function (item) {
-          var stop_id = item.trim();
-          if (stop_id !== '') {
-            collection.appendStopById(item.trim());
-          }
-        });
       },
 
       onBlurStopTime: function (e) {
