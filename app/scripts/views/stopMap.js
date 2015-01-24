@@ -89,7 +89,7 @@ define([
             }
             return features;
             }
-        });             
+        });
 
         this.bboxLayer = new OpenLayers.Layer.Vector('Existing stops', {
           projection: new OpenLayers.Projection('EPSG:4326'),
@@ -197,7 +197,7 @@ define([
       panAndZoom: function (lon, lat, zoom) {
         var lon = lon || -64.1857371;
         var lat = lat || -31.4128832;
-        var zoom = zoom || 12;
+        var zoom = zoom || 4;
 
         this.map.setCenter(
           new OpenLayers.LonLat(lon, lat).transform(

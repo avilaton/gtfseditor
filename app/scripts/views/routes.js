@@ -51,7 +51,8 @@ define([
           el: '.map-view',
           shape: this.shapeModel,
           collection: this.stopsSeqCollection,
-          stop: this.stopModel
+          stop: this.stopModel,
+          model: this.stopModel
         });
 
         // var kmlSelectView = new KmlSelectView({
@@ -71,8 +72,7 @@ define([
         var sequenceToolbox = new SequenceToolboxView({
           el: '.sequence-toolbox',
           collection: this.stopsSeqCollection,
-          model: this.stopModel,
-          controls: mapView.controls
+          model: this.stopModel
         });
 
         var sequenceView = new SequenceView({

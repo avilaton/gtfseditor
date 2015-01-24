@@ -4,9 +4,10 @@ define([
   'config',
   "views/map/drawStops",
   "views/map/kmlLayer",
+  "views/map/stopsLayer",
   "views/map/styles"
   ],
-  function (OpenLayers, Backbone, Config, DrawStopsView, KmlLayerView, Styles) {
+  function (OpenLayers, Backbone, Config, DrawStopsView, KmlLayerView, StopsLayerView, Styles) {
     'use strict';
 
     var MapView = Backbone.View.extend({
@@ -43,7 +44,6 @@ define([
         this.layers = {};
 
         this.panAndZoom();
-        this.addBboxLayer();
         this.addShapesLayer();
         this.addNotesLayer();
         this.addStopsLayer();
@@ -56,6 +56,10 @@ define([
 
       initializeChildViews: function () {
         var self = this;
+
+        this.layers.stopsBboxLayer = new StopsLayerView({
+          map: this.map
+        });
         this.layers.drawStops = new DrawStopsView({
           format: this.format,
           map: this.map,
@@ -168,42 +172,13 @@ define([
 
       addStopsLayer: function () {
         var self = this;
-        this.stopsLayer = new OpenLayers.Layer.Vector('Selected route stops', {
+        this.stopsLayer = new OpenLayers.Layer.Vector('Trip stops', {
           projection: new OpenLayers.Projection('EPSG:4326'),
           styleMap: Styles.stopsStyleMap
         });
         this.stopsLayer.id = 'stops';
 
         this.map.addLayer(self.stopsLayer);
-      },
-
-      addBboxLayer: function () {
-        var self = this;
-
-        var refreshStrategy = new OpenLayers.Strategy.Refresh({
-          // interval: 1000,
-          force: true
-        });
-
-        this.bboxLayer = new OpenLayers.Layer.Vector('Existing stops', {
-          projection: new OpenLayers.Projection('EPSG:4326'),
-          styleMap: Styles.bboxStyleMap,
-          visibility: true,
-          strategies: [
-            new OpenLayers.Strategy.BBOX({resFactor: 2.0}),
-            refreshStrategy
-            ],
-          protocol: new OpenLayers.Protocol.HTTP({
-            format: new OpenLayers.Format.GeoJSON(),
-            url: Config.server + 'api/bbox',
-            params: {filter:''}
-          })
-        });
-        this.bboxLayer.id = 'bbox';
-
-        refreshStrategy.activate();
-
-        this.map.addLayer(self.bboxLayer);
       },
 
       selectTripStop: function () {
@@ -246,42 +221,10 @@ define([
         this.stopsLayer.events.register('featureunselected', self,
           self.onTripFeatureSelected);
 
-        this.bboxLayer.events.register('featureselected', self,
+        this.layers.stopsBboxLayer.layer.events.register('featureselected', self,
           self.onBboxFeatureSelected);
-        this.bboxLayer.events.register('featureunselected', self,
+        this.layers.stopsBboxLayer.layer.events.register('featureunselected', self,
           self.onBboxFeatureSelected);
-      },
-
-      addSelectControl: function (layerIds) {
-        var self = this,
-        layers = [],
-        control;
-
-        _.each(self.collection.models, function (layerModel) {
-          var layer = self.map.getLayer(layerModel.attributes.filename);
-          layers.push(layer);
-          layer.events.on({
-            "featureselected": self.selectedFeature,
-            "featureunselected": self.selectedFeature,
-            scope: self
-          });
-          layer.events.fallThrough = true;
-        });
-
-        control = new OpenLayers.Control.SelectFeature(
-          layers,
-          {
-            clickout: true, toggle: true,
-            multiple: false, hover: false
-          }
-          );
-        control.id = "selectControl";
-
-        control.handlers['feature'].stopDown = false;
-        control.handlers['feature'].stopUp = false;
-
-        self.map.addControl(control);
-        control.activate();
       },
 
       addControls: function () {
@@ -291,7 +234,7 @@ define([
         this.controls = controls;
 
         controls.selectStops = new OpenLayers.Control.SelectFeature(
-          [self.stopsLayer,self.bboxLayer, self.layers.drawStops.layer, self.layers.kml.layer],
+          [self.stopsLayer, self.layers.stopsBboxLayer.layer, self.layers.drawStops.layer, self.layers.kml.layer],
           {
             id: 'selectStops',
             clickout: true, toggle: false,
@@ -300,7 +243,7 @@ define([
         this.map.addControl(controls.selectStops);
 
         controls.selectMultiple = new OpenLayers.Control.SelectFeature(
-          self.bboxLayer,
+          self.layers.stopsBboxLayer.layer,
           {
             id: 'selectMultiple',
             multiple: true, multipleKey: 'shiftKey',
