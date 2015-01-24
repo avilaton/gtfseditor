@@ -1,11 +1,11 @@
 define([
-  "OpenLayers",
-  "backbone",
+  'OpenLayers',
+  'backbone',
   'config',
-  "views/map/drawStops",
-  "views/map/kmlLayer",
-  "views/map/stopsLayer",
-  "views/map/styles"
+  'views/map/drawStops',
+  'views/map/kmlLayer',
+  'views/map/stopsLayer',
+  'views/map/styles'
   ],
   function (OpenLayers, Backbone, Config, DrawStopsView, KmlLayerView, StopsLayerView, Styles) {
     'use strict';
