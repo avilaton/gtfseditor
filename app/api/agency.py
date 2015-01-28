@@ -7,7 +7,6 @@ from ..models import Agency
 from . import api
 
 
-
 @api.route('/agency')
 @api.route('/agency/')
 def get_agencys():

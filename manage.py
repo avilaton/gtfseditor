@@ -5,7 +5,6 @@ import os
 import zipfile
 from app import create_app
 from app import db
-from app import create_celery_app
 from app.models import *
 from app.services.feed import Feed
 from app.services.sequence import StopSequence as Sequence
@@ -14,39 +13,12 @@ from flask.ext.script import Manager, Shell
 from flask.ext.migrate import Migrate, MigrateCommand
 
 
-TMP_FOLDER = '.tmp/'
-
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
-celery = create_celery_app(app)
+
+from app.tasks import celery_app
 
 manager = Manager(app)
 migrate = Migrate(app, db)
-
-@celery.task
-def add(x, y):
-    from time import sleep
-    sleep(60)
-    return x + y
-
-@celery.task
-def buildFeed(validate=False, extract=False):
-  """Build feed to .tmp folder"""
-
-  if not os.path.isdir(TMP_FOLDER):
-    os.makedirs(TMP_FOLDER)
-
-  feed = Feed(db=db.session)
-  feedFile = feed.build()
-
-  with open(TMP_FOLDER + feed.filename, 'wb') as f:
-    f.write(feedFile.getvalue())
-
-  if validate:
-    feed.validate()
-
-  if extract:
-    extractZip(TMP_FOLDER + feed.filename, TMP_FOLDER + 'extracted/')
-
 
 
 def extractZip(filename, dest):

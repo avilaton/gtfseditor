@@ -1,23 +1,21 @@
-
-import os
-from app.services.feed import Feed
-from . import create_app
-from . import create_celery_app
 from . import db
+from . import create_celery_app
 
-celery = create_celery_app()
+celery_app = create_celery_app()
 
-TMP_FOLDER = '.tmp/'
-
-@celery.task
-def add(x, y):
+@celery_app.task
+def sendEmail(msg):
     from time import sleep
-    sleep(60)
-    return x + y
+    sleep(10)
+    return msg
 
-@celery.task
+@celery_app.task
 def buildFeed(validate=False):
   """Build feed to .tmp folder"""
+  import os
+  from app.services.feed import Feed
+
+  TMP_FOLDER = '.tmp/'
 
   if not os.path.isdir(TMP_FOLDER):
     os.makedirs(TMP_FOLDER)
