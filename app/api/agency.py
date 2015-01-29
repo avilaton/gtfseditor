@@ -6,12 +6,15 @@ from .. import db
 from ..models import Agency
 from . import api
 from app.tasks import sendEmail
+from app.tasks import buildFeed
 
 
 @api.route('/agency')
 @api.route('/agency/')
 def get_agencys():
     sendEmail.delay("test")
+    print "starting build"
+    buildFeed.delay()
     agencys = Agency.query.all()
     return jsonify({
         'agencys': [item.to_json for item in agencys]
