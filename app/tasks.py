@@ -11,7 +11,7 @@ def sendEmail(self, msg):
     logger.info("send email task started")
     from time import sleep
     sleep(2)
-    print self.request.id
+    logger.info("Task id is {0}".format(self.request.id))
     return msg
 
 @celery_app.task
@@ -25,7 +25,6 @@ def buildFeed(validate=False):
 
   if not os.path.isdir(TMP_FOLDER):
     os.makedirs(TMP_FOLDER)
-  logger.info("Temp folder created")
 
   feed = Feed(db=db.session)
   feedFile = feed.build()
