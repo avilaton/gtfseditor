@@ -5,11 +5,13 @@ from flask import jsonify, request, g, abort, url_for, current_app
 from .. import db
 from ..models import Agency
 from . import api
+from app.tasks import sendEmail
 
 
 @api.route('/agency')
 @api.route('/agency/')
 def get_agencys():
+    sendEmail.delay("test")
     agencys = Agency.query.all()
     return jsonify({
         'agencys': [item.to_json for item in agencys]

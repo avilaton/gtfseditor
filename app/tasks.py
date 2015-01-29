@@ -3,10 +3,11 @@ from . import create_celery_app
 
 celery_app = create_celery_app()
 
-@celery_app.task
-def sendEmail(msg):
+@celery_app.task(bind=True)
+def sendEmail(self, msg):
     from time import sleep
-    sleep(10)
+    sleep(2)
+    print self.request.id
     return msg
 
 @celery_app.task
