@@ -27,6 +27,8 @@ class Feed(object):
 
   def build(self):
     logger.info("Feed build started")
+    logger.info("Database session")
+    logger.info(self.db)
     self.trip_start_times_default = self.db.query(TripStartTime).filter_by(trip_id='default').all()
 
     self.loadAgencies()

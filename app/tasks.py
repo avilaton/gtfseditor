@@ -8,8 +8,8 @@ celery_app = create_celery_app()
 
 @celery_app.task(bind=True)
 def sendEmail(self, msg):
+    logger.info("send email task started")
     from time import sleep
-    logger.info("task started")
     sleep(2)
     print self.request.id
     return msg
@@ -17,6 +17,7 @@ def sendEmail(self, msg):
 @celery_app.task
 def buildFeed(validate=False):
   """Build feed to .tmp folder"""
+  logger.info("build feed task started")
   import os
   from app.services.feed import Feed
 
