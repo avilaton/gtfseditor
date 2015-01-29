@@ -3,9 +3,6 @@ amqp==1.4.6
 anyjson==0.3.3
 Beaker==1.6.4
 billiard==3.3.0.19
-bottle==0.12.7
-bottle-cork==0.10
-bottle-sqlalchemy==0.4.1
 celery==3.1.17
 Flask==0.10.1
 Flask-Bootstrap==3.0.3.1
@@ -19,7 +16,7 @@ gunicorn==18.0
 itsdangerous==0.24
 Jinja2==2.7.3
 kombu==3.0.24
-Mako==1.0.0
+Mako==1.0.1
 MarkupSafe==0.23
 psycopg2==2.5.4
 pycrypto==2.6.1
