@@ -9,15 +9,16 @@ from app.models import *
 from app.services.feed import Feed
 from app.services.sequence import StopSequence as Sequence
 
-from flask.ext.script import Manager, Shell
-from flask.ext.migrate import Migrate, MigrateCommand
+from flask.ext.script import Manager
+from flask.ext.script import Shell
+from flask.ext.migrate import Migrate
+from flask.ext.migrate import MigrateCommand
 
+TMP_FOLDER = 'tmp/'
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 
 from app.tasks import celery_app
-
-TMP_FOLDER = 'tmp/'
 
 manager = Manager(app)
 migrate = Migrate(app, db)
