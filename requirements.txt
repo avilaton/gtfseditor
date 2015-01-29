@@ -21,7 +21,7 @@ Jinja2==2.7.3
 kombu==3.0.24
 Mako==1.0.0
 MarkupSafe==0.23
-psycopg2==2.5.1
+psycopg2==2.5.4
 pycrypto==2.6.1
 pystache==0.5.3
 pytz==2014.10
