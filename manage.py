@@ -17,11 +17,11 @@ app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 
 from app.tasks import celery_app
 
+TMP_FOLDER = 'tmp/'
+
 manager = Manager(app)
 migrate = Migrate(app, db)
 
-
-TMP_FOLDER = '.tmp/'
 
 def extractZip(filename, dest):
   """extract for debuging"""
