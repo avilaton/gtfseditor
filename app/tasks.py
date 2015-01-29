@@ -21,7 +21,7 @@ def buildFeed(validate=False):
   import os
   from app.services.feed import Feed
 
-  TMP_FOLDER = '.tmp/'
+  TMP_FOLDER = 'tmp/'
 
   if not os.path.isdir(TMP_FOLDER):
     os.makedirs(TMP_FOLDER)

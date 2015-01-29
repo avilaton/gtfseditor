@@ -6,6 +6,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 import csv
+import resource
 import transitfeed
 import StringIO
 import zipfile
@@ -20,7 +21,7 @@ class Feed(object):
     self.db = db
     self.filename = filename
     self.fileObj = StringIO.StringIO()
-    self.schedule = transitfeed.Schedule()
+    self.schedule = transitfeed.Schedule(memory_db=False)
 
   def __repr__(self):
     return 'GTFS feed:' + self.filename
@@ -96,7 +97,8 @@ class Feed(object):
 
     for i, row in enumerate(routes):
       route_id = row.route_id
-      logger.info("Loading {1}/{2}, route_id: {0}".format(route_id, i, count))
+      mem = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+      logger.info("Loading {1}/{2} ({3}), route_id: {0}".format(route_id, i, count, mem))
       route = self.schedule.AddRoute(short_name=row.route_short_name, 
           #long_name=row.route_long_name, 
           long_name='', 
