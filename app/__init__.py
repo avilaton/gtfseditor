@@ -43,9 +43,9 @@ def create_app(config_name):
 
 def create_celery_app(app=None):
     app = app or create_app('staging')
-    celery = Celery(__name__, broker='sqla+sqlite:///celerydb.sqlite',
-        backend='db+sqlite:///celerydb.sqlite')
+    celery = Celery(__name__)
     celery.conf.update(app.config)
+
     TaskBase = celery.Task
     class ContextTask(TaskBase):
         abstract = True

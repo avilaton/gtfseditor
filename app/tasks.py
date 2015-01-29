@@ -1,11 +1,15 @@
 from . import db
 from . import create_celery_app
+from celery.utils.log import get_task_logger
+
+logger = get_task_logger(__name__)
 
 celery_app = create_celery_app()
 
 @celery_app.task(bind=True)
 def sendEmail(self, msg):
     from time import sleep
+    logger.info("task started")
     sleep(2)
     print self.request.id
     return msg
