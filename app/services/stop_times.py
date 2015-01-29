@@ -8,7 +8,6 @@ logger = logging.getLogger(__name__)
 from transitfeed import TimeToSecondsSinceMidnight
 from transitfeed import FormatSecondsSinceMidnight
 
-from server import engine
 from ..models import *
 
 

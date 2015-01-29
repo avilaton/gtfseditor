@@ -21,6 +21,8 @@ manager = Manager(app)
 migrate = Migrate(app, db)
 
 
+TMP_FOLDER = '.tmp/'
+
 def extractZip(filename, dest):
   """extract for debuging"""
   if not os.path.exists(dest):

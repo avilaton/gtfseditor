@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 from ..models import *
 
-import server.utils.geom as utils
+import geom
 import transitfeed
 
 class StopSequence(object):
@@ -29,7 +29,7 @@ class StopSequence(object):
     for stop, snap in self.snaps:
       nLat = snap['node']['lat']
       nLon = snap['node']['lon']
-      of = utils.leftHand(snap['node'], snap['heading'], offset)
+      of = geom.leftHand(snap['node'], snap['heading'], offset)
       nStop = {'stop_id':stop['stop_id'], 
                 'lat':of['lat'],
                 'lon':of['lon']}
@@ -50,7 +50,7 @@ class StopSequence(object):
     for item in self.stopsSequence:
       stop = item.Stop
       stop_dict = stop_lat_lon(item.Stop)
-      snap = utils.snapPointToPolygon(stop_dict, shape_dicts)
+      snap = geom.snapPointToPolygon(stop_dict, shape_dicts)
       self.snaps.append({
         'StopSeq': item.StopSeq,
         'Stop': item.Stop,
