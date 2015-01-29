@@ -24,6 +24,7 @@ def buildFeed(validate=False):
 
   if not os.path.isdir(TMP_FOLDER):
     os.makedirs(TMP_FOLDER)
+  logger.info("Temp folder created")
 
   feed = Feed(db=db.session)
   feedFile = feed.build()

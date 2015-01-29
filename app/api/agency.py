@@ -20,14 +20,14 @@ def get_agencys():
 
 @api.route('/mail')
 @api.route('/mail/')
-def get_agencys():
+def get_mail():
     job = sendEmail.delay("test")
     return jsonify({"task": job.id})
 
 
 @api.route('/feed')
 @api.route('/feed/')
-def get_agencys():
+def get_feed():
     job = buildFeed.delay()
     return jsonify({'task': job.id})
 
