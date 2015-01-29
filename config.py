@@ -42,7 +42,7 @@ class TestingConfig(Config):
 
 class StagingConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('STAGING_DATABASE_URL') or \
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'postgres:///mza'
     WTF_CSRF_ENABLED = False
 
