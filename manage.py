@@ -42,7 +42,7 @@ def make_shell_context():
     return dict(app=app, db=db, Route=Route, Trip=Trip, Sequence=Sequence,
       Shape=Shape, Stop=Stop, StopSeq=StopSeq, TripStartTime=TripStartTime,
       CalendarDate=CalendarDate, Calendar=Calendar, Agency=Agency,
-      FeedInfo=FeedInfo)
+      FeedInfo=FeedInfo, Feed=Feed)
 
 manager.add_command("shell", Shell(make_context=make_shell_context))
 manager.add_command('db', MigrateCommand)

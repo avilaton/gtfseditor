@@ -28,9 +28,10 @@ def buildFeed(validate=False):
 
   feed = Feed(db=db.session)
   feedFile = feed.build()
+  feed.saveTo(TMP_FOLDER)
 
-  with open(TMP_FOLDER + feed.filename, 'wb') as f:
-    f.write(feedFile.getvalue())
+  # with open(TMP_FOLDER + feed.filename, 'wb') as f:
+  #   f.write(feedFile.getvalue())
 
   if validate:
     feed.validate()

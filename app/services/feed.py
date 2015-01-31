@@ -44,6 +44,9 @@ class Feed(object):
     logger.info("Feed build completed")
     return self.fileObj
 
+  def saveTo(self, directory):
+    self.schedule.WriteGoogleTransitFeed(directory + self.filename)
+
   def validate(self):
     """Validate feed object"""
     logger.info("Validating feed")
