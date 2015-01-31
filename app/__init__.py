@@ -4,10 +4,12 @@ from flask.ext.cors import CORS
 from config import config
 from flask.ext.login import LoginManager
 from flask.ext.bootstrap import Bootstrap
+from flask.ext.compress import Compress
 from celery import Celery
 
 db = SQLAlchemy()
 cors = CORS()
+compress = Compress()
 bootstrap = Bootstrap()
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
@@ -18,6 +20,7 @@ def create_app(config_name):
     config[config_name].init_app(app)
 
     bootstrap.init_app(app)
+    compress.init_app(app)
     db.init_app(app)
     login_manager.init_app(app)
     app.config['CORS_HEADERS'] = 'X-Requested-With, Content-Type'
