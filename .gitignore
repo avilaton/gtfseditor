@@ -3,6 +3,5 @@
 server/gtfstools/*.pyc
 *.pyo
 venv/
-tmp/
 .tmp/
 logs.log
