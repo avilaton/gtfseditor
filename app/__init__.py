@@ -42,7 +42,6 @@ def create_app(config_name):
     return app
 
 def create_celery_app(app=None):
-    print "this is the app", app
     app = app or create_app('staging')
     celery = Celery(__name__)
     celery.conf.update(app.config)
