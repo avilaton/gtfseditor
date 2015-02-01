@@ -5,6 +5,7 @@ from flask import jsonify
 from . import api
 from app.tasks import sendEmail
 from app.tasks import buildFeed
+from app.tasks import listDir
 
 
 @api.route('/mail')
@@ -19,3 +20,12 @@ def get_mail():
 def get_feed():
     job = buildFeed.delay()
     return jsonify({'task': job.id})
+
+
+@api.route('/list')
+@api.route('/list/')
+def list_feed():
+    job = listDir.delay()
+    job.wait()
+    print job.result
+    return jsonify({'task': job.id, "result": job.result})

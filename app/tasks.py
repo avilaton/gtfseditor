@@ -33,3 +33,13 @@ def buildFeed(validate=False):
 
   if validate:
     feed.validate()
+
+@celery_app.task
+def listDir():
+  """Build feed to .tmp folder"""
+  logger.info("listing files in TMP folder")
+  import os
+
+  files = os.listdir(celery_app.conf.TMP_FOLDER)
+
+  return files
