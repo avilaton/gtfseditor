@@ -17,6 +17,8 @@ class Entity(object):
       if attr is not None:
         if isinstance(column.type, db.Float):
           d[column.name] = float(attr)
+        elif isinstance(column.type, db.Boolean):
+          d[column.name] = attr
         else:
           d[column.name] = unicode(attr)
       else:
@@ -42,7 +44,7 @@ class Route(db.Model, Entity):
   route_type = db.Column(db.String(50))
   route_color = db.Column(db.String(50))
   route_text_color = db.Column(db.String(50))
-  active = db.Column(db.String(50))
+  active = db.Column(db.Boolean, default=False)
 
 
 class FeedInfo(db.Model, Entity):

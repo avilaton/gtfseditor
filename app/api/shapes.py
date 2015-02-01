@@ -12,7 +12,6 @@ import app.services.geojson as geojson
 
 @api.route('/shape/<shape_id>')
 def getShape(shape_id):
-  logger.info("Shape fetched")
   shape = db.session.query(Shape).filter(Shape.shape_id == shape_id)\
   	.order_by(Shape.shape_pt_sequence).all()
   coords = [[pt.shape_pt_lon,pt.shape_pt_lat] for pt in shape]
