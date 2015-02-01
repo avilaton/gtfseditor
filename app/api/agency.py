@@ -5,8 +5,6 @@ from flask import jsonify, request, g, abort, url_for, current_app
 from .. import db
 from ..models import Agency
 from . import api
-from app.tasks import sendEmail
-from app.tasks import buildFeed
 
 
 @api.route('/agency')
@@ -16,20 +14,6 @@ def get_agencys():
     return jsonify({
         'agencys': [item.to_json for item in agencys]
     })
-
-
-@api.route('/mail')
-@api.route('/mail/')
-def get_mail():
-    job = sendEmail.delay("test")
-    return jsonify({"task": job.id})
-
-
-@api.route('/feed')
-@api.route('/feed/')
-def get_feed():
-    job = buildFeed.delay()
-    return jsonify({'task': job.id})
 
 
 @api.route('/agency/<agency_id>')
