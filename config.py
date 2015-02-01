@@ -17,6 +17,8 @@ class Config:
     FLASKY_MAIL_SENDER = 'Flasky Admin <flasky@example.com>'
     FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')
     FLASKY_SLOW_DB_QUERY_TIME=0.5
+    BROKER_URL = os.environ.get('CLOUDAMQP_URL') or 'sqla+sqlite:///celerydb.sqlite'
+    CELERY_RESULT_BACKEND = os.environ.get('CLOUDAMQP_URL') or 'db+sqlite:///celerydb.sqlite'
     MODES = ["frequency", "initial-times", "full-spec"]
     BUILD_MODE = MODES[1]
 
@@ -40,7 +42,7 @@ class TestingConfig(Config):
 
 class StagingConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('STAGING_DATABASE_URL') or \
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'postgres:///mza'
     WTF_CSRF_ENABLED = False
 
