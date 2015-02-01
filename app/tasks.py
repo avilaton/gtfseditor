@@ -40,6 +40,9 @@ def listDir():
   logger.info("listing files in TMP folder")
   import os
 
+  if not os.path.isdir(celery_app.conf.TMP_FOLDER):
+    os.makedirs(celery_app.conf.TMP_FOLDER)
+
   files = os.listdir(celery_app.conf.TMP_FOLDER)
 
   return files
