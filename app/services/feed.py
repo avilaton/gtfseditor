@@ -95,7 +95,7 @@ class Feed(object):
   def loadRoutes(self):
     """Loads active routes into schedule"""
     logger.info("Loading Routes")
-    routes = self.db.query(Route).order_by(Route.route_short_name).filter(Route.active != None).all()
+    routes = self.db.query(Route).order_by(Route.route_short_name).filter(Route.active).all()
     count = len(routes)
 
     for i, row in enumerate(routes):

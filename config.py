@@ -21,6 +21,7 @@ class Config:
     CELERY_RESULT_BACKEND = os.environ.get('CLOUDAMQP_URL') or 'db+sqlite:///celerydb.sqlite'
     MODES = ["frequency", "initial-times", "full-spec"]
     BUILD_MODE = MODES[1]
+    TMP_FOLDER = '.tmp/'
 
     @staticmethod
     def init_app(app):

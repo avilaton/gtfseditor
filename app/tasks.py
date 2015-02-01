@@ -21,16 +21,14 @@ def buildFeed(validate=False):
   import os
   from app.services.feed import Feed
 
-  TMP_FOLDER = 'tmp/'
-
-  if not os.path.isdir(TMP_FOLDER):
-    os.makedirs(TMP_FOLDER)
+  if not os.path.isdir(celery_app.conf.TMP_FOLDER):
+    os.makedirs(celery_app.conf.TMP_FOLDER)
 
   feed = Feed(db=db.session)
   feedFile = feed.build()
-  feed.saveTo(TMP_FOLDER)
+  feed.saveTo(celery_app.conf.TMP_FOLDER)
 
-  # with open(TMP_FOLDER + feed.filename, 'wb') as f:
+  # with open(celery_app.conf.TMP_FOLDER + feed.filename, 'wb') as f:
   #   f.write(feedFile.getvalue())
 
   if validate:

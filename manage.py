@@ -3,6 +3,7 @@
 
 import os
 import zipfile
+from config import config
 from app import create_app
 from app import db
 from app.models import *
@@ -14,7 +15,7 @@ from flask.ext.script import Shell
 from flask.ext.migrate import Migrate
 from flask.ext.migrate import MigrateCommand
 
-TMP_FOLDER = 'tmp/'
+TMP_FOLDER = config[os.getenv('FLASK_CONFIG') or 'default'].TMP_FOLDER
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 
@@ -127,6 +128,60 @@ def renamestops():
     db.session.merge(stop)
     print("{2}/{1} Stop_id: {0} renamed to: {3}".format(stop.stop_id, total, i, stop_name.encode('utf8')))
   db.session.commit()
+
+@manager.command
+def importCardCodes(filename):
+  """Creates stop names from other columns"""
+  import csv
+
+  with open(filename, 'r') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+      codigo = row["codigo"].strip()
+      trip_id = row["trip_id"].strip()
+      card_code = codigo[-3:]
+      route_id = codigo[:-3]
+      if route_id.isdigit():
+        route_id = route_id.zfill(3)
+      trip = Trip.query.filter_by(trip_id=trip_id).first()
+      print codigo, card_code, trip_id, trip
+      if trip:
+        trip.card_code = card_code
+        db.session.merge(trip)
+  db.session.commit()
+
+@manager.command
+def importInitTimes(filename, grupo):
+  """Creates stop names from other columns"""
+  import csv
+
+  codes = {}
+  with open(filename, 'r') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+      print row
+      card_code = row["codigo"]
+      row["service_id"] = row["service_id"].lower()
+      row["trip_start_time"] = row["trip_start_time"] + ":00"
+      codes.setdefault(card_code, [])
+      codes[card_code].append(row)
+
+  startTimeRows = []
+
+  for card_code, times in codes.items():
+    print "\n", card_code
+    trips = Trip.query.order_by(Trip.route_id).\
+      filter(Trip.route_id.ilike(grupo + '%'), Trip.card_code == card_code).all()
+    for trip in trips:
+      for time in times:
+        tripStartTime = TripStartTime(service_id=time["service_id"],
+          start_time=time["trip_start_time"])
+        tripStartTime.trip_id = trip.trip_id
+        startTimeRows.append(tripStartTime)
+        print tripStartTime.to_json
+
+  db.session.add_all(startTimeRows)
+  db.session.flush()
 
 if __name__ == '__main__':
     manager.run()
