@@ -26,6 +26,6 @@ def get_feed():
 @api.route('/list/')
 def list_feed():
     job = listDir.delay()
+    print "job started", job.result
     job.wait()
-    print job.result
     return jsonify({'task': job.id, "result": job.result})
