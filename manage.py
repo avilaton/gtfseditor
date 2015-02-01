@@ -128,5 +128,41 @@ def renamestops():
     print("{2}/{1} Stop_id: {0} renamed to: {3}".format(stop.stop_id, total, i, stop_name.encode('utf8')))
   db.session.commit()
 
+@manager.command
+def importInitTimes(filename):
+  """Creates stop names from other columns"""
+  import csv
+
+  tarjeta_trips = {}
+
+  with open("codes.csv", 'r') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+      codigo = row["codigo"]
+      trip_id = row["trip_id"]
+      tarjeta = codigo[-3:]
+      route_id = codigo[:-3]
+      if route_id.isdigit():
+        route_id = route_id.zfill(3)
+      if route_id not in ['011']:
+        continue
+      print route_id, trip_id, tarjeta
+      tarjeta_trips.setdefault(tarjeta, [])
+      tarjeta_trips[tarjeta].append(trip_id)
+  print tarjeta_trips['111']
+
+  # with open(filename, 'r') as csvfile:
+  #   reader = csv.DictReader(csvfile)
+  #   for row in reader:
+  #     print row
+  #     row['trip_id'] = trip_id
+  #     startTime = TripStartTime(trip_id = trip_id,
+  #       start_time = row['start_time'],
+  #       service_id = row['service_id'])
+  #     db.session.merge(startTime)
+
+  # for trip in Trip.query.order_by(Trip.route_id).filter(Trip.route_id.ilike('01%')).all():
+  #   print trip, trip.route_id
+
 if __name__ == '__main__':
     manager.run()
