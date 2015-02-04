@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import jsonify, request, g, abort, url_for, current_app,render_template
-from .. import db
+from flask import jsonify, request, redirect,g, abort, url_for, current_app,render_template
+from .. import db, admin
+from ..email import send_email
 from ..models import Route, Trip
 from . import reports
 
@@ -32,3 +33,8 @@ def get_report_routes():
 			last = route.route_id
 
 	return render_template('reports/routes.html', routes=routes, count=len(result), active=active)
+
+@reports.route('/email')
+def sendEmail():
+	send_email()
+	return redirect(url_for('admin.root'))
