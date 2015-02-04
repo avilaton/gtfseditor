@@ -11,7 +11,7 @@ from . import api
 def index():
   feed = Feed(db = db.session)
   fin = feed.build()
-  response = make_response()
+  response = make_response(fin.getvalue())
   response.headers['Content-Type'] = 'application/zip'
   response.headers['Content-Disposition'] = 'attachment; filename="{0}"'.format(feed.filename)
   return response
