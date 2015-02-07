@@ -48,7 +48,7 @@ define([
               ],
             protocol: new OpenLayers.Protocol.HTTP({
               format: new OpenLayers.Format.GTFS(),
-              url: Config.server + 'api/bbox.json',
+              url: Config.server + 'api/stops.json',
               params: {filter:''}
             })
           });

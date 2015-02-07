@@ -2,6 +2,12 @@ define(['handlebars'], function(Handlebars) {
 
 this["JST"] = this["JST"] || {};
 
+this["JST"]["fileUpload"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<form role=\"form\" class=\"upload\">\n  <div class=\"form-group\">\n    <label for=\"exampleInputFile\">File input</label>\n    <input type=\"file\" name=\"file\" class=\"file\">\n    <p class=\"help-block\">specified format</p>\n  </div>\n  <button type=\"submit\" class=\"btn btn-default btn-upload\">Submit</button>\n</form>";
+  },"useData":true});
+
+
+
 this["JST"]["filter"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<div class=\"input-group\">\n  <input type=\"text\" class=\"form-control filter-value\" placeholder=\"Filter...\">\n  <span class=\"input-group-btn\">\n    <button class=\"btn btn-default filter-button\" type=\"button\"><i class=\"glyphicon glyphicon-search\"></i></button>\n  </span>\n</div>\n";
   },"useData":true});
@@ -310,7 +316,7 @@ this["JST"]["stops"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"ma
 
 
 this["JST"]["times"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"col-md-4 panel-left\">\n  <div class=\"row\">\n    <div  class=\"col-md-12 routes-select\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12 trips-select\">\n    </div>\n  </div>\n</div>\n<div class=\"col-md-8 panel-right\">\n	<form role=\"form\" class=\"upload\">\n	  <div class=\"form-group\">\n	    <label for=\"exampleInputFile\">File input</label>\n	    <input type=\"file\" name=\"file\" class=\"file\">\n	    <p class=\"help-block\">specified format</p>\n	  </div>\n	  <button type=\"submit\" class=\"btn btn-default btn-upload\">Submit</button>\n	</form>\n  <div class=\"start-times-view\"></div>\n</div>";
+  return "<div class=\"col-md-4 panel-left\">\n  <div class=\"row\">\n    <div  class=\"col-md-12 routes-select\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12 trips-select\">\n    </div>\n  </div>\n</div>\n<div class=\"col-md-8 panel-right\">\n  <div class=\"file-upload\"></div>\n  <div class=\"start-times-view\"></div>\n</div>";
   },"useData":true});
 
 
