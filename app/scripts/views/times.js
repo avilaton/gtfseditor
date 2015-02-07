@@ -25,10 +25,6 @@ define([
 
       template: JST['times'],
 
-      events: {
-        'submit form.upload': 'onSubmit'
-      },
-
       initialize: function(){
         this.render();
       },
@@ -60,29 +56,11 @@ define([
         tripsSelector.on('select', function (value) {
           var selectedTrip = tripsSelector.collection.get(value);
           var trip_id = selectedTrip.get('trip_id');
-      
+
           this.tripStartTimesCol.trip_id = trip_id;
           this.tripStartTimesCol.fetch({reset: true});
 
         }, this);
-      },
-
-      onSubmit: function (event) {
-        var self = this,
-          $target = $(event.currentTarget); 
-        event.preventDefault();
-        event.stopPropagation();
-
-        var fileInput = $target.find('.file').get(0);
-        var data = new FormData();
-        data.append('upload', fileInput.files[0]);
-        $.ajax({
-          url: 'http://localhost:8000/api/trips/' + self.tripStartTimesCol.trip_id + '/start-times.csv',
-          type: "POST",
-          data: data,
-          processData: false,
-          contentType: false
-        });
       }
 
     });
