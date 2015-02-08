@@ -1,49 +1,36 @@
-<div class="col-md-4 panel-left">
-  <p>hello</p>
-  <div class="row">
-    <div  class="col-md-12 routes-select">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12 trips-select">
-    </div>
-  </div>
-</div>
 <div class="col-md-8 panel-right">
-  <table class="table table-hover table-condensed table-editable">
+  <table class="table table-condensed table-editable">
     <thead>
       <tr>
-        <th class="col-md-1"></th>
-        <th class="col-md-1">Service Id</th>
-        <th class="col-md-2">Starts</th>
-        <th class="col-md-2">Ends</th>
-        <th class="col-md-1">M</th>
-        <th class="col-md-1">T</th>
-        <th class="col-md-1">W</th>
-        <th class="col-md-1">T</th>
-        <th class="col-md-1">F</th>
-        <th class="col-md-1">S</th>
-        <th class="col-md-1">S</th>
+        <th></th>
+        <th>Service Id</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th><th>S</th>
       </tr>
     </thead>
     <tbody>
       {{#each models}}
       <tr data-index="{{@index}}">
-        <td>
+        <td class="vcenter">
           <button class="btn btn-default btn-rm"><span class="glyphicon glyphicon-remove"></span></button>
         </td>
         <td><input class="form-control" data-attr="service_id" type="text" value="{{service_id}}"/></td>
-        <td><input class="form-control" data-attr="start_time" type="text" value="{{start_date}}"/></td>
-        <td><input class="form-control" data-attr="start_time" type="text" value="{{end_date}}"/></td>
-        <td class="vcenter"><input type="checkbox" name="monday"></td>
-        <td class="vcenter"><input type="checkbox" name="tuesday"></td>
-        <td class="vcenter"><input type="checkbox" name="wednesday"></td>
-        <td class="vcenter"><input type="checkbox" name="thursday"></td>
-        <td class="vcenter"><input type="checkbox" name="friday"></td>
-        <td class="vcenter"><input type="checkbox" name="saturday"></td>
-        <td class="vcenter"><input type="checkbox" name="sunday"></td>
+        <td><input class="form-control" data-attr="start_date" type="text" value="{{start_date}}"/></td>
+        <td><input class="form-control" data-attr="end_date" type="text" value="{{end_date}}"/></td>
+        <td class="vcenter"><input type="checkbox" name="monday" {{checked monday}}></td>
+        <td class="vcenter"><input type="checkbox" name="tuesday" {{checked tuesday}}></td>
+        <td class="vcenter"><input type="checkbox" name="wednesday" {{checked wednesday}}></td>
+        <td class="vcenter"><input type="checkbox" name="thursday" {{checked thursday}}></td>
+        <td class="vcenter"><input type="checkbox" name="friday" {{checked friday}}></td>
+        <td class="vcenter"><input type="checkbox" name="saturday" {{checked saturday}}></td>
+        <td class="vcenter"><input type="checkbox" name="sunday" {{checked sunday}}></td>
       </tr>
       {{/each}}
     </tbody>
   </table>
+</div>
+<div class="col-md-4 panel-left">
+  <button class="btn btn-default add-btn"><span class="glyphicon glyphicon-plus"></span> Add</button>
+  <button class="btn btn-default save-btn"><span class="glyphicon glyphicon-save"></span> Save</button>
 </div>

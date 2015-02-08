@@ -6,18 +6,32 @@ this["JST"]["calendar"] = Handlebars.template({"1":function(depth0,helpers,parti
   var helper, lambda=this.lambda, escapeExpression=this.escapeExpression, functionType="function", helperMissing=helpers.helperMissing;
   return "      <tr data-index=\""
     + escapeExpression(lambda((data && data.index), depth0))
-    + "\">\n        <td>\n          <button class=\"btn btn-default btn-rm\"><span class=\"glyphicon glyphicon-remove\"></span></button>\n        </td>\n        <td><input class=\"form-control\" data-attr=\"service_id\" type=\"text\" value=\""
+    + "\">\n        <td class=\"vcenter\">\n          <button class=\"btn btn-default btn-rm\"><span class=\"glyphicon glyphicon-remove\"></span></button>\n        </td>\n        <td><input class=\"form-control\" data-attr=\"service_id\" type=\"text\" value=\""
     + escapeExpression(((helper = (helper = helpers.service_id || (depth0 != null ? depth0.service_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"service_id","hash":{},"data":data}) : helper)))
-    + "\"/></td>\n        <td><input class=\"form-control\" data-attr=\"start_time\" type=\"text\" value=\""
+    + "\"/></td>\n        <td><input class=\"form-control\" data-attr=\"start_date\" type=\"text\" value=\""
     + escapeExpression(((helper = (helper = helpers.start_date || (depth0 != null ? depth0.start_date : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"start_date","hash":{},"data":data}) : helper)))
-    + "\"/></td>\n        <td><input class=\"form-control\" data-attr=\"start_time\" type=\"text\" value=\""
+    + "\"/></td>\n        <td><input class=\"form-control\" data-attr=\"end_date\" type=\"text\" value=\""
     + escapeExpression(((helper = (helper = helpers.end_date || (depth0 != null ? depth0.end_date : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"end_date","hash":{},"data":data}) : helper)))
-    + "\"/></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"monday\"></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"tuesday\"></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"wednesday\"></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"thursday\"></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"friday\"></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"saturday\"></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"sunday\"></td>\n      </tr>\n";
+    + "\"/></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"monday\" "
+    + escapeExpression(((helpers.checked || (depth0 && depth0.checked) || helperMissing).call(depth0, (depth0 != null ? depth0.monday : depth0), {"name":"checked","hash":{},"data":data})))
+    + "></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"tuesday\" "
+    + escapeExpression(((helpers.checked || (depth0 && depth0.checked) || helperMissing).call(depth0, (depth0 != null ? depth0.tuesday : depth0), {"name":"checked","hash":{},"data":data})))
+    + "></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"wednesday\" "
+    + escapeExpression(((helpers.checked || (depth0 && depth0.checked) || helperMissing).call(depth0, (depth0 != null ? depth0.wednesday : depth0), {"name":"checked","hash":{},"data":data})))
+    + "></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"thursday\" "
+    + escapeExpression(((helpers.checked || (depth0 && depth0.checked) || helperMissing).call(depth0, (depth0 != null ? depth0.thursday : depth0), {"name":"checked","hash":{},"data":data})))
+    + "></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"friday\" "
+    + escapeExpression(((helpers.checked || (depth0 && depth0.checked) || helperMissing).call(depth0, (depth0 != null ? depth0.friday : depth0), {"name":"checked","hash":{},"data":data})))
+    + "></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"saturday\" "
+    + escapeExpression(((helpers.checked || (depth0 && depth0.checked) || helperMissing).call(depth0, (depth0 != null ? depth0.saturday : depth0), {"name":"checked","hash":{},"data":data})))
+    + "></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"sunday\" "
+    + escapeExpression(((helpers.checked || (depth0 && depth0.checked) || helperMissing).call(depth0, (depth0 != null ? depth0.sunday : depth0), {"name":"checked","hash":{},"data":data})))
+    + "></td>\n      </tr>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<div class=\"col-md-4 panel-left\">\n  <p>hello</p>\n  <div class=\"row\">\n    <div  class=\"col-md-12 routes-select\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12 trips-select\">\n    </div>\n  </div>\n</div>\n<div class=\"col-md-8 panel-right\">\n  <table class=\"table table-hover table-condensed table-editable\">\n    <thead>\n      <tr>\n        <th class=\"col-md-1\"></th>\n        <th class=\"col-md-1\">Service Id</th>\n        <th class=\"col-md-2\">Starts</th>\n        <th class=\"col-md-2\">Ends</th>\n        <th class=\"col-md-1\">M</th>\n        <th class=\"col-md-1\">T</th>\n        <th class=\"col-md-1\">W</th>\n        <th class=\"col-md-1\">T</th>\n        <th class=\"col-md-1\">F</th>\n        <th class=\"col-md-1\">S</th>\n        <th class=\"col-md-1\">S</th>\n      </tr>\n    </thead>\n    <tbody>\n";
+  var stack1, buffer = "<div class=\"col-md-8 panel-right\">\n  <table class=\"table table-condensed table-editable\">\n    <thead>\n      <tr>\n        <th></th>\n        <th>Service Id</th>\n        <th>Start Date</th>\n        <th>End Date</th>\n        <th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th><th>S</th>\n      </tr>\n    </thead>\n    <tbody>\n";
   stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.models : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "    </tbody>\n  </table>\n</div>";
+  return buffer + "    </tbody>\n  </table>\n</div>\n<div class=\"col-md-4 panel-left\">\n  <button class=\"btn btn-default add-btn\"><span class=\"glyphicon glyphicon-plus\"></span> Add</button>\n  <button class=\"btn btn-default save-btn\"><span class=\"glyphicon glyphicon-save\"></span> Save</button>\n</div>";
 },"useData":true});
 
 

@@ -1,20 +1,33 @@
 define([
-	"underscore",
-	"backbone",
-	'config',
-	"models/calendar"
-], function (_, Backbone, Config, CalendarModel) {
-	var RouteCollection;
+  'underscore',
+  'backbone',
+  'api',
+  'config',
+  'models/calendar'
+], function (_, Backbone, api, Config, CalendarModel) {
+  var RouteCollection;
 
-	RouteCollection = Backbone.Collection.extend({
-		model: CalendarModel,
+  RouteCollection = Backbone.Collection.extend({
+    model: CalendarModel,
 
-		url: Config.server + 'api/calendars/',
+    url: Config.server + 'api/calendars/',
 
-        parse: function (response) {
-        	return response.calendars;
-        }
- 	});
+    parse: function (response) {
+      return response.calendars;
+    },
 
-	return RouteCollection;
+    save: function () {
+        var self = this;
+        var req = api.put({
+            url: self.url,
+            data: JSON.stringify({
+                calendars: self.toJSON()
+            })
+        });
+        return req;
+    },
+
+  });
+
+  return RouteCollection;
 })

@@ -30,9 +30,14 @@ require.config({
     }
 });
 
-require(['router', 'bootstrap'],
-    function (Router) {
+require(['router', 'bootstrap', 'handlebars'],
+    function (Router, Bootstrap, Handlebars) {
     'use strict';
+
+    Handlebars.registerHelper('checked', function (flag) {
+        var boolFlag = Boolean(Number(flag));
+        return boolFlag == true ? ' checked ' : '';
+    });
 
     Router.initialize();
 
