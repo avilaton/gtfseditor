@@ -21,7 +21,7 @@ $ mkvirtualenv gtfs
 ```
 You should now see your command line prompt changed to something like
 ```
-(gtfs)$ 
+(gtfs)$
 ```
 
 Install the projects dependencies using
@@ -31,29 +31,30 @@ pip install -r requirements.txt
 
 You can now run the server using
 ```
-./wsgi.py
+honcho start
 ```
-and open your web browser at `http://localhost:8000`.
+and open your web browser at `http://localhost:5000`.
+
 
 
 Management
 ----------
-A series of database management scripts are accesible from the command line using 
-the `manage.py` script. 
+A series of database management scripts are accesible from the command line using
+the `manage.py` script.
 
 To initialize the database, use
 ```
 $ ./manage.py db upgrade
 ```
-In development mode this will create a file called data-dev.sqlite in the same 
+In development mode this will create a file called data-dev.sqlite in the same
 directory with a DB looking like the one in production.
 
 
 
 Configuration
 -------------
-The main configuration file for the server is located at `server/config.py`. It 
-is being ported to `config.py`.
+The main configuration file for the server is located at `config.py`. Environment variables 
+can be overriden by writing them inside a .env file at the root level.
 
 
 Development
