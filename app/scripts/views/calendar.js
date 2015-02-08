@@ -1,3 +1,5 @@
+'use strict';
+
 define([
   'underscore',
   'backbone',
@@ -18,7 +20,7 @@ define([
         'click input[type="checkbox"]': 'onEditCheckbox'
       },
 
-      template: JST['calendar'],
+      template: JST.calendar,
 
       initialize: function(){
         this.collection = new CalendarsCollection();
@@ -38,8 +40,7 @@ define([
       },
 
       create: function (e) {
-        var $target = $(e.currentTarget),
-          service_id = this.$('input.service_id').val(),
+        var service_id = this.$('input.service_id').val(),
           model;
 
         e.preventDefault();
@@ -81,4 +82,4 @@ define([
     });
 
     return View;
-  })
+  });

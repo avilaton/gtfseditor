@@ -72,7 +72,7 @@ module.exports = function(grunt) {
     connect: {
       options: {
         port: 9000,
-        keepalive: true,
+        // keepalive: true,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: '0.0.0.0',
         livereload: 35729
@@ -95,15 +95,25 @@ module.exports = function(grunt) {
         }
       }
     },
+    jshint: {
+        options: {
+            jshintrc: '.jshintrc'
+        },
+        all: [
+            'Gruntfile.js',
+            'app/scripts/{,**/}*.js',
+            '!app/scripts/JST.js'
+        ]
+    },
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       js: {
         files: ['scripts/{,**/}*.js'],
         // files: ['{.tmp,<%= yeoman.app %>}/scripts/{,**/}*.js'],
-        tasks: ['handlebars']
+        tasks: ['jshint']
       },
       hbs: {
-        files: ['templates/{,**/}*.handlebars'],
+        files: ['app/templates/{,**/}*.handlebars'],
         tasks: ['handlebars']
       },
       livereload: {
@@ -111,7 +121,8 @@ module.exports = function(grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          'scripts/{,**/}*.js'
+          'scripts/{,**/}*.js',
+          'app/templates/{,**/}*.handlebars'
           // '<%= yeoman.app %>/{,**/}*.html',
           // '.tmp/styles/{,**/}*.css',
           // '<%= yeoman.app %>/images/{,**/}*.{png,jpg,jpeg,gif,webp,svg}'
@@ -121,10 +132,6 @@ module.exports = function(grunt) {
   });
 
   // By default, lint and run all tests.
-  grunt.registerTask('monitor', [
-    'watch:hbs'
-  ]);
-
   grunt.registerTask('build', [
     'handlebars',
     'copy',
@@ -133,7 +140,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('serve', [
     'connect:livereload',
-    'watch:hbs'
+    'watch'
   ]);
 
   grunt.registerTask('serve:dist', [
