@@ -3,11 +3,13 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.cors import CORS
 from config import config
 from flask.ext.login import LoginManager
+from flask_mail import Mail
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.compress import Compress
 from celery import Celery
 
 db = SQLAlchemy()
+mail = Mail()
 cors = CORS()
 compress = Compress()
 bootstrap = Bootstrap()
@@ -22,6 +24,7 @@ def create_app(config_name):
     bootstrap.init_app(app)
     compress.init_app(app)
     db.init_app(app)
+    mail.init_app(app)
     login_manager.init_app(app)
     app.config['CORS_HEADERS'] = 'X-Requested-With, Content-Type'
     cors.init_app(app)
@@ -41,6 +44,8 @@ def create_app(config_name):
 
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint, url_prefix='/auth')
+
+    
 
     return app
 
