@@ -241,18 +241,18 @@ this["JST"]["shapesToolbox"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta
 
 this["JST"]["startTimes"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var helper, lambda=this.lambda, escapeExpression=this.escapeExpression, functionType="function", helperMissing=helpers.helperMissing;
-  return "		<tr data-index=\""
+  return "        <tr data-index=\""
     + escapeExpression(lambda((data && data.index), depth0))
-    + "\">\n			<td><input class=\"form-control\" data-attr=\"service_id\" type=\"text\" value=\""
+    + "\">\n          <td><input class=\"form-control\" data-attr=\"service_id\" type=\"text\" value=\""
     + escapeExpression(((helper = (helper = helpers.service_id || (depth0 != null ? depth0.service_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"service_id","hash":{},"data":data}) : helper)))
-    + "\"/></td>\n			<td><input class=\"form-control\" data-attr=\"start_time\" type=\"text\" value=\""
+    + "\"/></td>\n          <td><input class=\"form-control\" data-attr=\"start_time\" type=\"text\" value=\""
     + escapeExpression(((helper = (helper = helpers.start_time || (depth0 != null ? depth0.start_time : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"start_time","hash":{},"data":data}) : helper)))
-    + "\"/></td>\n			<td><button class=\"btn btn-default btn-rm\"><span class=\"glyphicon glyphicon-trash\"></span></button></td>\n		</tr>\n";
+    + "\"/></td>\n          <td><button class=\"btn btn-default btn-rm\"><span class=\"glyphicon glyphicon-remove\"></span></button></td>\n        </tr>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<button class=\"btn btn-default add-btn\"><span class=\"glyphicon glyphicon-plus\"></span> Add</button>\n<button class=\"btn btn-default save-btn\"><span class=\"glyphicon glyphicon-save\"></span> Save</button>\n<table class=\"table table-hover table-condensed table-editable\">\n	<thead>\n		<tr>\n			<th class=\"col-sm-5\">Service Id</th>\n			<th class=\"col-sm-6\">Time</th>\n			<th class=\"col-sm-1\"></th>\n		</tr>\n	</thead>\n	<tbody>\n";
+  var stack1, buffer = "\n<div class=\"row voffset1\">\n  <div class=\"col-md-7\">\n    <table class=\"table table-hover table-condensed table-editable\">\n      <thead>\n        <tr>\n          <th class=\"col-sm-5\">Service Id</th>\n          <th class=\"col-sm-6\">Time</th>\n          <th class=\"col-sm-1\"></th>\n        </tr>\n      </thead>\n      <tbody>\n";
   stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.models : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "	</tbody>\n</table>";
+  return buffer + "      </tbody>\n    </table>\n  </div>\n  <div class=\"col-md-5\">\n    <button class=\"btn btn-default add-btn\"><span class=\"glyphicon glyphicon-plus\"></span> Add</button>\n    <button class=\"btn btn-default save-btn\"><span class=\"glyphicon glyphicon-save\"></span> Save</button>\n    <div class=\"row voffset1\">\n      <div class=\"col-md-12\">\n        <form class=\"form-inline\">\n          <div class=\"form-group\">\n            <label for=\"speed\">Offset</label>\n          <input name=\"offset-min\" type=\"number\" class=\"form-control offset-min\" placeholder=\"minutes\">\n          </div>\n          <button class=\"btn btn-default btn-offset\">Set</button>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>\n";
 },"useData":true});
 
 

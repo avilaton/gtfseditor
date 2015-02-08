@@ -14,6 +14,7 @@ define([
       events: {
         'click button.save-btn': 'save',
         'click button.add-btn': 'add',
+        'click button.btn-offset': 'onClickOffset',
         'blur .table-editable input': 'blur',
         'blur .table-editable select': 'blur',
         'click button.btn-rm': 'remove'
@@ -27,7 +28,7 @@ define([
         });
         this.render();
 
-        this.collection.on('add remove reset', self.render, self);
+        this.collection.on('add change remove reset', self.render, self);
       },
 
       render: function () {
@@ -62,6 +63,12 @@ define([
           attr = $target.data('attr'),
           model = this.collection.at(index);
         model.set(attr, $target.val());
+      },
+
+      onClickOffset: function (e) {
+        e.preventDefault();
+        var offset = this.$('input.offset-min').val();
+        this.collection.offsetTimes({offset: offset || 10});
       }
     });
 

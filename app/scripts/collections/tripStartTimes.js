@@ -3,13 +3,15 @@ define([
     "backbone",
     'config',
     'api',
-    'models/tripStartTime'
+    'models/tripStartTime',
+    'moment',
+    'moment-duration-format'
 ], function (_, Backbone, Config, api, TripStartTimeModel) {
     var TripsCollection;
 
     TripsCollection = Backbone.Collection.extend({
         model: TripStartTimeModel,
-        
+
         trip_id: '',
 
         url: function() {
@@ -29,6 +31,17 @@ define([
                 })
             });
             return req;
+        },
+
+        offsetTimes: function (spec) {
+          var offset = spec.offset || 10;
+
+          _.forEach(this.models, function (model) {
+            var start_time = model.get('start_time'),
+                offset_time = moment.duration(start_time).add(Number(offset), 'minutes').format('HH:mm:ss', { forceLength: true });
+            model.set('start_time', offset_time);
+          });
+          this.trigger('change');
         },
     });
 

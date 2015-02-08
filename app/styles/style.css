@@ -194,3 +194,15 @@ body {
 .voffset1 { margin-top: 1rem; }
 .voffset1m5 { margin-top: 10.5rem; }
 .voffset2 { margin-top: 30.0rem; }
+
+.height-20 {
+    height: 20rem;
+}
+
+.scrollable {
+    overflow: auto;
+}
+
+table .btn {
+    border: none;
+}

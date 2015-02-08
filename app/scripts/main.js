@@ -26,9 +26,10 @@ require.config({
         "text": "../bower_components/requirejs-text/text",
         "async": "../bower_components/requirejs-plugins/src/async",
         "moment": "../bower_components/moment/moment",
+        "moment-duration-format": "../bower_components/moment-duration-format/lib/moment-duration-format"
     }
 });
- 
+
 require(['router', 'bootstrap'],
     function (Router) {
     'use strict';
