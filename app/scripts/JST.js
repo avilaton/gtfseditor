@@ -2,6 +2,26 @@ define(['handlebars'], function(Handlebars) {
 
 this["JST"] = this["JST"] || {};
 
+this["JST"]["calendar"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+  var helper, lambda=this.lambda, escapeExpression=this.escapeExpression, functionType="function", helperMissing=helpers.helperMissing;
+  return "      <tr data-index=\""
+    + escapeExpression(lambda((data && data.index), depth0))
+    + "\">\n        <td>\n          <button class=\"btn btn-default btn-rm\"><span class=\"glyphicon glyphicon-remove\"></span></button>\n        </td>\n        <td><input class=\"form-control\" data-attr=\"service_id\" type=\"text\" value=\""
+    + escapeExpression(((helper = (helper = helpers.service_id || (depth0 != null ? depth0.service_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"service_id","hash":{},"data":data}) : helper)))
+    + "\"/></td>\n        <td><input class=\"form-control\" data-attr=\"start_time\" type=\"text\" value=\""
+    + escapeExpression(((helper = (helper = helpers.start_date || (depth0 != null ? depth0.start_date : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"start_date","hash":{},"data":data}) : helper)))
+    + "\"/></td>\n        <td><input class=\"form-control\" data-attr=\"start_time\" type=\"text\" value=\""
+    + escapeExpression(((helper = (helper = helpers.end_date || (depth0 != null ? depth0.end_date : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"end_date","hash":{},"data":data}) : helper)))
+    + "\"/></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"monday\"></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"tuesday\"></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"wednesday\"></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"thursday\"></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"friday\"></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"saturday\"></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"sunday\"></td>\n      </tr>\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, buffer = "<div class=\"col-md-4 panel-left\">\n  <p>hello</p>\n  <div class=\"row\">\n    <div  class=\"col-md-12 routes-select\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12 trips-select\">\n    </div>\n  </div>\n</div>\n<div class=\"col-md-8 panel-right\">\n  <table class=\"table table-hover table-condensed table-editable\">\n    <thead>\n      <tr>\n        <th class=\"col-md-1\"></th>\n        <th class=\"col-md-1\">Service Id</th>\n        <th class=\"col-md-2\">Starts</th>\n        <th class=\"col-md-2\">Ends</th>\n        <th class=\"col-md-1\">M</th>\n        <th class=\"col-md-1\">T</th>\n        <th class=\"col-md-1\">W</th>\n        <th class=\"col-md-1\">T</th>\n        <th class=\"col-md-1\">F</th>\n        <th class=\"col-md-1\">S</th>\n        <th class=\"col-md-1\">S</th>\n      </tr>\n    </thead>\n    <tbody>\n";
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.models : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "    </tbody>\n  </table>\n</div>";
+},"useData":true});
+
+
+
 this["JST"]["fileUpload"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<form role=\"form\" class=\"upload\">\n  <div class=\"form-group\">\n    <label for=\"exampleInputFile\">File input</label>\n    <input type=\"file\" name=\"file\" class=\"file\">\n    <p class=\"help-block\">specified format</p>\n  </div>\n  <button type=\"submit\" class=\"btn btn-default btn-upload\">Submit</button>\n</form>";
   },"useData":true});

@@ -5,8 +5,10 @@ define([
   'views/stops',
   'views/routes',
   'views/times',
+  'views/calendar',
   'views/navbarRight'
-], function ($, _, Backbone, StopsView, RoutesView, TimesView, NavbarRightView){
+], function ($, _, Backbone, StopsView, RoutesView, TimesView, CalendarView,
+  NavbarRightView){
 
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -21,7 +23,7 @@ define([
 
   var initialize = function(){
     var app_router = new AppRouter;
-    
+
     var navbarRight = new NavbarRightView();
 
     app_router.on('route:showRoute', function(route_id){
@@ -34,6 +36,9 @@ define([
     app_router.on('route:timesView', function(trip_id){
       console.log('tripView', trip_id);
       var timesView = new TimesView();
+    });
+    app_router.on('route:calendarView', function(trip_id){
+      var calendarView = new CalendarView();
     });
     app_router.on('route:defaultAction', function(actions){
       // We have no matching route, lets just log what the URL was

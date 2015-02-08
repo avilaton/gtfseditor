@@ -12,7 +12,7 @@ define([
 		url: Config.server + 'api/calendars/',
 
         parse: function (response) {
-        	return response.rows;
+        	return response.calendars;
         }
  	});
 

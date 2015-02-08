@@ -206,3 +206,12 @@ body {
 table .btn {
     border: none;
 }
+
+.table>thead>tr>th.vcenter,
+.table>tbody>tr>th.vcenter,
+.table>tfoot>tr>th.vcenter,
+.table>thead>tr>td.vcenter,
+.table>tbody>tr>td.vcenter,
+.table>tfoot>tr>td.vcenter {
+    vertical-align: middle;
+}
