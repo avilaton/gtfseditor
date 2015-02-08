@@ -17,14 +17,12 @@ define([
     },
 
     save: function () {
-        var self = this;
-        var req = api.put({
-            url: self.url,
-            data: JSON.stringify({
-                calendars: self.toJSON()
-            })
-        });
-        return req;
+      _.forEach(this.models, function (model) {
+        console.log(model, model.isNew(), model.hasChanged());
+        if (model.isNew() || model.hasChanged()) {
+          model.save();
+        };
+      });
     },
 
   });

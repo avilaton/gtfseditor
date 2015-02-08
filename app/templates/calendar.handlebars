@@ -1,22 +1,26 @@
-<div class="col-md-8 panel-right">
-  <table class="table table-condensed table-editable">
+<div class="col-md-12 panel-right">
+  <h1>Service periods</h1>
+  <table class="table table-condensed table-editable voffset1">
     <thead>
       <tr>
-        <th></th>
-        <th>Service Id</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th><th>S</th>
+        <th class="col-md-2">Service Id</th>
+        <th class="col-md-1">Starts</th>
+        <th class="col-md-1">Ends</th>
+        <th class="col-md-1">Monday</th>
+        <th class="col-md-1">Tuesday</th>
+        <th class="col-md-1">Wednesday</th>
+        <th class="col-md-1">Thursday</th>
+        <th class="col-md-1">Friday</th>
+        <th class="col-md-1">Saturday</th>
+        <th class="col-md-1">Sunday</th>
+        <th class="col-md-1"></th>
       </tr>
     </thead>
     <tbody>
       {{#each models}}
       <tr data-index="{{@index}}">
-        <td class="vcenter">
-          <button class="btn btn-default btn-rm"><span class="glyphicon glyphicon-remove"></span></button>
-        </td>
-        <td><input class="form-control" data-attr="service_id" type="text" value="{{service_id}}"/></td>
-        <td><input class="form-control" data-attr="start_date" type="text" value="{{start_date}}"/></td>
+        <td><input class="form-control" data-attr="service_id" type="text" placeholder="YYYYMMDD" value="{{service_id}}"/></td>
+        <td><input class="form-control" data-attr="start_date" type="text" placeholder="YYYYMMDD" value="{{start_date}}"/></td>
         <td><input class="form-control" data-attr="end_date" type="text" value="{{end_date}}"/></td>
         <td class="vcenter"><input type="checkbox" name="monday" {{checked monday}}></td>
         <td class="vcenter"><input type="checkbox" name="tuesday" {{checked tuesday}}></td>
@@ -25,12 +29,23 @@
         <td class="vcenter"><input type="checkbox" name="friday" {{checked friday}}></td>
         <td class="vcenter"><input type="checkbox" name="saturday" {{checked saturday}}></td>
         <td class="vcenter"><input type="checkbox" name="sunday" {{checked sunday}}></td>
+        <td class="vcenter">
+          <button class="btn btn-default btn-rm"><span class="glyphicon glyphicon-remove"></span></button>
+        </td>
       </tr>
       {{/each}}
     </tbody>
   </table>
-</div>
-<div class="col-md-4 panel-left">
-  <button class="btn btn-default add-btn"><span class="glyphicon glyphicon-plus"></span> Add</button>
-  <button class="btn btn-default save-btn"><span class="glyphicon glyphicon-save"></span> Save</button>
+  <div class="row voffset1">
+    <div class="col-md-12">
+      <form class="form-inline">
+        <div class="form-group">
+          <label>Service id</label>
+          <input type="text" class="form-control service_id" placeholder="service_id">
+        </div>
+        <button class="btn btn-default btn-create"><span class="glyphicon glyphicon-plus"></span> Create</button>
+        <button class="btn btn-default save-btn"><span class="glyphicon glyphicon-save"></span> Save</button>
+      </form>
+    </div>
+  </div>
 </div>

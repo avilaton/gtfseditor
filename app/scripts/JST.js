@@ -6,9 +6,9 @@ this["JST"]["calendar"] = Handlebars.template({"1":function(depth0,helpers,parti
   var helper, lambda=this.lambda, escapeExpression=this.escapeExpression, functionType="function", helperMissing=helpers.helperMissing;
   return "      <tr data-index=\""
     + escapeExpression(lambda((data && data.index), depth0))
-    + "\">\n        <td class=\"vcenter\">\n          <button class=\"btn btn-default btn-rm\"><span class=\"glyphicon glyphicon-remove\"></span></button>\n        </td>\n        <td><input class=\"form-control\" data-attr=\"service_id\" type=\"text\" value=\""
+    + "\">\n        <td><input class=\"form-control\" data-attr=\"service_id\" type=\"text\" placeholder=\"YYYYMMDD\" value=\""
     + escapeExpression(((helper = (helper = helpers.service_id || (depth0 != null ? depth0.service_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"service_id","hash":{},"data":data}) : helper)))
-    + "\"/></td>\n        <td><input class=\"form-control\" data-attr=\"start_date\" type=\"text\" value=\""
+    + "\"/></td>\n        <td><input class=\"form-control\" data-attr=\"start_date\" type=\"text\" placeholder=\"YYYYMMDD\" value=\""
     + escapeExpression(((helper = (helper = helpers.start_date || (depth0 != null ? depth0.start_date : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"start_date","hash":{},"data":data}) : helper)))
     + "\"/></td>\n        <td><input class=\"form-control\" data-attr=\"end_date\" type=\"text\" value=\""
     + escapeExpression(((helper = (helper = helpers.end_date || (depth0 != null ? depth0.end_date : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"end_date","hash":{},"data":data}) : helper)))
@@ -26,12 +26,12 @@ this["JST"]["calendar"] = Handlebars.template({"1":function(depth0,helpers,parti
     + escapeExpression(((helpers.checked || (depth0 && depth0.checked) || helperMissing).call(depth0, (depth0 != null ? depth0.saturday : depth0), {"name":"checked","hash":{},"data":data})))
     + "></td>\n        <td class=\"vcenter\"><input type=\"checkbox\" name=\"sunday\" "
     + escapeExpression(((helpers.checked || (depth0 && depth0.checked) || helperMissing).call(depth0, (depth0 != null ? depth0.sunday : depth0), {"name":"checked","hash":{},"data":data})))
-    + "></td>\n      </tr>\n";
+    + "></td>\n        <td class=\"vcenter\">\n          <button class=\"btn btn-default btn-rm\"><span class=\"glyphicon glyphicon-remove\"></span></button>\n        </td>\n      </tr>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<div class=\"col-md-8 panel-right\">\n  <table class=\"table table-condensed table-editable\">\n    <thead>\n      <tr>\n        <th></th>\n        <th>Service Id</th>\n        <th>Start Date</th>\n        <th>End Date</th>\n        <th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th><th>S</th>\n      </tr>\n    </thead>\n    <tbody>\n";
+  var stack1, buffer = "<div class=\"col-md-12 panel-right\">\n  <h1>Service periods</h1>\n  <table class=\"table table-condensed table-editable voffset1\">\n    <thead>\n      <tr>\n        <th class=\"col-md-2\">Service Id</th>\n        <th class=\"col-md-1\">Starts</th>\n        <th class=\"col-md-1\">Ends</th>\n        <th class=\"col-md-1\">Monday</th>\n        <th class=\"col-md-1\">Tuesday</th>\n        <th class=\"col-md-1\">Wednesday</th>\n        <th class=\"col-md-1\">Thursday</th>\n        <th class=\"col-md-1\">Friday</th>\n        <th class=\"col-md-1\">Saturday</th>\n        <th class=\"col-md-1\">Sunday</th>\n        <th class=\"col-md-1\"></th>\n      </tr>\n    </thead>\n    <tbody>\n";
   stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.models : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "    </tbody>\n  </table>\n</div>\n<div class=\"col-md-4 panel-left\">\n  <button class=\"btn btn-default add-btn\"><span class=\"glyphicon glyphicon-plus\"></span> Add</button>\n  <button class=\"btn btn-default save-btn\"><span class=\"glyphicon glyphicon-save\"></span> Save</button>\n</div>";
+  return buffer + "    </tbody>\n  </table>\n  <div class=\"row voffset1\">\n    <div class=\"col-md-12\">\n      <form class=\"form-inline\">\n        <div class=\"form-group\">\n          <label>Service id</label>\n          <input type=\"text\" class=\"form-control service_id\" placeholder=\"service_id\">\n        </div>\n        <button class=\"btn btn-default btn-create\"><span class=\"glyphicon glyphicon-plus\"></span> Create</button>\n        <button class=\"btn btn-default save-btn\"><span class=\"glyphicon glyphicon-save\"></span> Save</button>\n      </form>\n    </div>\n  </div>\n</div>\n";
 },"useData":true});
 
 
