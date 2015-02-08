@@ -6,7 +6,7 @@ from .. import db
 from ..models import Route
 from ..models import Trip
 from . import api
-
+from flask.ext.login import login_required
 
 @api.route('/routes/')
 def get_routes():
@@ -30,7 +30,7 @@ def add_route():
     return jsonify(item.to_json), 201, \
         {'Location': url_for('api.get_route', id=item.route_id, _external=True)}
 
-
+@login_required
 @api.route('/routes/<id>', methods=['PUT'])
 def edit_route(id):
     data = request.json

@@ -8,42 +8,39 @@ from . import api
 import app.services.geojson as geojson
 
 
+@api.route('/stops')
+@api.route('/stops.<fmt>')
 @api.route('/stops/')
-def get_stops():
-    stops = Stop.query.all()
+def get_stops(fmt="json"):
+    bbox = request.args.get('bbox')
+    limit = request.args.get('limit')
+
+    try:
+      limit = int(limit)
+    except Exception, e:
+      limit = 300
+
+    try:
+      bounds = True
+      west, south, east, north = map(float,bbox.split(','))
+    except Exception, e:
+      bounds = None
+
+    if bounds:
+        stops = Stop.query.filter(Stop.stop_lat < north, Stop.stop_lat > south,
+          Stop.stop_lon < east, Stop.stop_lon > west).limit(limit).all()
+    else:
+        stops = Stop.query.limit(limit).all()
+
     return jsonify({
-        'stops': [item.to_json for item in stops]
+        'stops': [stop.to_json for stop in stops]
     })
 
 @api.route('/stops/<id>')
+@api.route('/stops/<id>.json')
 def get_stop(id):
     item = Stop.query.get_or_404(id)
     return jsonify(item.to_json)
-
-# Deprecated
-@api.route('/bbox', methods=['GET', 'OPTIONS'])
-def getBBOXGeoJson():
-  bounds = request.args.get('bbox')
-  w,s,e,n = map(float,bounds.split(','))
-  stops = db.session.query(Stop).filter(Stop.stop_lat < n, Stop.stop_lat >s,
-   Stop.stop_lon < e, Stop.stop_lon > w).limit(300).all()
-  features = []
-  for stop in stops:
-    ft = geojson.feature(id = stop.stop_id, feature_type = "Point",
-      coords = [float(stop.stop_lon), float(stop.stop_lat)],
-      properties = stop.to_json)
-    features.append(ft)
-  return jsonify(geojson.featureCollection(features))
-
-@api.route('/bbox.json', methods=['GET'])
-def getBBOX():
-  bounds = request.args.get('bbox')
-  w,s,e,n = map(float,bounds.split(','))
-  stops = db.session.query(Stop).filter(Stop.stop_lat < n, Stop.stop_lat >s,
-   Stop.stop_lon < e, Stop.stop_lon > w).limit(300).all()
-  features = [stop.to_json for stop in stops]
-
-  return jsonify({"stops": features})
 
 @api.route('/stops/<stop_id>', methods=['DELETE'])
 def deleteStop(stop_id):

@@ -6,6 +6,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 import csv
+import resource
 import transitfeed
 import StringIO
 import zipfile
@@ -20,7 +21,7 @@ class Feed(object):
     self.db = db
     self.filename = filename
     self.fileObj = StringIO.StringIO()
-    self.schedule = transitfeed.Schedule()
+    self.schedule = transitfeed.Schedule(memory_db=False)
 
   def __repr__(self):
     return 'GTFS feed:' + self.filename
@@ -42,6 +43,9 @@ class Feed(object):
     self.loadFeedInfo()
     logger.info("Feed build completed")
     return self.fileObj
+
+  def saveTo(self, directory):
+    self.schedule.WriteGoogleTransitFeed(directory + self.filename)
 
   def validate(self):
     """Validate feed object"""
@@ -91,10 +95,13 @@ class Feed(object):
   def loadRoutes(self):
     """Loads active routes into schedule"""
     logger.info("Loading Routes")
+    routes = self.db.query(Route).order_by(Route.route_short_name).filter(Route.active).all()
+    count = len(routes)
 
-    for row in self.db.query(Route).filter(Route.active != None).all():
+    for i, row in enumerate(routes):
       route_id = row.route_id
-      logger.info("Loading route_id: {0}".format(route_id))
+      mem = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+      logger.info("Loading {1}/{2} ({3}), route_id: {0}".format(route_id, i, count, mem))
       route = self.schedule.AddRoute(short_name=row.route_short_name, 
           #long_name=row.route_long_name, 
           long_name='', 
@@ -132,7 +139,10 @@ class Feed(object):
           trip.service_id = startTimeRow.service_id
           trip.shape_id = tripRow.shape_id
           trip.direction_id = tripRow.direction_id
-          self.loadStopTimes(trip, tripRow.trip_id, startTimeRow)
+          stop_sequence = self.db.query(StopSeq).filter_by(trip_id=tripRow.trip_id).\
+            order_by(StopSeq.stop_sequence).all()
+          trip_start_times = self.db.query(TripStartTime).filter_by(trip_id=tripRow.trip_id).all()
+          self.loadStopTimes(trip, tripRow.trip_id, startTimeRow, stop_sequence=stop_sequence, trip_start_times=trip_start_times)
       else:
         # trip_id = t.trip_id
         raise NotImplementedError
@@ -154,9 +164,9 @@ class Feed(object):
         name=stop.stop_name, stop_id=str(stop_id))
       stop.stop_code = stop.stop_id
 
-  def loadStopTimes(self, trip, seq_trip_id=None, startTimeRow=None):
+  def loadStopTimes(self, trip, seq_trip_id=None, startTimeRow=None, stop_sequence=None, trip_start_times=None):
     """Adding Stop Times from trip start times"""
-    logger.info("Loading Stop Times for trip_id:{0}".format(trip.trip_id))
+    # logger.info("Loading Stop Times for stop_seq:{0}, trip_id:{1}".format(seq_trip_id, trip.trip_id))
 
     if self.mode == 'frequency':
       # Should use StopTimesFactory instead of reading from stop_times table.
@@ -176,12 +186,8 @@ class Feed(object):
           trip.AddStopTime(stop)
 
     elif self.mode == 'initial-times':
-      trip_start_times_default = self.trip_start_times_default
-      stop_sequence = self.db.query(StopSeq).filter_by(trip_id=seq_trip_id).\
-        order_by(StopSeq.stop_sequence).all()
-      trip_start_times = self.db.query(TripStartTime).filter_by(trip_id=seq_trip_id).all()
       if not trip_start_times:
-        trip_start_times = trip_start_times_default
+        trip_start_times = self.trip_start_times_default
 
       for stop_time in StopTimesFactory.offsetStartTimes(seq_trip_id, stop_sequence, startTimeRow):
         stopTime = StopTime(**stop_time)
