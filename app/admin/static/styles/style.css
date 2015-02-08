@@ -194,3 +194,24 @@ body {
 .voffset1 { margin-top: 1rem; }
 .voffset1m5 { margin-top: 10.5rem; }
 .voffset2 { margin-top: 30.0rem; }
+
+.height-20 {
+    height: 20rem;
+}
+
+.scrollable {
+    overflow: auto;
+}
+
+table .btn {
+    border: none;
+}
+
+.table>thead>tr>th.vcenter,
+.table>tbody>tr>th.vcenter,
+.table>tfoot>tr>th.vcenter,
+.table>thead>tr>td.vcenter,
+.table>tbody>tr>td.vcenter,
+.table>tfoot>tr>td.vcenter {
+    vertical-align: middle;
+}

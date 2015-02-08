@@ -30,7 +30,7 @@ def add_calendar():
 @api.route('/calendars/<id>', methods=['PUT'])
 def edit_calendar(id):
     data = request.json
-    item = Calendar.query.get_or_404(data.get('service_id'))
+    # item = Calendar.query.get_or_404(data.get('service_id'))
     item = Calendar(**data)
     db.session.merge(item)
     return jsonify(item.to_json)
