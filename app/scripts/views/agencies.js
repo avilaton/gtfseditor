@@ -4,8 +4,8 @@ define([
   'underscore',
   'backbone',
   'JST',
-  'collections/calendars'
-  ], function (_, Backbone, JST, CalendarsCollection) {
+  'collections/agencies'
+  ], function (_, Backbone, JST, AgenciesCollection) {
     var View;
 
     View = Backbone.View.extend({
@@ -21,13 +21,13 @@ define([
         'click input[type="checkbox"]': 'onEditCheckbox'
       },
 
-      template: JST.calendar,
+      template: JST.agencies,
 
       initialize: function(){
-        this.collection = new CalendarsCollection();
-        this.collection.fetch();
+        this.collection = new AgenciesCollection();
         this.collection.on('add change remove reset', this.render, this);
         this.render();
+        this.collection.fetch();
       },
 
       render: function () {
@@ -43,18 +43,18 @@ define([
       },
 
       create: function (e) {
-        var service_id = this.$('input.service_id').val(),
+        var agency_id = this.$('input.agency_id').val(),
           model;
 
         e.preventDefault();
 
-        if (!service_id) {
-          alert('Invalid service_id');
+        if (!agency_id) {
+          alert('Invalid agency_id');
           return;
         }
 
         model = this.collection.create({
-          service_id: service_id
+          agency_id: agency_id
         });
       },
 
@@ -71,15 +71,6 @@ define([
           attr = $target.data('attr'),
           model = this.collection.at(index);
         model.set(attr, $target.val());
-      },
-
-      onEditCheckbox: function (e) {
-        var $target = $(e.currentTarget),
-          index = $target.closest('tr').data('index'),
-          day = $target.attr('name'),
-          value = String(Number($target.prop('checked'))),
-          model = this.collection.at(index);
-        model.set(day, value);
       }
 
     });

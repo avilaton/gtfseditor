@@ -1,0 +1,55 @@
+<div class="col-md-12 panel-right">
+  <h1>Agencies</h1>
+  <table class="table table-condensed table-editable voffset1">
+    <thead>
+      <tr>
+        <th>Agency Id</th>
+        <th>Name</th>
+        <th>URL</th>
+        <th>Timezone</th>
+        <th>Language</th>
+        <th>Phone</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each models}}
+      <tr data-index="{{@index}}">
+        <td>
+          <input class="form-control" data-attr="agency_id" type="text" placeholder="agency_id" value="{{agency_id}}"/>
+        </td>
+        <td>
+          <input class="form-control" data-attr="agency_name" type="text" placeholder="agency_name" value="{{agency_name}}"/>
+        </td>
+        <td>
+          <input class="form-control" data-attr="agency_url" type="text" placeholder="agency_url" value="{{agency_url}}"/>
+        </td>
+        <td>
+          <input class="form-control" data-attr="agency_timezone" type="text" placeholder="agency_timezone" value="{{agency_timezone}}"/>
+        </td>
+        <td>
+          <input class="form-control" data-attr="agency_lang" type="text" placeholder="agency_lang" value="{{agency_lang}}"/>
+        </td>
+        <td>
+          <input class="form-control" data-attr="agency_phone" type="text" placeholder="agency_phone" value="{{agency_phone}}"/>
+        </td>
+        <td class="vcenter">
+          <button class="btn btn-default btn-rm"><span class="glyphicon glyphicon-remove"></span></button>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <div class="row voffset1">
+    <div class="col-md-12">
+      <form class="form-inline">
+        <div class="form-group">
+          <label>Agency id</label>
+          <input type="text" class="form-control agency_id" placeholder="agency_id">
+        </div>
+        <button class="btn btn-default btn-create"><span class="glyphicon glyphicon-plus"></span> Create</button>
+        <button class="btn btn-default save-btn"><span class="glyphicon glyphicon-save"></span> Save</button>
+      </form>
+    </div>
+  </div>
+</div>

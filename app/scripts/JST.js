@@ -2,6 +2,32 @@ define(['handlebars'], function(Handlebars) {
 
 this["JST"] = this["JST"] || {};
 
+this["JST"]["agencies"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+  var helper, lambda=this.lambda, escapeExpression=this.escapeExpression, functionType="function", helperMissing=helpers.helperMissing;
+  return "      <tr data-index=\""
+    + escapeExpression(lambda((data && data.index), depth0))
+    + "\">\n        <td>\n          <input class=\"form-control\" data-attr=\"agency_id\" type=\"text\" placeholder=\"agency_id\" value=\""
+    + escapeExpression(((helper = (helper = helpers.agency_id || (depth0 != null ? depth0.agency_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"agency_id","hash":{},"data":data}) : helper)))
+    + "\"/>\n        </td>\n        <td>\n          <input class=\"form-control\" data-attr=\"agency_name\" type=\"text\" placeholder=\"agency_name\" value=\""
+    + escapeExpression(((helper = (helper = helpers.agency_name || (depth0 != null ? depth0.agency_name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"agency_name","hash":{},"data":data}) : helper)))
+    + "\"/>\n        </td>\n        <td>\n          <input class=\"form-control\" data-attr=\"agency_url\" type=\"text\" placeholder=\"agency_url\" value=\""
+    + escapeExpression(((helper = (helper = helpers.agency_url || (depth0 != null ? depth0.agency_url : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"agency_url","hash":{},"data":data}) : helper)))
+    + "\"/>\n        </td>\n        <td>\n          <input class=\"form-control\" data-attr=\"agency_timezone\" type=\"text\" placeholder=\"agency_timezone\" value=\""
+    + escapeExpression(((helper = (helper = helpers.agency_timezone || (depth0 != null ? depth0.agency_timezone : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"agency_timezone","hash":{},"data":data}) : helper)))
+    + "\"/>\n        </td>\n        <td>\n          <input class=\"form-control\" data-attr=\"agency_lang\" type=\"text\" placeholder=\"agency_lang\" value=\""
+    + escapeExpression(((helper = (helper = helpers.agency_lang || (depth0 != null ? depth0.agency_lang : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"agency_lang","hash":{},"data":data}) : helper)))
+    + "\"/>\n        </td>\n        <td>\n          <input class=\"form-control\" data-attr=\"agency_phone\" type=\"text\" placeholder=\"agency_phone\" value=\""
+    + escapeExpression(((helper = (helper = helpers.agency_phone || (depth0 != null ? depth0.agency_phone : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"agency_phone","hash":{},"data":data}) : helper)))
+    + "\"/>\n        </td>\n        <td class=\"vcenter\">\n          <button class=\"btn btn-default btn-rm\"><span class=\"glyphicon glyphicon-remove\"></span></button>\n        </td>\n      </tr>\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, buffer = "<div class=\"col-md-12 panel-right\">\n  <h1>Agencies</h1>\n  <table class=\"table table-condensed table-editable voffset1\">\n    <thead>\n      <tr>\n        <th>Agency Id</th>\n        <th>Name</th>\n        <th>URL</th>\n        <th>Timezone</th>\n        <th>Language</th>\n        <th>Phone</th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n";
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.models : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "    </tbody>\n  </table>\n  <div class=\"row voffset1\">\n    <div class=\"col-md-12\">\n      <form class=\"form-inline\">\n        <div class=\"form-group\">\n          <label>Agency id</label>\n          <input type=\"text\" class=\"form-control agency_id\" placeholder=\"agency_id\">\n        </div>\n        <button class=\"btn btn-default btn-create\"><span class=\"glyphicon glyphicon-plus\"></span> Create</button>\n        <button class=\"btn btn-default save-btn\"><span class=\"glyphicon glyphicon-save\"></span> Save</button>\n      </form>\n    </div>\n  </div>\n</div>\n";
+},"useData":true});
+
+
+
 this["JST"]["calendar"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var helper, lambda=this.lambda, escapeExpression=this.escapeExpression, functionType="function", helperMissing=helpers.helperMissing;
   return "      <tr data-index=\""

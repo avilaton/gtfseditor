@@ -21,7 +21,7 @@ define([
     var View;
 
     View = Backbone.View.extend({
-      el: $('.main-view'),
+      // el: $('.main-view'),
 
       template: JST['times'],
 
@@ -31,6 +31,7 @@ define([
 
       render: function () {
         this.$el.html(this.template());
+        $('.main-view').empty().append(this.$el);
         this.stopModel = new StopModel();
         this.stopsSeqCollection = new StopsSeqCollection();
         this.tripStartTimesCol = new TripStartTimesCol();

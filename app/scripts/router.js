@@ -6,9 +6,10 @@ define([
   'views/routes',
   'views/times',
   'views/calendar',
+  'views/agencies',
   'views/navbarRight'
 ], function ($, _, Backbone, StopsView, RoutesView, TimesView, CalendarView,
-  NavbarRightView){
+  AgenciesView, NavbarRightView){
 
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -22,32 +23,43 @@ define([
   });
 
   var initialize = function(){
-    var app_router = new AppRouter;
+    var app_router = new AppRouter,
+      navbarRight = new NavbarRightView(),
+      mainView;
 
-    var navbarRight = new NavbarRightView();
+    function clean () {
+      if (mainView) {
+        // mainView.close();
+      }
+    }
 
     app_router.on('route:showRoute', function(route_id){
-      console.log('showRoute', route_id);
-      var routesView = new RoutesView();
+      clean();
+      mainView = new RoutesView();
     });
     app_router.on('route:stopsView', function(route_id){
-      var stopsView = new StopsView();
+      clean();
+      mainView = new StopsView();
     });
     app_router.on('route:timesView', function(trip_id){
-      console.log('tripView', trip_id);
-      var timesView = new TimesView();
+      clean();
+      mainView = new TimesView();
     });
     app_router.on('route:calendarView', function(trip_id){
-      var calendarView = new CalendarView();
+      clean();
+      mainView = new CalendarView();
+    });
+    app_router.on('route:agenciesView', function(trip_id){
+      clean();
+      mainView = new AgenciesView();
     });
     app_router.on('route:defaultAction', function(actions){
+      clean();
       // We have no matching route, lets just log what the URL was
-      var routesView = new RoutesView();
-      console.log('No route:', actions);
+      mainView = new RoutesView();
     });
     Backbone.history.start();
 
-    // Main.init();
 
   };
   return {

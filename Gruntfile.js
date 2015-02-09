@@ -108,7 +108,7 @@ module.exports = function(grunt) {
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       js: {
-        files: ['scripts/{,**/}*.js'],
+        files: ['app/scripts/{,**/}*.js'],
         // files: ['{.tmp,<%= yeoman.app %>}/scripts/{,**/}*.js'],
         tasks: ['jshint']
       },
@@ -121,7 +121,7 @@ module.exports = function(grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          'scripts/{,**/}*.js',
+          'app/scripts/{,**/}*.js',
           'app/templates/{,**/}*.handlebars'
           // '<%= yeoman.app %>/{,**/}*.html',
           // '.tmp/styles/{,**/}*.css',

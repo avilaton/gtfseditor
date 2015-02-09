@@ -1,5 +1,5 @@
 /*jshint camelcase: false */
- 
+
 'use strict';
 
 require.config({
