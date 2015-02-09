@@ -114,5 +114,5 @@ config = {
     'heroku': HerokuConfig,
     'unix': UnixConfig,
 
-    'default': DevelopmentConfig
+    'default': PostgresConfig
 }
