@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import glob
 import zipfile
 from config import config
 from app import create_app
@@ -152,7 +153,9 @@ def importCardCodes(filename):
 
 @manager.command
 def importInitTimes(filename, grupo):
-  """Creates stop names from other columns"""
+  """Creates stop names from other columns
+    grupo is one of 01, 02, 03, ...
+  """
   import csv
 
   codes = {}
@@ -183,7 +186,6 @@ def importInitTimes(filename, grupo):
   db.session.add_all(startTimeRows)
   db.session.flush()
 
-
 @manager.command
 def backup():
   import subprocess
@@ -198,6 +200,23 @@ def backup():
   subprocess.call("pg_dump -Ft mza > " + filename, shell=True)
   print("uploading to drive folder " + folderId)
   subprocess.call("drive upload -f " + filename + " -p " + folderId, shell=True)
+
+
+@manager.command
+def activateRoute(route_id=False):
+
+  routes = Route.query.all()
+
+  for route in routes:
+    if not route_id:
+      route.active = True
+    else:
+      if route.route_id in [route_id]:
+        route.active = True
+      else:
+        route.active = False
+    db.session.merge(route)
+  db.session.commit()
 
 
 if __name__ == '__main__':
