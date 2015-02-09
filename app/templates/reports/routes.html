@@ -33,17 +33,21 @@
 		</tr>
 	</thead>
 {%for trip in route.get("trips")%}
-	
-	{% if trip['active']%}
-	<tr class="active">
+
+	{% if not trip['active']%}
+	<tr class="danger">
 	{%else%}
   <tr>
   {%endif%}
 	  {%for key in keys%}
-	  
-	  	{%if key == "active" and trip['active'] == 'True'%}
+
+	  	{%if key == "active"%}
 	  	<td>
-	  		<span class="glyphicon glyphicon-ok"></span>
+	  		{%if trip['active']%}
+	  			<span class="glyphicon glyphicon-ok"></span>
+	  		{%else%}
+	  			<span class="glyphicon glyphicon-remove"></span>
+	    	{%endif%}
 	  	</td>
 	  	{%else%}
 	    <td>{{trip.get(key, "")}}</td>
