@@ -99,7 +99,48 @@ You are now ready to initialize an empty DB by using
 ```
 FLASK_CONFIG=dev ./manage.py db upgrade
 ```
-or import a DB dump
+
+Importing a DB dump
+-------------------
+
+To import a DB dump run
 ```
-pg_restore -d mza dump.tar
+pg_restore -d dbname dump.tar
 ```
+where **dbname** is the name of your database.
+
+
+Deployment to EC2
+=================
+
+Set up an ubuntu instance in Amazon EC2. On it, run
+```
+$ sudo apt-get update
+$ sudo apt-get install python-pip libpq-dev python-dev nginx postgresql postgresql-contrib
+```
+
+Configuring nginx
+-----------------
+
+Create a site file in `/etc/nginx/sites-available/` by copying the example file `nginx.site.example` over and editing it appropriately. Once you are done, enable the site using
+```
+$ sudo ln -s \
+/etc/nginx/sites-available/mydomain.com \
+/etc/nginx/sites-enabled/mydomain.com
+```
+where `mydomain.com` is the name of the file you created.
+
+Configuring Postgresql
+----------------------
+
+Create a database user with the same name as your current username
+```
+$ sudo -u postgres createuser --superuser $USER
+```
+and change it's password using
+```
+$ sudo -u postgres psql
+...
+postgres=# \password $USER
+```
+This user will not need a password to connect to the DB.
