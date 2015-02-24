@@ -1,0 +1,25 @@
+# /etc/nginx/sites-available/exploreflask.com
+
+# Redirect www.exploreflask.com to exploreflask.com
+server {
+        server_name www.exploreflask.com;
+        rewrite ^ http://exploreflask.com/ permanent;
+}
+
+# Handle requests to exploreflask.com on port 80
+server {
+        listen 80;
+        server_name exploreflask.com;
+
+                # Handle all locations
+        location / {
+                        # Pass the request to Gunicorn
+                proxy_pass http://127.0.0.1:5000;
+
+                # Set some HTTP headers so that our app knows where the
+                # request really came from
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+}
