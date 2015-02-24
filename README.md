@@ -103,3 +103,13 @@ or import a DB dump
 ```
 pg_restore -d mza dump.tar
 ```
+Deployment to EC2
+=================
+
+Set up an ubuntu instance in Amazon EC2. On it, run
+```
+$ sudo apt-get update
+$ sudo apt-get install python-pip libpq-dev python-dev nginx postgresql postgresql-contrib
+```
+
+
