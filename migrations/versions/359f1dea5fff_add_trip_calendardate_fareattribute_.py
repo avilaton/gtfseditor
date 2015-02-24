@@ -49,6 +49,7 @@ def upgrade():
     sa.Column('trip_short_name', sa.String(length=150), nullable=True),
     sa.Column('direction_id', sa.String(length=50), nullable=True),
     sa.Column('shape_id', sa.String(length=50), nullable=True),
+    sa.Column('active', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['route_id'], ['routes.route_id'], ),
     sa.ForeignKeyConstraint(['service_id'], ['calendar.service_id'], ),
     sa.PrimaryKeyConstraint('trip_id')
