@@ -6,3 +6,4 @@ server/gtfstools/*.pyc
 venv/
 .tmp/
 logs.log
+*.sqlite

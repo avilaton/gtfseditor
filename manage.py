@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import os
+import csv
+import codecs
 import glob
 import zipfile
 from config import config
@@ -17,6 +19,7 @@ from flask.ext.migrate import Migrate
 from flask.ext.migrate import MigrateCommand
 
 TMP_FOLDER = config[os.getenv('FLASK_CONFIG') or 'default'].TMP_FOLDER
+BUILD_MODE = config[os.getenv('FLASK_CONFIG') or 'default'].BUILD_MODE
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 
@@ -24,6 +27,23 @@ from app.tasks import celery_app
 
 manager = Manager(app)
 migrate = Migrate(app, db)
+
+
+def readCsv(Model, filename, mode=None):
+  print("Importing " + Model.__tablename__ + " from : " + filename)
+  with open(filename, 'r') as csvfile:
+    reader = csv.DictReader(csvfile)
+    if not mode:
+      keyMap = {field:field for field in reader.fieldnames}
+      for row in reader:
+        d = {v:codecs.decode(row[k],'utf8') for k, v in keyMap.items()}
+        model = Model(**d)
+        db.session.merge(model)
+      db.session.commit()
+    elif mode in ['direct']:
+      db.engine.execute(Model.__table__.delete())
+      insertStmt = Model.__table__.insert()
+      db.engine.execute(insertStmt, [row for row in reader])
 
 
 def extractZip(filename, dest):
@@ -58,14 +78,15 @@ def deploy():
     upgrade()
 
 @manager.command
-def build(validate=False, extract=False):
+def build(validate=False, extract=False, mode=None):
   """Build feed to .tmp folder"""
 
   if not os.path.isdir(TMP_FOLDER):
     os.makedirs(TMP_FOLDER)
 
+  print BUILD_MODE
   feed = Feed(db=db.session)
-  feedFile = feed.build()
+  feedFile = feed.build(mode=BUILD_MODE)
 
   with open(TMP_FOLDER + feed.filename, 'wb') as f:
     f.write(feedFile.getvalue())
@@ -217,6 +238,36 @@ def activateRoute(route_id=False):
         route.active = False
     db.session.merge(route)
   db.session.commit()
+
+
+@manager.command
+def importCsv(modelname, filename, mode=None):
+  print(filename)
+  Model = globals()[modelname]
+  readCsv(Model, filename, mode=mode)
+
+
+@manager.command
+def importCba(folder):
+  """Usage:
+  FLASK_CONFIG=local ./manage.py importCba <FOLDER>
+  """
+
+  importCsv("Agency", folder + "agency.csv")
+  importCsv("Calendar", folder + 'calendar.csv')
+  importCsv("CalendarDate", folder + 'calendar_dates.csv')
+  importCsv("FareAttribute", folder + 'fare_attributes.csv')
+  importCsv("FareRule", folder + 'fare_rules.csv')
+  importCsv("FeedInfo", folder + 'feed_info.csv')
+  importCsv("Frequency", folder + 'frequencies.csv')
+  importCsv("RouteFrequency", folder + 'route_frequencies.csv')
+  importCsv("Route", folder + 'routes.csv')
+  importCsv("Stop", folder + 'stops.csv')
+  importCsv("Shape", folder + 'shapes.csv', mode='direct')
+  importCsv("Trip", folder + 'trips.csv')
+  importCsv("TripStartTime", folder + 'trips_start_times.csv')
+  importCsv("StopSeq", folder + 'stop_seq.csv', mode='direct')
+  importCsv("StopTime", folder + 'stop_times.csv', mode='direct')
 
 
 if __name__ == '__main__':
