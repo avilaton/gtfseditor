@@ -26,7 +26,8 @@ class Feed(object):
   def __repr__(self):
     return 'GTFS feed:' + self.filename
 
-  def build(self):
+  def build(self, mode='initial-times'):
+    self.mode = mode
     logger.info("Feed build started")
     self.trip_start_times_default = self.db.query(TripStartTime).filter_by(trip_id='default').all()
 
@@ -148,7 +149,7 @@ class Feed(object):
 
   def loadStops(self):
     logger.info("Loading Stops")
-    active_routes_subq = self.db.query(Route.route_id).filter(Route.active != None).subquery()
+    active_routes_subq = self.db.query(Route.route_id).filter(Route.active).subquery()
     active_trips_subq = self.db.query(Trip.trip_id).\
       filter(Trip.route_id.in_(active_routes_subq)).subquery()
     used_stops_subq = self.db.query(StopSeq.stop_id).distinct().\
