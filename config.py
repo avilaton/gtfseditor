@@ -42,7 +42,8 @@ class PostgresConfig(Config):
 
 class SqliteConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+    BUILD_MODE = Config.MODES[0]
     WTF_CSRF_ENABLED = False
 
 

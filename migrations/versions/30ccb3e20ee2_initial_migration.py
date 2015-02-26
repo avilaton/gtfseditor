@@ -25,7 +25,7 @@ def upgrade():
     sa.Column('route_type', sa.String(length=50), nullable=True),
     sa.Column('route_color', sa.String(length=50), nullable=True),
     sa.Column('route_text_color', sa.String(length=50), nullable=True),
-    sa.Column('active', sa.String(length=50), nullable=True),
+    sa.Column('active', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('route_id')
     )
     ### end Alembic commands ###
