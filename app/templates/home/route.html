@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>Detalles de la <a href="/routes/{{route.route_id}}">ruta {{route.route_short_name}}</a></h1>
+
+<dl class="dl-horizontal">
+	<dt>Nombre</dt>
+	<dd>{{route.route_long_name}}</dd>
+	<dt>Agencia</dt>
+	<dd>{{route.agency_id}}</dd>
+	<dt>Nombre corto</dt>
+	<dd>{{route.route_short_name}}</dd>
+	<dt>Descripcion</dt>
+	<dd>{{route.route_desc}}</dd>
+	<dt>Tipo</dt>
+	<dd>{{route.route_type}}</dd>
+	<dt>Color</dt>
+	<dd>{{route.route_color}}</dd>
+	<dt>Activa</dt>
+	<dd>{{route.active}}</dd>
+</dl>
+
+
+{% set keys = ["active", "trip_id", "trip_headsign", "trip_short_name"] %}
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+  		{%for key in keys%}
+			<th>{{key}}</th>
+  		{%endfor%}
+		</tr>
+	</thead>
+{%for trip in trips%}
+
+	{% if not trip['active']%}
+	<tr class="danger">
+	{%else%}
+  <tr>
+  {%endif%}
+	  {%for key in keys%}
+
+	  	{%if key == "active"%}
+	  	<td>
+	  		{%if trip['active']%}
+	  			<span class="glyphicon glyphicon-ok"></span>
+	  		{%else%}
+	  			<span class="glyphicon glyphicon-remove"></span>
+	    	{%endif%}
+	  	</td>
+	  	{%else%}
+	    <td>{{trip[key]}}</td>
+	    {%endif%}
+	  {%endfor%}
+  </tr>
+{%endfor%}
+</table>
+
+
+{% endblock%}
