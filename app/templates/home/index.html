@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h3>Agencias en operacion</h3>
+
+<ul>
+	{%for agency in agencies%}
+	<li><a href="/agency/{{agency.agency_id}}">{{agency.agency_name}}</a></li>
+	{%endfor%}
+</ul>
+
+<h3>Rutas</h3>
+
+{%for route in routes %}
+<h4><a href="/routes/{{route.route_id}}">Ruta: {{route.route_short_name}}</a></h4>
+
+<dl class="dl-horizontal">
+	<dt>Nombre</dt>
+	<dd>{{route.route_long_name}}</dd>
+	<dt>Agencia</dt>
+	<dd>{{route.agency_id}}</dd>
+	<dt>Nombre corto</dt>
+	<dd>{{route.route_short_name}}</dd>
+	<dt>Descripcion</dt>
+	<dd>{{route.route_desc}}</dd>
+	<dt>Tipo</dt>
+	<dd>{{route.route_type}}</dd>
+	<dt>Color</dt>
+	<dd>{{route.route_color}}</dd>
+	<dt>Activa</dt>
+	<dd>{{route.active}}</dd>
+</dl>
+{%endfor%}
+
+{% endblock%}
