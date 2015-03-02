@@ -1,14 +1,17 @@
 <html>
 
 <head>
+	{% block head %}
+	<title>{% block title %}{% endblock %} - Transporte Publico</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	{% endblock %}
 </head>
 
 <body>
-<div class="container">
+<div class="container-fluid">
 
-	<h1><a href="/"> Ministerio de Transporte Provincia de Mendoza</a></h1>
+	<h1>Transporte Público</h1>
 
 	{% block body %}{% endblock %}
 

@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}Parada {{stop.stop_id}}{% endblock %}
+
+{% block body %}
+
+<ol class="breadcrumb">
+  <li><a href="/">Inicio</a></li>
+  <li><a href="/stops/{{stop.stop_id}}">Parada {{stop.stop_id}}</a></li>
+</ol>
+
+<dl class="dl-horizontal">
+	<dt>ID</dt>
+	<dd>{{stop.stop_id}}</dd>
+	<dt>Latitud, Longitud</dt>
+	<dd>{{stop.stop_lat}}, {{stop.stop_lon}}</dd>
+	<dt>Nombre</dt>
+	<dd>{{stop.stop_name or ""}}</dd>
+	<dt>Calle</dt>
+	<dd>{{stop.stop_calle or ""}}</dd>
+	<dt>Numero</dt>
+	<dd>{{stop.stop_numero or ""}}</dd>
+	<dt>Entre calles</dt>
+	<dd>{{stop.stop_entre or ""}}</dd>
+	<dt>Codigo</dt>
+	<dd>{{stop.stop_code or ""}}</dd>
+	<dt>Esquina</dt>
+	<dd>{{stop.stop_esquina or ""}}</dd>
+</dl>
+
+
+{% endblock%}
