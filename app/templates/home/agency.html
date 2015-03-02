@@ -1,20 +1,28 @@
 {% extends "layout.html" %}
 
-{% block title %}Inicio{% endblock %}
+{% block title %}Agencia {{agency.agency_id}}{% endblock %}
 
 {% block body %}
 
 <ol class="breadcrumb">
   <li><a href="/">Inicio</a></li>
+  <li><a href="/agency/{{agency.agency_id}}">Agenica {{agency.agency_id}}</a></li>
 </ol>
 
-<h2>Agencias en operacion</h2>
+<h2>Informacion General</h2>
 
-<ul>
-	{%for agency in agencies%}
-	<li><a href="/agency/{{agency.agency_id}}">{{agency.agency_name}}</a></li>
-	{%endfor%}
-</ul>
+<dl class="dl-horizontal">
+	<dt>Nombre</dt>
+	<dd>{{agency.agency_name}}</dd>
+	<dt>URL</dt>
+	<dd>{{agency.agency_url}}</dd>
+	<dt>Telefono</dt>
+	<dd>{{agency.agency_phone}}</dd>
+	<dt>Lenguaje</dt>
+	<dd>{{agency.agency_lang}}</dd>
+	<dt>Zona Horaria</dt>
+	<dd>{{agency.agency_timezone}}</dd>
+</dl>
 
 <h2>Rutas</h2>
 
