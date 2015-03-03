@@ -1,6 +1,7 @@
 from . import db
 from . import create_celery_app
 from celery.utils.log import get_task_logger
+from .services.s3 import S3
 
 logger = get_task_logger(__name__)
 
@@ -28,11 +29,20 @@ def buildFeed(validate=False):
   feedFile = feed.build()
   feed.saveTo(celery_app.conf.TMP_FOLDER)
 
-  # with open(celery_app.conf.TMP_FOLDER + feed.filename, 'wb') as f:
-  #   f.write(feedFile.getvalue())
+  with open(celery_app.conf.TMP_FOLDER + feed.filename, 'wb') as f:
+    f.write(feedFile.getvalue())
 
   if validate:
     feed.validate()
+
+
+  BUCKET_NAME = 'gtfseditor-feeds'
+  s3service = S3(BUCKET_NAME)
+  s3service.config(celery_app.conf)
+
+  logger.info('Uploading %s to Amazon S3 bucket %s'.format(feed.filename, BUCKET_NAME))
+
+  s3service.uploadFileObj(feed.filename, feedFile)
 
 @celery_app.task
 def listDir():
