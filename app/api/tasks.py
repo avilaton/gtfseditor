@@ -15,8 +15,8 @@ def get_mail():
     return jsonify({"task": job.id})
 
 
-@api.route('/feed')
-@api.route('/feed/')
+@api.route('/compile')
+@api.route('/compile/')
 def get_feed():
     job = buildFeed.delay()
     return jsonify({'task': job.id})

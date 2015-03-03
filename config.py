@@ -13,10 +13,15 @@ class Config:
     MAIL_USE_TLS = False
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+
     FLASKY_MAIL_SUBJECT_PREFIX = '[gtfseditor]'
     FLASKY_MAIL_SENDER = 'Gtfseditor <gtfseditor@gmail.com>'
     FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')
     FLASKY_SLOW_DB_QUERY_TIME=0.5
+
     BROKER_URL = os.environ.get('CLOUDAMQP_URL') or 'sqla+sqlite:///celerydb.sqlite'
     CELERY_RESULT_BACKEND = os.environ.get('CLOUDAMQP_URL') or 'db+sqlite:///celerydb.sqlite'
     MODES = ["frequency", "initial-times", "full-spec"]

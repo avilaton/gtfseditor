@@ -9,6 +9,7 @@ from app import create_app
 from app import db
 from app.models import *
 from app.services.feed import Feed
+from app.services.s3 import S3
 from app.services.sequence import StopSequence as Sequence
 
 from flask.ext.script import Manager
@@ -58,7 +59,7 @@ def deploy():
     upgrade()
 
 @manager.command
-def build(validate=False, extract=False):
+def build(validate=False, extract=False, upload=False):
   """Build feed to .tmp folder"""
 
   if not os.path.isdir(TMP_FOLDER):
@@ -75,6 +76,12 @@ def build(validate=False, extract=False):
 
   if extract:
     extractZip(TMP_FOLDER + feed.filename, TMP_FOLDER + 'extracted/')
+
+  if upload:
+    BUCKET_NAME = 'gtfseditor-feeds'
+    s3service = S3(BUCKET_NAME)
+    s3service.config(app.conf)
+    s3service.uploadFileObj(feed.filename, feedFile)
 
 @manager.command
 def updatedistances():
