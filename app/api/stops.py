@@ -14,7 +14,7 @@ import app.services.geojson as geojson
 def get_stops(fmt="json"):
     bbox = request.args.get('bbox')
     limit = request.args.get('limit')
-    filter_stop_id = ''.join(["%", request.args.get('filter'), "%"])
+    filter_stop_id = request.args.get('filter')
 
     try:
       limit = int(limit)
@@ -30,9 +30,9 @@ def get_stops(fmt="json"):
     if bounds:
         stops = Stop.query.filter(Stop.stop_lat < north, Stop.stop_lat > south,
           Stop.stop_lon < east, Stop.stop_lon > west,
-          Stop.stop_id.like(filter_stop_id)).limit(limit).all()
+          Stop.stop_id.contains(filter_stop_id)).limit(limit).all()
     else:
-        stops = Stop.query.filter(Stop.stop_id.like(filter_stop_id)).limit(limit)\
+        stops = Stop.query.filter(Stop.stop_id.contains(filter_stop_id)).limit(limit)\
           .all()
 
     return jsonify({
