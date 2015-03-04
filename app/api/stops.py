@@ -14,6 +14,7 @@ import app.services.geojson as geojson
 def get_stops(fmt="json"):
     bbox = request.args.get('bbox')
     limit = request.args.get('limit')
+    filter_stop_id = ''.join(["%", request.args.get('filter'), "%"])
 
     try:
       limit = int(limit)
@@ -28,9 +29,11 @@ def get_stops(fmt="json"):
 
     if bounds:
         stops = Stop.query.filter(Stop.stop_lat < north, Stop.stop_lat > south,
-          Stop.stop_lon < east, Stop.stop_lon > west).limit(limit).all()
+          Stop.stop_lon < east, Stop.stop_lon > west,
+          Stop.stop_id.like(filter_stop_id)).limit(limit).all()
     else:
-        stops = Stop.query.limit(limit).all()
+        stops = Stop.query.filter(Stop.stop_id.like(filter_stop_id)).limit(limit)\
+          .all()
 
     return jsonify({
         'stops': [stop.to_json for stop in stops]
@@ -52,7 +55,7 @@ def deleteStop(stop_id):
 @api.route('/stops/<stop_id>',methods=['PUT', 'OPTIONS'])
 def updateStop(stop_id):
   data = request.json
-  item = Stop.query.get_or_404(data.get('stop_id'))
+  existing = Stop.query.filter_by(stop_id=stop_id).first()
   item = Stop(**data)
   db.session.merge(item)
   return jsonify(item.to_json)
