@@ -80,6 +80,7 @@ class ProductionConfig(Config):
 
 
 class HerokuConfig(ProductionConfig):
+    DEBUG = True
     SSL_DISABLE = bool(os.environ.get('SSL_DISABLE'))
 
     @classmethod
