@@ -7,10 +7,9 @@ define([
   'views/filter',
   'views/stopMap',
   'views/stopToolbar',
-  'models/stop',
-  'models/shape'
+  'models/stop'
   ], function (_, Backbone, Handlebars, JST, StopDataView, FilterView, StopMapView,
-      StopToolbarView, StopModel, ShapeModel) {
+      StopToolbarView, StopModel) {
     var View;
 
     View = Backbone.View.extend({
@@ -21,17 +20,16 @@ define([
       events: {},
 
       initialize: function(){
+        this.model = new StopModel();
         this.render();
       },
 
       render: function () {
         this.$el.html(this.template());
-        this.stopModel = new StopModel();
 
         var stopMapView = new StopMapView({
           el: '.map-view',
-          stop: this.stopModel,
-          model: this.stopModel
+          model: this.model
         });
         var filterView = new FilterView({
           el: this.$('.filter-view')
@@ -42,14 +40,13 @@ define([
         });
 
         var stopDataView = new StopDataView({
-          model: this.stopModel,
+          model: this.model,
           el: this.$('.stop-data-view')
         });
         var stopToolbarView = new StopToolbarView({
           el: '.stop-toolbar-view',
-          model: this.stopModel,
-          controls: stopMapView.controls,
-          stopDataView: stopDataView
+          model: this.model,
+          controls: stopMapView.controls
         });
       }
 

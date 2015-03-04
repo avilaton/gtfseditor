@@ -13,7 +13,7 @@ define([
       initialize: function(options){
         var self = this;
 
-        self.stop = options.stop;
+        this.stop = this.model;
 
         this.map = new OpenLayers.Map(this.el, {
           controls : [

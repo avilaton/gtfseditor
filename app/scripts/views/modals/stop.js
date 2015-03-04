@@ -1,19 +1,18 @@
 define([
-    "underscore",
-    "backbone",
-    "handlebars",
+    'underscore',
+    'backbone',
+    'handlebars',
     'JST'
 ], function (_, Backbone, Handlebars, JST) {
     var View;
 
     View = Backbone.View.extend({
 
-        template: JST['modals/route'],
+        template: JST['modals/stop'],
 
         events: {
-            "click .js-save": "save",
-            "keyup input": 'onEdit',
-            'click input[type="checkbox"]': 'onEditCheckbox'
+            'click .js-save': 'save',
+            'keyup input': 'onEdit'
         },
 
         initialize: function(options){
@@ -23,6 +22,7 @@ define([
 
         render: function () {
             var self = this;
+
             this.$el.html(this.template(this.model.toJSON()));
         },
 
@@ -33,11 +33,6 @@ define([
         onEdit: function (event) {
             var $target = $(event.currentTarget);
             this.model.set($target.attr('name'), $target.val());
-        },
-
-        onEditCheckbox: function (event) {
-            var $target = $(event.currentTarget);
-            this.model.set('active', $target.prop('checked'));
         }
     });
 

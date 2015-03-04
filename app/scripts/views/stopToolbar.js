@@ -2,8 +2,9 @@ define([
     "underscore",
     "backbone",
     "handlebars",
-    'JST'
-    ], function (_, Backbone, Handlebars, JST) {
+    'JST',
+    'views/modals/stop'
+    ], function (_, Backbone, Handlebars, JST, StopModal) {
         var View;
 
         View = Backbone.View.extend({
@@ -12,7 +13,8 @@ define([
 
             events: {
                 "click button.newStop": "newStop",
-                "click button.editStop": "editStop",
+                "click button.edit-stop": "editStop",
+                "click button.move-stop": "moveStop",
                 "click button.removeStop": "removeStop",
                 "click button.saveStop": "saveStop",
                 "click button.clearEdits": "clearEdits"
@@ -22,8 +24,6 @@ define([
                 var self = this;
 
                 this.controls = options.controls;
-
-                this.stopDataView = options.stopDataView;
 
                 this.editMode = false;
 
@@ -50,6 +50,14 @@ define([
             },
 
             editStop: function (event) {
+                var stopModal = new StopModal({
+                    model: this.model,
+                    el: $('#routeDataEditor')
+                });
+                stopModal.$el.modal('show');
+            },
+
+            moveStop: function (event) {
                 event.preventDefault();
                 var self = this;
                 var $target = $(event.currentTarget);
@@ -60,14 +68,12 @@ define([
                         this.controls.copyFeature(feature, 'drawStops');
                     };
                     $target.addClass('btn-primary');
-                    this.stopDataView.setEditMode(true);
                     this.controls.selectStops.unselectAll();
                     this.controls.selectStops.deactivate();
                     this.controls.modifyStops.activate();
                     this.controls.modifyStops.selectControl.select(feature);
                 } else {
                     $target.removeClass('btn-primary');
-                    this.stopDataView.setEditMode(false);
                     this.controls.modifyStops.deactivate();
 
                     this.controls.selectStops.activate();
