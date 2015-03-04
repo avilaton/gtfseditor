@@ -156,7 +156,9 @@ this["JST"]["modals/stop"] = Handlebars.template({"1":function(depth0,helpers,pa
   buffer += "    </div>\n\n    <div class=\"modal-body\">\n      <form role=\"form\" >\n";
   stack1 = helpers.unless.call(depth0, (depth0 != null ? depth0.stop_id : depth0), {"name":"unless","hash":{},"fn":this.program(5, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "        <div class=\"form-group\">\n          <label for=\"stop_name\">stop_name</label>\n          <input class=\"form-control\" type=\"text\" name=\"stop_name\" placeholder=\"stop_name\" value=\""
+  return buffer + "        <div class=\"form-group\">\n          <label for=\"stop_code\">stop_code</label>\n          <input class=\"form-control\" type=\"text\" name=\"stop_code\" placeholder=\"stop_code\" value=\""
+    + escapeExpression(((helper = (helper = helpers.stop_code || (depth0 != null ? depth0.stop_code : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"stop_code","hash":{},"data":data}) : helper)))
+    + "\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"stop_name\">stop_name</label>\n          <input class=\"form-control\" type=\"text\" name=\"stop_name\" placeholder=\"stop_name\" value=\""
     + escapeExpression(((helper = (helper = helpers.stop_name || (depth0 != null ? depth0.stop_name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"stop_name","hash":{},"data":data}) : helper)))
     + "\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"stop_calle\">stop_calle</label>\n            <input class=\"form-control\" type=\"text\" name=\"stop_calle\" placeholder=\"stop_calle\" value=\""
     + escapeExpression(((helper = (helper = helpers.stop_calle || (depth0 != null ? depth0.stop_calle : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"stop_calle","hash":{},"data":data}) : helper)))
@@ -357,6 +359,8 @@ this["JST"]["stopData"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "<div class=\"row\">\n  <div class=\"col-sm-12\">\n  <dl class=\"dl-horizontal\">\n    <dt>Stop id</dt>\n    <dd>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_id : stack1), depth0))
+    + "</dd>\n    <dt>Stop code</dt>\n    <dd>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_code : stack1), depth0))
     + "</dd>\n    <dt>Nombre</dt>\n    <dd>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_name : stack1), depth0))
     + "</dd>\n    <dt>Calle</dt>\n    <dd>"
