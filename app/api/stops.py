@@ -29,11 +29,14 @@ def get_stops(fmt="json"):
 
     if bounds:
         stops = Stop.query.filter(Stop.stop_lat < north, Stop.stop_lat > south,
-          Stop.stop_lon < east, Stop.stop_lon > west,
-          Stop.stop_id.contains(filter_stop_id)).limit(limit).all()
+            Stop.stop_lon < east, Stop.stop_lon > west)
     else:
-        stops = Stop.query.filter(Stop.stop_id.contains(filter_stop_id)).limit(limit)\
-          .all()
+        stops = Stop.query
+
+    if filter_stop_id:
+      stops = stops.filter(Stop.stop_id.contains(filter_stop_id)).limit(limit).all()
+    else:
+      stops = stops.limit(limit).all()
 
     return jsonify({
         'stops': [stop.to_json for stop in stops]
