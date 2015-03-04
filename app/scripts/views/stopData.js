@@ -1,7 +1,7 @@
 define([
-    "underscore",
-    "backbone",
-    "handlebars",
+    'underscore',
+    'backbone',
+    'handlebars',
     'JST'
     ], function (_, Backbone, Handlebars, JST) {
         var View;
@@ -13,16 +13,17 @@ define([
             initialize: function(options){
                 var self = this;
 
-                this.render();
+                this.model.on('change', this.render, this);
+                this.model.on('destroy', function () {
+                    this.$el.html(this.template());
+                }, this);
 
-                this.model.on("change", self.render, self);
+                this.render();
             },
 
             render: function () {
-                var self = this;
-
                 this.$el.html(this.template({
-                    stop: self.model.toJSON()
+                    stop: this.model.toJSON()
                 }));
             }
 

@@ -14,13 +14,13 @@ define([
             var self = this;
             this.map = options.map;
             this.format = options.format;
-            
+
             this.layer = new OpenLayers.Layer.Vector('Draw stops', {
               projection: new OpenLayers.Projection('EPSG:4326'),
               styleMap: Styles.drawStopsStyleMap
             });
             this.layer.id = 'drawStops';
-            
+
             this.map.addLayer(self.layer);
             this.bindEvents();
         },
@@ -34,13 +34,14 @@ define([
             this.layer.events.register('featuremodified', self,
                 self.onFeatureModified);
 
-            // this.layer.events.register('featureadded', self.layer, function (event) {    
-            //     this.features.forEach(function (item) {
-            //         if (item.id !== event.feature.id) {
-            //             item.layer.removeFeatures([item]);
-            //         }
-            //     })
-            // });
+            this.layer.events.register('featureadded', self.layer, function (event) {
+                this.features.forEach(function (item) {
+                    if (item.id !== event.feature.id) {
+                        item.layer.removeFeatures([item]);
+                    }
+                });
+                self.onFeatureModified(event);
+            });
         },
 
         onFeatureModified: function (event) {
@@ -48,8 +49,7 @@ define([
             var geoJSON = this.format.write(feature);
             var featureObject = JSON.parse(geoJSON);
             var coords = feature.geometry.getBounds().getCenterLonLat();
-            console.log(coords);
-            console.log("afterfeaturemodified", featureObject);
+
             this.model.feature = feature;
             this.model.set('stop_lon', featureObject.geometry.coordinates[0]);
             this.model.set('stop_lat', featureObject.geometry.coordinates[1]);

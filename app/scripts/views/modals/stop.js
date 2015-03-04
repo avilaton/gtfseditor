@@ -26,13 +26,18 @@ define([
             this.$el.html(this.template(this.model.toJSON()));
         },
 
-        save: function (event) {
-            this.model.save();
+        save: function () {
+            var self = this;
+            this.model.save().then(function () {
+                self.$el.modal('hide');
+            });
         },
 
         onEdit: function (event) {
-            var $target = $(event.currentTarget);
-            this.model.set($target.attr('name'), $target.val());
+            var $target = $(event.currentTarget),
+                name = $target.attr('name');
+
+            this.model.set(name, $target.val());
         }
     });
 

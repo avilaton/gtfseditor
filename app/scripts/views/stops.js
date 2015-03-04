@@ -31,23 +31,34 @@ define([
           el: '.map-view',
           model: this.model
         });
+        this.stopMapView = stopMapView;
+
         var filterView = new FilterView({
           el: this.$('.filter-view')
         });
         filterView.on('change', function (value) {
-          stopMapView.bboxLayer.protocol.params.filter = value;
-          stopMapView.bboxLayer.refresh({force:true});
+          stopMapView.layers.stopsBboxLayer.layer.protocol.params.filter = value;
+          stopMapView.layers.stopsBboxLayer.layer.refresh({force:true});
         });
 
         var stopDataView = new StopDataView({
           model: this.model,
           el: this.$('.stop-data-view')
         });
+
         var stopToolbarView = new StopToolbarView({
           el: '.stop-toolbar-view',
           model: this.model,
           controls: stopMapView.controls
         });
+
+        this.model.on('sync', function () {
+          this.refreshStops();
+        }, this);
+      },
+
+      refreshStops: function () {
+        this.stopMapView.layers.stopsBboxLayer.layer.refresh({force:true});
       }
 
     });

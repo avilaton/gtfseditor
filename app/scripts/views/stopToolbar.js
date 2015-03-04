@@ -1,7 +1,7 @@
 define([
-    "underscore",
-    "backbone",
-    "handlebars",
+    'underscore',
+    'backbone',
+    'handlebars',
     'JST',
     'views/modals/stop'
     ], function (_, Backbone, Handlebars, JST, StopModal) {
@@ -12,90 +12,104 @@ define([
             template: JST['stopToolbar'],
 
             events: {
-                "click button.newStop": "newStop",
-                "click button.edit-stop": "editStop",
-                "click button.move-stop": "moveStop",
-                "click button.removeStop": "removeStop",
-                "click button.saveStop": "saveStop",
-                "click button.clearEdits": "clearEdits"
+                'click button.create-stop': 'newStop',
+                'click button.edit-stop': 'editStop',
+                'click button.move-stop': 'moveStop',
+                'click button.rm-stop': 'removeStop',
+                'click button.save-stop': 'saveStop',
+                'click button.clear-edit': 'clearEdits',
+                'click button.cancel-edit': 'cancel'
             },
 
             initialize: function(options){
-                var self = this;
-
                 this.controls = options.controls;
-
-                this.editMode = false;
-
                 this.render();
             },
 
             render: function () {
                 this.$el.html(this.template({}));
-                this.saveBtn = this.$el.find('.saveStop');
-                this.editBtn = this.$el.find('.editStop');
+
+                this.stopModal = new StopModal({
+                    model: this.model,
+                    el: $('#routeDataEditor')
+                });
+            },
+
+            disable: function () {
+                this.$('.btn').attr('disabled', 'disabled');
+            },
+
+            enable: function () {
+                this.$('.btn').removeAttr('disabled');
+            },
+
+            cancel: function (event) {
+                this.editMode(false);
+                this.controls.modifyStops.deactivate();
+                this.controls.drawStops.deactivate();
+                this.controls.selectStops.activate();
+                this.controls.clearEdits();
+            },
+
+            editMode: function (flag) {
+                this.$('.toolbar-edit').toggleClass('hidden', flag);
+                this.$('.toolbar-commit').toggleClass('hidden', !flag);
             },
 
             saveStop: function (event) {
                 event.preventDefault();
-                console.log("save stop clicked", event, this.model);
-                this.model.save();
+                this.disable();
+                var self = this;
+                this.model.save().always(function () {
+                    self.editMode(false);
+                    self.controls.modifyStops.deactivate();
+                    self.controls.drawStops.deactivate();
+                    self.controls.selectStops.activate();
+                    self.controls.clearEdits();
+                    self.enable();
+                });
             },
 
             removeStop: function (event) {
                 event.preventDefault();
-                console.log("remove stop clicked", event, this.model);
-                console.log(this.model.feature.destroy());
+                // console.log(this.model.feature.destroy());
                 this.model.destroy();
             },
 
             editStop: function (event) {
-                var stopModal = new StopModal({
-                    model: this.model,
-                    el: $('#routeDataEditor')
+                var self = this;
+                this.stopModal.render();
+                this.stopModal.$el.modal('show');
+                this.stopModal.$el.on('hide.bs.modal', function () {
+                    self.editMode(false);
+                    self.controls.modifyStops.deactivate();
+                    self.controls.drawStops.deactivate();
+                    self.controls.selectStops.activate();
+                    self.controls.clearEdits();
                 });
-                stopModal.$el.modal('show');
             },
 
             moveStop: function (event) {
                 event.preventDefault();
-                var self = this;
-                var $target = $(event.currentTarget);
-                var feature = this.model.toFeature();
+                var self = this,
+                    $target = $(event.currentTarget),
+                    feature = this.model.toFeature();
 
-                if (!this.editMode) {
-                    if (feature) {
-                        this.controls.copyFeature(feature, 'drawStops');
-                    };
-                    $target.addClass('btn-primary');
-                    this.controls.selectStops.unselectAll();
-                    this.controls.selectStops.deactivate();
-                    this.controls.modifyStops.activate();
-                    this.controls.modifyStops.selectControl.select(feature);
-                } else {
-                    $target.removeClass('btn-primary');
-                    this.controls.modifyStops.deactivate();
-
-                    this.controls.selectStops.activate();
-                    // this.controls.selectStops.select(feature);
-                }
-                self.editMode = !self.editMode;
+                if (feature) {
+                    this.controls.copyFeature(feature, 'drawStops');
+                };
+                this.editMode(true);
+                this.controls.selectStops.unselectAll();
+                this.controls.selectStops.deactivate();
+                this.controls.modifyStops.activate();
+                this.controls.modifyStops.selectControl.select(feature);
             },
 
             newStop: function (event) {
-                var $target = $(event.currentTarget);
-                $target.toggleClass('btn-primary');
-                if (this.controls.selectStops.active) {
-                    $target.addClass('btn-primary');
-                    this.controls.selectStops.unselectAll();
-                    this.controls.selectStops.deactivate();
-                    this.controls.drawStops.activate();
-                } else {
-                    $target.removeClass('btn-primary');
-                    this.controls.drawStops.deactivate();
-                    this.controls.selectStops.activate();
-                }
-
+                this.editMode(true);
+                this.controls.selectStops.unselectAll();
+                this.controls.selectStops.deactivate();
+                this.controls.drawStops.activate();
             },
 
             clearEdits: function (event) {
