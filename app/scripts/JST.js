@@ -137,6 +137,42 @@ this["JST"]["modals/route"] = Handlebars.template({"1":function(depth0,helpers,p
 
 
 
+this["JST"]["modals/stop"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return "      <h3 class=\"modal-title\">Edit Stop with id: "
+    + escapeExpression(((helper = (helper = helpers.stop_id || (depth0 != null ? depth0.stop_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"stop_id","hash":{},"data":data}) : helper)))
+    + "</h3>\n";
+},"3":function(depth0,helpers,partials,data) {
+  return "      <h3 class=\"modal-title\">Add New Stop</h3>\n";
+  },"5":function(depth0,helpers,partials,data) {
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return "        <div class=\"form-group\">\n          <label for=\"stop_id\">stop_id</label>\n          <input class=\"form-control\" type=\"text\" name=\"stop_id\" placeholder=\"stop_id\" value=\""
+    + escapeExpression(((helper = (helper = helpers.stop_id || (depth0 != null ? depth0.stop_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"stop_id","hash":{},"data":data}) : helper)))
+    + "\">\n        </div>\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<div class=\"modal-dialog\">\n  <div class=\"modal-content\">\n    <div class=\"modal-header\">\n      <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">\n        <span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span>\n      </button>\n";
+  stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.stop_id : depth0), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  buffer += "    </div>\n\n    <div class=\"modal-body\">\n      <form role=\"form\" >\n";
+  stack1 = helpers.unless.call(depth0, (depth0 != null ? depth0.stop_id : depth0), {"name":"unless","hash":{},"fn":this.program(5, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "        <div class=\"form-group\">\n          <label for=\"stop_name\">stop_name</label>\n          <input class=\"form-control\" type=\"text\" name=\"stop_name\" placeholder=\"stop_name\" value=\""
+    + escapeExpression(((helper = (helper = helpers.stop_name || (depth0 != null ? depth0.stop_name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"stop_name","hash":{},"data":data}) : helper)))
+    + "\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"stop_calle\">stop_calle</label>\n            <input class=\"form-control\" type=\"text\" name=\"stop_calle\" placeholder=\"stop_calle\" value=\""
+    + escapeExpression(((helper = (helper = helpers.stop_calle || (depth0 != null ? depth0.stop_calle : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"stop_calle","hash":{},"data":data}) : helper)))
+    + "\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"stop_numero\">stop_numero</label>\n            <input class=\"form-control\" type=\"text\" name=\"stop_numero\" placeholder=\"stop_numero\" value=\""
+    + escapeExpression(((helper = (helper = helpers.stop_numero || (depth0 != null ? depth0.stop_numero : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"stop_numero","hash":{},"data":data}) : helper)))
+    + "\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"stop_esquina\">stop_esquina</label>\n            <input class=\"form-control\" type=\"text\" name=\"stop_esquina\" placeholder=\"stop_esquina\" value=\""
+    + escapeExpression(((helper = (helper = helpers.stop_esquina || (depth0 != null ? depth0.stop_esquina : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"stop_esquina","hash":{},"data":data}) : helper)))
+    + "\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"stop_entre\">stop_entre</label>\n            <input class=\"form-control\" type=\"text\" name=\"stop_entre\" placeholder=\"stop_entre\" value=\""
+    + escapeExpression(((helper = (helper = helpers.stop_entre || (depth0 != null ? depth0.stop_entre : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"stop_entre","hash":{},"data":data}) : helper)))
+    + "\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"stop_desc\">stop_desc</label>\n          <input class=\"form-control\" type=\"text\" name=\"stop_desc\" placeholder=\"stop_desc\" value=\""
+    + escapeExpression(((helper = (helper = helpers.stop_desc || (depth0 != null ? depth0.stop_desc : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"stop_desc","hash":{},"data":data}) : helper)))
+    + "\">\n        </div>\n      </form>\n    </div>\n\n    <div class=\"modal-footer\">\n      <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n      <button type=\"button\" class=\"btn btn-primary js-save\">Save changes</button>\n    </div>\n  </div>\n</div>\n";
+},"useData":true});
+
+
+
 this["JST"]["modals/trip"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
   return "      <h3 class=\"modal-title\">Edit Trip id: "
@@ -210,7 +246,7 @@ this["JST"]["navbar-right"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.
 
 
 this["JST"]["navbarRight"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<ul class=\"nav navbar-top-links navbar-right\">\n    <li>\n        <a href=\"#stops\">\n            <i class=\"glyphicon glyphicon-record\"> Stops</i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/routes\">\n            <i class=\"glyphicon glyphicon-road\"> Routes</i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/times\">\n            <i class=\"glyphicon glyphicon-time\"> Times</i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/agencies\">\n            <i class=\"glyphicon glyphicon-road\"> Agencies</i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/calendar\">\n            <i class=\"glyphicon glyphicon-calendar\"> Calendar</i>\n        </a>\n    </li>\n\n\n    <!-- /.dropdown -->\n    <li class=\"dropdown\">\n        <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">\n            <i class=\"glyphicon glyphicon-cog\"></i>  Feed<i class=\"caret\"></i>\n        </a>\n        <ul class=\"dropdown-menu dropdown-user\">\n<!--             <li><a href=\"#\"><i class=\"glyphicon glyphicon-user glyphicon-fw\"></i> User Profile</a>\n            </li>\n            <li><a href=\"#\"><i class=\"glyphicon glyphicon-gear glyphicon-fw\"></i> Settings</a>\n            </li>\n            <li class=\"divider\"></li>\n            <li><a href=\"login.html\"><i class=\"glyphicon glyphicon-sign-out glyphicon-fw\"></i> Logout</a>\n            </li> -->\n            <li><a href=\"/api/feed/google_transit.zip\" target=\"_blank\"><i class=\"glyphicon glyphicon-download-alt\"></i> Download Feed</a>\n            </li>\n        </ul>\n        <!-- /.dropdown-user -->\n    </li>\n    <!-- /.dropdown -->\n    <!-- /.dropdown -->\n    <li class=\"dropdown\">\n        <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">\n          <i class=\"glyphicon glyphicon-user glyphicon-fw\"></i>  <i class=\"glyphicon glyphicon-caret-down\"></i>\n        </a>\n        <ul class=\"dropdown-menu dropdown-user\">\n          <li><a href=\"/auth/logout\"><i class=\"glyphicon glyphicon-sign-out glyphicon-fw\"></i> Logout</a>\n          </li>\n        </ul>\n        <!-- /.dropdown-user -->\n    </li>\n</ul>\n<!-- /.navbar-top-links -->\n";
+  return "<ul class=\"nav navbar-top-links navbar-right\">\n    <li>\n        <a href=\"#stops\">\n            <i class=\"glyphicon glyphicon-record\"><span class=\"hidden-sm\"> Stops</span></i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/routes\">\n            <i class=\"glyphicon glyphicon-road\"><span class=\"hidden-sm\"> Routes</span></i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/times\">\n            <i class=\"glyphicon glyphicon-time\"><span class=\"hidden-sm\"> Times</span></i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/agencies\">\n            <i class=\"glyphicon glyphicon-road\"><span class=\"hidden-sm\"> Agencies</span></i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/calendar\">\n            <i class=\"glyphicon glyphicon-calendar\"><span class=\"hidden-sm\"> Calendar</span></i>\n        </a>\n    </li>\n\n\n    <!-- /.dropdown -->\n    <li class=\"dropdown\">\n        <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">\n            <i class=\"glyphicon glyphicon-cog\"></i><span class=\"hidden-sm\"> Feed</span><i class=\"caret\"></i>\n        </a>\n        <ul class=\"dropdown-menu dropdown-user\">\n<!--             <li><a href=\"#\"><i class=\"glyphicon glyphicon-user glyphicon-fw\"></i> User Profile</a>\n            </li>\n            <li><a href=\"#\"><i class=\"glyphicon glyphicon-gear glyphicon-fw\"></i> Settings</a>\n            </li>\n            <li class=\"divider\"></li>\n            <li><a href=\"login.html\"><i class=\"glyphicon glyphicon-sign-out glyphicon-fw\"></i> Logout</a>\n            </li> -->\n            <li><a href=\"/api/feed/google_transit.zip\" target=\"_blank\"><i class=\"glyphicon glyphicon-download-alt\"></i> Download Feed</a>\n            </li>\n        </ul>\n        <!-- /.dropdown-user -->\n    </li>\n    <!-- /.dropdown -->\n    <!-- /.dropdown -->\n    <li class=\"dropdown\">\n        <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">\n          <i class=\"glyphicon glyphicon-user glyphicon-fw\"></i>  <i class=\"glyphicon glyphicon-caret-down\"></i>\n        </a>\n        <ul class=\"dropdown-menu dropdown-user\">\n          <li><a href=\"/auth/logout\"><i class=\"glyphicon glyphicon-sign-out glyphicon-fw\"></i> Logout</a>\n          </li>\n        </ul>\n        <!-- /.dropdown-user -->\n    </li>\n</ul>\n<!-- /.navbar-top-links -->\n";
 },"useData":true});
 
 
@@ -317,60 +353,39 @@ this["JST"]["startTimes"] = Handlebars.template({"1":function(depth0,helpers,par
 
 
 
-this["JST"]["stopData"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+this["JST"]["stopData"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "    <form class=\"form-horizontal\" role=\"form\">\n      <div class=\"form-group\">\n        <legend>Stop id: "
+  return "<div class=\"row\">\n  <div class=\"col-sm-12\">\n  <dl class=\"dl-horizontal\">\n    <dt>Stop id</dt>\n    <dd>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_id : stack1), depth0))
-    + "</legend>\n        <label>Calle</label>\n        <input placeholder=\"Calle\" type=\"text\" class=\"form-control edit-stop-calle\" value=\""
+    + "</dd>\n    <dt>Nombre</dt>\n    <dd>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_name : stack1), depth0))
+    + "</dd>\n    <dt>Calle</dt>\n    <dd>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_calle : stack1), depth0))
-    + "\">\n        <label>Número</label>\n        <input placeholder=\"Número\" type=\"text\" class=\"form-control edit-stop-numero\" value=\""
+    + "</dd>\n    <dt>Numero</dt>\n    <dd>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_numero : stack1), depth0))
-    + "\">\n        <label>Esquina</label>\n        <input placeholder=\"Esquina\" type=\"text\" class=\"form-control edit-stop-esquina\" value=\""
+    + "</dd>\n    <dt>Esquina</dt>\n    <dd>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_esquina : stack1), depth0))
-    + "\">\n        <label>Entre</label>\n        <input placeholder=\"Entre\" type=\"text\" class=\"form-control edit-stop-entre\" value=\""
+    + "</dd>\n    <dt>Entre</dt>\n    <dd>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_entre : stack1), depth0))
-    + "\">\n      </div>\n      <div class=\"control-group\">\n        <div class=\"btn-group\">\n          <button class=\"btn btn-primary saveStop\"><i class=\"glyphicon glyphicon-ok\"></i> Save</button>\n          <button class=\"btn btn-default cancelEditStop\">Cancel</button>\n        </div>\n      </div>\n    </form>\n";
-},"3":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "    <dl>\n      <dt>Calle</dt>\n      <dd>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_calle : stack1), depth0))
-    + "</dd>\n      <dt>Numero</dt>\n      <dd>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_numero : stack1), depth0))
-    + "</dd>\n      <dt>Esquina</dt>\n      <dd>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_esquina : stack1), depth0))
-    + "</dd>\n      <dt>Entre</dt>\n      <dd>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_entre : stack1), depth0))
-    + "</dd>\n      <dt>Lineas</dt>\n      <dd>\n        <p>";
-  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_lineas : stack1), {"name":"each","hash":{},"fn":this.program(4, data),"inverse":this.noop,"data":data});
-  if (stack1 != null) { buffer += stack1; }
-  return buffer + "</p>\n      </dd>\n    </dl>\n";
-},"4":function(depth0,helpers,partials,data) {
-  var lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return escapeExpression(lambda(depth0, depth0))
-    + ", ";
-},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">\n    <h3 class=\"panel-title\">Stop id: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_id : stack1), depth0))
-    + "</h3>\n  </div>\n  <div class=\"panel-body\">\n";
-  stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.editMode : depth0), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data});
-  if (stack1 != null) { buffer += stack1; }
-  return buffer + "  </div>\n</div>";
+    + "</dd>\n    <dt>Descripcion</dt>\n    <dd>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_desc : stack1), depth0))
+    + "</dd>\n    <dt>Latitud</dt>\n    <dd>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_lat : stack1), depth0))
+    + "</dd>\n    <dt>Longitud</dt>\n    <dd>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_lon : stack1), depth0))
+    + "</dd>\n  </dl>\n  </div>\n</div>\n";
 },"useData":true});
 
 
 
-this["JST"]["stopToolbar"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-  return "        <button class=\"btn btn-primary btn-default saveStop\"><i class=\"glyphicon glyphicon-ok\"></i> Save</button>\n";
-  },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<label>Stop Tools</label>\n<div class=\"btn-toolbar\" role=\"toolbar\">\n  <div class=\"btn-group btn-group-sm\">\n    <button class=\"btn btn-default newStop\"><i class=\"glyphicon glyphicon-pencil\"></i> Add</button>\n    <button class=\"btn btn-default editStop\"><i class=\"glyphicon glyphicon-move\"></i> Edit</button>\n    <button class=\"btn btn-default removeStop\"><i class=\"glyphicon glyphicon-trash\"></i> Delete</button>\n    <button class=\"btn btn-default clearEdits\"><i class=\"glyphicon glyphicon-remove\"></i> Clear</button>\n    <!--\n    <button class=\"btn btn-default toggleMultipleSelect\" disabled=\"disabled\">Multiple</button>\n";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.changed : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
-  if (stack1 != null) { buffer += stack1; }
-  return buffer + "    <button class=\"btn btn-default cancelEditStop\">Cancel</button>\n    -->\n  </div>\n</div>";
-},"useData":true});
+this["JST"]["stopToolbar"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<div class=\"btn-toolbar\" role=\"toolbar\">\n  <div class=\"btn-group btn-group-md toolbar-edit\">\n    <button class=\"btn btn-default create-stop\"><i class=\"glyphicon glyphicon-plus\"></i> New</button>\n    <button class=\"btn btn-default edit-stop\"><i class=\"glyphicon glyphicon-pencil\"></i> Edit</button>\n    <button class=\"btn btn-default move-stop\"><i class=\"glyphicon glyphicon-move\"></i> Move</button>\n    <button class=\"btn btn-default rm-stop\"><i class=\"glyphicon glyphicon-trash\"></i> Delete</button>\n  </div>\n  <div class=\"btn-group btn-group-md toolbar-commit hidden\">\n    <button class=\"btn btn-default save-stop\"><i class=\"glyphicon glyphicon-save\"></i> Save</button>\n    <button class=\"btn btn-default edit-stop\"><i class=\"glyphicon glyphicon-pencil\"></i> Edit</button>\n    <button class=\"btn btn-default cancel-edit\"><i class=\"glyphicon glyphicon-remove\"></i> Cancel</button>\n  </div>\n</div>";
+  },"useData":true});
 
 
 
 this["JST"]["stops"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"col-md-4 panel-left\">\n  <div class=\"row\">\n    <div class=\"col-md-12 top-sp filter-view\"></div>\n  </div>\n  <div class=\"stop-toolbar-view\"></div>\n  <div class=\"stop-data-view\"></div>\n</div>\n<div class=\"col-md-8 panel-right\">\n  <div id=\"map\" class=\"map-view\"></div>\n</div>";
+  return "<div class=\"col-md-4 panel-left\">\n  <div class=\"row\">\n    <div class=\"col-md-12 top-sp filter-view\"></div>\n  </div>\n  <div class=\"stop-toolbar-view\"></div>\n  <h4>Stop Data</h4>\n  <div class=\"stop-data-view\"></div>\n</div>\n<div class=\"col-md-8 panel-right\">\n  <div id=\"map\" class=\"map-view\"></div>\n</div>";
   },"useData":true});
 
 

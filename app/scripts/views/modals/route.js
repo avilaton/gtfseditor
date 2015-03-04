@@ -7,7 +7,7 @@ define([
     var View;
 
     View = Backbone.View.extend({
-        
+
         template: JST['modals/route'],
 
         events: {

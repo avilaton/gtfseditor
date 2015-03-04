@@ -1,0 +1,54 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+      </button>
+      {{#if stop_id}}
+      <h3 class="modal-title">Edit Stop with id: {{stop_id}}</h3>
+      {{else}}
+      <h3 class="modal-title">Add New Stop</h3>
+      {{/if}}
+    </div>
+
+    <div class="modal-body">
+      <form role="form" >
+        {{#unless stop_id}}
+        <div class="form-group">
+          <label for="stop_id">stop_id</label>
+          <input class="form-control" type="text" name="stop_id" placeholder="stop_id" value="{{stop_id}}">
+        </div>
+        {{/unless}}
+        <div class="form-group">
+          <label for="stop_name">stop_name</label>
+          <input class="form-control" type="text" name="stop_name" placeholder="stop_name" value="{{stop_name}}">
+        </div>
+        <div class="form-group">
+          <label for="stop_calle">stop_calle</label>
+            <input class="form-control" type="text" name="stop_calle" placeholder="stop_calle" value="{{stop_calle}}">
+        </div>
+        <div class="form-group">
+          <label for="stop_numero">stop_numero</label>
+            <input class="form-control" type="text" name="stop_numero" placeholder="stop_numero" value="{{stop_numero}}">
+        </div>
+        <div class="form-group">
+          <label for="stop_esquina">stop_esquina</label>
+            <input class="form-control" type="text" name="stop_esquina" placeholder="stop_esquina" value="{{stop_esquina}}">
+        </div>
+        <div class="form-group">
+          <label for="stop_entre">stop_entre</label>
+            <input class="form-control" type="text" name="stop_entre" placeholder="stop_entre" value="{{stop_entre}}">
+        </div>
+        <div class="form-group">
+          <label for="stop_desc">stop_desc</label>
+          <input class="form-control" type="text" name="stop_desc" placeholder="stop_desc" value="{{stop_desc}}">
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary js-save">Save changes</button>
+    </div>
+  </div>
+</div>

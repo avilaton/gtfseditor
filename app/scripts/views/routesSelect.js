@@ -9,8 +9,7 @@ define([
     var View;
 
     View = Backbone.View.extend({
-        el: $("#routesSelect"),
-        
+
         template: JST['routesSelect'],
 
         events: {
@@ -23,9 +22,9 @@ define([
 
         initialize: function(){
             var self = this;
-            
+
             this.collection = new RoutesCollection();
-            
+
             this.collection.on("change add remove reset", self.render, self);
             this.collection.fetch();
         },

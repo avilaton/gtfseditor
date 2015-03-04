@@ -13,7 +13,7 @@ define([
       initialize: function(options){
         var self = this;
 
-        self.stop = options.stop;
+        this.stop = this.model;
 
         this.map = new OpenLayers.Map(this.el, {
           controls : [
@@ -55,7 +55,7 @@ define([
         this.layers.drawStops = new DrawStopsView({
           format: this.format,
           map: this.map,
-          model: self.stop
+          model: self.model
         });
         if (typeof (google) === 'object') {
           require(["views/map/googleLayer"], function (GoogleLayerView) {
@@ -107,7 +107,9 @@ define([
           self.layers.drawStops.layer,
           {
             id: 'modifyStops',
-            allowSelection: true
+            clickout: false,
+            toggle: false
+            // allowSelection: true
           });
         this.map.addControl(controls.modifyStops);
 

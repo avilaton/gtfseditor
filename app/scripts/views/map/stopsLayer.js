@@ -43,13 +43,16 @@ define([
             styleMap: Styles.bboxStyleMap,
             visibility: true,
             strategies: [
-              new OpenLayers.Strategy.BBOX({resFactor: 2.0}),
+              new OpenLayers.Strategy.BBOX({resFactor: 1.2}),
               refreshStrategy
               ],
             protocol: new OpenLayers.Protocol.HTTP({
               format: new OpenLayers.Format.GTFS(),
               url: Config.server + 'api/stops.json',
-              params: {filter:''}
+              params: {
+                filter: '',
+                limit: 300
+              }
             })
           });
           this.layer.id = 'bbox';
