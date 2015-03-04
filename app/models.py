@@ -70,6 +70,7 @@ class Agency(db.Model, Entity):
 class Calendar(db.Model, Entity):
   __tablename__ = 'calendar'
   service_id = db.Column(db.String(50), primary_key=True)
+  service_name = db.Column(db.String(50))
   start_date = db.Column(db.String(50))
   end_date = db.Column(db.String(50))
   monday = db.Column(db.String(50))
@@ -153,7 +154,7 @@ class Stop(db.Model, Entity):
   stop_id = db.Column(db.String(50), primary_key=True)
   stop_code = db.Column(db.String(50))
   stop_desc = db.Column(db.String(50))
-  stop_name = db.Column(db.String(50))
+  stop_name = db.Column(db.String(250))
   stop_lat = db.Column(db.Float(precision=53))
   stop_lon = db.Column(db.Float(precision=53))
   stop_calle = db.Column(db.String(50))
