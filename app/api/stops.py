@@ -62,18 +62,16 @@ def deleteStop(stop_id):
 @api.route('/stops/<stop_id>',methods=['PUT', 'OPTIONS'])
 def updateStop(stop_id):
   data = request.json
-  # existing = Stop.query.filter_by(stop_id=stop_id).first()
-  existing = None
-  logger.info("enter")
+  existing = Stop.query.filter_by(stop_id=stop_id).first()
+
   if existing:
     item = Stop(**data)
     db.session.merge(item)
-    db.session.commit()
   else:
     item = Stop(**data)
-    logger.info(item.to_json)
     db.session.add(item)
-    db.session.commit()
+
+  db.session.commit()
 
   return jsonify(item.to_json)
 
