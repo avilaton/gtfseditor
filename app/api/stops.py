@@ -7,6 +7,10 @@ from ..models import Stop
 from . import api
 import app.services.geojson as geojson
 
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 
 @api.route('/stops')
 @api.route('/stops.<fmt>')
@@ -29,11 +33,14 @@ def get_stops(fmt="json"):
 
     if bounds:
         stops = Stop.query.filter(Stop.stop_lat < north, Stop.stop_lat > south,
-          Stop.stop_lon < east, Stop.stop_lon > west,
-          Stop.stop_id.contains(filter_stop_id)).limit(limit).all()
+            Stop.stop_lon < east, Stop.stop_lon > west)
     else:
-        stops = Stop.query.filter(Stop.stop_id.contains(filter_stop_id)).limit(limit)\
-          .all()
+        stops = Stop.query
+
+    if filter_stop_id:
+      stops = stops.filter(Stop.stop_id.contains(filter_stop_id)).limit(limit).all()
+    else:
+      stops = stops.limit(limit).all()
 
     return jsonify({
         'stops': [stop.to_json for stop in stops]
@@ -56,8 +63,16 @@ def deleteStop(stop_id):
 def updateStop(stop_id):
   data = request.json
   existing = Stop.query.filter_by(stop_id=stop_id).first()
-  item = Stop(**data)
-  db.session.merge(item)
+
+  if existing:
+    item = Stop(**data)
+    db.session.merge(item)
+  else:
+    item = Stop(**data)
+    db.session.add(item)
+
+  db.session.commit()
+
   return jsonify(item.to_json)
 
 @api.route('/stops/', methods=['POST'])
