@@ -41,7 +41,7 @@ class DevelopmentConfig(Config):
 
 
 class PostgresConfig(Config):
-    DEBUG = True
+    # DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'postgres:///mza'
     WTF_CSRF_ENABLED = False

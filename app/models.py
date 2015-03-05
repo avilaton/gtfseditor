@@ -19,6 +19,8 @@ class Entity(object):
           d[column.name] = float(attr)
         elif isinstance(column.type, db.Boolean):
           d[column.name] = attr
+        elif isinstance(column.type, db.Integer):
+          d[column.name] = int(attr)
         else:
           d[column.name] = unicode(attr)
       else:
@@ -151,7 +153,7 @@ class Shape(db.Model, Entity):
 class Stop(db.Model, Entity):
   __tablename__ = 'stops'
   # stop_id = Column(Integer, Sequence('id_seq'), primary_key=True)
-  stop_id = db.Column(db.String(50), primary_key=True)
+  stop_id = db.Column(db.Integer, primary_key=True)
   stop_code = db.Column(db.String(50))
   stop_desc = db.Column(db.String(50))
   stop_name = db.Column(db.String(250))
@@ -166,7 +168,7 @@ class Stop(db.Model, Entity):
 class StopSeq(db.Model, Entity):
   __tablename__ = 'stop_seq'
   trip_id = db.Column(db.String(50), primary_key=True)
-  stop_id = db.Column(db.String(50), primary_key=True)
+  stop_id = db.Column(db.Integer, primary_key=True)
   stop_sequence = db.Column(db.Integer, primary_key=True) 
   stop_time = db.Column(db.String(50)) 
   shape_dist_traveled = db.Column(db.Float(precision=53))
@@ -175,7 +177,7 @@ class StopSeq(db.Model, Entity):
 class StopTime(db.Model, Entity):
   __tablename__ = 'stop_times'
   trip_id = db.Column(db.String(50), primary_key=True)
-  stop_id = db.Column(db.String(50), primary_key=True)
+  stop_id = db.Column(db.Integer, primary_key=True)
   stop_sequence = db.Column(db.Integer, primary_key=True)
   arrival_time = db.Column(db.String(50))
   departure_time = db.Column(db.String(50))
