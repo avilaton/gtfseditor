@@ -82,7 +82,7 @@ define([
     'select': new OpenLayers.Style({
       strokeColor: 'black', strokeWidth: 2, strokeOpacity: 1, 
       pointRadius: 8, fillColor: 'red', fill: true, fillOpacity: .6,
-      label: '${stop_id}',
+      label: 'id:${stop_id}\nCode:${stop_code}',
       fontColor: "black", fontSize: "16px", 
       fontFamily: "Courier New, monospace", fontWeight: "bold",
       labelAlign: "left", labelXOffset: "8", labelYOffset: "12",
@@ -100,7 +100,7 @@ define([
     'select': new OpenLayers.Style({
       strokeColor: 'black', strokeWidth: 2, strokeOpacity: 1, 
       pointRadius: 8, fillColor: 'red', fill: true, fillOpacity: .6,
-      label: '${stop_id}',
+      label: 'id:${stop_id}\nCode:${stop_code}',
       fontColor: "black", fontSize: "16px", 
       fontFamily: "Courier New, monospace", fontWeight: "bold",
       labelAlign: "left", labelXOffset: "8", labelYOffset: "12",
@@ -137,11 +137,11 @@ define([
     'select': new OpenLayers.Style({
       strokeColor: 'black', strokeWidth: 2, strokeOpacity: 1, 
       pointRadius: 8, fillColor: 'red', fill: true, fillOpacity: .6,
-      label: '${stop_id}',
+      label: 'id:${stop_id}\nCode:${stop_code}',
       fontColor: "black", fontSize: "16px", 
       fontFamily: "Courier New, monospace", fontWeight: "bold",
-      labelAlign: "left", labelXOffset: "8", labelYOffset: "12",
-      labelOutlineColor: "white", labelOutlineWidth: 3
+      labelAlign: "left", labelXOffset: "12", labelYOffset: "12",
+      labelOutlineColor: "white", labelOutlineWidth: 5
     })          
   });
 
