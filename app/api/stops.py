@@ -7,6 +7,10 @@ from ..models import Stop
 from . import api
 import app.services.geojson as geojson
 
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 
 @api.route('/stops')
 @api.route('/stops.<fmt>')
@@ -60,12 +64,17 @@ def updateStop(stop_id):
   data = request.json
   # existing = Stop.query.filter_by(stop_id=stop_id).first()
   existing = None
+  logger.info("enter")
   if existing:
     item = Stop(**data)
     db.session.merge(item)
+    db.session.commit()
   else:
     item = Stop(**data)
+    logger.info(item.to_json)
     db.session.add(item)
+    db.session.commit()
+
   return jsonify(item.to_json)
 
 @api.route('/stops/', methods=['POST'])
