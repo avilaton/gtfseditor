@@ -38,7 +38,7 @@ class Entity(object):
 
 class Route(db.Model, Entity):
   __tablename__ = 'routes'
-  route_id = db.Column(db.String(50), primary_key=True)
+  route_id = db.Column(db.Integer, primary_key=True)
   agency_id = db.Column(db.String(50))
   route_short_name = db.Column(db.String(50))
   route_long_name = db.Column(db.String(150))
@@ -87,7 +87,7 @@ class Calendar(db.Model, Entity):
 class Trip(db.Model, Entity):
   __tablename__ = 'trips'
   trip_id = db.Column(db.String(50), primary_key=True)
-  route_id = db.Column(db.String(50), db.ForeignKey("routes.route_id"))
+  route_id = db.Column(db.Integer, db.ForeignKey("routes.route_id"))
   service_id = db.Column(db.String(50), db.ForeignKey("calendar.service_id"))
   trip_headsign = db.Column(db.String(150))
   trip_short_name = db.Column(db.String(150))
