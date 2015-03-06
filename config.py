@@ -43,7 +43,7 @@ class DevelopmentConfig(Config):
 class PostgresConfig(Config):
     # DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'postgres:///mza'
+        'postgres:///gtfs-dev'
     WTF_CSRF_ENABLED = False
 
     @classmethod
