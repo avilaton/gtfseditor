@@ -53,9 +53,19 @@ class PostgresConfig(Config):
         # log to stderr
         import logging
         from logging import StreamHandler
-        file_handler = StreamHandler()
-        file_handler.setLevel(logging.WARNING)
-        app.logger.addHandler(file_handler)
+        stream_handler = StreamHandler()
+        stream_handler.setLevel(logging.WARNING)
+        app.logger.addHandler(stream_handler)
+
+        # log to stderr
+        from logging import getLogger
+        from logging import FileHandler
+        file_handler = FileHandler('logs.log')
+        file_handler.setLevel(logging.DEBUG)
+        loggers = [app.logger, getLogger('sqlalchemy'), getLogger('werkzeug')]
+        for logger in loggers:
+            logger.addHandler(file_handler)
+
 
 
 class SqliteConfig(Config):
@@ -110,7 +120,6 @@ class HerokuConfig(ProductionConfig):
         file_handler = StreamHandler()
         file_handler.setLevel(logging.WARNING)
         app.logger.addHandler(file_handler)
-
 
 class UnixConfig(ProductionConfig):
     @classmethod
