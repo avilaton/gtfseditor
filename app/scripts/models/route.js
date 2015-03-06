@@ -8,7 +8,7 @@ define([
     idAttribute: "route_id",
     url: function() {
       if (this.isNew()) {
-        return Config.server + 'api/routes';
+        return Config.server + 'api/routes/';
       } else {
         return Config.server + 'api/routes/' + this.id;
       }

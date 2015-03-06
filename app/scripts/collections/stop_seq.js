@@ -60,7 +60,9 @@ define([
           },
           id: stop.stop_id,
           properties: {
-            stop_id: stop.stop_id
+            stop_id: stop.stop_id,
+            stop_code: stop.stop_code,
+            stop_name: stop.stop_name
           },
           type: 'Feature'
         });
