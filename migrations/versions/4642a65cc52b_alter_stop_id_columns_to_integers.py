@@ -4,6 +4,21 @@ Revision ID: 4642a65cc52b
 Revises: 386dfd5b15c5
 Create Date: 2015-03-05 18:12:45.226561
 
+This migration cannot be run on a table containing string data in the stop_id
+column. It must be run using the db command line and:
+
+UPDATE stops SET stop_id = trim(both 'mM ' from stop_id);
+
+UPDATE stop_seq SET stop_id = trim(both 'mM ' from stop_id);
+
+UPDATE stop_times SET stop_id = trim(both 'mM ' from stop_id);
+
+ALTER TABLE stops ALTER COLUMN stop_id TYPE INTEGER USING (trim(stop_id)::integer);
+
+ALTER TABLE stop_seq ALTER COLUMN stop_id TYPE INTEGER USING (trim(stop_id)::integer);
+
+ALTER TABLE stop_times ALTER COLUMN stop_id TYPE INTEGER USING (trim(stop_id)::integer);
+
 """
 
 # revision identifiers, used by Alembic.
