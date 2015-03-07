@@ -266,7 +266,6 @@ def importCba(folder):
   importCsv("FareAttribute", folder + 'fare_attributes.csv')
   importCsv("FareRule", folder + 'fare_rules.csv')
   importCsv("FeedInfo", folder + 'feed_info.csv')
-  importCsv("Frequency", folder + 'frequencies.csv')
   importCsv("RouteFrequency", folder + 'route_frequencies.csv')
   importCsv("Route", folder + 'routes.csv')
   importCsv("Stop", folder + 'stops.csv')
@@ -275,6 +274,7 @@ def importCba(folder):
   importCsv("TripStartTime", folder + 'trips_start_times.csv')
   importCsv("StopSeq", folder + 'stop_seq.csv', mode='direct')
   importCsv("StopTime", folder + 'stop_times.csv', mode='direct')
+  importCsv("Frequency", folder + 'frequencies.csv')
 
 
 if __name__ == '__main__':
