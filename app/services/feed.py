@@ -101,10 +101,9 @@ class Feed(object):
     for i, row in enumerate(routes):
       route_id = row.route_id
       mem = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-      logger.info("Loading {1}/{2} ({3}), route_id: {0}".format(route_id, i, count, mem))
-      route = self.schedule.AddRoute(short_name=row.route_short_name, 
-          #long_name=row.route_long_name, 
-          long_name='', 
+      logger.info("Loading {1}/{2} ({3}), route_short_name: {0}".format(row.route_short_name, i, count, mem))
+      route = self.schedule.AddRoute(short_name=row.route_short_name,
+          long_name=row.route_long_name,
           route_id=row.route_id,
           route_type=row.route_type)
       route.agency_id = row.agency_id
@@ -161,7 +160,7 @@ class Feed(object):
       lng = stop.stop_lon
       stop_id = stop.stop_id
       stop = self.schedule.AddStop(lat=float(lat), lng=float(lng),
-        name=stop.stop_name, stop_id=str(stop_id))
+        name=stop.stop_name, stop_id=str(stop.stop_id))
       stop.stop_code = stop.stop_id
 
   def loadStopTimes(self, trip, seq_trip_id=None, startTimeRow=None, stop_sequence=None, trip_start_times=None):
@@ -174,7 +173,7 @@ class Feed(object):
 
       for stopTime in self.db.query(StopTime).filter_by(trip_id=trip_id).\
         order_by(StopTime.stop_sequence).all():
-        stop = self.schedule.GetStop(stopTime.stop_id)
+        stop = self.schedule.GetStop(str(stopTime.stop_id))
         stop_time = stopTime.arrival_time
         if stop_time:
           try:
@@ -191,7 +190,7 @@ class Feed(object):
 
       for stop_time in StopTimesFactory.offsetStartTimes(seq_trip_id, stop_sequence, startTimeRow):
         stopTime = StopTime(**stop_time)
-        stop = self.schedule.GetStop(stopTime.stop_id)
+        stop = self.schedule.GetStop(str(stopTime.stop_id))
         stop_time = stopTime.arrival_time
         if stop_time:
           try:
