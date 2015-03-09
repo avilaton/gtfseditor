@@ -1,8 +1,8 @@
 .env
 .DS_Store
 *.pyc
-server/gtfstools/*.pyc
 *.pyo
 venv/
 .tmp/
-logs.log
+*.log
+*.sqlite
