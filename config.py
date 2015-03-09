@@ -7,7 +7,6 @@ class Config:
     SSL_DISABLE = False
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_RECORD_QUERIES = True
-    SQLALCHEMY_ECHO = True
 
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 465
@@ -44,6 +43,8 @@ class PostgresConfig(Config):
     # DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'postgres:///gtfs-dev'
+    # SQLALCHEMY_ECHO = True
+
     WTF_CSRF_ENABLED = False
 
     @classmethod
@@ -52,20 +53,22 @@ class PostgresConfig(Config):
 
         # log to stderr
         import logging
+        from logging import getLogger
         from logging import StreamHandler
+        from logging import FileHandler
+
         stream_handler = StreamHandler()
-        stream_handler.setLevel(logging.WARNING)
-        app.logger.addHandler(stream_handler)
+        stream_handler.setLevel(logging.INFO)
+        # app.logger.addHandler(stream_handler)
 
         # log to stderr
-        from logging import getLogger
-        from logging import FileHandler
-        file_handler = FileHandler('logs.log')
+        file_handler = FileHandler('sql_log.log')
         file_handler.setLevel(logging.DEBUG)
-        loggers = [app.logger, getLogger('sqlalchemy'), getLogger('werkzeug')]
-        for logger in loggers:
-            logger.addHandler(file_handler)
+        sql_logger = getLogger('sqlalchemy')
+        sql_logger.addHandler(file_handler)
 
+        # app_logger = app.logger
+        # werkzeug_logger = getLogger('werkzeug')
 
 
 class SqliteConfig(Config):
