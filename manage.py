@@ -106,7 +106,6 @@ def build(validate=False, extract=False, upload=False):
   if not os.path.isdir(TMP_FOLDER):
     os.makedirs(TMP_FOLDER)
 
-  print BUILD_MODE
   feed = Feed(db=db.session)
   feedFile = feed.build(mode=BUILD_MODE)
 
