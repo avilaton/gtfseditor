@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import os
+import csv
+import codecs
 import glob
 import zipfile
 from config import config
@@ -18,6 +20,7 @@ from flask.ext.migrate import Migrate
 from flask.ext.migrate import MigrateCommand
 
 TMP_FOLDER = config[os.getenv('FLASK_CONFIG') or 'default'].TMP_FOLDER
+BUILD_MODE = config[os.getenv('FLASK_CONFIG') or 'default'].BUILD_MODE
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 
@@ -104,7 +107,7 @@ def build(validate=False, extract=False, upload=False):
     os.makedirs(TMP_FOLDER)
 
   feed = Feed(db=db.session)
-  feedFile = feed.build()
+  feedFile = feed.build(mode=BUILD_MODE)
 
   with open(TMP_FOLDER + feed.filename, 'wb') as f:
     f.write(feedFile.getvalue())
