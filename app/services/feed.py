@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 
 import logging
 logging.basicConfig(level=logging.INFO)
@@ -29,7 +30,6 @@ class Feed(object):
   def build(self, mode='initial-times'):
     self.mode = mode
     logger.info("Feed build started")
-    self.trip_start_times_default = self.db.query(TripStartTime).filter_by(trip_id='default').all()
 
     self.loadAgencies()
     self.loadCalendar()
@@ -119,7 +119,7 @@ class Feed(object):
       if self.mode == 'frequency':
         services = self.schedule.GetServicePeriodList()
         for service in services:
-          trip_id = tripRow.trip_id + '.' + service.service_id
+          trip_id = ''.join([str(tripRow.trip_id), '.', service.service_id])
           trip = route.AddTrip(trip_id = trip_id, headsign=tripRow.trip_headsign)
           trip.service_id = service.service_id
           trip.shape_id = tripRow.shape_id
@@ -131,6 +131,8 @@ class Feed(object):
 
         trip_start_times = self.db.query(TripStartTime).filter_by(trip_id=tripRow.trip_id).all()
         if not trip_start_times:
+          if not self.trip_start_times_default:
+            self.trip_start_times_default = self.db.query(TripStartTime).filter_by(trip_id='default').all()
           trip_start_times = self.trip_start_times_default
 
         for startTimeRow in trip_start_times:
@@ -160,9 +162,9 @@ class Feed(object):
       lat = stop.stop_lat
       lng = stop.stop_lon
       stop_id = stop.stop_id
-      stop = self.schedule.AddStop(lat=float(lat), lng=float(lng),
+      stopObj = self.schedule.AddStop(lat=float(lat), lng=float(lng),
         name=stop.stop_name, stop_id=str(stop.stop_id))
-      stop.stop_code = stop.stop_id
+      stopObj.stop_code = stop.stop_code
 
   def loadStopTimes(self, trip, seq_trip_id=None, startTimeRow=None, stop_sequence=None, trip_start_times=None):
     """Adding Stop Times from trip start times"""
