@@ -26,7 +26,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('fare_id')
     )
     op.create_table('route_frequencies',
-    sa.Column('route_id', sa.String(length=50), nullable=False),
+    sa.Column('route_id', sa.Integer(), nullable=False),
     sa.Column('service_id', sa.String(length=50), nullable=False),
     sa.Column('start_time', sa.String(length=50), nullable=False),
     sa.Column('end_time', sa.String(length=50), nullable=False),
@@ -34,7 +34,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('route_id', 'service_id', 'start_time', 'end_time')
     )
     op.create_table('trips_start_times',
-    sa.Column('trip_id', sa.String(length=50), nullable=False),
+    sa.Column('trip_id', sa.Integer(), nullable=False),
     sa.Column('service_id', sa.String(length=50), nullable=False),
     sa.Column('start_time', sa.String(length=50), nullable=False),
     sa.PrimaryKeyConstraint('trip_id', 'service_id', 'start_time')
@@ -42,18 +42,18 @@ def upgrade():
     op.create_table('stops',
     sa.Column('stop_id', sa.Integer(), nullable=False),
     sa.Column('stop_code', sa.String(length=50), nullable=True),
-    sa.Column('stop_desc', sa.String(length=50), nullable=True),
+    sa.Column('stop_desc', sa.String(length=150), nullable=True),
     sa.Column('stop_name', sa.String(length=250), nullable=True),
     sa.Column('stop_lat', sa.Float(precision=53), nullable=True),
     sa.Column('stop_lon', sa.Float(precision=53), nullable=True),
-    sa.Column('stop_calle', sa.String(length=50), nullable=True),
-    sa.Column('stop_numero', sa.String(length=50), nullable=True),
-    sa.Column('stop_entre', sa.String(length=50), nullable=True),
-    sa.Column('stop_esquina', sa.String(length=50), nullable=True),
+    sa.Column('stop_calle', sa.String(length=150), nullable=True),
+    sa.Column('stop_numero', sa.String(length=150), nullable=True),
+    sa.Column('stop_entre', sa.String(length=150), nullable=True),
+    sa.Column('stop_esquina', sa.String(length=150), nullable=True),
     sa.PrimaryKeyConstraint('stop_id')
     )
     op.create_table('stop_times',
-    sa.Column('trip_id', sa.String(length=50), nullable=False),
+    sa.Column('trip_id', sa.Integer(), nullable=False),
     sa.Column('stop_id', sa.Integer(), nullable=False),
     sa.Column('stop_sequence', sa.Integer(), nullable=False),
     sa.Column('arrival_time', sa.String(length=50), nullable=True),
@@ -82,7 +82,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('route_id')
     )
     op.create_table('shapes',
-    sa.Column('shape_id', sa.String(length=50), nullable=False),
+    sa.Column('shape_id', sa.Integer(), nullable=False),
     sa.Column('shape_pt_lat', sa.Float(precision=53), nullable=True),
     sa.Column('shape_pt_lon', sa.Float(precision=53), nullable=True),
     sa.Column('shape_pt_time', sa.String(length=50), nullable=True),
@@ -130,13 +130,13 @@ def upgrade():
     )
     op.create_index(op.f('ix_users_email'), 'users', ['email'], unique=True)
     op.create_table('transfers',
-    sa.Column('from_stop_id', sa.String(length=50), nullable=False),
-    sa.Column('to_stop_id', sa.String(length=50), nullable=True),
+    sa.Column('from_stop_id', sa.Integer(), nullable=False),
+    sa.Column('to_stop_id', sa.Integer(), nullable=True),
     sa.Column('transfer_type', sa.String(length=50), nullable=True),
     sa.PrimaryKeyConstraint('from_stop_id')
     )
     op.create_table('stop_seq',
-    sa.Column('trip_id', sa.String(length=50), nullable=False),
+    sa.Column('trip_id', sa.Integer(), nullable=False),
     sa.Column('stop_id', sa.Integer(), nullable=False),
     sa.Column('stop_sequence', sa.Integer(), nullable=False),
     sa.Column('stop_time', sa.String(length=50), nullable=True),
@@ -144,17 +144,17 @@ def upgrade():
     sa.PrimaryKeyConstraint('trip_id', 'stop_id', 'stop_sequence')
     )
     op.create_table('trips',
-    sa.Column('trip_id', sa.String(length=50), nullable=False),
+    sa.Column('trip_id', sa.Integer(), nullable=False),
     sa.Column('route_id', sa.Integer(), nullable=True),
     sa.Column('service_id', sa.String(length=50), nullable=True),
     sa.Column('trip_headsign', sa.String(length=150), nullable=True),
     sa.Column('trip_short_name', sa.String(length=150), nullable=True),
     sa.Column('direction_id', sa.String(length=50), nullable=True),
-    sa.Column('shape_id', sa.String(length=50), nullable=True),
+    sa.Column('shape_id', sa.Integer(), nullable=True),
     sa.Column('card_code', sa.String(length=50), nullable=True),
     sa.Column('active', sa.Boolean(), nullable=True),
-    sa.ForeignKeyConstraint(['route_id'], ['routes.route_id'], ),
-    sa.ForeignKeyConstraint(['service_id'], ['calendar.service_id'], ),
+    sa.ForeignKeyConstraint(['route_id'], ['routes.route_id'], onupdate="CASCADE"),
+    # sa.ForeignKeyConstraint(['service_id'], ['calendar.service_id'], ),
     sa.PrimaryKeyConstraint('trip_id')
     )
     op.create_table('calendar_dates',
@@ -165,10 +165,10 @@ def upgrade():
     sa.PrimaryKeyConstraint('service_id', 'date', 'exception_type')
     )
     op.create_table('frequencies',
-    sa.Column('trip_id', sa.String(length=50), nullable=False),
+    sa.Column('trip_id', sa.Integer(), nullable=False),
     sa.Column('start_time', sa.String(length=50), nullable=True),
     sa.Column('end_time', sa.String(length=50), nullable=True),
-    sa.Column('headway_secs', sa.String(length=50), nullable=True),
+    sa.Column('headway_secs', sa.Integer(), nullable=True),
     sa.Column('exact_times', sa.String(length=50), nullable=True),
     sa.ForeignKeyConstraint(['trip_id'], ['trips.trip_id'], ),
     sa.PrimaryKeyConstraint('trip_id')
