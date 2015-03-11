@@ -1,0 +1,54 @@
+-- Update routes route_id to integers
+UPDATE routes SET route_id=vtable.rn
+FROM
+(
+SELECT row_number() over() as rn, route_id from routes
+) AS vtable
+WHERE routes.route_id = vtable.route_id;
+
+
+-- Update constraint in frequencies table to cascade
+ALTER TABLE frequencies DROP CONSTRAINT frequencies_trip_id_fkey;
+ALTER TABLE frequencies ADD CONSTRAINT frequencies_trip_id_fkey 
+FOREIGN KEY (trip_id) REFERENCES trips(trip_id) ON UPDATE CASCADE;
+
+ALTER TABLE stop_seq ADD CONSTRAINT stop_seq_trip_id_fkey
+FOREIGN KEY (trip_id) REFERENCES trips(trip_id) ON UPDATE CASCADE;
+
+
+-- Update trips trip_id to integers
+UPDATE trips SET trip_id=virtual_table.rn
+FROM
+(
+SELECT row_number() over() as rn, trip_id
+FROM 
+(
+SELECT distinct(trip_id) FROM trips
+) AS aux_table
+) AS virtual_table
+WHERE trips.trip_id = virtual_table.trip_id;
+
+
+-- Update shapes to match trip ids
+UPDATE shapes SET shape_id=trips.trip_id
+FROM
+(
+SELECT * FROM trips
+) AS trips
+WHERE shapes.shape_id = trips.shape_id;
+
+
+-- update trips shape_id to match trip_id
+UPDATE trips SET shape_id=trip_id;
+
+
+-- update route_frequencies
+UPDATE route_frequencies SET route_id = routes.route_id
+FROM routes
+WHERE route_frequencies.route_id = routes.route_short_name
+
+
+-- delete from one table not in the other
+DELETE FROM stop_seq WHERE trip_id NOT IN (SELECT trip_id FROM trips);
+DELETE FROM stop_times;
+DELETE FROM trips_start_times WHERE trip_id NOT IN (SELECT trip_id FROM trips);
