@@ -235,17 +235,17 @@ def importInitTimes(filename, grupo):
   db.session.flush()
 
 @manager.command
-def backup():
+def backup(dbname):
   import subprocess
   import datetime
 
   now = datetime.datetime.now()
   # timestamp = now.strftime("%Y-%m-%d")
   timestamp = now.isoformat()
-  filename = "mza_" + timestamp + ".tar"
+  filename = dbname + "_" + timestamp + ".tar"
   folderId = "0Bx2pbTBESHr7ZWdhV09EOUlPVjA"
   print("backing up as " + filename)
-  subprocess.call("pg_dump -Ft mza > " + filename, shell=True)
+  subprocess.call("pg_dump -Ft " + dbname + " > " + filename, shell=True)
   print("uploading to drive folder " + folderId)
   subprocess.call("drive upload -f " + filename + " -p " + folderId, shell=True)
 
@@ -293,7 +293,7 @@ def importCba(folder):
   importCsv("Trip", folder + 'trips.csv')
   importCsv("TripStartTime", folder + 'trips_start_times.csv')
   importCsv("StopSeq", folder + 'stop_seq.csv', mode='direct')
-  importCsv("StopTime", folder + 'stop_times.csv', mode='direct')
+  importCsv("StopTime", folder + 'stop_times.csv')
   importCsv("Frequency", folder + 'frequencies.csv')
 
 
