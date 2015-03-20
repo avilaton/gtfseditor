@@ -9,7 +9,7 @@ define([
 
     url: function() {
       if (this.isNew()) {
-        return Config.server + 'api/agency';
+        return Config.server + 'api/agency/';
       } else {
         return Config.server + 'api/agency/' + this.id;
       }

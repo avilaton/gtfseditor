@@ -1,3 +1,5 @@
+'use strict';
+
 define([
   'underscore',
   'backbone',
@@ -14,20 +16,15 @@ define([
       events: {},
 
       initialize: function(){
-        var self = this;
-
         this.render();
-
-        this.model.on('change reset', self.render, self);
+        this.model.on('change reset', this.render, this);
       },
 
       render: function () {
-        var self = this;
-
         this.$el.html(this.template());
       }
 
     });
 
     return View;
-  })
+  });

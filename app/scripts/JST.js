@@ -6,24 +6,24 @@ this["JST"]["agencies"] = Handlebars.template({"1":function(depth0,helpers,parti
   var helper, lambda=this.lambda, escapeExpression=this.escapeExpression, functionType="function", helperMissing=helpers.helperMissing;
   return "      <tr data-index=\""
     + escapeExpression(lambda((data && data.index), depth0))
-    + "\">\n        <td>\n          <input class=\"form-control\" data-attr=\"agency_id\" type=\"text\" placeholder=\"agency_id\" value=\""
+    + "\">\n        <td>"
     + escapeExpression(((helper = (helper = helpers.agency_id || (depth0 != null ? depth0.agency_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"agency_id","hash":{},"data":data}) : helper)))
-    + "\"/>\n        </td>\n        <td>\n          <input class=\"form-control\" data-attr=\"agency_name\" type=\"text\" placeholder=\"agency_name\" value=\""
+    + "</td>\n        <td>"
     + escapeExpression(((helper = (helper = helpers.agency_name || (depth0 != null ? depth0.agency_name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"agency_name","hash":{},"data":data}) : helper)))
-    + "\"/>\n        </td>\n        <td>\n          <input class=\"form-control\" data-attr=\"agency_url\" type=\"text\" placeholder=\"agency_url\" value=\""
+    + "</td>\n        <td>"
     + escapeExpression(((helper = (helper = helpers.agency_url || (depth0 != null ? depth0.agency_url : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"agency_url","hash":{},"data":data}) : helper)))
-    + "\"/>\n        </td>\n        <td>\n          <input class=\"form-control\" data-attr=\"agency_timezone\" type=\"text\" placeholder=\"agency_timezone\" value=\""
+    + "</td>\n        <td>"
     + escapeExpression(((helper = (helper = helpers.agency_timezone || (depth0 != null ? depth0.agency_timezone : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"agency_timezone","hash":{},"data":data}) : helper)))
-    + "\"/>\n        </td>\n        <td>\n          <input class=\"form-control\" data-attr=\"agency_lang\" type=\"text\" placeholder=\"agency_lang\" value=\""
+    + "</td>\n        <td>"
     + escapeExpression(((helper = (helper = helpers.agency_lang || (depth0 != null ? depth0.agency_lang : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"agency_lang","hash":{},"data":data}) : helper)))
-    + "\"/>\n        </td>\n        <td>\n          <input class=\"form-control\" data-attr=\"agency_phone\" type=\"text\" placeholder=\"agency_phone\" value=\""
+    + "</td>\n        <td>"
     + escapeExpression(((helper = (helper = helpers.agency_phone || (depth0 != null ? depth0.agency_phone : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"agency_phone","hash":{},"data":data}) : helper)))
-    + "\"/>\n        </td>\n        <td class=\"vcenter\">\n          <button class=\"btn btn-default btn-rm\"><span class=\"glyphicon glyphicon-remove\"></span></button>\n        </td>\n      </tr>\n";
+    + "</td>\n        <td class=\"\">\n          <button class=\"btn btn-default btn-rm\"><span class=\"glyphicon glyphicon-remove\"></span></button>\n          <button class=\"btn btn-default btn-edit\"><span class=\"glyphicon glyphicon-pencil\"></span></button>\n        </td>\n      </tr>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<div class=\"col-md-12 panel-right\">\n  <h1>Agencies</h1>\n  <table class=\"table table-condensed table-editable voffset1\">\n    <thead>\n      <tr>\n        <th>Agency Id</th>\n        <th>Name</th>\n        <th>URL</th>\n        <th>Timezone</th>\n        <th>Language</th>\n        <th>Phone</th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n";
+  var stack1, buffer = "<div class=\"col-md-12 panel-right\">\n  <h1>Agencies</h1>\n  <div class=\"row voffset1\">\n    <div class=\"col-md-12\">\n      <form class=\"form-inline\">\n        <button class=\"btn btn-default btn-create\"><span class=\"glyphicon glyphicon-plus\"></span> New</button>\n      </form>\n    </div>\n  </div>\n  <table class=\"table\">\n    <thead>\n      <tr>\n        <th>Agency Id</th>\n        <th>Name</th>\n        <th>URL</th>\n        <th>Timezone</th>\n        <th>Language</th>\n        <th>Phone</th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n";
   stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.models : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "    </tbody>\n  </table>\n  <div class=\"row voffset1\">\n    <div class=\"col-md-12\">\n      <form class=\"form-inline\">\n        <div class=\"form-group\">\n          <label>Agency id</label>\n          <input type=\"text\" class=\"form-control agency_id\" placeholder=\"agency_id\">\n        </div>\n        <button class=\"btn btn-default btn-create\"><span class=\"glyphicon glyphicon-plus\"></span> Create</button>\n        <button class=\"btn btn-default save-btn\"><span class=\"glyphicon glyphicon-save\"></span> Save</button>\n      </form>\n    </div>\n  </div>\n</div>\n";
+  return buffer + "    </tbody>\n  </table>\n</div>\n";
 },"useData":true});
 
 
@@ -93,6 +93,29 @@ this["JST"]["kmlSelect"] = Handlebars.template({"1":function(depth0,helpers,part
 this["JST"]["login"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<form class=\"form-signin\">\n	<h2 class=\"form-signin-heading\">Please sign in</h2>\n	<input type=\"text\" class=\"input-block-level\" placeholder=\"Email address\" name=\"email\">\n	<input type=\"password\" class=\"input-block-level\" placeholder=\"Password\" name=\"password\">\n	<label class=\"checkbox\">\n	  <input type=\"checkbox\" value=\"remember-me\" name=\"keep\"> Remember me\n	</label>\n	<button class=\"btn btn-large btn-primary\" type=\"submit\">Sign in</button>\n</form>";
   },"useData":true});
+
+
+
+this["JST"]["modals/agency"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+  return "      <h3 class=\"modal-title\">Edit Agency</h3>\n";
+  },"3":function(depth0,helpers,partials,data) {
+  return "      <h3 class=\"modal-title\">Add New Agency</h3>\n";
+  },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<div class=\"modal-dialog\">\n  <div class=\"modal-content\">\n    <div class=\"modal-header\">\n      <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">\n        <span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span>\n      </button>\n";
+  stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.agency_id : depth0), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "    </div>\n\n    <div class=\"modal-body\">\n      <form role=\"form\" >\n        <div class=\"form-group\">\n          <label for=\"agency_lang\">agency_lang</label>\n          <input class=\"form-control\" type=\"text\" name=\"agency_lang\" placeholder=\"agency_lang\" value=\""
+    + escapeExpression(((helper = (helper = helpers.agency_lang || (depth0 != null ? depth0.agency_lang : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"agency_lang","hash":{},"data":data}) : helper)))
+    + "\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"agency_name\">agency_name</label>\n            <input class=\"form-control\" type=\"text\" name=\"agency_name\" placeholder=\"agency_name\" value=\""
+    + escapeExpression(((helper = (helper = helpers.agency_name || (depth0 != null ? depth0.agency_name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"agency_name","hash":{},"data":data}) : helper)))
+    + "\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"agency_phone\">agency_phone</label>\n            <input class=\"form-control\" type=\"text\" name=\"agency_phone\" placeholder=\"agency_phone\" value=\""
+    + escapeExpression(((helper = (helper = helpers.agency_phone || (depth0 != null ? depth0.agency_phone : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"agency_phone","hash":{},"data":data}) : helper)))
+    + "\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"agency_timezone\">agency_timezone</label>\n            <input class=\"form-control\" type=\"text\" name=\"agency_timezone\" placeholder=\"agency_timezone\" value=\""
+    + escapeExpression(((helper = (helper = helpers.agency_timezone || (depth0 != null ? depth0.agency_timezone : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"agency_timezone","hash":{},"data":data}) : helper)))
+    + "\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"agency_url\">agency_url</label>\n          <input class=\"form-control\" type=\"text\" name=\"agency_url\" placeholder=\"agency_url\" value=\""
+    + escapeExpression(((helper = (helper = helpers.agency_url || (depth0 != null ? depth0.agency_url : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"agency_url","hash":{},"data":data}) : helper)))
+    + "\">\n        </div>\n      </form>\n    </div>\n\n    <div class=\"modal-footer\">\n      <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n      <button type=\"button\" class=\"btn btn-primary js-save\">Save changes</button>\n    </div>\n  </div>\n</div>\n";
+},"useData":true});
 
 
 

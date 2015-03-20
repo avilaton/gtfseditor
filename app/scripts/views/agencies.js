@@ -4,20 +4,19 @@ define([
   'underscore',
   'backbone',
   'JST',
-  'collections/agencies'
-  ], function (_, Backbone, JST, AgenciesCollection) {
+  'collections/agencies',
+  'views/modals/agency'
+  ], function (_, Backbone, JST, AgenciesCollection, AgencyModal) {
     var View;
 
     View = Backbone.View.extend({
-      // el: $('.main-view'),
       tagName: 'div',
 
       events: {
-        'click button.save-btn': 'save',
         'click button.add-btn': 'add',
-        'click button.btn-create': 'create',
-        'blur .table-editable input[type="text"]': 'blur',
-        'click button.btn-rm': 'rm',
+        'click button.btn-create': 'onAdd',
+        'click button.btn-edit': 'onEdit',
+        'click button.btn-rm': 'onRemove',
         'click input[type="checkbox"]': 'onEditCheckbox'
       },
 
@@ -38,41 +37,34 @@ define([
         this.delegateEvents(this.events);
       },
 
-      save: function () {
-        this.collection.save();
-      },
-
-      create: function (e) {
-        var agency_id = this.$('input.agency_id').val(),
-          model;
-
-        e.preventDefault();
-
-        if (!agency_id) {
-          alert('Invalid agency_id');
-          return;
-        }
-
-        model = this.collection.create({
-          agency_id: agency_id
-        });
-      },
-
-      rm: function (e) {
+      onRemove: function (e) {
         var $target = $(e.currentTarget),
           index = $target.closest('tr').data('index'),
           model = this.collection.at(index);
+
+        e.preventDefault();
         model.destroy();
       },
 
-      blur: function (e) {
+      onAdd: function (e) {
+        var model = new this.collection.model();
+        var modal = new AgencyModal({
+          model: model,
+          el: $('#routeDataEditor')
+        });
+        modal.$el.modal('show');
+      },
+
+      onEdit: function (e) {
         var $target = $(e.currentTarget),
           index = $target.closest('tr').data('index'),
-          attr = $target.data('attr'),
-          model = this.collection.at(index);
-        model.set(attr, $target.val());
+          model = this.collection.at(index),
+          modal = new AgencyModal({
+            model: model,
+            el: $('#routeDataEditor')
+        });
+        modal.$el.modal('show');
       }
-
     });
 
     return View;
