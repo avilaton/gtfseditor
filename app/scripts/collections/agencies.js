@@ -5,9 +5,9 @@ define([
   'config',
   'models/agency'
 ], function (_, Backbone, api, Config, AgencyModel) {
-  var RouteCollection;
+  var Collection;
 
-  RouteCollection = Backbone.Collection.extend({
+  Collection = Backbone.Collection.extend({
     model: AgencyModel,
 
     url: Config.server + 'api/agency/',
@@ -27,5 +27,5 @@ define([
 
   });
 
-  return RouteCollection;
+  return Collection;
 })

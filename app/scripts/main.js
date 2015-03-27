@@ -42,6 +42,11 @@ require(['router', 'bootstrap', 'handlebars'],
         return boolFlag === true ? ' checked ' : '';
     });
 
+    Handlebars.registerHelper('selected', function (value1, value2) {
+        var boolFlag = value1 === value2;
+        return boolFlag === true ? ' selected="selected" ' : '';
+    });
+
     Router.initialize();
 
 });

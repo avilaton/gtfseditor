@@ -26,6 +26,7 @@ define([
     },
 
     save: function (event) {
+      var self = this;
       this.model.save().then(function () {
         self.$el.modal('hide');
       });

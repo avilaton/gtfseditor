@@ -1,9 +1,12 @@
+'use strict';
+
 define([
-    "underscore",
-    "backbone",
-    "handlebars",
-    'JST'
-], function (_, Backbone, Handlebars, JST) {
+    'underscore',
+    'backbone',
+    'handlebars',
+    'JST',
+    'collections/agencies'
+], function (_, Backbone, Handlebars, JST, AgenciesCollection) {
     var View;
 
     View = Backbone.View.extend({
@@ -11,22 +14,29 @@ define([
         template: JST['modals/route'],
 
         events: {
-            "click .js-save": "save",
-            "keyup input": 'onEdit',
-            'click input[type="checkbox"]': 'onEditCheckbox'
+            'click .js-save': 'save',
+            'keyup input': 'onEdit',
+            'click input[type="checkbox"]': 'onEditCheckbox',
+            'change select.select-agency': 'onChangeAgency'
         },
 
-        initialize: function(options){
+        initialize: function(){
             var self = this;
-            this.render();
+            this.agencies = new AgenciesCollection();
+            this.agencies.fetch().then(function () {
+                self.render();
+            });
         },
 
         render: function () {
-            var self = this;
-            this.$el.html(this.template(this.model.toJSON()));
+            this.$el.html(this.template({
+                route: this.model.toJSON(),
+                agencies: this.agencies.toJSON()
+            }));
         },
 
-        save: function (event) {
+        save: function () {
+            var self = this;
             this.model.save().then(function () {
                 self.$el.modal('hide');
             });
@@ -40,8 +50,13 @@ define([
         onEditCheckbox: function (event) {
             var $target = $(event.currentTarget);
             this.model.set('active', $target.prop('checked'));
+        },
+
+        onChangeAgency: function (event) {
+            var value = event.currentTarget.value;
+            this.model.set('agency_id', value !== '' ? value: null);
         }
     });
 
     return View;
-})
+});
