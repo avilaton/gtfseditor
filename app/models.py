@@ -39,7 +39,7 @@ class Entity(object):
 class Route(db.Model, Entity):
   __tablename__ = 'routes'
   route_id = db.Column(db.Integer, primary_key=True)
-  agency_id = db.Column(db.String(50))
+  agency_id = db.Column(db.Integer)
   route_short_name = db.Column(db.String(50))
   route_long_name = db.Column(db.String(150))
   route_desc = db.Column(db.String(150))
@@ -61,7 +61,7 @@ class FeedInfo(db.Model, Entity):
 
 class Agency(db.Model, Entity):
   __tablename__ = 'agency'
-  agency_id = db.Column(db.String(50), primary_key=True)
+  agency_id = db.Column(db.Integer, primary_key=True)
   agency_name = db.Column(db.String(50))
   agency_url = db.Column(db.String(50))
   agency_timezone = db.Column(db.String(50))
@@ -71,7 +71,7 @@ class Agency(db.Model, Entity):
 
 class Calendar(db.Model, Entity):
   __tablename__ = 'calendar'
-  service_id = db.Column(db.String(50), primary_key=True)
+  service_id = db.Column(db.Integer, primary_key=True)
   service_name = db.Column(db.String(50))
   start_date = db.Column(db.String(50))
   end_date = db.Column(db.String(50))
@@ -88,7 +88,7 @@ class Trip(db.Model, Entity):
   __tablename__ = 'trips'
   trip_id = db.Column(db.Integer, primary_key=True)
   route_id = db.Column(db.Integer, db.ForeignKey("routes.route_id"))
-  service_id = db.Column(db.String(50))
+  service_id = db.Column(db.Integer)
   trip_headsign = db.Column(db.String(150))
   trip_short_name = db.Column(db.String(150))
   direction_id = db.Column(db.String(50))
@@ -99,7 +99,8 @@ class Trip(db.Model, Entity):
 
 class CalendarDate(db.Model, Entity):
   __tablename__ = 'calendar_dates'
-  service_id = db.Column(db.String(50), db.ForeignKey("calendar.service_id"), primary_key=True)
+  service_id = db.Column(db.Integer, db.ForeignKey("calendar.service_id",
+    onupdate="CASCADE"), primary_key=True)
   date = db.Column(db.String(50), primary_key=True)
   exception_type = db.Column(db.String(50), primary_key=True)
 
@@ -135,7 +136,8 @@ class Frequency(db.Model, Entity):
 class RouteFrequency(db.Model, Entity):
   __tablename__ = 'route_frequencies'
   route_id = db.Column(db.Integer, db.ForeignKey("routes.route_id", onupdate="CASCADE"), primary_key=True)
-  service_id = db.Column(db.String(50), primary_key=True)
+  service_id = db.Column(db.Integer, db.ForeignKey("calendar.service_id",
+    onupdate="CASCADE"), primary_key=True)
   start_time = db.Column(db.String(50), primary_key=True)
   end_time = db.Column(db.String(50), primary_key=True)
   headway_secs = db.Column(db.Integer)
@@ -193,7 +195,8 @@ class Transfer(db.Model, Entity):
 class TripStartTime(db.Model, Entity):
   __tablename__ = 'trips_start_times'
   trip_id = db.Column(db.Integer, db.ForeignKey("trips.trip_id", onupdate="CASCADE"), primary_key=True)
-  service_id = db.Column(db.String(50), primary_key=True)
+  service_id = db.Column(db.Integer, db.ForeignKey("calendar.service_id",
+    onupdate="CASCADE"), primary_key=True)
   start_time = db.Column(db.String(50), primary_key=True)
 
 
