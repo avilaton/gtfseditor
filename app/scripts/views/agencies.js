@@ -13,11 +13,9 @@ define([
       tagName: 'div',
 
       events: {
-        'click button.add-btn': 'add',
-        'click button.btn-create': 'onAdd',
+        'click button.btn-create': 'onCreate',
         'click button.btn-edit': 'onEdit',
-        'click button.btn-rm': 'onRemove',
-        'click input[type="checkbox"]': 'onEditCheckbox'
+        'click button.btn-rm': 'onRemove'
       },
 
       template: JST.agencies,
@@ -46,7 +44,7 @@ define([
         model.destroy();
       },
 
-      onAdd: function (e) {
+      onCreate: function (e) {
         var model = new this.collection.model();
         var modal = new AgencyModal({
           model: model,

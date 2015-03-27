@@ -19,7 +19,7 @@ define([
 
     url: function() {
       if (this.isNew()) {
-        return Config.server + 'api/calendars';
+        return Config.server + 'api/calendars/';
       } else {
         return Config.server + 'api/calendars/' + this.id;
       }
