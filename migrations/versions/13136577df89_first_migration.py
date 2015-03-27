@@ -46,7 +46,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('from_stop_id')
     )
     op.create_table('fare_rules',
-    sa.Column('fare_id', sa.String(length=50), nullable=False),
+    sa.Column('fare_id', sa.Integer(), nullable=False),
     sa.Column('route_id', sa.Integer(), nullable=True),
     sa.Column('origin_id', sa.String(length=50), nullable=True),
     sa.Column('destination_id', sa.String(length=50), nullable=True),
@@ -95,7 +95,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('route_id')
     )
     op.create_table('fare_attributes',
-    sa.Column('fare_id', sa.String(length=50), nullable=False),
+    sa.Column('fare_id', sa.Integer(), nullable=False),
     sa.Column('price', sa.String(length=50), nullable=True),
     sa.Column('currency_type', sa.String(length=50), nullable=True),
     sa.Column('payment_method', sa.String(length=50), nullable=True),
