@@ -35,9 +35,9 @@ def readCsv(Model, filename, mode=None):
   with open(filename, 'r') as csvfile:
     reader = csv.DictReader(csvfile)
     if not mode:
-      keyMap = {field:field for field in reader.fieldnames}
       for row in reader:
-        d = {v:codecs.decode(row[k],'utf8') for k, v in keyMap.items()}
+        d = {field: (codecs.decode(row[field],'utf8') if row[field] else None)
+          for field in reader.fieldnames}
         model = Model(**d)
         db.session.merge(model)
       db.session.commit()
@@ -269,7 +269,6 @@ def activateRoute(route_id=False):
 
 @manager.command
 def importCsv(modelname, filename, mode=None):
-  print(filename)
   Model = globals()[modelname]
   readCsv(Model, filename, mode=mode)
 
