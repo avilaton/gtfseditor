@@ -257,13 +257,13 @@ this["JST"]["navbar-right"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.
 
 
 this["JST"]["navbarRight"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<ul class=\"nav navbar-top-links navbar-right\">\n    <li>\n        <a href=\"#stops\">\n            <i class=\"glyphicon glyphicon-record\"><span class=\"hidden-sm\"> Stops</span></i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/routes\">\n            <i class=\"glyphicon glyphicon-road\"><span class=\"hidden-sm\"> Routes</span></i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/times\">\n            <i class=\"glyphicon glyphicon-time\"><span class=\"hidden-sm\"> Times</span></i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/agencies\">\n            <i class=\"glyphicon glyphicon-road\"><span class=\"hidden-sm\"> Agencies</span></i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/calendar\">\n            <i class=\"glyphicon glyphicon-calendar\"><span class=\"hidden-sm\"> Calendar</span></i>\n        </a>\n    </li>\n\n\n    <!-- /.dropdown -->\n    <li class=\"dropdown\">\n        <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">\n            <i class=\"glyphicon glyphicon-cog\"></i><span class=\"hidden-sm\"> Feed</span><i class=\"caret\"></i>\n        </a>\n        <ul class=\"dropdown-menu dropdown-user\">\n<!--             <li><a href=\"#\"><i class=\"glyphicon glyphicon-user glyphicon-fw\"></i> User Profile</a>\n            </li>\n            <li><a href=\"#\"><i class=\"glyphicon glyphicon-gear glyphicon-fw\"></i> Settings</a>\n            </li>\n            <li class=\"divider\"></li>\n            <li><a href=\"login.html\"><i class=\"glyphicon glyphicon-sign-out glyphicon-fw\"></i> Logout</a>\n            </li> -->\n            <li><a href=\"/api/feed/google_transit.zip\" target=\"_blank\"><i class=\"glyphicon glyphicon-download-alt\"></i> Download Feed</a>\n            </li>\n        </ul>\n        <!-- /.dropdown-user -->\n    </li>\n    <!-- /.dropdown -->\n    <!-- /.dropdown -->\n    <li class=\"dropdown\">\n        <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">\n          <i class=\"glyphicon glyphicon-user glyphicon-fw\"></i>  <i class=\"glyphicon glyphicon-caret-down\"></i>\n        </a>\n        <ul class=\"dropdown-menu dropdown-user\">\n          <li><a href=\"/auth/logout\"><i class=\"glyphicon glyphicon-sign-out glyphicon-fw\"></i> Logout</a>\n          </li>\n        </ul>\n        <!-- /.dropdown-user -->\n    </li>\n</ul>\n<!-- /.navbar-top-links -->\n";
+  return "<ul class=\"nav navbar-top-links navbar-right\">\n    <li>\n        <a href=\"#/agencies\">\n            <i class=\"glyphicon glyphicon-road\"><span class=\"hidden-sm\"> Agencies</span></i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#stops\">\n            <i class=\"glyphicon glyphicon-record\"><span class=\"hidden-sm\"> Stops</span></i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/routes\">\n            <i class=\"glyphicon glyphicon-road\"><span class=\"hidden-sm\"> Routes</span></i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/times\">\n            <i class=\"glyphicon glyphicon-time\"><span class=\"hidden-sm\"> Times</span></i>\n        </a>\n    </li>\n\n    <li>\n        <a href=\"#/calendar\">\n            <i class=\"glyphicon glyphicon-calendar\"><span class=\"hidden-sm\"> Calendar</span></i>\n        </a>\n    </li>\n\n\n    <!-- /.dropdown -->\n    <li class=\"dropdown\">\n        <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">\n            <i class=\"glyphicon glyphicon-cog\"></i><span class=\"hidden-sm\"> Feed</span><i class=\"caret\"></i>\n        </a>\n        <ul class=\"dropdown-menu dropdown-user\">\n<!--             <li><a href=\"#\"><i class=\"glyphicon glyphicon-user glyphicon-fw\"></i> User Profile</a>\n            </li>\n            <li><a href=\"#\"><i class=\"glyphicon glyphicon-gear glyphicon-fw\"></i> Settings</a>\n            </li>\n            <li class=\"divider\"></li>\n            <li><a href=\"login.html\"><i class=\"glyphicon glyphicon-sign-out glyphicon-fw\"></i> Logout</a>\n            </li> -->\n            <li><a href=\"/api/feed/google_transit.zip\" target=\"_blank\"><i class=\"glyphicon glyphicon-download-alt\"></i> Download Feed</a>\n            </li>\n        </ul>\n        <!-- /.dropdown-user -->\n    </li>\n    <!-- /.dropdown -->\n    <!-- /.dropdown -->\n    <li class=\"dropdown\">\n        <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">\n          <i class=\"glyphicon glyphicon-user glyphicon-fw\"></i>  <i class=\"glyphicon glyphicon-caret-down\"></i>\n        </a>\n        <ul class=\"dropdown-menu dropdown-user\">\n          <li><a href=\"/auth/logout\"><i class=\"glyphicon glyphicon-sign-out glyphicon-fw\"></i> Logout</a>\n          </li>\n        </ul>\n        <!-- /.dropdown-user -->\n    </li>\n</ul>\n<!-- /.navbar-top-links -->\n";
 },"useData":true});
 
 
 
 this["JST"]["routes"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"col-md-4 panel-left\">\n  <div class=\"row\">\n    <div  class=\"col-md-12 routes-select\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12 trips-select\">\n    </div>\n  </div>\n  <div id=\"kmlSelect\"></div>\n  <div id=\"shapesToolbox\" class=\"shapes-toolbox\"></div>\n  <div id=\"sequenceToolbox\" class=\"sequence-toolbox\"></div>\n  <div id=\"sequenceView\" class=\"sequence-view\"></div>\n</div>\n<div class=\"col-md-8 panel-right\">\n  <div id=\"map\" class=\"map-view\"></div>\n</div>";
+  return "<div class=\"col-md-4 panel-left\">\n  <div class=\"row\">\n    <div  class=\"col-md-12 routes-select\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12 trips-select\">\n    </div>\n  </div>\n  <div id=\"kmlSelect\"></div>\n  <div id=\"shapesToolbox\" class=\"shapes-toolbox\"></div>\n  <div id=\"sequenceToolbox\" class=\"sequence-toolbox\"></div>\n</div>\n\n<div class=\"col-md-8 panel-right\">\n  <div role=\"tabpanel\">\n\n    <!-- Nav tabs -->\n    <ul class=\"nav nav-tabs\" role=\"tablist\">\n      <li role=\"presentation\" class=\"active\"><a href=\"#map-tab\" aria-controls=\"map-tab\" role=\"tab\" data-toggle=\"tab\">Map</a></li>\n      <li role=\"presentation\"><a href=\"#sequence-tab\" aria-controls=\"sequence-tab\" role=\"tab\" data-toggle=\"tab\">Sequence times</a></li>\n      <li role=\"presentation\"><a href=\"#start-times-tab\" aria-controls=\"start-times-tab\" role=\"tab\" data-toggle=\"tab\">Start times</a></li>\n    </ul>\n\n    <!-- Tab panes -->\n    <div class=\"tab-content\">\n      <div role=\"tabpanel\" class=\"tab-pane active\" id=\"map-tab\">\n        <div id=\"map\" class=\"map-view\"></div>\n      </div>\n      <div role=\"tabpanel\" class=\"tab-pane\" id=\"sequence-tab\">\n        <div id=\"sequenceView\" class=\"sequence-view\"></div>\n      </div>\n      <div role=\"tabpanel\" class=\"tab-pane\" id=\"start-times-tab\">\n        <div class=\"start-times-view\"></div>\n      </div>\n    </div>\n\n  </div>\n\n</div>";
   },"useData":true});
 
 
@@ -326,7 +326,7 @@ this["JST"]["sequence"] = Handlebars.template({"1":function(depth0,helpers,parti
     + escapeExpression(((helper = (helper = helpers.speed || (depth0 != null ? depth0.speed : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"speed","hash":{},"data":data}) : helper)))
     + "</td>\n		</tr>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<h4>Sequence Times</h4>\n\n<div class=\"row voffset1\">\n  <div class=\"col-md-12\">\n	<table class=\"table table-hover table-condensed\">\n	<thead>\n		<tr>\n			<th>N</th><th>Stop Id</th><th>Time</th><th>Distance (km)</th><th>Speed (km/h)</th>\n		</tr>\n	</thead>\n	<tbody>\n";
+  var stack1, buffer = "<div class=\"row voffset1\">\n  <div class=\"col-md-12\">\n	<table class=\"table table-hover table-condensed\">\n	<thead>\n		<tr>\n			<th>N</th><th>Stop Id</th><th>Time</th><th>Distance (km)</th><th>Speed (km/h)</th>\n		</tr>\n	</thead>\n	<tbody>\n";
   stack1 = helpers.each.call(depth0, depth0, {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "	</tbody>\n	</table>\n  </div>\n</div>";
@@ -401,22 +401,20 @@ this["JST"]["stops"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"ma
 
 
 
-this["JST"]["times"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"col-md-4 panel-left\">\n  <div class=\"row\">\n    <div  class=\"col-md-12 routes-select\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12 trips-select\">\n    </div>\n  </div>\n</div>\n<div class=\"col-md-8 panel-right\">\n  <div class=\"file-upload\"></div>\n  <div class=\"start-times-view\"></div>\n</div>";
-  },"useData":true});
-
-
-
 this["JST"]["tripsSelect"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "          <option value=\""
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "          <option value=\""
     + escapeExpression(((helper = (helper = helpers.trip_id || (depth0 != null ? depth0.trip_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"trip_id","hash":{},"data":data}) : helper)))
-    + "\">"
-    + escapeExpression(((helper = (helper = helpers.trip_id || (depth0 != null ? depth0.trip_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"trip_id","hash":{},"data":data}) : helper)))
-    + " - "
+    + "\">\n            "
     + escapeExpression(((helper = (helper = helpers.trip_headsign || (depth0 != null ? depth0.trip_headsign : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"trip_headsign","hash":{},"data":data}) : helper)))
-    + "</option>\n";
-},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    + " (";
+  stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, (depth0 != null ? depth0.direction_id : depth0), "0", {"name":"if_eq","hash":{},"fn":this.program(2, data),"inverse":this.program(4, data),"data":data}));
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + ")</option>\n";
+},"2":function(depth0,helpers,partials,data) {
+  return "Outbound";
+  },"4":function(depth0,helpers,partials,data) {
+  return "Inbound";
+  },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, buffer = "<form class=\"form-horizontal\" role=\"form\">\n  <div class=\"form-group\">\n    <label for=\"route\" class=\"col-sm-2 control-label\">Trip</label>\n    <div class=\"col-sm-8\">\n      <select class=\"form-control\" id=\"trip\">\n        <option value=\"\"> -- </option>\n";
   stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.trips : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }

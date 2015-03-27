@@ -10,8 +10,31 @@
   <div id="kmlSelect"></div>
   <div id="shapesToolbox" class="shapes-toolbox"></div>
   <div id="sequenceToolbox" class="sequence-toolbox"></div>
-  <div id="sequenceView" class="sequence-view"></div>
 </div>
+
 <div class="col-md-8 panel-right">
-  <div id="map" class="map-view"></div>
+  <div role="tabpanel">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#map-tab" aria-controls="map-tab" role="tab" data-toggle="tab">Map</a></li>
+      <li role="presentation"><a href="#sequence-tab" aria-controls="sequence-tab" role="tab" data-toggle="tab">Sequence times</a></li>
+      <li role="presentation"><a href="#start-times-tab" aria-controls="start-times-tab" role="tab" data-toggle="tab">Start times</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="map-tab">
+        <div id="map" class="map-view"></div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="sequence-tab">
+        <div id="sequenceView" class="sequence-view"></div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="start-times-tab">
+        <div class="start-times-view"></div>
+      </div>
+    </div>
+
+  </div>
+
 </div>

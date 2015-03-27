@@ -9,12 +9,15 @@ define([
   'views/sequenceToolbox',
   'views/shapesToolbox',
   'views/sequence',
+  'views/startTimes',
   'models/stop',
   'models/shape',
-  'collections/stop_seq'
+  'collections/stop_seq',
+  'collections/tripStartTimes'
   ], function (_, Backbone, Handlebars, JST, MapView, RoutesSelectView,
       TripsSelectView, SequenceToolboxView, ShapesToolboxView, SequenceView,
-      StopModel, ShapeModel, StopsSeqCollection) {
+      StartTimesView, StopModel, ShapeModel, StopsSeqCollection,
+      TripStartTimesCol) {
     var View;
 
     View = Backbone.View.extend({
@@ -33,6 +36,7 @@ define([
         this.stopModel = new StopModel();
         this.stopsSeqCollection = new StopsSeqCollection();
         this.shapeModel = new ShapeModel();
+        this.tripStartTimesCol = new TripStartTimesCol();
 
         var routeSelector = new RoutesSelectView({
           el: '.routes-select'
@@ -54,13 +58,6 @@ define([
           stop: this.stopModel,
           model: this.stopModel
         });
-
-        // var kmlSelectView = new KmlSelectView({
-        //   el: $("#kmlSelect")
-        // });
-        // kmlSelectView.on('select', function (value) {
-        //   mapView.layers.kml.refresh(value);
-        // });
 
         var shapesToolbox = new ShapesToolboxView({
           el: '.shapes-toolbox',
@@ -92,6 +89,21 @@ define([
 
           this.stopsSeqCollection.trip_id = trip_id;
           this.stopsSeqCollection.fetch({reset: true});
+        }, this);
+
+
+        var startTimesView = new StartTimesView({
+          el: '.start-times-view',
+          collection: this.tripStartTimesCol
+        });
+
+        tripsSelector.on('select', function (value) {
+          var selectedTrip = tripsSelector.collection.get(value);
+          var trip_id = selectedTrip.get('trip_id');
+
+          this.tripStartTimesCol.trip_id = trip_id;
+          this.tripStartTimesCol.fetch({reset: true});
+
         }, this);
       }
 
