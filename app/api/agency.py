@@ -25,7 +25,7 @@ def getAgency(agency_id):
 @api.route('/agency/<agency_id>', methods=['PUT'])
 def updateAgency(agency_id):
     data = request.json
-    # item = Agency.query.get_or_404(data.get('agency_id'))
+    item = Agency.query.get_or_404(data.get('agency_id'))
     item = Agency(**data)
     db.session.merge(item)
     return jsonify(item.to_json)
