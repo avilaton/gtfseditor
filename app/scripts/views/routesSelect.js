@@ -27,6 +27,7 @@ define([
 
             this.collection.on("change add remove reset", self.render, self);
             this.collection.fetch();
+            this.render();
         },
 
         render: function () {

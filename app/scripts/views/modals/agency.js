@@ -13,7 +13,8 @@ define([
 
     events: {
       'click .js-save': 'save',
-      'keyup input': 'onEdit'
+      'keyup input': 'onEdit',
+      'hidden.bs.modal': 'teardown'
     },
 
     initialize: function(){
@@ -35,6 +36,10 @@ define([
     onEdit: function (event) {
       var $target = $(event.currentTarget);
       this.model.set($target.attr('name'), $target.val());
+    },
+
+    teardown: function() {
+      this.undelegateEvents();
     }
   });
 

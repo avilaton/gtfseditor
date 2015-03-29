@@ -17,7 +17,8 @@ define([
             'click .js-save': 'save',
             'keyup input': 'onEdit',
             'click input[type="checkbox"]': 'onEditCheckbox',
-            'change select.select-agency': 'onChangeAgency'
+            'change select.select-agency': 'onChangeAgency',
+            'hidden.bs.modal': 'teardown'
         },
 
         initialize: function(){
@@ -55,6 +56,10 @@ define([
         onChangeAgency: function (event) {
             var value = event.currentTarget.value;
             this.model.set('agency_id', value !== '' ? value: null);
+        },
+
+        teardown: function() {
+          this.undelegateEvents();
         }
     });
 

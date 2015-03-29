@@ -47,6 +47,7 @@ define([
       },
 
       onAdd: function (e) {
+        e.preventDefault();
         var model = new this.collection.model();
         var modal = new AgencyModal({
           model: model,
