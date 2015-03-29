@@ -4,21 +4,18 @@ define([
   'underscore',
   'backbone',
   'JST',
-  'collections/calendars'
-  ], function (_, Backbone, JST, CalendarsCollection) {
+  'collections/calendars',
+  'views/modals/calendar'
+  ], function (_, Backbone, JST, CalendarsCollection, Modal) {
     var View;
 
     View = Backbone.View.extend({
-      // el: $('.main-view'),
       tagName: 'div',
 
       events: {
-        'click button.save-btn': 'save',
-        'click button.add-btn': 'add',
-        'click button.btn-create': 'create',
-        'blur .table-editable input[type="text"]': 'blur',
-        'click button.btn-rm': 'rm',
-        'click input[type="checkbox"]': 'onEditCheckbox'
+        'click button.btn-create': 'onCreate',
+        'click button.btn-rm': 'onRemove',
+        'click button.btn-edit': 'onEdit'
       },
 
       template: JST.calendar,
@@ -38,50 +35,32 @@ define([
         this.delegateEvents(this.events);
       },
 
-      save: function () {
-        this.collection.save();
-      },
-
-      create: function (e) {
-        var service_id = this.$('input.service_id').val(),
-          model;
-
-        e.preventDefault();
-
-        if (!service_id) {
-          alert('Invalid service_id');
-          return;
-        }
-
-        model = this.collection.create({
-          service_id: service_id
+      onCreate: function (e) {
+        var model = new this.collection.model();
+        var modal = new Modal({
+          model: model,
+          el: $('#routeDataEditor')
         });
+        modal.$el.modal('show');
       },
 
-      rm: function (e) {
+      onEdit: function (e) {
+        var $target = $(e.currentTarget),
+          index = $target.closest('tr').data('index'),
+          model = this.collection.at(index),
+          modal = new Modal({
+            model: model,
+            el: $('#routeDataEditor')
+        });
+        modal.$el.modal('show');
+      },
+
+      onRemove: function (e) {
         var $target = $(e.currentTarget),
           index = $target.closest('tr').data('index'),
           model = this.collection.at(index);
         model.destroy();
-      },
-
-      blur: function (e) {
-        var $target = $(e.currentTarget),
-          index = $target.closest('tr').data('index'),
-          attr = $target.data('attr'),
-          model = this.collection.at(index);
-        model.set(attr, $target.val());
-      },
-
-      onEditCheckbox: function (e) {
-        var $target = $(e.currentTarget),
-          index = $target.closest('tr').data('index'),
-          day = $target.attr('name'),
-          value = String(Number($target.prop('checked'))),
-          model = this.collection.at(index);
-        model.set(day, value);
       }
-
     });
 
     return View;

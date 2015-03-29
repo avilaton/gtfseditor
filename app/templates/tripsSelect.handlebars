@@ -5,7 +5,8 @@
       <select class="form-control" id="trip">
         <option value=""> -- </option>
         {{#each trips}}
-          <option value="{{trip_id}}">{{trip_id}} - {{trip_headsign}}</option>
+          <option value="{{trip_id}}">
+            {{trip_headsign}} ({{#if_eq direction_id "0"}}Outbound{{else}}Inbound{{/if_eq}})</option>
         {{/each}}
       </select>
     </div>
