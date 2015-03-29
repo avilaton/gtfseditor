@@ -45,7 +45,7 @@ define([
         },
 
         onAdd: function () {
-            var model = new this.collection.model();
+            var model = this.collection.create();
             var routeModal = new RouteModal({
                 model: model,
                 el: $('#routeDataEditor')

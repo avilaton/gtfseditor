@@ -48,7 +48,7 @@ define([
       },
 
       onAdd: function () {
-        var model = new this.collection.model();
+        var model = this.collection.create();
         var tripModal = new TripModal({
             model: model,
             el: $('#routeDataEditor')

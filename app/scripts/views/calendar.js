@@ -36,7 +36,7 @@ define([
       },
 
       onCreate: function (e) {
-        var model = new this.collection.model();
+        var model = this.collection.create();
         var modal = new Modal({
           model: model,
           el: $('#routeDataEditor')

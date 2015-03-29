@@ -15,6 +15,7 @@ define([
       'click .js-save': 'save',
       'keyup input': 'onEdit',
       'click input[type="checkbox"]': 'onEditCheckbox',
+      'hidden.bs.modal': 'teardown'
     },
 
     initialize: function(){
@@ -22,11 +23,10 @@ define([
     },
 
     render: function () {
-      var self = this;
       this.$el.html(this.template(this.model.toJSON()));
     },
 
-    save: function (event) {
+    save: function () {
       var self = this;
       this.model.save().then(function () {
         self.$el.modal('hide');
@@ -40,9 +40,12 @@ define([
 
     onEditCheckbox: function (event) {
         var $target = $(event.currentTarget);
-        this.model.set( $target.prop('name'), $target.prop('checked')? "1": "0");
+        this.model.set( $target.prop('name'), $target.prop('checked')? '1': '0');
     },
 
+    teardown: function() {
+      this.undelegateEvents();
+    }
   });
 
   return View;

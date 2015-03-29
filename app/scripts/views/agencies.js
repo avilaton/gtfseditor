@@ -46,7 +46,7 @@ define([
 
       onCreate: function (e) {
         e.preventDefault();
-        var model = new this.collection.model();
+        var model = this.collection.create();
         var modal = new AgencyModal({
           model: model,
           el: $('#routeDataEditor')
