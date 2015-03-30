@@ -37,6 +37,7 @@ def edit_route(id):
     item = Route.query.get_or_404(data.get('route_id'))
     item = Route(**data)
     db.session.merge(item)
+    db.session.commit()
     return jsonify(item.to_json)
 
 
