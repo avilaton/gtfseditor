@@ -28,6 +28,7 @@ def updateAgency(agency_id):
     item = Agency.query.get_or_404(data.get('agency_id'))
     item = Agency(**data)
     db.session.merge(item)
+    db.session.commit()
     return jsonify(item.to_json)
 
 
