@@ -17,6 +17,9 @@ require.config({
         },
         backbone: {
             deps: ['underscore']
+        },
+        'moment-duration-format': {
+            deps: ['moment']
         }
     },
     paths: {

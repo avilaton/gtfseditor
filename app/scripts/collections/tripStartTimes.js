@@ -23,9 +23,7 @@ define([
             var self = this;
             var req = api.put({
                 url: self.url(),
-                data: JSON.stringify({
-                    rows: self.toJSON()
-                })
+                data: JSON.stringify(self.toJSON())
             });
             return req;
         },

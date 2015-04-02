@@ -1,3 +1,5 @@
+'use strict';
+
 define([
   'underscore',
   'backbone',
@@ -9,14 +11,10 @@ define([
 
     View = Backbone.View.extend({
 
-      template: JST['startTimes'],
+      template: JST.startTimes,
 
       events: {
-        'click button.save-btn': 'save',
-        'click button.add-btn': 'add',
-        'click button.btn-offset': 'onClickOffset',
         'blur .table-editable input': 'blur',
-        'blur .table-editable select': 'blur',
         'click button.btn-rm': 'remove'
       },
 
@@ -29,16 +27,6 @@ define([
         this.$el.html(this.template({
           models: this.collection.toJSON()
         }));
-      },
-
-      save: function () {
-        this.collection.save();
-      },
-
-      add: function () {
-        this.collection.add({
-          trip_id: this.collection.trip_id
-        });
       },
 
       remove: function (e) {
@@ -54,14 +42,8 @@ define([
           attr = $target.data('attr'),
           model = this.collection.at(index);
         model.set(attr, $target.val());
-      },
-
-      onClickOffset: function (e) {
-        e.preventDefault();
-        var offset = this.$('input.offset-min').val();
-        this.collection.offsetTimes({offset: offset || 10});
       }
     });
 
     return View;
-  })
+  });
