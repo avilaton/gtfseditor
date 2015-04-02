@@ -13,13 +13,10 @@ define([
         model: TripStartTimeModel,
 
         trip_id: '',
+        service_id: '',
 
         url: function() {
-            return Config.server + 'api/trips/' + this.trip_id + '/start-times.json';
-        },
-
-        parse: function (response) {
-            return response.rows;
+            return Config.server + 'api/trips/' + this.trip_id + '/calendars/' + this.service_id + '/start-times.json';
         },
 
         save: function () {

@@ -1,0 +1,32 @@
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="route" class="col-sm-2 control-label">Calendars</label>
+    <div class="col-sm-8">
+      <select class="form-control">
+        <option value=""> -- </option>
+        {{#each models}}
+          <option value="{{service_id}}">{{service_name}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
+</form>
+
+<form class="form-inline">
+  <div class="form-group">
+    <label for="speed">Offset</label>
+    <input name="offset-min" type="number" class="form-control offset-min" placeholder="minutes">
+    <button class="btn btn-default btn-offset">Set</button>
+  </div>
+</form>
+
+<form>
+  <div class="form-group">
+    <button class="btn btn-default add-btn">
+      <span class="glyphicon glyphicon-plus"></span> Add Time
+    </button>
+    <button class="btn btn-default save-btn">
+      <span class="glyphicon glyphicon-save"></span> Save
+    </button>
+  </div>
+</form>

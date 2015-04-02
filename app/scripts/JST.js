@@ -68,6 +68,22 @@ this["JST"]["calendar"] = Handlebars.template({"1":function(depth0,helpers,parti
 
 
 
+this["JST"]["calendarsSelect"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return "          <option value=\""
+    + escapeExpression(((helper = (helper = helpers.service_id || (depth0 != null ? depth0.service_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"service_id","hash":{},"data":data}) : helper)))
+    + "\">"
+    + escapeExpression(((helper = (helper = helpers.service_name || (depth0 != null ? depth0.service_name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"service_name","hash":{},"data":data}) : helper)))
+    + "</option>\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, buffer = "<form class=\"form-horizontal\" role=\"form\">\n  <div class=\"form-group\">\n    <label for=\"route\" class=\"col-sm-2 control-label\">Calendars</label>\n    <div class=\"col-sm-8\">\n      <select class=\"form-control\">\n        <option value=\"\"> -- </option>\n";
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.models : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "      </select>\n    </div>\n  </div>\n</form>\n\n<form class=\"form-inline\">\n  <div class=\"form-group\">\n    <label for=\"speed\">Offset</label>\n    <input name=\"offset-min\" type=\"number\" class=\"form-control offset-min\" placeholder=\"minutes\">\n    <button class=\"btn btn-default btn-offset\">Set</button>\n  </div>\n</form>\n\n<form>\n  <div class=\"form-group\">\n    <button class=\"btn btn-default add-btn\">\n      <span class=\"glyphicon glyphicon-plus\"></span> Add Time\n    </button>\n    <button class=\"btn btn-default save-btn\">\n      <span class=\"glyphicon glyphicon-save\"></span> Save\n    </button>\n  </div>\n</form>\n";
+},"useData":true});
+
+
+
 this["JST"]["fileUpload"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<form role=\"form\" class=\"upload\">\n  <div class=\"form-group\">\n    <label for=\"exampleInputFile\">File input</label>\n    <input type=\"file\" name=\"file\" class=\"file\">\n    <p class=\"help-block\">specified format</p>\n  </div>\n  <button type=\"submit\" class=\"btn btn-default btn-upload\">Submit</button>\n</form>";
   },"useData":true});
@@ -304,7 +320,7 @@ this["JST"]["navbarRight"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1
 
 
 this["JST"]["routes"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"col-md-4 panel-left\">\n  <div class=\"row\">\n    <div  class=\"col-md-12 routes-select\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12 trips-select\">\n    </div>\n  </div>\n  <div id=\"kmlSelect\"></div>\n  <div id=\"shapesToolbox\" class=\"shapes-toolbox\"></div>\n  <div id=\"sequenceToolbox\" class=\"sequence-toolbox\"></div>\n</div>\n\n<div class=\"col-md-8 panel-right\">\n  <div role=\"tabpanel\">\n\n    <!-- Nav tabs -->\n    <ul class=\"nav nav-tabs\" role=\"tablist\">\n      <li role=\"presentation\" class=\"active\"><a href=\"#map-tab\" aria-controls=\"map-tab\" role=\"tab\" data-toggle=\"tab\">Map</a></li>\n      <li role=\"presentation\"><a href=\"#sequence-tab\" aria-controls=\"sequence-tab\" role=\"tab\" data-toggle=\"tab\">Sequence times</a></li>\n      <li role=\"presentation\"><a href=\"#start-times-tab\" aria-controls=\"start-times-tab\" role=\"tab\" data-toggle=\"tab\">Start times</a></li>\n    </ul>\n\n    <!-- Tab panes -->\n    <div class=\"tab-content\">\n      <div role=\"tabpanel\" class=\"tab-pane active\" id=\"map-tab\">\n        <div id=\"map\" class=\"map-view\"></div>\n      </div>\n      <div role=\"tabpanel\" class=\"tab-pane\" id=\"sequence-tab\">\n        <div id=\"sequenceView\" class=\"sequence-view\"></div>\n      </div>\n      <div role=\"tabpanel\" class=\"tab-pane\" id=\"start-times-tab\">\n        <div class=\"start-times-view\"></div>\n      </div>\n    </div>\n\n  </div>\n\n</div>";
+  return "<div class=\"col-md-4 panel-left\">\n  <div class=\"row\">\n    <div  class=\"col-md-12 routes-select\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12 trips-select\">\n    </div>\n  </div>\n  <div id=\"kmlSelect\"></div>\n  <div id=\"shapesToolbox\" class=\"shapes-toolbox\"></div>\n  <div id=\"sequenceToolbox\" class=\"sequence-toolbox\"></div>\n</div>\n\n<div class=\"col-md-8 panel-right\">\n  <div role=\"tabpanel\">\n\n    <!-- Nav tabs -->\n    <ul class=\"nav nav-tabs\" role=\"tablist\">\n      <li role=\"presentation\" class=\"active\"><a href=\"#map-tab\" aria-controls=\"map-tab\" role=\"tab\" data-toggle=\"tab\">Map</a></li>\n      <li role=\"presentation\"><a href=\"#sequence-tab\" aria-controls=\"sequence-tab\" role=\"tab\" data-toggle=\"tab\">Sequence times</a></li>\n      <li role=\"presentation\"><a href=\"#start-times-tab\" aria-controls=\"start-times-tab\" role=\"tab\" data-toggle=\"tab\">Start times</a></li>\n    </ul>\n\n    <!-- Tab panes -->\n    <div class=\"tab-content\">\n      <div role=\"tabpanel\" class=\"tab-pane active\" id=\"map-tab\">\n        <div id=\"map\" class=\"map-view\"></div>\n      </div>\n      <div role=\"tabpanel\" class=\"tab-pane\" id=\"sequence-tab\">\n        <div id=\"sequenceView\" class=\"sequence-view\"></div>\n      </div>\n      <div role=\"tabpanel\" class=\"tab-pane\" id=\"start-times-tab\">\n        <div class=\"row voffset1\">\n          <div class=\"col-md-6 calendars-select-view\"></div>\n          <div class=\"col-md-6 start-times-view\"></div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n</div>";
   },"useData":true});
 
 
@@ -389,18 +405,16 @@ this["JST"]["shapesToolbox"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta
 
 this["JST"]["startTimes"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var helper, lambda=this.lambda, escapeExpression=this.escapeExpression, functionType="function", helperMissing=helpers.helperMissing;
-  return "        <tr data-index=\""
+  return "    <tr data-index=\""
     + escapeExpression(lambda((data && data.index), depth0))
-    + "\">\n          <td><input class=\"form-control\" data-attr=\"service_id\" type=\"text\" value=\""
-    + escapeExpression(((helper = (helper = helpers.service_id || (depth0 != null ? depth0.service_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"service_id","hash":{},"data":data}) : helper)))
-    + "\"/></td>\n          <td><input class=\"form-control\" data-attr=\"start_time\" type=\"text\" value=\""
+    + "\">\n      <td><input class=\"form-control\" data-attr=\"start_time\" type=\"text\" value=\""
     + escapeExpression(((helper = (helper = helpers.start_time || (depth0 != null ? depth0.start_time : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"start_time","hash":{},"data":data}) : helper)))
-    + "\"/></td>\n          <td><button class=\"btn btn-default btn-rm\"><span class=\"glyphicon glyphicon-remove\"></span></button></td>\n        </tr>\n";
+    + "\"/></td>\n      <td><button class=\"btn btn-default btn-rm\"><span class=\"glyphicon glyphicon-remove\"></span></button></td>\n    </tr>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "\n<div class=\"row voffset1\">\n  <div class=\"col-md-7\">\n    <table class=\"table table-hover table-condensed table-editable\">\n      <thead>\n        <tr>\n          <th class=\"col-sm-5\">Service Id</th>\n          <th class=\"col-sm-6\">Time</th>\n          <th class=\"col-sm-1\"></th>\n        </tr>\n      </thead>\n      <tbody>\n";
+  var stack1, buffer = "<table class=\"table table-hover table-condensed table-editable\">\n  <thead>\n    <tr>\n      <th class=\"col-sm-11\">Time</th>\n      <th class=\"col-sm-1\"></th>\n    </tr>\n  </thead>\n  <tbody>\n";
   stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.models : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "      </tbody>\n    </table>\n  </div>\n  <div class=\"col-md-5\">\n    <button class=\"btn btn-default add-btn\"><span class=\"glyphicon glyphicon-plus\"></span> Add</button>\n    <button class=\"btn btn-default save-btn\"><span class=\"glyphicon glyphicon-save\"></span> Save</button>\n    <div class=\"row voffset1\">\n      <div class=\"col-md-12\">\n        <form class=\"form-inline\">\n          <div class=\"form-group\">\n            <label for=\"speed\">Offset</label>\n          <input name=\"offset-min\" type=\"number\" class=\"form-control offset-min\" placeholder=\"minutes\">\n          </div>\n          <button class=\"btn btn-default btn-offset\">Set</button>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>\n";
+  return buffer + "  </tbody>\n</table>\n";
 },"useData":true});
 
 

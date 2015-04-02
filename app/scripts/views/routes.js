@@ -10,14 +10,15 @@ define([
   'views/shapesToolbox',
   'views/sequence',
   'views/startTimes',
+  'views/calendarsSelect',
   'models/stop',
   'models/shape',
   'collections/stop_seq',
   'collections/tripStartTimes'
   ], function (_, Backbone, Handlebars, JST, MapView, RoutesSelectView,
       TripsSelectView, SequenceToolboxView, ShapesToolboxView, SequenceView,
-      StartTimesView, StopModel, ShapeModel, StopsSeqCollection,
-      TripStartTimesCol) {
+      StartTimesView, CalendarsSelectView, StopModel, ShapeModel,
+      StopsSeqCollection, TripStartTimesCol) {
     var View;
 
     View = Backbone.View.extend({
@@ -91,6 +92,18 @@ define([
           this.stopsSeqCollection.fetch({reset: true});
         }, this);
 
+        var calendarsSelectView = new CalendarsSelectView({
+          el: '.calendars-select-view'
+        });
+
+        calendarsSelectView.on('select', function (service_id) {
+          this.tripStartTimesCol.service_id = service_id;
+          if (service_id !== '') {
+            this.tripStartTimesCol.fetch({reset: true});
+          } else {
+            this.tripStartTimesCol.reset();
+          }
+        }, this);
 
         var startTimesView = new StartTimesView({
           el: '.start-times-view',

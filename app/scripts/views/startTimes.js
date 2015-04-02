@@ -21,22 +21,13 @@ define([
       },
 
       initialize: function(){
-        var self = this;
-        this.calendars = new CalendarsCollection();
-        this.calendars.fetch().then(function (response) {
-          self.service_ids = self.calendars.pluck('service_id');
-        });
         this.render();
-
-        this.collection.on('add change remove reset', self.render, self);
+        this.collection.on('add change remove reset', this.render, this);
       },
 
       render: function () {
-        var self = this;
-
         this.$el.html(this.template({
-          models: this.collection.toJSON(),
-          service_ids: this.service_ids
+          models: this.collection.toJSON()
         }));
       },
 
