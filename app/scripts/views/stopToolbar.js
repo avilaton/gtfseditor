@@ -1,3 +1,5 @@
+'use strict';
+
 define([
     'underscore',
     'backbone',
@@ -9,7 +11,7 @@ define([
 
         View = Backbone.View.extend({
 
-            template: JST['stopToolbar'],
+            template: JST.stopToolbar,
 
             events: {
                 'click button.create-stop': 'newStop',
@@ -43,7 +45,7 @@ define([
                 this.$('.btn').removeAttr('disabled');
             },
 
-            cancel: function (event) {
+            cancel: function () {
                 this.editMode(false);
                 this.controls.modifyStops.deactivate();
                 this.controls.drawStops.deactivate();
@@ -76,7 +78,7 @@ define([
                 this.model.destroy();
             },
 
-            editStop: function (event) {
+            editStop: function () {
                 var self = this;
                 this.stopModal.render();
                 this.stopModal.$el.modal('show');
@@ -91,13 +93,11 @@ define([
 
             moveStop: function (event) {
                 event.preventDefault();
-                var self = this,
-                    $target = $(event.currentTarget),
-                    feature = this.model.toFeature();
+                var feature = this.model.toFeature();
 
                 if (feature) {
                     this.controls.copyFeature(feature, 'drawStops');
-                };
+                }
                 this.editMode(true);
                 this.controls.selectStops.unselectAll();
                 this.controls.selectStops.deactivate();
@@ -105,17 +105,17 @@ define([
                 this.controls.modifyStops.selectControl.select(feature);
             },
 
-            newStop: function (event) {
+            newStop: function () {
                 this.editMode(true);
                 this.controls.selectStops.unselectAll();
                 this.controls.selectStops.deactivate();
                 this.controls.drawStops.activate();
             },
 
-            clearEdits: function (event) {
+            clearEdits: function () {
                 this.controls.clearEdits();
             }
     });
 
 return View;
-})
+});

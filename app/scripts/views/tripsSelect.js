@@ -1,32 +1,33 @@
+'use strict';
+
 define([
-  "underscore",
-  "backbone",
-  "handlebars",
+  'underscore',
+  'backbone',
+  'handlebars',
   'JST',
-  "collections/trips",
+  'collections/trips',
   'views/modals/trip'
   ], function (_, Backbone, Handlebars, JST, TripsCollection, TripModal) {
     var View;
 
     View = Backbone.View.extend({
-      el: $("#tripsSelect"),
+      el: $('#tripsSelect'),
 
-      template: JST['tripsSelect'],
+      template: JST.tripsSelect,
 
       events: {
-          "change select": "selectTrip",
+          'change select': 'selectTrip',
           'click .js-add': 'onAdd',
           'click .js-edit': 'onEdit',
           'click .js-remove': 'onRemove',
           'click .js-view-all': 'onViewAll'
       },
 
-      initialize: function(options){
+      initialize: function(){
         var self = this;
 
         this.collection = new TripsCollection();
-        
-        this.collection.on("change add remove reset", self.render, self);
+        this.collection.on('change add remove reset', self.render, self);
         this.render();
       },
 
@@ -70,10 +71,10 @@ define([
         model.destroy();
       },
 
-      onViewAll: function () {
-        console.log(event)
+      onViewAll: function (e) {
+        console.log(e);
       }
     });
 
     return View;
-  })
+  });

@@ -1,6 +1,8 @@
+'use strict';
+
 define([
-    "underscore",
-    "backbone",
+    'underscore',
+    'backbone',
     'config',
     'api',
     'models/tripStartTime',

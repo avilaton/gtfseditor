@@ -1,3 +1,5 @@
+'use strict';
+
 define([
   'underscore',
   'backbone',
@@ -15,7 +17,7 @@ define([
     View = Backbone.View.extend({
       el: $('.main-view'),
 
-      template: JST['stops'],
+      template: JST.stops,
 
       events: {},
 
@@ -41,12 +43,12 @@ define([
           stopMapView.layers.stopsBboxLayer.layer.refresh({force:true});
         });
 
-        var stopDataView = new StopDataView({
+        this.stopDataView = new StopDataView({
           model: this.model,
           el: this.$('.stop-data-view')
         });
 
-        var stopToolbarView = new StopToolbarView({
+        this.stopToolbarView = new StopToolbarView({
           el: '.stop-toolbar-view',
           model: this.model,
           controls: stopMapView.controls
@@ -64,4 +66,4 @@ define([
     });
 
     return View;
-  })
+  });
