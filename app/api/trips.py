@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 import csv
 from flask import jsonify, request, g, abort, url_for, current_app
+from flask import Response
+from flask import json
 from .. import db
 from ..models import Trip
 from ..models import Stop
@@ -31,6 +33,7 @@ def edit_trip(id):
 	item = Trip.query.get_or_404(data.get('trip_id'))
 	item = Trip(**data)
 	db.session.merge(item)
+	db.session.commit()
 	return jsonify(item.to_json)
 
 @api.route('/trips/', methods=['POST']) 
@@ -39,11 +42,11 @@ def add_trip():
 	trip = Trip(**data)
 	db.session.add(trip)
 	db.session.commit()
-	print "###", trip.route_id
-	return jsonify(trip.to_json), 201,{'Location': url_for('api.get_trip', id=trip.route_id, _external=True)}
+	return jsonify(trip.to_json), 201, {'Location': url_for('api.get_trip',
+		id=trip.trip_id, _external=True)}
 
 @api.route('/trips/<id>', methods=['DELETE'])
-def deleteTrip(id):		
+def deleteTrip(id):
 	trip = Trip.query.filter_by(trip_id = id).one()
 	db.session.delete(trip)
 	db.session.commit()
@@ -60,6 +63,7 @@ def tripStops(trip_id):
 		features.append({'stop': row.Stop.to_json,'stop_seq': row.StopSeq.to_json}) 
 	return jsonify({'rows': features})
 
+# DEPRECATED
 @api.route('/trips/<trip_id>/stops.geojson', methods=['GET'])
 def tripStopsGeoJson(trip_id):
 	rows = db.session.query(Stop, StopSeq).join(StopSeq, Stop.stop_id == StopSeq.stop_id)\
@@ -104,6 +108,7 @@ def tripStopsPut(trip_id):
 
 	return jsonify({'success':True,'trip_id':trip_id})
 
+# DEPRECATED
 @api.route('/trips/<trip_id>/stops.geojson', methods=['PUT'])
 def saveTripStops(trip_id):
 	geojson = request.json
@@ -157,14 +162,26 @@ def tripStopsStartTimes(trip_id):
 	features = [row.to_json for row in rows]
 	return jsonify({'rows': features})
 
-@api.route('/trips/<trip_id>/start-times.json', methods=['PUT'])
-def updateTripStartTimes(trip_id):
+
+@api.route('/trips/<trip_id>/calendars/<service_id>/start-times.json', methods=['GET'])
+def tripServiceTimes(trip_id, service_id):
+	rows = db.session.query(TripStartTime).\
+		filter_by(trip_id=trip_id, service_id=service_id).\
+		order_by(TripStartTime.start_time).all()
+
+	return Response(json.dumps([row.to_json for row in rows]),  mimetype='application/json')
+
+
+@api.route('/trips/<trip_id>/calendars/<service_id>/start-times.json', methods=['PUT'])
+def updateTripStartTimes(trip_id, service_id):
 	data = request.json
-	db.session.query(TripStartTime).filter(TripStartTime.trip_id == trip_id).delete()
-	for item in data['rows']:
+	db.session.query(TripStartTime).filter_by(trip_id=trip_id, service_id=service_id).delete()
+	for item in data:
 		tripStartTime = TripStartTime(**item)
 		db.session.merge(tripStartTime)
+	db.session.commit()
 	return jsonify({'success': True})
+
 
 @api.route('/trips/<trip_id>/start-times.csv', methods=['POST'])
 def uploadTripStartTimes(db, trip_id):
