@@ -13,7 +13,8 @@ define([
         events: {
             'click .js-save': 'save',
             'keyup input': 'onEdit',
-            'click input[type="checkbox"]': 'onEditCheckbox'
+            'click input[type="checkbox"]': 'onEditCheckbox',
+            'hidden.bs.modal': 'teardown'
         },
 
         initialize: function(options){
@@ -39,6 +40,10 @@ define([
         onEditCheckbox: function (event) {
             var $target = $(event.currentTarget);
             this.model.set('active', $target.prop('checked'));
+        },
+
+        teardown: function() {
+          this.undelegateEvents();
         }
     });
 

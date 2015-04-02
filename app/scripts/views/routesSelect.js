@@ -27,6 +27,7 @@ define([
 
             this.collection.on("change add remove reset", self.render, self);
             this.collection.fetch();
+            this.render();
         },
 
         render: function () {
@@ -44,7 +45,7 @@ define([
         },
 
         onAdd: function () {
-            var model = new this.collection.model();
+            var model = this.collection.create();
             var routeModal = new RouteModal({
                 model: model,
                 el: $('#routeDataEditor')
