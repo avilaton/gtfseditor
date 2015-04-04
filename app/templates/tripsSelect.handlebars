@@ -2,11 +2,13 @@
   <div class="form-group">
     <label for="route" class="col-sm-2 control-label">Trip</label>
     <div class="col-sm-8">
-      <select class="form-control" id="trip">
+      <select class="form-control">
         <option value=""> -- </option>
         {{#each trips}}
           <option value="{{trip_id}}">
-            {{trip_headsign}} ({{#if_eq direction_id "0"}}Outbound{{else}}Inbound{{/if_eq}})</option>
+            {{#if card_code}}({{card_code}}){{/if}}
+            {{trip_headsign}} ({{#if_eq direction_id "0"}}ida{{else}}vuelta{{/if_eq}})
+            </option>
         {{/each}}
       </select>
     </div>

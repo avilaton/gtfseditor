@@ -326,7 +326,7 @@ this["JST"]["navbarRight"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1
 
 
 this["JST"]["routes"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"col-md-4 panel-left\">\n  <div class=\"row\">\n    <div  class=\"col-md-12 routes-select\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12 trips-select\">\n    </div>\n  </div>\n  <div id=\"kmlSelect\"></div>\n  <div id=\"shapesToolbox\" class=\"shapes-toolbox\"></div>\n  <div id=\"sequenceToolbox\" class=\"sequence-toolbox\"></div>\n</div>\n\n<div class=\"col-md-8 panel-right\">\n  <div role=\"tabpanel\">\n\n    <!-- Nav tabs -->\n    <ul class=\"nav nav-tabs\" role=\"tablist\">\n      <li role=\"presentation\" class=\"active\"><a href=\"#map-tab\" aria-controls=\"map-tab\" role=\"tab\" data-toggle=\"tab\">Map</a></li>\n      <li role=\"presentation\"><a href=\"#sequence-tab\" aria-controls=\"sequence-tab\" role=\"tab\" data-toggle=\"tab\">Sequence times</a></li>\n      <li role=\"presentation\"><a href=\"#start-times-tab\" aria-controls=\"start-times-tab\" role=\"tab\" data-toggle=\"tab\">Start times</a></li>\n    </ul>\n\n    <!-- Tab panes -->\n    <div class=\"tab-content\">\n      <div role=\"tabpanel\" class=\"tab-pane active\" id=\"map-tab\">\n        <div id=\"map\" class=\"map-view\"></div>\n      </div>\n      <div role=\"tabpanel\" class=\"tab-pane\" id=\"sequence-tab\">\n        <div id=\"sequenceView\" class=\"sequence-view\"></div>\n      </div>\n      <div role=\"tabpanel\" class=\"tab-pane\" id=\"start-times-tab\">\n        <div class=\"row voffset1\">\n          <div class=\"col-md-6\">\n            <div class=\"calendars-select-view\"></div>\n            <div class=\"calendars-tools-view\"></div>\n          </div>\n          <div class=\"col-md-6 start-times-view\"></div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n</div>";
+  return "<div class=\"col-md-4 panel-left\">\n  <div class=\"row\">\n    <div class=\"col-md-12 routes-select\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12 trips-select\">\n    </div>\n  </div>\n  <div class=\"shapes-toolbox\"></div>\n  <div class=\"sequence-toolbox\"></div>\n</div>\n\n<div class=\"col-md-8 panel-right\">\n  <div role=\"tabpanel\">\n\n    <!-- Nav tabs -->\n    <ul class=\"nav nav-tabs\" role=\"tablist\">\n      <li role=\"presentation\" class=\"active\"><a href=\"#map-tab\" aria-controls=\"map-tab\" role=\"tab\" data-toggle=\"tab\">Map</a></li>\n      <li role=\"presentation\"><a href=\"#sequence-tab\" aria-controls=\"sequence-tab\" role=\"tab\" data-toggle=\"tab\">Sequence times</a></li>\n      <li role=\"presentation\"><a href=\"#start-times-tab\" aria-controls=\"start-times-tab\" role=\"tab\" data-toggle=\"tab\">Start times</a></li>\n    </ul>\n\n    <!-- Tab panes -->\n    <div class=\"tab-content\">\n      <div role=\"tabpanel\" class=\"tab-pane active\" id=\"map-tab\">\n        <div id=\"map\" class=\"map-view\"></div>\n      </div>\n      <div role=\"tabpanel\" class=\"tab-pane\" id=\"sequence-tab\">\n        <div class=\"sequence-view\"></div>\n      </div>\n      <div role=\"tabpanel\" class=\"tab-pane\" id=\"start-times-tab\">\n        <div class=\"row voffset1\">\n          <div class=\"col-md-6\">\n            <div class=\"calendars-select-view\"></div>\n            <div class=\"calendars-tools-view\"></div>\n          </div>\n          <div class=\"col-md-6 start-times-view\"></div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n</div>";
   },"useData":true});
 
 
@@ -465,18 +465,26 @@ this["JST"]["stops"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"ma
 this["JST"]["tripsSelect"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "          <option value=\""
     + escapeExpression(((helper = (helper = helpers.trip_id || (depth0 != null ? depth0.trip_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"trip_id","hash":{},"data":data}) : helper)))
-    + "\">\n            "
+    + "\">\n            ";
+  stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.card_code : depth0), {"name":"if","hash":{},"fn":this.program(2, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  buffer += "\n            "
     + escapeExpression(((helper = (helper = helpers.trip_headsign || (depth0 != null ? depth0.trip_headsign : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"trip_headsign","hash":{},"data":data}) : helper)))
     + " (";
-  stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, (depth0 != null ? depth0.direction_id : depth0), "0", {"name":"if_eq","hash":{},"fn":this.program(2, data),"inverse":this.program(4, data),"data":data}));
+  stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, (depth0 != null ? depth0.direction_id : depth0), "0", {"name":"if_eq","hash":{},"fn":this.program(4, data),"inverse":this.program(6, data),"data":data}));
   if (stack1 != null) { buffer += stack1; }
-  return buffer + ")</option>\n";
+  return buffer + ")\n            </option>\n";
 },"2":function(depth0,helpers,partials,data) {
-  return "Outbound";
-  },"4":function(depth0,helpers,partials,data) {
-  return "Inbound";
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return "("
+    + escapeExpression(((helper = (helper = helpers.card_code || (depth0 != null ? depth0.card_code : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"card_code","hash":{},"data":data}) : helper)))
+    + ")";
+},"4":function(depth0,helpers,partials,data) {
+  return "ida";
+  },"6":function(depth0,helpers,partials,data) {
+  return "vuelta";
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<form class=\"form-horizontal\" role=\"form\">\n  <div class=\"form-group\">\n    <label for=\"route\" class=\"col-sm-2 control-label\">Trip</label>\n    <div class=\"col-sm-8\">\n      <select class=\"form-control\" id=\"trip\">\n        <option value=\"\"> -- </option>\n";
+  var stack1, buffer = "<form class=\"form-horizontal\" role=\"form\">\n  <div class=\"form-group\">\n    <label for=\"route\" class=\"col-sm-2 control-label\">Trip</label>\n    <div class=\"col-sm-8\">\n      <select class=\"form-control\">\n        <option value=\"\"> -- </option>\n";
   stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.trips : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "      </select>\n    </div>\n    <div class=\"col-sm-2\">\n      <div class=\"btn-group\">\n        <button class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">\n          <i class=\"glyphicon glyphicon-pencil\"></i>\n        </button>\n        <ul class=\"dropdown-menu dropdown-menu-right\" role=\"menu\" aria-labelledby=\"dropdownMenu1\">\n          <li class=\"js-add\" role=\"presentation\">\n            <a role=\"menuitem\" tabindex=\"-1\" href=\"#\"><i class=\"glyphicon glyphicon-plus\"></i> Add</a>\n          </li>\n          <li class=\"js-edit\" role=\"presentation\">\n            <a role=\"menuitem\" tabindex=\"-1\" href=\"#\" data-target=\"#routeEditData\" data-toggle=\"modal\">\n             <i class=\"glyphicon glyphicon-pencil\"></i> Edit\n            </a>\n          </li>\n          <li class=\"js-remove\" role=\"presentation\">\n            <a role=\"menuitem\" tabindex=\"-1\" href=\"#\"><i class=\"glyphicon glyphicon-trash\"></i> Delete</a>\n          </li>\n          <li role=\"presentation\" class=\"divider\"></li>\n          <li class=\"js-view-all disabled\"  role=\"presentation\">\n            <a role=\"menuitem\" tabindex=\"-1\" href=\"#\">View all</a>\n          </li>\n        </ul>\n      </div>\n    </div>\n  </div>\n</form>\n";
