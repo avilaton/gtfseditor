@@ -3,6 +3,7 @@
 
 from flask import jsonify
 from flask import request
+from flask import abort
 from .. import db
 from ..models import Shape
 from . import api
@@ -43,6 +44,9 @@ def updateShape(shape_id):
 def getShapeById(shape_id):
   shape = db.session.query(Shape).filter_by(shape_id=shape_id)\
   	.order_by(Shape.shape_pt_sequence).all()
+
+  if not shape:
+    abort(404, 'shape not found')
 
   return jsonify({
     "shape_id": shape_id,
