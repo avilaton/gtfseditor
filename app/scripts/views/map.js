@@ -79,7 +79,7 @@ define([
 
       bindEvents: function () {
         var self = this;
-        self.shape.on("reset", self.updateShapesLayer, self);
+        self.shape.on("change reset", self.updateShapesLayer, self);
 
         this.collection.on("change reset add remove", self.updateStopsLayer, self);
         self.collection.on("trip_stop_selected", self.selectTripStop, self);
@@ -87,7 +87,7 @@ define([
 
       updateShapesLayer: function () {
         var self = this;
-        var ft = this.format.read(self.shape.toJSON());
+        var ft = this.format.read(self.shape.toGeoJSON());
         this.shapesLayer.removeAllFeatures();
         this.shapesLayer.addFeatures(ft);
         self.shapesLayer.refresh();
@@ -97,7 +97,8 @@ define([
       updateShapeModel: function () {
         var self = this;
         var shapeJSON = this.format.write(self.shapesLayer.features, true);
-        this.shape.set(JSON.parse(shapeJSON));
+        var shapeObj = JSON.parse(shapeJSON);
+        this.shape.set('coordinates', shapeObj.features[0].geometry.coordinates);
         return;
       },
 

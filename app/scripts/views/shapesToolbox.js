@@ -1,20 +1,21 @@
 define([
-  "underscore",
-  "backbone",
-  "handlebars",
-  'JST'
-  ], function (_, Backbone, Handlebars, JST) {
+  'underscore',
+  'backbone',
+  'handlebars',
+  'JST',
+  'models/shape'
+  ], function (_, Backbone, Handlebars, JST, ShapeModel) {
     var View;
 
     View = Backbone.View.extend({
-      el: $("#shapesToolbox"),
-
-      template: JST['shapesToolbox'],
+      template: JST.shapesToolbox,
 
       events: {
-        "click button.reverseShape": "reverseShape",
-        "click button.editShape": "editShape",
-        "click button.saveShape": "saveShape"
+        'click button.create-shape': 'create',
+        'click button.reverseShape': 'reverseShape',
+        'click button.editShape': 'editShape',
+        'click button.delete': 'delete',
+        'click button.saveShape': 'save'
       },
 
       initialize: function(options){
@@ -25,34 +26,41 @@ define([
 
         this.render();
 
-        this.model.on("change reset", self.render, self);
+        this.model.on('change reset', self.render, self);
       },
 
       render: function () {
-        var self = this;
-
         this.$el.html(this.template());
+      },
+
+      create: function () {
+        this.model = new ShapeModel();
+        this.model.sync('create', this.model);
       },
 
       reverseShape: function (event) {
         this.model.reverse();
       },
 
-      saveShape: function (event) {
-        this.model.save();
+      save: function (event) {
+        this.model.sync('update', this.model);
       },
 
       editShape: function () {
         var $target = $(event.target);
-        console.log("controls status", this.controls.modifyShape);
+        console.log('controls status', this.controls.modifyShape);
         if (!this.controls.modifyShape.active) {
-          this.map.activateControl("modifyShape");
+          this.map.activateControl('modifyShape');
           $target.addClass('btn-primary');
         } else {
-          this.map.activateControl("selectStops");
+          this.map.activateControl('selectStops');
           this.map.updateShapeModel();
           $target.removeClass('btn-primary');
         }
+      },
+
+      delete: function () {
+        this.model.destroy();
       }
     });
 

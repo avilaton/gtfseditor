@@ -84,7 +84,8 @@ define([
           var trip_id = selectedTrip.get('trip_id');
           var shape_id = selectedTrip.get('shape_id');
 
-          this.shapeModel.set("shape_id", shape_id);
+          this.shapeModel.set('shape_id', shape_id, {silent: true});
+          this.shapeModel.shape_id = shape_id;
           this.shapeModel.fetch({reset: true}).done(function () {
             mapView.updateShapesLayer();
           });
