@@ -17,20 +17,20 @@ from ..services.stop_times import StopTimesFactory
 @home.route('/')
 def index():
 	agencies = Agency.query.all()
-	routes = Route.query.order_by(Route.route_id).all()
+	routes = Route.query.order_by(Route.route_short_name).all()
 	return render_template('home/index.html', agencies=agencies, routes=routes)
 
 @home.route('/agency/<agency_id>')
 def get_agency(agency_id):
 	agency = Agency.query.get_or_404(agency_id)
-	routes = Route.query.filter(Route.agency_id == agency_id).order_by(Route.route_id).all()
+	routes = Route.query.filter(Route.agency_id == agency_id).order_by(Route.route_short_name).all()
 	return render_template('home/agency.html', agency=agency, routes=routes)
 
 @home.route('/routes/<route_id>')
 def get_route(route_id):
 	route = Route.query.get_or_404(route_id)
 	trips = Trip.query.filter(Trip.route_id == route_id)\
-        .order_by(Trip.trip_headsign).all()
+        .order_by(Trip.card_code, Trip.direction_id, Trip.trip_headsign).all()
 	return render_template('home/route.html', route=route, trips=trips)
 
 @home.route('/stops/<stop_id>')

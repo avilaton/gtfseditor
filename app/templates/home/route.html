@@ -34,7 +34,7 @@
 	<thead>
 		<tr>
 			<th>Activo</th>
-			<th>Trip Id</th>
+			<th>Sentido</th>
 			<th>Hacia</th>
 			<th>Nombre Corto</th>
 		</tr>
@@ -52,8 +52,8 @@
 	  			<span class="glyphicon glyphicon-remove"></span>
 	    	{%endif%}
 	  	</td>
-	  	<td><a href="/routes/{{route.route_id}}/trips/{{trip.trip_id}}">{{trip.trip_id}}</a></td>
-	    <td>{{trip.trip_headsign}}</td>
+	    <td>{% if trip.direction_id == "0"%} Ida {%else%} Vuelta {% endif %}</td>
+	  	<td><a href="/routes/{{route.route_id}}/trips/{{trip.trip_id}}">{{trip.trip_headsign}}</a></td>
 	    <td>{{trip.trip_short_name}}</td>
   </tr>
 {%endfor%}
