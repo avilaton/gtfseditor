@@ -4,6 +4,15 @@ Gtfseditor
 A customizable editor for GTFS files which can be used both as a standalone app 
 or deployed to a wsgi compliant hosting.
 
+Demo
+----
+
+There might be a demo running at http://gtfseditor.herokuapp.com
+The admin interface is at http://gtfseditor.herokuapp.com/admin
+and the credentials are 
+
+username: admin@gtfseditor.com
+password: demo-pass
 
 Installation
 ------------
