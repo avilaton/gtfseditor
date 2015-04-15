@@ -14,6 +14,7 @@ import zipfile
 
 from ..models import *
 from ..services.stop_times import StopTimesFactory
+from ..services import defaults
 
 class Feed(object):
   """GTFS schedule feed factory"""
@@ -133,7 +134,7 @@ class Feed(object):
         trip_start_times = self.db.query(TripStartTime).filter_by(trip_id=tripRow.trip_id).all()
         if not trip_start_times:
           if not self.trip_start_times_default:
-            self.trip_start_times_default = self.db.query(TripStartTime).filter_by(trip_id='default').all()
+            self.trip_start_times_default = [item for item in defaults.startTimes()]
           trip_start_times = self.trip_start_times_default
 
         for startTimeRow in trip_start_times:
