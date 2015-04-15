@@ -65,9 +65,9 @@ class Feed(object):
 
     for row in self.db.query(Agency).all():
       agency = self.schedule.AddAgency(row.agency_name, row.agency_url, 
-          row.agency_timezone, agency_id=row.agency_id)
+          row.agency_timezone or "", agency_id=row.agency_id)
       agency.agency_phone = row.agency_phone
-      agency.agency_lang = row.agency_lang
+      agency.agency_lang = row.agency_lang or ""
     if len(self.schedule.GetAgencyList()):
       self.schedule.SetDefaultAgency(self.schedule.GetAgencyList()[0])
 
@@ -106,7 +106,7 @@ class Feed(object):
       mem = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
       logger.info("Loading {1}/{2} ({3}), route_short_name: {0}".format(row.route_short_name, i, count, mem))
       route = self.schedule.AddRoute(short_name=row.route_short_name,
-          long_name=row.route_long_name,
+          long_name=row.route_long_name or "",
           route_id=row.route_id,
           route_type=row.route_type)
       route.agency_id = row.agency_id
