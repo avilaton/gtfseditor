@@ -37,6 +37,7 @@
 			<th>Nombre</th>
 			<th>Dirigido Hacia</th>
 			<th>Sentido</th>
+			<th>Codigo</th>
 		</tr>
 	</thead>
 {%for trip in trips%}
@@ -55,6 +56,7 @@
 	    <td>{{trip.trip_short_name}}</td>
 	  	<td><a href="/routes/{{route.route_id}}/trips/{{trip.trip_id}}">{{trip.trip_headsign}}</a></td>
 	    <td>{% if trip.direction_id == "0"%} Ida {%else%} Vuelta {% endif %}</td>
+	    <td>{{trip.card_code}}</td>
   </tr>
 {%endfor%}
 </table>

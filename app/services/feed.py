@@ -133,8 +133,7 @@ class Feed(object):
 
         trip_start_times = self.db.query(TripStartTime).filter_by(trip_id=tripRow.trip_id).all()
         if not trip_start_times:
-          if not self.trip_start_times_default:
-            self.trip_start_times_default = [item for item in defaults.startTimes()]
+          self.loadDefaultTripStartTimes()
           trip_start_times = self.trip_start_times_default
 
         for startTimeRow in trip_start_times:
@@ -150,6 +149,23 @@ class Feed(object):
       else:
         # trip_id = t.trip_id
         raise NotImplementedError
+
+  def loadDefaultTripStartTimes(self):
+    if self.trip_start_times_default:
+      return
+    self.trip_start_times_default = [item for item in defaults.startTimes()]
+    logger.info("Loading Default Calendar")
+    days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 
+      'sunday']
+
+    service = transitfeed.ServicePeriod()
+    service.SetServiceId('default')
+    service.SetStartDate('20150101')
+    service.SetEndDate('20151201')
+    for i, day in enumerate(days):
+      service.SetDayOfWeekHasService(i, True)
+    self.schedule.AddServicePeriodObject(service)
+
 
   def loadStops(self):
     logger.info("Loading Stops")
@@ -191,6 +207,7 @@ class Feed(object):
 
     elif self.mode == 'initial-times':
       if not trip_start_times:
+        self.loadDefaultTripStartTimes()
         trip_start_times = self.trip_start_times_default
 
       for stop_time in StopTimesFactory.offsetStartTimes(seq_trip_id, stop_sequence, startTimeRow):
