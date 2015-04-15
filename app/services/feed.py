@@ -22,6 +22,7 @@ class Feed(object):
     self.db = db
     self.filename = filename
     self.fileObj = StringIO.StringIO()
+    self.trip_start_times_default = None
     self.schedule = transitfeed.Schedule(memory_db=False)
 
   def __repr__(self):
@@ -136,7 +137,7 @@ class Feed(object):
           trip_start_times = self.trip_start_times_default
 
         for startTimeRow in trip_start_times:
-          new_trip_id = '.'.join([tripRow.trip_id, startTimeRow.service_id, startTimeRow.start_time])
+          new_trip_id = '.'.join([str(tripRow.trip_id), str(startTimeRow.service_id), startTimeRow.start_time])
           trip = route.AddTrip(trip_id = new_trip_id, headsign=tripRow.trip_headsign)
           trip.service_id = startTimeRow.service_id
           trip.shape_id = tripRow.shape_id
