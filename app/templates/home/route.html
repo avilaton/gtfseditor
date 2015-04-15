@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 
-{% block title %}Ruta {{route.route_id}}{% endblock %}
+{% block title %}Ruta {{route.route_short_name}}{% endblock %}
 
 {% block body %}
 <ol class="breadcrumb">
   <li><a href="/">Inicio</a></li>
-  <li class="active">Ruta {{route.route_id}}</li>
+  <li class="active">Ruta {{route.route_short_name}}</li>
 </ol>
 
 <h2>Informacion General</h2>
@@ -13,8 +13,8 @@
 <dl class="dl-horizontal">
 	<dt>Nombre Largo</dt>
 	<dd>{{route.route_long_name or ""}}</dd>
-	<dt>Agencia</dt>
-	<dd>{{route.agency_id}}</dd>
+<!-- 	<dt>Agencia</dt>
+	<dd>{{route.agency_id}}</dd> -->
 	<dt>Nombre Corto</dt>
 	<dd>{{route.route_short_name}}</dd>
 	<dt>Descripcion</dt>
@@ -34,9 +34,10 @@
 	<thead>
 		<tr>
 			<th>Activo</th>
+			<th>Nombre</th>
+			<th>Dirigido Hacia</th>
 			<th>Sentido</th>
-			<th>Hacia</th>
-			<th>Nombre Corto</th>
+			<th>Codigo</th>
 		</tr>
 	</thead>
 {%for trip in trips%}
@@ -52,9 +53,10 @@
 	  			<span class="glyphicon glyphicon-remove"></span>
 	    	{%endif%}
 	  	</td>
-	    <td>{% if trip.direction_id == "0"%} Ida {%else%} Vuelta {% endif %}</td>
-	  	<td><a href="/routes/{{route.route_id}}/trips/{{trip.trip_id}}">{{trip.trip_headsign}}</a></td>
 	    <td>{{trip.trip_short_name}}</td>
+	  	<td><a href="/routes/{{route.route_id}}/trips/{{trip.trip_id}}">{{trip.trip_headsign}}</a></td>
+	    <td>{% if trip.direction_id == "0"%} Ida {%else%} Vuelta {% endif %}</td>
+	    <td>{{trip.card_code}}</td>
   </tr>
 {%endfor%}
 </table>
