@@ -36,7 +36,7 @@ class StopTimesFactory(object):
   @staticmethod
   def offsetStartTimes(trip_id, trip_stop_sequence, startTimeRow):
     start_time_secs = TimeToSecondsSinceMidnight(startTimeRow.start_time)
-    new_trip_id = '.'.join([trip_id, startTimeRow.service_id, 
+    new_trip_id = '.'.join([str(trip_id), str(startTimeRow.service_id), 
       startTimeRow.start_time])
     for stopSeq in trip_stop_sequence:
       stop_seq_dict = stopSeq.to_json

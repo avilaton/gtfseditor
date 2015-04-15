@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}Agencia {{agency.agency_id}}{% endblock %}
+{% block title %}Agencia {{agency.agency_name}}{% endblock %}
 
 {% block body %}
 
@@ -32,8 +32,6 @@
 <dl class="dl-horizontal">
 	<dt>Nombre</dt>
 	<dd>{{route.route_long_name or ""}}</dd>
-	<dt>Agencia</dt>
-	<dd>{{route.agency_id or ""}}</dd>
 	<dt>Nombre corto</dt>
 	<dd>{{route.route_short_name or ""}}</dd>
 	<dt>Descripcion</dt>
