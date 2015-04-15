@@ -468,21 +468,21 @@ this["JST"]["tripsSelect"] = Handlebars.template({"1":function(depth0,helpers,pa
     + "\">\n            ";
   stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.card_code : depth0), {"name":"if","hash":{},"fn":this.program(2, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  buffer += "\n            "
-    + escapeExpression(((helper = (helper = helpers.trip_headsign || (depth0 != null ? depth0.trip_headsign : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"trip_headsign","hash":{},"data":data}) : helper)))
-    + " (";
+  buffer += "\n            ";
   stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, (depth0 != null ? depth0.direction_id : depth0), "0", {"name":"if_eq","hash":{},"fn":this.program(4, data),"inverse":this.program(6, data),"data":data}));
   if (stack1 != null) { buffer += stack1; }
-  return buffer + ")\n            </option>\n";
+  return buffer + "\n            To: "
+    + escapeExpression(((helper = (helper = helpers.trip_headsign || (depth0 != null ? depth0.trip_headsign : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"trip_headsign","hash":{},"data":data}) : helper)))
+    + "\n            </option>\n";
 },"2":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
   return "("
     + escapeExpression(((helper = (helper = helpers.card_code || (depth0 != null ? depth0.card_code : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"card_code","hash":{},"data":data}) : helper)))
     + ")";
 },"4":function(depth0,helpers,partials,data) {
-  return "ida";
+  return "(ida)";
   },"6":function(depth0,helpers,partials,data) {
-  return "vuelta";
+  return "(vuelta)";
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, buffer = "<form class=\"form-horizontal\" role=\"form\">\n  <div class=\"form-group\">\n    <label for=\"route\" class=\"col-sm-2 control-label\">Trip</label>\n    <div class=\"col-sm-8\">\n      <select class=\"form-control\">\n        <option value=\"\"> -- </option>\n";
   stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.trips : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});

@@ -5,9 +5,11 @@ define([
   'views/map/drawStops',
   'views/map/kmlLayer',
   'views/map/stopsLayer',
-  'views/map/styles'
+  'views/map/styles',
+  'views/map/shapesLayer'
   ],
-  function (OpenLayers, Backbone, Config, DrawStopsView, KmlLayerView, StopsLayerView, Styles) {
+  function (OpenLayers, Backbone, Config, DrawStopsView, KmlLayerView,
+    StopsLayerView, Styles, ShapesLayerView) {
     'use strict';
 
     var MapView = Backbone.View.extend({
@@ -41,12 +43,8 @@ define([
 
         this.bindEvents();
 
-        this.layers = {};
 
         this.panAndZoom();
-        this.addShapesLayer();
-        this.addNotesLayer();
-        this.addStopsLayer();
 
         this.initializeChildViews();
 
@@ -56,10 +54,21 @@ define([
 
       initializeChildViews: function () {
         var self = this;
+        this.layers = {};
+
+        this.layers.shapesLayer = new ShapesLayerView({
+          map: this.map,
+          model: this.shape
+        });
+        this.shapesLayer = this.layers.shapesLayer.layer;
 
         this.layers.stopsBboxLayer = new StopsLayerView({
           map: this.map
         });
+
+        this.addNotesLayer();
+        this.addStopsLayer();
+
         this.layers.drawStops = new DrawStopsView({
           format: this.format,
           map: this.map,
@@ -79,7 +88,7 @@ define([
 
       bindEvents: function () {
         var self = this;
-        self.shape.on("change reset", self.updateShapesLayer, self);
+        self.shape.on("reset", self.updateShapesLayer, self);
 
         this.collection.on("change reset add remove", self.updateStopsLayer, self);
         self.collection.on("trip_stop_selected", self.selectTripStop, self);
@@ -99,6 +108,7 @@ define([
         var shapeJSON = this.format.write(self.shapesLayer.features, true);
         var shapeObj = JSON.parse(shapeJSON);
         this.shape.set('coordinates', shapeObj.features[0].geometry.coordinates);
+        console.log(this.shape.toJSON());
         return;
       },
 
@@ -226,6 +236,11 @@ define([
           self.onBboxFeatureSelected);
         this.layers.stopsBboxLayer.layer.events.register('featureunselected', self,
           self.onBboxFeatureSelected);
+        this.layers.shapesLayer.layer.events.register('featureadded', self, function (shape) {
+          console.log('feature added', shape);
+          self.updateShapeModel();
+          self.controls.drawShape.deactivate();
+        })
       },
 
       addControls: function () {
@@ -269,6 +284,10 @@ define([
             vertexRenderIntent: 'vertex'
           });
         this.map.addControl(controls.modifyShape);
+
+        controls.drawShape = new OpenLayers.Control.DrawFeature(
+          self.shapesLayer, OpenLayers.Handler.Path);
+        this.map.addControl(controls.drawShape);
 
         controls.drawStops = new OpenLayers.Control.DrawFeature(self.layers.drawStops.layer,
           OpenLayers.Handler.Point);

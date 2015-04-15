@@ -25,8 +25,6 @@ define([
         this.map = options.map;
 
         this.render();
-
-        this.model.on('change reset', self.render, self);
       },
 
       render: function () {
@@ -34,8 +32,17 @@ define([
       },
 
       create: function () {
-        this.model = new ShapeModel();
-        this.model.sync('create', this.model);
+        var $target = $(event.target);
+        if (!this.controls.drawShape.active) {
+          this.map.activateControl('drawShape');
+          $target.addClass('btn-primary');
+        } else {
+          this.model = new ShapeModel();
+          this.map.activateControl('selectStops');
+          this.map.updateShapeModel();
+          $target.removeClass('btn-primary');
+          this.model.sync('create', this.model);
+        }
       },
 
       reverseShape: function (event) {
@@ -48,7 +55,6 @@ define([
 
       editShape: function () {
         var $target = $(event.target);
-        console.log('controls status', this.controls.modifyShape);
         if (!this.controls.modifyShape.active) {
           this.map.activateControl('modifyShape');
           $target.addClass('btn-primary');
