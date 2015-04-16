@@ -50,7 +50,7 @@
 		{% set times = row[1:]%}
 		<tr>
 			<td><a href="/stops/{{stop.stop_id}}">{{stop.stop_id}}</a></td>
-			<td>{{stopSeq.stop_name or stop.stop_calle + " " + stop.stop_numero}}</td>
+			<td>{{stopSeq.stop_name or stop.stop_calle or "" + " " + stop.stop_numero}}</td>
 			<td>{{stopSeq.stop_time or ""}}</td>
 			{%for start_time in times%}
 				<td>{{start_time or ""}}</td>
