@@ -57,7 +57,6 @@
 		<table class="table table-bordered table-striped table-condensed">
 			<thead>
 				<tr>
-					<th>Id de Servicio</th>
 					<th>Nombre del Servicio</th>
 					<th>Fecha de inicio</th>
 					<th>Fecha de fin</th>
@@ -65,8 +64,7 @@
 			</thead>
 		{%for service in services%}
 			<tr>
-				<td><a href="/routes/{{route.route_id}}/trips/{{trip.trip_id}}/services/{{service.service_id}}">{{service.service_id}}</a></td>
-				<td>{{service.service_name}}</td>
+				<td><a href="/routes/{{route.route_id}}/trips/{{trip.trip_id}}/services/{{service.service_id}}">{{service.service_name}}</a></td>
 				<td>{{service.start_date}}</td>
 				<td>{{service.end_date}}</td>
 			</tr>

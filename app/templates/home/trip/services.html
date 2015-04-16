@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}Servicios {{service.service_id}}{% endblock %}
+{% block title %}Servicios {{service.service_name}}{% endblock %}
 
 {% block body %}
 
@@ -8,7 +8,7 @@
   <li><a href="/">Inicio</a></li>
   <li><a href="/routes/{{route.route_id}}">Ruta {{route.route_id}}</a></li>
   <li><a href="/routes/{{route.route_id}}/trips/{{trip.trip_id}}">Viaje hacia {{trip.trip_headsign}}</a></li>
-  <li class="active">Servicio {{service.service_id}}</li>
+  <li class="active">Servicio {{service.service_name}}</li>
 </ol>
 
 
@@ -17,13 +17,11 @@
 <table class="table table-bordered table-striped table-condensed">
 	<thead>
 		<tr>
-			<th>Id de Servicio</th>
 			<th>Tiempo de inicio</th>
 		</tr>
 	</thead>
 {%for start_time in trip_start_times%}
 	<tr>
-		<td>{{start_time.service_id}}</td>
 		<td>{{start_time.start_time}}</td>
 	</tr>
 {%endfor%}
@@ -35,7 +33,7 @@
 <table class="table table-bordered table-striped table-condensed">
 	<thead>
 		<tr>
-			<th>Stop id</th>
+			<th>Stop Code</th>
 			<th>Stop Name</th>
 			<th>Stop Time</th>
 			{%for start_time in trip_start_times%}
@@ -49,7 +47,7 @@
 		{% set stop = row[0].Stop%}
 		{% set times = row[1:]%}
 		<tr>
-			<td><a href="/stops/{{stop.stop_id}}">{{stop.stop_id}}</a></td>
+			<td><a href="/stops/{{stop.stop_id}}">{{stop.stop_code}}</a></td>
 			<td>{{stopSeq.stop_name or stop.stop_calle or "" + " " + stop.stop_numero}}</td>
 			<td>{{stopSeq.stop_time or ""}}</td>
 			{%for start_time in times%}
