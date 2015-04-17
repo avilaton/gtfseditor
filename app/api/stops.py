@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 def get_stops(fmt="json"):
     bbox = request.args.get('bbox')
     limit = request.args.get('limit')
-    filter_stop_id = request.args.get('filter')
+    filter_stop_code = request.args.get('filter')
 
     try:
       limit = int(limit)
@@ -37,8 +37,8 @@ def get_stops(fmt="json"):
     else:
         stops = Stop.query
 
-    if filter_stop_id:
-      stops = stops.filter(Stop.stop_id.contains(filter_stop_id)).limit(limit).all()
+    if filter_stop_code:
+      stops = stops.filter(Stop.stop_code.contains(filter_stop_code)).limit(limit).all()
     else:
       stops = stops.limit(limit).all()
 
