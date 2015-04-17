@@ -22,3 +22,13 @@
   </dl>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-12">
+    <button class="btn btn-default show-trips">Show Trips</button>
+    <ul>
+      {{#each trips}}
+        <li>Route {{route_id}}, Trip to: {{trip_headsign}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</div>

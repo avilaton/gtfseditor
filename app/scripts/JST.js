@@ -97,7 +97,7 @@ this["JST"]["fileUpload"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"
 
 
 this["JST"]["filter"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"input-group\">\n  <input type=\"text\" class=\"form-control filter-value\" placeholder=\"Filter...\">\n  <span class=\"input-group-btn\">\n    <button class=\"btn btn-default filter-button\" type=\"button\"><i class=\"glyphicon glyphicon-search\"></i></button>\n  </span>\n</div>\n";
+  return "<div class=\"input-group\">\n  <input type=\"text\" class=\"form-control filter-value\" placeholder=\"Enter a stop_code\">\n  <span class=\"input-group-btn\">\n    <button class=\"btn btn-default filter-button\" type=\"button\"><i class=\"glyphicon glyphicon-search\"></i></button>\n  </span>\n</div>\n";
   },"useData":true});
 
 
@@ -425,9 +425,15 @@ this["JST"]["startTimes"] = Handlebars.template({"1":function(depth0,helpers,par
 
 
 
-this["JST"]["stopData"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<div class=\"row\">\n  <div class=\"col-sm-12\">\n  <dl class=\"dl-horizontal\">\n    <dt>Stop code</dt>\n    <dd>"
+this["JST"]["stopData"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return "        <li>Route "
+    + escapeExpression(((helper = (helper = helpers.route_id || (depth0 != null ? depth0.route_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"route_id","hash":{},"data":data}) : helper)))
+    + ", Trip to: "
+    + escapeExpression(((helper = (helper = helpers.trip_headsign || (depth0 != null ? depth0.trip_headsign : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"trip_headsign","hash":{},"data":data}) : helper)))
+    + "</li>\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "<div class=\"row\">\n  <div class=\"col-sm-12\">\n  <dl class=\"dl-horizontal\">\n    <dt>Stop code</dt>\n    <dd>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_code : stack1), depth0))
     + "</dd>\n    <dt>Nombre</dt>\n    <dd>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_name : stack1), depth0))
@@ -445,7 +451,10 @@ this["JST"]["stopData"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_lat : stack1), depth0))
     + "</dd>\n    <dt>Longitud</dt>\n    <dd>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_lon : stack1), depth0))
-    + "</dd>\n  </dl>\n  </div>\n</div>\n";
+    + "</dd>\n  </dl>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <button class=\"btn btn-default show-trips\">Show Trips</button>\n    <ul>\n";
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.trips : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "    </ul>\n  </div>\n</div>";
 },"useData":true});
 
 
