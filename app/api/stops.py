@@ -2,8 +2,13 @@
 # -*- coding: utf-8 -*-
 
 from flask import jsonify, request, g, abort, url_for, current_app
+from flask import Response
+from flask import json
 from .. import db
 from ..models import Stop
+from ..models import StopSeq
+from ..models import Route
+from ..models import Trip
 from . import api
 import app.services.geojson as geojson
 
@@ -74,3 +79,14 @@ def add_stop():
     db.session.commit()
     return jsonify(item.to_json), 201, \
         {'Location': url_for('api.get_stop', id=item.stop_id, _external=True)}
+
+@api.route('/stops/<id>/seqs')
+@api.route('/stops/<id>/seqs.json')
+def get_stop_seqs(id):
+    items = db.session.query(Route.route_short_name, Trip.trip_headsign).\
+      join(Trip, Route.route_id==Trip.route_id).\
+      join(StopSeq, StopSeq.trip_id == Trip.trip_id).\
+      filter(StopSeq.stop_id==id).all()
+    body = [{'route_id':item[0], 'trip_headsign':item[1]} for item in items]
+
+    return Response(json.dumps(body),  mimetype='application/json')
