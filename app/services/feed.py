@@ -16,6 +16,15 @@ from ..models import *
 from ..services.stop_times import StopTimesFactory
 from ..services import defaults
 
+class LoggingProblemAccumulator(transitfeed.problems.ProblemAccumulatorInterface):
+  """This is a basic problem accumulator that just prints to console."""
+  def _Report(self, e):
+    context = e.FormatContext()
+    if context:
+      print context
+    logger.info(transitfeed.util.EncodeUnicode(e.FormatProblem()))
+
+
 class Feed(object):
   """GTFS schedule feed factory"""
   def __init__(self, filename='google_transit.zip', mode='initial-times', db=db):
@@ -53,12 +62,9 @@ class Feed(object):
   def validate(self):
     """Validate feed object"""
     logger.info("Validating feed")
-    # self.accumulator = CountingConsoleProblemAccumulator()
-    # self.schedule.problem_reporter = transitfeed.ProblemReporter(self.accumulator)
-    # accumulator = transitfeed.ProblemAccumulatorInterface()
-    # reporter = transitfeed.ProblemReporter(accumulator)
-    # self.schedule.Validate(reporter)
-    self.schedule.Validate()
+    accumulator = LoggingProblemAccumulator()
+    reporter = transitfeed.ProblemReporter(accumulator)
+    self.schedule.Validate(reporter)
 
   def loadAgencies(self):
     logger.info("Loading Agencies")
@@ -228,8 +234,7 @@ class Feed(object):
   def loadShapes(self):
     logger.info("Loading Shapes")
 
-    usedShapes = set([trip['shape_id'] for trip in self.schedule.GetTripList()])
-
+    usedShapes = set([trip.shape_id for trip in self.schedule.GetTripList()])
     for shape_id in usedShapes:
       shape_query = self.db.query(Shape).filter_by(shape_id=shape_id).order_by(Shape.shape_pt_sequence)
       shape = transitfeed.Shape(shape_id=shape_id)
