@@ -426,13 +426,27 @@ this["JST"]["startTimes"] = Handlebars.template({"1":function(depth0,helpers,par
 
 
 this["JST"]["stopData"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "        <li>Route "
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "        <li>Route "
     + escapeExpression(((helper = (helper = helpers.route_id || (depth0 != null ? depth0.route_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"route_id","hash":{},"data":data}) : helper)))
     + ", Trip to: "
     + escapeExpression(((helper = (helper = helpers.trip_headsign || (depth0 != null ? depth0.trip_headsign : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"trip_headsign","hash":{},"data":data}) : helper)))
-    + "</li>\n";
-},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    + ", ";
+  stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.card_code : depth0), {"name":"if","hash":{},"fn":this.program(2, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  buffer += "\n            ";
+  stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, (depth0 != null ? depth0.direction_id : depth0), "0", {"name":"if_eq","hash":{},"fn":this.program(4, data),"inverse":this.program(6, data),"data":data}));
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "</li>\n";
+},"2":function(depth0,helpers,partials,data) {
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return "("
+    + escapeExpression(((helper = (helper = helpers.card_code || (depth0 != null ? depth0.card_code : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"card_code","hash":{},"data":data}) : helper)))
+    + ")";
+},"4":function(depth0,helpers,partials,data) {
+  return "(ida)";
+  },"6":function(depth0,helpers,partials,data) {
+  return "(vuelta)";
+  },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "<div class=\"row\">\n  <div class=\"col-sm-12\">\n  <dl class=\"dl-horizontal\">\n    <dt>Stop code</dt>\n    <dd>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.stop : depth0)) != null ? stack1.stop_code : stack1), depth0))
     + "</dd>\n    <dt>Nombre</dt>\n    <dd>"

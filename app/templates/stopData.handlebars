@@ -27,7 +27,8 @@
     <button class="btn btn-default show-trips">Show Trips</button>
     <ul>
       {{#each trips}}
-        <li>Route {{route_id}}, Trip to: {{trip_headsign}}</li>
+        <li>Route {{route_id}}, Trip to: {{trip_headsign}}, {{#if card_code}}({{card_code}}){{/if}}
+            {{#if_eq direction_id "0"}}(ida){{else}}(vuelta){{/if_eq}}</li>
       {{/each}}
     </ul>
   </div>
