@@ -136,15 +136,16 @@ class Feed(object):
           self.loadDefaultTripStartTimes()
           trip_start_times = self.trip_start_times_default
 
+        stop_sequence = self.db.query(StopSeq).filter_by(trip_id=tripRow.trip_id).\
+          order_by(StopSeq.stop_sequence).all()
+
         for startTimeRow in trip_start_times:
           new_trip_id = '.'.join([str(tripRow.trip_id), str(startTimeRow.service_id), startTimeRow.start_time])
           trip = route.AddTrip(trip_id = new_trip_id, headsign=tripRow.trip_headsign)
           trip.service_id = startTimeRow.service_id
           trip.shape_id = tripRow.shape_id
           trip.direction_id = tripRow.direction_id
-          stop_sequence = self.db.query(StopSeq).filter_by(trip_id=tripRow.trip_id).\
-            order_by(StopSeq.stop_sequence).all()
-          trip_start_times = self.db.query(TripStartTime).filter_by(trip_id=tripRow.trip_id).all()
+          # trip_start_times = self.db.query(TripStartTime).filter_by(trip_id=tripRow.trip_id).all()
           self.loadStopTimes(trip, tripRow.trip_id, startTimeRow, stop_sequence=stop_sequence, trip_start_times=trip_start_times)
       else:
         # trip_id = t.trip_id
