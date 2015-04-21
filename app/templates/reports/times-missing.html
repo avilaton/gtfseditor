@@ -1,0 +1,50 @@
+<html>
+
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+<div class="container">
+
+<h1>Viajes con tiempos de salida faltantes</h1>
+<ul>
+	<li>Cantidad: {{results|length}}</li>
+</ul>
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>Nombre de Ruta</th>
+			<th>Codigo</th>
+			<th>Hacia</th>
+			<th>Activo</th>
+		</tr>
+	</thead>
+{%for trip, route_short_name in results%}
+
+{% if not trip['active']%}
+<tr class="danger">
+{%else%}
+<tr>
+{%endif%}
+    <td>{{route_short_name}}</td>
+    <td>{{trip.card_code}}</td>
+    <td>{{trip.trip_headsign}}</td>
+  	<td>
+  		{%if trip['active']%}
+  			<span class="glyphicon glyphicon-ok"></span>
+  		{%else%}
+  			<span class="glyphicon glyphicon-remove"></span>
+    	{%endif%}
+  	</td>
+  </tr>
+{%endfor%}
+</table>
+
+
+</div>
+</body>
+
+</html>
