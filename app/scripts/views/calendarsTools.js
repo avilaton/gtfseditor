@@ -15,7 +15,8 @@ define([
     events: {
       'click button.save-btn': 'save',
       'click button.add-btn': 'add',
-      'click button.btn-offset': 'onClickOffset'
+      'click button.btn-offset': 'onClickOffset',
+      'click button.btn-bulk-load': 'onClickBulk'
     },
 
     initialize: function(){
@@ -43,6 +44,24 @@ define([
       e.preventDefault();
       var offset = this.$('input.offset-min').val();
       this.collection.offsetTimes({offset: offset || 10});
+    },
+
+    onClickBulk: function (e) {
+      var self = this,
+        text = this.$('textarea.bulk-load').val(),
+        values;
+      e.preventDefault();
+      if (!this.collection.trip_id || !this.collection.service_id) {
+        return;
+      }
+      values = _.map(text.split(/[ ,\n]+/), function (item, idx) {
+        return {
+          start_time: item.trim() + ':00',
+          trip_id: self.collection.trip_id,
+          service_id: self.collection.service_id
+        };
+      });
+      this.collection.add(values);
     }
   });
 
