@@ -20,12 +20,27 @@ define([
 
       initialize: function(){
         this.render();
-        this.collection.on('add change remove reset', this.render, this);
+        this.hasErrors = false;
+        this.collection.on('add change remove reset sync', this.render, this);
       },
 
       render: function () {
+        var self = this,
+          data;
+
+        this.hasErrors = false;
+        data = this.collection.map(function (model) {
+          var d = model.toJSON();
+          d.isValid = model.isValid();
+          if (!d.isValid) {
+            self.hasErrors = true;
+          }
+          return d;
+        });
         this.$el.html(this.template({
-          models: this.collection.toJSON()
+          models: data,
+          hasErrors: this.hasErrors,
+          isDirty: this.collection.isDirty
         }));
       },
 

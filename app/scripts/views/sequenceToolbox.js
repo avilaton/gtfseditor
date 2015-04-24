@@ -21,7 +21,7 @@ define([
         'click button.appendStop': 'appendStop',
         'click button.btn-speed': 'onClickSpeed',
         'click button.btn-add-stops': 'onClickAddStops',
-        'click button.saveStops': 'saveStops'
+        'click button.btn-save': 'saveStops'
       },
 
       initialize: function(options){

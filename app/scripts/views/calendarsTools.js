@@ -16,7 +16,8 @@ define([
       'click button.save-btn': 'save',
       'click button.add-btn': 'add',
       'click button.btn-offset': 'onClickOffset',
-      'click button.btn-bulk-load': 'onClickBulk'
+      'click button.btn-bulk-load': 'onClickBulk',
+      'click button.btn-reset': 'onClickReset'
     },
 
     initialize: function(){
@@ -62,6 +63,12 @@ define([
         };
       });
       this.collection.add(values);
+      this.$('textarea.bulk-load').val('');
+    },
+
+    onClickReset: function (e) {
+      e.preventDefault();
+      this.collection.reset();
     }
   });
 

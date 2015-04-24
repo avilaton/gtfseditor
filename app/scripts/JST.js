@@ -85,7 +85,7 @@ this["JST"]["calendarsSelect"] = Handlebars.template({"1":function(depth0,helper
 
 
 this["JST"]["calendarsTools"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <form class=\"form-inline\">\n      <div class=\"form-group\">\n        <label for=\"speed\">Offset</label>\n        <input name=\"offset-min\" type=\"number\" class=\"form-control offset-min\" placeholder=\"minutes\">\n        <button class=\"btn btn-default btn-offset\">Set</button>\n      </div>\n    </form>\n  </div>\n</div>\n\n<hr>\n\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <form class=\"form\">\n      <div class=\"form-group\">\n        <label for=\"bulk\">Add many</label>\n        <textarea class=\"form-control bulk-load\" rows=\"3\" name=\"bulk\" placeholder=\"Insert times separated by commas in HH:MM format, for example: 08:11, 09:21, 10:43\"></textarea>\n        <button class=\"btn btn-default btn-bulk-load pull-right voffset1\">Load</button>\n      </div>\n    </form>\n  </div>\n</div>\n\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <form class=\"form-inline voffset1 pull-right\">\n      <div class=\"form-group\">\n        <button class=\"btn btn-default add-btn\">\n          <span class=\"glyphicon glyphicon-plus\"></span> Add Time\n        </button>\n        <button class=\"btn btn-default save-btn\">\n          <span class=\"glyphicon glyphicon-save\"></span> Save Times\n        </button>\n      </div>\n    </form>\n  </div>\n</div>";
+  return "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <form class=\"form-inline\">\n      <div class=\"form-group\">\n        <label for=\"speed\">Offset</label>\n        <input name=\"offset-min\" type=\"number\" class=\"form-control offset-min\" placeholder=\"minutes\">\n        <button class=\"btn btn-default btn-offset\">Set</button>\n      </div>\n    </form>\n  </div>\n</div>\n\n<hr>\n\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <form class=\"form\">\n      <div class=\"form-group\">\n        <label for=\"bulk\">Add many (HH:MM)</label>\n        <textarea class=\"form-control bulk-load\" rows=\"3\" name=\"bulk\" placeholder=\"Insert times separated by commas or newlines, for example: 08:11, 09:21, 10:43\"></textarea>\n        <button class=\"btn btn-default btn-bulk-load pull-right voffset1\">Load</button>\n      </div>\n    </form>\n  </div>\n</div>\n\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <form class=\"form-inline voffset1 pull-right\">\n      <div class=\"form-group\">\n        <button class=\"btn btn-default add-btn\">\n          <span class=\"glyphicon glyphicon-plus\"></span> Add Time\n        </button>\n        <button class=\"btn btn-default btn-reset\">\n          <span class=\"glyphicon glyphicon-trash\"></span> Clean\n        </button>\n      </div>\n    </form>\n  </div>\n</div>\n\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <form class=\"form-inline voffset1 pull-right\">\n      <div class=\"form-group\">\n        <button class=\"btn btn-default save-btn\">\n          <span class=\"glyphicon glyphicon-save\"></span> Save Times\n        </button>\n      </div>\n    </form>\n  </div>\n</div>";
   },"useData":true});
 
 
@@ -410,15 +410,28 @@ this["JST"]["shapesToolbox"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta
 
 
 this["JST"]["startTimes"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-  var helper, lambda=this.lambda, escapeExpression=this.escapeExpression, functionType="function", helperMissing=helpers.helperMissing;
-  return "    <tr data-index=\""
+  return "<div class=\"alert alert-info\" role=\"alert\">There are unsaved changes</div>\n";
+  },"3":function(depth0,helpers,partials,data) {
+  return "<div class=\"alert alert-danger\" role=\"alert\">There are formating errors</div>\n";
+  },"5":function(depth0,helpers,partials,data) {
+  var stack1, helper, lambda=this.lambda, escapeExpression=this.escapeExpression, functionType="function", helperMissing=helpers.helperMissing, buffer = "    <tr data-index=\""
     + escapeExpression(lambda((data && data.index), depth0))
-    + "\">\n      <td><input class=\"form-control\" data-attr=\"start_time\" type=\"text\" value=\""
+    + "\" class=\"";
+  stack1 = helpers.unless.call(depth0, (depth0 != null ? depth0.isValid : depth0), {"name":"unless","hash":{},"fn":this.program(6, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "\">\n      <td><input class=\"form-control\" data-attr=\"start_time\" type=\"text\" value=\""
     + escapeExpression(((helper = (helper = helpers.start_time || (depth0 != null ? depth0.start_time : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"start_time","hash":{},"data":data}) : helper)))
     + "\"/></td>\n      <td><button class=\"btn btn-default btn-rm\"><span class=\"glyphicon glyphicon-remove\"></span></button></td>\n    </tr>\n";
-},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<table class=\"table table-hover table-condensed table-editable\">\n  <thead>\n    <tr>\n      <th class=\"col-sm-11\">Time</th>\n      <th class=\"col-sm-1\"></th>\n    </tr>\n  </thead>\n  <tbody>\n";
-  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.models : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
+},"6":function(depth0,helpers,partials,data) {
+  return "danger";
+  },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, buffer = "";
+  stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.isDirty : depth0), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.hasErrors : depth0), {"name":"if","hash":{},"fn":this.program(3, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  buffer += "\n<table class=\"table table-hover table-condensed table-editable\">\n  <thead>\n    <tr>\n      <th class=\"col-sm-11\">Time</th>\n      <th class=\"col-sm-1\"></th>\n    </tr>\n  </thead>\n  <tbody>\n";
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.models : depth0), {"name":"each","hash":{},"fn":this.program(5, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "  </tbody>\n</table>\n";
 },"useData":true});

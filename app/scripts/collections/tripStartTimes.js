@@ -8,7 +8,7 @@ define([
     'models/tripStartTime',
     'moment',
     'moment-duration-format'
-], function (_, Backbone, Config, api, TripStartTimeModel) {
+], function (_, Backbone, Config, api, TripStartTimeModel, moment) {
     var TripsCollection;
 
     TripsCollection = Backbone.Collection.extend({
@@ -16,6 +16,16 @@ define([
 
         trip_id: '',
         service_id: '',
+
+        initialize: function () {
+            this.isDirty = false;
+            this.on('add change remove', function () {
+                this.isDirty = true;
+            }, this);
+            this.on('reset sync', function () {
+                this.isDirty = false;
+            }, this);
+        },
 
         url: function() {
             return Config.server + 'api/trips/' + this.trip_id + '/calendars/' + this.service_id + '/start-times.json';
@@ -26,6 +36,9 @@ define([
             var req = api.put({
                 url: self.url(),
                 data: JSON.stringify(self.toJSON())
+            }).then(function () {
+                self.isDirty = false;
+                self.trigger('sync');
             });
             return req;
         },
@@ -43,4 +56,4 @@ define([
     });
 
     return TripsCollection;
-})
+});
