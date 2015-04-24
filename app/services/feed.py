@@ -213,12 +213,11 @@ class Feed(object):
         trip_start_times = self.trip_start_times_default
 
       for stop_time in StopTimesFactory.offsetStartTimes(seq_trip_id, stop_sequence, startTimeRow):
-        stopTime = StopTime(**stop_time)
-        stop = self.schedule.GetStop(str(stopTime.stop_id))
-        stop_time = stopTime.arrival_time
-        if stop_time:
+        stop = self.schedule.GetStop(str(stop_time['stop_id']))
+        arrival_time = stop_time['arrival_time']
+        if arrival_time:
           try:
-            trip.AddStopTime(stop, stop_time=stop_time)
+            trip.AddStopTime(stop, stop_time=arrival_time)
           except Exception, e:
             trip.AddStopTime(stop)
             logger.error(e)
