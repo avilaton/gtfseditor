@@ -8,7 +8,7 @@ from flask.ext.bootstrap import Bootstrap
 from flask.ext.compress import Compress
 from celery import Celery
 
-db = SQLAlchemy(session_options={'autocommit': True})
+db = SQLAlchemy()
 mail = Mail()
 cors = CORS()
 compress = Compress()
