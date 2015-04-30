@@ -61,7 +61,6 @@ class StopSequence(object):
     logger.debug("Sorting stops in trip_id: %s", self.trip_id)
     self._computeAllSnaps()
     sortedStops = sorted(self.snaps, key=lambda StopSnap: StopSnap['Snap']['traveled'])
-    db.session.query(StopSeq).filter_by(trip_id = self.trip_id).delete()
     for i, item in enumerate(sortedStops):
       stopSeq = item['StopSeq']
       stopSeq.stop_sequence = i + 1
