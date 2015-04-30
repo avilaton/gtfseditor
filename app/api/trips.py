@@ -106,6 +106,8 @@ def tripStopsPut(trip_id):
 		stopSeq = StopSeq(**row)
 		db.session.merge(stopSeq)
 
+	db.session.commit()
+
 	return jsonify({'success':True,'trip_id':trip_id})
 
 # DEPRECATED
