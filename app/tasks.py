@@ -35,12 +35,11 @@ def buildFeed(validate=False):
   if validate:
     feed.validate()
 
-
-  BUCKET_NAME = 'gtfseditor-feeds'
-  s3service = S3(BUCKET_NAME)
+  s3service = S3(celery_app.conf.AWS_S3_BUCKET_NAME)
   s3service.config(celery_app.conf)
 
-  logger.info('Uploading %s to Amazon S3 bucket %s'.format(feed.filename, BUCKET_NAME))
+  logger.info('Uploading %s to Amazon S3 bucket %s'.format(feed.filename,
+    celery_app.conf.AWS_S3_BUCKET_NAME))
 
   s3service.uploadFileObj(feed.filename, feedFile)
 
