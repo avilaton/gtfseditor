@@ -244,12 +244,19 @@ class User(db.Model):
     id = db.Column('user_id',db.Integer , primary_key=True)
     password = db.Column('password' , db.String(10))
     email = db.Column('email',db.String(50),unique=True , index=True)
-    registered_on = db.Column('registered_on' , db.DateTime)
+    registered_on = db.Column(db.DateTime(), default=datetime.utcnow)
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
     def __init__(self  ,password , email):
+        super(User, self).__init__(**kwargs)
         self.password = password
         self.email = email
         self.registered_on = datetime.utcnow()
+        if self.role is None:
+            if self.email == current_app.config['FLASKY_ADMIN']:
+                self.role = Role.query.filter_by(permissions=0x80).first()
+            if self.role is None:
+                self.role = Role.query.filter_by(default=True).first()
 
     def is_authenticated(self):
         return True
