@@ -37,7 +37,7 @@
 			<dt>Servicio</dt>
 			<dd>{{trip.service_id or ""}}</dd>
 			<dt>Dirección</dt>
-			<dd>{{"Saliente" if trip.direction_id == "0" else "Entrante"}}</dd>
+			<dd>{{"Ida" if trip.direction_id == "0" else "Vuelta"}}</dd>
 			<dt>Codigo de Tarjeta</dt>
 			<dd>{{trip.card_code}}</dd>
 			<dt>Activa</dt>
@@ -50,10 +50,11 @@
 </div>
 
 
-<h2>Servicios</h2>
 
 <div class="row">
 	<div class="col-sm-12">
+
+		<h2>Servicios</h2>
 		<table class="table table-bordered table-striped table-condensed">
 			<thead>
 				<tr>
@@ -72,6 +73,32 @@
 		</table>
 	</div>
 </div>
+
+<h2>Sequencia de paradas ({{ sequence | length }})</h2>
+
+
+<div class="row">
+	<div class="col-sm-12">
+		<table class="table table-hover table-condensed">
+			<thead>
+				<tr>
+					<th>N</th><th>Stop Code</th><th>Time</th><th>Distance (km)</th>
+				</tr>
+			</thead>
+			<tbody>
+				{%for stop, stop_seq in sequence%}
+				<tr data-stop-id="{{stop.stop_id}}">
+					<td>{{stop_seq.stop_sequence}}</td>
+					<td>{{stop.stop_code}}</td>
+					<td>{{stop_seq.stop_time}}</td>
+					<td>{{stop_seq.shape_dist_traveled}}</td>
+				</tr>
+				{%endfor%}
+			</tbody>
+		</table>
+	</div>
+</div>
+
 
 <script type="text/javascript">
 	var vectorLayer = new ol.layer.Vector({
