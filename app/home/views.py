@@ -46,10 +46,16 @@ def get_trip(route_id, trip_id):
 	used_services = db.session.query(TripStartTime.service_id)\
 		.filter_by(trip_id=trip_id).distinct().subquery()
 
-	services = Calendar.query.filter(Calendar.service_id.in_(used_services)).all()
+	services = Calendar.query.\
+		filter(Calendar.service_id.in_(used_services)).all()
+
+	stop_seq_query = db.session.query(Stop, StopSeq).\
+		join(StopSeq, Stop.stop_id == StopSeq.stop_id).\
+		filter(StopSeq.trip_id == trip_id).\
+		order_by(StopSeq.stop_sequence).all()
 
 	return render_template('home/trip/index.html', trip=trip, route=route,\
-		services=services)
+		services=services, sequence=stop_seq_query)
 
 @home.route('/routes/<route_id>/trips/<trip_id>/services/<service_id>')
 def get_trip_stops(route_id, trip_id, service_id):
