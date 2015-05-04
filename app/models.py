@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import current_app, request, url_for
+from flask import current_app
 from . import db
 
 from flask.ext.login import UserMixin
+from werkzeug.security import generate_password_hash
+from werkzeug.security import check_password_hash
 from datetime import datetime
 from . import login_manager
 
@@ -242,7 +244,7 @@ class Role(db.Model):
 class User(db.Model):
     __tablename__ = "users"
     id = db.Column('user_id',db.Integer , primary_key=True)
-    password = db.Column('password' , db.String(10))
+    password_hash = db.Column(db.String(128))
     email = db.Column('email',db.String(50),unique=True , index=True)
     registered_on = db.Column(db.DateTime(), default=datetime.utcnow)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
@@ -273,6 +275,17 @@ class User(db.Model):
 
     def get_id(self):
         return unicode(self.id)
+
+    @property
+    def password(self):
+        raise AttributeError('password is not a readable attribute')
+
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
     def __repr__(self):
         return '<User %r>' % (self.email)
