@@ -222,7 +222,7 @@ class Role(db.Model):
     @staticmethod
     def insert_roles():
         roles = {
-            'User': (Permission.COMMENT | Permission.EDIT_TIMES | True),
+            'User': (Permission.COMMENT | Permission.EDIT_TIMES, True),
             'Agency': (Permission.COMMENT, False),
             'Administrator': (0xff, False)
         }
@@ -247,16 +247,20 @@ class User(db.Model):
     registered_on = db.Column(db.DateTime(), default=datetime.utcnow)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
-    def __init__(self  ,password , email):
+    def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
-        self.password = password
-        self.email = email
-        self.registered_on = datetime.utcnow()
         if self.role is None:
-            if self.email == current_app.config['FLASKY_ADMIN']:
-                self.role = Role.query.filter_by(permissions=0x80).first()
+            if self.email == current_app.config['ADMIN_EMAIL']:
+                self.role = Role.query.filter_by(permissions=0xff).first()
             if self.role is None:
                 self.role = Role.query.filter_by(default=True).first()
+
+    def can(self, permissions):
+        return self.role is not None and \
+            (self.role.permissions & permissions) == permissions
+
+    def is_administrator(self):
+        return self.can(Permission.ADMINISTER)
 
     def is_authenticated(self):
         return True
