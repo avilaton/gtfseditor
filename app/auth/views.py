@@ -13,18 +13,20 @@ def login():
         return render_template('auth/login.html')
     email = request.form['email']
     password = request.form['password']
+
     remember_me = True
     if 'remember_me' in request.form:
         remember_me = True
-    registered_user = User.query.filter_by(email=email,password=password).first()
-    if registered_user is None:
-        flash('Email or Password is invalid' , 'error')
-        return redirect(url_for('auth.login'))
-    login_user(registered_user, remember = remember_me)
-    flash('Logged in successfully')
-    return redirect(request.args.get('next') or url_for('admin.root'))
 
-@auth.route('/register' , methods=['GET','POST'])
+    registered_user = User.query.filter_by(email=email).first()
+    if registered_user is not None and registered_user.verify_password(password):
+        login_user(registered_user, remember = remember_me)
+        flash('Logged in successfully')
+        return redirect(request.args.get('next') or url_for('admin.root'))
+    flash('Email or Password is invalid' , 'error')
+    return redirect(url_for('auth.login'))
+
+@auth.route('/register', methods=['GET','POST'])
 def register():
     if request.method == 'GET':
         return render_template('auth/register.html')
@@ -36,7 +38,7 @@ def register():
         flash("Email exists, please choose other Email")
         return redirect(url_for('auth.register'))
 
-    user = User(password, email)
+    user = User(password=password, email=email)
     db.session.add(user)
     db.session.commit()
     flash('User successfully registered')
