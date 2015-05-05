@@ -42,7 +42,7 @@ class DevelopmentConfig(Config):
 
 
 class PostgresConfig(Config):
-    # DEBUG = True
+    DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'postgres:///gtfs-dev'
     # SQLALCHEMY_ECHO = True
@@ -109,7 +109,6 @@ class ProductionConfig(Config):
 
 
 class HerokuConfig(ProductionConfig):
-    DEBUG = True
     SSL_DISABLE = bool(os.environ.get('SSL_DISABLE'))
 
     @classmethod

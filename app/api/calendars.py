@@ -5,6 +5,8 @@ from flask import jsonify, request, g, abort, url_for, current_app
 from .. import db
 from ..models import Calendar
 from . import api
+from .decorators import admin_required
+
 
 @api.route('/calendars/')
 def get_calendars():
@@ -20,6 +22,7 @@ def get_calendar(id):
     return jsonify(item.to_json)
 
 @api.route('/calendars/', methods=['POST'])
+@admin_required
 def add_calendar():
     item = Calendar(**request.json)
     db.session.add(item)
@@ -28,6 +31,7 @@ def add_calendar():
         {'Location': url_for('api.get_calendar', id=item.service_id, _external=True)}
 
 @api.route('/calendars/<id>', methods=['PUT'])
+@admin_required
 def edit_calendar(id):
     data = request.json
     # item = Calendar.query.get_or_404(data.get('service_id'))
@@ -37,6 +41,7 @@ def edit_calendar(id):
 
 
 @api.route('/calendars/<id>', methods=['DELETE'])
+@admin_required
 def delete_calendar(id):
     calendar = Calendar.query.filter_by(service_id = id).one()
     db.session.delete(calendar)
