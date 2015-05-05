@@ -9,6 +9,7 @@ from ..models import Shape
 from ..models import Trip
 from . import api
 from .decorators import admin_required
+from .errors import not_found
 
 
 @api.route('/shapes/<shape_id>.json')
@@ -131,7 +132,7 @@ def updateTripShape(trip_id):
   db.session.query(Shape).filter_by(shape_id=shape_id).delete()
 
   for i, pt in enumerate(coordinates):
-    shape_pt = Shape(shape_id=shape_id, shape_pt_lon=p[0], shape_pt_lat=p[1],
+    shape_pt = Shape(shape_id=shape_id, shape_pt_lon=pt[0], shape_pt_lat=pt[1],
       shape_pt_sequence=i+1)
     db.session.add(shape_pt)
   db.session.commit()
@@ -142,9 +143,14 @@ def updateTripShape(trip_id):
 @api.route('/trips/<trip_id>/shape.json', methods=['DELETE'])
 @admin_required
 def deleteTripShape(trip_id):
-  trip_shape_id = db.session.query(Trip.shape_id).filter_by(trip_id=trip_id).\
-    subquery()
-  db.session.query(Shape).filter(Shape.shape_id == trip_shape_id).delete()
+  try:
+    trip = db.session.query(Trip).filter_by(trip_id=trip_id).one()
+  except Exception, e:
+    return not_found('trip does not exist')
+
+  db.session.query(Shape).filter(Shape.shape_id == trip.shape_id).delete()
+  trip.shape_id = None
+  db.session.merge(trip)
   db.session.commit()
 
-  return jsonify({'shape_id': shape_id})
+  return jsonify({'shape_id': trip.shape_id})

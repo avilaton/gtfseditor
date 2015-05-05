@@ -9,6 +9,7 @@ api = Blueprint('api', __name__)
 def before_request():
 	return
 
+
 from . import routes
 from . import trips
 from . import shapes
