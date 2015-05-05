@@ -12,15 +12,15 @@ from ..models import TripStartTime
 from . import api
 from sqlalchemy import not_
 from app.services.sequence import StopSequence
-import app.services.geojson as geojson
+from .decorators import admin_required
 
 
-@api.route('/trips/') 
+@api.route('/trips/')
 def get_alltrips():
     trips = Trip.query.all()
     return jsonify({
         'trips': [item.to_json for item in trips]
-    }) 
+    })
 
 @api.route('/trips/<id>')
 def get_trip(id):
@@ -28,6 +28,7 @@ def get_trip(id):
     return jsonify(item.to_json)
 
 @api.route('/trips/<id>', methods=['PUT'])
+@admin_required
 def edit_trip(id):
 	data = request.json
 	item = Trip.query.get_or_404(data.get('trip_id'))
@@ -37,6 +38,7 @@ def edit_trip(id):
 	return jsonify(item.to_json)
 
 @api.route('/trips/', methods=['POST']) 
+@admin_required
 def add_trip():
 	data = request.json
 	trip = Trip(**data)
@@ -46,6 +48,7 @@ def add_trip():
 		id=trip.trip_id, _external=True)}
 
 @api.route('/trips/<id>', methods=['DELETE'])
+@admin_required
 def deleteTrip(id):
 	trip = Trip.query.filter_by(trip_id = id).one()
 	db.session.delete(trip)
@@ -63,28 +66,9 @@ def tripStops(trip_id):
 		features.append({'stop': row.Stop.to_json,'stop_seq': row.StopSeq.to_json}) 
 	return jsonify({'rows': features})
 
-# DEPRECATED
-@api.route('/trips/<trip_id>/stops.geojson', methods=['GET'])
-def tripStopsGeoJson(trip_id):
-	rows = db.session.query(Stop, StopSeq).join(StopSeq, Stop.stop_id == StopSeq.stop_id)\
-		.filter(StopSeq.trip_id == trip_id)\
-		.order_by(StopSeq.stop_sequence).all()
-
-	features = []
-	for row in rows:
-		stop = row.Stop
-		stop_seq = row.StopSeq
-		properties = stop.to_json
-		properties.update({'stop_seq': stop_seq.stop_sequence})
-		properties.update({'stop_time': stop_seq.stop_time})
-		properties.update({'shape_dist_traveled': stop_seq.shape_dist_traveled})
-		f = geojson.feature(id = stop.stop_id,
-			coords = [stop.stop_lon, stop.stop_lat],
-			properties = properties)
-		features.append(f)
-	return jsonify(geojson.featureCollection(features))
 
 @api.route('/trips/<trip_id>/stops.json', methods=['PUT'])
+@admin_required
 def tripStopsPut(trip_id):
 	data = request.json
 	items = data['rows']
@@ -110,47 +94,23 @@ def tripStopsPut(trip_id):
 
 	return jsonify({'success':True,'trip_id':trip_id})
 
-# DEPRECATED
-@api.route('/trips/<trip_id>/stops.geojson', methods=['PUT'])
-def saveTripStops(trip_id):
-	geojson = request.json
-	featureList = geojson['features']
 
-	stop_ids = set([])
-	rows = []
-	for item in featureList:
-		properties = item["properties"]
-		stop_ids.add(str(properties["stop_id"]))
-		data = {
-			'trip_id': trip_id,
-			"stop_sequence": properties["stop_seq"],
-			"stop_id": properties["stop_id"]
-		}
-		rows.append(data)
-
-	removedStops = db.session.query(StopSeq).filter(StopSeq.trip_id == trip_id,not_(StopSeq.stop_id.in_(stop_ids))).all()
-	for stopSeq in removedStops:
-		db.session.remove(stopSeq)
-
-	for row in rows:
-		stopSeq = StopSeq(**row)
-		db.session.merge(stopSeq)
-	
-	return {'success':True,'trip_id':trip_id} 
-
-@api.route('/trips/<trip_id>/actions/sort-stops', methods=['GET', 'OPTIONS'])
+@api.route('/trips/<trip_id>/actions/sort-stops', methods=['GET'])
+@admin_required
 def sortTripStops( trip_id):
 	stopSequence = StopSequence(trip_id)
 	stopSequence.sortStops() 
 	return jsonify({'success': True})
 
 @api.route('/trips/<trip_id>/actions/update-dist', methods=['GET'])
+@admin_required
 def sortTripStopsUpdate(trip_id):
 	stopSequence = StopSequence(trip_id)
 	stopSequence.updateDistances()
 	return jsonify({'success': True})
 
 @api.route('/trips/<trip_id>/actions/interpolate-times', methods=['GET'])
+@admin_required
 def interpolateTimes(trip_id):
 	stopSequence = StopSequence(trip_id)
 	stopSequence.interpolateTimes()
@@ -186,6 +146,7 @@ def updateTripStartTimes(trip_id, service_id):
 
 
 @api.route('/trips/<trip_id>/start-times.csv', methods=['POST'])
+@admin_required
 def uploadTripStartTimes(db, trip_id):
 	fileUpload = request.files.get('upload')
 	filename = fileUpload.filename

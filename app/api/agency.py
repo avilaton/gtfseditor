@@ -5,6 +5,7 @@ from flask import jsonify, request, g, abort, url_for, current_app
 from .. import db
 from ..models import Agency
 from . import api
+from .decorators import admin_required
 
 
 @api.route('/agency')
@@ -23,6 +24,7 @@ def getAgency(agency_id):
 
 
 @api.route('/agency/<agency_id>', methods=['PUT'])
+@admin_required
 def updateAgency(agency_id):
     data = request.json
     item = Agency.query.get_or_404(data.get('agency_id'))
@@ -32,7 +34,8 @@ def updateAgency(agency_id):
     return jsonify(item.to_json)
 
 
-@api.route('/agency/', methods=['OPTIONS', 'POST'])
+@api.route('/agency/', methods=['POST'])
+@admin_required
 def createAgency():
     item = Agency(**request.json)
     db.session.add(item)
@@ -41,9 +44,9 @@ def createAgency():
 
 
 @api.route('/agency/<agency_id>', methods=['DELETE'])
+@admin_required
 def delete_agency(agency_id):
     agency = Agency.query.filter_by(agency_id = agency_id).one()
     db.session.delete(agency)
     db.session.commit()
     return jsonify({'status': 'success'}), 200
-

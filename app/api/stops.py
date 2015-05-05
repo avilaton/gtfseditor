@@ -10,7 +10,8 @@ from ..models import StopSeq
 from ..models import Route
 from ..models import Trip
 from . import api
-import app.services.geojson as geojson
+from .decorators import admin_required
+
 
 import logging
 logging.basicConfig(level=logging.INFO)
@@ -58,6 +59,7 @@ def get_stop(id):
     return jsonify(item.to_json)
 
 @api.route('/stops/<stop_id>', methods=['DELETE'])
+@admin_required
 def deleteStop(stop_id):
 	stop = Stop.query.filter_by(stop_id = stop_id).one()
 	db.session.delete(stop)
@@ -73,6 +75,7 @@ def updateStop(stop_id):
   return jsonify(item.to_json)
 
 @api.route('/stops/', methods=['POST'])
+@admin_required
 def add_stop():
     item = Stop(**request.json)
     db.session.add(item)
