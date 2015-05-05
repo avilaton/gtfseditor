@@ -24,7 +24,7 @@ def login():
     flash('Logged in successfully')
     return redirect(request.args.get('next') or url_for('admin.root'))
 
-@auth.route('/register' , methods=['GET','POST'])
+@auth.route('/register', methods=['GET','POST'])
 def register():
     if request.method == 'GET':
         return render_template('auth/register.html')
@@ -36,7 +36,7 @@ def register():
         flash("Email exists, please choose other Email")
         return redirect(url_for('auth.register'))
 
-    user = User(password, email)
+    user = User(password=password, email=email)
     db.session.add(user)
     db.session.commit()
     flash('User successfully registered')

@@ -6,7 +6,8 @@ from .. import db
 from ..models import Route
 from ..models import Trip
 from . import api
-from flask.ext.login import login_required
+from .decorators import admin_required
+
 
 @api.route('/routes/')
 def get_routes():
@@ -23,6 +24,7 @@ def get_route(id):
 
 
 @api.route('/routes/', methods=['POST'])
+@admin_required
 def add_route():
     item = Route(**request.json)
     db.session.add(item)
@@ -30,8 +32,8 @@ def add_route():
     return jsonify(item.to_json), 201, \
         {'Location': url_for('api.get_route', id=item.route_id, _external=True)}
 
-@login_required
 @api.route('/routes/<id>', methods=['PUT'])
+@admin_required
 def edit_route(id):
     data = request.json
     item = Route.query.get_or_404(data.get('route_id'))
@@ -42,6 +44,7 @@ def edit_route(id):
 
 
 @api.route('/routes/<id>', methods=['DELETE'])
+@admin_required
 def delete_route(id):
     route = Route.query.filter_by(route_id = id).one()
     db.session.delete(route)
