@@ -9,11 +9,7 @@ define([
     idAttribute: 'shape_id',
 
     url: function () {
-      if (this.isNew()) {
-        return Config.server + 'api/shapes/';
-      } else {
-        return Config.server + 'api/shapes/' + this.shape_id + '.json';
-      }
+      return Config.server + 'api/trips/' + this.trip_id + '/shape.json';
     },
 
     reverse: function () {
