@@ -256,35 +256,47 @@ this["JST"]["modals/stop"] = Handlebars.template({"1":function(depth0,helpers,pa
 
 
 this["JST"]["modals/trip"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "      <h3 class=\"modal-title\">Edit Trip id: "
-    + escapeExpression(((helper = (helper = helpers.trip_headsign || (depth0 != null ? depth0.trip_headsign : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"trip_headsign","hash":{},"data":data}) : helper)))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.trip : depth0)) != null ? stack1.trip_headsign : stack1), depth0))
     + "</h3>\n";
 },"3":function(depth0,helpers,partials,data) {
   return "      <h3 class=\"modal-title\">Add New Trip</h3>\n";
-  },"5":function(depth0,helpers,partials,data) {
+  },"5":function(depth0,helpers,partials,data,depths) {
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "                <option value=\""
+    + escapeExpression(((helper = (helper = helpers.service_id || (depth0 != null ? depth0.service_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"service_id","hash":{},"data":data}) : helper)))
+    + "\" ";
+  stack1 = ((helpers.selected || (depth0 && depth0.selected) || helperMissing).call(depth0, (depth0 != null ? depth0.service_id : depth0), ((stack1 = (depths[1] != null ? depths[1].trip : depths[1])) != null ? stack1.service_id : stack1), {"name":"selected","hash":{},"fn":this.program(6, data, depths),"inverse":this.noop,"data":data}));
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + ">"
+    + escapeExpression(((helper = (helper = helpers.service_name || (depth0 != null ? depth0.service_name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"service_name","hash":{},"data":data}) : helper)))
+    + "</option>\n";
+},"6":function(depth0,helpers,partials,data) {
+  return "";
+},"8":function(depth0,helpers,partials,data) {
   return "checked";
-  },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<div class=\"modal-dialog\">\n  <div class=\"modal-content\">\n    <div class=\"modal-header\">\n      <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">\n        <span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span>\n      </button>\n";
-  stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.trip_id : depth0), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data});
+  },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data,depths) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, buffer = "<div class=\"modal-dialog\">\n  <div class=\"modal-content\">\n    <div class=\"modal-header\">\n      <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">\n        <span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span>\n      </button>\n";
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.trip : depth0)) != null ? stack1.trip_id : stack1), {"name":"if","hash":{},"fn":this.program(1, data, depths),"inverse":this.program(3, data, depths),"data":data});
   if (stack1 != null) { buffer += stack1; }
   buffer += "    </div>\n\n    <div class=\"modal-body\">\n      <form role=\"form\" >\n        <div class=\"form-group\">\n          <label for=\"trip_short_name\">trip_short_name</label>\n          <input class=\"form-control\" type=\"text\" name=\"trip_short_name\" placeholder=\"trip_short_name\" value=\""
-    + escapeExpression(((helper = (helper = helpers.trip_short_name || (depth0 != null ? depth0.trip_short_name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"trip_short_name","hash":{},"data":data}) : helper)))
-    + "\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"route_id\">route_id</label>\n          <input class=\"form-control\" type=\"text\" name=\"route_id\" placeholder=\"route_id\" value=\""
-    + escapeExpression(((helper = (helper = helpers.route_id || (depth0 != null ? depth0.route_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"route_id","hash":{},"data":data}) : helper)))
-    + "\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"service_id\">service_id</label>\n            <input class=\"form-control\" type=\"text\" name=\"service_id\" placeholder=\"service_id\" value=\""
-    + escapeExpression(((helper = (helper = helpers.service_id || (depth0 != null ? depth0.service_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"service_id","hash":{},"data":data}) : helper)))
-    + "\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"shape_id\">shape_id</label>\n            <input class=\"form-control\" type=\"text\" name=\"shape_id\" placeholder=\"shape_id\" value=\""
-    + escapeExpression(((helper = (helper = helpers.shape_id || (depth0 != null ? depth0.shape_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"shape_id","hash":{},"data":data}) : helper)))
-    + "\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"trip_headsign\">trip_headsign</label>\n            <input class=\"form-control\" type=\"text\" name=\"trip_headsign\" placeholder=\"trip_headsign\" value=\""
-    + escapeExpression(((helper = (helper = helpers.trip_headsign || (depth0 != null ? depth0.trip_headsign : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"trip_headsign","hash":{},"data":data}) : helper)))
-    + "\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"direction_id\">direction_id</label>\n          <input class=\"form-control\" type=\"text\" name=\"direction_id\" placeholder=\"direction_id\" value=\""
-    + escapeExpression(((helper = (helper = helpers.direction_id || (depth0 != null ? depth0.direction_id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"direction_id","hash":{},"data":data}) : helper)))
-    + "\">\n        </div>\n        <div class=\"form-group\">\n            <label>\n              <input type=\"checkbox\" ";
-  stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.active : depth0), {"name":"if","hash":{},"fn":this.program(5, data),"inverse":this.noop,"data":data});
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.trip : depth0)) != null ? stack1.trip_short_name : stack1), depth0))
+    + "\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"service_id\" class=\"control-label\">Service</label>\n            <select class=\"form-control select-service\" id=\"service_id\">\n              <option value=\"\"> -- </option>\n";
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.calendars : depth0), {"name":"each","hash":{},"fn":this.program(5, data, depths),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  buffer += "            </select>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"trip_headsign\">trip_headsign</label>\n            <input class=\"form-control\" type=\"text\" name=\"trip_headsign\" placeholder=\"trip_headsign\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.trip : depth0)) != null ? stack1.trip_headsign : stack1), depth0))
+    + "\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"direction_id\" class=\"control-label\">Direction</label>\n            <select class=\"form-control select-direction\" id=\"direction_id\">\n              <option value=\"\"> -- </option>\n              <option value=\"0\" ";
+  stack1 = ((helpers.selected || (depth0 && depth0.selected) || helperMissing).call(depth0, (depth0 != null ? depth0.direction_id : depth0), ((stack1 = (depths[1] != null ? depths[1].trip : depths[1])) != null ? stack1.direction_id : stack1), {"name":"selected","hash":{},"fn":this.program(6, data, depths),"inverse":this.noop,"data":data}));
+  if (stack1 != null) { buffer += stack1; }
+  buffer += ">Outwards</option>\n              <option value=\"1\" ";
+  stack1 = ((helpers.selected || (depth0 && depth0.selected) || helperMissing).call(depth0, (depth0 != null ? depth0.direction_id : depth0), ((stack1 = (depths[1] != null ? depths[1].trip : depths[1])) != null ? stack1.direction_id : stack1), {"name":"selected","hash":{},"fn":this.program(6, data, depths),"inverse":this.noop,"data":data}));
+  if (stack1 != null) { buffer += stack1; }
+  buffer += ">Inwards</option>\n            </select>\n        </div>\n        <div class=\"form-group\">\n            <label>\n              <input type=\"checkbox\" ";
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.trip : depth0)) != null ? stack1.active : stack1), {"name":"if","hash":{},"fn":this.program(8, data, depths),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "> Active\n            </label>\n        </div>\n      </form>\n    </div>\n\n    <div class=\"modal-footer\">\n      <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n      <button type=\"button\" class=\"btn btn-primary js-save\">Save changes</button>\n    </div>\n  </div>\n</div>\n";
-},"useData":true});
+},"useData":true,"useDepths":true});
 
 
 

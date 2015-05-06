@@ -4,8 +4,8 @@
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
         <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
       </button>
-      {{#if trip_id}}
-      <h3 class="modal-title">Edit Trip id: {{trip_headsign}}</h3>
+      {{#if trip.trip_id}}
+      <h3 class="modal-title">Edit Trip id: {{trip.trip_headsign}}</h3>
       {{else}}
       <h3 class="modal-title">Add New Trip</h3>
       {{/if}}
@@ -15,31 +15,32 @@
       <form role="form" >
         <div class="form-group">
           <label for="trip_short_name">trip_short_name</label>
-          <input class="form-control" type="text" name="trip_short_name" placeholder="trip_short_name" value="{{trip_short_name}}">
+          <input class="form-control" type="text" name="trip_short_name" placeholder="trip_short_name" value="{{trip.trip_short_name}}">
         </div>
         <div class="form-group">
-          <label for="route_id">route_id</label>
-          <input class="form-control" type="text" name="route_id" placeholder="route_id" value="{{route_id}}">
-        </div>
-        <div class="form-group">
-          <label for="service_id">service_id</label>
-            <input class="form-control" type="text" name="service_id" placeholder="service_id" value="{{service_id}}">
-        </div>
-        <div class="form-group">
-          <label for="shape_id">shape_id</label>
-            <input class="form-control" type="text" name="shape_id" placeholder="shape_id" value="{{shape_id}}">
+          <label for="service_id" class="control-label">Service</label>
+            <select class="form-control select-service" id="service_id">
+              <option value=""> -- </option>
+              {{#each calendars}}
+                <option value="{{service_id}}" {{#selected service_id ../trip.service_id}}{{/selected}}>{{service_name}}</option>
+              {{/each}}
+            </select>
         </div>
         <div class="form-group">
           <label for="trip_headsign">trip_headsign</label>
-            <input class="form-control" type="text" name="trip_headsign" placeholder="trip_headsign" value="{{trip_headsign}}">
+            <input class="form-control" type="text" name="trip_headsign" placeholder="trip_headsign" value="{{trip.trip_headsign}}">
         </div>
         <div class="form-group">
-          <label for="direction_id">direction_id</label>
-          <input class="form-control" type="text" name="direction_id" placeholder="direction_id" value="{{direction_id}}">
+          <label for="direction_id" class="control-label">Direction</label>
+            <select class="form-control select-direction" id="direction_id">
+              <option value=""> -- </option>
+              <option value="0" {{#selected direction_id ../trip.direction_id}}{{/selected}}>Outwards</option>
+              <option value="1" {{#selected direction_id ../trip.direction_id}}{{/selected}}>Inwards</option>
+            </select>
         </div>
         <div class="form-group">
             <label>
-              <input type="checkbox" {{#if active}}checked{{/if}}> Active
+              <input type="checkbox" {{#if trip.active}}checked{{/if}}> Active
             </label>
         </div>
       </form>
