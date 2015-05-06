@@ -1,13 +1,17 @@
 from flask import Blueprint
+from flask import redirect
+from flask import request
+from flask import url_for
 from flask.ext.login import login_required
+from flask.ext.login import current_user
 
 api = Blueprint('api', __name__)
 
 
 @api.before_request
-@login_required
 def before_request():
-	return
+	if request.method != 'GET' and not current_user.is_authenticated():
+		return redirect(url_for('auth.login'))
 
 from . import routes
 from . import trips
