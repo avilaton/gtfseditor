@@ -22,10 +22,12 @@ def get_alltrips():
         'trips': [item.to_json for item in trips]
     })
 
+
 @api.route('/trips/<id>')
 def get_trip(id):
     item = Trip.query.get_or_404(id)
     return jsonify(item.to_json)
+
 
 @api.route('/trips/<id>', methods=['PUT'])
 @admin_required
@@ -37,6 +39,7 @@ def edit_trip(id):
 	db.session.commit()
 	return jsonify(item.to_json)
 
+
 @api.route('/trips/', methods=['POST']) 
 @admin_required
 def add_trip():
@@ -46,6 +49,7 @@ def add_trip():
 	db.session.commit()
 	return jsonify(trip.to_json), 201, {'Location': url_for('api.get_trip',
 		id=trip.trip_id, _external=True)}
+
 
 @api.route('/trips/<id>', methods=['DELETE'])
 @admin_required
@@ -102,6 +106,7 @@ def sortTripStops( trip_id):
 	stopSequence.sortStops() 
 	return jsonify({'success': True})
 
+
 @api.route('/trips/<trip_id>/actions/update-dist', methods=['GET'])
 @admin_required
 def sortTripStopsUpdate(trip_id):
@@ -109,12 +114,14 @@ def sortTripStopsUpdate(trip_id):
 	stopSequence.updateDistances()
 	return jsonify({'success': True})
 
+
 @api.route('/trips/<trip_id>/actions/interpolate-times', methods=['GET'])
 @admin_required
 def interpolateTimes(trip_id):
 	stopSequence = StopSequence(trip_id)
 	stopSequence.interpolateTimes()
 	return jsonify({'success': True})
+
 
 @api.route('/trips/<trip_id>/start-times.json', methods=['GET'])
 def tripStopsStartTimes(trip_id):

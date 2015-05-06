@@ -104,12 +104,13 @@
 	var vectorLayer = new ol.layer.Vector({
 	  source: new ol.source.GeoJSON({
 	    projection: 'EPSG:3857',
-	    url: '/api/shape/{{trip.shape_id}}'
+	    url: '/api/shape/{{trip.shape_id}}.geojson'
 	  }),
     style: new ol.style.Style({
       stroke: new ol.style.Stroke({color: 'blue', width: 3})
     })
 	});
+
   var map = new ol.Map({
     target: 'map',
     layers: [
