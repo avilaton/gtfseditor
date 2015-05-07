@@ -4,11 +4,13 @@ define([
   'moment',
   'api',
   'config',
-  'models/stop'
-], function (_, Backbone, moment, api, Config, StopModel) {
+  'models/stopTime'
+], function (_, Backbone, moment, api, Config, StopTime) {
   var Collection;
 
   Collection = Backbone.Collection.extend({
+    model: StopTime,
+
     url: function () {
       return Config.server + 'api/trips/' + this.trip_id + '/stops.json';
     },
