@@ -43,7 +43,7 @@ def get_report_routes():
 	return render_template('reports/routes.html', routes=routes, count=len(result), active=active)
 
 
-@reports.route('/times-missing')
+@reports.route('/times-missing-active')
 @reports.route('/times-missing-active.html')
 def get_report_missing_times_active():
 	tripStartTimes = db.session.query(TripStartTime.trip_id).distinct().subquery()
