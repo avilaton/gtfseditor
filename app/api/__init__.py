@@ -13,6 +13,7 @@ def before_request():
 	if request.method != 'GET' and not current_user.is_authenticated():
 		return redirect(url_for('auth.login'))
 
+
 from . import routes
 from . import trips
 from . import shapes
