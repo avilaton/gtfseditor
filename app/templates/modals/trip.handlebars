@@ -34,8 +34,8 @@
           <label for="direction_id" class="control-label">Direction</label>
             <select class="form-control select-direction" id="direction_id">
               <option value=""> -- </option>
-              <option value="0" {{#if_eq direction_id "0"}}selected="selected"{{else}}{{/if_eq}}>Outwards</option>
-              <option value="1" {{#if_eq direction_id "1"}}selected="selected"{{else}}{{/if_eq}}>Inwards</option>
+              <option value="0" {{#if_eq trip.direction_id "0"}}selected="selected"{{/if_eq}}>Outwards</option>
+              <option value="1" {{#if_eq trip.direction_id "1"}}selected="selected"{{/if_eq}}>Inwards</option>
             </select>
         </div>
         <div class="form-group">
