@@ -1,0 +1,71 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+      </button>
+      {{#if service_id}}
+      <h3 class="modal-title">Edit Service Period</h3>
+      {{else}}
+      <h3 class="modal-title">Add New Service Period</h3>
+      {{/if}}
+    </div>
+
+    <div class="modal-body">
+      <form role="form" >
+        <div class="form-group">
+          <label for="service_name">service_name</label>
+            <input class="form-control" type="text" name="service_name" placeholder="service_name" value="{{service_name}}">
+        </div>
+        <div class="form-group">
+          <label for="start_date">start_date</label>
+            <input class="form-control" type="text" name="start_date" placeholder="start_date" value="{{start_date}}">
+        </div>
+        <div class="form-group">
+          <label for="end_date">end_date</label>
+            <input class="form-control" type="text" name="end_date" placeholder="end_date" value="{{end_date}}">
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" name="monday" {{checked monday}}>monday
+          </label>
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" name="tuesday" {{checked tuesday}}>tuesday
+          </label>
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" name="wednesday" {{checked wednesday}}>wednesday
+          </label>
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" name="thursday" {{checked thursday}}>thursday
+          </label>
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" name="friday" {{checked friday}}>friday
+          </label>
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" name="saturday" {{checked saturday}}>saturday
+          </label>
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" name="sunday" {{checked sunday}}>sunday
+          </label>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary js-save">Save changes</button>
+    </div>
+  </div>
+</div>

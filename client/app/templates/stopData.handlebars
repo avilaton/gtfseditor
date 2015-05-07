@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-sm-12">
+  <dl class="dl-horizontal">
+    <dt>Stop code</dt>
+    <dd>{{stop.stop_code}}</dd>
+    <dt>Nombre</dt>
+    <dd>{{stop.stop_name}}</dd>
+    <dt>Calle</dt>
+    <dd>{{stop.stop_calle}}</dd>
+    <dt>Numero</dt>
+    <dd>{{stop.stop_numero}}</dd>
+    <dt>Esquina</dt>
+    <dd>{{stop.stop_esquina}}</dd>
+    <dt>Entre</dt>
+    <dd>{{stop.stop_entre}}</dd>
+    <dt>Descripcion</dt>
+    <dd>{{stop.stop_desc}}</dd>
+    <dt>Latitud</dt>
+    <dd>{{stop.stop_lat}}</dd>
+    <dt>Longitud</dt>
+    <dd>{{stop.stop_lon}}</dd>
+  </dl>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <button class="btn btn-default show-trips">Show Trips</button>
+    <ul>
+      {{#each trips}}
+        <li>Route {{route_id}}, Trip to: {{trip_headsign}}, {{#if card_code}}({{card_code}}){{/if}}
+            {{#if_eq direction_id "0"}}(ida){{else}}(vuelta){{/if_eq}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
