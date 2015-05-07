@@ -84,12 +84,15 @@ define([
           var trip_id = selectedTrip.get('trip_id');
           var shape_id = selectedTrip.get('shape_id');
 
-          this.shapeModel.set('shape_id', shape_id, {silent: true});
-          this.shapeModel.shape_id = shape_id;
-          this.shapeModel.trip_id = trip_id;
-          this.shapeModel.fetch({reset: true}).done(function () {
+          this.shapeModel.set('trip_id', trip_id, {silent: true});
+          if (shape_id) {
+            this.shapeModel.fetch({reset: true}).done(function () {
+              mapView.updateShapesLayer();
+            });
+          } else {
+            this.shapeModel.unset('coordinates');
             mapView.updateShapesLayer();
-          });
+          }
 
           this.stopsSeqCollection.trip_id = trip_id;
           this.stopsSeqCollection.fetch({reset: true});

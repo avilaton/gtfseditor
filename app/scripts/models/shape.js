@@ -9,7 +9,7 @@ define([
     idAttribute: 'shape_id',
 
     url: function () {
-      return Config.server + 'api/trips/' + this.trip_id + '/shape.json';
+      return Config.server + 'api/trips/' + this.get('trip_id') + '/shape.json';
     },
 
     reverse: function () {
@@ -24,7 +24,6 @@ define([
         'type': 'FeatureCollection',
         'features': [{
           'type': 'Feature',
-          'id': this.get('shape_id'),
           'properties': {},
           'geometry': {
             'type': 'LineString',
