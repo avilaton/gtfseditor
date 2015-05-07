@@ -42,6 +42,18 @@ def get_report_routes():
 
 	return render_template('reports/routes.html', routes=routes, count=len(result), active=active)
 
+
+@reports.route('/times-missing-active')
+@reports.route('/times-missing-active.html')
+def get_report_missing_times_active():
+	tripStartTimes = db.session.query(TripStartTime.trip_id).distinct().subquery()
+	results = db.session.query(Trip, Route.route_short_name).join(Route).\
+		filter(not_(Trip.trip_id.in_(tripStartTimes)), Trip.active).\
+		order_by(Route.route_short_name, Trip.card_code).all()
+
+	return render_template('reports/times-missing.html', results=results)
+
+
 @reports.route('/times-missing')
 @reports.route('/times-missing.html')
 def get_report_missing_times():
@@ -51,6 +63,7 @@ def get_report_missing_times():
 		order_by(Route.route_short_name, Trip.card_code).all()
 
 	return render_template('reports/times-missing.html', results=results)
+
 
 @reports.route('/email')
 def sendEmail():
