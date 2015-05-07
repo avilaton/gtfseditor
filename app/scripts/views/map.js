@@ -88,7 +88,7 @@ define([
 
       bindEvents: function () {
         var self = this;
-        self.shape.on("reset", self.updateShapesLayer, self);
+        self.shape.on("reset destroy", self.updateShapesLayer, self);
 
         this.collection.on("change reset add remove", self.updateStopsLayer, self);
         self.collection.on("trip_stop_selected", self.selectTripStop, self);
@@ -98,7 +98,9 @@ define([
         var self = this;
         var ft = this.format.read(self.shape.toGeoJSON());
         this.shapesLayer.removeAllFeatures();
-        this.shapesLayer.addFeatures(ft);
+        if (ft) {
+          this.shapesLayer.addFeatures(ft);
+        }
         self.shapesLayer.refresh();
         this.updateNotesLayer();
       },
@@ -108,7 +110,6 @@ define([
         var shapeJSON = this.format.write(self.shapesLayer.features, true);
         var shapeObj = JSON.parse(shapeJSON);
         this.shape.set('coordinates', shapeObj.features[0].geometry.coordinates);
-        console.log(this.shape.toJSON());
         return;
       },
 
@@ -125,14 +126,18 @@ define([
         var startFeature = this.notesLayer.getFeatureById('routeStart'),
           endFeature = this.notesLayer.getFeatureById('routeEnd'),
           route = this.shapesLayer.features[0],
-          startPoint = route.geometry.components[0],
-          endPoint = route.geometry.components[route.geometry.components.length - 1];
+          startPoint, endPoint;
+
         if (startFeature) {
           this.notesLayer.removeFeatures(startFeature);
         }
         if (endFeature) {
           this.notesLayer.removeFeatures(endFeature);
         }
+
+        if (!route) return;
+        startPoint = route.geometry.components[0];
+        endPoint = route.geometry.components[route.geometry.components.length - 1];
 
         startFeature = new OpenLayers.Feature.Vector(startPoint);
         startFeature.id = 'routeStart';
@@ -237,7 +242,6 @@ define([
         this.layers.stopsBboxLayer.layer.events.register('featureunselected', self,
           self.onBboxFeatureSelected);
         this.layers.shapesLayer.layer.events.register('featureadded', self, function (shape) {
-          console.log('feature added', shape);
           self.updateShapeModel();
           self.controls.drawShape.deactivate();
         })

@@ -37,7 +37,6 @@ define([
           this.map.activateControl('drawShape');
           $target.addClass('btn-primary');
         } else {
-          this.model = new ShapeModel();
           this.map.activateControl('selectStops');
           this.map.updateShapeModel();
           $target.removeClass('btn-primary');
