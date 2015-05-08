@@ -3,3 +3,4 @@ node_modules/
 dist/
 app/bower_components/
 .tmp/
+app/scripts/JST.js
