@@ -37,6 +37,9 @@ def create_app(config_name):
     app.register_blueprint(api_blueprint, url_prefix='/api')
 
     from .admin import admin as admin_blueprint
+    if app.config['DEBUG']:
+        admin_blueprint.static_folder = 'static/app'
+
     app.register_blueprint(admin_blueprint, url_prefix='/admin')
 
     from .reports import reports as reports_blueprint

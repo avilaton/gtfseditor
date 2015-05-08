@@ -1,0 +1,47 @@
+<div class="col-md-12 panel-right">
+  <h1>Service periods</h1>
+  <div class="row voffset1">
+    <div class="col-md-12">
+      <form class="form-inline">
+        <button class="btn btn-default btn-create"><span class="glyphicon glyphicon-plus"></span> New</button>
+      </form>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="col-md-2">Service Name</th>
+        <th class="col-md-1">Starts</th>
+        <th class="col-md-1">Ends</th>
+        <th class="col-md-1">Monday</th>
+        <th class="col-md-1">Tuesday</th>
+        <th class="col-md-1">Wednesday</th>
+        <th class="col-md-1">Thursday</th>
+        <th class="col-md-1">Friday</th>
+        <th class="col-md-1">Saturday</th>
+        <th class="col-md-1">Sunday</th>
+        <th class="col-md-1"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each models}}
+      <tr data-index="{{@index}}">
+        <td>{{service_name}}</td>
+        <td>{{start_date}}</td>
+        <td>{{end_date}}</td>
+        <td><span class="glyphicon glyphicon-{{#if_eq monday "1"}}ok{{/if_eq}}"></span></td>
+        <td><span class="glyphicon glyphicon-{{#if_eq tuesday "1"}}ok{{/if_eq}}"></span></td>
+        <td><span class="glyphicon glyphicon-{{#if_eq wednesday "1"}}ok{{/if_eq}}"></span></td>
+        <td><span class="glyphicon glyphicon-{{#if_eq thursday "1"}}ok{{/if_eq}}"></span></td>
+        <td><span class="glyphicon glyphicon-{{#if_eq friday "1"}}ok{{/if_eq}}"></span></td>
+        <td><span class="glyphicon glyphicon-{{#if_eq saturday "1"}}ok{{/if_eq}}"></span></td>
+        <td><span class="glyphicon glyphicon-{{#if_eq sunday "1"}}ok{{/if_eq}}"></span></td>
+        <td class="vcenter">
+          <button class="btn btn-default btn-rm"><span class="glyphicon glyphicon-remove"></span></button>
+          <button class="btn btn-default btn-edit"><span class="glyphicon glyphicon-pencil"></span></button>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
