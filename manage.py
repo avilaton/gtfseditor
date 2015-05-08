@@ -24,9 +24,7 @@ BUILD_MODE = config[os.getenv('FLASK_CONFIG') or 'default'].BUILD_MODE
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 
-print app.config
-print app.config['DEBUG']
-print os.getenv('FLASK_CONFIG')
+print 'manage, app config', app.config, app.config['DEBUG'], os.getenv('FLASK_CONFIG')
 
 from app.tasks import celery_app
 
