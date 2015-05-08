@@ -40,7 +40,7 @@ def create_app(config_name):
     if app.config['DEBUG']:
         admin_blueprint.static_folder = 'static/app'
 
-    print(admin_blueprint.static_folder)
+    print(app.config)
     app.register_blueprint(admin_blueprint, url_prefix='/admin')
 
     from .reports import reports as reports_blueprint
