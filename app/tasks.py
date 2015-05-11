@@ -43,6 +43,8 @@ def buildFeed(validate=False):
 
   s3service.uploadFileObj(feed.filename, feedFile)
 
+  return 'success'
+
 @celery_app.task
 def listDir():
   """Build feed to .tmp folder"""
