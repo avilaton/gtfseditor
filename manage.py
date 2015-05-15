@@ -100,6 +100,13 @@ def deploy():
     upgrade()
 
 @manager.command
+def buildfeed(validate=False, extract=False, upload=False):
+  """Build feed task"""
+  from app.tasks import buildFeed
+
+  buildFeed.run(validate=validate, extract=extract, upload=upload)
+
+@manager.command
 def build(validate=False, extract=False, upload=False):
   """Build feed to .tmp folder"""
 
@@ -121,7 +128,7 @@ def build(validate=False, extract=False, upload=False):
   if upload:
     BUCKET_NAME = 'gtfseditor-feeds'
     s3service = S3(BUCKET_NAME)
-    s3service.config(app.conf)
+    s3service.config(app.config)
     s3service.uploadFileObj(feed.filename, feedFile)
 
 @manager.command
