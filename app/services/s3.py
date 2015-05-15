@@ -15,10 +15,9 @@ class S3(object):
 		self.bucket_name = bucket_name
 
 	def config(self, config):
-		self.conn = boto.connect_s3(config.AWS_ACCESS_KEY_ID,
-			config.AWS_SECRET_ACCESS_KEY,
+		self.conn = boto.connect_s3(config['AWS_ACCESS_KEY_ID'],
+			config['AWS_SECRET_ACCESS_KEY'],
 			host="s3-us-west-1.amazonaws.com")
-
 
 	def uploadFile(self, filename):
 		bucket = self.conn.get_bucket(self.bucket_name)
@@ -26,6 +25,8 @@ class S3(object):
 		k.set_contents_from_filename(filename, policy='public-read')
 
 	def uploadFileObj(self, filename, fileObj):
+		logger.info('Uploading {0} to Amazon S3 bucket {1}'.format(filename,
+			self.bucket_name))
 		bucket = self.conn.get_bucket(self.bucket_name)
 		k = bucket.new_key(filename)
 		k.set_contents_from_string(fileObj.getvalue(), policy='public-read')

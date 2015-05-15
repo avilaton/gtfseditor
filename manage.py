@@ -128,7 +128,7 @@ def build(validate=False, extract=False, upload=False):
   if upload:
     BUCKET_NAME = 'gtfseditor-feeds'
     s3service = S3(BUCKET_NAME)
-    s3service.config(app.conf)
+    s3service.config(app.config)
     s3service.uploadFileObj(feed.filename, feedFile)
 
 @manager.command

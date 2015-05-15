@@ -59,8 +59,6 @@ def buildFeed(validate=False, extract=False, upload=False):
   if upload:
     s3service = S3(celery_app.conf.AWS_S3_BUCKET_NAME)
     s3service.config(celery_app.conf)
-    logger.info('Uploading {0} to Amazon S3 bucket {1}'.format(feed.filename,
-      celery_app.conf.AWS_S3_BUCKET_NAME))
     s3service.uploadFileObj(feed.filename, feedFile)
 
   return 'success'
