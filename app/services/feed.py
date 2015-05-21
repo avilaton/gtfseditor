@@ -173,7 +173,7 @@ class Feed(object):
     logger.info("Loading Stops")
     active_routes_subq = self.db.query(Route.route_id).filter(Route.active).subquery()
     active_trips_subq = self.db.query(Trip.trip_id).\
-      filter(Trip.route_id.in_(active_routes_subq)).subquery()
+      filter(Trip.route_id.in_(active_routes_subq), Trip.active).subquery()
     used_stops_subq = self.db.query(StopSeq.stop_id).distinct().\
       filter(StopSeq.trip_id.in_(active_trips_subq)).subquery()
     stops_query = self.db.query(Stop).filter(Stop.stop_id.in_(used_stops_subq))
