@@ -4,6 +4,7 @@ from flask import request
 from flask import url_for
 from flask.ext.login import login_required
 from flask.ext.login import current_user
+from .errors import unauthorized
 
 api = Blueprint('api', __name__)
 
@@ -11,7 +12,7 @@ api = Blueprint('api', __name__)
 @api.before_request
 def before_request():
 	if request.method != 'GET' and not current_user.is_authenticated():
-		return redirect(url_for('auth.login'))
+		return unauthorized('user is not authenticated')
 
 
 from . import routes
