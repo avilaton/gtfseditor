@@ -39,6 +39,7 @@ def edit_calendar_date(id):
     item = CalendarDate.query.get_or_404(data.get('service_id'))
     item = CalendarDate(**data)
     db.session.merge(item)
+    db.session.commit()
     return jsonify(item.to_json)
 
 
