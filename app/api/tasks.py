@@ -18,7 +18,7 @@ def get_mail():
 @api.route('/compile')
 @api.route('/compile/')
 def get_feed():
-    job = buildFeed.delay()
+    job = buildFeed.delay(upload=True)
     return jsonify({'task': job.id})
 
 
