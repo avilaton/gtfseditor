@@ -1,8 +1,8 @@
 define([
-	"underscore",
-	"backbone",
+	'underscore',
+	'backbone',
 	'config',
-	"models/route"
+	'models/route'
 ], function (_, Backbone, Config, RouteModel) {
 	var RouteCollection;
 
@@ -11,9 +11,6 @@ define([
 
 		url: Config.server + 'api/routes/',
 
-        parse: function (response) {
-        	return response.routes;
-        }
  	});
 
 	return RouteCollection;

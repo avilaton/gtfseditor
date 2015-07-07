@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 from flask import jsonify, request, g, abort, url_for, current_app
+from flask import json
+from flask import Response
 from .. import db
 from ..models import Route
 from ..models import Trip
@@ -12,9 +14,9 @@ from .decorators import admin_required
 @api.route('/routes/')
 def get_routes():
     routes = Route.query.order_by(Route.route_short_name).all()
-    return jsonify({
-        'routes': [item.to_json for item in routes]
-    })
+    return Response(
+        json.dumps([item.to_json for item in routes]),
+        mimetype='application/json')
 
 
 @api.route('/routes/<id>')
