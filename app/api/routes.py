@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 from flask import jsonify, request, g, abort, url_for, current_app
+from flask import json
+from flask import Response
 from .. import db
 from ..models import Route
 from ..models import Trip
@@ -12,9 +14,9 @@ from .decorators import admin_required
 @api.route('/routes/')
 def get_routes():
     routes = Route.query.order_by(Route.route_short_name).all()
-    return jsonify({
-        'routes': [item.to_json for item in routes]
-    })
+    return Response(
+        json.dumps([item.to_json for item in routes]),
+        mimetype='application/json')
 
 
 @api.route('/routes/<id>')
@@ -56,4 +58,6 @@ def delete_route(id):
 def get_route_trips(route_id):
     trips = Trip.query.filter(Trip.route_id == route_id)\
         .order_by(Trip.card_code, Trip.direction_id, Trip.trip_headsign).all()
-    return jsonify({'trips': [trip.to_json for trip in trips]}), 200
+    return Response(
+        json.dumps([i.to_json for i in trips]),
+        mimetype='application/json')

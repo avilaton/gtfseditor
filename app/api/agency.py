@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import jsonify, request, g, abort, url_for, current_app
+from flask import jsonify, request, url_for
+from flask import json
+from flask import Response
 from .. import db
 from ..models import Agency
 from . import api
@@ -12,9 +14,8 @@ from .decorators import admin_required
 @api.route('/agency/')
 def get_agencys():
     agencys = Agency.query.all()
-    return jsonify({
-        'agencies': [item.to_json for item in agencys]
-    })
+    return Response(json.dumps([item.to_json for item in agencys]),
+        mimetype='application/json')
 
 
 @api.route('/agency/<agency_id>')

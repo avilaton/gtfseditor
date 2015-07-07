@@ -12,14 +12,15 @@ define([
   'views/startTimes',
   'views/calendarsSelect',
   'views/calendarsTools',
+  'views/kmlSelect',
   'models/stop',
   'models/shape',
   'collections/stop_seq',
   'collections/tripStartTimes'
   ], function (_, Backbone, Handlebars, JST, MapView, RoutesSelectView,
       TripsSelectView, SequenceToolboxView, ShapesToolboxView, SequenceView,
-      StartTimesView, CalendarsSelectView, CalendarsToolsView, StopModel,
-      ShapeModel, StopsSeqCollection, TripStartTimesCol) {
+      StartTimesView, CalendarsSelectView, CalendarsToolsView, KmlSelectView,
+      StopModel, ShapeModel, StopsSeqCollection, TripStartTimesCol) {
     var View;
 
     View = Backbone.View.extend({
@@ -59,6 +60,13 @@ define([
           collection: this.stopsSeqCollection,
           stop: this.stopModel,
           model: this.stopModel
+        });
+
+        var kmlSelectView = new KmlSelectView({
+          el: '.kml-select-view'
+        });
+        kmlSelectView.on('select', function (content) {
+          mapView.layers.fileLayer.read(content);
         });
 
         var shapesToolbox = new ShapesToolboxView({

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import csv
-from flask import jsonify, request, g, abort, url_for, current_app
+from flask import jsonify, request, g, abort, url_for
 from flask import Response
 from flask import json
 from .. import db
@@ -18,9 +18,8 @@ from .decorators import admin_required
 @api.route('/trips/')
 def get_alltrips():
     trips = Trip.query.all()
-    return jsonify({
-        'trips': [item.to_json for item in trips]
-    })
+    return Response(json.dumps([i.to_json for i in trips]),
+        mimetype='application/json')
 
 
 @api.route('/trips/<id>')
@@ -68,7 +67,7 @@ def tripStops(trip_id):
 		stop = row.Stop
 		stop_seq = row.StopSeq
 		features.append({'stop': row.Stop.to_json,'stop_seq': row.StopSeq.to_json}) 
-	return jsonify({'rows': features})
+	return Response(json.dumps(features), mimetype='application/json')
 
 
 @api.route('/trips/<trip_id>/stops.json', methods=['PUT'])
@@ -129,7 +128,7 @@ def tripStopsStartTimes(trip_id):
 		order_by(TripStartTime.service_id, TripStartTime.start_time).all()
 
 	features = [row.to_json for row in rows]
-	return jsonify({'rows': features})
+	return Response(json.dumps(features), mimetype='application/json')
 
 
 @api.route('/trips/<trip_id>/calendars/<service_id>/start-times.json', methods=['GET'])

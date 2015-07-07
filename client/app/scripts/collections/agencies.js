@@ -12,10 +12,6 @@ define([
 
     url: Config.server + 'api/agency/',
 
-    parse: function (response) {
-      return response.agencies;
-    },
-
     save: function () {
       _.forEach(this.models, function (model) {
         console.log(model, model.isNew(), model.hasChanged());

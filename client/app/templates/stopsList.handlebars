@@ -1,0 +1,8 @@
+<ul class="list-group">
+	{{#each stops}}
+		<li class="list-group-item">
+			{{stop_code}}: {{stop_name}}
+			<button class="btn btn-default pull-right btn-xs btn-add-stop" data-stop-id="{{stop_id}}"><i class="glyphicon glyphicon-plus"></i></button>
+		</li>
+	{{/each}}
+</ul>

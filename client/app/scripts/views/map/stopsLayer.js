@@ -20,9 +20,8 @@ define([
 
           OpenLayers.Format.GTFS = OpenLayers.Class(OpenLayers.Format, {
             read: function(body) {
-              var obj = JSON.parse(body);
-
-              var stops = obj.stops, stop,
+              var stops = JSON.parse(body),
+                stop,
               x, y, point,
               feature, features = [];
 

@@ -15,14 +15,6 @@ define([
             return Config.server + 'api/route/' + this.route_id + '/trips';
         },
 
-        initialize: function(){
-
-        },
-
-        parse: function (response) {
-            return response.trips;
-        },
-
         select: function (trip_id) {
             var self = this;
 
