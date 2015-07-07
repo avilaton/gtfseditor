@@ -19,10 +19,6 @@ define([
 
         },
 
-        parse: function (response) {
-            return response.trips;
-        },
-
         select: function (trip_id) {
             var self = this;
 

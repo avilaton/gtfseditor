@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import csv
-from flask import jsonify, request, g, abort, url_for, current_app
+from flask import jsonify, request, g, abort, url_for
 from flask import Response
 from flask import json
 from .. import db
@@ -18,9 +18,8 @@ from .decorators import admin_required
 @api.route('/trips/')
 def get_alltrips():
     trips = Trip.query.all()
-    return jsonify({
-        'trips': [item.to_json for item in trips]
-    })
+    return Response(json.dumps([i.to_json for i in trips]),
+        mimetype='application/json')
 
 
 @api.route('/trips/<id>')
