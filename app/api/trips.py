@@ -67,7 +67,7 @@ def tripStops(trip_id):
 		stop = row.Stop
 		stop_seq = row.StopSeq
 		features.append({'stop': row.Stop.to_json,'stop_seq': row.StopSeq.to_json}) 
-	return jsonify({'rows': features})
+	return Response(json.dumps(features), mimetype='application/json')
 
 
 @api.route('/trips/<trip_id>/stops.json', methods=['PUT'])
@@ -128,7 +128,7 @@ def tripStopsStartTimes(trip_id):
 		order_by(TripStartTime.service_id, TripStartTime.start_time).all()
 
 	features = [row.to_json for row in rows]
-	return jsonify({'rows': features})
+	return Response(json.dumps(features), mimetype='application/json')
 
 
 @api.route('/trips/<trip_id>/calendars/<service_id>/start-times.json', methods=['GET'])

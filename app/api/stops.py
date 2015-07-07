@@ -48,9 +48,9 @@ def get_stops(fmt="json"):
     else:
       stops = stops.limit(limit).all()
 
-    return jsonify({
-        'stops': [stop.to_json for stop in stops]
-    })
+    return Response(json.dumps([i.to_json for i in stops]),
+        mimetype='application/json')
+
 
 @api.route('/stops/<id>')
 @api.route('/stops/<id>.json')

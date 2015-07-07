@@ -122,9 +122,9 @@ define([
         if (value === '') {
           this.stopsListView.collection.reset();
         } else {
-          $.ajax('/api/stops.json?limit=5&filter='+value).then(function (res) {
-            self.stopsListView.collection.reset(res.stops);
-            if (res.stops.length === 0) {
+          $.ajax('/api/stops.json?limit=5&filter='+value).then(function (stops) {
+            self.stopsListView.collection.reset(stops);
+            if (stops.length === 0) {
               inputField.parent().addClass('has-warning');
             } else {
               inputField.parent().removeClass('has-warning');

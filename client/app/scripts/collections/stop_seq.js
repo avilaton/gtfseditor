@@ -20,7 +20,7 @@ define([
     },
 
     parse: function (response) {
-      return _.map(response.rows, function (row) {
+      return _.map(response, function (row) {
           row.stop_seq._stop = row.stop;
           return row.stop_seq;
         });
