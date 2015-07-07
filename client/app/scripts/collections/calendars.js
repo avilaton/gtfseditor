@@ -12,10 +12,6 @@ define([
 
     url: Config.server + 'api/calendars/',
 
-    parse: function (response) {
-      return response.calendars;
-    },
-
     save: function () {
       _.forEach(this.models, function (model) {
         console.log(model, model.isNew(), model.hasChanged());

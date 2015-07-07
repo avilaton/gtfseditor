@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 from flask import jsonify, request, g, abort, url_for, current_app
+from flask import json
+from flask import Response
 from .. import db
 from ..models import Calendar
 from . import api
@@ -11,9 +13,9 @@ from .decorators import admin_required
 @api.route('/calendars/')
 def get_calendars():
     calendars = Calendar.query.all()
-    return jsonify({
-        'calendars': [item.to_json for item in calendars]
-    })
+    return Response(
+        json.dumps([i.to_json for i in calendars]),
+        mimetype='application/json')
 
 
 @api.route('/calendars/<id>')
