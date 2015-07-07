@@ -1,0 +1,23 @@
+{{#if isDirty}}
+<div class="alert alert-info" role="alert">There are unsaved changes</div>
+{{/if}}
+{{#if hasErrors}}
+<div class="alert alert-danger" role="alert">There are formating errors</div>
+{{/if}}
+
+<table class="table table-hover table-condensed table-editable">
+  <thead>
+    <tr>
+      <th class="col-sm-11">Time</th>
+      <th class="col-sm-1"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each models}}
+    <tr data-index="{{@index}}" class="{{#unless isValid}}danger{{/unless}}">
+      <td><input class="form-control" data-attr="start_time" type="text" value="{{start_time}}"/></td>
+      <td><button class="btn btn-default btn-rm"><span class="glyphicon glyphicon-remove"></span></button></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

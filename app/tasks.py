@@ -63,6 +63,8 @@ def buildFeed(validate=False, extract=False, upload=False):
 
   return 'success'
 
+  return 'success'
+
 @celery_app.task
 def listDir():
   """Build feed to .tmp folder"""
