@@ -6,10 +6,11 @@ define([
   'views/map/kmlLayer',
   'views/map/stopsLayer',
   'views/map/styles',
-  'views/map/shapesLayer'
+  'views/map/shapesLayer',
+  'views/map/fileLayer'
   ],
   function (OpenLayers, Backbone, Config, DrawStopsView, KmlLayerView,
-    StopsLayerView, Styles, ShapesLayerView) {
+    StopsLayerView, Styles, ShapesLayerView, FileLayerView) {
     'use strict';
 
     var MapView = Backbone.View.extend({
@@ -55,6 +56,10 @@ define([
       initializeChildViews: function () {
         var self = this;
         this.layers = {};
+
+        this.layers.fileLayer = new FileLayerView({
+          map: this.map
+        });
 
         this.layers.shapesLayer = new ShapesLayerView({
           map: this.map,

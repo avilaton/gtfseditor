@@ -1,36 +1,34 @@
 define([
-  "backbone",
-  "handlebars",
-  'collections/kml',
-  "text!templates/kmlSelect.handlebars"
-  ], function (Backbone, Handlebars, KmlCollection, tmpl) {
+  'underscore',
+  'backbone',
+  'JST'
+  ], function (_, Backbone, JST) {
 
     var View = Backbone.View.extend({
 
-      template: Handlebars.compile(tmpl),
+      template: JST.kmlSelect,
 
       events: {
-        "change select": "onChange"
+        'change input': 'onChange'
       },
 
-      initialize: function(options){
-        var self = this;
-        this.collection = new KmlCollection();
-        this.collection.on("change add remove reset", self.render, self);
-        this.collection.fetch();
+      initialize: function(){
+        this.render();
       },
 
       render: function () {
-        var self = this;
-        this.$el.html(this.template({
-          options: self.collection.toJSON()
-        }));
+        this.$el.html(this.template());
       },
 
       onChange: function (event) {
-        var value = event.currentTarget.value;
-        this.collection.select(value);
-        this.trigger('select', value);
+        var files = event.target.files,
+          reader = new FileReader(),
+          self = this;
+
+        reader.onload = function(e) {
+          self.trigger('select', e.target.result);
+        };
+        reader.readAsText(files[0]);
       }
     });
 
