@@ -2,8 +2,9 @@ define([
   'underscore',
   'backbone',
   'handlebars',
-  'JST'
-  ], function (_, Backbone, Handlebars, JST) {
+  'JST',
+  'views/stopsList'
+  ], function (_, Backbone, Handlebars, JST, StopsListView) {
     var View;
 
     View = Backbone.View.extend({
@@ -21,6 +22,7 @@ define([
         'click button.appendStop': 'appendStop',
         'click button.btn-speed': 'onClickSpeed',
         'click button.btn-add-stops': 'onClickAddStops',
+        'keyup input.add-stops': 'onKeyUpAddStops',
         'click button.btn-save': 'saveStops'
       },
 
@@ -36,6 +38,14 @@ define([
 
       render: function () {
         this.$el.html(this.template());
+        this.stopsListView = new StopsListView({
+          el: '.results-view'
+        });
+        this.listenTo(this.stopsListView, 'add', function (stop_id) {
+          this.collection.appendStopById(stop_id);
+          this.collection.save();
+          this.$('input.add-stops').val('');
+        }, this);
       },
 
       keypress : function (event) {
@@ -103,6 +113,25 @@ define([
             collection.appendStopById(item.trim());
           }
         });
+      },
+
+      onKeyUpAddStops: function (e) {
+        var value = $(e.currentTarget).val(),
+          inputField = this.$('input.add-stops'),
+          self = this;
+        if (value === '') {
+          this.stopsListView.collection.reset();
+        } else {
+          $.ajax('/api/stops.json?limit=5&filter='+value).then(function (res) {
+            self.stopsListView.collection.reset(res.stops);
+            if (res.stops.length === 0) {
+              inputField.parent().addClass('has-warning');
+            } else {
+              inputField.parent().removeClass('has-warning');
+
+            }
+          });
+        }
       },
 
       removeStop: function (event) {
