@@ -7,7 +7,7 @@
     "underscore-amd": "*",
     "requirejs": "*",
     "openlayers": "",
-    "handlebars": "",
+    "handlebars": "~2.0.0",
     "requirejs-text": "~2.0.10",
     "requirejs-plugins": "~1.0.2",
     "bootstrap": "~3.2.0",
