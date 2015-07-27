@@ -324,5 +324,18 @@ def export(folder=".tmp/export/"):
   exportToCsv(Frequency, folder)
 
 
+@manager.command
+def rename_mtm_stops():
+  "sets mtm stop names to just street"
+  trips_sq = db.session.query(Trip.trip_id).join(Route)\
+    .filter(Route.route_short_name == 'MTM').subquery()
+  stops = db.session.query(Stop).join(StopSeq, Stop.stop_id == StopSeq.stop_id)\
+    .filter(StopSeq.trip_id.in_(trips_sq))\
+    .all()
+  for stop in stops:
+    stop.stop_name = stop.stop_calle
+    db.session.add(stop)
+  db.session.commit()
+
 if __name__ == '__main__':
     manager.run()

@@ -12,25 +12,9 @@
 </ol>
 
 
-<h2>Horarios de salida</h2>
-
-<table class="table table-bordered table-striped table-condensed">
-	<thead>
-		<tr>
-			<th>Tiempo de inicio</th>
-		</tr>
-	</thead>
-{%for start_time in trip_start_times%}
-	<tr>
-		<td>{{start_time.start_time}}</td>
-	</tr>
-{%endfor%}
-</table>
-
-
 <h2>Tabla de horarios</h2>
 
-<table class="table table-bordered table-striped table-condensed">
+<table class="table table-bordered table-striped table-condensed nowrap">
 	<thead>
 		<tr>
 			<th>Stop Code</th>
@@ -48,7 +32,7 @@
 		{% set times = row[1:]%}
 		<tr>
 			<td><a href="/stops/{{stop.stop_id}}">{{stop.stop_code}}</a></td>
-			<td>{{stopSeq.stop_name or stop.stop_calle or "" + " " + stop.stop_numero}}</td>
+			<td>{{stop.stop_name}}</td>
 			<td>{{stopSeq.stop_time or ""}}</td>
 			{%for start_time in times%}
 				<td>{{start_time or ""}}</td>
@@ -56,6 +40,22 @@
 		</tr>
 	{%endfor%}
 	</tbody>
+</table>
+
+
+<h2>Horarios de salida</h2>
+
+<table class="table table-bordered table-striped table-condensed">
+	<thead>
+		<tr>
+			<th>Tiempo de inicio</th>
+		</tr>
+	</thead>
+{%for start_time in trip_start_times%}
+	<tr>
+		<td>{{start_time.start_time}}</td>
+	</tr>
+{%endfor%}
 </table>
 
 {% endblock%}
