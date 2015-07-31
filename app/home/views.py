@@ -17,8 +17,14 @@ from ..services.stop_times import StopTimesFactory
 @home.route('/')
 def index():
 	agencies = Agency.query.all()
-	routes = Route.query.order_by(Route.route_short_name).all()
-	return render_template('home/index.html', agencies=agencies, routes=routes)
+	results = db.session.query(Route, Agency)\
+		.join(Agency)\
+		.filter(Route.agency_id==Agency.agency_id)\
+		.order_by(Route.route_short_name)\
+		.all()
+	for route in results:
+		print route
+	return render_template('home/index.html', agencies=agencies, results=results)
 
 @home.route('/agency/<agency_id>')
 def get_agency(agency_id):
