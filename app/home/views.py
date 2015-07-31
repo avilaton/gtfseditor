@@ -46,6 +46,7 @@ def get_stop(stop_id):
 		.join(Trip, Route.route_id==Trip.route_id)\
 		.join(StopSeq, StopSeq.trip_id == Trip.trip_id)\
 		.filter(StopSeq.stop_id==stop_id)\
+		.order_by(Route.route_short_name)\
 		.all()
 
 	return render_template('home/stop.html', stop=stop, routes=routes)
