@@ -40,6 +40,31 @@
 	<dd>{{stop.stop_id}}</dd>
 </dl>
 
+
+<h2>Rutas</h2>
+<table class="table table-bordered table-striped table-condensed">
+	<thead>
+		<tr>
+			<th>Nombre corto</th>
+			<th>Activa</th>
+			<th>Tipo</th>
+			<th>Nombre largo</th>
+			<th>Descripción</th>
+			<th>Color</th>
+		</tr>
+	</thead>
+{%for route in routes%}
+	<tr>
+		<td><a href="/routes/{{route.route_id}}">{{route.route_short_name}}</a></td>
+		<td>{{"Si" if route.active else "No"}}</td>
+		<td>{{route.route_type or ""}}</td>
+		<td>{{route.route_long_name or ""}}</td>
+		<td>{{route.route_desc or ""}}</td>
+		<td>{{route.route_color or ""}}</td>
+	</tr>
+{%endfor%}
+</table>
+
 <div id="map" class="map"></div>
 
 
