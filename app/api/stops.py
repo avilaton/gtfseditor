@@ -83,14 +83,14 @@ def add_stop():
     return jsonify(item.to_json), 201, \
         {'Location': url_for('api.get_stop', id=item.stop_id, _external=True)}
 
-@api.route('/stops/<id>/seqs')
-@api.route('/stops/<id>/seqs.json')
-def get_stop_seqs(id):
+@api.route('/stops/<stop_id>/seqs')
+@api.route('/stops/<stop_id>/seqs.json')
+def get_stop_seqs(stop_id):
     items = db.session.query(Route.route_short_name, Trip.trip_headsign,
         Trip.card_code, Trip.direction_id).\
       join(Trip, Route.route_id==Trip.route_id).\
       join(StopSeq, StopSeq.trip_id == Trip.trip_id).\
-      filter(StopSeq.stop_id==id).all()
+      filter(StopSeq.stop_id==stop_id).all()
     body = [{
       'route_id':item[0],
       'trip_headsign':item[1],

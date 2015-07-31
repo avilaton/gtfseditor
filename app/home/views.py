@@ -17,8 +17,14 @@ from ..services.stop_times import StopTimesFactory
 @home.route('/')
 def index():
 	agencies = Agency.query.all()
-	routes = Route.query.order_by(Route.route_short_name).all()
-	return render_template('home/index.html', agencies=agencies, routes=routes)
+	results = db.session.query(Route, Agency)\
+		.join(Agency)\
+		.filter(Route.agency_id==Agency.agency_id)\
+		.order_by(Route.route_short_name)\
+		.all()
+	for route in results:
+		print route
+	return render_template('home/index.html', agencies=agencies, results=results)
 
 @home.route('/agency/<agency_id>')
 def get_agency(agency_id):
@@ -30,13 +36,19 @@ def get_agency(agency_id):
 def get_route(route_id):
 	route = Route.query.get_or_404(route_id)
 	trips = Trip.query.filter(Trip.route_id == route_id)\
-        .order_by(Trip.card_code, Trip.direction_id, Trip.trip_headsign).all()
+		.order_by(Trip.card_code, Trip.direction_id, Trip.trip_headsign).all()
 	return render_template('home/route.html', route=route, trips=trips)
 
 @home.route('/stops/<stop_id>')
 def get_stop(stop_id):
 	stop = Stop.query.get_or_404(stop_id)
-	return render_template('home/stop.html', stop=stop)
+	routes = db.session.query(Route)\
+		.join(Trip, Route.route_id==Trip.route_id)\
+		.join(StopSeq, StopSeq.trip_id == Trip.trip_id)\
+		.filter(StopSeq.stop_id==stop_id)\
+		.all()
+
+	return render_template('home/stop.html', stop=stop, routes=routes)
 
 @home.route('/routes/<route_id>/trips/<trip_id>')
 def get_trip(route_id, trip_id):
