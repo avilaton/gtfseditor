@@ -92,6 +92,7 @@ define([
           var trip_id = selectedTrip.get('trip_id');
           var shape_id = selectedTrip.get('shape_id');
 
+          this.shapeModel.clear();
           this.shapeModel.set('trip_id', trip_id, {silent: true});
           if (shape_id) {
             this.shapeModel.fetch({reset: true}).done(function () {
@@ -105,6 +106,10 @@ define([
           this.stopsSeqCollection.trip_id = trip_id;
           this.stopsSeqCollection.fetch({reset: true});
         }, this);
+
+        this.shapeModel.on('created', function () {
+          tripsSelector.collection.fetch();
+        });
 
         var calendarsSelectView = new CalendarsSelectView({
           el: '.calendars-select-view'
