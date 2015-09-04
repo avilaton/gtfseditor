@@ -16,9 +16,7 @@ from .errors import not_found
 import app.services.geojson as geojson
 @api.route('/shape/<shape_id>.geojson')
 def getShape(shape_id):
-  shape = db.session.query(Shape).filter(Shape.shape_id == shape_id)\
-    .order_by(Shape.shape_pt_sequence).all()
-  coords = [[pt.shape_pt_lon,pt.shape_pt_lat] for pt in shape]
+  coords = Shape.get_vertices_array(shape_id)
   feature = geojson.feature(id=shape_id, feature_type="LineString",
     coords=coords, properties={})
   return jsonify(geojson.featureCollection([feature]))
@@ -26,15 +24,14 @@ def getShape(shape_id):
 
 @api.route('/shapes/<shape_id>.json')
 def getShapeById(shape_id):
-  shape = db.session.query(Shape).filter_by(shape_id=shape_id)\
-    .order_by(Shape.shape_pt_sequence).all()
+  shape = Shape.get_vertices_array(shape_id)
 
   if not shape:
     abort(404, 'shape not found')
 
   return jsonify({
     "shape_id": shape_id,
-    "coordinates": [[pt.shape_pt_lon, pt.shape_pt_lat] for pt in shape]
+    "coordinates": shape
     })
 
 
@@ -99,17 +96,16 @@ def deleteShapeById(shape_id):
 
 @api.route('/trips/<trip_id>/shape.json')
 def getTripShape(trip_id):
-  trip_shape_id = db.session.query(Trip.shape_id).filter_by(trip_id=trip_id).subquery()
+  shape_id = db.session.query(Trip.shape_id).filter_by(trip_id=trip_id).scalar()
 
-  shape = db.session.query(Shape).filter(Shape.shape_id == trip_shape_id)\
-    .order_by(Shape.shape_pt_sequence).all()
+  shape_path = Shape.get_vertices_array(shape_id)
 
-  if not shape:
+  if not shape_path:
     abort(404, 'shape not found')
 
   return jsonify({
-    "shape_id": shape[0].shape_id,
-    "coordinates": [[pt.shape_pt_lon, pt.shape_pt_lat] for pt in shape]
+    "shape_id": shape_id,
+    "coordinates": shape_path
     })
 
 
