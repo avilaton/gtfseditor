@@ -341,19 +341,17 @@ def rename_mtm_stops():
 @manager.command
 def migrate_shapes():
   import json
+
   ShapePath.query.delete()
   db.session.commit()
-  rows = db.session.query(Shape.shape_id).distinct().all()
-  for row in rows:
-    print row.shape_id
+
+  for row in db.session.query(Shape.shape_id).distinct().all():
     path = Shape.get_vertices_array(row.shape_id)
     shape_path = ShapePath(shape_id=row.shape_id, shape_path=json.dumps(path))
-    print path
     db.session.add(shape_path)
     db.session.commit()
 
-  for row in ShapePath.query.all():
-    print row.shape_path
+  db.session.execute("SELECT setval('shape_paths_shape_id_seq', (SELECT MAX(shape_id) FROM shape_paths));")
 
 if __name__ == '__main__':
     manager.run()
