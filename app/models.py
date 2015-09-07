@@ -3,6 +3,7 @@
 
 from flask import current_app
 from . import db
+import json
 
 from flask.ext.login import UserMixin
 from werkzeug.security import generate_password_hash
@@ -153,6 +154,32 @@ class Shape(db.Model, Entity):
   shape_pt_lon = db.Column(db.Float(precision=53))
   shape_pt_time = db.Column(db.String(50))
   shape_pt_sequence = db.Column(db.Integer, primary_key=True)
+
+  @classmethod
+  def vertices(cls, shape_id):
+    return db.session.query(cls)\
+      .filter(cls.shape_id == shape_id)\
+      .order_by(cls.shape_pt_sequence)
+
+  @classmethod
+  def get_vertices_array(cls, shape_id):
+    return [[pt.shape_pt_lon, pt.shape_pt_lat] for pt in cls.vertices(shape_id).all()]
+
+
+class ShapePath(db.Model, Entity):
+  __tablename__ = 'shape_paths'
+  shape_id = db.Column(db.Integer, primary_key=True)
+  shape_path = db.Column(db.UnicodeText) # Stores json Array of Lon, Lat pairs
+
+  @property
+  def shape_path_array(self):
+    return json.loads(self.shape_path)
+
+  @property
+  def shape_path_obj_array(self):
+    shape_lat_lon = lambda pt: {'lon': pt[0], 'lat': pt[1]}
+    array = json.loads(self.shape_path)
+    return map(shape_lat_lon, array)
 
 
 class Stop(db.Model, Entity):

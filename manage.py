@@ -87,7 +87,7 @@ def make_shell_context():
     return dict(app=app, db=db, Route=Route, Trip=Trip, Sequence=Sequence,
       Shape=Shape, Stop=Stop, StopSeq=StopSeq, TripStartTime=TripStartTime,
       CalendarDate=CalendarDate, Calendar=Calendar, Agency=Agency,
-      FeedInfo=FeedInfo, Feed=Feed, User=User, Role=Role)
+      FeedInfo=FeedInfo, Feed=Feed, User=User, Role=Role, ShapePath=ShapePath)
 
 manager.add_command("shell", Shell(make_context=make_shell_context))
 manager.add_command('db', MigrateCommand)
@@ -336,6 +336,22 @@ def rename_mtm_stops():
     stop.stop_name = stop.stop_calle
     db.session.add(stop)
   db.session.commit()
+
+
+@manager.command
+def migrate_shapes():
+  import json
+
+  ShapePath.query.delete()
+  db.session.commit()
+
+  for row in db.session.query(Shape.shape_id).distinct().all():
+    path = Shape.get_vertices_array(row.shape_id)
+    shape_path = ShapePath(shape_id=row.shape_id, shape_path=json.dumps(path))
+    db.session.add(shape_path)
+    db.session.commit()
+
+  db.session.execute("SELECT setval('shape_paths_shape_id_seq', (SELECT MAX(shape_id) FROM shape_paths));")
 
 if __name__ == '__main__':
     manager.run()
