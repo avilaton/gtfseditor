@@ -21,7 +21,7 @@ class StopSequence(object):
       filter(StopSeq.trip_id == trip_id).\
       order_by(StopSeq.stop_sequence).all()
     self.stops = [item.Stop for item in self.stopsSequence]
-    self.shape = db.session.query(Shape).filter_by(shape_id=trip.shape_id).all()
+    self.shape = db.session.query(ShapePath).filter_by(shape_id=trip.shape_id).first()
 
   def offsetStops(self, offset=6.0):
     raise NotImplementedError
@@ -37,15 +37,12 @@ class StopSequence(object):
 
   def _computeAllSnaps(self):
     self.snaps = []
-    shape_lat_lon = lambda Shape: {
-      'lat': Shape.shape_pt_lat, 
-      'lon': Shape.shape_pt_lon}
     stop_lat_lon = lambda Stop: {
       'stop_id': Stop.stop_id,
       'lat': Stop.stop_lat,
       'lon': Stop.stop_lon}
 
-    shape_dicts = map(shape_lat_lon, self.shape)
+    shape_dicts = self.shape.shape_path_obj_array
 
     for item in self.stopsSequence:
       stop = item.Stop

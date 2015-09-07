@@ -232,10 +232,11 @@ class Feed(object):
     usedShapes = set([trip['shape_id'] for trip in self.schedule.GetTripList()])
 
     for shape_id in usedShapes:
-      shape_query = self.db.query(Shape).filter_by(shape_id=shape_id).order_by(Shape.shape_pt_sequence)
+      shape_obj = self.db.query(ShapePath).filter_by(shape_id=shape_id).first()
+      shape_path = shape_obj.shape_path_array
       shape = transitfeed.Shape(shape_id=shape_id)
-      for pt in shape_query.all():
-        shape.AddPoint(lat=pt.shape_pt_lat, lon=pt.shape_pt_lon)
+      for pt in shape_path:
+        shape.AddPoint(lon=pt[0], lat=pt[1])
       self.schedule.AddShapeObject(shape)
 
   def loadFrequencies(self):
