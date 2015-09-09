@@ -12,6 +12,7 @@ import transitfeed
 import StringIO
 import zipfile
 
+from app import db
 from ..models import *
 from ..services.stop_times import StopTimesFactory
 from ..services import defaults
