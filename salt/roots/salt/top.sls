@@ -1,0 +1,5 @@
+base:
+  '*':
+    - core
+    - virtualenv
+    - postgresql
