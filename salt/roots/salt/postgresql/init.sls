@@ -13,7 +13,7 @@ postgresql:
         - name: postgresql-9.4
         - installed
     service.running:
-        - enabled: True
+        - enable: True
         - watch:
             - file: /etc/postgresql/9.4/main/pg_hba.conf
 

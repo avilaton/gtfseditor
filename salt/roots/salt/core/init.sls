@@ -1,5 +1,5 @@
-include:
-- system
+# include:
+# - system
 
 packages:
     pkg.installed:

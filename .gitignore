@@ -1,3 +1,4 @@
+.vagrant
 .env
 .DS_Store
 *.pyc
