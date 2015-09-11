@@ -8,8 +8,29 @@ import json
 from flask.ext.login import UserMixin
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
+import sqlalchemy as sa
 from datetime import datetime
 from . import login_manager
+from sqlalchemy_continuum.plugins import FlaskPlugin
+from sqlalchemy_continuum import make_versioned
+from flask.globals import _app_ctx_stack, _request_ctx_stack
+
+def fetch_current_user_id():
+    from flask.ext.login import current_user
+
+    # Return None if we are outside of request context.
+    if _app_ctx_stack.top is None or _request_ctx_stack.top is None:
+        return
+    try:
+        return current_user.user_id
+    except AttributeError:
+        return
+
+flask_plugin = FlaskPlugin(current_user_id_factory=fetch_current_user_id)
+print flask_plugin
+
+make_versioned(plugins=[flask_plugin])
+
 
 class Entity(object):
   @property
@@ -41,6 +62,8 @@ class Entity(object):
 
 class Route(db.Model, Entity):
   __tablename__ = 'routes'
+  __versioned__ = {}
+
   route_id = db.Column(db.Integer, primary_key=True)
   agency_id = db.Column(db.Integer, db.ForeignKey("agency.agency_id"))
   route_short_name = db.Column(db.String(50))
@@ -270,7 +293,7 @@ class Role(db.Model):
 
 class User(db.Model):
     __tablename__ = "users"
-    id = db.Column('user_id',db.Integer , primary_key=True)
+    user_id = db.Column('user_id', db.Integer, primary_key=True)
     password_hash = db.Column(db.String(128))
     email = db.Column('email',db.String(50),unique=True , index=True)
     registered_on = db.Column(db.DateTime(), default=datetime.utcnow)
@@ -322,3 +345,5 @@ class User(db.Model):
 def load_user(id):
     return User.query.get(int(id))
 
+
+sa.orm.configure_mappers()
