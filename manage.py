@@ -99,6 +99,8 @@ def deploy():
 
     # migrate database to latest revision
     upgrade()
+    # create user roles
+    Role.insert_roles()
 
 @manager.command
 def buildfeed(validate=False, extract=False, upload=False):

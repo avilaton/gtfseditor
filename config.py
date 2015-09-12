@@ -44,7 +44,7 @@ class DevelopmentConfig(Config):
 class PostgresConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'postgres:///gtfs-dev'
+        'postgresql://gtfsuser:gtfspassword@localhost:5432/gtfsdb'
     # SQLALCHEMY_ECHO = True
 
     WTF_CSRF_ENABLED = False
