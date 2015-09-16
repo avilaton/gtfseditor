@@ -1,5 +1,5 @@
-# include:
-# - system
+include:
+    - core.system
 
 packages:
     pkg.installed:

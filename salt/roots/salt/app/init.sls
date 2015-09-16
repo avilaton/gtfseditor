@@ -22,6 +22,6 @@ db:
 /home/vagrant/.bashrc:
   file.append:
     - text:
-      - "export DATABASE_URI=\"postgresql://{{ pillar['dbuser'] }}:{{ pillar['dbpassword'] }}@localhost:5432/{{ pillar['dbname'] }}\""
       - "source venv/bin/activate"
       - "cd app/"
+      - "export DATABASE_URL=\"postgresql://{{ pillar['dbuser'] }}:{{ pillar['dbpassword'] }}@localhost:5432/{{ pillar['dbname'] }}\""
