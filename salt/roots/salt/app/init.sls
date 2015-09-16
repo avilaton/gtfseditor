@@ -25,3 +25,13 @@ db:
       - "source venv/bin/activate"
       - "cd app/"
       - "export DATABASE_URL=\"postgresql://{{ pillar['dbuser'] }}:{{ pillar['dbpassword'] }}@localhost:5432/{{ pillar['dbname'] }}\""
+
+sync_db:
+  cmd.run:
+    - user: vagrant
+    - group: vagrant
+    - cwd: /home/vagrant/app
+    - env: 
+        - 'DATABASE_URL': 'postgresql://{{ pillar['dbuser'] }}:{{ pillar['dbpassword'] }}@localhost:5432/{{ pillar['dbname'] }}'
+    - names:
+      - /home/vagrant/venv/bin/python manage.py deploy

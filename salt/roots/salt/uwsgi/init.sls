@@ -2,6 +2,14 @@
 
 # include:
 #   - dependencies
+python-pip:
+  pkg.installed
+
+uwsgi_package:
+  pip.installed:
+    - name: uwsgi
+    - require:
+      - pkg: python-pip
 
 /etc/uwsgi/apps-available/app_wsgi.ini:
   file:
