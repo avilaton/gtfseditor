@@ -31,7 +31,8 @@ sync_db:
     - user: vagrant
     - group: vagrant
     - cwd: /home/vagrant/app
-    - env: 
+    - env:
         - 'DATABASE_URL': 'postgresql://{{ pillar['dbuser'] }}:{{ pillar['dbpassword'] }}@localhost:5432/{{ pillar['dbname'] }}'
     - names:
       - /home/vagrant/venv/bin/python manage.py deploy
+      - sudo service uwsgi reload

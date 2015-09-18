@@ -16,9 +16,9 @@ nginx:
       - file: /etc/nginx/sites-available/app.conf
       - file: /etc/nginx/sites-enabled/app.conf
       - file: /etc/nginx/sites-enabled/default
-      - service: uwsgi
+      - service: uwsgi-service
     - watch:
-      - service: uwsgi
+      - service: uwsgi-service
 
 /etc/nginx/nginx.conf:
   file:

@@ -51,12 +51,16 @@ uwsgi_package:
         #     - pkg: python3-pip
         #     - cmd: install-requirements
 
-uwsgi:
-  service:
-    - running
-    - enable: True
-    - require:
-        - file: /etc/uwsgi/apps-enabled/app_wsgi.ini
-        - file: /etc/init/uwsgi.conf
-        - file: /var/log/uwsgi
-
+uwsgi-service:
+    cmd.wait:
+        - name: app.sync_db
+    service.running:
+        - name: uwsgi
+        - enable: True
+        - reload: True
+        - watch:
+            - file: /etc/uwsgi/apps-enabled/*
+        - require:
+            - file: /etc/uwsgi/apps-enabled/app_wsgi.ini
+            - file: /etc/init/uwsgi.conf
+            - file: /var/log/uwsgi
