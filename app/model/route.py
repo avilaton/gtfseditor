@@ -17,5 +17,4 @@ class Route(db.Model, Entity):
   build_type = db.Column(db.String(50))
   route_text_color = db.Column(db.String(50))
   active = db.Column(db.Boolean, default=False)
-  version = db.Column(db.String(10))
 
