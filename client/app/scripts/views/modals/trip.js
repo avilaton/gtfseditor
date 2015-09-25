@@ -38,8 +38,11 @@ define([
             }));
         },
 
-        save: function (event) {
-            this.model.save();
+        save: function () {
+            var self = this;
+            this.model.save().then(function () {
+                self.$el.modal('hide');
+            });
         },
 
         onEdit: function (event) {

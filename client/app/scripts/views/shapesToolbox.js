@@ -11,11 +11,11 @@ define([
       template: JST.shapesToolbox,
 
       events: {
-        'click button.create-shape': 'create',
-        'click button.reverseShape': 'reverseShape',
-        'click button.editShape': 'editShape',
-        'click button.delete': 'delete',
-        'click button.saveShape': 'save'
+        'click button.create-shape': 'onCreate',
+        'click button.reverseShape': 'onReverseShape',
+        'click button.editShape': 'onEditShape',
+        'click button.delete': 'onDelete',
+        'click button.saveShape': 'onSave'
       },
 
       initialize: function(options){
@@ -23,48 +23,80 @@ define([
 
         this.controls = options.controls;
         this.map = options.map;
-
-        this.render();
+        this.isEditing = false;
+        this.isCreating = false;
+        this.listenTo(this.model, 'change:shape_id', this.render, this);
       },
 
       render: function () {
-        this.$el.html(this.template());
+        this.$el.html(this.template({
+          isEditing: this.isEditing,
+          isCreating: this.isCreating,
+          shape_id: this.model.get('shape_id')
+        }));
       },
 
-      create: function () {
-        var $target = $(event.target);
+      startEditing: function () {
+        this.isEditing = true;
+        this.isCreating = false;
+        this.render();
+      },
+
+      stopEditing: function () {
+        this.isEditing = false;
+        this.isCreating = false;
+        this.render();
+      },
+
+      startCreating: function () {
+        this.isEditing = false;
+        this.isCreating = true;
+        this.render();
+      },
+
+      stopCreating: function () {
+        this.isEditing = false;
+        this.isCreating = false;
+        this.render();
+      },
+
+      onCreate: function () {
+        this.startCreating();
         if (!this.controls.drawShape.active) {
           this.map.activateControl('drawShape');
-          $target.addClass('btn-primary');
-        } else {
-          this.map.activateControl('selectStops');
-          this.map.updateShapeModel();
-          $target.removeClass('btn-primary');
-          this.model.sync('create', this.model);
         }
       },
 
-      reverseShape: function (event) {
+      onReverseShape: function () {
         this.model.reverse();
       },
 
-      save: function (event) {
-        this.model.sync('update', this.model);
+      onSave: function () {
+        var self = this;
+        this.map.activateControl('selectStops');
+        this.map.updateShapeModel();
+        if (this.isEditing) {
+          this.model.sync('update', this.model);
+          this.stopEditing();
+        } else if (this.isCreating) {
+          this.model.sync('create', this.model).then(function () {
+            self.model.trigger('created');
+            self.stopCreating();
+          });
+        };
       },
 
-      editShape: function () {
-        var $target = $(event.target);
+      onEditShape: function () {
+        this.startEditing();
         if (!this.controls.modifyShape.active) {
           this.map.activateControl('modifyShape');
-          $target.addClass('btn-primary');
         } else {
           this.map.activateControl('selectStops');
           this.map.updateShapeModel();
-          $target.removeClass('btn-primary');
         }
       },
 
-      delete: function () {
+      onDelete: function () {
         this.model.destroy();
       }
     });
