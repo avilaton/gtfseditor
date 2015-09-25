@@ -13,6 +13,7 @@ from app.models import *
 from app.services.feed import Feed
 from app.services.s3 import S3
 from app.services.sequence import StopSequence as Sequence
+from app.commands import BuildFeed
 
 from flask.ext.script import Manager
 from flask.ext.script import Shell
@@ -29,6 +30,7 @@ from app.tasks import celery_app
 
 manager = Manager(app)
 migrate = Migrate(app, db)
+manager.add_command('buildfeed', BuildFeed)
 
 
 def readCsv(Model, filename, mode=None):
@@ -100,12 +102,12 @@ def deploy():
     # migrate database to latest revision
     upgrade()
 
-@manager.command
-def buildfeed(validate=False, extract=False, upload=False):
-  """Build feed task"""
-  from app.tasks import buildFeed
+# @manager.command
+# def buildfeed(validate=False, extract=False, upload=False):
+#   """Build feed task"""
+#   from app.tasks import buildFeed
 
-  buildFeed.run(validate=validate, extract=extract, upload=upload)
+#   buildFeed.run(validate=validate, extract=extract, upload=upload)
 
 @manager.command
 def build(validate=False, extract=False, upload=False):
