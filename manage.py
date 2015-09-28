@@ -102,12 +102,6 @@ def deploy():
     # migrate database to latest revision
     upgrade()
 
-# @manager.command
-# def buildfeed(validate=False, extract=False, upload=False):
-#   """Build feed task"""
-#   from app.tasks import buildFeed
-
-#   buildFeed.run(validate=validate, extract=extract, upload=upload)
 
 @manager.command
 def build(validate=False, extract=False, upload=False):
