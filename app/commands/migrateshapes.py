@@ -1,6 +1,9 @@
 import json
 from flask.ext.script import Command
 
+from app import db
+from app.models import Shape
+from app.models import ShapePath
 
 class MigrateShapes(Command):
     """Migrates shapes to shape_paths"""
