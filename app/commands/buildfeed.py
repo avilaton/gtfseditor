@@ -9,9 +9,9 @@ class BuildFeed(Command):
 
     def get_options(self):
         return [
-            Option('-v', '--validate', dest='validate'),
-            Option('-e', '--extract', dest='extract'),
-            Option('-u', '--upload', dest='upload')
+            Option('-v', '--validate', dest='validate', action="store_true", default=False),
+            Option('-e', '--extract', dest='extract', action="store_true", default=False),
+            Option('-u', '--upload', dest='upload', action="store_true", default=False)
         ]
 
     def run(self, validate=False, extract=False, upload=False):
