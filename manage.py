@@ -13,6 +13,8 @@ from app.commands import BuildFeed
 from app.commands import MigrateShapes
 from app.commands import ExportCSV
 from app.commands import DumpData
+from app.commands import LoadData
+from app.commands import Deploy
 
 from flask.ext.script import Manager
 from flask.ext.script import Shell
@@ -38,6 +40,8 @@ migrate = Migrate(app, db)
 manager.add_command('buildfeed', BuildFeed)
 manager.add_command('export', ExportCSV)
 manager.add_command('dumpdata', DumpData)
+manager.add_command('loaddata', LoadData)
+manager.add_command('deploy', Deploy)
 manager.add_command('migrate_shapes', MigrateShapes)
 manager.add_command("shell", Shell(make_context=make_shell_context))
 manager.add_command('db', MigrateCommand)

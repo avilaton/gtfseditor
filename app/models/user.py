@@ -9,6 +9,7 @@ from datetime import datetime
 
 from app import db
 from app import login_manager
+from app.models import Role
 from .permission import Permission
 
 class User(db.Model):
