@@ -11,6 +11,7 @@ from app.services.feed import Feed
 
 from app.commands import BuildFeed
 from app.commands import MigrateShapes
+from app.commands import ExportCSV
 
 from flask.ext.script import Manager
 from flask.ext.script import Shell
@@ -34,6 +35,7 @@ manager = Manager(app)
 migrate = Migrate(app, db)
 
 manager.add_command('buildfeed', BuildFeed)
+manager.add_command('export', ExportCSV)
 manager.add_command('migrate_shapes', MigrateShapes)
 manager.add_command("shell", Shell(make_context=make_shell_context))
 manager.add_command('db', MigrateCommand)
