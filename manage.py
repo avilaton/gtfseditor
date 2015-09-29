@@ -12,6 +12,9 @@ from app.services.feed import Feed
 from app.commands import BuildFeed
 from app.commands import MigrateShapes
 from app.commands import ExportCSV
+from app.commands import DumpData
+from app.commands import LoadData
+from app.commands import Deploy
 
 from flask.ext.script import Manager
 from flask.ext.script import Shell
@@ -25,7 +28,7 @@ from app.tasks import celery_app
 
 
 def make_shell_context():
-    return dict(app=app, db=db, Route=Route, Trip=Trip, Sequence=Sequence,
+    return dict(app=app, db=db, Route=Route, Trip=Trip,
       Shape=Shape, Stop=Stop, StopSeq=StopSeq, TripStartTime=TripStartTime,
       CalendarDate=CalendarDate, Calendar=Calendar, Agency=Agency,
       FeedInfo=FeedInfo, Feed=Feed, User=User, Role=Role, ShapePath=ShapePath)
@@ -36,6 +39,9 @@ migrate = Migrate(app, db)
 
 manager.add_command('buildfeed', BuildFeed)
 manager.add_command('export', ExportCSV)
+manager.add_command('dumpdata', DumpData)
+manager.add_command('loaddata', LoadData)
+manager.add_command('deploy', Deploy)
 manager.add_command('migrate_shapes', MigrateShapes)
 manager.add_command("shell", Shell(make_context=make_shell_context))
 manager.add_command('db', MigrateCommand)

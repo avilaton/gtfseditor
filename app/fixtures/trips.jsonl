@@ -1,0 +1,4 @@
+{"route_id": 12, "card_code": null, "direction_id": "1", "trip_headsign": "Cno. San Carlos Km 4.5", "shape_id": 122, "active": true, "service_id": 0, "trip_id": 122, "trip_short_name": null}
+{"route_id": 11, "card_code": null, "direction_id": "0", "trip_headsign": "Santa Cecilia", "shape_id": 72, "active": true, "service_id": 0, "trip_id": 72, "trip_short_name": null}
+{"route_id": 12, "card_code": null, "direction_id": "0", "trip_headsign": "Los Boulevares", "shape_id": 74, "active": true, "service_id": 0, "trip_id": 74, "trip_short_name": null}
+{"route_id": 11, "card_code": null, "direction_id": "1", "trip_headsign": "Cerveceros", "shape_id": 102, "active": true, "service_id": 0, "trip_id": 102, "trip_short_name": null}
