@@ -1,5 +1,6 @@
 
 import os
+import logging
 import glob
 import inspect
 import json
@@ -9,6 +10,7 @@ from app.models import *
 from app.models.entity import Entity
 from app import db
 
+logger = logging.getLogger(__name__)
 
 class DumpData(Command):
     """Dumps fixture data"""
@@ -45,7 +47,7 @@ class LoadData(Command):
             Option('-m', '--modelname', dest='modelname')
         ]
 
-    def run(self, origin, modelname=None):
+    def run(self, origin='app/fixtures/', modelname=None):
         self.origin = origin
         Models = []
         if modelname:
@@ -63,15 +65,39 @@ class LoadData(Command):
         for Model in Models:
             self.import_model(Model)
 
+        # update sequences to their max values.
+        # https://wiki.postgresql.org/wiki/Fixing_Sequences
+        logger.info("Updating primary key sequences")
+        statements = db.session.execute("""
+                SELECT 'SELECT SETVAL(' ||
+                       quote_literal(quote_ident(PGT.schemaname) || '.' || quote_ident(S.relname)) ||
+                       ', COALESCE(MAX(' ||quote_ident(C.attname)|| '), 1) ) FROM ' ||
+                       quote_ident(PGT.schemaname)|| '.'||quote_ident(T.relname)|| ';'
+                FROM pg_class AS S,
+                     pg_depend AS D,
+                     pg_class AS T,
+                     pg_attribute AS C,
+                     pg_tables AS PGT
+                WHERE S.relkind = 'S'
+                    AND S.oid = D.objid
+                    AND D.refobjid = T.oid
+                    AND D.refobjid = C.attrelid
+                    AND D.refobjsubid = C.attnum
+                    AND T.relname = PGT.tablename
+                ORDER BY S.relname;""")
+        for stmt in statements:
+            db.session.execute(stmt[0])
+
     def import_model(self, Model):
-        print("importing Model: {0}".format(Model.__tablename__))
+        logger.info("importing Model: {0}".format(Model.__tablename__))
+
         with open(self.origin + Model.__tablename__ + '.jsonl','rb') as inputfile:
             for line in inputfile:
                 source = json.loads(line)
                 model = Model(**source)
                 db.session.add(model)
-            db.session.commit()
 
+        db.session.commit()
 
 Base = db.Model
 
