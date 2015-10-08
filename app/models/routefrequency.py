@@ -3,13 +3,21 @@
 
 from app import db
 from .entity import Entity
+from .base import Base
+from sqlalchemy import orm, Column, types, ForeignKey
 
 
-class RouteFrequency(db.Model, Entity):
-  __tablename__ = 'route_frequencies'
-  route_id = db.Column(db.Integer, db.ForeignKey("routes.route_id", onupdate="CASCADE"), primary_key=True)
-  service_id = db.Column(db.Integer, db.ForeignKey("calendar.service_id",
-    onupdate="CASCADE"), primary_key=True)
-  start_time = db.Column(db.String(50), primary_key=True)
-  end_time = db.Column(db.String(50), primary_key=True)
-  headway_secs = db.Column(db.Integer)
+
+class RouteFrequency(Base, Entity):
+
+    __tablename__ = 'route_frequencies'
+
+    route_id = Column(types.Integer,
+                      ForeignKey("routes.route_id", onupdate="CASCADE"),
+                      primary_key=True)
+    service_id = Column(types.Integer,
+                        ForeignKey("calendar.service_id", onupdate="CASCADE"),
+                        primary_key=True)
+    start_time = Column(types.String(50), primary_key=True)
+    end_time = Column(types.String(50), primary_key=True)
+    headway_secs = Column(types.Integer)

@@ -1,14 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from app import db
+from .base import Base
 from .entity import Entity
+from sqlalchemy import orm, Column, types, ForeignKey
 
 
-class Frequency(db.Model, Entity):
-  __tablename__ = 'frequencies'
-  trip_id = db.Column(db.Integer, db.ForeignKey("trips.trip_id", onupdate="CASCADE"), primary_key=True)
-  start_time = db.Column(db.String(50))
-  end_time = db.Column(db.String(50))
-  headway_secs = db.Column(db.Integer)
-  exact_times = db.Column(db.String(50))
+class Frequency(Base, Entity):
+
+    __tablename__ = 'frequencies'
+
+    trip_id = Column(types.Integer, ForeignKey("trips.trip_id", onupdate="CASCADE"),
+                     primary_key=True)
+    start_time = Column(types.String(50))
+    end_time = Column(types.String(50))
+    headway_secs = Column(types.Integer)
+    exact_times = Column(types.String(50))

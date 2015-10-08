@@ -1,15 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from app import db
+from .base import Base
 from .entity import Entity
+from sqlalchemy import orm, Column, types, ForeignKey
 
 
-class Agency(db.Model, Entity):
+class Agency(Base, Entity):
+
   __tablename__ = 'agency'
-  agency_id = db.Column(db.Integer, primary_key=True)
-  agency_name = db.Column(db.String(50))
-  agency_url = db.Column(db.String(50))
-  agency_timezone = db.Column(db.String(50))
-  agency_lang = db.Column(db.String(50))
-  agency_phone = db.Column(db.String(50))
+
+  agency_id = Column(types.Integer, primary_key=True)
+  agency_name = Column(types.String(50))
+  agency_url = Column(types.String(50))
+  agency_timezone = Column(types.String(50))
+  agency_lang = Column(types.String(50))
+  agency_phone = Column(types.String(50))
