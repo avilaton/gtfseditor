@@ -1,20 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from app import db
+from .base import Base
 from .entity import Entity
+from sqlalchemy import orm, Column, types, ForeignKey
 
 
-class Calendar(db.Model, Entity):
+class Calendar(Base, Entity):
+
   __tablename__ = 'calendar'
-  service_id = db.Column(db.Integer, primary_key=True)
-  service_name = db.Column(db.String(50))
-  start_date = db.Column(db.String(50))
-  end_date = db.Column(db.String(50))
-  monday = db.Column(db.String(50))
-  tuesday = db.Column(db.String(50))
-  wednesday = db.Column(db.String(50))
-  thursday = db.Column(db.String(50))
-  friday = db.Column(db.String(50))
-  saturday = db.Column(db.String(50))
-  sunday = db.Column(db.String(50))
+
+  service_id = Column(types.Integer, primary_key=True)
+  service_name = Column(types.String(50))
+  start_date = Column(types.String(50))
+  end_date = Column(types.String(50))
+  monday = Column(types.String(50))
+  tuesday = Column(types.String(50))
+  wednesday = Column(types.String(50))
+  thursday = Column(types.String(50))
+  friday = Column(types.String(50))
+  saturday = Column(types.String(50))
+  sunday = Column(types.String(50))

@@ -2,16 +2,21 @@
 # -*- coding: utf-8 -*-
 
 from app import db
+from .base import Base
+from .entity import Entity
 from .permission import Permission
+from sqlalchemy import orm, Column, types, ForeignKey
 
 
-class Role(db.Model):
+class Role(Base):
+
     __tablename__ = 'roles'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), unique=True)
-    default = db.Column(db.Boolean, default=False, index=True)
-    permissions = db.Column(db.Integer)
-    users = db.relationship('User', backref='role', lazy='dynamic')
+
+    id = Column(types.Integer, primary_key=True)
+    name = Column(types.String(64), unique=True)
+    default = Column(types.Boolean, default=False, index=True)
+    permissions = Column(types.Integer)
+    users = orm.relationship('User', backref='role', lazy='dynamic')
 
     @staticmethod
     def insert_roles():
