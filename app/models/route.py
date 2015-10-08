@@ -9,7 +9,7 @@ from sqlalchemy import orm, Column, types, ForeignKey
 class Route(Base, Entity):
   __tablename__ = 'routes'
   route_id = Column(types.Integer, primary_key=True)
-  agency_id = db.Column(types.Integer, ForeignKey("agency.agency_id",
+  agency_id = Column(types.Integer, ForeignKey("agency.agency_id",
                                                   onupdate="CASCADE",
                                                   ondelete="SET NULL"))
   route_short_name = Column(types.String(50))
