@@ -8,7 +8,13 @@ from .. import db
 from ..models import Agency
 from . import api
 from .decorators import admin_required
+from flask_jwt import jwt_required
 
+
+@api.route('/protected')
+@jwt_required()
+def protected():
+    return 'Success!'
 
 @api.route('/agency')
 @api.route('/agency/')

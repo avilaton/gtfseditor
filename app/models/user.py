@@ -11,6 +11,7 @@ from .base import Base
 from sqlalchemy import Column, types, ForeignKey
 
 from app import db
+from app import jwt
 from app import login_manager
 from app.models import Role
 from .permission import Permission
@@ -71,3 +72,13 @@ class User(Base):
 def load_user(id):
     return User.query.get(int(id))
 
+
+@jwt.authentication_handler
+def authenticate(username, password):
+    registered_user = User.query.filter_by(email=username).first()
+    if registered_user is not None and registered_user.verify_password(password):
+        return registered_user
+
+@jwt.user_handler
+def load_user(payload):
+    return User.query.get(payload['user_id'])
