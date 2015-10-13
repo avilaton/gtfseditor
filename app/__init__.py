@@ -8,6 +8,7 @@ from flask.ext.login import LoginManager
 from flask_mail import Mail
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.compress import Compress
+from flask_jwt import JWT
 from celery import Celery
 
 db = SQLAlchemy()
@@ -17,6 +18,7 @@ compress = Compress()
 bootstrap = Bootstrap()
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
+jwt = JWT()
 
 def create_app(config_name):
     app = Flask(__name__)
@@ -30,6 +32,7 @@ def create_app(config_name):
     login_manager.init_app(app)
     app.config['CORS_HEADERS'] = 'X-Requested-With, Content-Type'
     cors.init_app(app)
+    jwt.init_app(app)
 
     # if not app.debug and not app.testing and not app.config['SSL_DISABLE']:
     #     from flask.ext.sslify import SSLify
