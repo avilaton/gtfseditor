@@ -1,4 +1,7 @@
 import os
+from datetime import timedelta
+
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 
@@ -30,6 +33,8 @@ class Config:
     MODES = ["frequency", "initial-times", "full-spec"]
     BUILD_MODE = MODES[1]
     TMP_FOLDER = '.tmp/'
+
+    JWT_EXPIRATION_DELTA = timedelta(minutes=10)
 
     @staticmethod
     def init_app(app):

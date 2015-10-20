@@ -79,6 +79,6 @@ def authenticate(username, password):
     if registered_user is not None and registered_user.verify_password(password):
         return registered_user
 
-@jwt.user_handler
+@jwt.identity_handler
 def load_user(payload):
-    return User.query.get(payload['user_id'])
+    return User.query.get(payload['identity'])
