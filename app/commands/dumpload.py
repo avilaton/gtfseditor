@@ -59,7 +59,7 @@ class LoadData(Command):
 
             for table in db.metadata.sorted_tables:
                 Model = get_class_by_tablename(table.name)
-                if issubclass(Model, Entity) and Model is not Entity:
+                if Model and issubclass(Model, Entity) and Model is not Entity:
                     Models.append(Model)
 
         for Model in Models:
@@ -99,7 +99,7 @@ class LoadData(Command):
 
         db.session.commit()
 
-Base = db.Model
+from app.models.base import Base
 
 def get_class_by_tablename(tablename):
   """Return class reference mapped to table.

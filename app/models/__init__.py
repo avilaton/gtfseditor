@@ -1,7 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from sqlalchemy import orm
+
+from .base import Base
+from .entity import Entity
+from sqlalchemy import orm, Column, types, ForeignKey
+
 from sqlalchemy_continuum.plugins import FlaskPlugin
+from sqlalchemy_continuum.plugins import ActivityPlugin
 from sqlalchemy_continuum import make_versioned
 from flask.globals import _app_ctx_stack, _request_ctx_stack
 
@@ -19,8 +26,8 @@ def fetch_current_user_id():
 
 flask_plugin = FlaskPlugin(current_user_id_factory=fetch_current_user_id)
 
-
-make_versioned(plugins=[flask_plugin])
+activity_plugin = ActivityPlugin()
+make_versioned(plugins=[flask_plugin, activity_plugin])
 
 
 from app.models.agency import Agency
@@ -43,3 +50,6 @@ from app.models.transfer import Transfer
 from app.models.trip import Trip
 from app.models.tripstarttime import TripStartTime
 from app.models.user import User
+
+
+orm.configure_mappers()
