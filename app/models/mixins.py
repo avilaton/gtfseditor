@@ -4,7 +4,7 @@
 from app import db
 
 
-class Entity(object):
+class ToJSONMixin(object):
 
   @property
   def to_json(self):

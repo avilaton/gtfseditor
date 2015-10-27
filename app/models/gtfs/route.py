@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from .base import Base
-from .entity import Entity
+from ..base import Base
+from ..mixins import ToJSONMixin
 from sqlalchemy import orm, Column, types, ForeignKey
 
 
-class Route(Base, Entity):
+class Route(Base, ToJSONMixin):
 
     __tablename__ = 'routes'
     __versioned__ = {}

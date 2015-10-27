@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from .base import Base
-from .entity import Entity
+from ..base import Base
+from ..mixins import ToJSONMixin
 from sqlalchemy import orm, Column, types
 
 
-class Shape(Base, Entity):
+class Shape(Base, ToJSONMixin):
 
     __tablename__ = 'shapes'
 

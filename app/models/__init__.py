@@ -1,14 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from .base import Base
 from sqlalchemy import orm
 
-from .base import Base
-from .entity import Entity
-from sqlalchemy import orm, Column, types, ForeignKey
-
 from sqlalchemy_continuum.plugins import FlaskPlugin
-from sqlalchemy_continuum.plugins import ActivityPlugin
 from sqlalchemy_continuum import make_versioned
 from flask.globals import _app_ctx_stack, _request_ctx_stack
 
@@ -24,32 +20,32 @@ def fetch_current_user_id():
     except AttributeError:
         return
 
+
 flask_plugin = FlaskPlugin(current_user_id_factory=fetch_current_user_id)
+make_versioned(plugins=[flask_plugin])
 
-activity_plugin = ActivityPlugin()
-make_versioned(plugins=[flask_plugin, activity_plugin])
+from .permission import Permission
+from .role import Role
+from .user import User
 
-
-from app.models.agency import Agency
-from app.models.calendar import Calendar
-from app.models.calendardate import CalendarDate
-from app.models.fareattribute import FareAttribute
-from app.models.farerule import FareRule
-from app.models.feedinfo import FeedInfo
-from app.models.frequency import Frequency
-from app.models.permission import Permission
-from app.models.role import Role
-from app.models.route import Route
-from app.models.routefrequency import RouteFrequency
-from app.models.shape import Shape
-from app.models.shapepath import ShapePath
-from app.models.stop import Stop
-from app.models.stopseq import StopSeq
-from app.models.stoptime import StopTime
-from app.models.transfer import Transfer
-from app.models.trip import Trip
-from app.models.tripstarttime import TripStartTime
-from app.models.user import User
-
+from .gtfs.agency import Agency
+from .gtfs.calendar import Calendar
+from .gtfs.calendardate import CalendarDate
+from .gtfs.fareattribute import FareAttribute
+from .gtfs.farerule import FareRule
+from .gtfs.feedinfo import FeedInfo
+from .gtfs.frequency import Frequency
+from .gtfs.route import Route
+from .gtfs.routefrequency import RouteFrequency
+from .gtfs.shape import Shape
+from .gtfs.shapepath import ShapePath
+from .gtfs.stop import Stop
+from .gtfs.stopseq import StopSeq
+from .gtfs.stoptime import StopTime
+from .gtfs.transfer import Transfer
+from .gtfs.trip import Trip
+from .gtfs.tripstarttime import TripStartTime
 
 orm.configure_mappers()
+
+

@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 from app import db
-from .entity import Entity
-from .base import Base
+from ..mixins import ToJSONMixin
+from ..base import Base
 from sqlalchemy import orm, Column, types, ForeignKey
 
 
 
-class RouteFrequency(Base, Entity):
+class RouteFrequency(Base, ToJSONMixin):
 
     __tablename__ = 'route_frequencies'
 

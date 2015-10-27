@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from .base import Base
-from .entity import Entity
+from ..base import Base
+from ..mixins import ToJSONMixin
 from sqlalchemy import Column, types
 
 
-class Transfer(Base, Entity):
+class Transfer(Base, ToJSONMixin):
 
     __tablename__ = 'transfers'
 
