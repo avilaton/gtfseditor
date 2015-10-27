@@ -1,6 +1,28 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from sqlalchemy_continuum.plugins import FlaskPlugin
+from sqlalchemy_continuum import make_versioned
+from flask.globals import _app_ctx_stack, _request_ctx_stack
+
+
+def fetch_current_user_id():
+    from flask.ext.login import current_user
+
+    # Return None if we are outside of request context.
+    if _app_ctx_stack.top is None or _request_ctx_stack.top is None:
+        return
+    try:
+        return current_user.user_id
+    except AttributeError:
+        return
+
+flask_plugin = FlaskPlugin(current_user_id_factory=fetch_current_user_id)
+
+
+make_versioned(plugins=[flask_plugin])
+
+
 from app.models.agency import Agency
 from app.models.calendar import Calendar
 from app.models.calendardate import CalendarDate

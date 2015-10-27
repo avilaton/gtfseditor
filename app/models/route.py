@@ -9,6 +9,8 @@ from sqlalchemy import orm, Column, types, ForeignKey
 class Route(Base, Entity):
 
     __tablename__ = 'routes'
+    __versioned__ = {}
+
 
     route_id = Column(types.Integer, primary_key=True)
     agency_id = Column(types.Integer, ForeignKey("agency.agency_id",
