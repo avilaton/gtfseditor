@@ -11,11 +11,12 @@ define([
       template: JST.shapesToolbox,
 
       events: {
-        'click button.create-shape': 'onCreate',
+        'click button.create-shape': 'onClickCreate',
         'click button.reverseShape': 'onReverseShape',
         'click button.editShape': 'onEditShape',
-        'click button.delete': 'onDelete',
-        'click button.saveShape': 'onSave'
+        'click button.btn-delete-shape': 'onDelete',
+        'click button.saveShape': 'onSave',
+        'click button.btn-cancel': 'onCancel'
       },
 
       initialize: function(options){
@@ -45,6 +46,10 @@ define([
       stopEditing: function () {
         this.isEditing = false;
         this.isCreating = false;
+        if (this.controls.modifyShape.active) {
+          this.map.activateControl('selectStops');
+          this.map.updateShapesLayer();
+        }
         this.render();
       },
 
@@ -60,7 +65,7 @@ define([
         this.render();
       },
 
-      onCreate: function () {
+      onClickCreate: function () {
         this.startCreating();
         if (!this.controls.drawShape.active) {
           this.map.activateControl('drawShape');
@@ -97,7 +102,18 @@ define([
       },
 
       onDelete: function () {
-        this.model.destroy();
+        var self = this;
+        this.model.destroy().then(function (response) {
+          console.log('destroy response', response);
+          console.log(self.model);
+          self.model.clear();
+          self.map.updateShapesLayer();
+        });
+      },
+
+      onCancel: function () {
+        this.stopEditing();
+        this.stopCreating();
       }
     });
 

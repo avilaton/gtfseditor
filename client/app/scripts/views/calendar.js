@@ -4,9 +4,10 @@ define([
   'underscore',
   'backbone',
   'JST',
+  'models/calendar',
   'collections/calendars',
   'views/modals/calendar'
-  ], function (_, Backbone, JST, CalendarsCollection, Modal) {
+  ], function (_, Backbone, JST, CalendarModel, CalendarsCollection, Modal) {
     var View;
 
     View = Backbone.View.extend({
@@ -36,26 +37,31 @@ define([
       },
 
       onCreate: function (e) {
-        var model = this.collection.create();
+        e.preventDefault();
+        var model = new CalendarModel();
         var modal = new Modal({
           model: model,
+          collection: this.collection,
           el: $('#routeDataEditor')
         });
         modal.$el.modal('show');
       },
 
       onEdit: function (e) {
+        e.preventDefault();
         var $target = $(e.currentTarget),
           index = $target.closest('tr').data('index'),
           model = this.collection.at(index),
           modal = new Modal({
             model: model,
+            collection: this.collection,
             el: $('#routeDataEditor')
         });
         modal.$el.modal('show');
       },
 
       onRemove: function (e) {
+        e.preventDefault();
         var $target = $(e.currentTarget),
           index = $target.closest('tr').data('index'),
           model = this.collection.at(index);

@@ -112,6 +112,11 @@ FLASK_CONFIG=dev ./manage.py db upgrade
 Importing a DB dump
 -------------------
 
+To create a database dump use
+```
+pg_dump -Fc --no-acl --no-owner dbname > mydb.dump
+```
+
 To import a DB dump run
 ```
 pg_restore -d dbname dump.tar
