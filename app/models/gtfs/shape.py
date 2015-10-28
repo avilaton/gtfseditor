@@ -3,16 +3,13 @@
 
 from sqlalchemy import Column, types
 
+from .gtfsbase import GTFSBase
 from ..base import Base
-from ..mixins import ToJSONMixin
+from ..mixins import ToJSONMixin, Versioned
 
 
-class Shape(Base, ToJSONMixin):
-
+class Shape(Base, ToJSONMixin, Versioned, GTFSBase):
     __tablename__ = 'shapes'
-    __versioned__ = {
-        'base_classes': (Base, ToJSONMixin, )
-    }
 
     shape_id = Column(types.Integer, primary_key=True)
     shape_pt_lat = Column(types.Float(precision=53))

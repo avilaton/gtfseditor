@@ -3,16 +3,13 @@
 
 from sqlalchemy import Column, types
 
+from .gtfsbase import GTFSBase
 from ..base import Base
-from ..mixins import ToJSONMixin
+from ..mixins import ToJSONMixin, Versioned
 
 
-class FareAttribute(Base, ToJSONMixin):
-
+class FareAttribute(Base, ToJSONMixin, Versioned, GTFSBase):
     __tablename__ = 'fare_attributes'
-    __versioned__ = {
-        'base_classes': (Base, ToJSONMixin, )
-    }
 
     fare_id = Column(types.Integer, primary_key=True)
     price = Column(types.String(50))

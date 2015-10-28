@@ -3,16 +3,13 @@
 
 from sqlalchemy import Column, types
 
+from .gtfsbase import GTFSBase
 from ..base import Base
-from ..mixins import ToJSONMixin
+from ..mixins import ToJSONMixin, Versioned
 
 
-class FeedInfo(Base, ToJSONMixin):
-
+class FeedInfo(Base, ToJSONMixin, Versioned, GTFSBase):
     __tablename__ = 'feed_info'
-    __versioned__ = {
-        'base_classes': (Base, ToJSONMixin, )
-    }
 
     feed_publisher_name = Column(types.String(50), primary_key=True)
     feed_publisher_url = Column(types.String(50))

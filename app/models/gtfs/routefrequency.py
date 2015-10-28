@@ -3,16 +3,13 @@
 
 from sqlalchemy import Column, types, ForeignKey
 
-from ..mixins import ToJSONMixin
+from .gtfsbase import GTFSBase
 from ..base import Base
+from ..mixins import ToJSONMixin, Versioned
 
 
-class RouteFrequency(Base, ToJSONMixin):
-
+class RouteFrequency(Base, ToJSONMixin, Versioned, GTFSBase):
     __tablename__ = 'route_frequencies'
-    __versioned__ = {
-        'base_classes': (Base, ToJSONMixin, )
-    }
 
     route_id = Column(types.Integer,
                       ForeignKey("routes.route_id", onupdate="CASCADE"),

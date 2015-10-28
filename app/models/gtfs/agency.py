@@ -3,16 +3,13 @@
 
 from sqlalchemy import Column, types
 
+from .gtfsbase import GTFSBase
 from ..base import Base
-from ..mixins import ToJSONMixin
+from ..mixins import ToJSONMixin, Versioned
 
 
-class Agency(Base, ToJSONMixin):
-
+class Agency(Base, ToJSONMixin, Versioned, GTFSBase):
     __tablename__ = 'agency'
-    __versioned__ = {
-        'base_classes': (Base, ToJSONMixin, )
-    }
 
     agency_id = Column(types.Integer, primary_key=True)
     agency_name = Column(types.String(50))

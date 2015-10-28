@@ -1,4 +1,5 @@
 
+from .gtfsbase import GTFSBase
 from .agency import Agency
 from .calendar import Calendar
 from .calendardate import CalendarDate

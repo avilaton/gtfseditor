@@ -3,6 +3,8 @@
 
 from sqlalchemy import types
 
+from .base import Base
+
 
 class ToJSONMixin(object):
 
@@ -31,3 +33,11 @@ class ToJSONMixin(object):
             info.extend([col.name, '=', unicode(attr), ' '])
         info.append('>')
         return ('').join(info)
+
+
+
+
+class Versioned(object):
+    __versioned__ = {
+        'base_classes': (Base, ToJSONMixin, )
+    }

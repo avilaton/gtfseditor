@@ -3,16 +3,13 @@
 
 from sqlalchemy import Column, types, ForeignKey
 
+from .gtfsbase import GTFSBase
 from ..base import Base
-from ..mixins import ToJSONMixin
+from ..mixins import ToJSONMixin, Versioned
 
 
-class CalendarDate(Base, ToJSONMixin):
-
+class CalendarDate(Base, ToJSONMixin, Versioned, GTFSBase):
     __tablename__ = 'calendar_dates'
-    __versioned__ = {
-        'base_classes': (Base, ToJSONMixin, )
-    }
 
     service_id = Column(types.Integer,
                         ForeignKey("calendar.service_id",

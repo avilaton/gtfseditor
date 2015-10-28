@@ -3,16 +3,13 @@
 
 from sqlalchemy import Column, types, ForeignKey
 
+from .gtfsbase import GTFSBase
 from ..base import Base
-from ..mixins import ToJSONMixin
+from ..mixins import ToJSONMixin, Versioned
 
 
-class StopTime(Base, ToJSONMixin):
-
+class StopTime(Base, ToJSONMixin, Versioned, GTFSBase):
     __tablename__ = 'stop_times'
-    __versioned__ = {
-        'base_classes': (Base, ToJSONMixin, )
-    }
 
     trip_id = Column(types.Integer,
                      ForeignKey("trips.trip_id", onupdate="CASCADE"),

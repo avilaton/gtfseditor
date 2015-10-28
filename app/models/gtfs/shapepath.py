@@ -4,16 +4,13 @@
 import json
 from sqlalchemy import Column, types
 
+from .gtfsbase import GTFSBase
 from ..base import Base
-from ..mixins import ToJSONMixin
+from ..mixins import ToJSONMixin, Versioned
 
 
-class ShapePath(Base, ToJSONMixin):
-
+class ShapePath(Base, ToJSONMixin, Versioned, GTFSBase):
     __tablename__ = 'shape_paths'
-    __versioned__ = {
-        'base_classes': (Base, ToJSONMixin, )
-    }
 
     shape_id = Column(types.Integer, primary_key=True)
     shape_path = Column(types.UnicodeText) # Stores json Array of Lon, Lat pairs

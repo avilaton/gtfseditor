@@ -3,16 +3,13 @@
 
 from sqlalchemy import Column, types, ForeignKey
 
+from .gtfsbase import GTFSBase
 from ..base import Base
-from ..mixins import ToJSONMixin
+from ..mixins import ToJSONMixin, Versioned
 
 
-class Trip(Base, ToJSONMixin):
-
+class Trip(Base, ToJSONMixin, Versioned, GTFSBase):
     __tablename__ = 'trips'
-    __versioned__ = {
-        'base_classes': (Base, ToJSONMixin, )
-    }
 
     trip_id = Column(types.Integer, primary_key=True)
     route_id = Column(types.Integer, ForeignKey("routes.route_id"))
