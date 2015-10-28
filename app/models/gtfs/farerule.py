@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from sqlalchemy import Column, types
+
 from ..base import Base
 from ..mixins import ToJSONMixin
-from sqlalchemy import orm, Column, types, ForeignKey
 
 
 class FareRule(Base, ToJSONMixin):
 
     __tablename__ = 'fare_rules'
+    __versioned__ = {}
 
     fare_id = Column(types.Integer, primary_key=True)
     route_id = Column(types.Integer)

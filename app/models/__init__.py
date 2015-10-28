@@ -5,7 +5,7 @@ from .base import Base
 from sqlalchemy import orm
 
 from sqlalchemy_continuum.plugins import FlaskPlugin
-from sqlalchemy_continuum import make_versioned
+from sqlalchemy_continuum import make_versioned, version_class
 from flask.globals import _app_ctx_stack, _request_ctx_stack
 
 
@@ -45,6 +45,7 @@ from .gtfs.stoptime import StopTime
 from .gtfs.transfer import Transfer
 from .gtfs.trip import Trip
 from .gtfs.tripstarttime import TripStartTime
+
 
 orm.configure_mappers()
 

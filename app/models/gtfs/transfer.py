@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from sqlalchemy import Column, types
+
 from ..base import Base
 from ..mixins import ToJSONMixin
-from sqlalchemy import Column, types
 
 
 class Transfer(Base, ToJSONMixin):
 
     __tablename__ = 'transfers'
+    __versioned__ = {}
 
     from_stop_id = Column(types.Integer, primary_key=True)
     to_stop_id = Column(types.Integer)

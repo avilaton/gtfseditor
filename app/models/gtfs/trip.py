@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from sqlalchemy import Column, types, ForeignKey
+
 from ..base import Base
 from ..mixins import ToJSONMixin
-from sqlalchemy import orm, Column, types, ForeignKey
 
 
 class Trip(Base, ToJSONMixin):
 
     __tablename__ = 'trips'
+    __versioned__ = {}
 
     trip_id = Column(types.Integer, primary_key=True)
     route_id = Column(types.Integer, ForeignKey("routes.route_id"))

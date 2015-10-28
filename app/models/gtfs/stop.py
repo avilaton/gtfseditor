@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from sqlalchemy import Column, types
+
 from ..base import Base
 from ..mixins import ToJSONMixin
-from sqlalchemy import Column, types
 
 
 class Stop(Base, ToJSONMixin):
 
     __tablename__ = 'stops'
+    __versioned__ = {}
 
     stop_id = Column(types.Integer, primary_key=True)
     stop_code = Column(types.String(50))

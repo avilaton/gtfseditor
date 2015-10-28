@@ -1,16 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from app import db
+from sqlalchemy import Column, types, ForeignKey
+
 from ..mixins import ToJSONMixin
 from ..base import Base
-from sqlalchemy import orm, Column, types, ForeignKey
 
 
 
 class RouteFrequency(Base, ToJSONMixin):
 
     __tablename__ = 'route_frequencies'
+    __versioned__ = {}
 
     route_id = Column(types.Integer,
                       ForeignKey("routes.route_id", onupdate="CASCADE"),

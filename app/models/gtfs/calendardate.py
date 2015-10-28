@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from sqlalchemy import Column, types, ForeignKey
+
 from ..base import Base
 from ..mixins import ToJSONMixin
-from sqlalchemy import orm, Column, types, ForeignKey
 
 
 class CalendarDate(Base, ToJSONMixin):
 
     __tablename__ = 'calendar_dates'
+    __versioned__ = {}
 
     service_id = Column(types.Integer,
                         ForeignKey("calendar.service_id",

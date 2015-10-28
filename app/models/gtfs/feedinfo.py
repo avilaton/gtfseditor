@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from sqlalchemy import Column, types
+
 from ..base import Base
 from ..mixins import ToJSONMixin
-from sqlalchemy import orm, Column, types, ForeignKey
 
 
 class FeedInfo(Base, ToJSONMixin):
 
     __tablename__ = 'feed_info'
+    __versioned__ = {}
 
     feed_publisher_name = Column(types.String(50), primary_key=True)
     feed_publisher_url = Column(types.String(50))

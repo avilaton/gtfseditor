@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from sqlalchemy import Column, types, ForeignKey
+
 from ..base import Base
 from ..mixins import ToJSONMixin
-from sqlalchemy import orm, Column, types, ForeignKey
 
 
 class StopSeq(Base, ToJSONMixin):
 
     __tablename__ = 'stop_seq'
+    __versioned__ = {}
 
     trip_id = Column(types.Integer,
                      ForeignKey("trips.trip_id", onupdate="CASCADE"),

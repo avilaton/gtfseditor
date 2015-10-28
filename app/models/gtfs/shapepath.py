@@ -2,14 +2,16 @@
 # -*- coding: utf-8 -*-
 
 import json
+from sqlalchemy import Column, types
+
 from ..base import Base
 from ..mixins import ToJSONMixin
-from sqlalchemy import orm, Column, types, ForeignKey
 
 
 class ShapePath(Base, ToJSONMixin):
 
     __tablename__ = 'shape_paths'
+    __versioned__ = {}
 
     shape_id = Column(types.Integer, primary_key=True)
     shape_path = Column(types.UnicodeText) # Stores json Array of Lon, Lat pairs
