@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from app import db
+from sqlalchemy import types
 
 
 class ToJSONMixin(object):
@@ -12,11 +12,11 @@ class ToJSONMixin(object):
         for column in self.__table__.columns:
             attr = getattr(self, column.name)
             if attr is not None:
-                if isinstance(column.type, db.Float):
+                if isinstance(column.type, types.Float):
                     d[column.name] = float(attr)
-                elif isinstance(column.type, db.Boolean):
+                elif isinstance(column.type, types.Boolean):
                     d[column.name] = attr
-                elif isinstance(column.type, db.Integer):
+                elif isinstance(column.type, types.Integer):
                     d[column.name] = int(attr)
                 else:
                     d[column.name] = unicode(attr)
