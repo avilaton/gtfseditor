@@ -10,7 +10,9 @@ from ..mixins import ToJSONMixin
 class CalendarDate(Base, ToJSONMixin):
 
     __tablename__ = 'calendar_dates'
-    __versioned__ = {}
+    __versioned__ = {
+        'base_classes': (Base, ToJSONMixin, )
+    }
 
     service_id = Column(types.Integer,
                         ForeignKey("calendar.service_id",

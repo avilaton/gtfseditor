@@ -10,7 +10,9 @@ from ..mixins import ToJSONMixin
 class Transfer(Base, ToJSONMixin):
 
     __tablename__ = 'transfers'
-    __versioned__ = {}
+    __versioned__ = {
+        'base_classes': (Base, ToJSONMixin, )
+    }
 
     from_stop_id = Column(types.Integer, primary_key=True)
     to_stop_id = Column(types.Integer)

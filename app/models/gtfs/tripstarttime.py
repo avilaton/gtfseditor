@@ -10,7 +10,9 @@ from ..mixins import ToJSONMixin
 class TripStartTime(Base, ToJSONMixin):
 
     __tablename__ = 'trips_start_times'
-    __versioned__ = {}
+    __versioned__ = {
+        'base_classes': (Base, ToJSONMixin, )
+    }
 
     trip_id = Column(types.Integer,
                      ForeignKey("trips.trip_id", onupdate="CASCADE"),

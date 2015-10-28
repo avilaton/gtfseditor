@@ -10,7 +10,9 @@ from ..mixins import ToJSONMixin
 class Stop(Base, ToJSONMixin):
 
     __tablename__ = 'stops'
-    __versioned__ = {}
+    __versioned__ = {
+        'base_classes': (Base, ToJSONMixin, )
+    }
 
     stop_id = Column(types.Integer, primary_key=True)
     stop_code = Column(types.String(50))

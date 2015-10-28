@@ -28,24 +28,7 @@ from .permission import Permission
 from .role import Role
 from .user import User
 
-from .gtfs.agency import Agency
-from .gtfs.calendar import Calendar
-from .gtfs.calendardate import CalendarDate
-from .gtfs.fareattribute import FareAttribute
-from .gtfs.farerule import FareRule
-from .gtfs.feedinfo import FeedInfo
-from .gtfs.frequency import Frequency
-from .gtfs.route import Route
-from .gtfs.routefrequency import RouteFrequency
-from .gtfs.shape import Shape
-from .gtfs.shapepath import ShapePath
-from .gtfs.stop import Stop
-from .gtfs.stopseq import StopSeq
-from .gtfs.stoptime import StopTime
-from .gtfs.transfer import Transfer
-from .gtfs.trip import Trip
-from .gtfs.tripstarttime import TripStartTime
-
+from .gtfs import *
 
 orm.configure_mappers()
 

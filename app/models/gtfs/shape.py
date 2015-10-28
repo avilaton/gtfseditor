@@ -10,7 +10,9 @@ from ..mixins import ToJSONMixin
 class Shape(Base, ToJSONMixin):
 
     __tablename__ = 'shapes'
-    __versioned__ = {}
+    __versioned__ = {
+        'base_classes': (Base, ToJSONMixin, )
+    }
 
     shape_id = Column(types.Integer, primary_key=True)
     shape_pt_lat = Column(types.Float(precision=53))

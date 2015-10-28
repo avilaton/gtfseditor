@@ -10,7 +10,9 @@ from ..mixins import ToJSONMixin
 class Route(Base, ToJSONMixin):
 
     __tablename__ = 'routes'
-    __versioned__ = {}
+    __versioned__ = {
+        'base_classes': (Base, ToJSONMixin, )
+    }
 
     route_id = Column(types.Integer, primary_key=True)
     agency_id = Column(types.Integer, ForeignKey("agency.agency_id",

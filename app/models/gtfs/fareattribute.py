@@ -10,7 +10,9 @@ from ..mixins import ToJSONMixin
 class FareAttribute(Base, ToJSONMixin):
 
     __tablename__ = 'fare_attributes'
-    __versioned__ = {}
+    __versioned__ = {
+        'base_classes': (Base, ToJSONMixin, )
+    }
 
     fare_id = Column(types.Integer, primary_key=True)
     price = Column(types.String(50))

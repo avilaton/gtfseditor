@@ -11,7 +11,9 @@ from ..mixins import ToJSONMixin
 class ShapePath(Base, ToJSONMixin):
 
     __tablename__ = 'shape_paths'
-    __versioned__ = {}
+    __versioned__ = {
+        'base_classes': (Base, ToJSONMixin, )
+    }
 
     shape_id = Column(types.Integer, primary_key=True)
     shape_path = Column(types.UnicodeText) # Stores json Array of Lon, Lat pairs

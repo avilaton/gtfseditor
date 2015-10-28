@@ -10,7 +10,9 @@ from ..mixins import ToJSONMixin
 class StopSeq(Base, ToJSONMixin):
 
     __tablename__ = 'stop_seq'
-    __versioned__ = {}
+    __versioned__ = {
+        'base_classes': (Base, ToJSONMixin, )
+    }
 
     trip_id = Column(types.Integer,
                      ForeignKey("trips.trip_id", onupdate="CASCADE"),

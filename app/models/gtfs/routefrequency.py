@@ -7,11 +7,12 @@ from ..mixins import ToJSONMixin
 from ..base import Base
 
 
-
 class RouteFrequency(Base, ToJSONMixin):
 
     __tablename__ = 'route_frequencies'
-    __versioned__ = {}
+    __versioned__ = {
+        'base_classes': (Base, ToJSONMixin, )
+    }
 
     route_id = Column(types.Integer,
                       ForeignKey("routes.route_id", onupdate="CASCADE"),

@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from sqlalchemy import Column, types
-from sqlalchemy_continuum import version_class
 
 from ..base import Base
 from ..mixins import ToJSONMixin
@@ -11,7 +10,9 @@ from ..mixins import ToJSONMixin
 class Agency(Base, ToJSONMixin):
 
     __tablename__ = 'agency'
-    __versioned__ = {}
+    __versioned__ = {
+        'base_classes': (Base, ToJSONMixin, )
+    }
 
     agency_id = Column(types.Integer, primary_key=True)
     agency_name = Column(types.String(50))
@@ -20,5 +21,3 @@ class Agency(Base, ToJSONMixin):
     agency_lang = Column(types.String(50))
     agency_phone = Column(types.String(50))
 
-
-AgencyVersion = version_class(Agency)
