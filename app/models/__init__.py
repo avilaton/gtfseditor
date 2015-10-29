@@ -32,4 +32,5 @@ from .gtfs import *
 
 orm.configure_mappers()
 
-
+from .tag import Tag
+from .tag import AgencyTag
