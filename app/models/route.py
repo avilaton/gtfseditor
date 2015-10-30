@@ -1,22 +1,24 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from app import db
+from .base import Base
 from .entity import Entity
+from sqlalchemy import orm, Column, types, ForeignKey
 
 
-class Route(db.Model, Entity):
-  __tablename__ = 'routes'
-  route_id = db.Column(db.Integer, primary_key=True)
-  agency_id = db.Column(db.Integer, db.ForeignKey("agency.agency_id",
+class Route(Base, Entity):
+
+    __tablename__ = 'routes'
+
+    route_id = Column(types.Integer, primary_key=True)
+    agency_id = Column(types.Integer, ForeignKey("agency.agency_id",
                                                   onupdate="CASCADE",
                                                   ondelete="SET NULL"))
-  route_short_name = db.Column(db.String(50))
-  route_long_name = db.Column(db.String(150))
-  route_desc = db.Column(db.String(150))
-  route_type = db.Column(db.String(50))
-  route_color = db.Column(db.String(50))
-  build_type = db.Column(db.String(50))
-  route_text_color = db.Column(db.String(50))
-  active = db.Column(db.Boolean, default=False)
-
+    route_short_name = Column(types.String(50))
+    route_long_name = Column(types.String(150))
+    route_desc = Column(types.String(150))
+    route_type = Column(types.String(50))
+    route_color = Column(types.String(50))
+    build_type = Column(types.String(50))
+    route_text_color = Column(types.String(50))
+    active = Column(types.Boolean, default=False)

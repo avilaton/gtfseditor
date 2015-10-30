@@ -3,20 +3,18 @@
   <div class="btn-group btn-group-sm">
     {{#if shape_id}}
       {{#if isEditing}}
-        <button class="btn btn-default saveShape">
-          <i class="glyphicon glyphicon-ok"></i> Save
-        </button>
         <button class="btn btn-default reverseShape">
           <i class="glyphicon glyphicon-refresh"></i> Reverse
         </button>
-        <button class="btn btn-default delete">
-          <i class="glyphicon glyphicon-trash"></i> Cancel
+        <button class="btn btn-default saveShape">
+          <i class="glyphicon glyphicon-ok"></i> Save
         </button>
+        <button class="btn btn-default btn-cancel"> Cancel</button>
       {{else}}
         <button class="btn btn-default editShape">
           <i class="glyphicon glyphicon-pencil"></i> Edit
         </button>
-        <button class="btn btn-default delete">
+        <button class="btn btn-default btn-delete-shape">
           <i class="glyphicon glyphicon-trash"></i> Delete
         </button>
       {{/if}}
@@ -25,9 +23,7 @@
         <button class="btn btn-default saveShape">
           <i class="glyphicon glyphicon-ok"></i> Save
         </button>
-        <button class="btn btn-default delete">
-          <i class="glyphicon glyphicon-trash"></i> Cancel
-        </button>
+        <button class="btn btn-default btn-cancel"> Cancel</button>
       {{else}}
         <button class="btn btn-default create-shape">
           <i class="glyphicon glyphicon-plus"></i> Create

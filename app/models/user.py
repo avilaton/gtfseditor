@@ -7,18 +7,23 @@ from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 from datetime import datetime
 
+from .base import Base
+from sqlalchemy import Column, types, ForeignKey
+
 from app import db
 from app import login_manager
 from app.models import Role
 from .permission import Permission
 
-class User(db.Model):
+class User(Base):
+
     __tablename__ = "users"
-    id = db.Column('user_id',db.Integer , primary_key=True)
-    password_hash = db.Column(db.String(128))
-    email = db.Column('email',db.String(50),unique=True , index=True)
-    registered_on = db.Column(db.DateTime(), default=datetime.utcnow)
-    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+
+    id = Column('user_id', types.Integer , primary_key=True)
+    password_hash = Column(types.String(128))
+    email = Column('email',types.String(50),unique=True , index=True)
+    registered_on = Column(types.DateTime(), default=datetime.utcnow)
+    role_id = Column(types.Integer, ForeignKey('roles.id'))
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)

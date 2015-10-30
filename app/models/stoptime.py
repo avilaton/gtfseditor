@@ -1,16 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from app import db
+from .base import Base
 from .entity import Entity
+from sqlalchemy import orm, Column, types, ForeignKey
 
 
-class StopTime(db.Model, Entity):
-  __tablename__ = 'stop_times'
-  trip_id = db.Column(db.Integer, db.ForeignKey("trips.trip_id", onupdate="CASCADE"), primary_key=True)
-  stop_id = db.Column(db.Integer, db.ForeignKey("stops.stop_id",
-    onupdate="CASCADE", ondelete="CASCADE"), primary_key=True)
-  stop_sequence = db.Column(db.Integer, primary_key=True)
-  arrival_time = db.Column(db.String(50))
-  departure_time = db.Column(db.String(50))
-  shape_dist_traveled = db.Column(db.Float(precision=53))
+
+class StopTime(Base, Entity):
+
+    __tablename__ = 'stop_times'
+
+    trip_id = Column(types.Integer,
+                     ForeignKey("trips.trip_id", onupdate="CASCADE"),
+                     primary_key=True)
+    stop_id = Column(types.Integer,
+                     ForeignKey("stops.stop_id", onupdate="CASCADE", ondelete="CASCADE"),
+                     primary_key=True)
+    stop_sequence = Column(types.Integer, primary_key=True)
+    arrival_time = Column(types.String(50))
+    departure_time = Column(types.String(50))
+    shape_dist_traveled = Column(types.Float(precision=53))
