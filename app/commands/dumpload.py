@@ -7,7 +7,7 @@ import json
 from flask.ext.script import Command, Option
 
 from app.models import *
-from app.models.entity import Entity
+from app.models.base import Base
 from app import db
 
 logger = logging.getLogger(__name__)
@@ -17,7 +17,7 @@ class DumpData(Command):
 
     def get_options(self):
         return [
-            Option('-d', '--destination', dest='destination', default='./'),
+            Option('-d', '--destination', dest='destination', default='app/fixtures/'),
             Option('-m', '--modelname', dest='modelname')
         ]
 
@@ -30,10 +30,11 @@ class DumpData(Command):
         else:
             for item in globals().values():
                 if inspect.isclass(item):
-                    if issubclass(item, Entity) and item is not Entity:
+                    if issubclass(item, GTFSBase) and item is not GTFSBase:
                         self.export_model(item)
 
     def export_model(self, Model):
+        logger.info("exporting Model: {0}".format(Model.__tablename__))
         with open(self.destination + Model.__tablename__ + '.jsonl','wb') as output:
             for row in db.session.query(Model).all():
                 output.write(json.dumps(row.to_json) + '\n')
@@ -59,7 +60,7 @@ class LoadData(Command):
 
             for table in db.metadata.sorted_tables:
                 Model = get_class_by_tablename(table.name)
-                if issubclass(Model, Entity) and Model is not Entity:
+                if Model and issubclass(Model, GTFSBase) and Model is not GTFSBase:
                     Models.append(Model)
 
         for Model in Models:
@@ -99,7 +100,6 @@ class LoadData(Command):
 
         db.session.commit()
 
-Base = db.Model
 
 def get_class_by_tablename(tablename):
   """Return class reference mapped to table.

@@ -1,15 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from app import db
-from .entity import Entity
-from .base import Base
-from sqlalchemy import orm, Column, types, ForeignKey
+from sqlalchemy import Column, types, ForeignKey
+
+from .gtfsbase import GTFSBase
+from ..base import Base
+from ..mixins import ToJSONMixin, Versioned
 
 
-
-class RouteFrequency(Base, Entity):
-
+class RouteFrequency(Base, ToJSONMixin, Versioned, GTFSBase):
     __tablename__ = 'route_frequencies'
 
     route_id = Column(types.Integer,
