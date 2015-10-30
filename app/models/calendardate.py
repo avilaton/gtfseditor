@@ -1,13 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from app import db
+from .base import Base
 from .entity import Entity
+from sqlalchemy import orm, Column, types, ForeignKey
 
 
-class CalendarDate(db.Model, Entity):
-  __tablename__ = 'calendar_dates'
-  service_id = db.Column(db.Integer, db.ForeignKey("calendar.service_id",
-    onupdate="CASCADE"), primary_key=True)
-  date = db.Column(db.String(50), primary_key=True)
-  exception_type = db.Column(db.String(50), primary_key=True)
+class CalendarDate(Base, Entity):
+
+    __tablename__ = 'calendar_dates'
+
+    service_id = Column(types.Integer,
+                        ForeignKey("calendar.service_id",
+                                   onupdate="CASCADE",
+                                   ondelete="CASCADE"),
+                        primary_key=True)
+    date = Column(types.String(50), primary_key=True)
+    exception_type = Column(types.String(50), primary_key=True)

@@ -2,21 +2,24 @@
 # -*- coding: utf-8 -*-
 
 import json
-from app import db
+from .base import Base
 from .entity import Entity
+from sqlalchemy import orm, Column, types, ForeignKey
 
 
-class ShapePath(db.Model, Entity):
-  __tablename__ = 'shape_paths'
-  shape_id = db.Column(db.Integer, primary_key=True)
-  shape_path = db.Column(db.UnicodeText) # Stores json Array of Lon, Lat pairs
+class ShapePath(Base, Entity):
 
-  @property
-  def shape_path_array(self):
-    return json.loads(self.shape_path)
+    __tablename__ = 'shape_paths'
 
-  @property
-  def shape_path_obj_array(self):
-    shape_lat_lon = lambda pt: {'lon': pt[0], 'lat': pt[1]}
-    array = json.loads(self.shape_path)
-    return map(shape_lat_lon, array)
+    shape_id = Column(types.Integer, primary_key=True)
+    shape_path = Column(types.UnicodeText) # Stores json Array of Lon, Lat pairs
+
+    @property
+    def shape_path_array(self):
+        return json.loads(self.shape_path)
+
+    @property
+    def shape_path_obj_array(self):
+        shape_lat_lon = lambda pt: {'lon': pt[0], 'lat': pt[1]}
+        array = json.loads(self.shape_path)
+        return map(shape_lat_lon, array)
