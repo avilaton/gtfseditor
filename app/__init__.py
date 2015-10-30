@@ -6,9 +6,14 @@ from flask.ext.cors import CORS
 from config import config
 from flask.ext.login import LoginManager
 from flask_mail import Mail
+from flask_admin import Admin
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.compress import Compress
 from celery import Celery
+
+from .admin_bp import register_admin_views
+from .admin_bp.views import MyAdminIndexView
+
 
 db = SQLAlchemy()
 mail = Mail()
@@ -17,6 +22,8 @@ compress = Compress()
 bootstrap = Bootstrap()
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
+admin = Admin(name='gtfseditor', template_mode='bootstrap3', index_view=MyAdminIndexView())
+
 
 def create_app(config_name):
     app = Flask(__name__)
@@ -30,7 +37,9 @@ def create_app(config_name):
     login_manager.init_app(app)
     app.config['CORS_HEADERS'] = 'X-Requested-With, Content-Type'
     cors.init_app(app)
+    admin.init_app(app)
 
+    register_admin_views(app, admin)
     # if not app.debug and not app.testing and not app.config['SSL_DISABLE']:
     #     from flask.ext.sslify import SSLify
     #     sslify = SSLify(app)
@@ -38,14 +47,14 @@ def create_app(config_name):
     from .api import api as api_blueprint
     app.register_blueprint(api_blueprint, url_prefix='/api')
 
-    from .admin import admin as admin_blueprint
+    from .editor import editor as editor_blueprint
 
     if app.config['DEBUG']:
-        admin_blueprint.static_folder = 'static/app'
+        editor_blueprint.static_folder = 'static/app'
     else:
-        admin_blueprint.static_folder = 'static/dist'
+        editor_blueprint.static_folder = 'static/dist'
 
-    app.register_blueprint(admin_blueprint, url_prefix='/admin')
+    app.register_blueprint(editor_blueprint, url_prefix='/editor')
 
     from .reports import reports as reports_blueprint
     app.register_blueprint(reports_blueprint, url_prefix='/reports')
@@ -57,6 +66,7 @@ def create_app(config_name):
     app.register_blueprint(home_blueprint)
 
     return app
+
 
 def create_celery_app(app=None):
     app = app or create_app('staging')
@@ -70,5 +80,9 @@ def create_celery_app(app=None):
             with app.app_context():
                 return TaskBase.__call__(self, *args, **kwargs)
     celery.Task = ContextTask
+
+    from .tasks import register_tasks
+
+    register_tasks(celery)
 
     return celery
