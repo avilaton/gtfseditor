@@ -11,8 +11,8 @@ from flask.ext.bootstrap import Bootstrap
 from flask.ext.compress import Compress
 from celery import Celery
 
-from .admin_bp import register_admin_views
-from .admin_bp.views import MyAdminIndexView
+from .admin import register_admin_views
+from .admin.views import MyAdminIndexView
 
 
 db = SQLAlchemy()
