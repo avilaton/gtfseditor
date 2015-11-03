@@ -3,7 +3,6 @@
 
 from app import db
 from .base import Base
-from .entity import Entity
 from .permission import Permission
 from sqlalchemy import orm, Column, types, ForeignKey
 
