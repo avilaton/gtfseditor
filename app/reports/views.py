@@ -7,7 +7,7 @@ from flask import render_template
 
 from sqlalchemy import not_
 
-from .. import db, admin
+from .. import db
 from ..email import send_email
 from ..models import Route
 from ..models import Trip

@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from .base import Base
-from .entity import Entity
-from sqlalchemy import orm, Column, types, ForeignKey
+from sqlalchemy import Column, types, ForeignKey
+
+from .gtfsbase import GTFSBase
+from ..base import Base
+from ..mixins import ToJSONMixin, Versioned
 
 
-class TripStartTime(Base, Entity):
-
+class TripStartTime(Base, ToJSONMixin, Versioned, GTFSBase):
     __tablename__ = 'trips_start_times'
 
     trip_id = Column(types.Integer,

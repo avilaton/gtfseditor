@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from .base import Base
-from .entity import Entity
-from sqlalchemy import orm, Column, types, ForeignKey
+from sqlalchemy import Column, types
+
+from .gtfsbase import GTFSBase
+from ..base import Base
+from ..mixins import ToJSONMixin, Versioned
 
 
-class FeedInfo(Base, Entity):
-
+class FeedInfo(Base, ToJSONMixin, Versioned, GTFSBase):
     __tablename__ = 'feed_info'
 
     feed_publisher_name = Column(types.String(50), primary_key=True)

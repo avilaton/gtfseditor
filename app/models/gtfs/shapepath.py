@@ -2,13 +2,14 @@
 # -*- coding: utf-8 -*-
 
 import json
-from .base import Base
-from .entity import Entity
-from sqlalchemy import orm, Column, types, ForeignKey
+from sqlalchemy import Column, types
+
+from .gtfsbase import GTFSBase
+from ..base import Base
+from ..mixins import ToJSONMixin, Versioned
 
 
-class ShapePath(Base, Entity):
-
+class ShapePath(Base, ToJSONMixin, Versioned, GTFSBase):
     __tablename__ = 'shape_paths'
 
     shape_id = Column(types.Integer, primary_key=True)

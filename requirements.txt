@@ -1,5 +1,6 @@
 Beaker==1.6.5.post1
 Flask==0.10.1
+Flask-Admin==1.3.0
 Flask-Bootstrap==3.3.0.1
 Flask-Compress==1.0.2
 Flask-Cors==1.10.2
@@ -12,7 +13,9 @@ Flask-Script==2.0.5
 Jinja2==2.7.3
 Mako==1.0.1
 MarkupSafe==0.23
-SQLAlchemy==0.9.8
+SQLAlchemy==1.0.9
+SQLAlchemy-Continuum==1.2.1
+SQLAlchemy-Utils==0.31.1
 Werkzeug==0.10.1
 alembic==0.7.4
 amqp==1.4.6

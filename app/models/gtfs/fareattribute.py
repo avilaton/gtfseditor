@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from .base import Base
-from .entity import Entity
-from sqlalchemy import orm, Column, types, ForeignKey
+from sqlalchemy import Column, types
+
+from .gtfsbase import GTFSBase
+from ..base import Base
+from ..mixins import ToJSONMixin, Versioned
 
 
-class FareAttribute(Base, Entity):
-
+class FareAttribute(Base, ToJSONMixin, Versioned, GTFSBase):
     __tablename__ = 'fare_attributes'
 
     fare_id = Column(types.Integer, primary_key=True)
