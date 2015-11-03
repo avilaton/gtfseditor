@@ -5,6 +5,7 @@ import os
 
 from config import config
 from app import create_app
+from app import create_celery_app
 from app import db
 from app.models import *
 from app.services.feed import Feed
@@ -24,11 +25,11 @@ from flask.ext.migrate import MigrateCommand
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 
-from app.tasks import celery_app
+celery_app = create_celery_app(app)
 
 
 def make_shell_context():
-    return dict(app=app, db=db, Route=Route, Trip=Trip,
+    return dict(app=app, celery_app=celery_app, db=db, Route=Route, Trip=Trip,
       Shape=Shape, Stop=Stop, StopSeq=StopSeq, TripStartTime=TripStartTime,
       CalendarDate=CalendarDate, Calendar=Calendar, Agency=Agency,
       FeedInfo=FeedInfo, Feed=Feed, User=User, Role=Role, ShapePath=ShapePath)
