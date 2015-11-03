@@ -4,12 +4,16 @@ import zipfile
 
 from . import db
 from celery.utils.log import get_task_logger
-from .services.s3 import S3
+from app.services.s3 import S3
+from app.services.feed import Feed
 
 logger = get_task_logger(__name__)
 
 
 def extract_zip(filename, dest):
+
+    logger.info("Extracting %s to %s", filename, dest)
+
     if not os.path.exists(dest):
         os.makedirs(dest)
     else:
@@ -20,6 +24,30 @@ def extract_zip(filename, dest):
         for filename in z.namelist():
             with file(dest + filename, "w") as outfile:
                 outfile.write(z.read(filename))
+
+
+def build_feed(celery_app, validate=False, extract=False, upload=False):
+    logger.info("build feed task started")
+
+    TMP_FOLDER = celery_app.conf.TMP_FOLDER
+
+    if not os.path.isdir(TMP_FOLDER):
+        os.makedirs(TMP_FOLDER)
+
+    feed = Feed(db=db.session)
+    feedFile = feed.build()
+    feed.saveTo(TMP_FOLDER)
+
+    if extract:
+        extract_zip(TMP_FOLDER + feed.filename, TMP_FOLDER + 'extracted/')
+
+    if validate:
+        feed.validate()
+
+    if upload:
+        s3service = S3(celery_app.conf.AWS_S3_BUCKET_NAME)
+        s3service.config(celery_app.conf)
+        s3service.uploadFileObj(feed.filename, feedFile)
 
 
 def register_tasks(celery_app):
@@ -33,30 +61,9 @@ def register_tasks(celery_app):
         return msg
 
     @celery_app.task
-    def buildFeed(validate=False, extract=False, upload=False):
+    def build_feed_task(**kwargs):
         """Build feed to .tmp folder"""
-        logger.info("build feed task started")
 
-        from app.services.feed import Feed
-
-        TMP_FOLDER = celery_app.conf.TMP_FOLDER
-
-        if not os.path.isdir(TMP_FOLDER):
-            os.makedirs(TMP_FOLDER)
-
-        feed = Feed(db=db.session)
-        feedFile = feed.build()
-        feed.saveTo(TMP_FOLDER)
-
-        if extract:
-            extract_zip(TMP_FOLDER + feed.filename, TMP_FOLDER + 'extracted/')
-
-        if validate:
-            feed.validate()
-
-        if upload:
-            s3service = S3(celery_app.conf.AWS_S3_BUCKET_NAME)
-            s3service.config(celery_app.conf)
-            s3service.uploadFileObj(feed.filename, feedFile)
+        build_feed(celery_app, **kwargs)
 
         return 'success'

@@ -29,7 +29,7 @@ celery_app = create_celery_app(app)
 
 
 def make_shell_context():
-    return dict(app=app, db=db, Route=Route, Trip=Trip,
+    return dict(app=app, celery_app=celery_app, db=db, Route=Route, Trip=Trip,
       Shape=Shape, Stop=Stop, StopSeq=StopSeq, TripStartTime=TripStartTime,
       CalendarDate=CalendarDate, Calendar=Calendar, Agency=Agency,
       FeedInfo=FeedInfo, Feed=Feed, User=User, Role=Role, ShapePath=ShapePath)
