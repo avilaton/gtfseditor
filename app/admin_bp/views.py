@@ -9,12 +9,10 @@ from flask import redirect, url_for, request, current_app
 class MyModelView(ModelView):
 
     def is_accessible(self):
-        print 'hello'
         return flask_login.current_user.is_authenticated()
 
     def inaccessible_callback(self, name, **kwargs):
         return current_app.login_manager.unauthorized()
-        # return redirect(url_for('login', next=request.url))
 
 
 # Create customized index view class that handles login & registration
