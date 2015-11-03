@@ -1,6 +1,6 @@
 
 
-def register_admin_views(app, admin):
+def register_admin_views(admin):
 
     # admin views
     from .views import MyModelView

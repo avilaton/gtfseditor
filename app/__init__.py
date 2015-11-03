@@ -43,7 +43,7 @@ def create_app(config_name):
     #     sslify = SSLify(app)
 
     from .admin import register_admin_views
-    register_admin_views(app, admin)
+    register_admin_views(admin)
 
 
     from .api import api as api_blueprint

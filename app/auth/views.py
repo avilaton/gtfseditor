@@ -9,7 +9,7 @@ from ..models import User
 def login():
     if request.method == 'GET':
         if current_user.is_authenticated():
-            return redirect( url_for('admin.root'))
+            return redirect( url_for('editor.root'))
         return render_template('auth/login.html')
     email = request.form['email']
     password = request.form['password']
@@ -22,7 +22,7 @@ def login():
     if registered_user is not None and registered_user.verify_password(password):
         login_user(registered_user, remember = remember_me)
         flash('Logged in successfully')
-        return redirect(request.args.get('next') or url_for('admin.root'))
+        return redirect(request.args.get('next') or url_for('editor.root'))
     flash('Email or Password is invalid' , 'error')
     return redirect(url_for('auth.login'))
 
