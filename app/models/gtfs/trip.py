@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from sqlalchemy import Column, types, ForeignKey
+from sqlalchemy.orm import relationship
 
 from .gtfsbase import GTFSBase
 from ..base import Base
@@ -20,3 +21,5 @@ class Trip(Base, ToJSONMixin, Versioned, GTFSBase):
     shape_id = Column(types.Integer)
     card_code = Column(types.String(50))
     active = Column(types.Boolean, default=False)
+
+    route = relationship("Route", backref="trips")
