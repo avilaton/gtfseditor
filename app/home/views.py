@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import redirect,g, abort, url_for, current_app,render_template
-from .. import db, admin
+from flask import render_template
+from .. import db
 from . import home
 from ..models import Agency
 from ..models import Calendar
