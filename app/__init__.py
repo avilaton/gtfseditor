@@ -38,14 +38,14 @@ def create_app(config_name):
     from .api import api as api_blueprint
     app.register_blueprint(api_blueprint, url_prefix='/api')
 
-    from .admin import admin as admin_blueprint
+    from .editor import editor as editor_blueprint
 
     if app.config['DEBUG']:
-        admin_blueprint.static_folder = 'static/app'
+        editor_blueprint.static_folder = 'static/app'
     else:
-        admin_blueprint.static_folder = 'static/dist'
+        editor_blueprint.static_folder = 'static/dist'
 
-    app.register_blueprint(admin_blueprint, url_prefix='/admin')
+    app.register_blueprint(editor_blueprint, url_prefix='/editor')
 
     from .reports import reports as reports_blueprint
     app.register_blueprint(reports_blueprint, url_prefix='/reports')
