@@ -11,7 +11,6 @@ from flask.ext.bootstrap import Bootstrap
 from flask.ext.compress import Compress
 from celery import Celery
 
-from .admin import register_admin_views
 from .admin.views import MyAdminIndexView
 
 
@@ -39,13 +38,17 @@ def create_app(config_name):
     cors.init_app(app)
     admin.init_app(app)
 
-    register_admin_views(app, admin)
     # if not app.debug and not app.testing and not app.config['SSL_DISABLE']:
     #     from flask.ext.sslify import SSLify
     #     sslify = SSLify(app)
 
+    from .admin import register_admin_views
+    register_admin_views(app, admin)
+
+
     from .api import api as api_blueprint
     app.register_blueprint(api_blueprint, url_prefix='/api')
+
 
     from .editor import editor as editor_blueprint
 
@@ -56,14 +59,18 @@ def create_app(config_name):
 
     app.register_blueprint(editor_blueprint, url_prefix='/editor')
 
+
     from .reports import reports as reports_blueprint
     app.register_blueprint(reports_blueprint, url_prefix='/reports')
+
 
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
+
     from .home import home as home_blueprint
     app.register_blueprint(home_blueprint)
+
 
     return app
 
