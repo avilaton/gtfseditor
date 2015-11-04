@@ -22,6 +22,7 @@ def extract_zip(filename, dest):
 
     with zipfile.ZipFile(filename, "r") as z:
         for filename in z.namelist():
+            print filename
             with file(dest + filename, "w") as outfile:
                 outfile.write(z.read(filename))
 

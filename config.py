@@ -27,8 +27,6 @@ class Config:
 
     BROKER_URL = os.environ.get('CLOUDAMQP_URL') or 'sqla+sqlite:///celerydb.sqlite'
     CELERY_RESULT_BACKEND = os.environ.get('CLOUDAMQP_URL') or 'db+sqlite:///celerydb.sqlite'
-    MODES = ["frequency", "initial-times", "full-spec"]
-    BUILD_MODE = MODES[1]
     TMP_FOLDER = '.tmp/'
 
     @staticmethod
@@ -72,12 +70,6 @@ class PostgresConfig(Config):
         # app_logger = app.logger
         # werkzeug_logger = getLogger('werkzeug')
 
-
-class SqliteConfig(Config):
-    DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
-    BUILD_MODE = Config.MODES[0]
-    WTF_CSRF_ENABLED = False
 
 
 class ProductionConfig(Config):
@@ -126,26 +118,11 @@ class HerokuConfig(ProductionConfig):
         file_handler.setLevel(logging.WARNING)
         app.logger.addHandler(file_handler)
 
-class UnixConfig(ProductionConfig):
-    @classmethod
-    def init_app(cls, app):
-        ProductionConfig.init_app(app)
-
-        # log to syslog
-        import logging
-        from logging.handlers import SysLogHandler
-        syslog_handler = SysLogHandler()
-        syslog_handler.setLevel(logging.WARNING)
-        app.logger.addHandler(syslog_handler)
-
 
 config = {
     'development': DevelopmentConfig,
-    'local': SqliteConfig,
     'staging': PostgresConfig,
     'production': ProductionConfig,
     'heroku': HerokuConfig,
-    'unix': UnixConfig,
-
     'default': PostgresConfig
 }

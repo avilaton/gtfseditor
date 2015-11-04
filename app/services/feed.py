@@ -19,8 +19,7 @@ from ..services import defaults
 
 class Feed(object):
   """GTFS schedule feed factory"""
-  def __init__(self, filename='google_transit.zip', mode='initial-times', db=db):
-    self.mode = mode
+  def __init__(self, filename='google_transit.zip', db=db):
     self.db = db
     self.filename = filename
     self.fileObj = StringIO.StringIO()
@@ -30,7 +29,7 @@ class Feed(object):
   def __repr__(self):
     return 'GTFS feed:' + self.filename
 
-  def build(self, mode='initial-times'):
+  def build(self, mode='frequency'):
     self.mode = mode
     logger.info("Feed build started")
 
@@ -118,11 +117,17 @@ class Feed(object):
   def loadTrips(self, route):
     """Loads active trips into schedule"""
 
-    for tripRow in self.db.query(Trip).filter_by(route_id=route.route_id).filter(Trip.active).all():
+    for tripRow in self.db.query(Trip).filter_by(route_id=route.route_id)\
+                                      .filter(Trip.active)\
+                                      .order_by(Trip.trip_id).all():
       if self.mode == 'frequency':
         services = self.schedule.GetServicePeriodList()
         for service in services:
-          trip_id = ''.join([str(tripRow.trip_id), '.', service.service_id])
+          trip_id = '.'.join([
+              str(route.route_id),
+              str(tripRow.trip_id),
+              str(service.service_id)
+            ])
           trip = route.AddTrip(trip_id = trip_id, headsign=tripRow.trip_headsign)
           trip.service_id = service.service_id
           trip.shape_id = tripRow.shape_id
@@ -192,8 +197,9 @@ class Feed(object):
     # logger.info("Loading Stop Times for stop_seq:{0}, trip_id:{1}".format(seq_trip_id, trip.trip_id))
 
     if self.mode == 'frequency':
+
       # Should use StopTimesFactory instead of reading from stop_times table.
-      trip_id = trip.trip_id.replace('.'+trip.service_id, '')
+      trip_id = trip.trip_id.split('.')[1]
 
       for stopTime in self.db.query(StopTime).filter_by(trip_id=trip_id).\
         order_by(StopTime.stop_sequence).all():
@@ -272,5 +278,7 @@ class Feed(object):
     for info in self.db.query(FeedInfo).all():
       uDict = {k:v.encode('utf-8') for k, v in info.to_json.iteritems() if v}
       writer.writerow(uDict)
-    with zipfile.ZipFile(self.fileObj, "a") as z:
-        z.writestr('feed_info.txt', feed_info_txt.getvalue())
+    with zipfile.ZipFile(self.fileObj, "a", zipfile.ZIP_DEFLATED) as z:
+      z.writestr('feed_info.txt', feed_info_txt.getvalue())
+      for item in z.filelist:
+        print item.filename
