@@ -12,16 +12,16 @@ import transitfeed
 
 class StopSequence(object):
 
-  def __init__(self, trip_id):
+  def __init__(self, trip_id, db):
     self.db = db
     self.trip_id = trip_id
-    trip = db.session.query(Trip).filter_by(trip_id=trip_id).first()
-    self.stopsSequence = db.session.query(Stop, StopSeq).\
+    trip = self.db.session.query(Trip).filter_by(trip_id=trip_id).first()
+    self.stopsSequence = self.db.session.query(Stop, StopSeq).\
       join(StopSeq, Stop.stop_id == StopSeq.stop_id).\
       filter(StopSeq.trip_id == trip_id).\
       order_by(StopSeq.stop_sequence).all()
     self.stops = [item.Stop for item in self.stopsSequence]
-    self.shape = db.session.query(ShapePath).filter_by(shape_id=trip.shape_id).first()
+    self.shape = self.db.session.query(ShapePath).filter_by(shape_id=trip.shape_id).first()
 
   def offsetStops(self, offset=6.0):
     raise NotImplementedError
@@ -61,8 +61,8 @@ class StopSequence(object):
     for i, item in enumerate(sortedStops):
       stopSeq = item['StopSeq']
       stopSeq.stop_sequence = i + 1
-      db.session.merge(stopSeq)
-    db.session.commit()
+      self.db.session.merge(stopSeq)
+    self.db.session.commit()
 
   def updateDistances(self):
     logger.debug("Updating traveled distance for trip_id: %s", self.trip_id)
@@ -72,8 +72,8 @@ class StopSequence(object):
       snap = s['Snap']
       shape_dist_traveled = "{0:.4f}".format(snap['traveled'])
       stopSeq.shape_dist_traveled = shape_dist_traveled
-      db.session.merge(stopSeq)
-    db.session.commit()
+      self.db.session.merge(stopSeq)
+    self.db.session.commit()
 
   def interpolateTimes(self, speed=20, commit=False, n_timepoints=5):
     logger.debug("Interpolating stop times for trip_id: %s", self.trip_id)
@@ -88,5 +88,5 @@ class StopSequence(object):
       else:
         stop_time = None
       stopSeq.stop_time = stop_time
-      db.session.merge(stopSeq)
-    db.session.commit()
+      self.db.session.merge(stopSeq)
+    self.db.session.commit()
