@@ -8,12 +8,19 @@
  * Controller of the editorApp
  */
 angular.module('editorApp')
-  .controller('RoutesCtrl', function ($log, $scope, Restangular, $state) {
-    var routes = Restangular.all('routes');
+  .controller('RoutesCtrl', function ($log, $scope, RoutesSrv, $state) {
 
-    routes.getList().then(function (routes) {
-      $scope.routes = routes;
-    });
+    function getRoutes () {
+      RoutesSrv.all().then(function (routes) {
+        $scope.routes = routes;
+      });
+    }
 
-    $log.log($state.params)
+    $scope.remove = function (route) {
+      RoutesSrv.remove(route).then(function (argument) {
+        getRoutes();
+      });
+    };
+
+    getRoutes();
   });

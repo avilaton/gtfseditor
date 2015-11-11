@@ -9,7 +9,7 @@ define([
 	RouteCollection = Backbone.Collection.extend({
 		model: RouteModel,
 
-		url: Config.server + 'api/routes/',
+		url: Config.server + 'api/routes',
 
  	});
 

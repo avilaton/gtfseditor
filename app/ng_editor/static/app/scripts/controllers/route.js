@@ -8,18 +8,36 @@
  * Controller of the editorApp
  */
 angular.module('editorApp')
-  .controller('RouteCtrl', function ($log, $scope, Restangular, $state) {
-    $scope.isEditing = false;
+  .controller('RouteCtrl', function ($log, $scope, Restangular, $state, RoutesSrv, $window) {
 
-    Restangular.one('routes', $state.params.route_id).get()
-      .then(function (route) {
-        $log.log('route found', route);
-        route.id = route.route_id;
-        $scope.route = route;
-      });
+    var routeId = $state.params['route_id'];
 
-    $scope.update = function () {
-      $log.log('saving...');
-      $scope.route.save();
+    if (routeId) {
+      RoutesSrv.get(routeId)
+        .then(function (route) {
+          $scope.route = route;
+        });
+    } else {
+      $scope.route = {};
+    }
+
+    $scope.save = function (route) {
+      if (route['route_id']) {
+        $scope.route.save().then(function () {
+          $state.go('routes.list');
+        });
+      } else {
+        RoutesSrv.create(route).then(function () {
+          $state.go('routes.list');
+        });
+      }
+    };
+
+    $scope.remove = function () {
+      RoutesSrv.remove($scope.route);
+    };
+
+    $scope.cancel = function () {
+      $window.history.back();
     };
   });

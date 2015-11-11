@@ -1,4 +1,4 @@
-<button class="btn btn-xl btn-default pull-right">
+<button class="btn btn-xl btn-default pull-right" ui-sref="routes.create()">
 	<span class="glyphicon glyphicon-plus"></span>
 </button>
 <h2 class="clearfix">Routes</h2>
@@ -6,18 +6,17 @@
 <ul class="list-group">
 	<li class="list-group-item clearfix" ng-repeat="route in routes">
 	    <span class="pull-right">
-		  <button class="btn btn-xs btn-info">
+		  <button class="btn btn-xs btn-info" ui-sref="routes.edit({route_id: route.route_id})">
 		    <span class="glyphicon glyphicon-pencil"></span>
 		  </button>
-		  <button class="btn btn-xs btn-warning">
+		  <button class="btn btn-xs btn-warning" ng-click="remove(route)">
 		    <span class="glyphicon glyphicon-trash"></span>
 		  </button>
 		</span>
 		<h4 class="list-group-item-heading">
-			<a ui-sref="routes.item({route_id:route.route_id})">Name: {{route.route_short_name}}</a>
+			<a ui-sref="routes.view({route_id:route.route_id})">Name: {{route.route_short_name}}</a>
 		</h4>
 	    <p class="list-group-item-text">Long Name: {{route.route_short_name}}</p>
 	    <p class="list-group-item-text">Active {{route.active}}</p>
-
 	</li>
 </ul>

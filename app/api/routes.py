@@ -11,7 +11,7 @@ from . import api
 from .decorators import admin_required
 
 
-@api.route('/routes/')
+@api.route('/routes')
 def get_routes():
     routes = Route.query.order_by(Route.route_short_name).all()
     return Response(
@@ -19,13 +19,7 @@ def get_routes():
         mimetype='application/json')
 
 
-@api.route('/routes/<id>')
-def get_route(id):
-    item = Route.query.get_or_404(id)
-    return jsonify(item.to_json)
-
-
-@api.route('/routes/', methods=['POST'])
+@api.route('/routes', methods=['POST'])
 @admin_required
 def add_route():
     item = Route(**request.json)
@@ -33,6 +27,12 @@ def add_route():
     db.session.commit()
     return jsonify(item.to_json), 201, \
         {'Location': url_for('api.get_route', id=item.route_id, _external=True)}
+
+
+@api.route('/routes/<id>')
+def get_route(id):
+    item = Route.query.get_or_404(id)
+    return jsonify(item.to_json)
 
 @api.route('/routes/<id>', methods=['PUT'])
 @admin_required

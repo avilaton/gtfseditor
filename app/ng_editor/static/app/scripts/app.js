@@ -22,46 +22,97 @@ angular
     'ui.bootstrap'
   ])
   .config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
-    //
-    // For any unmatched url, redirect to /state1
-    $urlRouterProvider.otherwise("/");
-    //
-    // Now set up the states
+
+    $urlRouterProvider.otherwise('/');
+
+
     $stateProvider
       .state('home', {
-        url: "",
-        templateUrl: "views/main.html",
+        url: '/',
+        templateUrl: 'views/main.html',
         controller: 'MainCtrl'
-      })
+      });
+
+
+    $stateProvider
       .state('routes', {
+        url: '/routes',
         abstract: true,
         template: '<div ui-view></div>'
       })
       .state('routes.list', {
-        url: "/routes",
-        templateUrl: "views/routes.list.html",
+        url: '',
+        templateUrl: 'views/routes/list.html',
         controller: 'RoutesCtrl'
       })
-      .state('routes.item', {
-        url: "/routes/:route_id",
-        templateUrl: "views/routes.item.html",
+      .state('routes.create', {
+        url: '/create',
+        templateUrl: 'views/routes/edit.html',
         controller: 'RouteCtrl'
       })
+      .state('routes.view', {
+        url: '/:route_id/view',
+        templateUrl: 'views/routes/item.html',
+        controller: 'RouteCtrl'
+      })
+      .state('routes.edit', {
+        url: '/:route_id/edit',
+        templateUrl: 'views/routes/edit.html',
+        controller: 'RouteCtrl'
+      });
+
+
+    $stateProvider
+      .state('trips', {
+        url: '/trips',
+        abstract: true,
+        template: '<div ui-view></div>'
+      })
+      .state('trips.list', {
+        url: '',
+        templateUrl: 'views/trips/list.html',
+        controller: 'RoutesCtrl'
+      })
+      .state('trips.create', {
+        url: '/create',
+        templateUrl: 'views/trips/edit.html',
+        controller: 'RouteCtrl'
+      })
+      .state('trips.view', {
+        url: '/:trip_id/view',
+        templateUrl: 'views/trips/item.html',
+        controller: 'RouteCtrl'
+      })
+      .state('trips.edit', {
+        url: '/:trip_id/edit',
+        templateUrl: 'views/trips/edit.html',
+        controller: 'RouteCtrl'
+      });
+
+
+    $stateProvider
       .state('agencies', {
-        url: "/agencies",
-        templateUrl: "views/agencies.list.html",
-        controller: 'RoutesCtrl'
-      })
-      .state('calendars', {
-        url: "/calendars",
-        templateUrl: "views/calendars.list.html",
-        controller: 'RoutesCtrl'
-      })
-      .state('stops', {
-        url: "/stops",
-        templateUrl: "views/stops.list.html",
+        url: '/agencies',
+        templateUrl: 'views/agencies.list.html',
         controller: 'RoutesCtrl'
       });
+
+
+    $stateProvider
+      .state('calendars', {
+        url: '/calendars',
+        templateUrl: 'views/calendars.list.html',
+        controller: 'RoutesCtrl'
+      });
+
+
+    $stateProvider
+      .state('stops', {
+        url: '/stops',
+        templateUrl: 'views/stops.list.html',
+        controller: 'RoutesCtrl'
+      });
+
 
     RestangularProvider.setBaseUrl('http://localhost:5000/api/');
   });
