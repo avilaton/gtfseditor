@@ -1,0 +1,22 @@
+<button class="btn btn-xl btn-default pull-right" ui-sref="routes.item.trips.create()">
+	<span class="glyphicon glyphicon-plus"></span>
+</button>
+<h2 class="clearfix">Route {{route.route_short_name}} Trips</h2>
+
+<ul class="list-group">
+	<li class="list-group-item clearfix" ng-repeat="trip in trips">
+	    <span class="pull-right">
+		  <button class="btn btn-xs btn-info" ui-sref="routes.item.trips.edit({trip_id: trip.trip_id, route_id: route.route_id})">
+		    <span class="glyphicon glyphicon-pencil"></span>
+		  </button>
+		  <button class="btn btn-xs btn-warning" ng-click="remove(trip)">
+		    <span class="glyphicon glyphicon-trash"></span>
+		  </button>
+		</span>
+		<h4 class="list-group-item-heading">
+			<a ui-sref="routes.item.trips.item.view({trip_id:trip.trip_id})">Name: {{trip.trip_headsign}}</a>
+		</h4>
+	    <p class="list-group-item-text">Long Name: {{trip.trip_headsign}}</p>
+	    <p class="list-group-item-text">Active: {{trip.active}}</p>
+	</li>
+</ul>

@@ -2,34 +2,34 @@
 
 /**
  * @ngdoc factory
- * @name editorApp.RoutesSrv
+ * @name editorApp.TripsSrv
  * @description
- * # RoutesSrv
+ * # TripsSrv
  * Service in the editorApp.
  */
 angular.module('editorApp')
-  .factory('RoutesSrv', function (Restangular) {
+  .factory('TripsSrv', function (Restangular) {
 
     var service = {};
 
-    var RoutesRestangular = Restangular.withConfig(function(RestangularConfigurer) {
+    var TripsRestangular = Restangular.withConfig(function(RestangularConfigurer) {
       RestangularConfigurer.setRestangularFields({
-         id: 'route_id'
+         id: 'trip_id'
       });
     });
 
-    var routes = RoutesRestangular.all('routes');
+    var trips = TripsRestangular.all('trips');
 
     service.create = function(data){
-      return routes.post(data);
+      return trips.post(data);
     };
 
     service.get = function(id){
-      return RoutesRestangular.one('routes', id).get();
+      return TripsRestangular.one('trips', id).get();
     };
 
     service.all = function(){
-      return routes.getList();
+      return trips.getList();
     };
 
     service.update = function(route){
@@ -38,10 +38,6 @@ angular.module('editorApp')
 
     service.remove = function(route){
       return route.remove();
-    };
-
-    service.getTrips = function (id) {
-      return RoutesRestangular.one('routes', id).getList('trips');
     };
 
     return service;

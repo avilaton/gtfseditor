@@ -54,7 +54,7 @@ def delete_route(id):
     return jsonify({'status': 'success'}), 200
 
 
-@api.route('/route/<route_id>/trips')
+@api.route('/routes/<route_id>/trips')
 def get_route_trips(route_id):
     trips = Trip.query.filter(Trip.route_id == route_id)\
         .order_by(Trip.card_code, Trip.direction_id, Trip.trip_headsign).all()

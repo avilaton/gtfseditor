@@ -21,6 +21,6 @@ angular.module('editorApp')
         getRoutes();
       });
     };
-
+    window.RoutesSrv = RoutesSrv;
     getRoutes();
   });

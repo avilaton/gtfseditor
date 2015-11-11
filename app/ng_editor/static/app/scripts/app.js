@@ -50,13 +50,18 @@ angular
         templateUrl: 'views/routes/edit.html',
         controller: 'RouteCtrl'
       })
-      .state('routes.view', {
-        url: '/:route_id/view',
+      .state('routes.item', {
+        url: '/:route_id',
+        abstract: true,
+        template: '<div ui-view></div>'
+      })
+      .state('routes.item.view', {
+        url: '/view',
         templateUrl: 'views/routes/item.html',
         controller: 'RouteCtrl'
       })
-      .state('routes.edit', {
-        url: '/:route_id/edit',
+      .state('routes.item.edit', {
+        url: '/edit',
         templateUrl: 'views/routes/edit.html',
         controller: 'RouteCtrl'
       });
@@ -65,13 +70,14 @@ angular
     $stateProvider
       .state('trips', {
         url: '/trips',
+        parent: 'routes.item',
         abstract: true,
         template: '<div ui-view></div>'
       })
       .state('trips.list', {
         url: '',
         templateUrl: 'views/trips/list.html',
-        controller: 'RoutesCtrl'
+        controller: 'TripsCtrl'
       })
       .state('trips.create', {
         url: '/create',

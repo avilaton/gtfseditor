@@ -12,7 +12,7 @@ define([
         route_id: '',
 
         url: function() {
-            return Config.server + 'api/route/' + this.route_id + '/trips';
+            return Config.server + 'api/routes/' + this.route_id + '/trips';
         },
 
         select: function (trip_id) {
