@@ -60,6 +60,16 @@ def create_app(config_name):
     app.register_blueprint(editor_blueprint, url_prefix='/editor')
 
 
+    from .ng_editor import ng_editor as ng_editor_bp
+
+    if app.config['DEBUG']:
+        ng_editor_bp.static_folder = 'static/app'
+    else:
+        ng_editor_bp.static_folder = 'static/dist'
+
+    app.register_blueprint(ng_editor_bp, url_prefix='/ng-editor')
+
+
     from .reports import reports as reports_blueprint
     app.register_blueprint(reports_blueprint, url_prefix='/reports')
 

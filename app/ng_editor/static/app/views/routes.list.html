@@ -1,0 +1,23 @@
+<button class="btn btn-xl btn-default pull-right">
+	<span class="glyphicon glyphicon-plus"></span>
+</button>
+<h2 class="clearfix">Routes</h2>
+
+<ul class="list-group">
+	<li class="list-group-item clearfix" ng-repeat="route in routes">
+	    <span class="pull-right">
+		  <button class="btn btn-xs btn-info">
+		    <span class="glyphicon glyphicon-pencil"></span>
+		  </button>
+		  <button class="btn btn-xs btn-warning">
+		    <span class="glyphicon glyphicon-trash"></span>
+		  </button>
+		</span>
+		<h4 class="list-group-item-heading">
+			<a ui-sref="routes.item({route_id:route.route_id})">Name: {{route.route_short_name}}</a>
+		</h4>
+	    <p class="list-group-item-text">Long Name: {{route.route_short_name}}</p>
+	    <p class="list-group-item-text">Active {{route.active}}</p>
+
+	</li>
+</ul>
