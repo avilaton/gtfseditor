@@ -82,17 +82,22 @@ angular
       .state('trips.create', {
         url: '/create',
         templateUrl: 'views/trips/edit.html',
-        controller: 'RouteCtrl'
+        controller: 'TripCtrl'
       })
-      .state('trips.view', {
-        url: '/:trip_id/view',
+      .state('trips.item', {
+        url: '/:trip_id',
+        abstract: true,
+        template: '<div ui-view></div>'
+      })
+      .state('trips.item.view', {
+        url: '/view',
         templateUrl: 'views/trips/item.html',
-        controller: 'RouteCtrl'
+        controller: 'TripCtrl'
       })
-      .state('trips.edit', {
-        url: '/:trip_id/edit',
+      .state('trips.item.edit', {
+        url: '/edit',
         templateUrl: 'views/trips/edit.html',
-        controller: 'RouteCtrl'
+        controller: 'TripCtrl'
       });
 
 
