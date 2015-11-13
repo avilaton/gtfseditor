@@ -4,6 +4,7 @@ from flask.ext.script import Command, Option
 from celery.utils.log import get_task_logger
 
 from app import db
+from app.tasks import extract_zip
 
 logger = get_task_logger(__name__)
 
@@ -33,7 +34,7 @@ class BuildFeed(Command):
         feed.saveTo(TMP_FOLDER)
 
         if extract:
-            extractZip(TMP_FOLDER + feed.filename, TMP_FOLDER + 'extracted/')
+            extract_zip(TMP_FOLDER + feed.filename, TMP_FOLDER + 'extracted/')
 
         if validate:
             feed.validate()

@@ -101,7 +101,7 @@ def tripStopsPut(trip_id):
 @api.route('/trips/<trip_id>/actions/sort-stops', methods=['GET'])
 @admin_required
 def sortTripStops( trip_id):
-	stopSequence = StopSequence(trip_id)
+	stopSequence = StopSequence(trip_id, db)
 	stopSequence.sortStops() 
 	return jsonify({'success': True})
 
@@ -109,7 +109,7 @@ def sortTripStops( trip_id):
 @api.route('/trips/<trip_id>/actions/update-dist', methods=['GET'])
 @admin_required
 def sortTripStopsUpdate(trip_id):
-	stopSequence = StopSequence(trip_id)
+	stopSequence = StopSequence(trip_id, db)
 	stopSequence.updateDistances()
 	return jsonify({'success': True})
 
@@ -117,7 +117,7 @@ def sortTripStopsUpdate(trip_id):
 @api.route('/trips/<trip_id>/actions/interpolate-times', methods=['GET'])
 @admin_required
 def interpolateTimes(trip_id):
-	stopSequence = StopSequence(trip_id)
+	stopSequence = StopSequence(trip_id, db)
 	stopSequence.interpolateTimes()
 	return jsonify({'success': True})
 

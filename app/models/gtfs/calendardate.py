@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from sqlalchemy import Column, types, ForeignKey
+from sqlalchemy import Column, types, ForeignKey, UniqueConstraint
 
 from .gtfsbase import GTFSBase
 from ..base import Base
@@ -18,3 +18,5 @@ class CalendarDate(Base, ToJSONMixin, Versioned, GTFSBase):
                         primary_key=True)
     date = Column(types.String(50), primary_key=True)
     exception_type = Column(types.String(50), primary_key=True)
+
+    # __table_args__ = (UniqueConstraint(service_id, date,exception_type),)
