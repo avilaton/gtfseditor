@@ -6,7 +6,7 @@
 <ul class="list-group">
 	<li class="list-group-item clearfix" ng-repeat="route in routes">
 	    <span class="pull-right">
-		  <button class="btn btn-xs btn-info" ui-sref="routes.edit({route_id: route.route_id})">
+		  <button class="btn btn-xs btn-info" ui-sref="routes.item.edit({route_id: route.route_id})">
 		    <span class="glyphicon glyphicon-pencil"></span>
 		  </button>
 		  <button class="btn btn-xs btn-warning" ng-click="remove(route)">
