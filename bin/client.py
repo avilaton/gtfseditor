@@ -3,12 +3,13 @@ import cookielib
 
 class Client(object):
 
-    def __init__(self, url):
+    def __init__(self, name, url):
+        self.name = name
         self.url = url
         self.api = url + '/api'
 
-        self.cookie_file = './cookies'
-        print "cookie jar: " + self.cookie_file
+        self.cookie_file = './cookie-' + self.name
+
         self.cj = cookielib.LWPCookieJar(self.cookie_file)
         try:
             self.cj.load()

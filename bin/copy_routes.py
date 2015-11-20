@@ -1,6 +1,7 @@
 # coding: utf-8
 
 
+from glob import glob
 import json
 import getpass
 from client import Client
@@ -9,10 +10,10 @@ LOCAL = 'http://localhost:5000'
 AUTAM = 'http://autam.herokuapp.com'
 TPTMDZ = 'http://tptmdz.herokuapp.com'
 
-origin = Client(AUTAM)
+origin = Client('autam', AUTAM)
 
 
-dest = Client(LOCAL)
+dest = Client('local', LOCAL)
 dest_password = getpass.getpass()
 dest.login("admin@gtfseditor.com", dest_password)
 
