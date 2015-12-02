@@ -29,77 +29,32 @@ class Client(object):
         self.session = requests.Session()
         self.session.cookies = self.cj
 
+    def __enter__(self):
+        try:
+            self.cj.load()
+        except:
+            pass
+        self.session = requests.Session()
+        self.session.cookies = self.cj
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.cj.save(ignore_discard=True)
+
     def login(self, email, password):
         self.session.get(self.url + '/auth/login')
         self.session.post(self.url + '/auth/login', data={"email": email, "password": password})
 
-    def getList(self, resource):
-        response = self.session.get(self.api + resource)
+    def getList(self, resource, params=None):
+        response = self.session.get(self.api + resource, params=params)
         return response.json()
 
-    def getOne(self, resource, id):
-        response = self.session.get(self.api + resource + str(id) + '.json')
-        return response.json()
+    def getOne(self, resource, id, extension='.json'):
+        response = self.session.get(self.api + resource + str(id) + extension)
+        if response.ok:
+            return response.json()
+        else:
+            raise ValueError('Not Found')
 
     def create(self, resource, payload):
         return self.session.post(self.api + resource, json=payload)
-
-    def save_cj(self):
-        self.cj.save(ignore_discard=True)
-
-    def pull(self, name, primary_key):
-        logger.info("Pulling resource {0}".format(name))
-
-        if not os.path.isdir('origin' + name):
-            os.makedirs('origin' + name)
-
-        for resource in self.getList(name):
-            with open('origin' + name + str(resource.get(primary_key)) + '.json', 'w') as out:
-                out.write(dumpJson(resource))
-                logger.info("Saved {0}: {1}".format(name, resource.get(primary_key)))
-
-    def pullShapes(self):
-        logger.info("Pulling shapes")
-
-        primary_key = "shape_id"
-
-        if not os.path.isdir('origin/shapes/'):
-            os.makedirs('origin/shapes/')
-
-        for resource in self.getList('/trips/'):
-            trip = self.getOne('/trips/', resource.get('trip_id'))
-            print trip
-            shape_id = str(trip.get(primary_key))
-            with open('origin/shapes/' + shape_id + '.json', 'w') as out:
-                self.getOne('/shapes/', shape_id)
-                out.write(dumpJson(resource))
-                logger.info("Saved {0}: {1}".format(name, resource.get(primary_key)))
-
-    def push(self, name, primary_key):
-        logger.info("Pushing {0}".format(name))
-
-        resource_map = {}
-        resources = []
-
-        for filename in glob('origin' + name + '*.json'):
-            with open(filename) as inputFile:
-                resources.append(json.loads(inputFile.read()))
-                logger.info('Read resource {0}'.format(filename))
-
-        for from_resource in resources:
-
-            from_id = from_resource.pop(primary_key)
-
-            response = self.create(name, from_resource)
-            to_resource = response.json()
-
-            to_id = to_resource[primary_key]
-
-            resource_map.update({from_id: to_id})
-            logger.info("Saved {0} to {1}".format(from_id, to_id))
-
-        with open('maps' + name[:-1] + '.json', 'w') as out:
-            out.write(dumpJson(resource_map))
-
-        return resource_map
-
