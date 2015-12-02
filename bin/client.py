@@ -56,5 +56,17 @@ class Client(object):
         else:
             raise ValueError('Not Found')
 
+    def getUrl(self, resource):
+        response = self.session.get(self.api + resource)
+        if response.ok:
+            return response.json()
+        else:
+            raise ValueError('Not Found')
+
     def create(self, resource, payload):
         return self.session.post(self.api + resource, json=payload)
+
+    def updateUrl(self, resource, payload):
+        url = self.api + resource
+        print url
+        return self.session.put(url, json=payload)

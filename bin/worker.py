@@ -48,14 +48,41 @@ def pullShapes(client):
         if not trip.get(primary_key):
             continue
         shape_id = str(trip.get(primary_key))
+
+        try:
+            shape = client.getOne('/shapes/', shape_id)
+        except ValueError, e:
+            logger.info('Shape not found')
+            continue
+
         with open('origin/shapes/' + shape_id + '.json', 'w') as out:
-            try:
-                shape = client.getOne('/shapes/', shape_id)
-            except ValueError, e:
-                logger.info('Shape not found')
-                continue
             out.write(dumpJson(shape))
             logger.info("Saved {0}: {1}".format('shape', resource.get(primary_key)))
+
+
+def pullStopSeqs(client):
+    logger.info("Pulling stop sequences")
+
+    if not os.path.isdir('origin/stop_seq/'):
+        os.makedirs('origin/stop_seq/')
+
+    for resource in client.getList('/trips/'):
+
+        trip_id = str(resource.get('trip_id'))
+
+        try:
+            stops = client.getUrl('/trips/' + trip_id + '/stops.json')
+        except ValueError, e:
+            logger.info('Stop seq not found')
+            continue
+
+        if not stops:
+            logger.info("Skipping empty stop sequence {0}".format(trip_id))
+            continue
+
+        with open('origin/stop_seq/' + trip_id + '.json', 'w') as out:
+            out.write(dumpJson(stops))
+            logger.info("Saved {0}: {1}".format('stop_seq', trip_id))
 
 
 def pullStops(client):
@@ -71,7 +98,7 @@ def pullStops(client):
             logger.info("Saved {0}: {1}".format('stop', stop_id))
 
 
-def push(client, name, primary_key, resource_mapping={}):
+def push(client, name, primary_key, resource_mapping={}, override_url=None):
     logger.info("Pushing {0}".format(name))
 
     result_resource_map = {}
@@ -99,7 +126,10 @@ def push(client, name, primary_key, resource_mapping={}):
                        new_id=mapping[original_value]))
             original_resource[key] = mapping[original_value]
 
-        response = client.create(name, original_resource)
+        if override_url:
+            response = client.update(name, original_resource, override_url=override_url)
+        else:
+            response = client.create(name, original_resource)
 
         result_resource = response.json()
         result_resource_id = result_resource[primary_key]
@@ -109,6 +139,34 @@ def push(client, name, primary_key, resource_mapping={}):
 
     with open('maps' + name[:-1] + '.json', 'w') as out:
         out.write(dumpJson(result_resource_map))
+
+
+def pushSeqs(client, name, primary_key, resource_mapping={}):
+    logger.info("Pushing {0}".format(name))
+
+    sequences = []
+
+    for filename in glob('origin' + name + '*.json'):
+        with open(filename) as inputFile:
+            logger.info('Reading resource {0}'.format(filename))
+            sequences.append(json.loads(inputFile.read()))
+
+    for stop_seq in sequences:
+
+        trip_id = str(stop_seq[0].get('trip_id'))
+        new_trip_id = resource_mapping['trip_id'][trip_id]
+
+        for item in stop_seq:
+            for key, mapping in resource_mapping.items():
+                original_value = str(item[key])
+
+                item[key] = mapping[original_value]
+
+
+        response = client.updateUrl('/trips/' + str(new_trip_id) + '/stops.json', stop_seq)
+
+        logger.info("Saved sequence {0}".format(new_trip_id))
+
 
 
 def getMap(name):
@@ -146,12 +204,16 @@ if __name__ == '__main__':
             elif args.resource in ["stops"]:
                 pullStops(client)
 
+            elif args.resource in ["stop_seq"]:
+                pullStopSeqs(client)
+
             elif args.resource in ["all"]:
                 pull(client, '/agency/', 'agency_id')
                 pull(client, '/routes/', 'route_id')
                 pull(client, '/trips/', 'trip_id')
                 pullShapes(client)
                 pullStops(client)
+                pullStopSeqs(client)
 
             else:
                 raise NotImplementedError
@@ -181,6 +243,12 @@ if __name__ == '__main__':
                 push(client, '/trips/', 'trip_id', resource_mapping={'route_id': routes_map,
                                                                      'shape_id': shapes_map})
 
+            elif args.resource in ["stop_seq"]:
+                stops_map = getMap('stops')
+                trips_map = getMap('trips')
+                pushSeqs(client, '/stop_seq/', 'trip_id', resource_mapping={'stop_id': stops_map,
+                                                                            'trip_id': trips_map})
+
             elif args.resource in ["all"]:
                 push(client, '/agency/', 'agency_id')
                 push(client, '/stops/', 'stop_id')
@@ -193,6 +261,11 @@ if __name__ == '__main__':
                 shapes_map = getMap('shapes')
                 push(client, '/trips/', 'trip_id', resource_mapping={'route_id': routes_map,
                                                                      'shape_id': shapes_map})
+
+                stops_map = getMap('stops')
+                trips_map = getMap('trips')
+                pushSeqs(client, '/stop_seq/', 'trip_id', resource_mapping={'stop_id': stops_map,
+                                                                            'trip_id': trips_map})
 
             else:
                 raise NotImplementedError
