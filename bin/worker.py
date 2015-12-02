@@ -71,7 +71,7 @@ def pullStops(client):
             logger.info("Saved {0}: {1}".format('stop', stop_id))
 
 
-def push(client, name, primary_key, resource_map=None, replace_key=None):
+def push(client, name, primary_key, resource_mapping={}):
     logger.info("Pushing {0}".format(name))
 
     result_resource_map = {}
@@ -86,14 +86,18 @@ def push(client, name, primary_key, resource_map=None, replace_key=None):
 
         original_res_id = original_resource.pop(primary_key)
 
-        if resource_map and replace_key:
-            logger.info(original_resource)
-            logger.info(original_res_id)
-            original_value = str(original_resource[replace_key])
+        for key, mapping in resource_mapping.items():
+            original_value = str(original_resource[key])
+            if not original_resource[key]:
+                continue
 
-            logger.info(resource_map[original_value])
-            logger.info(original_resource[replace_key])
-            original_resource[replace_key] = resource_map[original_value]
+            logger.info("Mapping {name}{original_res_id}, {key} {original_value} --> {new_id}".\
+                format(name=name,
+                       key=key,
+                       original_res_id=original_res_id,
+                       original_value=original_value,
+                       new_id=mapping[original_value]))
+            original_resource[key] = mapping[original_value]
 
         response = client.create(name, original_resource)
 
@@ -126,36 +130,70 @@ if __name__ == '__main__':
     if args.action in ["pull"]:
 
         with Client('autam', AUTAM) as client:
+
             if args.resource in ["agency"]:
                 pull(client, '/agency/', 'agency_id')
+
             elif args.resource in ["routes"]:
                 pull(client, '/routes/', 'route_id')
+
             elif args.resource in ["trips"]:
                 pull(client, '/trips/', 'trip_id')
+
             elif args.resource in ["shapes"]:
                 pullShapes(client)
+
             elif args.resource in ["stops"]:
                 pullStops(client)
+
+            elif args.resource in ["all"]:
+                pull(client, '/agency/', 'agency_id')
+                pull(client, '/routes/', 'route_id')
+                pull(client, '/trips/', 'trip_id')
+                pullShapes(client)
+                pullStops(client)
+
             else:
                 raise NotImplementedError
 
     elif args.action in ["push"]:
 
         with Client('local', LOCAL) as client:
-            client_password = getpass.getpass()
-            client.login("admin@gtfseditor.com", client_password)
+            # client_password = getpass.getpass()
+            # client.login("admin@gtfseditor.com", client_password)
+
             if args.resource in ["agency"]:
                 push(client, '/agency/', 'agency_id')
+
             elif args.resource in ["stops"]:
                 push(client, '/stops/', 'stop_id')
+
             elif args.resource in ["routes"]:
                 agency_map = getMap('agency')
-                push(client, '/routes/', 'route_id', agency_map, 'agency_id')
+                push(client, '/routes/', 'route_id', resource_mapping={'agency_id': agency_map})
+
             elif args.resource in ["shapes"]:
                 push(client, '/shapes/', 'shape_id')
+
             elif args.resource in ["trips"]:
                 routes_map = getMap('routes')
-                push(client, '/trips/', 'trip_id', routes_map, 'route_id')
+                shapes_map = getMap('shapes')
+                push(client, '/trips/', 'trip_id', resource_mapping={'route_id': routes_map,
+                                                                     'shape_id': shapes_map})
+
+            elif args.resource in ["all"]:
+                push(client, '/agency/', 'agency_id')
+                push(client, '/stops/', 'stop_id')
+                push(client, '/shapes/', 'shape_id')
+
+                agency_map = getMap('agency')
+                push(client, '/routes/', 'route_id', resource_mapping={'agency_id': agency_map})
+
+                routes_map = getMap('routes')
+                shapes_map = getMap('shapes')
+                push(client, '/trips/', 'trip_id', resource_mapping={'route_id': routes_map,
+                                                                     'shape_id': shapes_map})
+
             else:
                 raise NotImplementedError
     else:
