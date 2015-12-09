@@ -1,10 +1,11 @@
+'use strict';
+
 define([
   'underscore',
   'backbone',
   'handlebars',
-  'JST',
-  'models/shape'
-  ], function (_, Backbone, Handlebars, JST, ShapeModel) {
+  'JST'
+  ], function (_, Backbone, Handlebars, JST) {
     var View;
 
     View = Backbone.View.extend({
@@ -20,8 +21,6 @@ define([
       },
 
       initialize: function(options){
-        var self = this;
-
         this.controls = options.controls;
         this.map = options.map;
         this.isEditing = false;
@@ -88,7 +87,7 @@ define([
             self.model.trigger('created');
             self.stopCreating();
           });
-        };
+        }
       },
 
       onEditShape: function () {
@@ -118,4 +117,4 @@ define([
     });
 
     return View;
-  })
+  });
