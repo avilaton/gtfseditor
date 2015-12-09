@@ -11,7 +11,9 @@ from ..mixins import ToJSONMixin, Versioned
 class Frequency(Base, ToJSONMixin, Versioned, GTFSBase):
     __tablename__ = 'frequencies'
 
-    trip_id = Column(types.Integer, ForeignKey("trips.trip_id", onupdate="CASCADE"),
+    trip_id = Column(types.Integer, ForeignKey("trips.trip_id",
+                                               ondelete="CASCADE",
+                                               onupdate="CASCADE"),
                      primary_key=True)
     start_time = Column(types.String(50))
     end_time = Column(types.String(50))

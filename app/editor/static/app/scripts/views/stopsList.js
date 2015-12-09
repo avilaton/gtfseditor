@@ -15,7 +15,7 @@ define([
       template: JST.stopsList,
 
       initialize: function(){
-        this.collection = new Backbone.Collection;
+        this.collection = new Backbone.Collection();
         this.collection.on('add change remove reset', this.render, this);
         this.render();
       },

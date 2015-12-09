@@ -65,6 +65,7 @@ define([
           map: this.map,
           model: this.shape
         });
+
         this.shapesLayer = this.layers.shapesLayer.layer;
 
         this.layers.stopsBboxLayer = new StopsLayerView({
@@ -94,12 +95,14 @@ define([
       bindEvents: function () {
         var self = this;
         self.shape.on("reset destroy", self.updateShapesLayer, self);
+        this.listenTo(this.shape, 'change:coordinates', this.updateShapesLayer, this);
 
         this.collection.on("change reset add remove", self.updateStopsLayer, self);
         self.collection.on("trip_stop_selected", self.selectTripStop, self);
       },
 
       updateShapesLayer: function () {
+
         var self = this;
         var ft = this.format.read(self.shape.toGeoJSON());
         this.shapesLayer.removeAllFeatures();
@@ -162,33 +165,6 @@ define([
         this.notesLayer.id = 'notes';
 
         this.map.addLayer(this.notesLayer);
-      },
-
-      addShapesLayer: function () {
-        this.shapesLayer = new OpenLayers.Layer.Vector('Route shape', {
-          styleMap: Styles.routesStyleMap
-        });
-        this.shapesLayer.id = 'shapes';
-
-        this.map.addLayer(this.shapesLayer);
-      },
-
-      addRoutesLayer: function () {
-        routesLayer = new OpenLayers.Layer.Vector('Recorrido', {
-          styleMap: Styles.routesStyleMap,
-          projection: new OpenLayers.Projection('EPSG:4326'),
-          strategies: [new OpenLayers.Strategy.Fixed()],
-          protocol: new OpenLayers.Protocol.HTTP({
-            format: new OpenLayers.Format.GeoJSON(),
-            url: config.vectorLayerUrl
-          })
-        });
-
-        routesLayer.id = 'routes';
-
-        map.addLayer(routesLayer);
-
-        return maps;
       },
 
       addStopsLayer: function () {
