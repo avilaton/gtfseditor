@@ -21,6 +21,11 @@ define([
             this.layer.id = 'shapes';
 
             this.map.addLayer(self.layer);
+            this.listenTo(this.model, 'change:coordinates', this.onShapeChange, this);
+        },
+
+        onShapeChange: function () {
+            console.log('shape coordinates changed');
         }
 
     });

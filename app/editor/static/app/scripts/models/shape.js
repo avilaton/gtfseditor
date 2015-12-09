@@ -1,3 +1,5 @@
+'use strict';
+
 define([
   'underscore',
   'backbone',
@@ -15,8 +17,7 @@ define([
     reverse: function () {
       var coordinates = this.get('coordinates');
       coordinates.reverse();
-      this.set('coordinates', coordinates);
-      this.trigger('change');
+      this.trigger('change:coordinates', this);
     },
 
     toGeoJSON: function () {
