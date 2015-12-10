@@ -5,6 +5,7 @@ from celery.utils.log import get_task_logger
 
 from app import db
 from app.tasks import extract_zip
+from app.services.s3 import S3
 
 logger = get_task_logger(__name__)
 
