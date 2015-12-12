@@ -33,7 +33,7 @@ class Feed(object):
   def __repr__(self):
     return 'GTFS feed:' + self.filename
 
-  def build(self, mode='frequency'):
+  def build(self, mode='initial-times'):
     self.mode = mode
     logger.info("Feed build started")
 
