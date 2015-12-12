@@ -12,10 +12,14 @@ class RouteFrequency(Base, ToJSONMixin, Versioned, GTFSBase):
     __tablename__ = 'route_frequencies'
 
     route_id = Column(types.Integer,
-                      ForeignKey("routes.route_id", onupdate="CASCADE"),
+                      ForeignKey("routes.route_id",
+                                 onupdate="CASCADE",
+                                 ondelete="CASCADE"),
                       primary_key=True)
     service_id = Column(types.Integer,
-                        ForeignKey("calendar.service_id", onupdate="CASCADE"),
+                        ForeignKey("calendar.service_id",
+                                   onupdate="CASCADE",
+                                   ondelete="CASCADE"),
                         primary_key=True)
     start_time = Column(types.String(50), primary_key=True)
     end_time = Column(types.String(50), primary_key=True)

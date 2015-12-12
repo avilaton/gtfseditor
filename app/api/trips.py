@@ -61,35 +61,37 @@ def deleteTrip(id):
 
 @api.route('/trips/<trip_id>/stops.json', methods=['GET'])
 def tripStops(trip_id):
-	rows = db.session.query(Stop, StopSeq).join(StopSeq, Stop.stop_id == StopSeq.stop_id).filter(StopSeq.trip_id == trip_id).order_by(StopSeq.stop_sequence).all()
+	embed = request.args.get('embed', None)
+
+	rows = db.session.query(Stop, StopSeq).join(StopSeq, Stop.stop_id == StopSeq.stop_id)\
+			 		 .filter(StopSeq.trip_id == trip_id)\
+			 		 .order_by(StopSeq.stop_sequence).all()
 	features = []
 	for row in rows:
-		stop = row.Stop
-		stop_seq = row.StopSeq
-		features.append({'stop': row.Stop.to_json,'stop_seq': row.StopSeq.to_json}) 
+		stop_seq = row.StopSeq.to_json
+		if embed in ["true"]:
+			stop_seq['_stop'] = row.Stop.to_json
+		features.append(stop_seq)
 	return Response(json.dumps(features), mimetype='application/json')
 
 
 @api.route('/trips/<trip_id>/stops.json', methods=['PUT'])
 @admin_required
 def tripStopsPut(trip_id):
-	data = request.json
-	items = data['rows']
+	stop_seq_items = request.json
 
 	stop_ids = set([])
-	rows = []
-	for item in items:
+
+	for item in stop_seq_items:
 		stop_ids.add(str(item["stop_id"]))
-		rows.append(item)
 
 	removedStops = db.session.query(StopSeq).filter(StopSeq.trip_id == trip_id, \
 		not_(StopSeq.stop_id.in_(stop_ids))).all()
 
 	for stopSeq in removedStops:
-		print stopSeq
 		db.session.delete(stopSeq)
 
-	for row in rows:
+	for row in stop_seq_items:
 		stopSeq = StopSeq(**row)
 		db.session.merge(stopSeq)
 
@@ -101,7 +103,7 @@ def tripStopsPut(trip_id):
 @api.route('/trips/<trip_id>/actions/sort-stops', methods=['GET'])
 @admin_required
 def sortTripStops( trip_id):
-	stopSequence = StopSequence(trip_id)
+	stopSequence = StopSequence(trip_id, db)
 	stopSequence.sortStops() 
 	return jsonify({'success': True})
 
@@ -109,7 +111,7 @@ def sortTripStops( trip_id):
 @api.route('/trips/<trip_id>/actions/update-dist', methods=['GET'])
 @admin_required
 def sortTripStopsUpdate(trip_id):
-	stopSequence = StopSequence(trip_id)
+	stopSequence = StopSequence(trip_id, db)
 	stopSequence.updateDistances()
 	return jsonify({'success': True})
 
@@ -117,7 +119,7 @@ def sortTripStopsUpdate(trip_id):
 @api.route('/trips/<trip_id>/actions/interpolate-times', methods=['GET'])
 @admin_required
 def interpolateTimes(trip_id):
-	stopSequence = StopSequence(trip_id)
+	stopSequence = StopSequence(trip_id, db)
 	stopSequence.interpolateTimes()
 	return jsonify({'success': True})
 

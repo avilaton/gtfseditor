@@ -12,9 +12,13 @@ class TripStartTime(Base, ToJSONMixin, Versioned, GTFSBase):
     __tablename__ = 'trips_start_times'
 
     trip_id = Column(types.Integer,
-                     ForeignKey("trips.trip_id", onupdate="CASCADE"),
+                     ForeignKey("trips.trip_id",
+                                onupdate="CASCADE",
+                                ondelete="CASCADE"),
                      primary_key=True)
     service_id = Column(types.Integer,
-                        ForeignKey("calendar.service_id", onupdate="CASCADE"),
+                        ForeignKey("calendar.service_id",
+                                    onupdate="CASCADE",
+                                    ondelete="CASCADE"),
                         primary_key=True)
     start_time = Column(types.String(50), primary_key=True)

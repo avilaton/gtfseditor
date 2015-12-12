@@ -12,18 +12,11 @@ define([
     model: StopTime,
 
     url: function () {
-      return Config.server + 'api/trips/' + this.trip_id + '/stops.json';
+      return Config.server + 'api/trips/' + this.trip_id + '/stops.json?embed=true';
     },
 
     initialize: function (options) {
       this.selected = new this.model;
-    },
-
-    parse: function (response) {
-      return _.map(response, function (row) {
-          row.stop_seq._stop = row.stop;
-          return row.stop_seq;
-        });
     },
 
     toJSON: function(){
@@ -158,9 +151,7 @@ define([
       var self = this;
       var req = api.put({
         url: self.url(),
-        data: JSON.stringify({
-          rows: self.toJSON()
-        })
+        data: JSON.stringify(self.toJSON())
       });
       return req;
     },
