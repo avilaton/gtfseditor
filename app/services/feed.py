@@ -28,7 +28,7 @@ class Feed(object):
     self.filename = filename
     self.fileObj = StringIO()
     self.trip_start_times_default = None
-    self.schedule = transitfeed.Schedule(memory_db=True)
+    self.schedule = transitfeed.Schedule(memory_db=False)
 
   def __repr__(self):
     return 'GTFS feed:' + self.filename
