@@ -40,11 +40,8 @@ class StopTimesFactory(object):
     except Exception, e:
       print e
       return
-    new_trip_id = '.'.join([str(trip_id), str(startTimeRow.service_id), 
-      startTimeRow.start_time])
-    for stopSeq in trip_stop_sequence:
-      stop_seq_dict = stopSeq.to_json
 
+    for stopSeq in trip_stop_sequence:
       stop_time_elapsed = stopSeq.stop_time
       if stop_time_elapsed:
         stop_time_secs = TimeToSecondsSinceMidnight(stop_time_elapsed)
@@ -53,13 +50,7 @@ class StopTimesFactory(object):
       else:
         stop_time = stop_time_elapsed
 
-      stop_seq_dict.update({
-        'arrival_time': stop_time,
-        'departure_time': stop_time,
-        'trip_id': new_trip_id
-        })
-      stop_seq_dict.pop('stop_time')
-      yield stop_seq_dict    
+      yield {'arrival_time': stop_time, 'stop_id': stopSeq.stop_id}
 
   def initial_times_mode(self, trip_id=None, commit=False):
     """ In Frequency mode, copy each stop sequence to the stop times table"""

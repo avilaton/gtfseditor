@@ -28,7 +28,7 @@ class Feed(object):
     self.filename = filename
     self.fileObj = StringIO()
     self.trip_start_times_default = None
-    self.schedule = transitfeed.Schedule(memory_db=False)
+    self.schedule = transitfeed.Schedule(memory_db=True)
 
   def __repr__(self):
     return 'GTFS feed:' + self.filename
@@ -108,13 +108,15 @@ class Feed(object):
 
     for i, row in enumerate(routes):
       route_id = row.route_id
+
       mem = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-      logger.info("Loading {1}/{2} ({3}), route_short_name: {0}, {4}".format(
+      logger.info("Loading {1}/{2} ({3}), route_short_name: {0}, mode: {4}".format(
                     row.route_short_name,
                     i,
                     count,
                     mem,
                     row.build_type))
+
       route = self.schedule.AddRoute(short_name=row.route_short_name,
           long_name=row.route_long_name or "",
           route_id=row.route_id,
@@ -122,7 +124,6 @@ class Feed(object):
       route.agency_id = row.agency_id
       route.route_color = row.route_color
       route.route_text_color = row.route_text_color
-      logger.info("route build type: {0}".format(row.build_type))
 
       if row.build_type in ['initial_times']:
         self.loadTripsByInitialTimes(route)
@@ -148,7 +149,7 @@ class Feed(object):
         trip.service_id = service.service_id
         trip.shape_id = tripRow.shape_id
         trip.direction_id = tripRow.direction_id
-        # logger.info("Loading trip_id:{0} ".format(trip_id))
+
         self.loadTripRouteFrequencies(trip)
         self.loadStopTimesByFrequency(trip)
 
@@ -168,14 +169,18 @@ class Feed(object):
         order_by(StopSeq.stop_sequence).all()
 
       for startTimeRow in trip_start_times:
-        new_trip_id = '.'.join([str(route.route_short_name), str(tripRow.card_code), str(tripRow.trip_id), 
-          str(startTimeRow.service_id), startTimeRow.start_time])
+        new_trip_id = '.'.join(map(str, [route.route_short_name,
+                                         tripRow.card_code,
+                                         tripRow.trip_id,
+                                         startTimeRow.service_id,
+                                         startTimeRow.start_time
+                                        ]))
         trip = route.AddTrip(trip_id = new_trip_id, headsign=tripRow.trip_headsign)
         trip.service_id = startTimeRow.service_id
         trip.shape_id = tripRow.shape_id
         trip.direction_id = tripRow.direction_id
-        # trip_start_times = self.db.query(TripStartTime).filter_by(trip_id=tripRow.trip_id).all()
-        self.loadStopTimesByInitialTimes(trip, tripRow.trip_id, startTimeRow, stop_sequence=stop_sequence, trip_start_times=trip_start_times)
+
+        self.loadStopTimesByInitialTimes(trip, tripRow.trip_id, startTimeRow, stop_sequence=stop_sequence)
 
   def loadDefaultTripStartTimes(self):
     if self.trip_start_times_default:
@@ -210,9 +215,8 @@ class Feed(object):
         name=stop.stop_name, stop_id=str(stop.stop_id))
       stopObj.stop_code = stop.stop_code
 
-  def loadStopTimesByFrequency(self, trip, seq_trip_id=None, startTimeRow=None, stop_sequence=None, trip_start_times=None):
+  def loadStopTimesByFrequency(self, trip):
     """Adding Stop Times from trip start times"""
-    # logger.info("Loading Stop Times for stop_seq:{0}, trip_id:{1}".format(seq_trip_id, trip.trip_id))
 
     # Should use StopTimesFactory instead of reading from stop_times table.
     trip_id = trip.trip_id.split('.')[1]
@@ -230,13 +234,9 @@ class Feed(object):
       else:
         trip.AddStopTime(stop)
 
-  def loadStopTimesByInitialTimes(self, trip, seq_trip_id=None, startTimeRow=None, stop_sequence=None, trip_start_times=None):
+  def loadStopTimesByInitialTimes(self, trip, seq_trip_id, startTimeRow, stop_sequence):
     """Adding Stop Times from trip start times"""
     # logger.info("Loading Stop Times for stop_seq:{0}, trip_id:{1}".format(seq_trip_id, trip.trip_id))
-
-    if not trip_start_times:
-      self.loadDefaultTripStartTimes()
-      trip_start_times = self.trip_start_times_default
 
     for stop_time in StopTimesFactory.offsetStartTimes(seq_trip_id, stop_sequence, startTimeRow):
       stop = self.schedule.GetStop(str(stop_time['stop_id']))
