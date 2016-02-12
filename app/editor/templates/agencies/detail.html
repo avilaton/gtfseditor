@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Agency{% endblock %}
+
+{% block page_content %}
+  <div class="page-header">
+    {% if agency %}
+      <h1>Edit Agency: {{agency.agency_name}}</h1>
+    {% else %}
+      <h1>New Agency</h1>
+    {% endif %}
+  </div>
+  <div class="col-md-12">
+    <form id="registerForm" class="form form-register" method="POST" action="" role="form">
+      <div class="form-group">
+        {{ agency.agency_name }}
+      </div>
+      <div class="form-group">
+        {{ agency.agency_url }}
+      </div>
+      <div class="form-group">
+        {{ agency.agency_timezone }}
+      </div>
+      <div class="form-group">
+        {{ agency.agency_lang }}
+      </div>
+      <div class="form-group">
+        {{ agency.agency_phone }}
+      </div>
+      <p>
+        <a href="{{ url_for('editor.agency_edit', agency_id=agency.agency_id) }}"
+            class="btn btn-default btn-edit">
+          <span class="glyphicon glyphicon-pencil"> Edit</span>
+        </a>
+        <a href="{{ url_for('editor.agency_edit', agency_id=agency.agency_id) }}"
+            class="btn btn-default btn-edit">
+          <span class="glyphicon glyphicon-remove"> Remove</span>
+        </a>
+      </p>
+    </form>
+  </div>
+{% endblock %}
+
+
+
+
