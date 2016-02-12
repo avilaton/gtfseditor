@@ -54,7 +54,7 @@ class AgencyEditView(MethodView):
             flash('Agency updated.', 'success')
             return redirect(url_for('agencies.agencies'))
 
-        return render_template('agencies/form.html', form=form, agency=agency)
+        return render_template('form.html', form=form, agency=agency)
 
     @login_required
     def delete(self, agency_id):
