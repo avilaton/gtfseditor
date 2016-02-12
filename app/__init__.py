@@ -60,6 +60,10 @@ def create_app(config_name):
     app.register_blueprint(editor_blueprint, url_prefix='/editor')
 
 
+    from app.agencies import agencies_bp
+    app.register_blueprint(agencies_bp, url_prefix='/editor/agencies')
+
+
     from .reports import reports as reports_blueprint
     app.register_blueprint(reports_blueprint, url_prefix='/reports')
 

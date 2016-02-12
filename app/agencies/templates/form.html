@@ -28,7 +28,11 @@
       <div class="form-group">
         {{wtf.form_field(form.agency_phone, placeholder="Phone")}}
       </div>
-      <p><input class="btn btn-primary btn-submit" type="submit" value="Save"></p>
+      <button class="btn btn-primary btn-submit" type="submit">  <span class="glyphicon glyphicon-save"> Save</button>
+        <a href="{{ url_for('agencies.agencies') }}"
+            class="btn btn-default btn-remove">
+          <span class="glyphicon glyphicon-remove"> Cancel</span>
+        </a>
     </form>
   </div>
 {% endblock %}
