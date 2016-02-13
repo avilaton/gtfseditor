@@ -5,11 +5,7 @@
 
 {% block page_content %}
   <div class="page-header">
-    {% if agency %}
-      <h1>Edit Agency: {{agency.agency_name}}</h1>
-    {% else %}
-      <h1>New Agency</h1>
-    {% endif %}
+    <h1>Agency: {{agency.agency_name}}</h1>
   </div>
   <div class="col-md-12">
     <form id="registerForm" class="form form-register" method="POST" action="" role="form">
