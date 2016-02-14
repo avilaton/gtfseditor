@@ -47,7 +47,7 @@
             {%endif%}
           </td>
           <td>{{trip.trip_short_name}}</td>
-          <td><a href="/routes/{{model.route_id}}/trips/{{trip.trip_id}}">{{trip.trip_headsign}}</a></td>
+          <td><a href="{{ url_for('trips.view', trip_id=trip.trip_id, route_id=model.route_id) }}">{{trip.trip_headsign}}</a></td>
           <td>{% if trip.direction_id == "0"%} Ida {%else%} Vuelta {% endif %}</td>
           <td>{{trip.card_code}}</td>
       </tr>

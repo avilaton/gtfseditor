@@ -1,0 +1,46 @@
+<h4>Trip Tools</h4>
+<div class="btn-toolbar" role="toolbar">
+  <div class="btn-group btn-group-sm">
+    <button class="btn btn-default sortStops">Sort</button>
+    <button class="btn btn-default offsetStops">Align</button>
+    <button class="btn btn-default updateDist">Update Distances</button>
+    <button class="btn btn-default interpolateTimes">Interpolate Times</button>
+  </div>
+</div>
+
+<div class="row voffset1">
+  <div class="col-md-12">
+    <div class="btn-toolbar" role="toolbar">
+      <div class="btn-group btn-group-sm">
+        <button class="btn btn-default prevStop"><i class="glyphicon glyphicon-step-backward"></i></button>
+        <button class="btn btn-default nextStop"><i class="glyphicon glyphicon-step-forward"></i></button>
+        <button class="btn btn-default removeStop"><i class="glyphicon glyphicon-trash"></i> Remove</button>
+        <button class="btn btn-default appendStop"><i class="glyphicon glyphicon-chevron-down"></i> Use</button>
+        <button class="btn btn-default btn-save"><i class="glyphicon glyphicon-ok"></i> Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row voffset1">
+  <div class="col-md-12">
+  <form class="form-inline">
+    <div class="form-group">
+      <label for="speed">Set Speed</label>
+    <input name="speed" type="number" class="form-control speed" placeholder="speed (km/h)">
+    </div>
+    <button type="submit" class="btn btn-default btn-speed">Set</button>
+  </form>
+  </div>
+</div>
+
+<div class="row voffset1">
+  <div class="col-md-12">
+    <h4>Add stops by code</h4>
+
+    <div class="form-group">
+      <input type="text" class="form-control add-stops" placeholder="Enter a stop_code">
+      <div class="results-view"></div>
+    </div>
+  </div>
+</div>

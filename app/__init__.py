@@ -102,5 +102,8 @@ def register_blueprints(app):
     from app.routes import routes_bp
     app.register_blueprint(routes_bp, url_prefix='/editor/routes')
 
+    from app.trips import trips_bp
+    app.register_blueprint(trips_bp, url_prefix='/editor/routes')
+
 def register_extensions(app):
     pass
