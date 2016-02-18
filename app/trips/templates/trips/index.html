@@ -17,7 +17,7 @@
   <link href="{{ url_for('static', filename='trips/app/styles/style.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="wrapper">
+<div class="container">
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
@@ -33,9 +33,11 @@
     </div>
   </nav>
 
-  <div id="page-wrapper">
-    <h2>Route: {{route.route_short_name}} <small>Direction: {{trip.trip_headsign}}</small></h2>
-    <div class="top-sp main-view">
+  <div class="row">
+    <div class="col-md-12">
+      <h2><a href="{{ url_for('routes.view', route_id=route.route_id) }}" >Route: {{route.route_short_name}}</a> <small>Direction: {{trip.trip_headsign}}</small></h2>
+      <div class="top-sp main-view">
+      </div>
     </div>
   </div>
   <!-- Modals -->

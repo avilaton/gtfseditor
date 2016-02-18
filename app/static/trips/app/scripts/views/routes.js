@@ -13,6 +13,7 @@ define([
   'views/calendarsSelect',
   'views/calendarsTools',
   'views/kmlSelect',
+  'views/tripToolbox',
   'models/stop',
   'models/trip',
   'models/shape',
@@ -21,6 +22,7 @@ define([
   ], function (_, Backbone, Handlebars, JST, MapView, RoutesSelectView,
       TripsSelectView, SequenceToolboxView, ShapesToolboxView, SequenceView,
       StartTimesView, CalendarsSelectView, CalendarsToolsView, KmlSelectView,
+      TripToolbox,
       StopModel, TripModel, ShapeModel, StopsSeqCollection, TripStartTimesCol) {
     var View;
 
@@ -63,6 +65,12 @@ define([
           model: this.shapeModel,
           controls: mapView.controls,
           map: mapView
+        });
+
+        var tripToolbox = new TripToolbox({
+          el: '.trip-toolbox',
+          collection: this.stopsSeqCollection,
+          model: this.stopModel
         });
 
         var sequenceToolbox = new SequenceToolboxView({
