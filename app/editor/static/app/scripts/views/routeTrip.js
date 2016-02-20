@@ -13,30 +13,44 @@ define([
   'views/calendarsSelect',
   'views/calendarsTools',
   'views/kmlSelect',
+  'views/tripToolbox',
+  'models/route',
   'models/stop',
   'models/shape',
+  'models/trip',
   'collections/stop_seq',
   'collections/tripStartTimes'
   ], function (_, Backbone, Handlebars, JST, MapView, RoutesSelectView,
       TripsSelectView, SequenceToolboxView, ShapesToolboxView, SequenceView,
       StartTimesView, CalendarsSelectView, CalendarsToolsView, KmlSelectView,
-      StopModel, ShapeModel, StopsSeqCollection, TripStartTimesCol) {
+      TripToolbox, RouteModel,
+      StopModel, ShapeModel, TripModel, StopsSeqCollection, TripStartTimesCol) {
     var View;
 
     View = Backbone.View.extend({
       el: $('.main-view'),
 
-      template: JST['routes'],
+      template: JST['routeTrip'],
 
       events: {},
 
       initialize: function(options){
-        console.log(options)
-        this.render();
+        var self = this;
+
+        this.tripModel = new TripModel({trip_id: options.trip_id})
+        this.tripModel.fetch();
+        this.routeModel = new RouteModel({route_id: options.route_id})
+        this.routeModel.fetch();
+        $.when(this.tripModel.fetch(), this.routeModel.fetch()).then(function(trip, route) {
+          self.render();
+        });
       },
 
       render: function () {
-        this.$el.html(this.template());
+        this.$el.html(this.template({
+          trip: this.tripModel.toJSON(),
+          route: this.routeModel.toJSON()
+        }));
         this.stopModel = new StopModel();
         this.stopsSeqCollection = new StopsSeqCollection();
         this.shapeModel = new ShapeModel();
@@ -77,6 +91,12 @@ define([
           map: mapView
         });
 
+        var tripToolbox = new TripToolbox({
+          el: this.$('.trip-toolbox'),
+          collection: this.stopsSeqCollection,
+          model: this.stopModel
+        });
+
         var sequenceToolbox = new SequenceToolboxView({
           el: this.$('.sequence-toolbox'),
           collection: this.stopsSeqCollection,
@@ -88,25 +108,30 @@ define([
           collection: this.stopsSeqCollection
         });
 
-        tripsSelector.on('select', function (value) {
-          var selectedTrip = tripsSelector.collection.get(value);
-          var trip_id = selectedTrip.get('trip_id');
-          var shape_id = selectedTrip.get('shape_id');
+        var selectedTrip = this.tripModel;
+        var trip_id = selectedTrip.get('trip_id');
+        var shape_id = selectedTrip.get('shape_id');
 
-          this.shapeModel.clear();
-          this.shapeModel.set('trip_id', trip_id, {silent: true});
-          if (shape_id) {
-            this.shapeModel.fetch({reset: true}).done(function () {
-              mapView.updateShapesLayer();
-            });
-          } else {
-            this.shapeModel.unset('coordinates');
+        this.shapeModel.clear();
+        this.shapeModel.set('trip_id', trip_id, {silent: true});
+        if (shape_id) {
+          this.shapeModel.fetch({reset: true}).done(function () {
             mapView.updateShapesLayer();
-          }
+          });
+        } else {
+          this.shapeModel.unset('coordinates');
+          mapView.updateShapesLayer();
+        }
 
-          this.stopsSeqCollection.trip_id = trip_id;
-          this.stopsSeqCollection.fetch({reset: true});
-        }, this);
+        this.stopsSeqCollection.trip_id = trip_id;
+        this.stopsSeqCollection.fetch({reset: true});
+
+        if (trip_id !== '') {
+          this.tripStartTimesCol.trip_id = trip_id;
+          this.tripStartTimesCol.fetch({reset: true});
+        } else {
+          this.tripStartTimesCol.reset();
+        }
 
         this.shapeModel.on('created', function () {
           tripsSelector.collection.fetch();
@@ -136,15 +161,6 @@ define([
         });
 
         tripsSelector.on('select', function (value) {
-          var selectedTrip = tripsSelector.collection.get(value);
-          var trip_id = selectedTrip.get('trip_id');
-
-          if (trip_id !== '') {
-            this.tripStartTimesCol.trip_id = trip_id;
-            this.tripStartTimesCol.fetch({reset: true});
-          } else {
-            this.tripStartTimesCol.reset();
-          }
         }, this);
       }
 
