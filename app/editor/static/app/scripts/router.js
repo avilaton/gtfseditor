@@ -7,11 +7,12 @@ define([
   'views/routeTrip',
   'views/calendar',
   'views/agencies',
+  'views/home',
   'views/routesList',
   'views/tripsList',
   'views/navbarRight'
 ], function ($, _, Backbone, StopsView, RoutesView, RouteTripView, CalendarView,
-  AgenciesView, RoutesListView, TripsListView, NavbarRightView){
+  AgenciesView, HomeView, RoutesListView, TripsListView, NavbarRightView){
 
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -40,7 +41,7 @@ define([
 
     app_router.on('route:Home', function(route_id){
       clean();
-      mainView = new RoutesView();
+      mainView = new HomeView();
     });
     app_router.on('route:Routes', function(){
       clean();
