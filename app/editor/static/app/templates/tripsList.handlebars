@@ -1,10 +1,12 @@
 <div class="col-md-12">
   <ol class="breadcrumb">
     <li><a href="#">Home</a></li>
-    <li class="active">Routes</li>
+    <li><a href="#/routes">Routes</a></li>
+    <li class="active">Route: {{route.route_short_name}}</li>
+    <li class="active">Trips</li>
   </ol>
 
-  <h3>Routes</h3>
+  <h3>Trips for route: {{route.route_short_name}}</h3>
   <div class="row voffset1">
     <div class="col-md-12">
       <button class="btn btn-primary btn-create pull-right"><span class="glyphicon glyphicon-plus"></span> New</button>
@@ -13,24 +15,24 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Name</th>
+        <th>Headsing</th>
         <th>Active</th>
-        <th>Type</th>
-        <th>Agency</th>
+        <th>Short Name</th>
+        <th>Direction</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
       {{#each models}}
       <tr data-index="{{@index}}">
-        <td>{{route_short_name}}</td>
+        <td>{{trip_headsign}}</td>
         <td><span class="glyphicon glyphicon-{{#if active}}ok{{/if}}"></span></td>
-        <td>{{route_type}}</td>
-        <td>{{agency_id}}</td>
+        <td>{{trip_short_name}}</td>
+        <td>{{#if_eq direction_id "1"}}Outwards{{else}}Inwards{{/if_eq}}</td>
         <td class="text-right">
           <button class="btn btn-default btn-rm"><span class="glyphicon glyphicon-remove"></span> Remove</button>
           <button class="btn btn-default btn-edit"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
-          <a href="#/routes/{{route_id}}/trips" class="btn btn-default btn-trips"> View trips</a>
+          <a href="#/routes/{{../route.route_id}}/trips/{{trip_id}}" class="btn btn-default btn-trips">Details</a>
         </td>
       </tr>
       {{/each}}

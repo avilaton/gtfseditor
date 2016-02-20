@@ -1,6 +1,12 @@
-<div class="row">
-  <div class="col-md-12">
-    <h1>Route: {{route.route_short_name}} <small>Direction: {{trip.trip_headsign}}</small></h1>
+<div class="col-md-12">
+  <ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#/routes">Routes</a></li>
+    <li class="active">Route: {{route.route_short_name}}</li>
+    <li><a href="#/routes/{{route.route_id}}/trips">Trips</a></li>
+    <li class="active">Direction: {{trip.trip_headsign}}</li>
+  </ol>
+    <h3>Route: {{route.route_short_name}} <small>Direction: {{trip.trip_headsign}}</small></h3>
     <div role="tabpanel">
 
       <!-- Nav tabs -->
@@ -51,7 +57,3 @@
 
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-12"></div>
-</div>
