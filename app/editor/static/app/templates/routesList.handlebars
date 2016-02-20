@@ -1,0 +1,36 @@
+<div class="col-md-12 panel-right">
+  <h2>Routes</h2>
+  <div class="row voffset1">
+    <div class="col-md-12">
+      <form class="form-inline">
+        <button class="btn btn-default btn-create"><span class="glyphicon glyphicon-plus"></span> New</button>
+      </form>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Active</th>
+        <th>Type</th>
+        <th>Agency</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each models}}
+      <tr data-index="{{@index}}">
+        <td>{{route_short_name}}</td>
+        <td><span class="glyphicon glyphicon-{{#if active}}ok{{/if}}"></span></td>
+        <td>{{route_type}}</td>
+        <td>{{agency_id}}</td>
+        <td class="">
+          <button class="btn btn-default btn-rm"><span class="glyphicon glyphicon-remove"></span> Remove</button>
+          <button class="btn btn-default btn-edit"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+          <a href="#/routes/{{route_id}}" class="btn btn-default btn-trips">Trips</a>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

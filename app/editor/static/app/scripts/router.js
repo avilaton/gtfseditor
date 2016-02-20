@@ -7,13 +7,16 @@ define([
   'views/routeTrip',
   'views/calendar',
   'views/agencies',
+  'views/routesList',
   'views/navbarRight'
-], function ($, _, Backbone, StopsView, RoutesView, RouteTripView, CalendarView, AgenciesView,
+], function ($, _, Backbone, StopsView, RoutesView, RouteTripView, CalendarView,
+  AgenciesView, RoutesListView,
   NavbarRightView){
 
   var AppRouter = Backbone.Router.extend({
     routes: {
       'routes(/:route_id)': 'showRoute',
+      'routes-list(/)': 'showRouteList',
       'routes/:route_id/trips/:trip_id': 'showTrip',
       'stops(/:stop_id)': 'stopsView',
       'calendar(/)': 'calendarView',
@@ -36,6 +39,10 @@ define([
     app_router.on('route:showRoute', function(route_id){
       clean();
       mainView = new RoutesView();
+    });
+    app_router.on('route:showRouteList', function(){
+      clean();
+      mainView = new RoutesListView();
     });
     app_router.on('route:showTrip', function(route_id, trip_id){
       clean();
