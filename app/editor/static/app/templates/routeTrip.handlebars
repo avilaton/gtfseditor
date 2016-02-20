@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1>Route: </h1>
+    <div role="tabpanel">
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#map-tab" aria-controls="map-tab" role="tab" data-toggle="tab">Map</a></li>
+        <li role="presentation"><a href="#sequence-tab" aria-controls="sequence-tab" role="tab" data-toggle="tab">Sequence times</a></li>
+        <li role="presentation"><a href="#start-times-tab" aria-controls="start-times-tab" role="tab" data-toggle="tab">Start times</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="map-tab">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="btn-toolbar voffset1" role="toolbar">
+                <div class="btn-group btn-group-sm trip-toolbox"></div>
+                <div class="btn-group btn-group-sm shapes-toolbox"></div>
+                <div class="btn-group btn-group-sm kml-select-view"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="voffset1">
+                <div id="map" class="map-view"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="sequence-tab">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="voffset1 sequence-toolbox"></div>
+              <div class="sequence-view"></div>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="start-times-tab">
+          <div class="row voffset1">
+            <div class="col-md-6">
+              <div class="calendars-select-view"></div>
+              <div class="calendars-tools-view"></div>
+            </div>
+            <div class="col-md-6 start-times-view"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12"></div>
+</div>
