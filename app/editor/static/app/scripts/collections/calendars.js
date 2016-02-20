@@ -10,7 +10,7 @@ define([
   RouteCollection = Backbone.Collection.extend({
     model: CalendarModel,
 
-    url: Config.server + 'api/calendars/',
+    url: Config.api + 'calendars/',
 
     save: function () {
       _.forEach(this.models, function (model) {

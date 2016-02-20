@@ -15,7 +15,7 @@ define([
 
       initialize: function(){
         var self = this;
-        $.get(Config.server + 'api/stats').then(function(stats) {
+        $.get(Config.api + 'stats').then(function(stats) {
           self.stats = stats;
           self.render();
         });
