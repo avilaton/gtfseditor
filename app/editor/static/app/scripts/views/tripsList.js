@@ -54,7 +54,9 @@ define([
 
       onCreate: function (e) {
         e.preventDefault();
-        var model = new TripModel();
+        var model = new TripModel({
+          route_id: this.routeModel.get('route_id')
+        });
         var modal = new TripModal({
           model: model,
           collection: this.collection,
