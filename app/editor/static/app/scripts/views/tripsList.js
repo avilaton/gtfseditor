@@ -5,9 +5,10 @@ define([
   'backbone',
   'JST',
   'models/route',
+  'models/trip',
   'collections/trips',
   'views/modals/trip'
-  ], function (_, Backbone, JST, RouteModel, TripsCollection, TripModal) {
+  ], function (_, Backbone, JST, RouteModel, TripModel, TripsCollection, TripModal) {
     var View;
 
     View = Backbone.View.extend({
@@ -53,9 +54,10 @@ define([
 
       onCreate: function (e) {
         e.preventDefault();
-        var model = this.collection.create();
+        var model = new TripModel();
         var modal = new TripModal({
           model: model,
+          collection: this.collection,
           el: $('#routeDataEditor')
         });
         modal.$el.modal('show');
@@ -67,6 +69,7 @@ define([
           model = this.collection.at(index),
           modal = new TripModal({
             model: model,
+            collection: this.collection,
             el: $('#routeDataEditor')
         });
         modal.$el.modal('show');
