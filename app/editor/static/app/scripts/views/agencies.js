@@ -4,9 +4,10 @@ define([
   'underscore',
   'backbone',
   'JST',
+  'models/agency',
   'collections/agencies',
   'views/modals/agency'
-  ], function (_, Backbone, JST, AgenciesCollection, AgencyModal) {
+  ], function (_, Backbone, JST, AgencyModel, AgenciesCollection, AgencyModal) {
     var View;
 
     View = Backbone.View.extend({
@@ -46,9 +47,10 @@ define([
 
       onCreate: function (e) {
         e.preventDefault();
-        var model = this.collection.create();
+        var model = new AgencyModel();
         var modal = new AgencyModal({
           model: model,
+          collection: this.collection,
           el: $('#routeDataEditor')
         });
         modal.$el.modal('show');
