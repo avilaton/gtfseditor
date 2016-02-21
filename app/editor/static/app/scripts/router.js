@@ -69,7 +69,7 @@ define([
     });
     app_router.on('route:defaultAction', function(actions){
       clean();
-      mainView = new RoutesView();
+      mainView = new HomeView();
     });
     Backbone.history.start();
 
