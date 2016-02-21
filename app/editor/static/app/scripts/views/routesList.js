@@ -4,9 +4,10 @@ define([
   'underscore',
   'backbone',
   'JST',
+  'models/route',
   'collections/routes',
   'views/modals/route'
-  ], function (_, Backbone, JST, RoutesCollection, RouteModal) {
+  ], function (_, Backbone, JST, RouteModel, RoutesCollection, RouteModal) {
     var View;
 
     View = Backbone.View.extend({
@@ -46,9 +47,10 @@ define([
 
       onCreate: function (e) {
         e.preventDefault();
-        var model = this.collection.create();
+        var model = new RouteModel();
         var modal = new RouteModal({
           model: model,
+          collection: this.collection,
           el: $('#routeDataEditor')
         });
         modal.$el.modal('show');
@@ -60,6 +62,7 @@ define([
           model = this.collection.at(index),
           modal = new RouteModal({
             model: model,
+            collection: this.collection,
             el: $('#routeDataEditor')
         });
         modal.$el.modal('show');

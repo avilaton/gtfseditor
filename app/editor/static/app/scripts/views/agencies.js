@@ -62,6 +62,7 @@ define([
           model = this.collection.at(index),
           modal = new AgencyModal({
             model: model,
+            collection: this.collection,
             el: $('#routeDataEditor')
         });
         modal.$el.modal('show');
