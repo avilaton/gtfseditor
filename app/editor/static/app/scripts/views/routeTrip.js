@@ -56,19 +56,6 @@ define([
         this.shapeModel = new ShapeModel();
         this.tripStartTimesCol = new TripStartTimesCol();
 
-        var routeSelector = new RoutesSelectView({
-          el: this.$('.routes-select')
-        });
-
-        var tripsSelector = new TripsSelectView({
-          el: this.$('.trips-select')
-        });
-
-        routeSelector.on('select', function (route_id) {
-          tripsSelector.collection.route_id = route_id;
-          tripsSelector.collection.fetch();
-        });
-
         var mapView = new MapView({
           el: this.$('.map-view'),
           shape: this.shapeModel,
@@ -112,7 +99,6 @@ define([
         var trip_id = selectedTrip.get('trip_id');
         var shape_id = selectedTrip.get('shape_id');
 
-        this.shapeModel.clear();
         this.shapeModel.set('trip_id', trip_id, {silent: true});
         if (shape_id) {
           this.shapeModel.fetch({reset: true}).done(function () {
@@ -121,6 +107,7 @@ define([
         } else {
           this.shapeModel.unset('coordinates');
           mapView.updateShapesLayer();
+          shapesToolbox.render();
         }
 
         this.stopsSeqCollection.trip_id = trip_id;
@@ -134,7 +121,7 @@ define([
         }
 
         this.shapeModel.on('created', function () {
-          tripsSelector.collection.fetch();
+
         });
 
         var calendarsSelectView = new CalendarsSelectView({
@@ -160,8 +147,6 @@ define([
           collection: this.tripStartTimesCol
         });
 
-        tripsSelector.on('select', function (value) {
-        }, this);
       }
 
     });
