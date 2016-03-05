@@ -25,7 +25,7 @@ define([
         this.collection = new AgenciesCollection();
         this.collection.on('add change remove reset', this.render, this);
         this.render();
-        this.collection.fetch();
+        this.collection.fetch({reset: true});
       },
 
       render: function () {
