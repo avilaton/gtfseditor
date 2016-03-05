@@ -4,10 +4,11 @@ define([
   'underscore',
   'backbone',
   'JST',
-  'models/agency',
-  'collections/agencies',
-  'views/modals/agency'
-  ], function (_, Backbone, JST, AgencyModel, AgenciesCollection, AgencyModal) {
+  'models/route',
+  'models/trip',
+  'collections/trips',
+  'views/modals/trip'
+  ], function (_, Backbone, JST, RouteModel, TripModel, TripsCollection, TripModal) {
     var View;
 
     View = Backbone.View.extend({
@@ -19,18 +20,24 @@ define([
         'click button.btn-rm': 'onRemove'
       },
 
-      template: JST.agencies,
+      template: JST.tripsList,
 
-      initialize: function(){
-        this.collection = new AgenciesCollection();
+      initialize: function(options){
+        var self = this;
+        this.routeModel = new RouteModel({route_id: options.route_id});
+
+        this.collection = new TripsCollection();
+        this.collection.route_id = options.route_id;
         this.collection.on('add change remove reset', this.render, this);
-        this.render();
-        this.collection.fetch();
+        $.when(this.collection.fetch(), this.routeModel.fetch()).then(function(trips, route) {
+          self.render();
+        });
       },
 
       render: function () {
         this.$el.html(this.template({
-          models: this.collection.toJSON()
+          models: this.collection.toJSON(),
+          route: this.routeModel.toJSON()
         }));
         $('.main-view').empty().append(this.el);
         this.delegateEvents(this.events);
@@ -47,8 +54,10 @@ define([
 
       onCreate: function (e) {
         e.preventDefault();
-        var model = new AgencyModel();
-        var modal = new AgencyModal({
+        var model = new TripModel({
+          route_id: this.routeModel.get('route_id')
+        });
+        var modal = new TripModal({
           model: model,
           collection: this.collection,
           el: $('#routeDataEditor')
@@ -60,7 +69,7 @@ define([
         var $target = $(e.currentTarget),
           index = $target.closest('tr').data('index'),
           model = this.collection.at(index),
-          modal = new AgencyModal({
+          modal = new TripModal({
             model: model,
             collection: this.collection,
             el: $('#routeDataEditor')

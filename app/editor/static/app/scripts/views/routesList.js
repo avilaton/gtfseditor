@@ -4,10 +4,10 @@ define([
   'underscore',
   'backbone',
   'JST',
-  'models/agency',
-  'collections/agencies',
-  'views/modals/agency'
-  ], function (_, Backbone, JST, AgencyModel, AgenciesCollection, AgencyModal) {
+  'models/route',
+  'collections/routes',
+  'views/modals/route'
+  ], function (_, Backbone, JST, RouteModel, RoutesCollection, RouteModal) {
     var View;
 
     View = Backbone.View.extend({
@@ -19,10 +19,10 @@ define([
         'click button.btn-rm': 'onRemove'
       },
 
-      template: JST.agencies,
+      template: JST.routesList,
 
       initialize: function(){
-        this.collection = new AgenciesCollection();
+        this.collection = new RoutesCollection();
         this.collection.on('add change remove reset', this.render, this);
         this.render();
         this.collection.fetch();
@@ -47,8 +47,8 @@ define([
 
       onCreate: function (e) {
         e.preventDefault();
-        var model = new AgencyModel();
-        var modal = new AgencyModal({
+        var model = new RouteModel();
+        var modal = new RouteModal({
           model: model,
           collection: this.collection,
           el: $('#routeDataEditor')
@@ -60,7 +60,7 @@ define([
         var $target = $(e.currentTarget),
           index = $target.closest('tr').data('index'),
           model = this.collection.at(index),
-          modal = new AgencyModal({
+          modal = new RouteModal({
             model: model,
             collection: this.collection,
             el: $('#routeDataEditor')

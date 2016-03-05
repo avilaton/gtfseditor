@@ -12,7 +12,7 @@ define([
     },
 
 		url: function () {
-      return Config.server + 'api/stops/' + this.stop_id + '/seqs.json';
+      return Config.api + 'stops/' + this.stop_id + '/seqs.json';
     }
 
  	});
