@@ -47,7 +47,7 @@ define([
               ],
             protocol: new OpenLayers.Protocol.HTTP({
               format: new OpenLayers.Format.GTFS(),
-              url: Config.server + 'api/stops.json',
+              url: Config.api + 'stops.json',
               params: {
                 filter: '',
                 limit: 300

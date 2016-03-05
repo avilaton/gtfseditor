@@ -9,8 +9,12 @@ logger = logging.getLogger(__name__)
 import csv
 import resource
 import transitfeed
-import StringIO
+try:
+    from cStringIO import StringIO
+except:
+    from StringIO import StringIO
 import zipfile
+import shutil
 
 from app import db
 from ..models import *
@@ -19,11 +23,10 @@ from ..services import defaults
 
 class Feed(object):
   """GTFS schedule feed factory"""
-  def __init__(self, filename='google_transit.zip', mode='initial-times', db=db):
-    self.mode = mode
+  def __init__(self, filename='google_transit.zip', db=db):
     self.db = db
     self.filename = filename
-    self.fileObj = StringIO.StringIO()
+    self.fileObj = StringIO()
     self.trip_start_times_default = None
     self.schedule = transitfeed.Schedule(memory_db=False)
 
@@ -49,7 +52,9 @@ class Feed(object):
     return self.fileObj
 
   def saveTo(self, directory):
-    self.schedule.WriteGoogleTransitFeed(directory + self.filename)
+    self.fileObj.seek(0)
+    with open(directory + self.filename, 'w') as outfile:
+      shutil.copyfileobj(self.fileObj, outfile)
 
   def validate(self):
     """Validate feed object"""
@@ -118,16 +123,22 @@ class Feed(object):
   def loadTrips(self, route):
     """Loads active trips into schedule"""
 
-    for tripRow in self.db.query(Trip).filter_by(route_id=route.route_id).filter(Trip.active).all():
+    for tripRow in self.db.query(Trip).filter_by(route_id=route.route_id)\
+                                      .filter(Trip.active)\
+                                      .order_by(Trip.trip_id).all():
       if self.mode == 'frequency':
         services = self.schedule.GetServicePeriodList()
         for service in services:
-          trip_id = ''.join([str(tripRow.trip_id), '.', service.service_id])
+          trip_id = '.'.join([
+              str(route.route_id),
+              str(tripRow.trip_id),
+              str(service.service_id)
+            ])
           trip = route.AddTrip(trip_id = trip_id, headsign=tripRow.trip_headsign)
           trip.service_id = service.service_id
           trip.shape_id = tripRow.shape_id
           trip.direction_id = tripRow.direction_id
-          logger.info("Loading trip_id:{0} ".format(trip_id))
+          # logger.info("Loading trip_id:{0} ".format(trip_id))
           self.loadStopTimes(trip)
 
       elif self.mode == 'initial-times':
@@ -192,8 +203,9 @@ class Feed(object):
     # logger.info("Loading Stop Times for stop_seq:{0}, trip_id:{1}".format(seq_trip_id, trip.trip_id))
 
     if self.mode == 'frequency':
+
       # Should use StopTimesFactory instead of reading from stop_times table.
-      trip_id = trip.trip_id.replace('.'+trip.service_id, '')
+      trip_id = trip.trip_id.split('.')[1]
 
       for stopTime in self.db.query(StopTime).filter_by(trip_id=trip_id).\
         order_by(StopTime.stop_sequence).all():
@@ -266,11 +278,11 @@ class Feed(object):
 
     keys = ['feed_publisher_name', 'feed_start_date', 'feed_version', 
         'feed_end_date', 'feed_lang', 'feed_publisher_url']
-    feed_info_txt = StringIO.StringIO()
+    feed_info_txt = StringIO()
     writer = csv.DictWriter(feed_info_txt, keys)
     writer.writeheader()
     for info in self.db.query(FeedInfo).all():
       uDict = {k:v.encode('utf-8') for k, v in info.to_json.iteritems() if v}
       writer.writerow(uDict)
-    with zipfile.ZipFile(self.fileObj, "a") as z:
-        z.writestr('feed_info.txt', feed_info_txt.getvalue())
+    with zipfile.ZipFile(self.fileObj, "a", zipfile.ZIP_DEFLATED) as feed_file:
+      feed_file.writestr('feed_info.txt', feed_info_txt.getvalue())

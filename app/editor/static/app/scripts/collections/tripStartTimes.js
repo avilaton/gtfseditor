@@ -28,7 +28,7 @@ define([
         },
 
         url: function() {
-            return Config.server + 'api/trips/' + this.trip_id + '/calendars/' + this.service_id + '/start-times.json';
+            return Config.api + 'trips/' + this.trip_id + '/calendars/' + this.service_id + '/start-times.json';
         },
 
         save: function () {
