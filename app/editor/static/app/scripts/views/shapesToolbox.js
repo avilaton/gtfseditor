@@ -33,6 +33,7 @@ define([
         this.$el.html(this.template({
           isEditing: this.isEditing,
           isCreating: this.isCreating,
+          isEditingOrCreating: this.isEditing || this.isCreating,
           shape_id: shape_id
         }));
       },
@@ -86,7 +87,7 @@ define([
         } else if (this.isCreating) {
           this.model.sync('create', this.model).then(function (response) {
             self.model.trigger('created');
-            self.model.set('shape_id', response.shape_id);
+            self.model.set('shape_id', response.shape_id, {silent: true});
             self.stopCreating();
           });
         }
