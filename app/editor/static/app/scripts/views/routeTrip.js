@@ -4,8 +4,6 @@ define([
   'handlebars',
   'JST',
   'views/map',
-  'views/routesSelect',
-  'views/tripsSelect',
   'views/sequenceToolbox',
   'views/shapesToolbox',
   'views/sequence',
@@ -20,8 +18,8 @@ define([
   'models/trip',
   'collections/stop_seq',
   'collections/tripStartTimes'
-  ], function (_, Backbone, Handlebars, JST, MapView, RoutesSelectView,
-      TripsSelectView, SequenceToolboxView, ShapesToolboxView, SequenceView,
+  ], function (_, Backbone, Handlebars, JST, MapView, SequenceToolboxView,
+      ShapesToolboxView, SequenceView,
       StartTimesView, CalendarsSelectView, CalendarsToolsView, KmlSelectView,
       TripToolbox, RouteModel,
       StopModel, ShapeModel, TripModel, StopsSeqCollection, TripStartTimesCol) {
@@ -55,19 +53,6 @@ define([
         this.stopsSeqCollection = new StopsSeqCollection();
         this.shapeModel = new ShapeModel();
         this.tripStartTimesCol = new TripStartTimesCol();
-
-        var routeSelector = new RoutesSelectView({
-          el: this.$('.routes-select')
-        });
-
-        var tripsSelector = new TripsSelectView({
-          el: this.$('.trips-select')
-        });
-
-        routeSelector.on('select', function (route_id) {
-          tripsSelector.collection.route_id = route_id;
-          tripsSelector.collection.fetch();
-        });
 
         var mapView = new MapView({
           el: this.$('.map-view'),
@@ -108,11 +93,10 @@ define([
           collection: this.stopsSeqCollection
         });
 
-        var selectedTrip = this.tripModel;
-        var trip_id = selectedTrip.get('trip_id');
-        var shape_id = selectedTrip.get('shape_id');
+        var trip_id = this.tripModel.get('trip_id');
+        var shape_id = this.tripModel.get('shape_id');
+        this.shapeModel.trip_id = trip_id;
 
-        this.shapeModel.clear();
         this.shapeModel.set('trip_id', trip_id, {silent: true});
         if (shape_id) {
           this.shapeModel.fetch({reset: true}).done(function () {
@@ -122,6 +106,7 @@ define([
           this.shapeModel.unset('coordinates');
           mapView.updateShapesLayer();
         }
+        shapesToolbox.render();
 
         this.stopsSeqCollection.trip_id = trip_id;
         this.stopsSeqCollection.fetch({reset: true});
@@ -132,10 +117,6 @@ define([
         } else {
           this.tripStartTimesCol.reset();
         }
-
-        this.shapeModel.on('created', function () {
-          tripsSelector.collection.fetch();
-        });
 
         var calendarsSelectView = new CalendarsSelectView({
           el: this.$('.calendars-select-view')
@@ -160,8 +141,6 @@ define([
           collection: this.tripStartTimesCol
         });
 
-        tripsSelector.on('select', function (value) {
-        }, this);
       }
 
     });

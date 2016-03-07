@@ -29,7 +29,7 @@ define([
         this.collection = new TripsCollection();
         this.collection.route_id = options.route_id;
         this.collection.on('add change remove reset', this.render, this);
-        $.when(this.collection.fetch(), this.routeModel.fetch()).then(function(trips, route) {
+        $.when(this.collection.fetch({reset: true}), this.routeModel.fetch()).then(function(trips, route) {
           self.render();
         });
       },

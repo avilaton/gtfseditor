@@ -25,7 +25,7 @@ define([
         this.collection = new RoutesCollection();
         this.collection.on('add change remove reset', this.render, this);
         this.render();
-        this.collection.fetch();
+        this.collection.fetch({reset: true});
       },
 
       render: function () {

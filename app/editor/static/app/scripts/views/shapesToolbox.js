@@ -29,10 +29,12 @@ define([
       },
 
       render: function () {
+        var shape_id = this.model.has('shape_id');
         this.$el.html(this.template({
           isEditing: this.isEditing,
           isCreating: this.isCreating,
-          shape_id: this.model.get('shape_id')
+          isEditingOrCreating: this.isEditing || this.isCreating,
+          shape_id: shape_id
         }));
       },
 
@@ -83,8 +85,9 @@ define([
           this.model.sync('update', this.model);
           this.stopEditing();
         } else if (this.isCreating) {
-          this.model.sync('create', this.model).then(function () {
+          this.model.sync('create', this.model).then(function (response) {
             self.model.trigger('created');
+            self.model.set('shape_id', response.shape_id, {silent: true});
             self.stopCreating();
           });
         }
@@ -103,8 +106,6 @@ define([
       onDelete: function () {
         var self = this;
         this.model.destroy().then(function (response) {
-          console.log('destroy response', response);
-          console.log(self.model);
           self.model.clear();
           self.map.updateShapesLayer();
         });

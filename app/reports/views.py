@@ -8,7 +8,7 @@ from flask import render_template
 from sqlalchemy import not_
 
 from .. import db
-from ..email import send_email
+from app.mail import send_email
 from ..models import Route
 from ..models import Trip
 from ..models import TripStartTime
