@@ -22,9 +22,15 @@ def index():
 		.filter(Route.agency_id==Agency.agency_id)\
 		.order_by(Route.route_short_name)\
 		.all()
-	for route in results:
-		print route
 	return render_template('home/index.html', agencies=agencies, results=results)
+
+@home.route('/routing')
+def routing():
+	return render_template('home/routing/index.html')
+
+@home.route('/stops')
+def stops():
+	return render_template('home/stops/index.html')
 
 @home.route('/agency/<agency_id>')
 def get_agency(agency_id):

@@ -23,7 +23,7 @@ define([
 
       initialize: function(){
         this.collection = new CalendarsCollection();
-        this.collection.fetch();
+        this.collection.fetch({reset: true});
         this.collection.on('add change remove reset', this.render, this);
         this.render();
       },

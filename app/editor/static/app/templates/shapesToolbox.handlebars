@@ -3,10 +3,6 @@
     <button class="btn btn-default reverseShape disabled">
       <i class="glyphicon glyphicon-refresh"></i> Reverse
     </button>
-    <button class="btn btn-default saveShape">
-      <i class="glyphicon glyphicon-ok"></i> Save
-    </button>
-    <button class="btn btn-default btn-cancel"> Cancel</button>
   {{else}}
     <button class="btn btn-default editShape">
       <i class="glyphicon glyphicon-pencil"></i> Edit Shape
@@ -16,14 +12,16 @@
     </button>
   {{/if}}
 {{else}}
-  {{#if isCreating}}
-    <button class="btn btn-default saveShape">
-      <i class="glyphicon glyphicon-ok"></i> Save Shape
-    </button>
-    <button class="btn btn-default btn-cancel"> Cancel</button>
-  {{else}}
+  {{#unless isCreating}}
     <button class="btn btn-default create-shape">
-      <i class="glyphicon glyphicon-plus"></i> Create
+      <i class="glyphicon glyphicon-plus"></i> Create Shape
     </button>
-  {{/if}}
+  {{/unless}}
+{{/if}}
+
+{{#if isEditingOrCreating}}
+  <button class="btn btn-default saveShape">
+    <i class="glyphicon glyphicon-ok"></i> Save Shape
+  </button>
+  <button class="btn btn-default btn-cancel"> Cancel</button>
 {{/if}}

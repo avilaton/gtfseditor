@@ -11,7 +11,7 @@ define([
     idAttribute: 'shape_id',
 
     url: function () {
-      return Config.api + 'trips/' + this.get('trip_id') + '/shape.json';
+      return Config.api + 'trips/' + this.trip_id + '/shape.json';
     },
 
     reverse: function () {
