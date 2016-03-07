@@ -28,6 +28,10 @@ def index():
 def routing():
 	return render_template('home/routing/index.html')
 
+@home.route('/stops')
+def stops():
+	return render_template('home/stops/index.html')
+
 @home.route('/agency/<agency_id>')
 def get_agency(agency_id):
 	agency = Agency.query.get_or_404(agency_id)
