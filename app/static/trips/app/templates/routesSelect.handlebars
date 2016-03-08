@@ -1,0 +1,37 @@
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="route" class="col-sm-2 control-label">Route</label>
+    <div class="col-sm-8">
+      <select class="form-control" id="route">
+        <option value=""> -- </option>
+        {{#each routes}}
+          <option value="{{route_id}}">{{route_type}} {{route_short_name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="col-sm-2">
+      <div class="btn-group">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+          <i class="glyphicon glyphicon-pencil"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+          <li class="js-add" role="presentation">
+            <a role="menuitem" tabindex="-1" href="#"><i class="glyphicon glyphicon-plus"></i> Add</a>
+          </li>
+          <li class="js-edit" role="presentation">
+            <a role="menuitem" tabindex="-1" href="#" data-target="#routeEditData" data-toggle="modal">
+             <i class="glyphicon glyphicon-pencil"></i> Edit
+            </a>
+          </li>
+          <li class="js-remove" role="presentation">
+            <a role="menuitem" tabindex="-1" href="#"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+          </li>
+          <li role="presentation" class="divider"></li>
+          <li class="js-view-all disabled"  role="presentation">
+            <a role="menuitem" tabindex="-1" href="#">View all</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,44 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+      </button>
+      {{#if agency_id}}
+      <h3 class="modal-title">Edit Agency</h3>
+      {{else}}
+      <h3 class="modal-title">Add New Agency</h3>
+      {{/if}}
+    </div>
+
+    <div class="modal-body">
+      <form role="form" >
+        <div class="form-group">
+          <label for="agency_lang">agency_lang</label>
+          <input class="form-control" type="text" name="agency_lang" placeholder="agency_lang" value="{{agency_lang}}">
+        </div>
+        <div class="form-group">
+          <label for="agency_name">agency_name</label>
+            <input class="form-control" type="text" name="agency_name" placeholder="agency_name" value="{{agency_name}}">
+        </div>
+        <div class="form-group">
+          <label for="agency_phone">agency_phone</label>
+            <input class="form-control" type="text" name="agency_phone" placeholder="agency_phone" value="{{agency_phone}}">
+        </div>
+        <div class="form-group">
+          <label for="agency_timezone">agency_timezone</label>
+            <input class="form-control" type="text" name="agency_timezone" placeholder="agency_timezone" value="{{agency_timezone}}">
+        </div>
+        <div class="form-group">
+          <label for="agency_url">agency_url</label>
+          <input class="form-control" type="text" name="agency_url" placeholder="agency_url" value="{{agency_url}}">
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary js-save">Save changes</button>
+    </div>
+  </div>
+</div>
