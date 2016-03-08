@@ -7,7 +7,7 @@ var map, transitLayer;
 function initialize() {
   var mapOptions = {
     zoom: 11,
-    center: new google.maps.LatLng(-31.4128832, -64.1857371),
+    center: new google.maps.LatLng(-32.8897185,-68.8467144),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
 

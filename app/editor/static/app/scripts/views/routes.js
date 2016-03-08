@@ -13,6 +13,7 @@ define([
   'views/calendarsSelect',
   'views/calendarsTools',
   'views/kmlSelect',
+  'views/tripToolbox',
   'models/stop',
   'models/shape',
   'collections/stop_seq',
@@ -20,6 +21,7 @@ define([
   ], function (_, Backbone, Handlebars, JST, MapView, RoutesSelectView,
       TripsSelectView, SequenceToolboxView, ShapesToolboxView, SequenceView,
       StartTimesView, CalendarsSelectView, CalendarsToolsView, KmlSelectView,
+      TripToolbox,
       StopModel, ShapeModel, StopsSeqCollection, TripStartTimesCol) {
     var View;
 
@@ -42,11 +44,11 @@ define([
         this.tripStartTimesCol = new TripStartTimesCol();
 
         var routeSelector = new RoutesSelectView({
-          el: '.routes-select'
+          el: this.$('.routes-select')
         });
 
         var tripsSelector = new TripsSelectView({
-          el: '.trips-select'
+          el: this.$('.trips-select')
         });
 
         routeSelector.on('select', function (route_id) {
@@ -55,7 +57,7 @@ define([
         });
 
         var mapView = new MapView({
-          el: '.map-view',
+          el: this.$('.map-view'),
           shape: this.shapeModel,
           collection: this.stopsSeqCollection,
           stop: this.stopModel,
@@ -63,27 +65,33 @@ define([
         });
 
         var kmlSelectView = new KmlSelectView({
-          el: '.kml-select-view'
+          el: this.$('.kml-select-view')
         });
         kmlSelectView.on('select', function (content) {
           mapView.layers.fileLayer.read(content);
         });
 
         var shapesToolbox = new ShapesToolboxView({
-          el: '.shapes-toolbox',
+          el: this.$('.shapes-toolbox'),
           model: this.shapeModel,
           controls: mapView.controls,
           map: mapView
         });
 
+        var tripToolbox = new TripToolbox({
+          el: this.$('.trip-toolbox'),
+          collection: this.stopsSeqCollection,
+          model: this.stopModel
+        });
+
         var sequenceToolbox = new SequenceToolboxView({
-          el: '.sequence-toolbox',
+          el: this.$('.sequence-toolbox'),
           collection: this.stopsSeqCollection,
           model: this.stopModel
         });
 
         var sequenceView = new SequenceView({
-          el: '.sequence-view',
+          el: this.$('.sequence-view'),
           collection: this.stopsSeqCollection
         });
 
@@ -112,11 +120,11 @@ define([
         });
 
         var calendarsSelectView = new CalendarsSelectView({
-          el: '.calendars-select-view'
+          el: this.$('.calendars-select-view')
         });
 
         var calendarsToolsView = new CalendarsToolsView({
-          el: '.calendars-tools-view',
+          el: this.$('.calendars-tools-view'),
           collection: this.tripStartTimesCol
         });
 
@@ -130,7 +138,7 @@ define([
         }, this);
 
         var startTimesView = new StartTimesView({
-          el: '.start-times-view',
+          el: this.$('.start-times-view'),
           collection: this.tripStartTimesCol
         });
 

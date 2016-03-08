@@ -18,7 +18,7 @@ from app.commands import LoadData
 from app.commands import Deploy
 
 from flask.ext.script import Manager
-from flask.ext.script import Shell
+from flask_script.commands import Clean, Shell
 from flask.ext.migrate import Migrate
 from flask.ext.migrate import MigrateCommand
 
@@ -46,6 +46,7 @@ manager.add_command('deploy', Deploy)
 manager.add_command('migrate_shapes', MigrateShapes)
 manager.add_command("shell", Shell(make_context=make_shell_context))
 manager.add_command('db', MigrateCommand)
+manager.add_command('clean', Clean)
 
 
 if __name__ == '__main__':
