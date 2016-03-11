@@ -1,34 +1,27 @@
-<h4>Shape Tools</h4>
-<div class="btn-toolbar" role="toolbar">
-  <div class="btn-group btn-group-sm">
-    {{#if shape_id}}
-      {{#if isEditing}}
-        <button class="btn btn-default reverseShape">
-          <i class="glyphicon glyphicon-refresh"></i> Reverse
-        </button>
-        <button class="btn btn-default saveShape">
-          <i class="glyphicon glyphicon-ok"></i> Save
-        </button>
-        <button class="btn btn-default btn-cancel"> Cancel</button>
-      {{else}}
-        <button class="btn btn-default editShape">
-          <i class="glyphicon glyphicon-pencil"></i> Edit
-        </button>
-        <button class="btn btn-default btn-delete-shape">
-          <i class="glyphicon glyphicon-trash"></i> Delete
-        </button>
-      {{/if}}
-    {{else}}
-      {{#if isCreating}}
-        <button class="btn btn-default saveShape">
-          <i class="glyphicon glyphicon-ok"></i> Save
-        </button>
-        <button class="btn btn-default btn-cancel"> Cancel</button>
-      {{else}}
-        <button class="btn btn-default create-shape">
-          <i class="glyphicon glyphicon-plus"></i> Create
-        </button>
-      {{/if}}
-    {{/if}}
-  </div>
-</div>
+{{#if shape_id}}
+  {{#if isEditing}}
+    <button class="btn btn-default reverseShape disabled">
+      <i class="glyphicon glyphicon-refresh"></i> Reverse
+    </button>
+  {{else}}
+    <button class="btn btn-default editShape">
+      <i class="glyphicon glyphicon-pencil"></i> Edit Shape
+    </button>
+    <button class="btn btn-default btn-delete-shape">
+      <i class="glyphicon glyphicon-trash"></i> Delete Shape
+    </button>
+  {{/if}}
+{{else}}
+  {{#unless isCreating}}
+    <button class="btn btn-default create-shape">
+      <i class="glyphicon glyphicon-plus"></i> Create Shape
+    </button>
+  {{/unless}}
+{{/if}}
+
+{{#if isEditingOrCreating}}
+  <button class="btn btn-default saveShape">
+    <i class="glyphicon glyphicon-ok"></i> Save Shape
+  </button>
+  <button class="btn btn-default btn-cancel"> Cancel</button>
+{{/if}}

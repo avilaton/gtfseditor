@@ -1,0 +1,13 @@
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="route" class="col-sm-2 control-label">Calendars</label>
+    <div class="col-sm-8">
+      <select class="form-control">
+        <option value=""> -- </option>
+        {{#each models}}
+          <option value="{{service_id}}">{{service_name}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
+</form>

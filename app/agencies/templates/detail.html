@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Agency{% endblock %}
+
+{% block page_content %}
+  <div class="page-header">
+    <h1>Agency: {{agency.agency_name}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form id="registerForm" class="form form-register" method="POST" action="" role="form">
+      {% include '_agency.html' %}
+      <p>
+        <a href="{{ url_for('agencies.agency_edit', agency_id=agency.agency_id) }}"
+            class="btn btn-default btn-edit">
+          <span class="glyphicon glyphicon-pencil"> Edit</span>
+        </a>
+        <a href="{{ url_for('agencies.delete', agency_id=agency.agency_id) }}"
+            class="btn btn-default btn-edit">
+          <span class="glyphicon glyphicon-remove"> Remove</span>
+        </a>
+      </p>
+    </form>
+  </div>
+{% endblock %}
+
+
+
+

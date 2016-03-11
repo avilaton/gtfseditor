@@ -1,6 +1,6 @@
 define(function () {
     return {
-      // server: 'http://localhost:5000/'
+      api: '/api/',
       server: '/'
     };
   });
