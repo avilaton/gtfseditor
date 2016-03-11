@@ -19,6 +19,14 @@ nav.navbar {
     box-shadow: 0 1px 0 rgba(0,0,0,0.08),inset 0 2px 0 0 #3c94d4;
 }
 
+@media(min-width: 768px) {
+    .navbar-brand,
+    .navbar-nav > li > a {
+        line-height: 65px;
+        height: 65px;
+        padding-top: 0;
+    }
+}
 
 .table-editable input {
     background: transparent;
