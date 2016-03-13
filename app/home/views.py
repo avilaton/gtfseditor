@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import render_template
+
 from .. import db
 from . import home
 from ..models import Agency
@@ -11,7 +12,7 @@ from ..models import Trip
 from ..models import TripStartTime
 from ..models import Stop
 from ..models import StopSeq
-from ..services.stop_times import StopTimesFactory
+from ..services.stop_times import offset_sequence_times
 
 
 @home.route('/')
@@ -97,7 +98,7 @@ def get_trip_stops(route_id, trip_id, service_id):
 	for startTimeRow in trip_start_times:
 		times = []
 
-		for stop_time in StopTimesFactory.offsetStartTimes(trip_id, stop_sequence, startTimeRow):
+		for stop_time in offset_sequence_times(stop_sequence, startTimeRow.start_time):
 			times.append(stop_time['arrival_time'])
 
 		trip_times.append(times)
