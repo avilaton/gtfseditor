@@ -221,10 +221,10 @@ class Feed(object):
     # Should use StopTimesFactory instead of reading from stop_times table.
     trip_id = trip.trip_id.split('.')[1]
 
-    for stopTime in self.db.query(StopTime).filter_by(trip_id=trip_id).\
-      order_by(StopTime.stop_sequence).all():
+    for stopTime in self.db.query(StopSeq).filter_by(trip_id=trip_id).\
+      order_by(StopSeq.stop_sequence).all():
       stop = self.schedule.GetStop(str(stopTime.stop_id))
-      stop_time = stopTime.arrival_time
+      stop_time = stopTime.stop_time
       if stop_time:
         try:
           trip.AddStopTime(stop, stop_time=stop_time)
