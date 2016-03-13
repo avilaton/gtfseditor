@@ -18,7 +18,7 @@ import shutil
 
 from app import db
 from ..models import *
-from ..services.stop_times import StopTimesFactory
+from ..services.stop_times import offset_sequence_times
 from ..services import defaults
 
 class Feed(object):
@@ -238,7 +238,7 @@ class Feed(object):
     """Adding Stop Times from trip start times"""
     # logger.info("Loading Stop Times for stop_seq:{0}, trip_id:{1}".format(seq_trip_id, trip.trip_id))
 
-    for stop_time in StopTimesFactory.offsetStartTimes(seq_trip_id, stop_sequence, startTimeRow):
+    for stop_time in offset_sequence_times(stop_sequence, startTimeRow.start_time):
       stop = self.schedule.GetStop(str(stop_time['stop_id']))
       arrival_time = stop_time['arrival_time']
       if arrival_time:
