@@ -8,6 +8,11 @@ from ..base import Base
 from ..mixins import ToJSONMixin, Versioned
 
 
+class BuildTypes:
+    INITIAL_TIMES = 'initial_times'
+    FREQUENCY = 'frequency'
+
+
 class Route(Base, ToJSONMixin, Versioned, GTFSBase):
     __tablename__ = 'routes'
 

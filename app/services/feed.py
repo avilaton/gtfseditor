@@ -18,6 +18,7 @@ import shutil
 
 from app import db
 from ..models import *
+from ..models.gtfs.route import BuildTypes
 from ..services.stop_times import offset_sequence_times
 from ..services import defaults
 
@@ -125,9 +126,9 @@ class Feed(object):
       route.route_color = row.route_color
       route.route_text_color = row.route_text_color
 
-      if row.build_type in ['initial_times']:
+      if row.build_type == BuildTypes.INITIAL_TIMES:
         self.loadTripsByInitialTimes(route)
-      elif row.build_type in ['frequency']:
+      elif row.build_type == BuildTypes.FREQUENCY:
         self.loadTripsByFrequency(route)
       else:
         raise NotImplementedError
