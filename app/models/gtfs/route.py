@@ -25,6 +25,6 @@ class Route(Base, ToJSONMixin, Versioned, GTFSBase):
     route_desc = Column(types.String(150))
     route_type = Column(types.String(50))
     route_color = Column(types.String(50))
-    build_type = Column(types.String(50))
+    build_type = Column(types.String(50), default=BuildTypes.INITIAL_TIMES)
     route_text_color = Column(types.String(50))
     active = Column(types.Boolean, default=False)
