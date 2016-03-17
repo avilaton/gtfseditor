@@ -5,8 +5,7 @@
 	<title>{% block title %}{% endblock %} - Transporte Publico</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-	{% endblock %}
-	{% block styles %}
+
 	<style type="text/css">
 	.nowrap {
 		white-space: nowrap;
@@ -23,10 +22,11 @@
 </head>
 
 <body>
+
 <div class="container">
 
 	<div class="page-header">
-		<h1>Transporte Público <small>Provincia de Mendoza</small></h1>
+		<h1><a href="/">Transporte Público</a> <small>Provincia de Mendoza</small></h1>
 	</div>
 
 	{% block body %}{% endblock %}
