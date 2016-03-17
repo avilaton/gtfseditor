@@ -43,31 +43,33 @@
     </div>
 </div>
 
-<h2>Rutas</h2>
-<table class="table table-bordered table-striped table-condensed">
-    <thead>
-        <tr>
-            <th>Nombre corto</th>
-            <th>Activa</th>
-            <th>Agencia</th>
-            <th>Tipo</th>
-            <th>Nombre largo</th>
-            <th>Descripción</th>
-            <th>Color</th>
-        </tr>
-    </thead>
-{%for route, agency in results%}
-    <tr>
-        <td><a href="/routes/{{route.route_id}}">{{route.route_short_name}}</a></td>
-        <td>{{"Si" if route.active else "No"}}</td>
-        <td><a href="/agency/{{route.agency_id}}">{{agency.agency_name}}</a></td>
-        <td>{{route.route_type or ""}}</td>
-        <td>{{route.route_long_name or ""}}</td>
-        <td>{{route.route_desc or ""}}</td>
-        <td>{{route.route_color or ""}}</td>
-    </tr>
-{%endfor%}
-</table>
+
+<h2>Rutas por Agencia</h2>
+    {% for agency, routes in agencies %}
+        <h3>{{agency.agency_name}}</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Activa</th>
+                    <th>Tipo</th>
+                    <!-- <th>Nombre largo</th> -->
+                    <!-- <th>Descripción</th> -->
+                    <!-- <th>Color</th> -->
+                </tr>
+            </thead>
+            {%for _, route in routes%}
+            <tr>
+                <td><a href="/routes/{{route.route_id}}">{{route.route_short_name}}</a></td>
+                <td>{{"Si" if route.active else "No"}}</td>
+                <td>{{route.route_type or ""}}</td>
+                <!-- <td>{{route.route_long_name or ""}}</td> -->
+                <!-- <td>{{route.route_desc or ""}}</td> -->
+                <!-- <td>{{route.route_color or ""}}</td> -->
+            </tr>
+            {%endfor%}
+        </table>
+    {% endfor %}
 
 {% endblock%}
 

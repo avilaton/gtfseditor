@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from itertools import groupby
 from flask import render_template
 
 from .. import db
@@ -17,13 +18,10 @@ from ..services.stop_times import offset_sequence_times
 
 @home.route('/')
 def index():
-	agencies = Agency.query.all()
-	results = db.session.query(Route, Agency)\
-		.join(Agency)\
-		.filter(Route.agency_id==Agency.agency_id)\
-		.order_by(Route.route_short_name)\
-		.all()
-	return render_template('home/index.html', agencies=agencies, results=results)
+	agency_routes = db.session.query(Agency, Route).join(Route)\
+		.order_by(Agency.agency_name, Route.route_short_name).all()
+	agencies = groupby(agency_routes, lambda x: x.Agency)
+	return render_template('home/index.html', agencies=agencies)
 
 @home.route('/routing')
 def routing():
