@@ -4,42 +4,75 @@
 
 {% block body %}
 
-<ol class="breadcrumb">
-  <li><a href="/">Inicio</a></li>
-</ol>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label for="from" class="control-label col-sm-3">Desde</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="from" placeholder="Dirección de origen">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="to">Hacia</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="to" placeholder="Dirección de destino">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="depart">Saliendo</label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="depart"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button id="goBtn" class="btn btn-primary pull-right">Como llegar</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="panel"></div>
+            </div>
+        </div>
 
-<h2>Agencias</h2>
-
-<ul>
-	{%for agency in agencies%}
-	<li><a href="/agency/{{agency.agency_id}}">{{agency.agency_name}}</a></li>
-	{%endfor%}
-</ul>
+    </div>
+    <div class="col-md-8">
+        <div id="map"></div>
+    </div>
+</div>
 
 <h2>Rutas</h2>
 <table class="table table-bordered table-striped table-condensed">
-	<thead>
-		<tr>
-			<th>Nombre corto</th>
-			<th>Activa</th>
-			<th>Agencia</th>
-			<th>Tipo</th>
-			<th>Nombre largo</th>
-			<th>Descripción</th>
-			<th>Color</th>
-		</tr>
-	</thead>
+    <thead>
+        <tr>
+            <th>Nombre corto</th>
+            <th>Activa</th>
+            <th>Agencia</th>
+            <th>Tipo</th>
+            <th>Nombre largo</th>
+            <th>Descripción</th>
+            <th>Color</th>
+        </tr>
+    </thead>
 {%for route, agency in results%}
-	<tr>
-		<td><a href="/routes/{{route.route_id}}">{{route.route_short_name}}</a></td>
-		<td>{{"Si" if route.active else "No"}}</td>
-		<td><a href="/agency/{{route.agency_id}}">{{agency.agency_name}}</a></td>
-		<td>{{route.route_type or ""}}</td>
-		<td>{{route.route_long_name or ""}}</td>
-		<td>{{route.route_desc or ""}}</td>
-		<td>{{route.route_color or ""}}</td>
-	</tr>
+    <tr>
+        <td><a href="/routes/{{route.route_id}}">{{route.route_short_name}}</a></td>
+        <td>{{"Si" if route.active else "No"}}</td>
+        <td><a href="/agency/{{route.agency_id}}">{{agency.agency_name}}</a></td>
+        <td>{{route.route_type or ""}}</td>
+        <td>{{route.route_long_name or ""}}</td>
+        <td>{{route.route_desc or ""}}</td>
+        <td>{{route.route_color or ""}}</td>
+    </tr>
 {%endfor%}
 </table>
 
 {% endblock%}
+
+{% block scripts %}
+{{ super() }}
+    <script src="//maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=es"></script>
+    <script src="/static/home/routing/transit.js"></script>
+{% endblock %}
