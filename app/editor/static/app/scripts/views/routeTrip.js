@@ -105,6 +105,7 @@ define([
         } else {
           this.shapeModel.unset('coordinates');
           mapView.updateShapesLayer();
+          shapesToolbox.render();
         }
         shapesToolbox.render();
 
