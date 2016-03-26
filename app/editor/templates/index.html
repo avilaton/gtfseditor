@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Transit Manager">
+  <meta name="author" content="Gastón Avila">
+  <title>Transit Feed Editor</title>
+
+  {% if config.get('DEBUG') %}
+  <script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
+  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  {% else %}
+  <script src="scripts/vendor/OpenLayers.js"></script>
+  <script src="scripts/main.js"></script>
+  <link href="styles/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  {% endif %}
+
+  <link href="styles/style.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Transit Feed Editor</a>
+    </div>
+    <!-- /.navbar-header -->
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+            {% if current_user.is_authenticated() %}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-user glyphicon-fw"></i> {{current_user.email}} <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+                </ul>
+            </li>
+            {% else %}
+            <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+            {% endif %}
+        </ul>
+
+        <div class="js-navbar-right"></div>
+    </div>
+  </nav>
+<div class="container">
+    <div class="row main-view">
+    </div>
+  <!-- Modals -->
+</div>
+<div class="modal fade" id="routeDataEditor"></div>
+<br>
+<footer class="footer">
+  <div class="container">
+    <div class="row voffset1">
+      <div class="col-md-4">
+      <a class="text-muted" href="https://github.com/avilaton/gtfseditor">Source code</a>
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4 text-right">
+        <a class="text-muted" href="https://github.com/avilaton/gtfseditor/issues">Help</a>
+        
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

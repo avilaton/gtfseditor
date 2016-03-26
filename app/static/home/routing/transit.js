@@ -72,7 +72,6 @@ function route() {
   var panel = document.getElementById('panel');
   panel.innerHTML = '';
   directions.route(request, function(response, status) {
-    console.log(status, response)
     if (status == google.maps.DirectionsStatus.OK) {
       renderer.setDirections(response);
       renderer.setMap(map);

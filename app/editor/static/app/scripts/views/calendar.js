@@ -14,9 +14,9 @@ define([
       tagName: 'div',
 
       events: {
-        'click button.btn-create': 'onCreate',
-        'click button.btn-rm': 'onRemove',
-        'click button.btn-edit': 'onEdit'
+        'click a.btn-create': 'onCreate',
+        'click a.btn-rm': 'onRemove',
+        'click a.btn-edit': 'onEdit'
       },
 
       template: JST.calendar,
@@ -50,8 +50,8 @@ define([
       onEdit: function (e) {
         e.preventDefault();
         var $target = $(e.currentTarget),
-          index = $target.closest('tr').data('index'),
-          model = this.collection.at(index),
+          serviceId = $target.closest('li').data('serviceId'),
+          model = this.collection.get(serviceId),
           modal = new Modal({
             model: model,
             collection: this.collection,
@@ -63,8 +63,8 @@ define([
       onRemove: function (e) {
         e.preventDefault();
         var $target = $(e.currentTarget),
-          index = $target.closest('tr').data('index'),
-          model = this.collection.at(index);
+          serviceId = $target.closest('li').data('serviceId'),
+          model = this.collection.get(serviceId);
         model.destroy();
       }
     });

@@ -1,0 +1,58 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+      </button>
+      {{#if route.route_id}}
+      <h3 class="modal-title">Edit Route: {{route.route_short_name}}</h3>
+      {{else}}
+      <h3 class="modal-title">Add New Route</h3>
+      {{/if}}
+    </div>
+
+    <div class="modal-body">
+      <form role="form" >
+        <div class="form-group">
+          <label for="route_short_name">route_short_name</label>
+          <input class="form-control" type="text" name="route_short_name" placeholder="route_short_name" value="{{route.route_short_name}}">
+        </div>
+        <div class="form-group">
+          <label for="route_long_name">route_long_name</label>
+            <input class="form-control" type="text" name="route_long_name" placeholder="route_long_name" value="{{route.route_long_name}}">
+        </div>
+        <div class="form-group">
+          <label for="agency-id" class="control-label">agency</label>
+            <select class="form-control select-agency" id="agency-id">
+              <option value=""> -- </option>
+              {{#each agencies}}
+                <option value="{{agency_id}}" {{#selected agency_id ../route.agency_id}}{{/selected}}>{{agency_name}}</option>
+              {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+          <label for="route_type">route_type</label>
+          <input class="form-control" type="text" name="route_type" placeholder="route_type" value="{{route.route_type}}">
+        </div>
+        <div class="form-group">
+          <label for="route_color">route_color</label>
+            <input class="form-control" type="text" name="route_color" placeholder="route_color" value="{{route.route_color}}">
+        </div>
+        <div class="form-group">
+          <label for="route_desc">route_desc</label>
+            <input class="form-control" type="text" name="route_desc" placeholder="route_desc" value="{{route.route_desc}}">
+        </div>
+        <div class="form-group">
+            <label>
+              <input type="checkbox" {{#if route.active}}checked{{/if}}> Active
+            </label>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary js-save">Save changes</button>
+    </div>
+  </div>
+</div>

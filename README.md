@@ -8,11 +8,11 @@ Demo
 ----
 
 There might be a demo running at http://gtfseditor.herokuapp.com
-The admin interface is at http://gtfseditor.herokuapp.com/admin
+The admin interface is at http://gtfseditor.herokuapp.com/editor
 and the credentials are 
 
 username: admin@gtfseditor.com
-password: demo-pass
+password: admin
 
 Installation
 ------------
@@ -84,7 +84,7 @@ The client application uses
 
 The API server uses
 
-- bottle.py for WSGI,
+- flask.py for WSGI,
 - SQLAlchemy for database abstraction,
 - transitfeed.py for gtfs building and validation.
 
