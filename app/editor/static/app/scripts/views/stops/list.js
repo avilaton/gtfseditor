@@ -17,7 +17,7 @@ define([
     View = Backbone.View.extend({
       el: $('.main-view'),
 
-      template: JST.stops,
+      template: JST['stops/list'],
 
       events: {},
 

@@ -2,7 +2,8 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'views/stops',
+  'views/stops/list',
+  'views/stops/edit',
   'views/routes',
   'views/routeTrip',
   'views/calendar',
@@ -11,7 +12,7 @@ define([
   'views/routesList',
   'views/tripsList',
   'views/navbarRight'
-], function ($, _, Backbone, StopsView, RoutesView, RouteTripView, CalendarView,
+], function ($, _, Backbone, StopsListView, StopEditView, RoutesView, RouteTripView, CalendarView,
   AgenciesView, HomeView, RoutesListView, TripsListView, NavbarRightView){
 
   var AppRouter = Backbone.Router.extend({
@@ -21,7 +22,9 @@ define([
       'routes/:route_id': 'Route',
       'routes/:route_id/trips': 'Trips',
       'routes/:route_id/trips/:trip_id': 'Trip',
-      'stops(/:stop_id)': 'Stops',
+      'stops': 'Stops',
+      'stops/new': 'Stops',
+      'stops/:stop_id/edit': 'Stop',
       'calendar(/)': 'Calendars',
       'agencies(/)': 'Agencies',
       '*actions': 'defaultAction'
@@ -55,9 +58,14 @@ define([
       clean();
       mainView = new TripsListView({route_id: route_id});
     });
-    app_router.on('route:Stops', function(route_id){
+    app_router.on('route:Stops', function(){
       clean();
-      mainView = new StopsView();
+      mainView = new StopsListView();
+    });
+    app_router.on('route:Stop', function(stop_id){
+      clean();
+      console.log(stop_id)
+      mainView = new StopEditView({stop_id: stop_id});
     });
     app_router.on('route:Calendars', function(trip_id){
       clean();
