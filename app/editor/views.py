@@ -8,5 +8,3 @@ from app.editor import editor
 @login_required
 def root():
     return render_template('index.html')
-
-
