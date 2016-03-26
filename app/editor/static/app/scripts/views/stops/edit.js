@@ -5,13 +5,10 @@ define([
     'backbone',
     'handlebars',
     'JST',
-    'views/stopData',
     'views/filter',
     'views/stops/map',
-    'views/stopToolbar',
     'models/stop'
-    ], function (_, Backbone, Handlebars, JST, StopDataView, FilterView, StopMapView,
-                 StopToolbarView, StopModel) {
+    ], function (_, Backbone, Handlebars, JST, FilterView, StopMapView, StopModel) {
 
         var View;
 

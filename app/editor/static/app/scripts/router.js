@@ -4,7 +4,6 @@ define([
   'backbone',
   'views/stops/list',
   'views/stops/edit',
-  'views/routes',
   'views/routeTrip',
   'views/calendar',
   'views/agencies',
@@ -12,7 +11,7 @@ define([
   'views/routesList',
   'views/tripsList',
   'views/navbarRight'
-], function ($, _, Backbone, StopsListView, StopEditView, RoutesView, RouteTripView, CalendarView,
+], function ($, _, Backbone, StopsListView, StopEditView, RouteTripView, CalendarView,
   AgenciesView, HomeView, RoutesListView, TripsListView, NavbarRightView){
 
   var AppRouter = Backbone.Router.extend({

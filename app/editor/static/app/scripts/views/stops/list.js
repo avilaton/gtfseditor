@@ -5,13 +5,11 @@ define([
   'backbone',
   'handlebars',
   'JST',
-  'views/stopData',
+  'views/stops/details',
   'views/filter',
   'views/stops/map',
-  'views/stopToolbar',
   'models/stop'
-  ], function (_, Backbone, Handlebars, JST, StopDataView, FilterView, StopMapView,
-      StopToolbarView, StopModel) {
+  ], function (_, Backbone, Handlebars, JST, StopDetailsView, FilterView, StopMapView, StopModel) {
     var View;
 
     View = Backbone.View.extend({
@@ -43,7 +41,7 @@ define([
           stopMapView.layers.stopsBboxLayer.layer.refresh({force:true});
         });
 
-        this.stopDataView = new StopDataView({
+        this.stopDetailsView = new StopDetailsView({
           model: this.model,
           el: this.$('.stop-data-view')
         });

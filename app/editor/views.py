@@ -1,5 +1,5 @@
-from flask import send_from_directory
-from flask.ext.login import login_required
+from flask import render_template
+from flask_login import login_required
 
 from app.editor import editor
 
@@ -7,5 +7,4 @@ from app.editor import editor
 @editor.route('/')
 @login_required
 def root():
-    return send_from_directory(editor.static_folder, 'index.html')
-
+    return render_template('index.html')

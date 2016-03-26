@@ -8,7 +8,7 @@ define([
 
         View = Backbone.View.extend({
 
-            template: JST['stopData'],
+            template: JST['stops/details'],
 
             events: {
                 'click button.show-trips': 'showTrips'
