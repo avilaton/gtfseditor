@@ -6,8 +6,9 @@ define([
   'JST',
   'models/route',
   'collections/routes',
+  'collections/agencies',
   'views/modals/route'
-  ], function (_, Backbone, JST, RouteModel, RoutesCollection, RouteModal) {
+  ], function (_, Backbone, JST, RouteModel, RoutesCollection, AgenciesCollection, RouteModal) {
     var View;
 
     View = Backbone.View.extend({
@@ -22,16 +23,31 @@ define([
       template: JST.routesList,
 
       initialize: function(){
+        var self = this;
         this.collection = new RoutesCollection();
-        this.collection.on('add change remove reset', this.render, this);
-        this.render();
-        this.collection.fetch({reset: true});
+        this.agencies = new AgenciesCollection();
+
+        var agenciesPromise = this.agencies.fetch().then(function (agencies) {
+          self.agencies = agencies;
+        });
+        var routesPromise = this.collection.fetch({reset: true});
+        $.when(agenciesPromise, routesPromise).then(function() {
+          self.render()
+        })
+        this.collection.on('add change remove', this.render, this);
       },
 
       render: function () {
-        this.$el.html(this.template({
-          models: this.collection.toJSON()
-        }));
+        var self = this;
+        var models = this.collection.toJSON();
+        models = _.map(models, function (model) {
+          model.agency = _.find(self.agencies, function(agency) {
+            return agency.agency_id == model.agency_id;
+          });
+          return model;
+        });
+
+        this.$el.html(this.template({models: models}));
         $('.main-view').empty().append(this.el);
         this.delegateEvents(this.events);
       },
