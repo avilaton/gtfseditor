@@ -23,7 +23,7 @@ define([
       'routes/:route_id/trips': 'Trips',
       'routes/:route_id/trips/:trip_id': 'Trip',
       'stops': 'Stops',
-      'stops/new': 'Stops',
+      'stops/new': 'Stop',
       'stops/:stop_id/edit': 'Stop',
       'calendar(/)': 'Calendars',
       'agencies(/)': 'Agencies',
@@ -64,7 +64,6 @@ define([
     });
     app_router.on('route:Stop', function(stop_id){
       clean();
-      console.log(stop_id)
       mainView = new StopEditView({stop_id: stop_id});
     });
     app_router.on('route:Calendars', function(trip_id){
@@ -81,7 +80,7 @@ define([
     });
     Backbone.history.start();
 
-
+    return app_router;
   };
   return {
     initialize: initialize

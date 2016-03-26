@@ -7,7 +7,7 @@ define([
   'JST',
   'views/stopData',
   'views/filter',
-  'views/stopMap',
+  'views/stops/map',
   'views/stopToolbar',
   'models/stop'
   ], function (_, Backbone, Handlebars, JST, StopDataView, FilterView, StopMapView,
@@ -46,12 +46,6 @@ define([
         this.stopDataView = new StopDataView({
           model: this.model,
           el: this.$('.stop-data-view')
-        });
-
-        this.stopToolbarView = new StopToolbarView({
-          el: '.stop-toolbar-view',
-          model: this.model,
-          controls: stopMapView.controls
         });
 
         this.model.on('sync', function () {

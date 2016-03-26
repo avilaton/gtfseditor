@@ -6,7 +6,11 @@
   </ol>
 
   <div class="page-header">
-    <h1>Edit Stop</h1>
+    {{#if stop.stop_id}}
+      <h1>Edit Stop <small>{{stop.stop_code}}</small></h1>
+    {{else}}
+      <h1>New Stop</h1>
+    {{/if}}
   </div>
   <div class="row">
     <div class="col-md-4">
@@ -50,7 +54,7 @@
         </div>
         <div class="btn-group btn-group-md pull-right">
           <button class="btn btn-primary save-stop"><i class="glyphicon glyphicon-save"></i> Save</button>
-          <button class="btn btn-default cancel-edit"><i class="glyphicon glyphicon-remove"></i> Cancel</button>
+          <a href="#/stops" class="btn btn-default cancel-edit"><i class="glyphicon glyphicon-remove"></i> Cancel</a>
         </div>
       </div>
 

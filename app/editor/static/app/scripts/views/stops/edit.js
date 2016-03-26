@@ -7,7 +7,7 @@ define([
     'JST',
     'views/stopData',
     'views/filter',
-    'views/stopMap',
+    'views/stops/map',
     'views/stopToolbar',
     'models/stop'
     ], function (_, Backbone, Handlebars, JST, StopDataView, FilterView, StopMapView,
@@ -27,12 +27,15 @@ define([
 
             initialize: function(options){
                 var self = this;
-                this.model = new StopModel({stop_id: options.stop_id});
-                this.model.fetch().then(function () {
-                    self.render();
-                });
-
-                this.render();
+                this.stop_id = options.stop_id;
+                this.model = new StopModel({stop_id: this.stop_id});
+                if (!_.isUndefined(this.stop_id)) {
+                    this.model.fetch().then(function () {
+                        self.render();
+                    });
+                } else {
+                    this.render();
+                }
             },
 
             render: function () {
@@ -40,18 +43,26 @@ define([
                     stop: this.model.toJSON()
                 }));
 
-                this.stopMapView = new StopMapView({
+                this.mapView = new StopMapView({
                     el: '.map-view',
                     model: this.model
                 });
 
-                this.model.on('sync', function () {
-                    this.refreshStops();
-                }, this);
-            },
+                if (!_.isUndefined(this.stop_id)) {
+                    var feature = this.model.toFeature();
 
-            refreshStops: function () {
-                this.stopMapView.layers.stopsBboxLayer.layer.refresh({force:true});
+                    if (feature) {
+                        this.mapView.controls.copyFeature(feature, 'drawStops');
+                    }
+                    this.mapView.controls.selectStops.unselectAll();
+                    this.mapView.controls.selectStops.deactivate();
+                    this.mapView.controls.modifyStops.activate();
+                    this.mapView.controls.modifyStops.selectControl.select(feature);
+                } else {
+                    this.mapView.controls.selectStops.unselectAll();
+                    this.mapView.controls.selectStops.deactivate();
+                    this.mapView.controls.drawStops.activate();
+                }
             },
 
             onEdit: function (event) {
@@ -60,7 +71,9 @@ define([
             },
 
             save: function () {
-                this.model.save();
+                this.model.save().then(function() {
+                    App.router.navigate('#/stops');
+                });
             },
 
         });
