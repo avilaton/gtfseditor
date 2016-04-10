@@ -44,6 +44,7 @@ rsa==3.1.4
 simplejson==3.6.5
 six==1.9.0
 transitfeed==1.2.14
+uWSGI==2.0.12
 unicodecsv==0.14.1
 uritemplate==0.6
 wsgiref==0.1.2

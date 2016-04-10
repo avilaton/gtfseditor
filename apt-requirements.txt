@@ -1,0 +1,6 @@
+git
+python-virtualenv
+libpq-dev
+python-dev
+
+nginx
