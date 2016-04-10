@@ -4,3 +4,6 @@ libpq-dev
 python-dev
 
 nginx
+
+postgresql
+postgresql-contrib
