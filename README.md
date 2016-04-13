@@ -1,8 +1,8 @@
 Gtfseditor
 ==========
 
-A customizable editor for GTFS files which can be used both as a standalone app 
-or deployed to a wsgi compliant hosting.
+A customizable editor for GTFS files which can be deployed to a wsgi compliant hosting.
+
 
 Demo
 ----
@@ -13,6 +13,7 @@ and the credentials are
 
 username: admin@gtfseditor.com
 password: admin
+
 
 Installation
 ------------
@@ -93,17 +94,12 @@ among other auxiliary packages.
 Database
 --------
 
-Development and local usage are best served by using **SQLite** as a db engine. It 
-allows for rapid setup and portability. 
-
-Some hosted services do not support sqlite as a db engine (heroku), and 
-**postgres** can be used.
-
 Install postgresql and run
 
 ```
-createdb -T template0 dbname
+createdb dbname
 ```
+
 You are now ready to initialize an empty DB by using
 ```
 FLASK_CONFIG=dev ./manage.py db upgrade
