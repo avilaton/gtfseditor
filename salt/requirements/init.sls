@@ -1,5 +1,10 @@
 packages:
     pkg.installed:
         - names:
-            - pthon-dev
+            - git
+            - python-dev
             - python-virtualenv
+            - libpq-dev
+            - nginx
+            - postgresql
+            - postgresql-contrib

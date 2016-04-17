@@ -1,4 +1,5 @@
 base:
     '*':
         - requirements
+        - postgresql
         - flask
