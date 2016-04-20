@@ -1,5 +1,14 @@
 include:
-- requirements
+- system
+
+gtfseditor_repository:
+    git.latest:
+        - user: vagrant
+        - name: https://github.com/avilaton/gtfseditor.git
+        - branch: develop
+        - target: /home/vagrant/gtfseditor/
+        - require:
+            - pkg: git
 
 
 /home/vagrant/.virtualenvs/gtfseditor:
@@ -32,3 +41,9 @@ gtfs_db:
         - user: postgres
         - require:
             - postgres_user: gtfs_db_user
+
+
+uwsgi_service:
+  supervisord.running:
+    - name: uwsgi
+    - restart: True

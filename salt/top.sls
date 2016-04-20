@@ -1,6 +1,7 @@
 base:
     '*':
-        - requirements
+        - system
         - postgresql
         - uwsgi
+        - supervisor
         - app
