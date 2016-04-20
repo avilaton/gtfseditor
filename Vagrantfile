@@ -45,7 +45,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision :salt do |salt|
 
     salt.masterless = true
-    # salt.minion_config = "salt/minion"
+    salt.minion_config = "salt/minion"
     salt.run_highstate = true
 
   end
