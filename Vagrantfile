@@ -41,6 +41,15 @@ Vagrant.configure(2) do |config|
   # config.vm.synced_folder "../data", "/vagrant_data"
   config.vm.synced_folder "salt", "/srv/salt"
 
+  ## Use all the defaults:
+  config.vm.provision :salt do |salt|
+
+    salt.masterless = true
+    # salt.minion_config = "salt/minion"
+    salt.run_highstate = true
+
+  end
+
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
