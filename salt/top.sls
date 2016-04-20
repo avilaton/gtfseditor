@@ -2,4 +2,5 @@ base:
     '*':
         - requirements
         - postgresql
-        - flask
+        - uwsgi
+        - app
