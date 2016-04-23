@@ -43,7 +43,7 @@ gtfs_db:
             - postgres_user: gtfs_db_user
 
 
-uwsgi_service:
-  supervisord.running:
-    - name: uwsgi
-    - restart: True
+# uwsgi_service:
+#   supervisord.running:
+#     - name: uwsgi
+#     - restart: True

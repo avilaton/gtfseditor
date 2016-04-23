@@ -19,4 +19,4 @@ supervisor:
     - watch:
       - file: /etc/supervisor/supervisord.conf
       - file: /etc/supervisor/conf.d/uwsgi.conf
-      - file: /etc/uwsgi/gtfseditor.ini
+      - file: /etc/uwsgi/apps-available/gtfseditor.ini

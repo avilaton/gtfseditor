@@ -3,5 +3,5 @@ base:
         - system
         - postgresql
         - uwsgi
-        - supervisor
+        # - supervisor
         - app
