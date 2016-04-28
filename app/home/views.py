@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from itertools import groupby
-from flask import render_template
+from flask import render_template, make_response
 
 from .. import db
 from . import home
@@ -30,6 +30,14 @@ def routing():
 @home.route('/stops')
 def stops():
 	return render_template('home/stops/index.html')
+
+@home.route('/stops.kml')
+def stops_kml():
+	stops = Stop.query
+	content = render_template('stops.kml', stops=stops)
+	response = make_response(content)
+	response.headers["Content-Disposition"] = "attachment; filename=stops.kml"
+	return response
 
 @home.route('/agency/<agency_id>')
 def get_agency(agency_id):
