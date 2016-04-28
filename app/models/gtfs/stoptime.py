@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from sqlalchemy import Column, types, ForeignKey
+from sqlalchemy.orm import relationship
 
 from .gtfsbase import GTFSBase
 from ..base import Base
@@ -25,3 +26,6 @@ class StopTime(Base, ToJSONMixin, Versioned, GTFSBase):
     arrival_time = Column(types.String(50))
     departure_time = Column(types.String(50))
     shape_dist_traveled = Column(types.Float(precision=53))
+
+    stop = relationship("Stop", backref="stop_times")
+    trip = relationship("Trip", backref="stop_times")
