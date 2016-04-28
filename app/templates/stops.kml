@@ -17,24 +17,24 @@
 <Folder>
 <name>Stops</name>
 <open>1</open>
-{{#stops}}
+{% for stop in stops %}
 <Placemark id="{{stop_id}}">
-<name>ID: {{stop_id}}, "{{stop_name}}"</name>
+<name>ID: {{stop.stop_code}}, "{{stop.stop_name}}"</name>
 <description>
   <![CDATA[
   <ul>
-    {{#trips}}
+    {% for trip in trips %}
     <li><strong>{{route_id}}</strong>: {{trip_headsign}}</li>
-    {{/trips}}
+    {% endfor %}
   </ul>
 ]]>
 </description>
 <styleUrl>#pin</styleUrl>
 <Point>
-<coordinates>{{stop_lon}},{{stop_lat}}</coordinates>
+<coordinates>{{stop.stop_lon}},{{stop.stop_lat}}</coordinates>
 </Point>
 </Placemark>
-{{/stops}}
+{% endfor %}
 </Folder>
 </Document>
 </kml>
