@@ -3,6 +3,7 @@
 
 from itertools import groupby
 from flask import render_template, make_response
+import sqlalchemy as sa
 
 from .. import db
 from . import home
@@ -14,6 +15,14 @@ from ..models import TripStartTime
 from ..models import Stop
 from ..models import StopSeq
 from ..services.stop_times import offset_sequence_times
+
+def get_stops_and_routes():
+	distinct_route_names = sa.distinct(Route.route_short_name)
+	array_type = sa.dialects.postgres.ARRAY(sa.types.String, as_tuple=True)
+	route_agg_dis = sa.func.array_agg(distinct_route_names, type_=array_type).label('routes')
+	rows = db.session.query(Stop, route_agg_dis).join(StopSeq, Trip, Route)
+	rows = rows.group_by(Stop.stop_id).order_by(Stop.stop_code)
+	return rows
 
 
 @home.route('/')
@@ -29,12 +38,14 @@ def routing():
 
 @home.route('/stops')
 def stops():
-	return render_template('home/stops/index.html')
+	rows = get_stops_and_routes()
+	return render_template('home/stops/list.html', rows=rows)
 
 @home.route('/stops.kml')
 def stops_kml():
 	stops = Stop.query
-	content = render_template('stops.kml', stops=stops)
+	rows = get_stops_and_routes()
+	content = render_template('stops.kml', rows=rows)
 	response = make_response(content)
 	response.headers["Content-Disposition"] = "attachment; filename=stops.kml"
 	return response
