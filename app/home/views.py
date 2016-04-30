@@ -30,7 +30,6 @@ def routing():
 
 @home.route('/stops')
 def stops():
-	stops = Stop.query.order_by(Stop.stop_code)
 	distinct_route_names = sa.distinct(Route.route_short_name)
 	array_type = sa.dialects.postgres.ARRAY(sa.types.String, as_tuple=True)
 	route_agg_dis = sa.func.array_agg(distinct_route_names, type_=array_type).label('routes')
