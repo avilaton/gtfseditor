@@ -3,6 +3,7 @@
 
 from itertools import groupby
 from flask import render_template
+import sqlalchemy as sa
 
 from .. import db
 from . import home
@@ -29,7 +30,13 @@ def routing():
 
 @home.route('/stops')
 def stops():
-	return render_template('home/stops/index.html')
+	stops = Stop.query.order_by(Stop.stop_code)
+	distinct_route_names = sa.distinct(Route.route_short_name)
+	array_type = sa.dialects.postgres.ARRAY(sa.types.String, as_tuple=True)
+	route_agg_dis = sa.func.array_agg(distinct_route_names, type_=array_type).label('routes')
+	rows = db.session.query(Stop, route_agg_dis).join(StopSeq, Trip, Route)
+	rows = rows.group_by(Stop.stop_id).order_by(Stop.stop_code)
+	return render_template('home/stops/list.html', rows=rows)
 
 @home.route('/agency/<agency_id>')
 def get_agency(agency_id):
