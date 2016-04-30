@@ -4,7 +4,6 @@
 
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://openlayers.org/en/v3.2.1/css/ol.css" type="text/css">
     <style>
       #map {
@@ -24,10 +23,31 @@
 
 <ol class="breadcrumb">
   <li><a href="/">Inicio</a></li>
-  <li class="active"><a href="/stops">Paradas</a></li>
+  <li class="active">Paradas</li>
 </ol>
 
-<h2>Paradas</h2>
+<div class="row">
+    <div class="col-sm-6">
+      <h2>Paradas</h2>
+    </div>
+    <div class="col-sm-6">
+        <div class="pull-right">
+          <div class="btn-group btn-group-lg">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-download"></span> Download <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="/stops.kml" target="_blank">KML</a></li>
+              <li><a href="/stops.csv" target="_blank">CSV</a></li>
+            </ul>
+          </div>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    
 <table class="table table-striped">
     <thead>
         <tr>
@@ -46,4 +66,6 @@
 </table>
 
 
+  </div>
+</div>
 {% endblock%}
