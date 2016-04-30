@@ -1,4 +1,4 @@
-__version__ = '1.2.5'
+__version__ = '1.2.6'
 
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
