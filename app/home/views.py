@@ -18,7 +18,7 @@ from ..services.stop_times import offset_sequence_times
 
 def get_stops_and_routes():
 	distinct_route_names = sa.distinct(Route.route_short_name)
-	array_type = sa.dialects.postgres.ARRAY(sa.types.String, as_tuple=True)
+	array_type = sa.dialects.postgresql.ARRAY(sa.types.String, as_tuple=True)
 	route_agg_dis = sa.func.array_agg(distinct_route_names, type_=array_type).label('routes')
 	rows = db.session.query(Stop, route_agg_dis).join(StopSeq, Trip, Route)
 	rows = rows.group_by(Stop.stop_id).order_by(Stop.stop_code)

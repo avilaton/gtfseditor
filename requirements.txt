@@ -14,7 +14,7 @@ Flask-WTF==0.12
 Jinja2==2.7.3
 Mako==1.0.1
 MarkupSafe==0.23
-SQLAlchemy==1.0.9
+SQLAlchemy==1.0.12
 SQLAlchemy-Continuum==1.2.1
 SQLAlchemy-Utils==0.31.1
 WTForms==2.1
