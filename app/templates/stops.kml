@@ -17,15 +17,14 @@
 <Folder>
 <name>Stops</name>
 <open>1</open>
-{% for stop in stops %}
+{% for stop, routes in rows %}
 <Placemark id="{{stop_id}}">
 <name>ID: {{stop.stop_code}}, "{{stop.stop_name}}"</name>
 <description>
   <![CDATA[
-  <ul>
-    {% for trip in trips %}
-    <li><strong>{{route_id}}</strong>: {{trip_headsign}}</li>
-    {% endfor %}
+  <ul>{% for route in routes %}
+      <li><strong>{{route}}</strong></li>
+    {%- endfor %}
   </ul>
 ]]>
 </description>
