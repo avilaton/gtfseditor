@@ -2,6 +2,25 @@
 
 {% block title %}Inicio{% endblock %}
 
+{% block head %}
+    {{ super() }}
+    <style>
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+      .popover {
+        width: 200px;
+      }
+      img.responsive {
+        width: 100%;
+        height: auto;
+    }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+{% endblock %}
+
 {% block body %}
 
 <div class="row">
@@ -70,6 +89,94 @@
             {%endfor%}
         </table>
     {% endfor %}
+
+
+
+
+
+
+
+<div class="row detail">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2 detail">
+        <a href="" class="anchor" id="howItWorks" name="howItWorks">
+            <h1>How it works:</h1>
+        </a>
+        <div class="steps row tr detail-2">
+            <div class="td col-xs-12 col-xs-offset-0 col-sm-5 col-sm-offset-0">
+                <div class="step-left">
+                    <h4>Direcciones de viaje</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+            </div>
+            <div class="td hidden-xs col-sm-6 col-sm-offset-1">
+                <img src="static/images/bus_directions.png" alt="" class="responsive">
+            </div>
+        </div>
+        <div class="steps row tr detail-1">
+            <div class="td hidden-xs col-sm-6">
+                <img src="static/images/subway_map.png" alt="" class="responsive">
+            </div>
+            <div class="td col-xs-12 col-xs-offset-0 col-sm-5 col-sm-offset-0">
+                <div class="step-right">
+                    <h4>Líneas</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="steps row tr detail-2">
+            <div class="td col-xs-12 col-xs-offset-0 col-sm-5 col-sm-offset-0">
+                <div class="step-left">
+                    <h4>Paradas</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+            </div>
+            <div class="td hidden-xs col-sm-6 col-sm-offset-1">
+                <img src="static/images/bus_stop.png" alt="" class="responsive">
+            </div>
+        </div>
+        <div class="steps row tr detail-3">
+            <div class="td hidden-xs col-sm-6 step-img-short">
+                <img src="static/images/bus_driver.png" alt="" class="responsive">
+            </div>
+            <div class="td col-xs-12 col-xs-offset-0 col-sm-5 col-sm-offset-0">
+                <div class="step-right">
+                    <h4>Agencias</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
 
 {% endblock%}
 

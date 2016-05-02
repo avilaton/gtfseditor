@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-8">
+    </div>
+</div>
+
+<div class="row detail">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2 detail">
+        <a href="" class="anchor" id="howItWorks" name="howItWorks">
+            <h1>How it works:</h1>
+        </a>
+        <div class="steps row tr detail-1">
+            <div class="td hidden-xs col-sm-6">
+                <img src="assets/img/appt.png" alt="" class="responsive">
+            </div>
+            <div class="td col-xs-12 col-xs-offset-0 col-sm-5 col-sm-offset-0">
+                <div class="step-right">
+                    <h4>Líneas</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ven.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="steps row tr detail-2">
+            <div class="td col-xs-12 col-xs-offset-0 col-sm-5 col-sm-offset-0">
+                <div class="step-left">
+                    <h4>Paradas</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore mag.</p>
+                </div>
+            </div>
+            <div class="td hidden-xs col-sm-6 col-sm-offset-1">
+                <img src="assets/img/repair.png" alt="" class="responsive">
+            </div>
+        </div>
+        <div class="steps row tr detail-3">
+            <div class="td hidden-xs col-sm-6 step-img-short"><img src="assets/img/good-to-go.png" alt="" class="responsive"></div>
+            <div class="td col-xs-12 col-xs-offset-0 col-sm-5 col-sm-offset-0">
+                <div class="step-right">
+                    <h4>You're good to go</h4>
+                    <p>Because you’ve already pre-paid, once your broken phone screen is repaired that’s all there is to it.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock%}
+
+{% block scripts %}
+{{ super() }}
+    <script src="//maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=es"></script>
+    <script src="/static/home/routing/transit.js"></script>
+{% endblock %}
