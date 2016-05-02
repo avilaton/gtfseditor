@@ -4,6 +4,8 @@
 from itertools import groupby
 from flask import render_template, make_response
 import sqlalchemy as sa
+import StringIO
+import unicodecsv as csv
 
 from .. import db
 from . import home
@@ -41,13 +43,26 @@ def stops():
 	rows = get_stops_and_routes()
 	return render_template('home/stops/list.html', rows=rows)
 
-@home.route('/stops.kml')
-def stops_kml():
-	stops = Stop.query
+@home.route('/stops.<fmt>')
+def stops_kml(fmt='csv'):
 	rows = get_stops_and_routes()
-	content = render_template('stops.kml', rows=rows)
+	Stop.query.first()
+	if fmt == 'kml':
+		content = render_template('stops.kml', rows=rows)
+	elif fmt == 'csv':
+		si = StringIO.StringIO()
+		writer = csv.DictWriter(si, ['stop_code', 'stop_name', 'routes'])
+		writer.writeheader()
+		for stop, routes in rows:
+			writer.writerow({
+				'stop_code': stop.stop_code,
+				'stop_name': stop.stop_name,
+				'routes': ', '.join(routes)
+				})
+		content = si.getvalue()
+
 	response = make_response(content)
-	response.headers["Content-Disposition"] = "attachment; filename=stops.kml"
+	response.headers["Content-Disposition"] = "attachment; filename=stops."+fmt
 	return response
 
 @home.route('/agency/<agency_id>')
