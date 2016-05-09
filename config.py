@@ -10,13 +10,12 @@ class Config:
     SQLALCHEMY_RECORD_QUERIES = True
 
     MAIL_SERVER = 'smtp.gmail.com'
-    MAIL_PORT = 465
-    MAIL_USE_SSL = True
-    MAIL_USE_TLS = False
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-    FLASKY_MAIL_SUBJECT_PREFIX = '[gtfseditor]'
-    FLASKY_MAIL_SENDER = 'Gtfseditor <gtfseditor@gmail.com>'
+    GTFSEDITOR_MAIL_SUBJECT_PREFIX = '[gtfseditor]'
+    MAIL_SENDER = '<' + (MAIL_USERNAME or 'admin@gtfseditor.com') + '>'
 
     AWS_S3_BUCKET_NAME = os.environ.get('AWS_S3_BUCKET_NAME')
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
@@ -92,9 +91,9 @@ class ProductionConfig(Config):
                 secure = ()
         mail_handler = SMTPHandler(
             mailhost=(cls.MAIL_SERVER, cls.MAIL_PORT),
-            fromaddr=cls.FLASKY_MAIL_SENDER,
+            fromaddr=cls.MAIL_SENDER,
             toaddrs=[cls.ADMIN_EMAIL],
-            subject=cls.FLASKY_MAIL_SUBJECT_PREFIX + ' Application Error',
+            subject=cls.GTFSEDITOR_MAIL_SUBJECT_PREFIX + ' Application Error',
             credentials=credentials,
             secure=secure)
         mail_handler.setLevel(logging.ERROR)
