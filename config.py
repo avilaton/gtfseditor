@@ -15,7 +15,7 @@ class Config:
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     GTFSEDITOR_MAIL_SUBJECT_PREFIX = '[gtfseditor]'
-    MAIL_SENDER = '<' + (MAIL_USERNAME or 'admin@gtfseditor.com') + '>'
+    MAIL_SENDER = MAIL_USERNAME or 'admin@gtfseditor.com'
 
     AWS_S3_BUCKET_NAME = os.environ.get('AWS_S3_BUCKET_NAME')
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
@@ -27,7 +27,7 @@ class Config:
 
     BROKER_URL = os.environ.get('CLOUDAMQP_URL') or 'sqla+sqlite:///celerydb.sqlite'
     CELERY_RESULT_BACKEND = os.environ.get('CLOUDAMQP_URL') or 'db+sqlite:///celerydb.sqlite'
-    TMP_FOLDER = '.tmp/'
+    TMP_FOLDER = '' + os.environ.get('AWS_S3_BUCKET_NAME') or '.tmp/'
 
     @staticmethod
     def init_app(app):
