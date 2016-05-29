@@ -1,0 +1,37 @@
+<div class="col-md-12 panel-right">
+  <h1>Agencies</h1>
+  <div class="row voffset1">
+    <div class="col-md-12">
+      <form class="form-inline">
+        <button class="btn btn-default btn-create"><span class="glyphicon glyphicon-plus"></span> New</button>
+      </form>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>URL</th>
+        <th>Timezone</th>
+        <th>Language</th>
+        <th>Phone</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each models}}
+      <tr data-index="{{@index}}">
+        <td>{{agency_name}}</td>
+        <td>{{agency_url}}</td>
+        <td>{{agency_timezone}}</td>
+        <td>{{agency_lang}}</td>
+        <td>{{agency_phone}}</td>
+        <td class="">
+          <button class="btn btn-default btn-rm"><span class="glyphicon glyphicon-remove"></span></button>
+          <button class="btn btn-default btn-edit"><span class="glyphicon glyphicon-pencil"></span></button>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

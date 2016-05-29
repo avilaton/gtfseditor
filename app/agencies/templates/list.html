@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Agencies{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Agencies
+      <a class="btn btn-default clearfix pull-right" href="{{ url_for('agencies.agency_edit') }}">
+        <span class="glyphicon glyphicon-plus"></span> New
+      </a>
+    </h1>
+</div>
+<div class="col-md-12">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>URL</th>
+        <th>Timezone</th>
+        <th>Language</th>
+        <th>Phone</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for agency in agencies %}
+        <tr data-index="0">
+          <td>
+            <a href="{{ url_for('agencies.agency', agency_id=agency.agency_id) }}">
+                {{ agency.agency_name }}
+            </a>
+          </td>
+          <td>{{ agency.agency_url }}</td>
+          <td>{{ agency.agency_timezone }}</td>
+          <td>{{ agency.agency_lang }}</td>
+          <td>{{ agency.agency_phone }}</td>
+          <td class="">
+            <a class="btn btn-default"
+               href="{{ url_for('agencies.delete', agency_id=agency.agency_id) }}">
+              <span class="glyphicon glyphicon-remove"></span>
+            </a>
+            <a href="{{ url_for('agencies.agency_edit', agency_id=agency.agency_id) }}" class="btn btn-default btn-edit">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

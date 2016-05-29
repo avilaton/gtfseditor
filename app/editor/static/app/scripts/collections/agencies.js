@@ -10,7 +10,7 @@ define([
   Collection = Backbone.Collection.extend({
     model: AgencyModel,
 
-    url: Config.server + 'api/agency/',
+    url: Config.api + 'agency/',
 
     save: function () {
       _.forEach(this.models, function (model) {

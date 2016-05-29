@@ -1,47 +1,36 @@
 <div class="col-md-12 panel-right">
-  <h1>Service periods</h1>
-  <div class="row voffset1">
-    <div class="col-md-12">
-      <form class="form-inline">
-        <button class="btn btn-default btn-create"><span class="glyphicon glyphicon-plus"></span> New</button>
-      </form>
-    </div>
+  <ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li class="active">Calendars</li>
+  </ol>
+
+
+  <div class="page-header">
+    <h1>Calendars <small>Service Periods</small></h1>
   </div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th class="col-md-2">Service Name</th>
-        <th class="col-md-1">Starts</th>
-        <th class="col-md-1">Ends</th>
-        <th class="col-md-1">Monday</th>
-        <th class="col-md-1">Tuesday</th>
-        <th class="col-md-1">Wednesday</th>
-        <th class="col-md-1">Thursday</th>
-        <th class="col-md-1">Friday</th>
-        <th class="col-md-1">Saturday</th>
-        <th class="col-md-1">Sunday</th>
-        <th class="col-md-1"></th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each models}}
-      <tr data-index="{{@index}}">
-        <td>{{service_name}}</td>
-        <td>{{start_date}}</td>
-        <td>{{end_date}}</td>
-        <td><span class="glyphicon glyphicon-{{#if_eq monday "1"}}ok{{/if_eq}}"></span></td>
-        <td><span class="glyphicon glyphicon-{{#if_eq tuesday "1"}}ok{{/if_eq}}"></span></td>
-        <td><span class="glyphicon glyphicon-{{#if_eq wednesday "1"}}ok{{/if_eq}}"></span></td>
-        <td><span class="glyphicon glyphicon-{{#if_eq thursday "1"}}ok{{/if_eq}}"></span></td>
-        <td><span class="glyphicon glyphicon-{{#if_eq friday "1"}}ok{{/if_eq}}"></span></td>
-        <td><span class="glyphicon glyphicon-{{#if_eq saturday "1"}}ok{{/if_eq}}"></span></td>
-        <td><span class="glyphicon glyphicon-{{#if_eq sunday "1"}}ok{{/if_eq}}"></span></td>
-        <td class="vcenter">
-          <button class="btn btn-default btn-rm"><span class="glyphicon glyphicon-remove"></span></button>
-          <button class="btn btn-default btn-edit"><span class="glyphicon glyphicon-pencil"></span></button>
-        </td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
+
+  <button class="btn btn-primary btn-create pull-right"><span class="glyphicon glyphicon-plus"></span> New</button>
+
+  <ul class="list-group">
+  {{#each models}}
+    <li class="list-group-item" data-service-id="{{service_id}}">
+      <h3 class="list-group-item-heading">{{service_name}}
+      <small>Desde: {{start_date}} Hasta: {{end_date}}</small>
+      </h3>
+
+      {{#if_eq monday "1"}}Monday, {{/if_eq}}
+      {{#if_eq tuesday "1"}}Tuesday, {{/if_eq}}
+      {{#if_eq wednesday "1"}}Wednesday, {{/if_eq}}
+      {{#if_eq thursday "1"}}Thursday, {{/if_eq}}
+      {{#if_eq friday "1"}}Friday, {{/if_eq}}
+      {{#if_eq saturday "1"}}Saturday, {{/if_eq}}
+      {{#if_eq sunday "1"}}Sunday, {{/if_eq}}
+      <div class="pull-right">
+        <a href="#" class="btn-rm"><span class="glyphicon glyphicon-remove"></span> Remove</a>
+        <a href="#" class="btn-edit"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+      </div>
+    </li>
+  {{/each}}
+  </ul>
+
 </div>

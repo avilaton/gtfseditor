@@ -19,9 +19,9 @@ define([
 
     url: function() {
       if (this.isNew()) {
-        return Config.server + 'api/calendars/';
+        return Config.api + 'calendars/';
       } else {
-        return Config.server + 'api/calendars/' + this.id;
+        return Config.api + 'calendars/' + this.id;
       }
     }
   });

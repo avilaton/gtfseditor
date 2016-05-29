@@ -9,9 +9,9 @@ define([
 
     url: function() {
       if (this.isNew()) {
-        return Config.server + 'api/agency/';
+        return Config.api + 'agency/';
       } else {
-        return Config.server + 'api/agency/' + this.id;
+        return Config.api + 'agency/' + this.id;
       }
     }
   });

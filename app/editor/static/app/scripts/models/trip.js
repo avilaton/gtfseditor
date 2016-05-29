@@ -9,9 +9,9 @@ define([
 		idAttribute: "trip_id",
     url: function() {
       if (this.isNew()) {
-        return Config.server + 'api/trips/';
+        return Config.api + 'trips/';
       } else {
-        return Config.server + 'api/trips/' + this.id;
+        return Config.api + 'trips/' + this.id;
       }
     }
  	});

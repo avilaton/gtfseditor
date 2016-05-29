@@ -39,6 +39,7 @@ define([
         save: function () {
             var self = this;
             this.model.save().then(function () {
+                self.collection.add(self.model);
                 self.$el.modal('hide');
             });
         },

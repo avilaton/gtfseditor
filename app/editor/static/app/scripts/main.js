@@ -57,6 +57,8 @@ require(['router', 'bootstrap', 'handlebars'],
             return opts.inverse(this);
     });
 
-    Router.initialize();
+    window.App = {};
+
+    App.router = Router.initialize();
 
 });

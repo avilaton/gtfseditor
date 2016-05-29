@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from itertools import groupby
 from flask import render_template
+
 from .. import db
 from . import home
 from ..models import Agency
@@ -11,20 +13,23 @@ from ..models import Trip
 from ..models import TripStartTime
 from ..models import Stop
 from ..models import StopSeq
-from ..services.stop_times import StopTimesFactory
+from ..services.stop_times import offset_sequence_times
 
 
 @home.route('/')
 def index():
-	agencies = Agency.query.all()
-	results = db.session.query(Route, Agency)\
-		.join(Agency)\
-		.filter(Route.agency_id==Agency.agency_id)\
-		.order_by(Route.route_short_name)\
-		.all()
-	for route in results:
-		print route
-	return render_template('home/index.html', agencies=agencies, results=results)
+	agency_routes = db.session.query(Agency, Route).join(Route)\
+		.order_by(Agency.agency_name, Route.route_short_name).all()
+	agencies = groupby(agency_routes, lambda x: x.Agency)
+	return render_template('home/index.html', agencies=agencies)
+
+@home.route('/routing')
+def routing():
+	return render_template('home/routing/index.html')
+
+@home.route('/stops')
+def stops():
+	return render_template('home/stops/index.html')
 
 @home.route('/agency/<agency_id>')
 def get_agency(agency_id):
@@ -91,7 +96,7 @@ def get_trip_stops(route_id, trip_id, service_id):
 	for startTimeRow in trip_start_times:
 		times = []
 
-		for stop_time in StopTimesFactory.offsetStartTimes(trip_id, stop_sequence, startTimeRow):
+		for stop_time in offset_sequence_times(stop_sequence, startTimeRow.start_time):
 			times.append(stop_time['arrival_time'])
 
 		trip_times.append(times)

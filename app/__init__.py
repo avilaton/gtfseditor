@@ -1,4 +1,4 @@
-__version__ = '1.1.3'
+__version__ = '1.2.5'
 
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -59,6 +59,7 @@ def create_app(config_name):
 
     app.register_blueprint(editor_blueprint, url_prefix='/editor')
 
+    register_blueprints(app)
 
     from .ng_editor import ng_editor as ng_editor_bp
 
@@ -103,3 +104,16 @@ def create_celery_app(app=None):
     register_tasks(celery)
 
     return celery
+
+def register_blueprints(app):
+    from app.agencies import agencies_bp
+    app.register_blueprint(agencies_bp, url_prefix='/editor/agencies')
+
+    from app.routes import routes_bp
+    app.register_blueprint(routes_bp, url_prefix='/editor/routes')
+
+    from app.trips import trips_bp
+    app.register_blueprint(trips_bp, url_prefix='/editor/routes')
+
+def register_extensions(app):
+    pass
