@@ -2,7 +2,10 @@
 # -*- coding: utf-8 -*-
 
 from itertools import groupby
-from flask import render_template
+from flask import render_template, make_response
+import sqlalchemy as sa
+import StringIO
+import unicodecsv as csv
 
 from .. import db
 from . import home
@@ -14,6 +17,15 @@ from ..models import TripStartTime
 from ..models import Stop
 from ..models import StopSeq
 from ..services.stop_times import offset_sequence_times
+
+def get_stops_and_routes():
+	distinct_route_names = sa.distinct(Route.route_short_name)
+	array_type = sa.dialects.postgresql.ARRAY(sa.types.String, as_tuple=True)
+	route_agg_dis = sa.func.array_agg(distinct_route_names, type_=array_type).label('routes')
+	rows = db.session.query(Stop, route_agg_dis).outerjoin(StopSeq, Trip, Route)
+	rows = rows.group_by(Stop.stop_id).order_by(Stop.stop_code)
+	rows = ((r.Stop, filter(None, r.routes)) for r in rows)
+	return rows
 
 
 @home.route('/')
@@ -29,7 +41,30 @@ def routing():
 
 @home.route('/stops')
 def stops():
-	return render_template('home/stops/index.html')
+	rows = get_stops_and_routes()
+	return render_template('home/stops/list.html', rows=rows)
+
+@home.route('/stops.<fmt>')
+def stops_kml(fmt='csv'):
+	rows = get_stops_and_routes()
+	Stop.query.first()
+	if fmt == 'kml':
+		content = render_template('stops.kml', rows=rows)
+	elif fmt == 'csv':
+		si = StringIO.StringIO()
+		writer = csv.DictWriter(si, ['stop_code', 'stop_name', 'routes'])
+		writer.writeheader()
+		for stop, routes in rows:
+			writer.writerow({
+				'stop_code': stop.stop_code,
+				'stop_name': stop.stop_name,
+				'routes': ', '.join(routes)
+				})
+		content = si.getvalue()
+
+	response = make_response(content)
+	response.headers["Content-Disposition"] = "attachment; filename=stops."+fmt
+	return response
 
 @home.route('/agency/<agency_id>')
 def get_agency(agency_id):
