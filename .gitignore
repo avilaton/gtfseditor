@@ -8,3 +8,4 @@ venv/
 .tmp/
 *.log
 *.sqlite
+.cache
