@@ -16,10 +16,8 @@ def app(request):
     # Establish an application context before running the tests.
     ctx = app.app_context()
     ctx.push()
-    print('app in')
 
     def teardown():
-        print('app out')
         ctx.pop()
 
     request.addfinalizer(teardown)
@@ -36,15 +34,11 @@ def db(app, request):
     """Session-wide test database."""
 
     def teardown():
-        print('db before drop all')
         _db.session.rollback()
         _db.drop_all()
-        print('db after drop all')
 
-    print('db in')
     _db.app = app
     _db.create_all()
-    print('db create all')
 
     request.addfinalizer(teardown)
     return _db
@@ -63,8 +57,8 @@ def session(db, request):
 
     def teardown():
         transaction.rollback()
-        connection.close()
         session.remove()
+        connection.close()
 
     request.addfinalizer(teardown)
     return session
