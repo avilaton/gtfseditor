@@ -15,8 +15,8 @@ uwsgi_package:
   file:
     - managed
     - source: salt://uwsgi/app_wsgi.ini
-    - user: vagrant
-    - group: vagrant
+    - user: {{ pillar['system']['user'] }}
+    - group: {{ pillar['system']['group'] }}
     - makedirs: True
     - template: jinja
     - mode: 755
@@ -37,6 +37,7 @@ uwsgi_package:
     - managed
     - source: salt://uwsgi/uwsgi.conf
     - file_mode: 744
+    - template: jinja
     # - require:
     #     - pkg: python3-pip
     #     - cmd: install-requirements
@@ -44,8 +45,8 @@ uwsgi_package:
 /var/log/uwsgi:
     file:
         - directory
-        - user: vagrant
-        - group: vagrant
+        - user: {{ pillar['system']['user'] }}
+        - group: {{ pillar['system']['group'] }}
         - makedirs: True
         # - require: 
         #     - pkg: python3-pip

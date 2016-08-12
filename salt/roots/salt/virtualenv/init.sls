@@ -4,7 +4,7 @@ include:
 /home/vagrant/venv:
     virtualenv.managed:
         - system_site_packages: False
-        - user: vagrant
-        - requirements: /home/vagrant/app/requirements.txt
+        - user: {{ pillar['system']['user'] }}
+        - requirements: {{ pillar['virtualenv']['requirements'] }}
         - require:
             - pkg: python-virtualenv
