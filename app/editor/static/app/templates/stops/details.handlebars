@@ -1,0 +1,58 @@
+{{#if stop.stop_id}}
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><strong>Code: {{stop.stop_code}}</strong></div>
+
+  <!-- Table -->
+  <table class="table">
+    <tbody>
+      <tr>
+        <td>Name</td><td>{{stop.stop_name}}</td>
+      </tr>
+      <tr>
+        <td>Calle</td><td>{{stop.stop_calle}}</td>
+      </tr>
+      <tr>
+        <td>Número</td><td>{{stop.stop_numero}}</td>
+      </tr>
+      <tr>
+        <td>Esquina</td><td>{{stop.stop_esquina}}</td>
+      </tr>
+      <tr>
+        <td>Description</td><td>{{stop.stop_desc}}</td>
+      </tr>
+      <tr>
+        <td>Latitude</td><td>{{stop.stop_lat}}</td>
+      </tr>
+      <tr>
+        <td>Longitude</td><td>{{stop.stop_lon}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="btn-toolbar" role="toolbar">
+  <div class="btn-group btn-group-md">
+    <button class="btn btn-default show-trips">Show Trips</button>
+  </div>
+  <div class="btn-group btn-group-md pull-right">
+    <a href="#/stops/{{stop.stop_id}}/edit" class="btn btn-default save-stop"><i class="glyphicon glyphicon-save"></i> Edit</a>
+  </div>
+</div>
+<div class="row voffset1">
+  <div class="col-md-12">
+    <ul class="list-group">
+      {{#each trips}}
+        <li class="list-group-item">
+          <h3 class="list-group-item-heading"><a href="#/routes/{{route_id}}/trips">{{route_short_name}}</a></h3>
+          <a href="#/routes/{{route_id}}/trips/{{trip_id}}">
+            {{trip_headsign}}, {{#if card_code}}({{card_code}}){{/if}}
+            {{#if_eq direction_id "0"}}(ida){{else}}(vuelta){{/if_eq}}
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
+{{/if}}

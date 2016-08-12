@@ -1,0 +1,3 @@
+
+class GTFSBase(object):
+    pass

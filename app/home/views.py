@@ -1,8 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import redirect,g, abort, url_for, current_app,render_template
-from .. import db, admin
+from itertools import groupby
+from flask import render_template, make_response
+import sqlalchemy as sa
+import StringIO
+import unicodecsv as csv
+
+from .. import db
 from . import home
 from ..models import Agency
 from ..models import Calendar
@@ -11,20 +16,55 @@ from ..models import Trip
 from ..models import TripStartTime
 from ..models import Stop
 from ..models import StopSeq
-from ..services.stop_times import StopTimesFactory
+from ..services.stop_times import offset_sequence_times
+
+def get_stops_and_routes():
+	distinct_route_names = sa.distinct(Route.route_short_name)
+	array_type = sa.dialects.postgresql.ARRAY(sa.types.String, as_tuple=True)
+	route_agg_dis = sa.func.array_agg(distinct_route_names, type_=array_type).label('routes')
+	rows = db.session.query(Stop, route_agg_dis).outerjoin(StopSeq, Trip, Route)
+	rows = rows.group_by(Stop.stop_id).order_by(Stop.stop_code)
+	rows = ((r.Stop, filter(None, r.routes)) for r in rows)
+	return rows
 
 
 @home.route('/')
 def index():
-	agencies = Agency.query.all()
-	results = db.session.query(Route, Agency)\
-		.join(Agency)\
-		.filter(Route.agency_id==Agency.agency_id)\
-		.order_by(Route.route_short_name)\
-		.all()
-	for route in results:
-		print route
-	return render_template('home/index.html', agencies=agencies, results=results)
+	agency_routes = db.session.query(Agency, Route).join(Route)\
+		.order_by(Agency.agency_name, Route.route_short_name).all()
+	agencies = groupby(agency_routes, lambda x: x.Agency)
+	return render_template('home/index.html', agencies=agencies)
+
+@home.route('/routing')
+def routing():
+	return render_template('home/routing/index.html')
+
+@home.route('/stops')
+def stops():
+	rows = get_stops_and_routes()
+	return render_template('home/stops/list.html', rows=rows)
+
+@home.route('/stops.<fmt>')
+def stops_kml(fmt='csv'):
+	rows = get_stops_and_routes()
+	Stop.query.first()
+	if fmt == 'kml':
+		content = render_template('stops.kml', rows=rows)
+	elif fmt == 'csv':
+		si = StringIO.StringIO()
+		writer = csv.DictWriter(si, ['stop_code', 'stop_name', 'routes'])
+		writer.writeheader()
+		for stop, routes in rows:
+			writer.writerow({
+				'stop_code': stop.stop_code,
+				'stop_name': stop.stop_name,
+				'routes': ', '.join(routes)
+				})
+		content = si.getvalue()
+
+	response = make_response(content)
+	response.headers["Content-Disposition"] = "attachment; filename=stops."+fmt
+	return response
 
 @home.route('/agency/<agency_id>')
 def get_agency(agency_id):
@@ -91,7 +131,7 @@ def get_trip_stops(route_id, trip_id, service_id):
 	for startTimeRow in trip_start_times:
 		times = []
 
-		for stop_time in StopTimesFactory.offsetStartTimes(trip_id, stop_sequence, startTimeRow):
+		for stop_time in offset_sequence_times(stop_sequence, startTimeRow.start_time):
 			times.append(stop_time['arrival_time'])
 
 		trip_times.append(times)

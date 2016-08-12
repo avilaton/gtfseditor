@@ -3,19 +3,19 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
+    DEBUG = bool(os.environ.get('DEBUG') in ['yes', 1, 'true', 'True'])
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
     SSL_DISABLE = False
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_RECORD_QUERIES = True
 
     MAIL_SERVER = 'smtp.gmail.com'
-    MAIL_PORT = 465
-    MAIL_USE_SSL = True
-    MAIL_USE_TLS = False
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-    FLASKY_MAIL_SUBJECT_PREFIX = '[gtfseditor]'
-    FLASKY_MAIL_SENDER = 'Gtfseditor <gtfseditor@gmail.com>'
+    GTFSEDITOR_MAIL_SUBJECT_PREFIX = '[gtfseditor]'
+    MAIL_SENDER = MAIL_USERNAME or 'admin@gtfseditor.com'
 
     AWS_S3_BUCKET_NAME = os.environ.get('AWS_S3_BUCKET_NAME')
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
@@ -27,9 +27,7 @@ class Config:
 
     BROKER_URL = os.environ.get('CLOUDAMQP_URL') or 'sqla+sqlite:///celerydb.sqlite'
     CELERY_RESULT_BACKEND = os.environ.get('CLOUDAMQP_URL') or 'db+sqlite:///celerydb.sqlite'
-    MODES = ["frequency", "initial-times", "full-spec"]
-    BUILD_MODE = MODES[1]
-    TMP_FOLDER = '.tmp/'
+    TMP_FOLDER = '' + os.environ.get('AWS_S3_BUCKET_NAME', '') or '.tmp/'
 
     @staticmethod
     def init_app(app):
@@ -44,7 +42,7 @@ class DevelopmentConfig(Config):
 class PostgresConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'postgres:///gtfs-dev'
+        'postgres:///gtfseditor'
     # SQLALCHEMY_ECHO = True
 
     WTF_CSRF_ENABLED = False
@@ -73,12 +71,6 @@ class PostgresConfig(Config):
         # werkzeug_logger = getLogger('werkzeug')
 
 
-class SqliteConfig(Config):
-    DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
-    BUILD_MODE = Config.MODES[0]
-    WTF_CSRF_ENABLED = False
-
 
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
@@ -99,9 +91,9 @@ class ProductionConfig(Config):
                 secure = ()
         mail_handler = SMTPHandler(
             mailhost=(cls.MAIL_SERVER, cls.MAIL_PORT),
-            fromaddr=cls.FLASKY_MAIL_SENDER,
+            fromaddr=cls.MAIL_SENDER,
             toaddrs=[cls.ADMIN_EMAIL],
-            subject=cls.FLASKY_MAIL_SUBJECT_PREFIX + ' Application Error',
+            subject=cls.GTFSEDITOR_MAIL_SUBJECT_PREFIX + ' Application Error',
             credentials=credentials,
             secure=secure)
         mail_handler.setLevel(logging.ERROR)
@@ -126,26 +118,11 @@ class HerokuConfig(ProductionConfig):
         file_handler.setLevel(logging.WARNING)
         app.logger.addHandler(file_handler)
 
-class UnixConfig(ProductionConfig):
-    @classmethod
-    def init_app(cls, app):
-        ProductionConfig.init_app(app)
-
-        # log to syslog
-        import logging
-        from logging.handlers import SysLogHandler
-        syslog_handler = SysLogHandler()
-        syslog_handler.setLevel(logging.WARNING)
-        app.logger.addHandler(syslog_handler)
-
 
 config = {
     'development': DevelopmentConfig,
-    'local': SqliteConfig,
     'staging': PostgresConfig,
     'production': ProductionConfig,
     'heroku': HerokuConfig,
-    'unix': UnixConfig,
-
     'default': PostgresConfig
 }

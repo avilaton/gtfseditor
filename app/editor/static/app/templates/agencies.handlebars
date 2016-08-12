@@ -1,0 +1,41 @@
+<div class="col-md-12">
+  <ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li class="active">Agencies</li>
+  </ol>
+
+
+  <div class="page-header">
+    <h1>Agencies</h1>
+  </div>
+
+  <button class="btn btn-primary btn-create pull-right"><span class="glyphicon glyphicon-plus"></span> New</button>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>URL</th>
+        <th>Timezone</th>
+        <th>Language</th>
+        <th>Phone</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each models}}
+      <tr data-index="{{@index}}">
+        <td>{{agency_name}}</td>
+        <td>{{agency_url}}</td>
+        <td>{{agency_timezone}}</td>
+        <td>{{agency_lang}}</td>
+        <td>{{agency_phone}}</td>
+        <td class="">
+          <button class="btn btn-default btn-rm"><span class="glyphicon glyphicon-remove"></span></button>
+          <button class="btn btn-default btn-edit"><span class="glyphicon glyphicon-pencil"></span></button>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

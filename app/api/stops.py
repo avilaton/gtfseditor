@@ -86,16 +86,19 @@ def add_stop():
 @api.route('/stops/<stop_id>/seqs')
 @api.route('/stops/<stop_id>/seqs.json')
 def get_stop_seqs(stop_id):
-    items = db.session.query(Route.route_short_name, Trip.trip_headsign,
+    items = db.session.query(Route.route_id, Route.route_short_name, Trip.trip_id,
+        Trip.trip_headsign,
         Trip.card_code, Trip.direction_id).\
       join(Trip, Route.route_id==Trip.route_id).\
       join(StopSeq, StopSeq.trip_id == Trip.trip_id).\
       filter(StopSeq.stop_id==stop_id).all()
     body = [{
       'route_id':item[0],
-      'trip_headsign':item[1],
-      'card_code': item[2],
-      'direction_id': item[3]
+      'route_short_name':item[1],
+      'trip_id':item[2],
+      'trip_headsign':item[3],
+      'card_code': item[4],
+      'direction_id': item[5]
       } for item in items]
 
     return Response(json.dumps(body),  mimetype='application/json')

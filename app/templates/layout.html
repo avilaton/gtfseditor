@@ -5,22 +5,49 @@
 	<title>{% block title %}{% endblock %} - Transporte Publico</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  	<link href="/static/styles.css" rel="stylesheet">
 	{% endblock %}
-	<style type="text/css">
-	.nowrap {
-		white-space: nowrap;
-	}
-	</style>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-31421959-2', 'auto');
+	  ga('send', 'pageview');
+	</script>
+
 </head>
 
 <body>
-<div class="container-fluid">
 
-	<h1>Transporte Público</h1>
+<div class="container">
+
+	<div class="page-header">
+		<h1><a href="/">Transporte Público</a> <small>Provincia de Mendoza</small></h1>
+	</div>
 
 	{% block body %}{% endblock %}
 
 </div>
+<br>
+<footer class="footer">
+  <div class="container">
+    <div class="row voffset1">
+      <div class="col-md-4">
+      <a class="text-muted" href="https://github.com/avilaton/gtfseditor">Source code</a>
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4 text-right">
+        <a class="text-muted" href="https://github.com/avilaton/gtfseditor/issues">Help</a>
+        
+      </div>
+    </div>
+  </div>
+</footer>
+{% block scripts %}
+{% endblock %}
+
 </body>
 
 </html>

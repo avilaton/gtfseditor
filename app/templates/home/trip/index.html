@@ -18,7 +18,7 @@
 
 <ol class="breadcrumb">
   <li><a href="/">Inicio</a></li>
-  <li><a href="/routes/{{route.route_id}}">Ruta {{route.route_id}}</a></li>
+  <li><a href="/routes/{{route.route_id}}">Ruta {{route.route_short_name}}</a></li>
   <li class="active">Viaje hacia {{trip.trip_headsign}}</li>
 </ol>
 
@@ -45,6 +45,7 @@
 		</dl>
 	</div>
 	<div class="col-sm-8">
+		<div id="popup"></div>
 		<div id="map" class="map"></div>
 	</div>
 </div>
@@ -82,13 +83,12 @@
 		<table class="table table-bordered table-striped table-condensed nowrap">
 			<thead>
 				<tr>
-					<th>N</th><th>Stop Code</th><th>Stop Name</th><th>Time</th><th>Distance (km)</th>
+					<th>Stop Code</th><th>Stop Name</th><th>Time</th><th>Distance (km)</th>
 				</tr>
 			</thead>
 			<tbody>
 				{%for stop, stop_seq in sequence%}
 				<tr data-stop-id="{{stop.stop_id}}">
-					<td>{{stop_seq.stop_sequence}}</td>
 					<td>{{stop.stop_code}}</td>
 					<td>{{stop.stop_name}}</td>
 					<td>{{stop_seq.stop_time}}</td>

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Routes{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Routes
+      <a class="btn btn-default clearfix pull-right" href="{{ url_for('agencies.agency_edit') }}">
+        <span class="glyphicon glyphicon-plus"></span> New
+      </a>
+    </h1>
+</div>
+<div class="col-md-12">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Short Name</th>
+        <th>Agency</th>
+        <th>Type</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for model in collection %}
+        <tr data-index="0">
+          <td>
+            <a href="{{ url_for('routes.view', route_id=model.route_id) }}">
+                {{ model.route_short_name }}
+            </a>
+          </td>
+          <td>{{ model.agency_id }}</td>
+          <td>{{ model.route_type }}</td>
+          <td class="">
+            <a class="btn btn-default"
+               href="{{ url_for('routes.delete', route_id=model.route_id) }}">
+              <span class="glyphicon glyphicon-remove"></span>
+            </a>
+            <a href="{{ url_for('routes.edit', route_id=model.route_id) }}" class="btn btn-default btn-edit">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
