@@ -19,20 +19,21 @@ db:
             - postgres_user: dbuser
 
 # Activate virtualenv on login
-/home/vagrant/.bashrc:
+bashrc:
   file.append:
+    - name: {{ pillar['system']['home'] + '/.bashrc' }}
     - text:
-      - "source venv/bin/activate"
-      - "cd app/"
+      - {{ "source " + pillar['virtualenv']['path'] + "/bin/activate"}}
+      - "cd gtfseditor/"
       - "export DATABASE_URL=\"postgresql://{{ pillar['dbuser'] }}:{{ pillar['dbpassword'] }}@localhost:5432/{{ pillar['dbname'] }}\""
 
 sync_db:
   cmd.run:
-    - user: vagrant
-    - group: vagrant
-    - cwd: /home/vagrant/app
+    - user: {{ pillar['system']['user'] }}
+    - group: {{ pillar['system']['group'] }}
+    - cwd: {{ pillar['application']['path'] }}
     - env:
         - 'DATABASE_URL': 'postgresql://{{ pillar['dbuser'] }}:{{ pillar['dbpassword'] }}@localhost:5432/{{ pillar['dbname'] }}'
     - names:
-      - /home/vagrant/venv/bin/python manage.py deploy
+      - {{ pillar['virtualenv']['path'] + '/bin/python manage.py deploy' }}
       - sudo service uwsgi reload

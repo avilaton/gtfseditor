@@ -8,6 +8,9 @@ python-pip:
 uwsgi_package:
   pip.installed:
     - name: uwsgi
+    {% if pillar['system']['proxy'] %}
+    - proxy: {{ pillar['system']['proxy'] }}
+    {% endif %}
     - require:
       - pkg: python-pip
 

@@ -3,7 +3,7 @@ include:
 
 gtfsvenv:
     virtualenv.managed:
-        - name: {{ pillar['system']['home']}} + '/venv'
+        - name: {{ pillar['virtualenv']['path'] }}
         - system_site_packages: False
         - user: {{ pillar['system']['user'] }}
         - requirements: {{ pillar['virtualenv']['requirements'] }}
