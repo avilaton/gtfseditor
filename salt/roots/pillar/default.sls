@@ -7,6 +7,7 @@ system:
 application:
   path: /home/vagrant/gtfseditor
   statics_dir: /home/vagrant/static
+  flask_config: production
 
 virtualenv:
   path: /home/vagrant/.virtualenvs

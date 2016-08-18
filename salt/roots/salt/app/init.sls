@@ -35,5 +35,5 @@ sync_db:
     - env:
         - 'DATABASE_URL': 'postgresql://{{ pillar['dbuser'] }}:{{ pillar['dbpassword'] }}@localhost:5432/{{ pillar['dbname'] }}'
     - names:
-      - {{ pillar['virtualenv']['path'] + '/bin/python manage.py deploy' }}
+      - {{ pillar['virtualenv']['path'] + '/bin/python manage.py db upgrade' }}
       - sudo service uwsgi reload
