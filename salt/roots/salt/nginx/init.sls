@@ -24,6 +24,7 @@ nginx:
   file:
     - managed
     - source: salt://nginx/nginx.conf
+    - template: jinja
     - require:
         - pkg: nginx
 
@@ -31,6 +32,7 @@ nginx:
   file:
     - managed
     - source: salt://nginx/app.conf
+    - template: jinja
     - require:
         - pkg: nginx
 
