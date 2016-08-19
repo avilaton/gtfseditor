@@ -27,7 +27,7 @@ class Config:
 
     BROKER_URL = os.environ.get('CLOUDAMQP_URL') or 'sqla+sqlite:///celerydb.sqlite'
     CELERY_RESULT_BACKEND = os.environ.get('CLOUDAMQP_URL') or 'db+sqlite:///celerydb.sqlite'
-    TMP_FOLDER = '' + os.environ.get('AWS_S3_BUCKET_NAME') or '.tmp/'
+    TMP_FOLDER = '' + os.environ.get('AWS_S3_BUCKET_NAME', '') or '.tmp/'
 
     @staticmethod
     def init_app(app):
