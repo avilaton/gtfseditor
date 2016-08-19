@@ -9,7 +9,7 @@ define([
   var Collection;
 
   Collection = Backbone.Collection.extend({
-    model: StopTime,
+    //model: StopTime,
 
     url: function () {
       return Config.api + 'trips/' + this.trip_id + '/stops.json?embed=true';

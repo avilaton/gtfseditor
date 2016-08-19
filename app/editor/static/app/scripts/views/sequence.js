@@ -14,12 +14,8 @@ define([
         'click tr': 'onClickRow',
         'click td.stop-time': 'onClickStopTime',
         'keyup td.stop-time': 'onKeyUpStopTime',
-        'dragstart tr': 'onDragStart',
-        'dragenter tr': 'onDragEnter',
-        'dragover tr': 'onDragOver',
-        'dragleave tr': 'onDragLeave',
-        'drop tr': 'onDrop',
-        'blur td.stop-time': 'onBlurStopTime'
+        'blur td.stop-time': 'onBlurStopTime',
+        'click a.remove-stop-time': 'onRmStopTime',
       },
 
       initialize: function(){
@@ -55,45 +51,13 @@ define([
         console.log(e);
       },
 
-      onDragStart: function (e) {
-        var $target = $(e.currentTarget);
-        console.log($target.data('stopId'), e);
-        this.dragRow = e.originalEvent;
-        e.originalEvent.dataTransfer.effectAllowed = 'move';
-        e.originalEvent.dataTransfer.setData('text/html', this.dragRow.innerHTML);
+      onRmStopTime: function (e) {
+        var $target = $(e.currentTarget),
+          stop_id = $target.closest('tr').data('stopId');
+        e.preventDefault();
+        this.collection.removeStop(stop_id);
       },
 
-      onDragEnter: function (e) {
-        var $target = $(e.currentTarget);
-        // console.log($target.data('stopId'), e);
-      },
-
-      onDragOver: function (e) {
-        var $target = $(e.currentTarget);
-        // console.log($target.data('stopId'), e);
-        if (e.originalEvent.preventDefault) {
-          e.originalEvent.preventDefault(); // Necessary. Allows us to drop.
-        }
-
-        e.originalEvent.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
-
-        return false;
-      },
-
-      onDragLeave: function (e) {
-        var $target = $(e.currentTarget);
-        // console.log($target.data('stopId'), e);
-      },
-
-      onDrop: function (e) {
-        var $target = $(e.currentTarget);
-        console.log($target.data('stopId'), e);
-        if (e.originalEvent.stopPropagation) {
-          e.originalEvent.stopPropagation(); // stops the browser from redirecting.
-        }
-        this.dragRow.innerHTML = e.originalEvent.innerHTML;
-        e.originalEvent.innerHTML = this.dragRow.dataTransfer.getData('text/html');
-      }
     });
 
     return View;
