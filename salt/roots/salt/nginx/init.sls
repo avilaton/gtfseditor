@@ -3,23 +3,6 @@
 include:
   - uwsgi
 
-nginx:
-  pkg:
-    - installed
-  service:
-    - running
-    - enable: True
-    - reload: True
-    - require:
-      - pkg: nginx
-      - file: /etc/nginx/nginx.conf
-      - file: /etc/nginx/sites-available/app.conf
-      - file: /etc/nginx/sites-enabled/app.conf
-      - file: /etc/nginx/sites-enabled/default
-      - service: uwsgi-service
-    - watch:
-      - service: uwsgi-service
-
 /etc/nginx/nginx.conf:
   file:
     - managed
@@ -46,3 +29,23 @@ nginx:
 /etc/nginx/sites-enabled/default:
   file:
     - absent
+
+nginx:
+  pkg:
+    - installed
+  service:
+    - running
+    - enable: True
+    - reload: True
+    - require:
+      - pkg: nginx
+      - file: /etc/nginx/nginx.conf
+      - file: /etc/nginx/sites-available/app.conf
+      - file: /etc/nginx/sites-enabled/app.conf
+      - file: /etc/nginx/sites-enabled/default
+      - service: uwsgi-service
+    - watch:
+      - service: uwsgi-service
+      - file: /etc/nginx/nginx.conf
+      - file: /etc/nginx/sites-available/app.conf
+
