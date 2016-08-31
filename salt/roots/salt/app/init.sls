@@ -40,9 +40,17 @@ sync_db:
 
 feeds_folder:
   file.directory:
+    - name: '{{pillar.system.home}}/feeds'
+    - user: {{pillar.system.user}}
+    - group: {{pillar.system.group}}
+
+feed_folder:
+  file.directory:
     - name: '{{pillar.system.home}}/feeds/{{pillar.application.feed_name}}'
     - user: {{pillar.system.user}}
     - group: {{pillar.system.group}}
+    - require:
+      - feeds_folder
 
 static_folder:
   file.directory:
@@ -61,6 +69,8 @@ buildfeed_env_target_folder:
     - name: 'GTFSEDITOR_FEED_FOLDER'
     - user: {{ pillar.system.user }}
     - value: '{{pillar.system.home}}/feeds/{{pillar.application.feed_name}}/'
+    - require:
+      - feed_folder
 
 buildfeed:
   cron.present:
