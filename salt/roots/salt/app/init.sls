@@ -38,11 +38,29 @@ sync_db:
       - {{ pillar.virtualenv.path + '/bin/python manage.py db upgrade' }}
       - sudo service uwsgi reload
 
+feeds_folder:
+  file.directory:
+    - name: '{{pillar.system.home}}/feeds/{{pillar.application.feed_name}}'
+    - user: {{pillar.system.user}}
+    - group: {{pillar.system.group}}
+
+static_folder:
+  file.directory:
+    - name: '{{pillar.system.home}}/static'
+    - user: {{pillar.system.user}}
+    - group: {{pillar.system.group}}
+
 buildfeed_env:
   cron.env_present:
     - name: 'DATABASE_URL'
     - user: {{ pillar.system.user }}
     - value: 'postgresql://{{ pillar['dbuser'] }}:{{ pillar['dbpassword'] }}@localhost:5432/{{ pillar['dbname'] }}'
+
+buildfeed_env_target_folder:
+  cron.env_present:
+    - name: 'GTFSEDITOR_FEED_FOLDER'
+    - user: {{ pillar.system.user }}
+    - value: '{{pillar.system.home}}/feeds/{{pillar.application.feed_name}}/'
 
 buildfeed:
   cron.present:
@@ -54,3 +72,4 @@ buildfeed:
     - name: 'cd {{ pillar.application.path }} && {{ pillar.virtualenv.path }}/bin/python manage.py buildfeed 2>&1 | /usr/bin/logger -t buildfeed'
     - require:
       - buildfeed_env
+      - buildfeed_env_target_folder
