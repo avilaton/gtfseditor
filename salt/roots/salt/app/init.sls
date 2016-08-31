@@ -35,5 +35,22 @@ sync_db:
     - env:
         - 'DATABASE_URL': 'postgresql://{{ pillar['dbuser'] }}:{{ pillar['dbpassword'] }}@localhost:5432/{{ pillar['dbname'] }}'
     - names:
-      - {{ pillar['virtualenv']['path'] + '/bin/python manage.py db upgrade' }}
+      - {{ pillar.virtualenv.path + '/bin/python manage.py db upgrade' }}
       - sudo service uwsgi reload
+
+buildfeed_env:
+  cron.env_present:
+    - name: 'DATABASE_URL'
+    - user: {{ pillar.system.user }}
+    - value: 'postgresql://{{ pillar['dbuser'] }}:{{ pillar['dbpassword'] }}@localhost:5432/{{ pillar['dbname'] }}'
+
+buildfeed:
+  cron.present:
+    - user: {{ pillar.system.user }}
+    - hour: 0
+    - minute: 0
+    - dayweek: '1-5'
+    - identifier: buildfeed_job
+    - name: 'cd {{ pillar.application.path }} && {{ pillar.virtualenv.path }}/bin/python manage.py buildfeed 2>&1 | /usr/bin/logger -t buildfeed'
+    - require:
+      - buildfeed_env
