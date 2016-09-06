@@ -38,13 +38,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
-
-
-class PostgresConfig(Config):
-    DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'postgres:///gtfseditor'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'postgres:///gtfseditor'
     # SQLALCHEMY_ECHO = True
 
     WTF_CSRF_ENABLED = False
@@ -123,8 +117,8 @@ class HerokuConfig(ProductionConfig):
 
 config = {
     'development': DevelopmentConfig,
-    'staging': PostgresConfig,
+    'staging': DevelopmentConfig,
     'production': ProductionConfig,
     'heroku': HerokuConfig,
-    'default': PostgresConfig
+    'default': DevelopmentConfig
 }
