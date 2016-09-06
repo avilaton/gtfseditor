@@ -4,47 +4,6 @@ Gtfseditor
 A customizable editor for GTFS files which can be used both as a standalone app 
 or deployed to a wsgi compliant hosting.
 
-Demo
-----
-
-There might be a demo running at http://gtfseditor.herokuapp.com
-The admin interface is at http://gtfseditor.herokuapp.com/editor
-and the credentials are 
-
-username: admin@gtfseditor.com
-password: admin
-
-Installation
-------------
-Clone the project and `cd` into the new folder using
-```
-$ git clone https://github.com/avilaton/gtfseditor.git
-$ cd gtfseditor
-```
-which will get you the latest version.
-
-Create a new virtual environment (we named it __gtfs__ but you can name it 
-anything you like) and activate it using
-```
-$ mkvirtualenv gtfs
-```
-You should now see your command line prompt changed to something like
-```
-(gtfs)$
-```
-
-Install the projects dependencies using
-```
-pip install -r requirements.txt
-```
-
-You can now run the server using
-```
-honcho start
-```
-and open your web browser at `http://localhost:5000`.
-
-
 
 Management
 ----------

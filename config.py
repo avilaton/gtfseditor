@@ -27,6 +27,7 @@ class Config:
 
     BROKER_URL = os.environ.get('CLOUDAMQP_URL') or 'sqla+sqlite:///celerydb.sqlite'
     CELERY_RESULT_BACKEND = os.environ.get('CLOUDAMQP_URL') or 'db+sqlite:///celerydb.sqlite'
+
     GTFSEDITOR_FEED_FOLDER = os.environ.get('GTFSEDITOR_FEED_FOLDER', '/tmp/')
     TMP_FOLDER = GTFSEDITOR_FEED_FOLDER
 
