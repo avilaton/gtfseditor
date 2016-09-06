@@ -96,9 +96,6 @@ def create_celery_app(app=None):
     return celery
 
 def register_blueprints(app):
-    from app.agencies import agencies_bp
-    app.register_blueprint(agencies_bp, url_prefix='/editor/agencies')
-
     from app.routes import routes_bp
     app.register_blueprint(routes_bp, url_prefix='/editor/routes')
 
