@@ -61,17 +61,6 @@ def create_app(config_name):
 
     register_blueprints(app)
 
-    from .reports import reports as reports_blueprint
-    app.register_blueprint(reports_blueprint, url_prefix='/reports')
-
-
-    from .auth import auth as auth_blueprint
-    app.register_blueprint(auth_blueprint, url_prefix='/auth')
-
-
-    from .home import home as home_blueprint
-    app.register_blueprint(home_blueprint)
-
 
     return app
 
@@ -95,9 +84,17 @@ def create_celery_app(app=None):
 
     return celery
 
+
 def register_blueprints(app):
-    from app.trips import trips_bp
-    app.register_blueprint(trips_bp, url_prefix='/editor/routes')
+    from .reports import reports as reports_blueprint
+    app.register_blueprint(reports_blueprint, url_prefix='/reports')
+
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint, url_prefix='/auth')
+
+    from .home import home as home_blueprint
+    app.register_blueprint(home_blueprint)
+
 
 def register_extensions(app):
     pass
