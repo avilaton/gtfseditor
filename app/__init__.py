@@ -46,21 +46,7 @@ def create_app(config_name):
     register_admin_views(admin)
 
 
-    from .api import api as api_blueprint
-    app.register_blueprint(api_blueprint, url_prefix='/api')
-
-
-    from .editor import editor as editor_blueprint
-
-    if app.config['DEBUG']:
-        editor_blueprint.static_folder = 'static/app'
-    else:
-        editor_blueprint.static_folder = 'static/dist'
-
-    app.register_blueprint(editor_blueprint, url_prefix='/editor')
-
     register_blueprints(app)
-
 
     return app
 
@@ -86,6 +72,17 @@ def create_celery_app(app=None):
 
 
 def register_blueprints(app):
+    from .api import api as api_blueprint
+    app.register_blueprint(api_blueprint, url_prefix='/api')
+
+    from .editor import editor as editor_blueprint
+    if app.config['DEBUG']:
+        editor_blueprint.static_folder = 'static/app'
+    else:
+        editor_blueprint.static_folder = 'static/dist'
+
+    app.register_blueprint(editor_blueprint, url_prefix='/editor')
+
     from .reports import reports as reports_blueprint
     app.register_blueprint(reports_blueprint, url_prefix='/reports')
 
