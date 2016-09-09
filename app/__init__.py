@@ -29,23 +29,11 @@ def create_app(config_name):
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
 
-    bootstrap.init_app(app)
-    compress.init_app(app)
-    db.init_app(app)
-    mail.init_app(app)
-    login_manager.init_app(app)
-    app.config['CORS_HEADERS'] = 'X-Requested-With, Content-Type'
-    cors.init_app(app)
-    admin.init_app(app)
-
     # if not app.debug and not app.testing and not app.config['SSL_DISABLE']:
     #     from flask.ext.sslify import SSLify
     #     sslify = SSLify(app)
 
-    from .admin import register_admin_views
-    register_admin_views(admin)
-
-
+    register_extensions(app)
     register_blueprints(app)
 
     return app
@@ -72,6 +60,9 @@ def create_celery_app(app=None):
 
 
 def register_blueprints(app):
+    from .admin import register_admin_views
+    register_admin_views(admin)
+
     from .api import api as api_blueprint
     app.register_blueprint(api_blueprint, url_prefix='/api')
 
@@ -94,4 +85,11 @@ def register_blueprints(app):
 
 
 def register_extensions(app):
-    pass
+    bootstrap.init_app(app)
+    compress.init_app(app)
+    db.init_app(app)
+    mail.init_app(app)
+    login_manager.init_app(app)
+    app.config['CORS_HEADERS'] = 'X-Requested-With, Content-Type'
+    cors.init_app(app)
+    admin.init_app(app)
