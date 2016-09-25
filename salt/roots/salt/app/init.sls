@@ -35,8 +35,8 @@ sync_db:
     - env:
         - 'DATABASE_URL': 'postgresql://{{ pillar['dbuser'] }}:{{ pillar['dbpassword'] }}@localhost:5432/{{ pillar['dbname'] }}'
     - names:
-      - {{ pillar.virtualenv.path + '/bin/python manage.py db upgrade' }}
-      - sudo service uwsgi reload
+      - '{{ pillar.virtualenv.path + '/bin/python manage.py db upgrade' }}'
+      - 'sudo service uwsgi reload'
 
 feeds_folder:
   file.directory:
@@ -44,13 +44,15 @@ feeds_folder:
     - user: {{pillar.system.user}}
     - group: {{pillar.system.group}}
 
+{% set feed_dir = pillar.system.home + '/feeds/' + pillar.application.feed_name %}
+
 feed_folder:
   file.directory:
-    - name: '{{pillar.system.home}}/feeds/{{pillar.application.feed_name}}'
+    - name: '{{feed_dir}}'
     - user: {{pillar.system.user}}
     - group: {{pillar.system.group}}
     - require:
-      - feeds_folder
+      - file: feeds_folder
 
 static_folder:
   file.directory:
@@ -70,7 +72,7 @@ buildfeed_env_target_folder:
     - user: {{ pillar.system.user }}
     - value: '{{pillar.system.home}}/feeds/{{pillar.application.feed_name}}/'
     - require:
-      - feed_folder
+      - file: feed_folder
 
 buildfeed:
   cron.present:
@@ -79,7 +81,7 @@ buildfeed:
     - minute: 0
     - dayweek: '1-5'
     - identifier: buildfeed_job
-    - name: 'cd {{ pillar.application.path }} && {{ pillar.virtualenv.path }}/bin/python manage.py buildfeed 2>&1 | /usr/bin/logger -t buildfeed'
+    - name: 'cd {{ pillar.application.path }} && {{ pillar.virtualenv.path }}/bin/python manage.py buildfeed 2>&1 | tee {{feed_dir}}/build_log.txt | /usr/bin/logger -t buildfeed'
     - require:
-      - buildfeed_env
-      - buildfeed_env_target_folder
+      - cron: buildfeed_env
+      - cron: buildfeed_env_target_folder
