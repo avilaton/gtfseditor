@@ -18,8 +18,8 @@ uwsgi_package:
   file:
     - managed
     - source: salt://uwsgi/app_wsgi.ini
-    - user: {{ pillar['system']['user'] }}
-    - group: {{ pillar['system']['group'] }}
+    - user: {{ pillar.system.user }}
+    - group: {{ pillar.system.group }}
     - makedirs: True
     - template: jinja
     - mode: 755
@@ -48,8 +48,8 @@ uwsgi_package:
 /var/log/uwsgi:
     file:
         - directory
-        - user: {{ pillar['system']['user'] }}
-        - group: {{ pillar['system']['group'] }}
+        - user: {{ pillar.system.user }}
+        - group: {{ pillar.system.group }}
         - makedirs: True
         # - require: 
         #     - pkg: python3-pip
