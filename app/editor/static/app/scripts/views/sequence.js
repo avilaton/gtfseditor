@@ -30,25 +30,22 @@ define([
 
       onBlurStopTime: function (e) {
         var $target = $(e.currentTarget);
-        var stop_id = $target.parent().data('stop-id');
-        var model = this.collection.get(stop_id);
+        var stop_index = $target.parent().data('stop-index');
+        var model = this.collection.at(stop_index);
         model.set('stop_time', $target.text());
       },
 
       onClickRow: function (event) {
         var $target = $(event.currentTarget),
         stop_id = $target.data('stopId');
-        console.log(event, stop_id);
       },
 
       onClickStopTime: function (e) {
         var $target = $(event.currentTarget);
-        console.log(e);
       },
 
       onKeyUpStopTime: function (e) {
         var $target = $(event.currentTarget);
-        console.log(e);
       },
 
       onRmStopTime: function (e) {

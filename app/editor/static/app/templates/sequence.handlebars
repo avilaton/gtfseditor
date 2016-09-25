@@ -9,7 +9,7 @@
 	</thead>
 	<tbody>
 		{{#each this}}
-		<tr data-stop-id="{{stop_id}}">
+		<tr data-stop-id="{{stop_id}}" data-stop-index="{{@index}}">
 			<td>{{stop_sequence}}</td>
 			<td>{{_stop.stop_code}}</td>
 			<td class="stop-time" contenteditable="true">{{stop_time}}</td>
