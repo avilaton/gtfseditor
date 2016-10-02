@@ -1,0 +1,29 @@
+{
+  "name": "gtfseditor",
+  "version": "1.0.0",
+  "description": "Gtfseditor",
+  "scripts": {
+    "build": "node_modules/.bin/webpack --progress --profile --colors",
+    "start": "node_modules/.bin/webpack-dev-server --progress -colors --port 2992 --content-base app/static/dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avilaton/gtfseditor.git"
+  },
+  "author": "Gaston Avila",
+  "bugs": {
+    "url": "https://github.com/avilaton/gtfseditor/issues"
+  },
+  "homepage": "https://github.com/avilaton/gtfseditor#readme",
+  "dependencies": {
+    "script-loader": "^0.6.1",
+    "css-loader": "^0.14.4",
+    "style-loader": "^0.12.3",
+    "image-webpack-loader": "^1.4.0",
+    "extract-text-webpack-plugin": "^0.8.1",
+    "manifest-revision-webpack-plugin": "^0.0.5",
+    "webpack": "^1.9.10",
+    "webpack-dev-server": "^1.9.0"
+  }
+}

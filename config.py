@@ -30,6 +30,7 @@ class Config:
 
     GTFSEDITOR_FEED_FOLDER = os.environ.get('GTFSEDITOR_FEED_FOLDER', '/tmp/')
     TMP_FOLDER = GTFSEDITOR_FEED_FOLDER
+    WEBPACK_MANIFEST_PATH = './static/manifest.json'
 
     @staticmethod
     def init_app(app):
