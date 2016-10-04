@@ -29,7 +29,7 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.js$/i, loader: 'script',
+                test: /\.js$/i, loader: 'ng-annotate',
                 exclude: /node_modules/
             },
             // {
@@ -39,6 +39,11 @@ module.exports = {
             //         'image?bypassOnDebug&optimizationLevel=7&interlaced=false'
             //     ]
             // },
+            {
+                test: /\.html$/,
+                loaders: ['ngtemplate?relativeTo=' + path.join(__dirname, rootAssetPath), 'raw', 'html-minify'],
+                exclude: /(node_modules)/
+            },
             {
                 test: /\.woff2?$|\.ttf$|\.eot$|\.svg$/,
                 loader: "file"
