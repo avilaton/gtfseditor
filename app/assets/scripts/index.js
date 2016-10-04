@@ -18,5 +18,8 @@ app.config(['$routeProvider', function ($routeProvider) {
     });
 }]);
 
+// Register services
+require('./services/stats')(app);
+
 // Register components
 require('./components/home')(app);
