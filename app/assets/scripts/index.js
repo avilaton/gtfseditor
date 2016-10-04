@@ -3,15 +3,20 @@ var angular = require('angular');
 var app = angular.module('app', [
     require('angular-resource'),
     require('angular-route'),
+    require('angular-ui-bootstrap'),
+    require('angular-loading-bar')
     ]);
 
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {
-        template: '<index></index>',
+        template: '<home></home>',
     }).when('/routes/', {
         template: '<routes></routes>',
     }).otherwise({
         redirectTo: '/'
     });
 }]);
+
+// Register components
+require('./components/home')(app);
