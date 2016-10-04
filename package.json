@@ -17,13 +17,21 @@
   },
   "homepage": "https://github.com/avilaton/gtfseditor#readme",
   "dependencies": {
-    "script-loader": "^0.6.1",
+    "bootstrap-sass": "^3.3.7",
     "css-loader": "^0.14.4",
-    "style-loader": "^0.12.3",
-    "image-webpack-loader": "^1.4.0",
     "extract-text-webpack-plugin": "^0.8.1",
+    "image-webpack-loader": "^1.4.0",
     "manifest-revision-webpack-plugin": "^0.0.5",
+    "script-loader": "^0.6.1",
+    "style-loader": "^0.12.3",
     "webpack": "^1.9.10",
     "webpack-dev-server": "^1.9.0"
+  },
+  "devDependencies": {
+    "file-loader": "^0.9.0",
+    "imports-loader": "^0.6.5",
+    "node-sass": "^3.10.1",
+    "sass-loader": "^4.0.2",
+    "url-loader": "^0.5.7"
   }
 }

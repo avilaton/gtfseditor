@@ -11,4 +11,4 @@ venv/
 *.sqlite
 app/static/manifest.json
 node_modules/
-
+app/static/dist/

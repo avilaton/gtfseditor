@@ -11,7 +11,7 @@ module.exports = {
             rootAssetPath + '/scripts/index'
         ],
         app_css: [
-            rootAssetPath + '/styles/main.css'
+            rootAssetPath + '/styles/main.scss'
         ]
     },
     output: {
@@ -21,24 +21,31 @@ module.exports = {
         chunkFilename: '[id].[chunkhash].js'
     },
     resolve: {
-        extensions: ['', '.js', '.css']
+        extensions: ['', '.js', '.css', '.scss'],
+        modulesDirectories: [
+            'node_modules'
+        ]
     },
     module: {
         loaders: [
             {
-                test: /\.js$/i, loader: 'script-loader',
+                test: /\.js$/i, loader: 'script',
                 exclude: /node_modules/
             },
+            // {
+            //     test: /\.(jpe?g|png|gif|svg([\?]?.*))$/i,
+            //     loaders: [
+            //         'file?context=' + rootAssetPath + '&name=[path][name].[hash].[ext]',
+            //         'image?bypassOnDebug&optimizationLevel=7&interlaced=false'
+            //     ]
+            // },
             {
-                test: /\.css$/i,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+                test: /\.woff2?$|\.ttf$|\.eot$|\.svg$/,
+                loader: "file"
             },
             {
-                test: /\.(jpe?g|png|gif|svg([\?]?.*))$/i,
-                loaders: [
-                    'file?context=' + rootAssetPath + '&name=[path][name].[hash].[ext]',
-                    'image?bypassOnDebug&optimizationLevel=7&interlaced=false'
-                ]
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract('style', 'css!sass')
             }
         ]
     },

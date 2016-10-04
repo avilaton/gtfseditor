@@ -8,3 +8,9 @@ from app.editor import editor
 @login_required
 def root():
     return render_template('index.html')
+
+
+@editor.route('/v2/')
+@login_required
+def index_v2():
+    return render_template('index-v2.html')
