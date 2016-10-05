@@ -20,6 +20,8 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 // Register services
 require('./services/stats')(app);
+require('./services/routes')(app);
 
 // Register components
 require('./components/home')(app);
+require('./components/routes')(app);

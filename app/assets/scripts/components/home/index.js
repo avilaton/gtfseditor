@@ -1,5 +1,4 @@
 var templateUrl = require('./home.html');
-var angular = require('angular');
 
 function Controller(Stats) {
     var ctrl = this;
