@@ -5,7 +5,6 @@ function Controller(Routes, Agencies, _) {
     ctrl.routes = Routes.get();
     Agencies.get(function (agencies) {
       ctrl.agencies = _.keyBy(agencies, 'agency_id');
-    console.log(ctrl.agencies);
     });
 }
 

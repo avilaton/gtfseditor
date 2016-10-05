@@ -15,6 +15,8 @@ app.config(['$routeProvider', function ($routeProvider) {
         template: '<home></home>',
     }).when('/routes/', {
         template: '<routes></routes>',
+    }).when('/routes/:routeId', {
+        template: '<route></route>',
     }).otherwise({
         redirectTo: '/'
     });
@@ -24,7 +26,9 @@ app.config(['$routeProvider', function ($routeProvider) {
 require('./services/stats')(app);
 require('./services/routes')(app);
 require('./services/agencies')(app);
+require('./services/trips')(app);
 
 // Register components
 require('./components/home')(app);
 require('./components/routes')(app);
+require('./components/route')(app);

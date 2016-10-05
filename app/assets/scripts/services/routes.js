@@ -4,4 +4,9 @@ module.exports = function(ngModule) {
           get: {method: 'GET', isArray: true}
         });
     });
+    ngModule.factory('Route', function($resource) {
+        return $resource('/api/routes/:routeId', {
+          routeId: '@routeId'
+        }, {});
+    });
 };
