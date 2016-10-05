@@ -30,7 +30,7 @@
         </td>
         <td><span class="glyphicon glyphicon-ok" ng-if="route.active"></span></td>
         <td>{{route.route_type}}</td>
-        <td>{{agency.agency_name}}</td>
+        <td>{{$ctrl.agencies[route.agency_id].agency_name}}</td>
         <td class="text-right">
           <button class="btn btn-default btn-rm"><span class="glyphicon glyphicon-remove"></span> Remove</button>
           <button class="btn btn-default btn-edit"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
