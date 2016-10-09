@@ -17,6 +17,8 @@ app.config(['$routeProvider', function ($routeProvider) {
         template: '<routes></routes>',
     }).when('/routes/:routeId', {
         template: '<route></route>',
+    }).when('/routes/:routeId/trips/:tripId', {
+        template: '<trip></trip>',
     }).otherwise({
         redirectTo: '/'
     });
@@ -32,3 +34,4 @@ require('./services/trips')(app);
 require('./components/home')(app);
 require('./components/routes')(app);
 require('./components/route')(app);
+require('./components/trip')(app);

@@ -1,0 +1,67 @@
+<div class="col-md-12">
+  <ol class="breadcrumb">
+    <li><a href="#/">Home</a></li>
+    <li><a href="#/routes">Routes</a></li>
+    <li><a href="#/routes/{{$ctrl.route.route_id}}/trips">{{$ctrl.route.route_short_name}}</a></li>
+    <li class="active">{{$ctrl.trip.trip_headsign}}</li>
+  </ol>
+
+  <div class="page-header">
+    <h1>Route: {{$ctrl.route.route_short_name}} <small>Direction: {{$ctrl.trip.trip_headsign}}</small></h1>
+  </div>
+
+    <div role="tabpanel">
+
+      <uib-tabset active="active">
+        <uib-tab index="0">
+          <uib-tab-heading>
+            <i class="glyphicon glyphicon-map-marker"></i> Map
+          </uib-tab-heading>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="btn-toolbar voffset1" role="toolbar">
+                <div class="btn-group btn-group-sm trip-toolbox"></div>
+                <div class="btn-group btn-group-sm shapes-toolbox"></div>
+                <div class="btn-group btn-group-sm kml-select-view"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="voffset1">
+                <div id="map" class="map-view"></div>
+              </div>
+            </div>
+          </div>
+        </uib-tab>
+
+        <uib-tab index="1">
+          <uib-tab-heading>
+            <i class="glyphicon glyphicon-time"></i> Sequence Times
+          </uib-tab-heading>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="voffset1 sequence-toolbox"></div>
+              <div class="sequence-view"></div>
+            </div>
+          </div>
+        </uib-tab>
+
+        <uib-tab index="2">
+          <uib-tab-heading>
+            <i class="glyphicon glyphicon-play"></i> Start Times
+          </uib-tab-heading>
+          <div class="row voffset1">
+            <div class="col-md-6">
+              <div class="calendars-select-view"></div>
+              <div class="calendars-tools-view"></div>
+            </div>
+            <div class="col-md-6 start-times-view"></div>
+          </div>
+        </div>
+        </uib-tab>
+
+      </uib-tabset>
+
+    </div>
+  </div>

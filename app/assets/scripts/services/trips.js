@@ -12,4 +12,21 @@ module.exports = function(ngModule) {
           tripId: '@tripId'
         }, {});
     });
+    ngModule.factory('Trip', function($resource) {
+        return $resource('/api/trips/:tripId', {
+          tripId: '@tripId'
+        }, {});
+    });
+    ngModule.factory('TripShape', function($resource) {
+        return $resource('/api/trips/:tripId/shape.json', {
+          tripId: '@tripId'
+        }, {});
+    });
+    ngModule.factory('TripStops', function($resource) {
+        return $resource('/api/trips/:tripId/stops.json', {
+          tripId: '@tripId'
+        }, {
+          get: {method: 'GET', isArray: true}
+        });
+    });
 };
