@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var ManifestRevisionPlugin = require('manifest-revision-webpack-plugin');
@@ -24,7 +25,10 @@ module.exports = {
         extensions: ['', '.js', '.css', '.scss'],
         modulesDirectories: [
             'node_modules'
-        ]
+        ],
+        alias: {
+            openlayers3: "openlayers/dist/ol.js",
+        },
     },
     module: {
         loaders: [
@@ -52,13 +56,18 @@ module.exports = {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract('style', 'css!sass')
             }
-        ]
+        ],
+        noParse: /dist\/ol.js/,
     },
     plugins: [
         new ExtractTextPlugin('[name].[chunkhash].css'),
         new ManifestRevisionPlugin(path.join('app/static', 'manifest.json'), {
             rootAssetPath: rootAssetPath,
             ignorePaths: ['/styles', '/scripts']
+        }),
+        new webpack.ProvidePlugin({
+            ol: "openlayers3",
         })
     ]
+
 };

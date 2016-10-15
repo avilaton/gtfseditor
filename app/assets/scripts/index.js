@@ -35,3 +35,4 @@ require('./components/home')(app);
 require('./components/routes')(app);
 require('./components/route')(app);
 require('./components/trip')(app);
+require('./components/map')(app);
