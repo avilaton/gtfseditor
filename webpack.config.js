@@ -57,7 +57,7 @@ module.exports = {
                 loader: ExtractTextPlugin.extract('style', 'css!sass')
             }
         ],
-        noParse: /dist\/ol.js/,
+        noParse: [/dist\/ol.js/],
     },
     plugins: [
         new ExtractTextPlugin('[name].[chunkhash].css'),

@@ -5,7 +5,7 @@ var app = angular.module('app', [
     require('angular-resource'),
     require('angular-route'),
     require('angular-ui-bootstrap'),
-    require('angular-loading-bar')
+    require('angular-loading-bar'),
     ]);
 
 app.constant('_', lodash);
@@ -35,4 +35,6 @@ require('./components/home')(app);
 require('./components/routes')(app);
 require('./components/route')(app);
 require('./components/trip')(app);
-require('./components/map')(app);
+
+// Register directives
+require('./directives/ol-map')(app);
