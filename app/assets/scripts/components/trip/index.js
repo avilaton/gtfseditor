@@ -23,7 +23,7 @@ function Controller(Route, Trip, TripShape, TripStops, $routeParams, $timeout, _
         _.each(stops, function (trip_stop) {
             var stop = trip_stop._stop;
 
-            var stopFeature = new ol.Feature(stop);
+            var stopFeature = new ol.Feature(trip_stop);
             stopFeature.setGeometry(new ol.geom.Point(ol.proj.transform([stop.stop_lon,stop.stop_lat],
                 'EPSG:4326', 'EPSG:3857')));
 

@@ -96,3 +96,20 @@ table .btn {
     width: 1.28571429em;
     text-align: center;
 }
+
+// Edditable table cell
+td.table-input {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+td.table-input input {
+  display: block !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  width: 100% !important;
+  border-radius: 0 !important;
+  line-height: 1 !important;
+  box-shadow: none;
+}

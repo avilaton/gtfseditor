@@ -35,6 +35,7 @@ require('./components/home')(app);
 require('./components/routes')(app);
 require('./components/route')(app);
 require('./components/trip')(app);
+require('./components/stop-sequence')(app);
 
 // Register directives
 require('./directives/ol-map')(app);
