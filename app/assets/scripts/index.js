@@ -1,4 +1,4 @@
-var angular = require('angular');
+import angular from 'angular';
 var lodash = require('lodash');
 
 var app = angular.module('app', [

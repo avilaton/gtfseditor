@@ -33,8 +33,8 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.js$/i, loader: 'ng-annotate',
-                exclude: /node_modules/
+                test: /\.js$/i, loader: 'ng-annotate!babel?presets[]=es2015',
+                exclude: /node_modules/,
             },
             // {
             //     test: /\.(jpe?g|png|gif|svg([\?]?.*))$/i,
