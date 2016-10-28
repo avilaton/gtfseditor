@@ -1,6 +1,6 @@
 var templateUrl = require('./trip.html');
 
-function Controller(Route, Trip, TripShape, TripStops, $routeParams, $timeout, _) {
+function Controller(Route, Trip, TripShape, TripStops, TripStopsService, $routeParams, $timeout, _) {
     var ctrl = this;
 
     ctrl.route = Route.get({routeId: $routeParams.routeId});
@@ -30,7 +30,6 @@ function Controller(Route, Trip, TripShape, TripStops, $routeParams, $timeout, _
             ctrl.tripStopFeatures.push(stopFeature);
         });
     });
-
 
     ctrl.tripStopFeatures = new ol.Collection();
     ctrl.tripShapeFeatures = new ol.Collection();
@@ -101,13 +100,28 @@ function Controller(Route, Trip, TripShape, TripStops, $routeParams, $timeout, _
         ctrl.map.addInteraction(selectStop);
         selectStop.on('select', function(evt) {
             var feature = evt.selected[0];
-            console.log(feature, feature.getProperties());
+            $timeout(function () {
+                ctrl.selectedStop = feature ? feature.getProperties(): undefined;
+            });
         });
 
         // Cause a repaint because something funky prevents the first paint (has to do with the
         // ui-tab component)
         $timeout(function () {ctrl.map.updateSize();});
     };
+
+    ctrl.saveTripStops = function () {
+        var payload = _.map(ctrl.stop_times, function (stop_time) {
+            var stop_time = _.clone(stop_time);
+            delete stop_time._stop;
+            return stop_time;
+        });
+        TripStopsService.update($routeParams.tripId, payload);
+    };
+
+    TripStopsService.get($routeParams.tripId).then(function (res) {
+        ctrl.stop_times = res.data;
+    });
 }
 
 module.exports = function(ngModule) {

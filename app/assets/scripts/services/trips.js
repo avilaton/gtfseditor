@@ -29,4 +29,16 @@ module.exports = function(ngModule) {
           get: {method: 'GET', isArray: true}
         });
     });
+    ngModule.service('TripStopsService', function ($http) {
+      return {
+        get: function get(tripId) {
+          return $http.get('/api/trips/' + tripId + '/stops.json', {
+            params: {embed: true}
+          });
+        },
+        update: function (tripId, data) {
+          return $http.put('/api/trips/' + tripId + '/stops.json', data);
+        }
+      };
+    });
 };

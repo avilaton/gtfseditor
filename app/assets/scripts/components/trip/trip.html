@@ -19,9 +19,21 @@
           </uib-tab-heading>
           <div class="row">
             <div class="col-md-12">
-              <div class="voffset1">
-              <div class="map-view" ol-map="$ctrl.map"></div>
+              <div class="btn-toolbar voffset1" role="toolbar">
+                <div class="btn-group btn-group-sm">
+                  <button class="btn btn-default"><i class="glyphicon glyphicon-step-backward"></i></button>
+                  <button class="btn btn-default"><i class="glyphicon glyphicon-step-forward"></i></button>
+                  <button class="btn btn-default"><i class="glyphicon glyphicon-trash"></i> Remove</button>
+                  <button class="btn btn-default"><i class="glyphicon glyphicon-chevron-down"></i> Use</button>
+                  <button class="btn btn-default" ng-click="$ctrl.saveTripStops()">
+                    <i class="glyphicon glyphicon-ok"></i> Save
+                  </button>
+                </div>
               </div>
+
+              <div class="map-view voffset1" ol-map="$ctrl.map"></div>
+
+              <p>Selected stop <span>({{$ctrl.selectedStop.stop_id}}) {{$ctrl.selectedStop._stop.stop_name}}</span></p>
             </div>
           </div>
         </uib-tab>

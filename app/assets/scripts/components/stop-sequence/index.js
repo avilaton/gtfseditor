@@ -1,12 +1,12 @@
 var templateUrl = require('./stop-sequence.html');
 
-function Controller(Route, RouteTrips, $routeParams) {
+function Controller(Route, RouteTrips, $routeParams, TripStopsService) {
     var ctrl = this;
 
     console.log(ctrl.stops);
 
     ctrl.saveTripStops = function () {
-      ctrl.stops.$save();
+      TripStopsService.get(1);
     };
 }
 
