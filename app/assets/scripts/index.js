@@ -19,6 +19,8 @@ app.config(['$routeProvider', function ($routeProvider) {
         template: '<route></route>',
     }).when('/routes/:routeId/trips/:tripId', {
         template: '<trip></trip>',
+    }).when('/stops/', {
+        template: '<stops></stops>',
     }).otherwise({
         redirectTo: '/'
     });
@@ -36,6 +38,7 @@ require('./components/routes')(app);
 require('./components/route')(app);
 require('./components/trip')(app);
 require('./components/stop-sequence')(app);
+require('./components/stops')(app);
 
 // Register directives
 require('./directives/ol-map')(app);
