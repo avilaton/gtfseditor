@@ -19,6 +19,27 @@ define([
       this.selected = new this.model;
     },
 
+    moveUp: function (model) {
+      var index = this.indexOf(model);
+
+      if (index > 0) {
+        this.swap(index, index - 1);
+      }
+    },
+
+    moveDown: function (model) {
+      var index = this.indexOf(model);
+
+      if (index < this.models.length) {
+        this.swap(index, index + 1);
+      }
+    },
+
+    swap: function (indexA, indexB) {
+      this.models[indexA] = this.models.splice(indexB, 1, this.models[indexA])[0];
+      this.trigger('change');
+    },
+
     toJSON: function(){
       var json = Backbone.Collection.prototype.toJSON.call(this);
       // remove the fields that do not need to be sent back

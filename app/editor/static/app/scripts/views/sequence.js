@@ -16,6 +16,8 @@ define([
         'keyup td.stop-time': 'onKeyUpStopTime',
         'blur td.stop-time': 'onBlurStopTime',
         'click a.remove-stop-time': 'onRmStopTime',
+        'click a.move-stop-up': 'onMoveStopUp',
+        'click a.move-stop-down': 'onMoveStopDown',
       },
 
       initialize: function(){
@@ -49,10 +51,27 @@ define([
       },
 
       onRmStopTime: function (e) {
-        var $target = $(e.currentTarget),
-          stop_id = $target.closest('tr').data('stopId');
+        var $target = $(e.currentTarget);
+        var stopIndex = $target.closest('tr').data('stopIndex');
+        var model = this.collection.at(stopIndex);
         e.preventDefault();
-        this.collection.removeStop(stop_id);
+        this.collection.remove(model);
+      },
+
+      onMoveStopUp: function (e) {
+        var $target = $(e.currentTarget);
+        var stopIndex = $target.closest('tr').data('stopIndex');
+        var model = this.collection.at(stopIndex);
+        e.preventDefault();
+        this.collection.moveUp(model);
+      },
+
+      onMoveStopDown: function (e) {
+        var $target = $(e.currentTarget);
+        var stopIndex = $target.closest('tr').data('stopIndex');
+        var model = this.collection.at(stopIndex);
+        e.preventDefault();
+        this.collection.moveDown(model);
       },
 
     });
