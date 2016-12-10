@@ -4,21 +4,21 @@
 	<thead>
 		<tr>
 			<th>N</th><th>Stop Code</th><th>Time</th><th>Distance (km)</th><th>Speed (km/h)</th>
-			<th> <span class="glyphicon glyphicon-cog"></span>	</th>
+			<th class="text-right"><span class="glyphicon glyphicon-cog"></span></th>
 		</tr>
 	</thead>
 	<tbody>
 		{{#each this}}
-		<tr data-stop-id="{{stop_id}}">
+		<tr data-stop-id="{{stop_id}}" data-stop-index="{{@index}}">
 			<td>{{stop_sequence}}</td>
 			<td>{{_stop.stop_code}}</td>
 			<td class="stop-time" contenteditable="true">{{stop_time}}</td>
 			<td>{{shape_dist_traveled}}</td>
 			<td>{{speed}}</td>
-			<td>
-				<a href="#" class="remove-stop-time">
-					<span class="glyphicon glyphicon-trash"></span>
-				</a> 
+			<td class="text-right">
+				<a href="#" class="remove-stop-time"><span class="glyphicon glyphicon-trash"></span></a>
+				<a href="#" class="move-stop-up"><span class="glyphicon glyphicon-arrow-up"></span></a>
+				<a href="#" class="move-stop-down"><span class="glyphicon glyphicon-arrow-down"></span></a>
 			</td>
 		</tr>
 		{{/each}}

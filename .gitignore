@@ -1,3 +1,4 @@
+salt/roots/pillar/local.sls
 .vagrant
 .idea*
 .env*

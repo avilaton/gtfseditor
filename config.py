@@ -27,7 +27,9 @@ class Config:
 
     BROKER_URL = os.environ.get('CLOUDAMQP_URL') or 'sqla+sqlite:///celerydb.sqlite'
     CELERY_RESULT_BACKEND = os.environ.get('CLOUDAMQP_URL') or 'db+sqlite:///celerydb.sqlite'
-    TMP_FOLDER = '' + os.environ.get('AWS_S3_BUCKET_NAME', '') or '.tmp/'
+
+    GTFSEDITOR_FEED_FOLDER = os.environ.get('GTFSEDITOR_FEED_FOLDER', '/tmp/')
+    TMP_FOLDER = GTFSEDITOR_FEED_FOLDER
 
     @staticmethod
     def init_app(app):
@@ -36,13 +38,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
-
-
-class PostgresConfig(Config):
-    DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'postgres:///gtfseditor'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'postgres:///gtfseditor'
     # SQLALCHEMY_ECHO = True
 
     WTF_CSRF_ENABLED = False
@@ -121,8 +117,8 @@ class HerokuConfig(ProductionConfig):
 
 config = {
     'development': DevelopmentConfig,
-    'staging': PostgresConfig,
+    'staging': DevelopmentConfig,
     'production': ProductionConfig,
     'heroku': HerokuConfig,
-    'default': PostgresConfig
+    'default': DevelopmentConfig
 }
