@@ -1,7 +1,7 @@
 {
   "name": "gtfseditor",
   "scripts": {
-    "postdeploy": "./manage deploy -d"
+    "postdeploy": "./manage.py deploy -d"
   },
   "env": {
     "AWS_ACCESS_KEY_ID": {
