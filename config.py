@@ -72,6 +72,7 @@ class DevelopmentConfig(Config):
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+    WEBPACK_ASSETS_URL = '/static/dist/'
 
     @classmethod
     def init_app(cls, app):

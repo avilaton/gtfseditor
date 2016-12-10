@@ -3,10 +3,11 @@ var webpack = require('webpack');
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var ManifestRevisionPlugin = require('manifest-revision-webpack-plugin');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 var rootAssetPath = './app/assets';
 
-module.exports = {
+config = {
     entry: {
         app_js: [
             rootAssetPath + '/scripts/index'
@@ -71,3 +72,19 @@ module.exports = {
     ]
 
 };
+
+if (process.env.NODE_ENV === 'prod') {
+    config.output.publicPath = '/static/dist/';
+    config.plugins.push(new CleanWebpackPlugin(['app/static/dist/'], {
+        verbose: true,
+        dry: false
+    }));
+    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false
+        }
+    }));
+}
+
+
+module.exports = config;
