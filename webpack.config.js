@@ -73,7 +73,7 @@ config = {
 
 };
 
-if (process.env.NODE_ENV === 'prod') {
+if (process.env.NODE_ENV === 'production') {
     config.output.publicPath = '/static/dist/';
     config.plugins.push(new CleanWebpackPlugin(['app/static/dist/'], {
         verbose: true,

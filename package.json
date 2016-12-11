@@ -5,7 +5,7 @@
   "scripts": {
     "build": "NODE_ENV=prod node_modules/.bin/webpack --progress --profile --colors",
     "start": "node_modules/.bin/webpack-dev-server --progress -colors --port 2992 --content-base app/static/dist",
-    "postinstall": "NODE_ENV=prod node_modules/.bin/webpack --progress --profile --colors",
+    "postinstall": "NODE_ENV=production webpack --progress --profile --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
