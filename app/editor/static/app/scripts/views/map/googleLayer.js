@@ -1,6 +1,6 @@
 define([
   "OpenLayers",
-  "backbone", 
+  "backbone",
   'async!http://maps.google.com/maps/api/js?sensor=false'
   ],
   function (OpenLayers, Backbone) {
