@@ -41,6 +41,7 @@ The client application uses
 - bootstrap.js for styling, scaffolding and plugins,
 - handlebars.js as a templating engine.
 
+
 The API server uses
 
 - flask.py for WSGI,
