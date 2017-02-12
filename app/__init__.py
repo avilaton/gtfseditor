@@ -2,6 +2,7 @@ __version__ = '1.2.12'
 
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask_webpack import Webpack
 from flask.ext.cors import CORS
 from config import config
 from flask.ext.login import LoginManager
@@ -22,6 +23,7 @@ bootstrap = Bootstrap()
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
 admin = Admin(name='gtfseditor', template_mode='bootstrap3', index_view=MyAdminIndexView())
+webpack = Webpack()
 
 
 def create_app(config_name):
@@ -93,3 +95,4 @@ def register_extensions(app):
     app.config['CORS_HEADERS'] = 'X-Requested-With, Content-Type'
     cors.init_app(app)
     admin.init_app(app)
+    webpack.init_app(app)

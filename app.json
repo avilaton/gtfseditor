@@ -1,7 +1,7 @@
 {
   "name": "gtfseditor",
   "scripts": {
-    "postdeploy": "./manage deploy -d"
+    "postdeploy": "./manage.py deploy -d"
   },
   "env": {
     "AWS_ACCESS_KEY_ID": {
@@ -14,6 +14,9 @@
       "required": true
     },
     "FLASK_CONFIG": {
+      "required": true
+    },
+    "NPM_CONFIG_PRODUCTION": {
       "required": true
     }
   },
@@ -31,6 +34,9 @@
     "heroku-postgresql"
   ],
   "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
     {
       "url": "heroku/python"
     }

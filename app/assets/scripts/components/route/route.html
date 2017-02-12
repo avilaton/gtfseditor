@@ -1,0 +1,65 @@
+<div class="col-md-12">
+  <ol class="breadcrumb">
+    <li><a href="#/">Home</a></li>
+    <li><a href="#/routes">Routes</a></li>
+    <li class="active">{{$ctrl.route.route_short_name}}</li>
+  </ol>
+
+  <div class="page-header">
+    <h1>Route: {{$ctrl.route.route_short_name}}</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Description</h2>
+      <dl class="dl-horizontal">
+        <dt>Short Name</dt>
+        <dd>{{$ctrl.route.route_short_name}}</dd>
+        <dt>Long Name</dt>
+        <dd>{{$ctrl.route.route_long_name}}</dd>
+        <dt>Agency</dt>
+        <dd>{{$ctrl.route.agency_id}}</dd>
+        <dt>Type</dt>
+        <dd>{{$ctrl.route.route_type}}</dd>
+        <dt>Color</dt>
+        <dd>{{$ctrl.route.route_color}}</dd>
+        <dt>Description</dt>
+        <dd>{{$ctrl.route.route_desc}}</dd>
+        <dt>Active</dt>
+        <dd>{{$ctrl.route.active}}</dd>
+      </dl>
+    </div>
+    <div class="col-md-8">
+      <h2>Trips
+        <button class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span> New</button>
+      </h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Headsing</th>
+            <th>Active</th>
+            <th>Short Name</th>
+            <th>Direction</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="trip in $ctrl.trips track by $index">
+            <td>
+              <a href="#/routes/{{$ctrl.route.route_id}}/trips/{{trip.trip_id}}"
+                  class="btn-trips">{{trip.trip_headsign}}</a>
+            </td>
+            <td><span class="glyphicon glyphicon-ok" ng-if="trip.active"></span></td>
+            <td>{{trip.trip_short_name}}</td>
+            <td>{{trip.direction_id === "1"? 'Inwards': 'Outwards'}}</td>
+            <td class="text-right">
+              <button class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Remove</button>
+              <button class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

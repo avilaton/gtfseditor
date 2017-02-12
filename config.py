@@ -30,6 +30,7 @@ class Config:
 
     GTFSEDITOR_FEED_FOLDER = os.environ.get('GTFSEDITOR_FEED_FOLDER', '/tmp/')
     TMP_FOLDER = GTFSEDITOR_FEED_FOLDER
+    WEBPACK_MANIFEST_PATH = './static/manifest.json'
 
     @staticmethod
     def init_app(app):
@@ -71,6 +72,7 @@ class DevelopmentConfig(Config):
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+    WEBPACK_ASSETS_URL = '/static/dist/'
 
     @classmethod
     def init_app(cls, app):

@@ -1,0 +1,41 @@
+<div class="col-md-12">
+  <ol class="breadcrumb">
+    <li><a href="#/">Home</a></li>
+    <li class="active">Routes</li>
+  </ol>
+
+  <div class="page-header">
+    <h1>Routes</h1>
+  </div>
+
+  <div class="row voffset1">
+    <div class="col-md-12">
+      <button class="btn btn-primary btn-create pull-right"><span class="glyphicon glyphicon-plus"></span> New</button>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Active</th>
+        <th>Type</th>
+        <th>Agency</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="route in $ctrl.routes track by $index">
+        <td>
+          <a href="#/routes/{{route.route_id}}" class="btn-trips">{{route.route_short_name}}</a>
+        </td>
+        <td><span class="glyphicon glyphicon-ok" ng-if="route.active"></span></td>
+        <td>{{route.route_type}}</td>
+        <td>{{$ctrl.agencies[route.agency_id].agency_name}}</td>
+        <td class="text-right">
+          <button class="btn btn-default btn-rm"><span class="glyphicon glyphicon-remove"></span> Remove</button>
+          <button class="btn btn-default btn-edit"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
