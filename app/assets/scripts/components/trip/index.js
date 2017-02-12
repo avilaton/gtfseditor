@@ -3,36 +3,8 @@ var templateUrl = require('./trip.html');
 function Controller(Route, Trip, TripShape, TripStops, TripStopsService, $routeParams, $timeout, _) {
     var ctrl = this;
 
-    ctrl.route = Route.get({routeId: $routeParams.routeId});
-
-    ctrl.trip = Trip.get({tripId: $routeParams.tripId}, function (trip) {
-      // console.log(trip);
-    });
-
-    ctrl.shape = TripShape.get({tripId: $routeParams.tripId}, function (shape) {
-        var coordinates = _.map(shape.coordinates, function (point) {
-            return ol.proj.transform([point[0], point[1]], 'EPSG:4326', 'EPSG:3857')
-        });
-        var shapeFeature = new ol.Feature({
-            geometry: new ol.geom.LineString(coordinates),
-        });
-        ctrl.tripShapeFeatures.push(shapeFeature);
-    });
-
-    ctrl.stops = TripStops.get({tripId: $routeParams.tripId, embed: 'true'}, function (stops) {
-        _.each(stops, function (trip_stop) {
-            var stop = trip_stop._stop;
-
-            var stopFeature = new ol.Feature(trip_stop);
-            stopFeature.setGeometry(new ol.geom.Point(ol.proj.transform([stop.stop_lon,stop.stop_lat],
-                'EPSG:4326', 'EPSG:3857')));
-
-            ctrl.tripStopFeatures.push(stopFeature);
-        });
-    });
-
-    ctrl.tripStopFeatures = new ol.Collection();
-    ctrl.tripShapeFeatures = new ol.Collection();
+    var tripStopFeatures = new ol.Collection();
+    var tripShapeFeatures = new ol.Collection();
 
     var stopStyle = new ol.style.Style({
         image: new ol.style.Circle({
@@ -67,21 +39,51 @@ function Controller(Route, Trip, TripShape, TripStops, TripStopsService, $routeP
         })
     });
 
+    var tripStopsLayer = new ol.layer.Vector({
+        source: new ol.source.Vector({features: tripStopFeatures}),
+        style: stopStyle
+    });
+
+    var tripShapeLayer = new ol.layer.Vector({
+        source: new ol.source.Vector({features: tripShapeFeatures}),
+        style: shapeStyle
+    });
+
+    var selectStop = new ol.interaction.Select({
+        condition: ol.events.condition.click,
+        style: selectedStopStyle,
+        layers: [tripStopsLayer]
+    });
+
     ctrl.$onInit = function () {
-        var tripStopsLayer = new ol.layer.Vector({
-            source: new ol.source.Vector({features: ctrl.tripStopFeatures}),
-            style: stopStyle
+        ctrl.route = Route.get({routeId: $routeParams.routeId});
+
+        ctrl.trip = Trip.get({tripId: $routeParams.tripId});
+
+        ctrl.shape = TripShape.get({tripId: $routeParams.tripId}, function (shape) {
+            var coordinates = _.map(shape.coordinates, function (point) {
+                return ol.proj.transform([point[0], point[1]], 'EPSG:4326', 'EPSG:3857')
+            });
+            var shapeFeature = new ol.Feature({
+                geometry: new ol.geom.LineString(coordinates),
+            });
+            tripShapeFeatures.push(shapeFeature);
         });
 
-        var tripShapeLayer = new ol.layer.Vector({
-            source: new ol.source.Vector({features: ctrl.tripShapeFeatures}),
-            style: shapeStyle
+        ctrl.stops = TripStops.get({tripId: $routeParams.tripId, embed: 'true'}, function (stops) {
+            _.each(stops, function (trip_stop) {
+                var stop = trip_stop._stop;
+
+                var stopFeature = new ol.Feature(trip_stop);
+                stopFeature.setGeometry(new ol.geom.Point(ol.proj.transform([stop.stop_lon,stop.stop_lat],
+                    'EPSG:4326', 'EPSG:3857')));
+
+                tripStopFeatures.push(stopFeature);
+            });
         });
 
-        var selectStop = new ol.interaction.Select({
-            condition: ol.events.condition.click,
-            style: selectedStopStyle,
-            layers: [tripStopsLayer]
+        TripStopsService.get($routeParams.tripId).then(function (res) {
+            ctrl.stop_times = res.data;
         });
 
         ctrl.map = new ol.Map({
@@ -94,7 +96,7 @@ function Controller(Route, Trip, TripShape, TripStops, TripStopsService, $routeP
             ],
             view: new ol.View({
                 center: ol.proj.fromLonLat([-64, -31.5]),
-                zoom: 9
+                zoom: 10
             })
         });
         ctrl.map.addInteraction(selectStop);
@@ -118,10 +120,6 @@ function Controller(Route, Trip, TripShape, TripStops, TripStopsService, $routeP
         });
         TripStopsService.update($routeParams.tripId, payload);
     };
-
-    TripStopsService.get($routeParams.tripId).then(function (res) {
-        ctrl.stop_times = res.data;
-    });
 }
 
 module.exports = function(ngModule) {
