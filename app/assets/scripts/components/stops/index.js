@@ -27,7 +27,6 @@ function Controller(_, $http) {
         };
 
         var source = new ol.source.Vector({
-
             loader: function(extent, resolution, projection) {
                 extent = ol.extent.applyTransform(extent, ol.proj.getTransform("EPSG:3857", "EPSG:4326"));
                 var url = '/api/stops.json?bbox=' + extent.join(',');
@@ -37,24 +36,27 @@ function Controller(_, $http) {
                         var stopFeature = new ol.Feature(stop);
                         stopFeature.setGeometry(new ol.geom.Point(ol.proj.transform([stop.stop_lon,stop.stop_lat],
                             'EPSG:4326', 'EPSG:3857')));
+                        // Setting the id allows the source to only add the missing features from the collection.
+                        // http://stackoverflow.com/questions/40324406/migrating-openlayers-2-bbox-strategy-to-openlayers-3
+                        stopFeature.setId(stop.stop_id);
                         return stopFeature;
                     });
                     source.addFeatures(features);
                 });
             },
             projection: 'EPSG:4326',
-            // strategy: ol.loadingstrategy.bbox,
-            strategy: bboxWithRatio(1.1),
-            url: function (extent, resolution, projection) {
-                extent = ol.extent.applyTransform(extent, ol.proj.getTransform("EPSG:3857", "EPSG:4326"));
-                var url = '/api/stops.json?bbox=' + extent.join(',');
-                return url
-            }
+            strategy: ol.loadingstrategy.bbox,
+            // strategy: bboxWithRatio(2),
+            // url: function (extent, resolution, projection) {
+            //     extent = ol.extent.applyTransform(extent, ol.proj.getTransform("EPSG:3857", "EPSG:4326"));
+            //     var url = '/api/stops.json?bbox=' + extent.join(',');
+            //     return url
+            // }
         });
 
         var view = new ol.View({
                 center: ol.proj.fromLonLat([-64, -31.5]),
-                zoom: 9
+                zoom: 12
             });
         var vectorLayer = new ol.layer.Vector({
                     title: 'Nodes',
@@ -70,7 +72,7 @@ function Controller(_, $http) {
             view: view
         });
         ctrl.map.on('moveend', function (e) {
-            source.clear();
+            //source.clear();
             // source.refresh();
         });
     }
