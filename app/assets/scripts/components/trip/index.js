@@ -1,3 +1,23 @@
+import Map from 'ol/map';
+import Feature from 'ol/feature';
+import Collection from 'ol/collection';
+import Select from 'ol/interaction/select';
+import Point from 'ol/geom/point';
+import LineString from 'ol/geom/linestring';
+import Vector from 'ol/source/vector';
+import OSM from 'ol/source/osm';
+import Style from 'ol/style/style';
+import Circle from 'ol/style/circle';
+import Fill from 'ol/style/fill';
+import Stroke from 'ol/style/stroke';
+import proj from 'ol/proj';
+import VectorLayer from 'ol/layer/vector';
+import TileLayer from 'ol/layer/tile';
+import View from 'ol/view';
+import olExtent from 'ol/extent';
+import condition from 'ol/events/condition';
+console.log(condition);
+
 var templateUrl = require('./trip.html');
 
 function Controller(Route, Trip, TripShape, TripStops, TripStopsService, $routeParams, $timeout, _) {
@@ -11,10 +31,10 @@ function Controller(Route, Trip, TripShape, TripStops, TripStopsService, $routeP
 
     ctrl.shape = TripShape.get({tripId: $routeParams.tripId}, function (shape) {
         var coordinates = _.map(shape.coordinates, function (point) {
-            return ol.proj.transform([point[0], point[1]], 'EPSG:4326', 'EPSG:3857')
+            return proj.transform([point[0], point[1]], 'EPSG:4326', 'EPSG:3857')
         });
-        var shapeFeature = new ol.Feature({
-            geometry: new ol.geom.LineString(coordinates),
+        var shapeFeature = new Feature({
+            geometry: new LineString(coordinates),
         });
         ctrl.tripShapeFeatures.push(shapeFeature);
     });
@@ -23,23 +43,23 @@ function Controller(Route, Trip, TripShape, TripStops, TripStopsService, $routeP
         _.each(stops, function (trip_stop) {
             var stop = trip_stop._stop;
 
-            var stopFeature = new ol.Feature(trip_stop);
-            stopFeature.setGeometry(new ol.geom.Point(ol.proj.transform([stop.stop_lon,stop.stop_lat],
+            var stopFeature = new Feature(trip_stop);
+            stopFeature.setGeometry(new Point(proj.transform([stop.stop_lon,stop.stop_lat],
                 'EPSG:4326', 'EPSG:3857')));
 
             ctrl.tripStopFeatures.push(stopFeature);
         });
     });
 
-    ctrl.tripStopFeatures = new ol.Collection();
-    ctrl.tripShapeFeatures = new ol.Collection();
+    ctrl.tripStopFeatures = new Collection();
+    ctrl.tripShapeFeatures = new Collection();
 
-    var stopStyle = new ol.style.Style({
-        image: new ol.style.Circle({
-            fill: new ol.style.Fill({
+    var stopStyle = new Style({
+        image: new Circle({
+            fill: new Fill({
                 color: '#FFF'
             }),
-            stroke: new ol.style.Stroke({
+            stroke: new Stroke({
                 color: '#000',
                 width: 2
             }),
@@ -47,12 +67,12 @@ function Controller(Route, Trip, TripShape, TripStops, TripStopsService, $routeP
         })
     });
 
-    var selectedStopStyle = new ol.style.Style({
-        image: new ol.style.Circle({
-            fill: new ol.style.Fill({
+    var selectedStopStyle = new Style({
+        image: new Circle({
+            fill: new Fill({
                 color: '#F00'
             }),
-            stroke: new ol.style.Stroke({
+            stroke: new Stroke({
                 color: '#000',
                 width: 2
             }),
@@ -60,40 +80,40 @@ function Controller(Route, Trip, TripShape, TripStops, TripStopsService, $routeP
         })
     });
 
-    var shapeStyle = new ol.style.Style({
-        stroke: new ol.style.Stroke({
+    var shapeStyle = new Style({
+        stroke: new Stroke({
             color: 'blue',
             width: 4
         })
     });
 
     ctrl.$onInit = function () {
-        var tripStopsLayer = new ol.layer.Vector({
-            source: new ol.source.Vector({features: ctrl.tripStopFeatures}),
+        var tripStopsLayer = new VectorLayer({
+            source: new Vector({features: ctrl.tripStopFeatures}),
             style: stopStyle
         });
 
-        var tripShapeLayer = new ol.layer.Vector({
-            source: new ol.source.Vector({features: ctrl.tripShapeFeatures}),
+        var tripShapeLayer = new VectorLayer({
+            source: new Vector({features: ctrl.tripShapeFeatures}),
             style: shapeStyle
         });
 
-        var selectStop = new ol.interaction.Select({
-            condition: ol.events.condition.click,
+        var selectStop = new Select({
+            condition: condition.click,
             style: selectedStopStyle,
             layers: [tripStopsLayer]
         });
 
-        ctrl.map = new ol.Map({
+        ctrl.map = new Map({
             layers: [
-                new ol.layer.Tile({
-                    source: new ol.source.OSM()
+                new TileLayer({
+                    source: new OSM()
                 }),
                 tripShapeLayer,
                 tripStopsLayer,
             ],
-            view: new ol.View({
-                center: ol.proj.fromLonLat([-64, -31.5]),
+            view: new View({
+                center: proj.fromLonLat([-64, -31.5]),
                 zoom: 9
             })
         });
