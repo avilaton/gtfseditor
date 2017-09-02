@@ -1,7 +1,7 @@
 <div class="col-md-12">
   <ol class="breadcrumb">
-    <li><a href="#/">Home</a></li>
-    <li><a href="#/routes">Routes</a></li>
+    <li><a href="#!/">Home</a></li>
+    <li><a href="#!/routes">Routes</a></li>
     <li class="active">{{$ctrl.route.route_short_name}}</li>
   </ol>
 
@@ -46,7 +46,7 @@
         <tbody>
           <tr ng-repeat="trip in $ctrl.trips track by $index">
             <td>
-              <a href="#/routes/{{$ctrl.route.route_id}}/trips/{{trip.trip_id}}"
+              <a href="#!/routes/{{$ctrl.route.route_id}}/trips/{{trip.trip_id}}"
                   class="btn-trips">{{trip.trip_headsign}}</a>
             </td>
             <td><span class="glyphicon glyphicon-ok" ng-if="trip.active"></span></td>

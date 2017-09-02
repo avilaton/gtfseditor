@@ -1,7 +1,7 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
-@import "~angular-loading-bar/build/loading-bar.css";
-@import "~openlayers/dist/ol.css";
+@import "~angular-loading-bar/build/loading-bar";
+@import "~ol/ol";
 
 #map, .map-view {
   background-color: #eee;
