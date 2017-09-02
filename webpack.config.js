@@ -17,6 +17,9 @@ config = {
             'styles/main.scss'
         ]
     },
+    devServer: {
+       headers: { "Access-Control-Allow-Origin": "*" }
+    },
     output: {
         path: path.resolve(__dirname, './app/static/dist'),
         publicPath: 'http://localhost:2992/assets/',
