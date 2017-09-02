@@ -1,0 +1,25 @@
+web:
+  build: .
+  command: honcho start web
+  links:
+   - postgres:postgres
+  ports:
+   - "5000:5000"
+  volumes:
+   - .:/srv/app
+
+data:
+  # restart: always
+  image: postgres:latest
+  volumes:
+    - /var/lib/postgresql
+  command: "true"
+
+postgres:
+  # restart: always
+  image: postgres:latest
+  env_file: .env
+  volumes_from:
+    - data
+  ports:
+    - "5432"
