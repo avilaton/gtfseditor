@@ -8,6 +8,7 @@ import VectorLayer from 'ol/layer/vector';
 import TileLayer from 'ol/layer/tile';
 import View from 'ol/view';
 import olExtent from 'ol/extent';
+import olLoadingStrategy from 'ol/loadingstrategy';
 
 var templateUrl = require('./stops.html');
 
@@ -15,7 +16,7 @@ function Controller(_, $http) {
     var ctrl = this;
 
     ctrl.$onInit = function () {
-1
+
         var scaleFromCenter = function(extent, value) {
           var deltaX = ((extent[2] - extent[0]) / 2) * (value - 1);
           var deltaY = ((extent[3] - extent[1]) / 2) * (value - 1);
@@ -48,24 +49,27 @@ function Controller(_, $http) {
                         var stopFeature = new Feature(stop);
                         stopFeature.setGeometry(new Point(proj.transform([stop.stop_lon,stop.stop_lat],
                             'EPSG:4326', 'EPSG:3857')));
+                        // Setting the id allows the source to only add the missing features from the collection.
+                        // http://stackoverflow.com/questions/40324406/migrating-openlayers-2-bbox-strategy-to-openlayers-3
+                        stopFeature.setId(stop.stop_id);
                         return stopFeature;
                     });
                     source.addFeatures(features);
                 });
             },
             projection: 'EPSG:4326',
-            // strategy: ol.loadingstrategy.bbox,
-            strategy: bboxWithRatio(1.1),
-            url: function (extent, resolution, projection) {
-                extent = olExtent.applyTransform(extent, proj.getTransform("EPSG:3857", "EPSG:4326"));
-                var url = '/api/stops.json?bbox=' + extent.join(',');
-                return url
-            }
+            strategy: olLoadingStrategy.bbox,
+            // strategy: bboxWithRatio(2),
+            // url: function (extent, resolution, projection) {
+            //     extent = ol.extent.applyTransform(extent, ol.proj.getTransform("EPSG:3857", "EPSG:4326"));
+            //     var url = '/api/stops.json?bbox=' + extent.join(',');
+            //     return url
+            // }
         });
 
         var view = new View({
                 center: proj.fromLonLat([-64, -31.5]),
-                zoom: 9
+                zoom: 12
             });
         var vectorLayer = new VectorLayer({
                     title: 'Nodes',
@@ -81,7 +85,7 @@ function Controller(_, $http) {
             view: view
         });
         ctrl.map.on('moveend', function (e) {
-            source.clear();
+            //source.clear();
             // source.refresh();
         });
     }
