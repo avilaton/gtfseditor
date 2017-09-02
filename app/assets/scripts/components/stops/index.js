@@ -43,7 +43,6 @@ function Controller(_, $http) {
             loader: function(extent, resolution, projection) {
                 extent = olExtent.applyTransform(extent, proj.getTransform("EPSG:3857", "EPSG:4326"));
                 var url = '/api/stops.json?bbox=' + extent.join(',');
-                console.log(url);
                 $http.get(url).then(function (res) {
                     var features = _.map(res.data, function (stop) {
                         var stopFeature = new Feature(stop);
@@ -69,11 +68,13 @@ function Controller(_, $http) {
 
         var view = new View({
                 center: proj.fromLonLat([-64, -31.5]),
-                zoom: 12
+                zoom: 12,
             });
         var vectorLayer = new VectorLayer({
                     title: 'Nodes',
                     source : source,
+                    minResolution: 0.01,
+                    maxResolution: 10
                 });
         ctrl.map = new Map({
             layers: [

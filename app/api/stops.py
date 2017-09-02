@@ -44,11 +44,12 @@ def get_stops(fmt="json"):
         stops = Stop.query
 
     if filter_stop_code:
-      stops = stops.filter(Stop.stop_code.contains(filter_stop_code)).limit(limit).all()
-    else:
-      stops = stops.limit(limit).all()
+      stops = stops.filter(Stop.stop_code.contains(filter_stop_code))
 
-    return Response(json.dumps([i.to_json for i in stops]),
+    stops = stops.limit(limit)
+    result = stops.all()
+
+    return Response(json.dumps([i.to_json for i in result]),
         mimetype='application/json')
 
 
