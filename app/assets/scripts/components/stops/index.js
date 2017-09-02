@@ -8,6 +8,9 @@ import VectorLayer from 'ol/layer/vector';
 import TileLayer from 'ol/layer/tile';
 import View from 'ol/view';
 import olExtent from 'ol/extent';
+import olLoadingStrategy from 'ol/loadingstrategy';
+
+console.log(olLoadingStrategy);
 
 var templateUrl = require('./stops.html');
 
@@ -15,7 +18,7 @@ function Controller(_, $http) {
     var ctrl = this;
 
     ctrl.$onInit = function () {
-1
+
         var scaleFromCenter = function(extent, value) {
           var deltaX = ((extent[2] - extent[0]) / 2) * (value - 1);
           var deltaY = ((extent[3] - extent[1]) / 2) * (value - 1);
@@ -57,7 +60,7 @@ function Controller(_, $http) {
                 });
             },
             projection: 'EPSG:4326',
-            strategy: ol.loadingstrategy.bbox,
+            strategy: olLoadingStrategy.bbox,
             // strategy: bboxWithRatio(2),
             // url: function (extent, resolution, projection) {
             //     extent = ol.extent.applyTransform(extent, ol.proj.getTransform("EPSG:3857", "EPSG:4326"));
