@@ -16,15 +16,14 @@ import TileLayer from 'ol/layer/tile';
 import View from 'ol/view';
 import olExtent from 'ol/extent';
 import condition from 'ol/events/condition';
-console.log(condition);
 
 var templateUrl = require('./trip.html');
 
 function Controller(Route, Trip, TripShape, TripStops, TripStopsService, $routeParams, $timeout, _) {
     var ctrl = this;
 
-    var tripStopFeatures = new ol.Collection();
-    var tripShapeFeatures = new ol.Collection();
+    var tripStopFeatures = new Collection();
+    var tripShapeFeatures = new Collection();
 
     var stopStyle = new Style({
         image: new Circle({
@@ -59,18 +58,18 @@ function Controller(Route, Trip, TripShape, TripStops, TripStopsService, $routeP
         })
     });
 
-    var tripStopsLayer = new ol.layer.Vector({
-        source: new ol.source.Vector({features: tripStopFeatures}),
+    var tripStopsLayer = new VectorLayer({
+        source: new Vector({features: tripStopFeatures}),
         style: stopStyle
     });
 
-    var tripShapeLayer = new ol.layer.Vector({
-        source: new ol.source.Vector({features: tripShapeFeatures}),
+    var tripShapeLayer = new VectorLayer({
+        source: new Vector({features: tripShapeFeatures}),
         style: shapeStyle
     });
 
-    var selectStop = new ol.interaction.Select({
-        condition: ol.events.condition.click,
+    var selectStop = new Select({
+        condition: condition.click,
         style: selectedStopStyle,
         layers: [tripStopsLayer]
     });
@@ -82,10 +81,10 @@ function Controller(Route, Trip, TripShape, TripStops, TripStopsService, $routeP
 
         ctrl.shape = TripShape.get({tripId: $routeParams.tripId}, function (shape) {
             var coordinates = _.map(shape.coordinates, function (point) {
-                return ol.proj.transform([point[0], point[1]], 'EPSG:4326', 'EPSG:3857')
+                return proj.transform([point[0], point[1]], 'EPSG:4326', 'EPSG:3857')
             });
-            var shapeFeature = new ol.Feature({
-                geometry: new ol.geom.LineString(coordinates),
+            var shapeFeature = new Feature({
+                geometry: new LineString(coordinates),
             });
             tripShapeFeatures.push(shapeFeature);
         });
@@ -94,8 +93,8 @@ function Controller(Route, Trip, TripShape, TripStops, TripStopsService, $routeP
             _.each(stops, function (trip_stop) {
                 var stop = trip_stop._stop;
 
-                var stopFeature = new ol.Feature(trip_stop);
-                stopFeature.setGeometry(new ol.geom.Point(ol.proj.transform([stop.stop_lon,stop.stop_lat],
+                var stopFeature = new Feature(trip_stop);
+                stopFeature.setGeometry(new Point(proj.transform([stop.stop_lon,stop.stop_lat],
                     'EPSG:4326', 'EPSG:3857')));
 
                 tripStopFeatures.push(stopFeature);
@@ -114,8 +113,8 @@ function Controller(Route, Trip, TripShape, TripStops, TripStopsService, $routeP
                 tripShapeLayer,
                 tripStopsLayer,
             ],
-            view: new ol.View({
-                center: ol.proj.fromLonLat([-64, -31.5]),
+            view: new View({
+                center: proj.fromLonLat([-64, -31.5]),
                 zoom: 10
             })
         });

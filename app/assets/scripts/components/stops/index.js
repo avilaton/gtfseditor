@@ -10,8 +10,6 @@ import View from 'ol/view';
 import olExtent from 'ol/extent';
 import olLoadingStrategy from 'ol/loadingstrategy';
 
-console.log(olLoadingStrategy);
-
 var templateUrl = require('./stops.html');
 
 function Controller(_, $http) {
