@@ -8,7 +8,12 @@ import VectorLayer from 'ol/layer/vector';
 import TileLayer from 'ol/layer/tile';
 import View from 'ol/view';
 import olExtent from 'ol/extent';
+import Style from 'ol/style/style';
+import Fill from 'ol/style/fill';
+import Text from 'ol/style/text';
+import Stroke from 'ol/style/stroke';
 import olLoadingStrategy from 'ol/loadingstrategy';
+import {stopStyle} from './stopStyle';
 
 var templateUrl = require('./stops.html');
 
@@ -38,8 +43,8 @@ function Controller(_, $http) {
           };
         };
 
-        var source = new Vector({
 
+        var source = new Vector({
             loader: function(extent, resolution, projection) {
                 extent = olExtent.applyTransform(extent, proj.getTransform("EPSG:3857", "EPSG:4326"));
                 var url = '/api/stops.json?bbox=' + extent.join(',');
@@ -63,7 +68,8 @@ function Controller(_, $http) {
             //     extent = ol.extent.applyTransform(extent, ol.proj.getTransform("EPSG:3857", "EPSG:4326"));
             //     var url = '/api/stops.json?bbox=' + extent.join(',');
             //     return url
-            // }
+            // },
+
         });
 
         var view = new View({
@@ -71,11 +77,27 @@ function Controller(_, $http) {
                 zoom: 12,
             });
         var vectorLayer = new VectorLayer({
-                    title: 'Nodes',
-                    source : source,
-                    minResolution: 0.01,
-                    maxResolution: 10
-                });
+          style: function (feature, resolution) {
+            var labelStyle = new Style({
+              text: new Text({
+                font: '12px Calibri,sans-serif',
+                fill: new Fill({ color: '#000' }),
+                stroke: new Stroke({
+                  color: '#fff', width: 2
+                }),
+                text: feature.get('stop_code'),
+                offsetX: 15,
+                offsetY: 15
+              })
+            });
+            labelStyle.getText().setText(resolution < 3 ? feature.get('stop_code') : '');
+            return [stopStyle, labelStyle];
+          },
+          title: 'Stops',
+          source : source,
+          minResolution: 0.01,
+          maxResolution: 10
+        });
         ctrl.map = new Map({
             layers: [
                 new TileLayer({
