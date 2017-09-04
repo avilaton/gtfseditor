@@ -17,6 +17,8 @@ import View from 'ol/view';
 import olExtent from 'ol/extent';
 import condition from 'ol/events/condition';
 
+import {stopStyle, selectedStopStyle, labelStyle} from '../../styles';
+
 var templateUrl = require('./trip.html');
 
 function Controller(Route, Trip, TripShape, TripStops, TripStopsService, $routeParams, $timeout, _) {
@@ -24,32 +26,6 @@ function Controller(Route, Trip, TripShape, TripStops, TripStopsService, $routeP
 
     var tripStopFeatures = new Collection();
     var tripShapeFeatures = new Collection();
-
-    var stopStyle = new Style({
-        image: new Circle({
-            fill: new Fill({
-                color: '#FFF'
-            }),
-            stroke: new Stroke({
-                color: '#000',
-                width: 2
-            }),
-            radius: 5
-        })
-    });
-
-    var selectedStopStyle = new Style({
-        image: new Circle({
-            fill: new Fill({
-                color: '#F00'
-            }),
-            stroke: new Stroke({
-                color: '#000',
-                width: 2
-            }),
-            radius: 6
-        })
-    });
 
     var shapeStyle = new Style({
         stroke: new Stroke({
@@ -60,7 +36,11 @@ function Controller(Route, Trip, TripShape, TripStops, TripStopsService, $routeP
 
     var tripStopsLayer = new VectorLayer({
         source: new Vector({features: tripStopFeatures}),
-        style: stopStyle
+        style: function (feature, resolution) {
+          const stop = feature.get('_stop')
+          labelStyle.getText().setText(resolution < 3 ? stop.stop_code : '');
+          return [stopStyle, labelStyle];
+        },
     });
 
     var tripShapeLayer = new VectorLayer({

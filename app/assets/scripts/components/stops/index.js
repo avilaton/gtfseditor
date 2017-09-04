@@ -13,7 +13,7 @@ import Fill from 'ol/style/fill';
 import Text from 'ol/style/text';
 import Stroke from 'ol/style/stroke';
 import olLoadingStrategy from 'ol/loadingstrategy';
-import {stopStyle} from './stopStyle';
+import {stopStyle, labelStyle} from '../../styles';
 
 var templateUrl = require('./stops.html');
 
@@ -78,18 +78,6 @@ function Controller(_, $http) {
             });
         var vectorLayer = new VectorLayer({
           style: function (feature, resolution) {
-            var labelStyle = new Style({
-              text: new Text({
-                font: '12px Calibri,sans-serif',
-                fill: new Fill({ color: '#000' }),
-                stroke: new Stroke({
-                  color: '#fff', width: 2
-                }),
-                text: feature.get('stop_code'),
-                offsetX: 15,
-                offsetY: 15
-              })
-            });
             labelStyle.getText().setText(resolution < 3 ? feature.get('stop_code') : '');
             return [stopStyle, labelStyle];
           },
