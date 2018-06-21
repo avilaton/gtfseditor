@@ -3,7 +3,7 @@ salt/roots/pillar/local.sls
 .idea*
 .env*
 .DS_Store
-*.pyc
+**/*.pyc
 *.pyo
 venv/
 .tmp/
