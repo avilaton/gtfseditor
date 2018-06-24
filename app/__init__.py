@@ -11,6 +11,7 @@ from flask_admin import Admin
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.compress import Compress
 from celery import Celery
+from raven.contrib.flask import Sentry
 
 from .admin.views import MyAdminIndexView
 
@@ -24,6 +25,7 @@ login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
 admin = Admin(name='gtfseditor', template_mode='bootstrap3', index_view=MyAdminIndexView())
 webpack = Webpack()
+sentry = Sentry()
 
 
 def create_app(config_name):
@@ -96,3 +98,4 @@ def register_extensions(app):
     cors.init_app(app)
     admin.init_app(app)
     webpack.init_app(app)
+    sentry.init_app(app)
