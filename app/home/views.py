@@ -18,13 +18,32 @@ from ..models import Stop
 from ..models import StopSeq
 from ..services.stop_times import offset_sequence_times
 
+array_type = sa.dialects.postgresql.ARRAY(sa.types.String, as_tuple=True)
+
+
+def remove_nulls(items):
+	if items:
+		return filter(None, items)
+	else:
+		return tuple()
+
 def get_stops_and_routes():
 	distinct_route_names = sa.distinct(Route.route_short_name)
-	array_type = sa.dialects.postgresql.ARRAY(sa.types.String, as_tuple=True)
-	route_agg_dis = sa.func.array_agg(distinct_route_names, type_=array_type).label('routes')
-	rows = db.session.query(Stop, route_agg_dis).outerjoin(StopSeq, Trip, Route)
+	route_agg_dis_active = sa.func.array_agg(
+		distinct_route_names,
+		type_=array_type
+	).filter(Route.active).label('routes')
+	route_agg_dis_inactive = sa.func.array_agg(
+		distinct_route_names,
+		type_=array_type
+	).filter(Route.active.isnot(True)).label('routes_inactive')
+	rows = db.session.query(
+		Stop,
+		route_agg_dis_active,
+		route_agg_dis_inactive
+	).outerjoin(StopSeq, Trip, Route)
 	rows = rows.group_by(Stop.stop_id).order_by(Stop.stop_code)
-	rows = ((r.Stop, filter(None, r.routes)) for r in rows)
+	rows = ((r.Stop, remove_nulls(r.routes), remove_nulls(r.routes_inactive)) for r in rows)
 	return rows
 
 
@@ -47,18 +66,18 @@ def stops():
 @home.route('/stops.<fmt>')
 def stops_kml(fmt='csv'):
 	rows = get_stops_and_routes()
-	Stop.query.first()
 	if fmt == 'kml':
 		content = render_template('stops.kml', rows=rows)
 	elif fmt == 'csv':
 		si = StringIO.StringIO()
-		writer = csv.DictWriter(si, ['stop_code', 'stop_name', 'routes'])
+		writer = csv.DictWriter(si, ['stop_code', 'stop_name', 'active_routes', 'inactive_routes'])
 		writer.writeheader()
-		for stop, routes in rows:
+		for stop, active_routes, inactive_routes in rows:
 			writer.writerow({
 				'stop_code': stop.stop_code,
 				'stop_name': stop.stop_name,
-				'routes': ', '.join(routes)
+				'active_routes': ', '.join(active_routes),
+				'inactive_routes': ', '.join(inactive_routes),
 				})
 		content = si.getvalue()
 
