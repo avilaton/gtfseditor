@@ -20,7 +20,7 @@ class Route(Base, ToJSONMixin, Versioned, GTFSBase):
     agency_id = Column(types.Integer, ForeignKey("agency.agency_id",
                        onupdate="CASCADE",
                        ondelete="SET NULL"))
-    route_short_name = Column(types.String(50))
+    route_short_name = Column(types.Text())
     route_long_name = Column(types.String(150))
     route_desc = Column(types.String(150))
     route_type = Column(types.String(50))
