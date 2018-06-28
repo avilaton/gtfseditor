@@ -13,7 +13,7 @@ class Agency(Base, ToJSONMixin, Versioned, GTFSBase):
 
     agency_id = Column(types.Integer, primary_key=True)
     agency_name = Column(types.String(50))
-    agency_url = Column(types.String(50))
+    agency_url = Column(types.String(200))
     agency_timezone = Column(types.String(50))
     agency_lang = Column(types.String(50))
     agency_phone = Column(types.String(50))
