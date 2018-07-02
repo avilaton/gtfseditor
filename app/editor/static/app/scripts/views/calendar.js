@@ -14,7 +14,7 @@ define([
       tagName: 'div',
 
       events: {
-        'click a.btn-create': 'onCreate',
+        'click .btn-create': 'onCreate',
         'click a.btn-rm': 'onRemove',
         'click a.btn-edit': 'onEdit'
       },
