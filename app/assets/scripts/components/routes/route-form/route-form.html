@@ -1,0 +1,47 @@
+<div ng-if="$ctrl.route.route_id">
+    <h3 class="modal-title">Edit Route: {{$ctrl.route.route_short_name}}</h3>
+</div>
+<div ng-if="!$ctrl.route.route_id">
+    <h3 class="modal-title">Add New Route</h3>
+</div>
+
+<form role="form">
+    <div class="form-group">
+        <label for="route_short_name">route_short_name</label>
+        <input class="form-control" type="text" name="route_short_name" placeholder="route_short_name" value="{{$ctrl.route.route_short_name}}">
+    </div>
+    <div class="form-group">
+        <label for="route_long_name">route_long_name</label>
+        <input class="form-control" type="text" name="route_long_name" placeholder="route_long_name" value="{{$ctrl.route.route_long_name}}">
+    </div>
+    <div class="form-group">
+        <label for="agency-id" class="control-label">agency</label>
+        <select class="form-control select-agency"
+            ng-model="$ctrl.route.agency_id"
+            ng-options="a.agency_id as a.agency_name for a in $ctrl.agencies">
+            <option value=""> -- </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="route_type">route_type</label>
+        <input class="form-control" type="text" name="route_type" placeholder="route_type" value="{{$ctrl.route.route_type}}">
+    </div>
+    <div class="form-group">
+        <label for="route_color">route_color</label>
+        <input class="form-control" type="text" name="route_color" placeholder="route_color" value="{{$ctrl.route.route_color}}">
+    </div>
+    <div class="form-group">
+        <label for="route_desc">route_desc</label>
+        <input class="form-control" type="text" name="route_desc" placeholder="route_desc" value="{{$ctrl.route.route_desc}}">
+    </div>
+    <div class="form-group">
+        <label>
+            <input type="checkbox" {{#if $ctrl.route.active}}checked{{/if}}> Active
+        </label>
+    </div>
+    
+    <div class="form-group pull-right">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary js-save">Save</button>
+    </div>
+</form>

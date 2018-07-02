@@ -17,6 +17,8 @@ app.config(['$routeProvider', function ($routeProvider) {
         template: '<routes></routes>',
     }).when('/routes/:routeId', {
         template: '<route></route>',
+    }).when('/routes/:routeId/edit', {
+        template: '<route-form></route-form>',
     }).when('/routes/:routeId/trips/:tripId', {
         template: '<trip></trip>',
     }).when('/stops/', {
@@ -35,6 +37,7 @@ require('./services/trips')(app);
 // Register components
 require('./components/home')(app);
 require('./components/routes')(app);
+require('./components/routes/route-form')(app);
 require('./components/route')(app);
 require('./components/trip')(app);
 require('./components/stop-sequence')(app);

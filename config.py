@@ -39,7 +39,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'postgres:///gtfsdb'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'postgres:///gtfseditor'
     # SQLALCHEMY_ECHO = True
 
     WTF_CSRF_ENABLED = False
