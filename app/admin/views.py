@@ -15,6 +15,11 @@ class MyModelView(ModelView):
         return current_app.login_manager.unauthorized()
 
 
+class UserModelView(MyModelView):
+    excluded_list_columns = ['password_hash']
+    excluded_form_columns = ['password_hash']
+
+
 # Create customized index view class that handles login & registration
 class MyAdminIndexView(AdminIndexView):
 

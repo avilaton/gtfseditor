@@ -3,7 +3,7 @@
 def register_admin_views(admin):
 
     # admin views
-    from .views import MyModelView
+    from .views import MyModelView, UserModelView
     from app.models import Agency
     from app.models import Calendar
     from app.models import CalendarDate
@@ -13,6 +13,7 @@ def register_admin_views(admin):
     from app.models import Stop
     from app.models import StopTime
     from app.models import ShapePath
+    from app.models import User
     from app import db
 
 
@@ -23,3 +24,4 @@ def register_admin_views(admin):
     admin.add_view(MyModelView(Route, db.session))
     admin.add_view(MyModelView(Trip, db.session))
     admin.add_view(MyModelView(Stop, db.session))
+    admin.add_view(UserModelView(User, db.session))
