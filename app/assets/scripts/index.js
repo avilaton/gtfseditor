@@ -1,11 +1,13 @@
 import angular from 'angular';
 var lodash = require('lodash');
+var NavBarComponent = require('./components/navbar')
 
 var app = angular.module('app', [
     require('angular-resource'),
     require('angular-route'),
     require('angular-ui-bootstrap'),
     require('angular-loading-bar'),
+    NavBarComponent,
     ]);
 
 app.constant('_', lodash);
