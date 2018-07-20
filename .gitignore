@@ -1,6 +1,7 @@
 salt/roots/pillar/local.sls
 .vagrant
 .idea*
+.vscode/
 .env*
 .DS_Store
 **/*.pyc
