@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import current_app
-from flask.ext.login import UserMixin
+from flask_login import UserMixin
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 from datetime import datetime

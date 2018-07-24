@@ -1,5 +1,5 @@
 import json
-from flask.ext.script import Command
+from flask_script import Command
 
 from app import db
 from app.models import Shape

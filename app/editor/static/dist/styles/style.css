@@ -30,6 +30,7 @@ html {
   min-height: 100%;
 }
 body {
+  padding-top: 80px;
   /* Margin bottom by footer height */
   margin-bottom: 40px;
 }

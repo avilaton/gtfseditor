@@ -1,8 +1,8 @@
 import logging
 
 from flask import current_app
-from flask.ext.migrate import upgrade
-from flask.ext.script import Command, Option, prompt_pass, prompt
+from flask_migrate import upgrade
+from flask_script import Command, Option, prompt_pass, prompt
 
 from app.models import Role
 from app.models import User

@@ -1,15 +1,15 @@
 __version__ = '1.2.12'
 
 from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from flask_webpack import Webpack
-from flask.ext.cors import CORS
+from flask_cors import CORS
 from config import config
-from flask.ext.login import LoginManager
+from flask_login import LoginManager
 from flask_mail import Mail
 from flask_admin import Admin
-from flask.ext.bootstrap import Bootstrap
-from flask.ext.compress import Compress
+from flask_bootstrap import Bootstrap
+from flask_compress import Compress
 from celery import Celery
 from raven.contrib.flask import Sentry
 
@@ -34,7 +34,7 @@ def create_app(config_name):
     config[config_name].init_app(app)
 
     # if not app.debug and not app.testing and not app.config['SSL_DISABLE']:
-    #     from flask.ext.sslify import SSLify
+    #     from flask_sslify import SSLify
     #     sslify = SSLify(app)
 
     register_extensions(app)

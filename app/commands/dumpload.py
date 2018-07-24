@@ -4,7 +4,7 @@ import logging
 import glob
 import inspect
 import json
-from flask.ext.script import Command, Option
+from flask_script import Command, Option
 
 from app.models import *
 from app.models.base import Base

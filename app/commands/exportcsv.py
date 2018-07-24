@@ -14,8 +14,8 @@ def exportToCsv(Model, filename, mode=None):
             writer.writerow(row.to_json)
 
 
-from flask.ext.script import Command, Option
-from flask.ext.script.commands import InvalidCommand
+from flask_script import Command, Option
+from flask_script.commands import InvalidCommand
 
 
 class ExportCSV(Command):

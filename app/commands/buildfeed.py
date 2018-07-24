@@ -1,6 +1,6 @@
 import os
 from flask import current_app
-from flask.ext.script import Command, Option
+from flask_script import Command, Option
 from celery.utils.log import get_task_logger
 
 from app import db

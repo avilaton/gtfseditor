@@ -1,0 +1,35 @@
+Installations steps gtfseditor  
+
+setup env variables 
+
+cp .env.example .env
+
+DATABASE_URL="postgres://user:password@host/gtfseditor"
+FLASK_CONFIG=development
+WEBPACK_MANIFEST_PATH='./app/static/manifest.json'
+
+export variables 
+
+npm install / yarn install 
+
+npm run build 
+
+./manage db upgrade 
+
+./manage loaddata 
+
+honcho start 
+
+-- missing notes to setup an admin user
+
+./manage shell
+
+from app.models import Role
+from app.models import User 
+from app import db
+
+u = User(email='some@email.com', role_id=2)
+u.password('somepassword')
+db.session.add(u)
+db.session.commit()
+

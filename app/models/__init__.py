@@ -10,7 +10,7 @@ from flask.globals import _app_ctx_stack, _request_ctx_stack
 
 
 def fetch_current_user_id():
-    from flask.ext.login import current_user
+    from flask_login import current_user
 
     # Return None if we are outside of request context.
     if _app_ctx_stack.top is None or _request_ctx_stack.top is None:

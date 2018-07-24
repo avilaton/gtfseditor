@@ -17,10 +17,9 @@ from app.commands import DumpData
 from app.commands import LoadData
 from app.commands import Deploy
 
-from flask.ext.script import Manager
+from flask_script import Manager
 from flask_script.commands import Clean, Shell
-from flask.ext.migrate import Migrate
-from flask.ext.migrate import MigrateCommand
+from flask_migrate import Migrate, MigrateCommand
 
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
