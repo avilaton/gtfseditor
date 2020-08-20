@@ -1,4 +1,6 @@
-FROM ubuntu:wily
+FROM ubuntu:18.04
+ARG DEBIAN_FRONTEND=noninteractive
+
 MAINTAINER Gastón Avila "avila.gas@gmail.com"
 
 RUN apt-get update -y
